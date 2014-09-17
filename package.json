@@ -1,0 +1,37 @@
+{
+  "name": "next-article-mattc",
+  "version": "0.0.1",
+  "description": "Render a Next FT Article",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "FT",
+    "Financial Times"
+  ],
+  "author": [
+    {
+      "name": "Laurent Muchacho",
+      "email": "Laurent.Muchacho@ft.com"
+    },
+    {
+      "name": "Arjun Gadhia",
+      "email": "Arjun.Gadhia@ft.com"
+    },
+    {
+      "name": "Matt Chadburn",
+      "email": "matt.chadburn@ft.com"
+    }
+
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.8.x",
+    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.3.tar.gz",
+    "ft-poller": "0.0.4",
+    "lodash": "^2.4.1",
+    "es6-promise": "*",
+    "swig": "^1.4.2"
+  }
+}

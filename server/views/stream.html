@@ -1,0 +1,78 @@
+<h1>
+    {{ title }} 
+</h1>
+<div class="stream__container">
+
+    {% for article in stream %}
+        <div id="capi-{{ article.id }}" class="article__card">
+            <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
+            <h3>
+                {{ article.raw.item.title.title }}
+            </h3>
+            <p>
+                {{ article.paragraphs(0, 2) }}
+            </p>
+        </div>
+    {% endfor %}
+
+</div>
+
+<script>
+
+    top.document.addEventListener('stream:open', function (e) {
+        location.href = '/stream/' + e.detail.stream;
+    });
+
+    top.document.addEventListener('index:capi', function (e) {
+        var el = document.getElementById('capi-' + e.detail.capi); 
+        console.log(e.detail.capi, el);
+        //window.scrollTo(0, el.offsetTop - el.scrollTop + el.clientTop);
+    });
+
+</script>
+
+<style>
+    body {
+        padding: 0;
+        margin: 10;
+    }
+    
+    p > img {
+        display: none;
+    }
+
+    h3 {
+        font-size: 26px;
+        font-weight: normal;
+    }
+
+    h1 {
+        color: #1e5799;
+        line-height: 150px;
+        padding: 20px;
+        font-weight: normal;
+        font-size: 40px;
+        text-align: center;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .article__image {
+        display: block;
+        margin: 0 auto;
+        border-radius: 200px;
+        width: 100px;
+        height: 100px;
+    }
+    
+    .article__more {
+        border: 1px solid #999;
+    }
+
+    .article__card {
+        border-bottom: 1px solid #999;
+        margin-bottom: 20px; 
+    }
+</style>
