@@ -34,7 +34,7 @@
     
     $('.js-toggle').map(function (el) {
         el.addEventListener('click', function (e) {
-            emit('stream:open', { stream: e.target.getAttribute('data-stream') });
+            emit('index:open', { stream: e.target.getAttribute('data-stream') });
         })
     });
 
