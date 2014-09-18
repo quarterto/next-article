@@ -9,7 +9,9 @@ var app = express();
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/../static');
+
+// not for production
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 
@@ -36,7 +38,7 @@ app.get('/bertha', function(req, res, next) {
 });
 
 app.get('/index', function(req, res, next) {
-    res.render('index', { 
+    res.render('components/index/base', { 
         latest: latest.get(),
         popular: popular.get(),
         bertha: bertha.get()
@@ -44,28 +46,28 @@ app.get('/index', function(req, res, next) {
 });
 
 app.get('/stream/popular', function(req, res, next) {
-    res.render('stream', { 
+    res.render('components/stream/base', { 
         title: 'Most popular',
         stream: popular.get()
     });
 });
 
 app.get('/stream/latest', function(req, res, next) {
-    res.render('stream', { 
+    res.render('components/stream/base', { 
         title: 'Latest',
         stream: latest.get()
     });
 });
 
 app.get('/stream/picks', function(req, res, next) {
-    res.render('stream', { 
+    res.render('components/stream/base', { 
         title: 'Editor\'s picks',
         stream: bertha.get()
     });
 });
 
 app.get('/', function(req, res, next) {
-    res.render('layout', { });
+    res.render('components/layout/base', { });
 });
 
 

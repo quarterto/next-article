@@ -1,0 +1,54 @@
+body {
+    padding: 0;
+    margin: 10;
+}
+
+p > img {
+    display: none;
+}
+
+h3 {
+    font-size: 26px;
+    font-weight: normal;
+}
+
+h1 {
+    color: #1e5799;
+    line-height: 150px;
+    padding: 20px;
+    font-weight: normal;
+    font-size: 40px;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+}
+
+.article__image {
+    display: block;
+    margin: 0 auto;
+    border-radius: 200px;
+    width: 100px;
+    height: 100px;
+}
+
+.article__more:hover {
+    color: white;
+    background-color: #999;
+}
+
+.article__more {
+    margin: 0px auto 20px auto;
+    border: 1px solid #999;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.article__card {
+    border-bottom: 1px solid #999;
+    margin-bottom: 20px; 
+}

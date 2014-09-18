@@ -1,0 +1,22 @@
+<script src="/components/stream/main.js"></script>
+<link rel="StyleSheet" href="/components/stream/style.css"/>
+
+<h1>
+    {{ title }} 
+</h1>
+<div class="stream__container">
+
+    {% for article in stream %}
+        <div id="capi-{{ article.id }}" class="article__card">
+            <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
+            <h3>
+                {{ article.raw.item.title.title }}
+            </h3>
+            <p>
+                {{ article.paragraphs(0, 2) }}
+            </p>
+            <div class="article__more">Open</div>
+        </div>
+    {% endfor %}
+
+</div>
