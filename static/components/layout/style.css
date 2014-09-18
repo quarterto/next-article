@@ -1,0 +1,62 @@
+
+    body {
+        margin: 0;
+        padding: 0;
+        height: 5000px;
+    }
+
+    iframe {
+        border: none;
+        background-color: white;
+    }
+
+    .component-index {
+        height: 100vh;
+        position: fixed; 
+        width: 30%;
+        top: 0px;
+    }
+    
+    .component-stream {
+        margin-left: 30%;
+        width: 70%;
+        min-height: 200vh;
+    }
+
+    .trigram {
+        position: absolute;
+        display: none;
+        font-size: 30px;
+        padding: 5px;
+        line-height: 30px;
+        top: 0;
+        left: 0;
+        background-color: yellow;
+    }
+
+    .trigram:hover {
+        background-color: white;
+        color: #999;
+        cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+        .trigram {
+            display: block;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .component-stream {
+            margin-left: 0;
+            width: 100%;
+        }
+        .component-index {
+            margin-left: -100%;
+            width: 100%;
+            top: 40px;
+        }
+        .show {
+            margin: 0;
+        }
+    }
