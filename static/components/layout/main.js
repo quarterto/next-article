@@ -21,10 +21,18 @@
         (hasClass(el, name)) ? removeClass(el, name) : addClass(el, name);
     }
 
-    $('.trigram').map(function (el) {
+    $('.icon__trigram').map(function (el) {
         el.addEventListener('click', function (button) {
             $('.context__container').map(function (index) {
                 toggleClass(index, 'show');
+            })
+        })
+    })
+    
+    $('.button-splash').map(function (el) {
+        el.addEventListener('click', function (button) {
+            $('.splash__container').map(function (splash) {
+                toggleClass(splash, 'show');
             })
         })
     })

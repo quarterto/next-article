@@ -1,5 +1,5 @@
 
-sup {
+.index__container sup {
     color: white;
     font-size: 10px;
     background-color: red;
@@ -21,61 +21,42 @@ sup {
     display: block;
 }
 
-* {
+.index__container {
     font-family: arial, sans-serif;
 }
 
-h2 {
+.index__container h2 {
     padding: 5px 5px;
     margin: 0;
     font-size: 18px;
 }
 
-body {
+.index__container {
     margin: 0;
-    padding: 0;
+    padding: 20px 0 0 0;
 }
 
-ul, li {
+.index__container ul, .index__container li {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-li {
+.index__container li {
     display: block;
     padding: 10px 5px;
 }
 
-li:hover, h2:hover {
+.index__container li:hover, .index__container h2:hover {
     background-color: #eee;
     cursor: pointer;
 }
 
-.splash__container {
-    margin-left: -90%;
-}
-
-.splash__container {
-    height: 100vh;
-    background-color: #ccc;
-}
-
-.splash__container, .index__container {
-    width: 95%;
-    box-sizing: border-box;
-    float: left;
-}
-
-.splash__container.splash-show {
-    margin-left: 5%;
-    width: 95%;
-}
-
-input {
+.index__container input {
     font-size: 20px;
     width: 98%;
     padding: 3px;
     display: block;
     margin: 3px;
 }
+

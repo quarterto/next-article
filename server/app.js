@@ -51,21 +51,36 @@ app.get('/context', function(req, res, next) {
 app.get('/stream/popular', function(req, res, next) {
     res.render('components/layout/base', { 
         title: 'Most popular',
-        stream: popular.get()
+        mode: 'compact',
+        latest: latest.get(),
+        popular: popular.get(),
+        bertha: bertha.get(),
+        stream: popular.get(),
+        page: { id: 'popular' }
     });
 });
 
 app.get('/stream/latest', function(req, res, next) {
     res.render('components/layout/base', { 
         title: 'Latest',
-        stream: latest.get()
+        mode: 'compact',
+        latest: latest.get(),
+        popular: popular.get(),
+        bertha: bertha.get(),
+        stream: latest.get(),
+        page: { id: 'latest' }
     });
 });
 
 app.get('/stream/picks', function(req, res, next) {
     res.render('components/layout/base', { 
         title: 'Editor\'s picks',
-        stream: bertha.get()
+        mode: 'compact',
+        latest: latest.get(),
+        popular: popular.get(),
+        bertha: bertha.get(),
+        stream: bertha.get(),
+        page: { id: 'picks' }
     });
 });
 
@@ -75,7 +90,7 @@ app.get('/:id', function(req, res, next) {
         .get([req.params.id])
         .then(function (article) {
             res.render('components/layout/base', { 
-                title: 'XXX',
+                mode: 'expand',
                 stream: article
             });
         }, function (err) {

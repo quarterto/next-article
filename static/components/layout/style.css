@@ -3,18 +3,21 @@ body {
     padding: 0;
 }
 
-.splash__container, .context__container, .stream__container {
+.context__container, .stream__container {
     float: left;
     height: 100vh;
 }
 
 .splash__container {
-    position: absolute;
     background-color: #ccc;
-    top: 0;
-    display: none;
-    width: 50%;
+    top: 40px;
+    left: 0;
+    height: 50vh; 
+    width: 100%;
     opacity: 0.9;
+    z-index: 100;
+    display: none;
+    position: absolute;
 }
 
 .context__container {
@@ -40,19 +43,42 @@ body {
     height: 100vh;
 }
 
-.trigram {
-    display: none;
+.controls__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: blue;
+    width: 20%;
+}
+    
+.icon__trigram {
+    display: none; 
+}
+
+.icon__splash {
+    font-size: 50px;
+    line-height: 50px;
+}
+
+.icon__splash:hover {
+    color: red;
+    cursor: pointer;
+}
+    
+.show {
+    background-color: yellow;
+    display: block;
 }
 
 @media (max-width: 600px) {
 
-    .trigram {
+    .icon__trigram {
         display: block;
         font-size: 40px;
         line-height: 40px;
     }
 
-    .trigram:hover {
+    .icon__trigram:hover {
         color: red;
         cursor: pointer;
     }
@@ -62,13 +88,14 @@ body {
         display: none;
     }
 
+    .show {
+        background-color: yellow;
+        display: block;
+    }
+
     .context {
         width: 100%;
         max-width: 600px;
-    }
-   
-    .show {
-        display: block;    
     }
 
     .stream__container {
@@ -81,100 +108,3 @@ body {
     }
 
 }
-
-iframe {
-    border: none;
-    width: 100%;
-    height: 100vh;
-    background-color: white;
-}
-
-/*
- * body {
-        margin: 0;
-        padding: 0;
-        height: 5000px;
-    }
-
-    iframe {
-        border: none;
-        background-color: white;
-    }
-    
-    .component-splash {
-        height: 100vh;
-        width: 50%;
-    }
-
-    .component-index {
-        height: 100vh;
-        position: fixed; 
-        width: 20%;
-        top: 40px;
-    }
-    
-    .component-stream {
-        margin-left: 30%;
-        width: 50%;
-        min-height: 200vh;
-    }
-    
-    .component-context {
-        width: 20%;
-        min-height: 200vh;
-        position: fixed;
-        right: 0;
-    }
-
-    .trigram {
-        position: absolute;
-        display: none;
-        font-size: 30px;
-        padding: 5px;
-        line-height: 30px;
-        top: 0;
-        left: 0;
-        background-color: yellow;
-    }
-
-    .trigram:hover {
-        background-color: white;
-        color: #999;
-        cursor: pointer;
-    }
-
-    @media (max-width: 600px) {
-        .trigram {
-            display: block;
-        }
-    }
-
-    @media (max-width: 800px) {
-        
-        .component-context {
-            margin-right: -100%;
-        }
-        
-        .component-stream {
-            width: 70%;
-        }
-
-    }
-
-    @media (max-width: 600px) {
-        
-        .component-stream {
-            margin-left: 0;
-            width: 100%;
-        }
-        
-        .component-index {
-            margin-left: -100%;
-            width: 100%;
-        }
-
-        .show {
-            margin: 0;
-        }
-    }
-    */

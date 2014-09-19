@@ -1,37 +1,49 @@
-body {
+.article__card {
     padding: 0;
     margin: 10;
 }
 
-p > img {
+.article__card  p > img {
     display: none;
 }
 
-h3 {
+.article__card h3 {
     font-size: 26px;
     font-weight: normal;
 }
 
+.article__headline a {
+    color: black;
+    text-decoration: none;
+}
+
 h1 {
     font-family: Gill Sans, Helvetica, sans-serif;
-    color: #1e5799;
+    color: #333;
     line-height: 150px;
     padding: 20px;
     font-weight: normal;
     font-size: 50px;
     text-align: center;
+    margin: 0;
 }
 
-p {
+.article__card:first-child {
+    margin-top: 20px;
+}
+
+.article__card p {
     font-size: 18px;
+    font-family: Georgia, serif;
+    line-height: 22px;
 }
 
 .article__image {
     display: block;
     margin: 0 auto;
     border-radius: 200px;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 .article__more:hover {
@@ -62,7 +74,7 @@ p {
     display: block;
 }
 
-.js-active {
+.article__more.js-active {
     background-color: red;
     color: white;
 }

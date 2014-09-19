@@ -8,9 +8,13 @@
     {% if article.raw %}
 
         <div id="capi-{{ article.id }}" class="article__card">
-            <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
-            <h3>
-                {{ article.raw.item.title.title }}
+            <a href="/{{ article.id }}">
+                <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
+            </a>
+            <h3 class="article__headline">
+                <a href="/{{ article.id }}">
+                    {{ article.raw.item.title.title }}
+                </a>
             </h3>
             <p>
                 <em>{{ article.wordCount }} words - {{ article.readingTime }} minutes</em>
@@ -18,11 +22,20 @@
             <p>
                 {{ article.paragraphs(0, 2) }}
             </p>
-            <div class="article__more js-toggle" data-toggle=".more-{{ article.id }}">Open</div>
             
-            <section class="js-hide more-{{ article.id }}">
+            {% if mode === 'compact' %}
+           
+                <div class="article__more js-toggle" data-toggle=".more-{{ article.id }}">Open</div>
+                <section class="js-hide more-{{ article.id }}">
+                    {{ article.paragraphs(3, 100) }}
+                </section>
+            
+            {% else %}
+
                 {{ article.paragraphs(3, 100) }}
-            </section>
+            
+            {% endif %}
+
         </div>
     
     {% endif %}

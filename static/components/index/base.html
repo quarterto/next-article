@@ -1,13 +1,20 @@
 <div class="index__container">
 
     <input type="text" placeholder="Search">
-
+    
     <hr/>
-    <h2 data-toggle=".popular__container" class="js-toggle js-active" data-stream="popular">
+    
+    <h2 class="button-splash">
+        FT 
+    </h2>
+    
+    <hr/>
+
+    <h2 data-toggle=".popular__container" class="js-toggle" data-stream="popular">
         Most popular
     </h2>
 
-    <ul class="popular__container u-hidden js-show">
+    <ul class="popular__container u-hidden {% if page.id === 'popular' %}js-show{% endif %}">
         {% for article in popular %}
             <li data-capi-id="{{ article.id }}">
                 {{ article.raw.item.title.title }}
@@ -19,7 +26,7 @@
         Latest
     </h2>
 
-    <ul class="latest__container u-hidden">
+    <ul class="latest__container u-hidden {% if page.id === 'latest' %}js-show{% endif %}">
         {% for article in latest %}
         <li data-capi-id="{{ article.id }}">
             {{ article.raw.item.title.title }}
@@ -31,7 +38,7 @@
         Editor's picks
     </h2>
 
-    <ul class="bertha__container u-hidden">
+    <ul class="bertha__container u-hidden {% if page.id === 'picks' %}js-show{% endif %} ">
         {% for article in bertha %}
         <li data-capi-id="{{ article.id }}">
             {{ article.raw.item.title.title }}

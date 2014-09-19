@@ -48,13 +48,6 @@
         });        
     })
     
-    $('.splash__container').map(function (el) {
-        el.addEventListener('click', function (splash) {
-            toggleClass(el, 'splash-show');
-        })
-    })
-
-    // 
     $('.index__container').map(function (el) {
    
         // listen for clicks to CAPI resources 
