@@ -15,9 +15,14 @@ var $ = function (selector) {
 }
 
 // Reload the stream when an index:open event is fired 
-top.document.addEventListener('index:open', function (e) {
+document.addEventListener('index:open', function (e) {
     location.href = '/stream/' + e.detail.stream;
 });
+
+document.addEventListener('index:capi', function (e) {
+    window.location.hash = '#capi-' + e.detail.capi
+});
+
 
 emit('stream:loaded', { id: 123 });
 
