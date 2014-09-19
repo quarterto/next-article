@@ -44,7 +44,7 @@
 
 .index__container li {
     display: block;
-    padding: 10px 5px;
+    padding: 5px 5px;
 }
 
 .index__container li:hover, .index__container h2:hover {
@@ -60,3 +60,11 @@
     margin: 3px;
 }
 
+.headline__title {
+    margin: 1px 0 0 0;
+}
+
+.headline__meta {
+    font-size: 11px;
+    color: #666;
+}

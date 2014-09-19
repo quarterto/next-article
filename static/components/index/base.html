@@ -17,7 +17,9 @@
     <ul class="popular__container u-hidden {% if page.id === 'popular' %}js-show{% endif %}">
         {% for article in popular %}
             <li data-capi-id="{{ article.id }}">
+            <p class="headline__title">
                 {{ article.raw.item.title.title }}
+            </p>
             </li>
         {% endfor %}
     </ul>
@@ -29,7 +31,9 @@
     <ul class="latest__container u-hidden {% if page.id === 'latest' %}js-show{% endif %}">
         {% for article in latest %}
         <li data-capi-id="{{ article.id }}">
-            {{ article.raw.item.title.title }}
+            <p class="headline__title">
+                {{ article.raw.item.title.title }}
+            </p>
         </li>
         {% endfor %}
     </ul>
@@ -41,7 +45,9 @@
     <ul class="bertha__container u-hidden {% if page.id === 'picks' %}js-show{% endif %} ">
         {% for article in bertha %}
         <li data-capi-id="{{ article.id }}">
-            {{ article.raw.item.title.title }}
+            <p class="headline__title">
+                {{ article.raw.item.title.title }}
+            </p>
         </li>
         {% endfor %}
     </ul>
