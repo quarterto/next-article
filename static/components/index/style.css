@@ -1,4 +1,9 @@
 
+
+.index__container hr {
+    opacity: 0.8;
+}
+
 .index__container sup {
     color: white;
     font-size: 10px;
@@ -36,6 +41,18 @@
     padding: 20px 0 0 0;
 }
 
+.index__container ul {
+    border-left: 1px solid #999;
+}
+
+.index__container li:last-child {
+    margin-bottom: 10px;
+}
+
+.index__container h2 {
+    border-left: 1px solid #999;
+}
+
 .index__container ul, .index__container li {
     list-style: none;
     padding: 0;
@@ -45,6 +62,7 @@
 .index__container li {
     display: block;
     padding: 5px 5px;
+    font-size: 16px;
 }
 
 .index__container li:hover, .index__container h2:hover {
