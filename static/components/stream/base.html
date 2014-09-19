@@ -4,16 +4,25 @@
 <div class="stream__container">
 
     {% for article in stream %}
-        <div id="capi-{{ article.id }}" class="article__card">
-            <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
-            <h3>
-                {{ article.raw.item.title.title }}
-            </h3>
-            <p>
-                {{ article.paragraphs(0, 2) }}
-            </p>
-            <div class="article__more">Open</div>
-        </div>
+
+        {% if article.raw %}
+
+            <div id="capi-{{ article.id }}" class="article__card">
+                <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
+                <h3>
+                    {{ article.raw.item.title.title }}
+                </h3>
+                <p>
+                    <em>{{ article.wordCount }} words - {{ article.readingTime }} minutes</em>
+                </p>
+                <p>
+                    {{ article.paragraphs(0, 2) }}
+                </p>
+                <div class="article__more">Open</div>
+            </div>
+        
+        {% endif %}
+
     {% endfor %}
 
 </div>

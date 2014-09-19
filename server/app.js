@@ -45,6 +45,10 @@ app.get('/index', function(req, res, next) {
     });
 });
 
+app.get('/context', function(req, res, next) {
+    res.render('components/context/base', { }) 
+});
+
 app.get('/stream/popular', function(req, res, next) {
     res.render('components/stream/base', { 
         title: 'Most popular',
@@ -78,4 +82,7 @@ popular.init();
 bertha.init();
 
 // 
-app.listen(3001);
+var port = process.env.PORT || 3001;
+app.listen(port, function() {
+      console.log("Listening on " + port);
+});

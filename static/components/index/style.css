@@ -1,4 +1,14 @@
 
+sup {
+    color: white;
+    font-size: 10px;
+    background-color: red;
+    line-height: 12px;
+    width: 12px;
+    display: inline-block;
+    text-align: center;
+}
+
 .u-hidden {
     display: none;
 }
@@ -42,3 +52,30 @@ li:hover, h2:hover {
     cursor: pointer;
 }
 
+.splash__container {
+    margin-left: -90%;
+}
+
+.splash__container {
+    height: 100vh;
+    background-color: #ccc;
+}
+
+.splash__container, .index__container {
+    width: 95%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.splash__container.splash-show {
+    margin-left: 5%;
+    width: 95%;
+}
+
+input {
+    font-size: 20px;
+    width: 98%;
+    padding: 3px;
+    display: block;
+    margin: 3px;
+}

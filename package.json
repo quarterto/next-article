@@ -23,15 +23,15 @@
       "name": "Matt Chadburn",
       "email": "matt.chadburn@ft.com"
     }
-
   ],
   "license": "ISC",
   "dependencies": {
+    "es6-promise": "*",
     "express": "^4.8.x",
-    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.3.tar.gz",
+    "fruitmachine": "^0.8.3",
+    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.6.tar.gz",
     "ft-poller": "0.0.4",
     "lodash": "^2.4.1",
-    "es6-promise": "*",
     "swig": "^1.4.2"
   }
 }

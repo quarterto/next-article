@@ -23,7 +23,7 @@
 
     $('.trigram').map(function (el) {
         el.addEventListener('click', function (button) {
-            $('.component-index').map(function (index) {
+            $('.context__container').map(function (index) {
                 toggleClass(index, 'show');
             })
         })
