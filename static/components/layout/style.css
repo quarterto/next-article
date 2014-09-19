@@ -21,11 +21,13 @@ div { box-sizing: border-box; xborder: 1px solid #000; }
 
 .context__container {
     width: 20%;
+    position: fixed;
 }
 
 .stream__container {
     width: 80%;
     xbackground-color: yellow;
+    margin-left: 20%;
 }
 
 .stream {
@@ -75,6 +77,7 @@ div { box-sizing: border-box; xborder: 1px solid #000; }
 
     .stream__container {
         width: 100%;
+        margin-left: 0;
     }
     
     .stream {
