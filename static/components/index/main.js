@@ -10,7 +10,7 @@
         top.document.dispatchEvent(event);
     }
 
-    var $ = function (selector) {
+   var $ = function (selector) {
         return [].slice.call(document.querySelectorAll(selector));
     }
 
@@ -39,13 +39,9 @@
     });
 
     $('.js-toggle').map(function (el) {
-
         el.addEventListener('click', function (evt) {
-
             toggleClass(el, 'js-active');
-
             var target = this.getAttribute('data-toggle');
-
             $(target).map(function (elm) {
                 toggleClass(elm, 'js-show');
             })

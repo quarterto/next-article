@@ -1,31 +1,32 @@
+{% if title %}
 <h1>
     {{ title }} 
 </h1>
-<div class="stream__container">
+{% endif %}
 
-    {% for article in stream %}
+{% for article in stream %}
+    {% if article.raw %}
 
-        {% if article.raw %}
-
-            <div id="capi-{{ article.id }}" class="article__card">
-                <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
-                <h3>
-                    {{ article.raw.item.title.title }}
-                </h3>
-                <p>
-                    <em>{{ article.wordCount }} words - {{ article.readingTime }} minutes</em>
-                </p>
-                <p>
-                    {{ article.paragraphs(0, 2) }}
-                </p>
-                <div class="article__more">Open</div>
-            </div>
-        
-        {% endif %}
-
-    {% endfor %}
-
-</div>
+        <div id="capi-{{ article.id }}" class="article__card">
+            <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
+            <h3>
+                {{ article.raw.item.title.title }}
+            </h3>
+            <p>
+                <em>{{ article.wordCount }} words - {{ article.readingTime }} minutes</em>
+            </p>
+            <p>
+                {{ article.paragraphs(0, 2) }}
+            </p>
+            <div class="article__more js-toggle" data-toggle=".more-{{ article.id }}">Open</div>
+            
+            <section class="js-hide more-{{ article.id }}">
+                {{ article.paragraphs(3, 100) }}
+            </section>
+        </div>
+    
+    {% endif %}
+{% endfor %}
 
 <script src="/components/stream/main.js"></script>
 <link rel="StyleSheet" href="/components/stream/style.css"/>

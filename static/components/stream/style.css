@@ -13,11 +13,12 @@ h3 {
 }
 
 h1 {
+    font-family: Gill Sans, Helvetica, sans-serif;
     color: #1e5799;
     line-height: 150px;
     padding: 20px;
     font-weight: normal;
-    font-size: 40px;
+    font-size: 50px;
     text-align: center;
 }
 
@@ -51,4 +52,17 @@ p {
 .article__card {
     border-bottom: 1px solid #999;
     margin-bottom: 20px; 
+}
+
+.js-hide {
+    display: none;
+}
+
+.js-show {
+    display: block;
+}
+
+.js-active {
+    background-color: red;
+    color: white;
 }

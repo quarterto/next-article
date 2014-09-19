@@ -3,14 +3,12 @@ body {
     padding: 0;
 }
 
-div { box-sizing: border-box; xborder: 1px solid #000; }
-
-.uber, .context__container, .stream__container {
+.splash__container, .context__container, .stream__container {
     float: left;
     height: 100vh;
 }
 
-.uber {
+.splash__container {
     position: absolute;
     background-color: #ccc;
     top: 0;
@@ -26,12 +24,10 @@ div { box-sizing: border-box; xborder: 1px solid #000; }
 
 .stream__container {
     width: 80%;
-    xbackground-color: yellow;
     margin-left: 20%;
 }
 
 .stream {
-    background-color: blue;
     max-width: 600px;
     margin: 0 auto;
     height: 100vh;
