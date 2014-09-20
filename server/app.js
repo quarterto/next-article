@@ -104,7 +104,7 @@ app.get('/:id', function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
-    res.render('components/layout/base', { });
+    res.send('<a href="/stream/popular">try here</a>, or <a href="/components">here</a>.');
 });
 
 
