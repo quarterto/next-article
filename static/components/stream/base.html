@@ -1,3 +1,5 @@
+<link rel="StyleSheet" href="/components/stream/style.css"/>
+
 {% if title %}
 <h1 class="stream-list__title">
     {{ title }} 
@@ -16,8 +18,11 @@
                     {{ article.raw.item.title.title }}
                 </a>
             </h3>
-            <p>
-                <em>{{ article.wordCount }} words - {{ article.readingTime }} minutes</em>
+            <p align="center">
+            <em>{{ article.lastUpdated|date('j F, Y') }} - {{ article.raw.item.metadata.authors[0].term.name }}</em>
+            </p>
+            <p align="center">
+            <em><small>{{ article.wordCount }} words - {{ article.readingTime }} minutes</small></em>
             </p>
             <p>
                 {{ article.paragraphs(0, 2) }}
@@ -42,4 +47,3 @@
 {% endfor %}
 
 <script src="/components/stream/main.js"></script>
-<link rel="StyleSheet" href="/components/stream/style.css"/>
