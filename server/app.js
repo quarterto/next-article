@@ -24,25 +24,29 @@ GLOBAL.Promise = require('es6-promise').Promise;
 
 var templates = { }
 
-app.get('/latest', function(req, res, next) {
-    res.send(latest.get()); 
-});
+/* Components */
 
-app.get('/popular', function(req, res, next) {
-    res.send(popular.get()); 
-});
-
-app.get('/bertha', function(req, res, next) {
-    res.send(bertha.get()); 
-});
-
-app.get('/index', function(req, res, next) {
+app.get('/components/context', function(req, res, next) {
     res.render('components/context/base', { 
         latest: latest.get(),
         popular: popular.get(),
         bertha: bertha.get()
     });
 });
+
+app.get('/components/splash', function(req, res, next) {
+    res.render('components/splash/base', { });
+});
+
+app.get('/components/stream', function(req, res, next) {
+    res.render('components/stream/base', {
+        title: 'Most popular',
+        mode: 'compact',
+        stream: latest.get()
+    });
+});
+
+/* UI */
 
 app.get('/stream/popular', function(req, res, next) {
     res.render('components/layout/base', { 

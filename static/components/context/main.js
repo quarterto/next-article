@@ -35,7 +35,15 @@
     $('.stream-list__label').map(function (el) {
         el.addEventListener('click', function (evt) {
             toggleClass(el, 'stream-list__label-active');
+            
+            var active = hasClass(el, 'stream-list__label-active') ? 'open' : 'close';
+            
+            emit('index:' + active, {
+               stream: el.getAttribute('data-stream')
+            });
+            
             var target = this.getAttribute('data-toggle');
+
             $(target).map(function (elm) {
                 toggleClass(elm, 'u-show');
             })
@@ -50,16 +58,6 @@
                 emit('index:capi', { capi: item.target.getAttribute('data-capi-id') });
             }
         })
-
-    // List for clicks to streams and emit event
-    $('.stream-list__label').map(function (el) {
-        el.addEventListener('click', function (e) {
-            emit('index:open', {
-               stream: e.target.getAttribute('data-stream')
-            });
-        })
-    });
-
 
     });
 

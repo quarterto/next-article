@@ -43,7 +43,7 @@ function toggleClass(el, name) {
     (hasClass(el, name)) ? removeClass(el, name) : addClass(el, name);
 }
 
-$('.stream__container .js-toggle').map(function (el) {
+$('.article-card__more.js-toggle').map(function (el) {
     el.addEventListener('click', function (evt) {
         toggleClass(el, 'js-active');
         el.textContent = hasClass(el, 'js-active') ? 'Close' : 'Open';

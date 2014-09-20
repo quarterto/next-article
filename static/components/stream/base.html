@@ -1,5 +1,5 @@
 {% if title %}
-<h1>
+<h1 class="stream-list__title">
     {{ title }} 
 </h1>
 {% endif %}
@@ -7,12 +7,12 @@
 {% for article in stream %}
     {% if article.raw %}
 
-        <div id="capi-{{ article.id }}" class="article__card">
+        <div class="article-card" id="capi-{{ article.id }}">
             <a href="/{{ article.id }}">
-                <img src="{{ article.largestImage.url }}" class="article__image" draggable="true"/>
+                <img src="{{ article.largestImage.url }}" class="article-card__image" draggable="true"/>
             </a>
-            <h3 class="article__headline">
-                <a href="/{{ article.id }}">
+            <h3 class="article-card__headline">
+                <a href="/{{ article.id }}" class="article-card__link">
                     {{ article.raw.item.title.title }}
                 </a>
             </h3>
@@ -25,7 +25,7 @@
             
             {% if mode === 'compact' %}
            
-                <div class="article__more js-toggle" data-toggle=".more-{{ article.id }}">Open</div>
+                <div class="article-card__more js-toggle" data-toggle=".more-{{ article.id }}">Open</div>
                 <section class="js-hide more-{{ article.id }}">
                     {{ article.paragraphs(3, 100) }}
                 </section>

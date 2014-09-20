@@ -29,10 +29,18 @@
         })
     })
     
-    $('.button-splash').map(function (el) {
+    $('.home__label').map(function (el) {
         el.addEventListener('click', function (button) {
             $('.splash__container').map(function (splash) {
+                
+                toggleClass(document.body, 'splash-on');
                 toggleClass(splash, 'show');
+                if (hasClass(splash, 'show')) {
+                    setTimeout( function () { 
+                        window.scrollTo(0, 0);
+                    }, 100)
+                }
+
             })
         })
     })
