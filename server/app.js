@@ -26,6 +26,10 @@ var templates = { }
 
 /* Components */
 
+app.get('/components', function(req, res, next) {
+    res.render('components/list', { });
+});
+
 app.get('/components/context', function(req, res, next) {
     res.render('components/context/base', { 
         latest: latest.get(),
