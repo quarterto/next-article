@@ -1,0 +1,95 @@
+
+<div class="context">
+
+        {% include "../site-search/base.html" %}
+
+        <h2 
+            class="stream-list__label"
+            >
+            FT 
+        </h2>
+
+        <!-- -->
+
+        <h2 
+            class="stream-list__label"
+            data-stream="popular"
+            data-toggle=".stream-list--popular"
+            >
+            Most popular
+        </h2>
+        <ul class="stream-list--compact stream-list--popular stream-list u-hidden {% if page.id === 'popular' %}u-show{% endif %}">
+            {% for article in popular %}
+                <li class="stream-list__item" data-capi-id="{{ article.id }}">
+                    {{ article.raw.item.title.title }}
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <!-- --> 
+
+        <h2 
+            class="stream-list__label"
+            data-stream="picks"
+            data-toggle=".stream-list--picks"
+            >
+            Editor's picks
+        </h2>
+        <ul class="stream-list--compact stream-list--picks stream-list u-hidden {% if page.id === 'picks' %}u-show{% endif %}">
+            {% for article in bertha %}
+                <li class="stream-list__item" data-capi-id="{{ article.id }}">
+                    {{ article.raw.item.title.title }}
+                </li>
+            {% endfor %}
+        </ul>
+
+<!-- 
+        <ul class="popular__container u-hidden {% if page.id === 'popular' %}js-show{% endif %}">
+            {% for article in popular %}
+                <li data-capi-id="{{ article.id }}" class="headline__title">
+                    {{ article.raw.item.title.title }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2 data-toggle=".latest__container" class="js-toggle" data-stream="latest">
+            Latest
+        </h2>
+
+        <ul class="latest__container u-hidden {% if page.id === 'latest' %}js-show{% endif %}">
+            {% for article in latest %}
+            <li data-capi-id="{{ article.id }}" class="headline__title">
+                {{ article.raw.item.title.title }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h2 data-toggle=".bertha__container" class="js-toggle" data-stream="picks">
+            Editor's picks
+        </h2>
+
+        <ul class="bertha__container u-hidden {% if page.id === 'picks' %}js-show{% endif %} ">
+            {% for article in bertha %}
+            <li data-capi-id="{{ article.id }}" class="headline__title">
+                {{ article.raw.item.title.title }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <hr/>
+        <h2 data-toggle=".foryou__container" class="s-toggle">Oil</h2>
+        <h2 data-toggle=".foryou__container" class="s-toggle">Scottish Referendum</h2>
+        <hr/>
+
+        <h2 data-toggle=".foryou__container" class="s-toggle">For you <sup>2</sup></h2>
+        <h2 data-toggle=".history__container" class="s-toggle">Your history</h2>
+        <h2 data-toggle=".later__container" class="s-toggle">Read later</h2>
+        <h2 data-toggle=".foryou__container" class="s-toggle">Following</h2>
+        <h2 data-toggle=".foryou__container" class="s-toggle">Shared</h2>
+        -->
+</div>
+
+<script src="/components/context/main.js"></script>
+<link rel="StyleSheet" href="/components/context/style.css"/>
+<link rel="StyleSheet" href="/utils.css"/>
+

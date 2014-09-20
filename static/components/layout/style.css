@@ -36,14 +36,6 @@ body {
     height: 100vh;
 }
 
-.context {
-    max-width: 250px;
-    background-color: white;
-    margin: 0 auto;
-    height: 100vh;
-    overflow-y: scroll;
-}
-
 .controls__container {
     position: absolute;
     top: 0;
@@ -94,12 +86,7 @@ body {
     .show {
         display: block;
     }
-
-    .context {
-        width: 100%;
-        max-width: 600px;
-    }
-
+    
     .stream__container {
         width: 100%;
         margin-left: 0;

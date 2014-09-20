@@ -37,15 +37,11 @@ app.get('/bertha', function(req, res, next) {
 });
 
 app.get('/index', function(req, res, next) {
-    res.render('components/index/base', { 
+    res.render('components/context/base', { 
         latest: latest.get(),
         popular: popular.get(),
         bertha: bertha.get()
     });
-});
-
-app.get('/context', function(req, res, next) {
-    res.render('components/context/base', { }) 
 });
 
 app.get('/stream/popular', function(req, res, next) {

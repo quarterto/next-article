@@ -1,5 +1,4 @@
 
-
     var emit = function(name, data) {
         console.log('emitting', name)
         var event = document.createEvent('Event');
@@ -7,7 +6,7 @@
         if (data) {
             event.detail = data;
         }
-        top.document.dispatchEvent(event);
+        document.dispatchEvent(event);
     }
 
    var $ = function (selector) {
@@ -31,36 +30,35 @@
     function toggleClass(el, name) {
         (hasClass(el, name)) ? removeClass(el, name) : addClass(el, name);
     }
-    
-    $('.js-toggle').map(function (el) {
-        el.addEventListener('click', function (e) {
-            emit('index:open', { stream: e.target.getAttribute('data-stream') });
-        })
-    });
-
-    $('.js-toggle').map(function (el) {
+   
+    // Toggle the streams open and closed states
+    $('.stream-list__label').map(function (el) {
         el.addEventListener('click', function (evt) {
-            toggleClass(el, 'js-active');
+            toggleClass(el, 'stream-list__label-active');
             var target = this.getAttribute('data-toggle');
             $(target).map(function (elm) {
-                toggleClass(elm, 'js-show');
+                toggleClass(elm, 'u-show');
             })
         });        
     })
     
-    $('.index__container').map(function (el) {
-   
-        // listen for clicks to CAPI resources 
+    // Listen for clicks to CAPI resources and emit event 
+    $('.context').map(function (el) {
         el.addEventListener('click', function (item) {
-
-            // 
             var hasId = !!item.target.getAttribute('data-capi-id');
-
             if (hasId) {
                 emit('index:capi', { capi: item.target.getAttribute('data-capi-id') });
             }
-
         })
+
+    // List for clicks to streams and emit event
+    $('.stream-list__label').map(function (el) {
+        el.addEventListener('click', function (e) {
+            emit('index:open', {
+               stream: e.target.getAttribute('data-stream')
+            });
+        })
+    });
 
 
     });

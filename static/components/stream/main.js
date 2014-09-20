@@ -1,4 +1,3 @@
-
   
 var emit = function(name, data) {
     console.log('emitting', name)
