@@ -93,9 +93,9 @@ app.get('/stream/picks', function(req, res, next) {
 });
 
 //
-app.get('/search/:term', function(req, res, next) {
+app.get('/search', function(req, res, next) {
     ft
-        .search(decodeURI(req.params.term))
+        .search(decodeURI(req.query.q))
         .then(function (articles) {
             
             var ids = articles.map(function (article) {

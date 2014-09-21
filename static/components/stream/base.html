@@ -22,7 +22,7 @@
             <em>
                 {{ article.lastUpdated|date('j F, Y') }} -
                 {% if article.raw.item.metadata.authors.length > 0 %}
-                    <a href="/search/authors:{{ article.raw.item.metadata.authors[0].term.name|url_encode }}">
+                    <a href="/search?q=authors:{{ article.raw.item.metadata.authors[0].term.name|url_encode }}">
                         {{ article.raw.item.metadata.authors[0].term.name }}
                     </a>
                 {% endif %}
