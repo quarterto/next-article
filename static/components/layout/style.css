@@ -16,7 +16,6 @@ body {
     opacity: 0.9;
     z-index: 100;
     display: none;
-    xposition: absolute;
 }
 
 .context__container {
