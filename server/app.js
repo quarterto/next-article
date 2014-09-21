@@ -92,6 +92,35 @@ app.get('/stream/picks', function(req, res, next) {
     });
 });
 
+//
+app.get('/search/:term', function(req, res, next) {
+    ft
+        .search(decodeURI(req.params.term))
+        .then(function (articles) {
+            
+            var ids = articles.map(function (article) {
+                return article.id;
+            })
+
+            ft
+                .get(ids)
+                .then( function (articles) {
+                    res.render('components/stream/base', { 
+                        mode: 'compact',
+                        stream: articles
+                    });
+                }, function () {
+                    console.log(err);
+                    res.send(404);
+                })
+
+        }, function (err) {
+            console.log(err);
+            res.send(404);
+        })
+    
+});
+
 // ft articles
 app.get('/:id', function(req, res, next) {
     ft
