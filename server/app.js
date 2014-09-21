@@ -42,6 +42,10 @@ app.get('/components/splash', function(req, res, next) {
     res.render('components/splash/base', { });
 });
 
+app.get('/components/site-search', function(req, res, next) {
+    res.render('components/site-search/base', { });
+});
+
 app.get('/components/stream', function(req, res, next) {
     res.render('components/stream/base', {
         title: 'Most popular',

@@ -1,6 +1,6 @@
   
 var emit = function(name, data) {
-    console.log('emitting', name)
+    console.log('emitting', name, data)
     var event = document.createEvent('Event');
     event.initEvent(name, true, true);
     if (data) {
@@ -8,7 +8,22 @@ var emit = function(name, data) {
     }
     top.document.dispatchEvent(event);
 }
-   
+ 
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+  
 var $ = function (selector) {
     return [].slice.call(document.querySelectorAll(selector));
 }
@@ -53,3 +68,38 @@ $('.article-card__more.js-toggle').map(function (el) {
         })
     });        
 })
+
+
+/* */
+
+var tracks = $('.article-card__headline');
+
+function isElementInViewport (el) {
+    var rect = el.getBoundingClientRect();
+    return (
+
+        // FIXME is 25% from the top
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+    );
+}
+
+var readable = function() {
+    // FIXME - emit( stream:scrollspy, { capi: <id> } )
+
+    // Return the ID of the uppermost headline in the viewport
+    var inView = tracks.filter(function (el) {
+        return isElementInViewport(el);
+    }).map(function (el) {
+        return el.parentNode.id;
+    })[0]
+
+    if (inView.length > 0) { 
+        emit('stream:inview', { capi: inView  } )
+    }
+}
+
+window.onscroll = debounce(readable, 5, false);
+

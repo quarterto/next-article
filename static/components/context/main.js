@@ -30,7 +30,19 @@
     function toggleClass(el, name) {
         (hasClass(el, name)) ? removeClass(el, name) : addClass(el, name);
     }
-   
+    
+    document.addEventListener('stream:inview', function (e) {
+        var f = '[data-capi-id="' + e.detail.capi.replace('capi-', '') + '"]'
+        
+        $('.stream-list__item').map(function (el) {
+            removeClass(el, 'scrollspy-on')
+        });
+
+        $(f).map(function (el) {
+            addClass(el, 'scrollspy-on')
+        });
+    });
+ 
     // Toggle the streams open and closed states
     $('.stream-list__label').map(function (el) {
         el.addEventListener('click', function (evt) {

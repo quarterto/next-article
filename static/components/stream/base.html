@@ -11,7 +11,7 @@
 
         <div class="article-card" id="capi-{{ article.id }}">
             <a href="/{{ article.id }}">
-                <img src="{{ article.largestImage.url }}" class="article-card__image" draggable="true"/>
+                <img src="{{ article.largestImage.url }}" class="article-card__image article-card__image-{{ article.id }}" draggable="true"/>
             </a>
             <h3 class="article-card__headline">
                 <a href="/{{ article.id }}" class="article-card__link">
@@ -19,7 +19,7 @@
                 </a>
             </h3>
             <p align="center">
-            <em>{{ article.lastUpdated|date('j F, Y') }} - {{ article.raw.item.metadata.authors[0].term.name }}</em>
+            <em>{{ article.lastUpdated|date('j F, Y') }} - {% if article.raw.item.metadata.authors.length > 0 %} {{ article.raw.item.metadata.authors[0].term.name }}{% endif %}</em>
             </p>
             <p align="center">
             <em><small>{{ article.wordCount }} words - {{ article.readingTime }} minutes</small></em>
@@ -46,4 +46,6 @@
     {% endif %}
 {% endfor %}
 
+<script src="/trackable/lib/trackable.js"></script>
 <script src="/components/stream/main.js"></script>
+
