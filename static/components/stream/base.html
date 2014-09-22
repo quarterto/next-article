@@ -10,31 +10,57 @@
     {% if article.raw %}
 
         <div class="article-card" id="capi-{{ article.id }}">
+
+            {{ article.genre }}
+
+            <!--
+                {{ article.primarySection.name }}
+                {{ article.primaryTheme.name }}
+            -->
+
             <a href="/{{ article.id }}">
                 <img src="{{ article.largestImage.url }}" class="article-card__image article-card__image-{{ article.id }}" draggable="true"/>
             </a>
+            
             <h3 class="article-card__headline">
                 <a href="/{{ article.id }}" class="article-card__link">
                     {{ article.raw.item.title.title }}
                 </a>
             </h3>
+
             <p align="center">
             <em>
                 {{ article.lastUpdated|date('j F, Y') }} -
-                {% if article.raw.item.metadata.authors.length > 0 %}
-                    <a href="/search?q=authors:{{ article.raw.item.metadata.authors[0].term.name|url_encode }}">
-                        {{ article.raw.item.metadata.authors[0].term.name }}
-                    </a>
-                {% endif %}
+                {% for author in article.authors %}
+                    <a href="/search?q={{ author.searchString }}">{{ author.name }}</a>{% if !loop.last %}, {% endif %}
+                {% endfor %}
             </em>
             </p>
+
             <p align="center">
-            <em><small>{{ article.wordCount }} words - {{ article.readingTime }} minutes</small></em>
+                <em><small>{{ article.wordCount }} words - {{ article.readingTime }} minutes</small></em>
             </p>
+            
+            <p align="center">
+                <small> 
+                    {% for person in article.people %}
+                        <a href="/search?q={{ person.searchString }}">{{ person.name }}</a>{% if !loop.last %}, {% endif %}
+                        {% endfor %}
+                </small>
+            </p>
+            
+            <p align="center">
+                <small>
+                    {% for org in article.organisations %}
+                        <a href="/search?q={{ org.searchString }}">{{ org.name }}</a>{% if !loop.last %}, {% endif %}
+                    {% endfor %}
+                </small>
+            </p>
+
             <p>
                 {{ article.paragraphs(0, 2) }}
             </p>
-            
+
             {% if mode === 'compact' %}
            
                 <div class="article-card__more js-toggle" data-toggle=".more-{{ article.id }}">Open</div>
