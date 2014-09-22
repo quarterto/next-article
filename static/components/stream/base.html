@@ -11,7 +11,9 @@
 
         <div class="article-card" id="capi-{{ article.id }}">
 
-            {{ article.genre }}
+            <a href="/search?q=genre:{{ article.genre }}">{{ article.genre }}</a> 
+            / 
+            <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a> 
 
             <!--
                 {{ article.primarySection.name }}
@@ -30,7 +32,7 @@
 
             <p align="center">
             <em>
-                {{ article.lastUpdated|date('j F, Y') }} -
+                {{ article.lastUpdated|date('l, j F, Y') }} -
                 {% for author in article.authors %}
                     <a href="/search?q={{ author.searchString }}">{{ author.name }}</a>{% if !loop.last %}, {% endif %}
                 {% endfor %}
@@ -38,7 +40,7 @@
             </p>
 
             <p align="center">
-                <em><small>{{ article.wordCount }} words - {{ article.readingTime }} minutes</small></em>
+                <em><small>{{ article.wordCount }} words - {{ article.readingTime }} minutes | 705 comments</small></em>
             </p>
             
             <p align="center">
