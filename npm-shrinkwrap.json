@@ -259,9 +259,9 @@
       }
     },
     "ft-api-client": {
-      "version": "3.0.12",
-      "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.12.tar.gz",
-      "resolved": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.12.tar.gz",
+      "version": "3.0.13",
+      "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.13.tar.gz",
+      "resolved": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.13.tar.gz",
       "dependencies": {
         "cheerio": {
           "version": "0.17.0",
@@ -314,7 +314,7 @@
                 },
                 "domelementtype": {
                   "version": "1.1.1",
-                  "from": "domelementtype@1",
+                  "from": "domelementtype@~1.1.1",
                   "resolved": "https://registry.npmjs.org/domelementtype/-/domelementtype-1.1.1.tgz"
                 },
                 "readable-stream": {
