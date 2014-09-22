@@ -46,6 +46,10 @@ app.get('/components/site-search', function(req, res, next) {
     res.render('components/site-search/base', { });
 });
 
+app.get('/components/header', function(req, res, next) {
+    res.render('components/header/base', { });
+});
+
 app.get('/components/stream', function(req, res, next) {
     res.render('components/stream/base', {
         title: 'Most popular',

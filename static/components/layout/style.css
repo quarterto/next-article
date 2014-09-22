@@ -10,7 +10,6 @@ body {
 
 .splash__container {
     background-color: #ccc;
-    margin-left: 20%;
     height: 50vh; 
     width: 100%;
     opacity: 0.9;
@@ -21,7 +20,7 @@ body {
 .context__container {
     width: 20%;
     position: fixed;
-    top: 40px;
+    xtop: 40px;
 }
 
 .stream__container {
