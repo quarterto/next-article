@@ -24,6 +24,18 @@ GLOBAL.Promise = require('es6-promise').Promise;
 
 var templates = { }
 
+var formatSection = function (s) {
+
+        console.log('**', s);
+        if (/(.*):(.*)/.test(s)) {
+            var d = s.split(':').replace(/\"/g, '');
+            console.log('**', d);
+            return d;
+        }
+
+        return s;
+}
+
 /* Components */
 
 app.get('/components', function(req, res, next) {
