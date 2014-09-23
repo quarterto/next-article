@@ -96,6 +96,36 @@ app.get('/stream/picks', function(req, res, next) {
     });
 });
 
+
+app.get('/context/search', function(req, res, next) {
+
+    console.log('Searching for', req.query.q);
+
+    ft
+        .search(decodeURI(req.query.q))
+        .then(function (articles) {
+                
+            var ids = articles.map(function (article) {
+                return article.id;
+            })
+            
+            ft
+                .get(ids)
+                .then( function (articles) {
+                    res.set('Cache-Control', 'public, max-age:30'); 
+                    res.render('components/context/base', { 
+                        mode: 'compact',
+                        stream: articles,
+                        label: decodeURI(req.query.q)
+                    });
+            }, function () {
+                console.log(err);
+                res.send(404);
+            })
+        });
+
+})
+
 //
 app.get('/search', function(req, res, next) {
     ft

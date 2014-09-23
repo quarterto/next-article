@@ -81,12 +81,14 @@
             {% endif %}
 
             {% if mode === 'compact' %}
-           
+
+            <!--
                 <div class="article-card__more js-toggle" data-toggle=".more-{{ article.id }}">Open</div>
                 <section class="js-hide more-{{ article.id }}">
                     {{ article.paragraphs(3, 100) }}
                 </section>
-            
+            -->
+
             {% else %}
 
                 {{ article.paragraphs(3, 100) }}

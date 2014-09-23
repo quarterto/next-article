@@ -73,3 +73,32 @@
 
     });
 
+window.addEventListener('load', function (evt) {
+
+    // "http://localhost:3001/search?q=authors:%22Richard%20McGregor%22"
+
+    var onArticle = function (path) {
+        return /^\/[a-f0-9]+-(.*)/.test(path); // '27a5e286-4314-11e4-8a43-00144feabdc0'; 
+    }
+    
+    var contextKey = 'ft.stream.context';
+
+    if (!onArticle(location.pathname)) {
+        // Every time you hit a new stream, you enter a new context
+        localStorage.setItem(contextKey, location.pathname + location.search);
+    }
+
+    var context = localStorage.getItem(contextKey); 
+
+    if (onArticle(location.pathname) && context) {
+        reqwest('/context' + context, function (res) {
+            $('.context').map(function (el) {
+                console.log(res);
+                el.innerHTML = res;
+            })
+
+        })
+    }
+
+})
+
