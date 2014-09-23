@@ -62,7 +62,7 @@ app.get('/components/stream', function(req, res, next) {
 
 app.get('/stream/popular', function(req, res, next) {
     res.render('components/layout/base', { 
-        title: 'Most popular',
+        context: 'Most popular',
         mode: 'compact',
         latest: latest.get(),
         popular: popular.get(),
@@ -74,7 +74,7 @@ app.get('/stream/popular', function(req, res, next) {
 
 app.get('/stream/latest', function(req, res, next) {
     res.render('components/layout/base', { 
-        title: 'Latest',
+        context: 'Latest',
         mode: 'compact',
         latest: latest.get(),
         popular: popular.get(),
@@ -86,7 +86,7 @@ app.get('/stream/latest', function(req, res, next) {
 
 app.get('/stream/picks', function(req, res, next) {
     res.render('components/layout/base', { 
-        title: 'Editor\'s picks',
+        context: 'Top Stories',
         mode: 'compact',
         latest: latest.get(),
         popular: popular.get(),
@@ -101,6 +101,7 @@ app.get('/context/stream/popular', function (req, res, next) {
     res.render('components/context/base', { 
         mode: 'compact',
         stream: popular.get(),
+        context: 'Most popular',
         label: 'Most popular'
     });
 })
@@ -110,6 +111,7 @@ app.get('/context/stream/latest', function (req, res, next) {
     res.render('components/context/base', { 
         mode: 'compact',
         stream: latest.get(),
+        context: 'Latest',
         label: 'Latest'
     });
 })
@@ -119,6 +121,7 @@ app.get('/context/stream/picks', function (req, res, next) {
     res.render('components/context/base', { 
         mode: 'compact',
         stream: bertha.get(),
+        context: 'Top stories',
         label: 'Top stories'
     });
 })
@@ -126,6 +129,15 @@ app.get('/context/stream/picks', function (req, res, next) {
 app.get('/context/search', function(req, res, next) {
 
     console.log('Searching for', req.query.q);
+
+    if (req.query.mode === 'stream') {
+        
+        res.render('components/context/base', { 
+            mode: 'compact',
+            stream: [],
+            label: decodeURI(req.query.q)
+        })
+    }        
 
     ft
         .search(decodeURI(req.query.q))
@@ -138,7 +150,7 @@ app.get('/context/search', function(req, res, next) {
             ft
                 .get(ids)
                 .then( function (articles) {
-                    res.set('Cache-Control', 'public, max-age:30'); 
+                    res.set('Cache-Control', 'public, max-age=30'); 
                     res.render('components/context/base', { 
                         mode: 'compact',
                         stream: articles,

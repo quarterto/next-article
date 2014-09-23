@@ -6,12 +6,20 @@
 </h1>
 {% endif %}
 
+<div class="save__button" align="center">
+    <span>★</span> Favourite this section
+</div>
+
 {% for article in stream %}
     {% if article.raw %}
 
-        <div class="article-card" id="capi-{{ article.id }}">
+        <div class="article-card tone-{{ article.genre}}" id="capi-{{ article.id }}">
 
+            <!-- ★  -->
 
+            <p align="left" style="font-size: 14px;">
+            <small><a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a></small> 
+            </p>
             <!--
                 {{ article.primarySection.name }}
                 {{ article.primaryTheme.name }}
@@ -34,11 +42,6 @@
                     <a href="/search?q={{ author.searchString }}">{{ author.name }}</a>{% if !loop.last %}, {% endif %}
                 {% endfor %}
             </em>
-            </p>
-            <p align="center">
-            <a href="/search?q=genre:{{ article.genre }}">{{ article.genre }}</a> 
-            / 
-            <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a> 
             </p>
             <p align="center">
             <em><small>

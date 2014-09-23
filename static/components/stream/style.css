@@ -1,6 +1,10 @@
 
 /* stream-list */
 
+a {
+    text-decoration: none;
+}
+
 .stream-list__title {
     font-family: Gill Sans, Helvetica, sans-serif;
     color: #333;
@@ -25,13 +29,14 @@
 }
 
 .article-card__headline {
-    font-size: 26px;
+    font-size: 30px;
     font-weight: normal;
     text-align: center;
+    text-decoration: none; 
 }
 
-.x-article-card__link {
-    color: black;
+.article-card__link {
+    color: blue;
     text-decoration: none;
 }
 
@@ -46,7 +51,7 @@
 }
 
 .article-card__image {
-    display: block;
+    display: none;
     margin: 0 auto;
     width: 150px;
     height: 150px;
@@ -74,7 +79,7 @@
 }
 
 .article-card {
-    border-bottom: 1px solid #999;
+    border-bottom: 3px solid #999;
     margin-bottom: 20px; 
 }
 
@@ -87,3 +92,12 @@
     display: block;
 }
 
+.save__button {
+    margin-top: 10px;
+    color: blue;
+}
+
+.save__button:hover {
+    color: red;
+    cursor: hand;
+}

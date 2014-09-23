@@ -49,7 +49,9 @@
             toggleClass(el, 'stream-list__label-active');
             
             var active = hasClass(el, 'stream-list__label-active') ? 'open' : 'close';
-            
+           
+            if (hasClass(el, 'u-disabled')) return false;
+
             emit('index:' + active, {
                stream: el.getAttribute('data-stream')
             });
@@ -81,17 +83,20 @@ window.addEventListener('load', function (evt) {
         return /^\/[a-f0-9]+-(.*)/.test(path); // '27a5e286-4314-11e4-8a43-00144feabdc0'; 
     }
     
-    var contextKey = 'ft.stream.context';
+    var contextKey = 'ft.stream.context.url';
     var contextTitleKey = 'ft.stream.context.display';
 
+    /* 1. in stream mode store the context URL and content display name */
     if (!onArticle(location.pathname)) {
         // Every time you hit a new stream, you enter a new context
         localStorage.setItem(contextKey, location.pathname + location.search);
-        localStorage.setItem(contextTitleKey, decodeURI(location.search.split('=')[1]));
+        var display = document.getElementsByClassName('ft-header-context')[0]
+        localStorage.setItem(contextTitleKey, display.innerText);
     }
 
     var context = localStorage.getItem(contextKey); 
 
+    /* 2. in article view render the context menu full mode */    
     if (onArticle(location.pathname) && context) {
         
         $('.ft-header-context').map(function (el) {
@@ -99,14 +104,18 @@ window.addEventListener('load', function (evt) {
         })
 
         reqwest('/context' + context, function (res) {
-            $('.context').map(function (el) {
-                console.log(res);
+            $('.contextual').map(function (el) {
                 el.innerHTML = res;
             })
-
         })
-
-
+    } else {
+    
+        /* 3. in stream view render the context menu in compact mode */
+        reqwest('/context' + context + '&mode=stream', function (res) {
+            $('.contextual').map(function (el) {
+                el.innerHTML = res;
+            })
+        })
     }
 
 })

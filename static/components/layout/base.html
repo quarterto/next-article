@@ -4,18 +4,25 @@
     </head>
     <body>
 
-        <div class="splash__container">
-            {% include "../splash/base.html" %}
-        </div>
+        <div class="icon__trigram">☰</div> <!-- FIXME - move to PNG/SVG icons -->
+        
         
         <div class="header__container">
             {% include "../header/base.html" %}
         </div>
 
-        <div class="icon__trigram">☰</div> <!-- FIXME - move to PNG/SVG icons -->
 
         <div class="context__container">
-            <div class="context"></div>
+            <div class="context">
+                  
+                <h2 class="stream-list__label" data-stream="picks">Top stories</h2>
+                <h2 class="stream-list__label" data-stream="popular">Most popular</h2>
+                <div class="contextual"></div>
+                <h2 class="stream-list__label u-disabled">Your favourites</h2>
+                <h2 class="stream-list__label u-disabled">Your history</h2>
+
+            </div>
+            <link rel="StyleSheet" href="/components/context/style.css"/>
             <script src="/components/context/main.js"></script>
         </div>
 

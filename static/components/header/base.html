@@ -1,9 +1,16 @@
 
 <link rel="StyleSheet" href="/components/header/style.css"/>
 
-<section class="ft-header">
+<section class="ft-header home__label">
     Financial Times
 </section>
+
+<div class="splash__container">
+    {% include "../splash/base.html" %}
+</div>
+
 <section class="ft-header-context">
-    {{ context }}
+    {% if context %}
+        {{ context }}
+    {% endif %}
 </section>

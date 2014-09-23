@@ -2,14 +2,20 @@
     background-color: #303030;
     color: #fff;
     text-align: center;
-    font-size: 25px;
-    padding: 25px 0;
+    font-size: 20px;
+    padding: 15px 0;
+}
+
+.ft-header:hover {
+    color: red;
+    cursor: pointer;
 }
 
 .ft-header-context {
-    background-color: #535353;
-    color: #fff;
+    background-color: #f3f3f3;
+    color: #505050;
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     padding: 20px 0;
+    text-shadow: 1px 1px #fff;
 }

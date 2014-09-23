@@ -5,12 +5,11 @@
 
 -->
 
-    <link rel="StyleSheet" href="/components/context/style.css"/>
     <h2 class="stream-list__label">{{ label }}</h2>
     <ul class="stream-list">
         {% for article in stream %}
         <li class="stream-list__label">
-            <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a>
+            <a href="/{{ article.id }}" class="stream-list__link">{{ article.raw.item.title.title }}</a>
         </li>
         {% endfor %}
     </ul>
