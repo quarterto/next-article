@@ -11,9 +11,6 @@
 
         <div class="article-card" id="capi-{{ article.id }}">
 
-            <a href="/search?q=genre:{{ article.genre }}">{{ article.genre }}</a> 
-            / 
-            <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a> 
 
             <!--
                 {{ article.primarySection.name }}
@@ -38,7 +35,11 @@
                 {% endfor %}
             </em>
             </p>
-
+            <p align="center">
+            <a href="/search?q=genre:{{ article.genre }}">{{ article.genre }}</a> 
+            / 
+            <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a> 
+            </p>
             <p align="center">
             <em><small>
                     {{ article.wordCount }} words - {{ article.readingTime }} minutes | 705 comments

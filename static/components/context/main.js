@@ -82,15 +82,22 @@ window.addEventListener('load', function (evt) {
     }
     
     var contextKey = 'ft.stream.context';
+    var contextTitleKey = 'ft.stream.context.display';
 
     if (!onArticle(location.pathname)) {
         // Every time you hit a new stream, you enter a new context
         localStorage.setItem(contextKey, location.pathname + location.search);
+        localStorage.setItem(contextTitleKey, decodeURI(location.search.split('=')[1]));
     }
 
     var context = localStorage.getItem(contextKey); 
 
     if (onArticle(location.pathname) && context) {
+        
+        $('.ft-header-context').map(function (el) {
+            el.innerHTML = localStorage.getItem(contextTitleKey);
+        })
+
         reqwest('/context' + context, function (res) {
             $('.context').map(function (el) {
                 console.log(res);
@@ -98,6 +105,8 @@ window.addEventListener('load', function (evt) {
             })
 
         })
+
+
     }
 
 })

@@ -96,6 +96,32 @@ app.get('/stream/picks', function(req, res, next) {
     });
 });
 
+app.get('/context/stream/popular', function (req, res, next) {
+    res.set('Cache-Control', 'public, max-age:30'); 
+    res.render('components/context/base', { 
+        mode: 'compact',
+        stream: popular.get(),
+        label: 'Most popular'
+    });
+})
+
+app.get('/context/stream/latest', function (req, res, next) {
+    res.set('Cache-Control', 'public, max-age:30'); 
+    res.render('components/context/base', { 
+        mode: 'compact',
+        stream: latest.get(),
+        label: 'Latest'
+    });
+})
+
+app.get('/context/stream/picks', function (req, res, next) {
+    res.set('Cache-Control', 'public, max-age:30'); 
+    res.render('components/context/base', { 
+        mode: 'compact',
+        stream: bertha.get(),
+        label: 'Top stories'
+    });
+})
 
 app.get('/context/search', function(req, res, next) {
 
@@ -116,7 +142,8 @@ app.get('/context/search', function(req, res, next) {
                     res.render('components/context/base', { 
                         mode: 'compact',
                         stream: articles,
-                        label: decodeURI(req.query.q)
+                        label: decodeURI(req.query.q),
+                        context: req.query.q
                     });
             }, function () {
                 console.log(err);
@@ -141,7 +168,8 @@ app.get('/search', function(req, res, next) {
                 .then( function (articles) {
                     res.render('components/layout/base', { 
                         mode: 'compact',
-                        stream: articles
+                        stream: articles,
+                        context: req.query.q
                     });
                 }, function () {
                     console.log(err);
