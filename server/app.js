@@ -26,12 +26,14 @@ var templates = { }
 
 var formatSection = function (s) {
 
-        console.log('**', s);
-        if (/(.*):(.*)/.test(s)) {
-            var d = s.split(':').replace(/\"/g, '');
-            console.log('**', d);
-            return d;
-        }
+        if(/(.*):(.*)/.test(s)) {
+            var a = s.split(':')[1].replace(/"/g, '');
+            console.log(123, a);
+            return a;
+        } 
+            //var d = s.split(':').replace(/\"/g, '');
+            //console.log('**', d);
+            //return d;
 
         return s;
 }
@@ -147,7 +149,7 @@ app.get('/context/search', function(req, res, next) {
         res.render('components/context/base', { 
             mode: 'compact',
             stream: [],
-            label: decodeURI(req.query.q)
+            label: formatSection(req.query.q)
         })
     }        
 
@@ -162,12 +164,13 @@ app.get('/context/search', function(req, res, next) {
             ft
                 .get(ids)
                 .then( function (articles) {
+                    
                     res.set('Cache-Control', 'public, max-age=30'); 
                     res.render('components/context/base', { 
                         mode: 'compact',
                         stream: articles,
-                        label: decodeURI(req.query.q),
-                        context: req.query.q
+                        label: formatSection(req.query.q),
+                        context: formatSection(req.query.q)
                     });
             }, function () {
                 console.log(err);
@@ -179,7 +182,9 @@ app.get('/context/search', function(req, res, next) {
 
 //
 app.get('/search', function(req, res, next) {
-    ft
+    
+
+        ft
         .search(decodeURI(req.query.q))
         .then(function (articles) {
             
@@ -193,7 +198,7 @@ app.get('/search', function(req, res, next) {
                     res.render('components/layout/base', { 
                         mode: 'compact',
                         stream: articles,
-                        context: req.query.q
+                        context: formatSection(req.query.q)
                     });
                 }, function () {
                     console.log(err);
@@ -223,7 +228,7 @@ app.get('/:id', function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
-    res.send('<a href="/stream/popular">try here</a>, or <a href="/components">here</a>.');
+    res.send('<big><a href="/stream/popular">try here</a>, or <a href="/components">here</a>.</big>');
 });
 
 

@@ -29,6 +29,7 @@ a {
 }
 
 .article-card__headline {
+    margin: 10px 0;
     font-size: 30px;
     font-weight: normal;
     text-align: center;
