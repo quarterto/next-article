@@ -109,7 +109,7 @@ app.get('/search', function(req, res, next) {
             ft
                 .get(ids)
                 .then( function (articles) {
-                    res.render('components/stream/base', { 
+                    res.render('components/layout/base', { 
                         mode: 'compact',
                         stream: articles
                     });
