@@ -40,7 +40,14 @@
             </p>
 
             <p align="center">
-                <em><small>{{ article.wordCount }} words - {{ article.readingTime }} minutes | 705 comments</small></em>
+            <em><small>
+                    {{ article.wordCount }} words - {{ article.readingTime }} minutes | 705 comments
+
+                    {% if article.has_video %}
+                    | <span style="color: red;">video</span>
+                    {% endif %}
+
+            </small></em>
             </p>
             
             <p align="center">
@@ -58,10 +65,20 @@
                     {% endfor %}
                 </small>
             </p>
-
             <p>
                 {{ article.paragraphs(0, 2) }}
             </p>
+
+            {% if article.quotes.length > 0 %}
+                <div style="background-color: #ffc; padding: 10px;">
+                    {% for quote in article.quotes %}
+                        {{ quote.fields.body|safe }} 
+                        {% if quote.fields.attribution %}
+                            - {{ quote.fields.attribution }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
 
             {% if mode === 'compact' %}
            
@@ -75,6 +92,8 @@
                 {{ article.paragraphs(3, 100) }}
             
             {% endif %}
+            
+
 
         </div>
     
