@@ -95,10 +95,13 @@ a {
 
 .save__button {
     margin-top: 10px;
-    color: blue;
 }
 
-.save__button:hover {
+.save__button-star:hover {
     color: red;
     cursor: hand;
+}
+
+.save__button-star {
+    color: blue;
 }
