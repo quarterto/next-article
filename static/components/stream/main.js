@@ -96,7 +96,7 @@ var readable = function() {
         return el.parentNode.id;
     })[0]
 
-    if (inView.length > 0) { 
+    if (inView && inView.length > 0) { 
         emit('stream:inview', { capi: inView  } )
     }
 }
