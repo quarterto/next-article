@@ -75,7 +75,7 @@
 
     });
 
-window.addEventListener('load', function (evt) {
+window.addEventListener('DOMContentLoaded', function (evt) {
 
     // "http://localhost:3001/search?q=authors:%22Richard%20McGregor%22"
 
@@ -120,14 +120,42 @@ window.addEventListener('load', function (evt) {
 
     /* Record each steam a user has looked at */
 
-    var fav = new Me('history');
+    var history = new Me('history');
     
     if (!onArticle(location.pathname)) {
         var display = document.getElementsByClassName('ft-header-context')[0]
-        fav.add(location.pathname + location.search, display.textContent.trim());
+        history.add(location.pathname + location.search, display.textContent.trim());
     }
 
-    document.getElementById('me-history').innerHTML = fav.render();
+    document.getElementById('me-history').innerHTML = history.render();
+    
+    $('.clear__history').map(function (el) {
+        el.addEventListener('click', function (evt) {
+            history.reset();
+            document.getElementById('me-history').innerHTML = history.render();
+        });
+    })
+
+    /* */
+
+    var fav = new Me('favourites');
+
+    $('.save__button').map(function (el) {
+        el.addEventListener('click', function (evt) {
+            var display = document.getElementsByClassName('ft-header-context')[0]
+            fav.add(location.pathname + location.search, display.textContent.trim());
+            document.getElementById('me-fav').innerHTML = fav.render();
+        })
+    })
+            
+    $('.clear__fav').map(function (el) {
+        el.addEventListener('click', function (evt) {
+            fav.reset();
+            document.getElementById('me-fav').innerHTML = fav.render();
+        });
+    })
+
+    document.getElementById('me-fav').innerHTML = fav.render();
 
 })
 

@@ -70,3 +70,13 @@
     border-style: solid;
     border-color: #333;
 }
+
+.clear__button {
+    color: blue;
+}
+
+.clear__button:hover {
+    color: red;
+    cursor: pointer;
+}
+
