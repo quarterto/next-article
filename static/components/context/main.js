@@ -118,5 +118,16 @@ window.addEventListener('load', function (evt) {
         })
     }
 
+    /* Record each steam a user has looked at */
+
+    var fav = new Me('history');
+    
+    if (!onArticle(location.pathname)) {
+        var display = document.getElementsByClassName('ft-header-context')[0]
+        fav.add(location.pathname + location.search, display.textContent.trim());
+    }
+
+    document.getElementById('me-history').innerHTML = fav.render();
+
 })
 
