@@ -16,7 +16,10 @@
         <div class="article-card tone-{{ article.genre}}" id="capi-{{ article.id }}">
 
             <p align="left" style="font-size: 14px;">
-            <small><a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a></small> 
+                
+                <small>
+                    <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a>
+                </small>
             </p>
             <!--
                 {{ article.primarySection.name }}
@@ -70,7 +73,13 @@
             <p>
                 {{ article.paragraphs(0, 2) }}
             </p>
-
+            <p>
+                <small>
+                    {% for org in article.tickerSymbols %}
+                    <a href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ org.code }}">{{ org.code }}</a>{% if !loop.last %}, {% endif %} 
+                    {% endfor %}
+                </small>
+            </p>
             <!-- 
             {% if article.quotes.length > 0 %}
                 <div style="background-color: #ffc; padding: 10px;">

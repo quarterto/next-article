@@ -259,9 +259,9 @@
       }
     },
     "ft-api-client": {
-      "version": "3.0.14",
-      "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.14.tar.gz",
-      "resolved": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.14.tar.gz",
+      "version": "3.0.16",
+      "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.16.tar.gz",
+      "resolved": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.16.tar.gz",
       "dependencies": {
         "cheerio": {
           "version": "0.17.0",
