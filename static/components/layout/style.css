@@ -5,7 +5,7 @@ body {
 
 .context__container, .stream__container {
     float: left;
-    min-height: 100vh;
+    min-height: 150vh;
 }
 
 .splash__container {
