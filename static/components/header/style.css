@@ -14,9 +14,20 @@
 
 .ft-header-context {
     background-color: #f3f3f3;
-    color: #505050;
+    color: red;
     text-align: center;
     font-size: 30px;
     padding: 20px 0;
     text-shadow: 1px 1px #fff;
+}
+
+
+
+@media (min-width: 600px) {
+    
+    .ft-header-context {
+        display: none;
+    }
+
+
 }

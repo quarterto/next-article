@@ -52,9 +52,11 @@
            
             if (hasClass(el, 'u-disabled')) return false;
 
-            emit('index:' + active, {
-               stream: el.getAttribute('data-stream')
-            });
+            if ( this.getAttribute('data-stream') ) {
+                emit('index:' + active, {
+                stream: el.getAttribute('data-stream')
+                });
+            }
             
             var target = this.getAttribute('data-toggle');
 
@@ -113,7 +115,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         /* 3. in stream view render the context menu in compact mode */
         reqwest('/context' + context + '&mode=stream', function (res) {
             $('.contextual').map(function (el) {
-                el.innerHTML = res;
+                //el.innerHTML = res;
             })
         })
     }

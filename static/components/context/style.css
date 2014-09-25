@@ -51,8 +51,7 @@
     max-width: 200px;
     background-color: white;
     margin: 10px auto;
-    height: 100vh;
-    overflow-y: scroll;
+    height: 150vh;
     font-family: arial, sans-serif;
 }
 
@@ -65,10 +64,11 @@
 
 .contextual {
     border-width: 1px 0 1px 0;
-    margin: 10px 0 10px 0;
-    padding: 10px 0 10px 0;
+    margin: 10px 0 10px -10px;
+    padding: 10px;
     border-style: solid;
     border-color: #333;
+    background-color: #eee;
 }
 
 .clear__button {
@@ -78,5 +78,9 @@
 .clear__button:hover {
     color: red;
     cursor: pointer;
+}
+
+.me-history {
+    display: none;
 }
 

@@ -5,12 +5,19 @@
 
 -->
 
-    <h2 class="stream-list__label">{{ label }}</h2>
+    <span>Sections</span><br/>
+
+    <select>
+        <option>Oil
+        <option>Baby Oil
+        <option>Snake Oil
+    </select>
+
     <ul class="stream-list">
         {% for article in stream %}
-        <li class="stream-list__label">
-            <a href="/{{ article.id }}" class="stream-list__link">{{ article.raw.item.title.title }}</a>
-        </li>
+            <li class="stream-list__label">
+                <a href="/{{ article.id }}" class="stream-list__link">{{ article.raw.item.title.title }}</a>
+            </li>
         {% endfor %}
     </ul>
 

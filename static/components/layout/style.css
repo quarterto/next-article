@@ -51,6 +51,7 @@ body {
     color: white;
     font-size: 20px;
     line-height: 55px;
+    display: none;
 }
 
 .icon__trigram:hover {
@@ -93,6 +94,10 @@ body {
     
     .stream {
         width: 100%;
+    }
+
+    .icon__trigram {
+        display: block;    
     }
 
 }

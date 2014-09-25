@@ -14,36 +14,39 @@
     {% if article.raw %}
 
         <div class="article-card tone-{{ article.genre}}" id="capi-{{ article.id }}">
-
             <p align="left" style="font-size: 14px;">
                 
                 <small>
                     <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a>
+                    /
+                    <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primaryTheme.name }}</a>
                 </small>
-            </p>
-            <!--
-                {{ article.primarySection.name }}
-                {{ article.primaryTheme.name }}
-            -->
-
-            <a href="/{{ article.id }}">
-                <img src="{{ article.largestImage.url }}" class="article-card__image article-card__image-{{ article.id }}" draggable="true"/>
-            </a>
+     
+             </p>
             
+            <p align="center">
+            <em>
+                {{ article.lastUpdated|date('l, j F, Y') }}
+            </em>
+            </p>
+
             <h3 class="article-card__headline">
                 <a href="/{{ article.id }}" class="article-card__link">
                     {{ article.raw.item.title.title }}
                 </a>
             </h3>
 
+            <a href="/{{ article.id }}">
+                <img src="{{ article.largestImage.url }}" class="article-card__image article-card__image-{{ article.id }}" draggable="true"/>
+            </a>
+            
             <p align="center">
-            <em>
-                {{ article.lastUpdated|date('l, j F, Y') }} -
                 {% for author in article.authors %}
                     <a href="/search?q={{ author.searchString }}">{{ author.name }}</a>{% if !loop.last %}, {% endif %}
                 {% endfor %}
-            </em>
             </p>
+
+            
             <p align="center">
             <em><small>
                     {{ article.wordCount }} words - {{ article.readingTime }} minutes | 705 comments
@@ -73,6 +76,7 @@
             <p>
                 {{ article.paragraphs(0, 2) }}
             </p>
+            <!-- 
             <p>
                 <small>
                     {% for org in article.tickerSymbols %}
@@ -80,6 +84,7 @@
                     {% endfor %}
                 </small>
             </p>
+            -->
             <!-- 
             {% if article.quotes.length > 0 %}
                 <div style="background-color: #ffc; padding: 10px;">
