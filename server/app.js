@@ -56,6 +56,10 @@ app.get('/components/splash', function(req, res, next) {
     res.render('components/splash/base', { });
 });
 
+app.get('/components/sections', function(req, res, next) {
+    res.render('components/sections/base', { });
+});
+
 app.get('/components/site-search', function(req, res, next) {
     res.render('components/site-search/base', { });
 });
