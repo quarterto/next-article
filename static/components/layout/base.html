@@ -7,14 +7,12 @@
     </head>
     <body>
 
-        <div class="icon__trigram">☰</div> <!-- FIXME - move to PNG/SVG icons -->
-        
-        
+        <!-- Component: header --> 
         <div class="header__container">
             {% include "../header/base.html" %}
         </div>
 
-
+        <!-- Component: context - FIXME - split in to nav & context --> 
         <div class="context__container">
             <div class="context">
                 <div class="contextual"></div>
@@ -30,6 +28,7 @@
             <script src="/components/context/main.js"></script>
         </div>
 
+        <!-- Component: stream --> 
         <div class="stream__container">
             <div class="stream">
                 {% include "../stream/base.html" %}
@@ -37,9 +36,11 @@
         </div>
 
         <script src="/components/layout/main.js"></script>
+        <link rel="StyleSheet" href="/components/layout/style.css"/>
+
+        <!-- libraries, vendor dependencies, shared CSS -->
         <script src="/vendor/reqwest.min.js"></script>
         <script src="/js/lib/me.js"></script>
-        <link rel="StyleSheet" href="/components/layout/style.css"/>
         <link rel="StyleSheet" href="/utils.css"/>
 
     </body>

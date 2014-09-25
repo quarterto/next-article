@@ -70,9 +70,8 @@ app.get('/components/header', function(req, res, next) {
 
 app.get('/components/stream', function(req, res, next) {
     res.render('components/stream/base', {
-        title: 'Most popular',
         mode: 'compact',
-        stream: latest.get()
+        stream: popular.get()
     });
 });
 

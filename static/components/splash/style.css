@@ -1,0 +1,11 @@
+
+.splash__container {
+    background-color: rgb(45, 150, 222);
+    height: 50vh; 
+    width: 100%;
+    display: none;
+}
+
+.show {
+    display: block;
+}
