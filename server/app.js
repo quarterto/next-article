@@ -13,7 +13,7 @@ app.set('views', __dirname + '/../static/bullpup/components');
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 
-app.use(express.static(__dirname + '/../static/bullpup'));
+app.use(express.static(__dirname + '/../static'));
 
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
