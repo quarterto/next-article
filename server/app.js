@@ -1,6 +1,5 @@
 
 var express = require('express');
-var router = express.Router();
 var swig = require('swig');
 
 var app = express();
@@ -15,6 +14,8 @@ swig.setDefaults({ cache: false });
 
 app.use(express.static(__dirname + '/../static'));
 
+app.use('/components', require('./components.js'));
+
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var bertha  = require('./jobs/bertha');
@@ -25,55 +26,14 @@ GLOBAL.Promise = require('es6-promise').Promise;
 var templates = { }
 
 var formatSection = function (s) {
-
-        if(/(.*):(.*)/.test(s)) {
-            var a = s.split(':')[1].replace(/"/g, '');
-            console.log(123, a);
-            return a;
-        } 
-            //var d = s.split(':').replace(/\"/g, '');
-            //console.log('**', d);
-            //return d;
-
-        return s;
+    if(/(.*):(.*)/.test(s)) {
+        var a = s.split(':')[1].replace(/"/g, '');
+        console.log(123, a);
+        return a;
+    } 
+    return s;
 }
 
-/* Components - TODO - move to another router */
-
-app.get('/components', function(req, res, next) {
-    res.render('components/list', { });
-});
-
-app.get('/components/context', function(req, res, next) {
-    res.render('components/context/base', { 
-        latest: latest.get(),
-        popular: popular.get(),
-        bertha: bertha.get()
-    });
-});
-
-app.get('/components/splash', function(req, res, next) {
-    res.render('components/splash/base', { });
-});
-
-app.get('/components/sections', function(req, res, next) {
-    res.render('components/sections/base', { });
-});
-
-app.get('/components/site-search', function(req, res, next) {
-    res.render('components/site-search/base', { });
-});
-
-app.get('/components/header', function(req, res, next) {
-    res.render('components/header/base', { });
-});
-
-app.get('/components/stream', function(req, res, next) {
-    res.render('components/stream/base', {
-        mode: 'compact',
-        stream: popular.get()
-    });
-});
 
 /* UI */
 
@@ -113,79 +73,8 @@ app.get('/stream/picks', function(req, res, next) {
     });
 });
 
-app.get('/context/stream/popular', function (req, res, next) {
-    res.set('Cache-Control', 'public, max-age:30'); 
-    res.render('components/context/base', { 
-        mode: 'compact',
-        stream: popular.get(),
-        context: 'Most popular',
-        label: 'Most popular'
-    });
-})
-
-app.get('/context/stream/latest', function (req, res, next) {
-    res.set('Cache-Control', 'public, max-age:30'); 
-    res.render('components/context/base', { 
-        mode: 'compact',
-        stream: latest.get(),
-        context: 'Latest',
-        label: 'Latest'
-    });
-})
-
-app.get('/context/stream/picks', function (req, res, next) {
-    res.set('Cache-Control', 'public, max-age:30'); 
-    res.render('components/context/base', { 
-        mode: 'compact',
-        stream: bertha.get(),
-        context: 'Top stories',
-        label: 'Top stories'
-    });
-})
-
-app.get('/context/search', function(req, res, next) {
-
-    console.log('Searching for', req.query.q);
-
-    if (req.query.mode === 'stream') {
-        
-        res.render('components/context/base', { 
-            mode: 'compact',
-            stream: [],
-            label: formatSection(req.query.q)
-        })
-    }        
-
-    ft
-        .search(decodeURI(req.query.q))
-        .then(function (articles) {
-                
-            var ids = articles.map(function (article) {
-                return article.id;
-            })
-            
-            ft
-                .get(ids)
-                .then( function (articles) {
-                    
-                    res.set('Cache-Control', 'public, max-age=30'); 
-                    res.render('components/context/base', { 
-                        mode: 'compact',
-                        stream: articles,
-                        label: formatSection(req.query.q),
-                        context: formatSection(req.query.q)
-                    });
-            }, function () {
-                console.log(err);
-                res.send(404);
-            })
-        });
-
-})
-
 //
 app.get('/search', function(req, res, next) {
-    
 
         ft
         .search(decodeURI(req.query.q))
@@ -229,11 +118,6 @@ app.get('/:id', function(req, res, next) {
         })
     
 });
-
-app.get('/', function(req, res, next) {
-    res.send('<big><a href="/stream/popular">try here</a>, or <a href="/components">here</a>.</big>');
-});
-
 
 // Start polling the data
 
