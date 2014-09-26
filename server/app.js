@@ -7,13 +7,13 @@ var app = express();
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/../static');
+app.set('views', __dirname + '/../static/bullpup/components');
 
 // not for production
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 
-app.use(express.static(__dirname + '/../static'));
+app.use(express.static(__dirname + '/../static/bullpup'));
 
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
@@ -38,7 +38,7 @@ var formatSection = function (s) {
         return s;
 }
 
-/* Components */
+/* Components - TODO - move to another router */
 
 app.get('/components', function(req, res, next) {
     res.render('components/list', { });
@@ -78,7 +78,7 @@ app.get('/components/stream', function(req, res, next) {
 /* UI */
 
 app.get('/stream/popular', function(req, res, next) {
-    res.render('components/layout/base', { 
+    res.render('/layout/base', { 
         context: 'Most popular',
         mode: 'compact',
         latest: latest.get(),
@@ -90,7 +90,7 @@ app.get('/stream/popular', function(req, res, next) {
 });
 
 app.get('/stream/latest', function(req, res, next) {
-    res.render('components/layout/base', { 
+    res.render('layout/base', { 
         context: 'Latest',
         mode: 'compact',
         latest: latest.get(),
@@ -102,7 +102,7 @@ app.get('/stream/latest', function(req, res, next) {
 });
 
 app.get('/stream/picks', function(req, res, next) {
-    res.render('components/layout/base', { 
+    res.render('layout/base', { 
         context: 'Top Stories',
         mode: 'compact',
         latest: latest.get(),
@@ -198,7 +198,7 @@ app.get('/search', function(req, res, next) {
             ft
                 .get(ids)
                 .then( function (articles) {
-                    res.render('components/layout/base', { 
+                    res.render('layout/base', { 
                         mode: 'compact',
                         stream: articles,
                         context: formatSection(req.query.q)
@@ -220,7 +220,7 @@ app.get('/:id', function(req, res, next) {
     ft
         .get([req.params.id])
         .then(function (article) {
-            res.render('components/layout/base', { 
+            res.render('layout/base', { 
                 mode: 'expand',
                 stream: article
             });
