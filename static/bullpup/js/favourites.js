@@ -8,9 +8,13 @@
         var onArticle = function (path) {
             return /^\/[a-f0-9]+-(.*)/.test(path); // '27a5e286-4314-11e4-8a43-00144feabdc0'; 
         }
-        
+
+        var $ = function (selector) {
+            return [].slice.call(document.querySelectorAll(selector));
+        }
         var contextKey = 'ft.stream.context.url';
         var contextTitleKey = 'ft.stream.context.display';
+        var contextHost = 'http://localhost:3000';
 
         /* 1. in stream mode store the context URL and content display name */
         if (!onArticle(location.pathname)) {
@@ -21,7 +25,7 @@
         }
 
         var context = localStorage.getItem(contextKey); 
-
+        var contextUrl = contextHost + '/context' + context;
         /* 2. in article view render the context menu full mode */    
         if (onArticle(location.pathname) && context) {
             
@@ -29,20 +33,29 @@
                 el.innerHTML = localStorage.getItem(contextTitleKey);
             })
 
-            reqwest('/context' + context, function (res) {
-                $('.contextual').map(function (el) {
-                    el.innerHTML = res;
-                })
-            })
         } else {
-        
-            /* 3. in stream view render the context menu in compact mode */
-            reqwest('/context' + context + '&mode=stream', function (res) {
-                $('.contextual').map(function (el) {
-                    //el.innerHTML = res;
-                })
-            })
+            contextUrl += '&mode=stream';
         }
+
+
+        reqwest({
+            url: contextHost + '/context' + context, 
+            crossOrigin: true, 
+            success: function (res) {
+                $('.context__container').map(function (el) {
+                    var myTag = document.createElement('div');
+                    myTag.innerHTML = res;
+                    el.appendChild(myTag); 
+                    //scripts wont execute, so grab them and append to head
+                    var scripts = myTag.querySelectorAll('script');
+                    [].slice.call(scripts).map(function(script) {
+                        var s = document.createElement('script');
+                        s.src = script.src;
+                        document.head.appendChild(s);
+                    });
+                })
+            }
+        })
 
         /* Record each steam a user has looked at */
 
@@ -52,15 +65,6 @@
             var display = document.getElementsByClassName('ft-header-context')[0]
             history.add(location.pathname + location.search, display.textContent.trim());
         }
-
-        document.getElementById('me-history').innerHTML = history.render();
-        
-        $('.clear__history').map(function (el) {
-            el.addEventListener('click', function (evt) {
-                history.reset();
-                document.getElementById('me-history').innerHTML = history.render();
-            });
-        })
 
         /* */
 
@@ -73,14 +77,5 @@
                 document.getElementById('me-fav').innerHTML = fav.render();
             })
         })
-                
-        $('.clear__fav').map(function (el) {
-            el.addEventListener('click', function (evt) {
-                fav.reset();
-                document.getElementById('me-fav').innerHTML = fav.render();
-            });
-        })
-
-        document.getElementById('me-fav').innerHTML = fav.render();
-
+            
         })
