@@ -14,7 +14,6 @@
         }
         var contextKey = 'ft.stream.context.url';
         var contextTitleKey = 'ft.stream.context.display';
-        var contextHost = 'http://localhost:3000';
 
         /* 1. in stream mode store the context URL and content display name */
         if (!onArticle(location.pathname)) {
@@ -25,7 +24,7 @@
         }
 
         var context = localStorage.getItem(contextKey); 
-        var contextUrl = contextHost + '/context' + context;
+        var contextUrl = '/context' + context;
         /* 2. in article view render the context menu full mode */    
         if (onArticle(location.pathname) && context) {
             
@@ -39,7 +38,7 @@
 
 
         reqwest({
-            url: contextHost + '/context' + context, 
+            url: contextUrl, 
             crossOrigin: true, 
             success: function (res) {
                 $('.context__container').map(function (el) {
@@ -77,5 +76,6 @@
                 document.getElementById('me-fav').innerHTML = fav.render();
             })
         })
-            
-        })
+             fav.render();
+
+    })
