@@ -7,7 +7,7 @@ var Me = function (key) {
         throw new Error('You must supply a key /^[a-z]+$/');
     }
     this.key = 'ft.me.' + key;
-}
+};
 
 Me.prototype.getOrCreate = function () {
     var exists = localStorage.getItem(this.key);
@@ -18,12 +18,12 @@ Me.prototype.getOrCreate = function () {
         localStorage.setItem(this.key, JSON.stringify(empty));
         return empty;
     }
-}
+};
 
 Me.prototype.save = function (obj) {
     console.log(obj);
     localStorage.setItem(this.key, JSON.stringify(obj)); 
-}
+};
 
 Me.prototype.add = function (path, display) {
     var current = this.getOrCreate();
@@ -33,26 +33,26 @@ Me.prototype.add = function (path, display) {
         return this.save(current);
     }
     return false;
-}
+};
 
 Me.prototype.exists = function (path) {
     var current = this.getOrCreate();
     return current.sections.some(function (section) {
         return section.path === path;
-    })
-}
+    });
+};
 
 Me.prototype.reset = function () {
     return localStorage.removeItem(this.key);
-}
+};
 
 Me.prototype.render = function (obj) {
     var history = this.getOrCreate();
     var links = history.sections.reverse().slice(0, 7).map(function (section) {
-        return '<li class="stream-list__label"><a href="' + section.path + '" class="stream-list__link">' + section.display + '</a></li>'
+        return '<li class="stream-list__label"><a href="' + section.path + '" class="stream-list__link">' + section.display + '</a></li>';
     }).join('');
     return '<ul class="stream-list">' + links + '</ul>';
-}
+};
 
 /*
     var fav = new Me('favourites');
