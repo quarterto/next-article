@@ -4,9 +4,6 @@
     <li>
         <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a> 
         - {{ article.lastUpdated|date('Y-m-d') }}
-        <section>
-            {{ article.paragraphs(0, 1) }}
-        </section>
     </li>
 {% endfor %}
 </ul>
