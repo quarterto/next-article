@@ -26,7 +26,7 @@
     "es6-promise": "*",
     "express": "^4.8.x",
     "fruitmachine": "^0.8.3",
-    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.16.tar.gz",
+    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.17.tar.gz",
     "ft-poller": "0.0.4",
     "lodash": "^2.4.1",
     "swig": "^1.4.2",
