@@ -1,2 +1,3 @@
-node_modules
-__attic
+/static/bullpup/styles.css
+/node_modules/
+/__attic/
