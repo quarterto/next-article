@@ -108,8 +108,10 @@
 
             {% else %}
 
-                {{ article.paragraphs(3, 100) }}
-            
+            <div class="more-on" data-article-id="{{ article.id }}"></div>
+
+            {{ article.paragraphs(3, 100) }}
+                            
             {% endif %}
             
 
