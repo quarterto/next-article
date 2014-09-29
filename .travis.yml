@@ -11,3 +11,4 @@ deploy:
   app: ft-next-dobi
   on:
     repo: Financial-Times/next-dobi
+    node: '0.10'
