@@ -1,81 +1,83 @@
 
 // THIS WHOLE THING IS A CAR CRASH AND NEEDS TO BE SORTED OUT
 
-    window.addEventListener('DOMContentLoaded', function (evt) {
+window.addEventListener('DOMContentLoaded', function (evt) {
 
-        // "http://localhost:3001/search?q=authors:%22Richard%20McGregor%22"
+    // "http://localhost:3001/search?q=authors:%22Richard%20McGregor%22"
 
-        var onArticle = function (path) {
-            return /^\/[a-f0-9]+-(.*)/.test(path); // '27a5e286-4314-11e4-8a43-00144feabdc0'; 
+    var onArticle = function (path) {
+        return /^\/[a-f0-9]+-(.*)/.test(path); // '27a5e286-4314-11e4-8a43-00144feabdc0'; 
+    };
+
+    var $ = function (selector) {
+        return [].slice.call(document.querySelectorAll(selector));
+    };
+    
+    var contextKey = 'ft.stream.context.url';
+    var contextTitleKey = 'ft.stream.context.display';
+    var display;
+
+    /* 1. in stream mode store the context URL and content display name */
+    if (!onArticle(location.pathname)) {
+        // Every time you hit a new stream, you enter a new context
+        localStorage.setItem(contextKey, location.pathname + location.search);
+        display = document.getElementsByClassName('ft-header-context')[0];
+        localStorage.setItem(contextTitleKey, display.innerText);
+    }
+
+    var context = localStorage.getItem(contextKey); 
+    var contextUrl = '/context' + context;
+    /* 2. in article view render the context menu full mode */    
+    if (onArticle(location.pathname) && context) {
+
+        $('.ft-header-context').map(function (el) {
+            el.innerHTML = localStorage.getItem(contextTitleKey);
+        });
+
+    } else {
+        contextUrl += '&mode=stream';
+    }
+
+
+    reqwest({
+        url: contextUrl, 
+        crossOrigin: true, 
+        success: function (res) {
+            $('.context__container').map(function (el) {
+                var myTag = document.createElement('div');
+                myTag.innerHTML = res;
+                el.appendChild(myTag); 
+                //scripts wont execute, so grab them and append to head
+                var scripts = myTag.querySelectorAll('script');
+                [].slice.call(scripts).map(function(script) {
+                    var s = document.createElement('script');
+                    s.src = script.src;
+                    document.head.appendChild(s);
+                });
+            });
         }
+    });
 
-        var $ = function (selector) {
-            return [].slice.call(document.querySelectorAll(selector));
-        }
-        var contextKey = 'ft.stream.context.url';
-        var contextTitleKey = 'ft.stream.context.display';
+    /* Record each steam a user has looked at */
 
-        /* 1. in stream mode store the context URL and content display name */
-        if (!onArticle(location.pathname)) {
-            // Every time you hit a new stream, you enter a new context
-            localStorage.setItem(contextKey, location.pathname + location.search);
-            var display = document.getElementsByClassName('ft-header-context')[0]
-            localStorage.setItem(contextTitleKey, display.innerText);
-        }
-
-        var context = localStorage.getItem(contextKey); 
-        var contextUrl = '/context' + context;
-        /* 2. in article view render the context menu full mode */    
-        if (onArticle(location.pathname) && context) {
-            
-            $('.ft-header-context').map(function (el) {
-                el.innerHTML = localStorage.getItem(contextTitleKey);
-            })
-
-        } else {
-            contextUrl += '&mode=stream';
-        }
+    var history = new Me('history');
+    
+    if (!onArticle(location.pathname)) {
+        display = document.getElementsByClassName('ft-header-context')[0];
+        history.add(location.pathname + location.search, display.textContent.trim());
+    }
 
 
-        reqwest({
-            url: contextUrl, 
-            crossOrigin: true, 
-            success: function (res) {
-                $('.context__container').map(function (el) {
-                    var myTag = document.createElement('div');
-                    myTag.innerHTML = res;
-                    el.appendChild(myTag); 
-                    //scripts wont execute, so grab them and append to head
-                    var scripts = myTag.querySelectorAll('script');
-                    [].slice.call(scripts).map(function(script) {
-                        var s = document.createElement('script');
-                        s.src = script.src;
-                        document.head.appendChild(s);
-                    });
-                })
-            }
-        })
+    /* */
 
-        /* Record each steam a user has looked at */
+    var fav = new Me('favourites');
 
-        var history = new Me('history');
-        
-        if (!onArticle(location.pathname)) {
-            var display = document.getElementsByClassName('ft-header-context')[0]
-            history.add(location.pathname + location.search, display.textContent.trim());
-        }
+    $('.save__button').map(function (el) {
+        el.addEventListener('click', function (evt) {
+            display = document.getElementsByClassName('ft-header-context')[0];
+            fav.add(location.pathname + location.search, display.textContent.trim());
+            document.getElementById('me-fav').innerHTML = fav.render();
+        });
+    });
 
-        /* */
-
-        var fav = new Me('favourites');
-
-        $('.save__button').map(function (el) {
-            el.addEventListener('click', function (evt) {
-                var display = document.getElementsByClassName('ft-header-context')[0]
-                fav.add(location.pathname + location.search, display.textContent.trim());
-                document.getElementById('me-fav').innerHTML = fav.render();
-            })
-        })
-             fav.render();
-
-    })
+});

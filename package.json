@@ -7,6 +7,9 @@
     "FT",
     "Financial Times"
   ],
+  "scripts": {
+    "test": "make test"
+  },
   "author": [
     {
       "name": "Laurent Muchacho",
@@ -31,6 +34,9 @@
     "lodash": "^2.4.1",
     "swig": "^1.4.2",
     "node-sass": "^0.9.5-rc1"
+  },
+  "devDependencies": {
+    "jshint": "^2.5.6"
   },
   "engines": {
     "node": "0.10.x"

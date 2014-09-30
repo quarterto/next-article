@@ -1,3 +1,4 @@
+'use strict';
 
 var Poller = require('ft-poller'),
     ft = require('ft-api-client')(process.env.apikey),
@@ -12,7 +13,7 @@ var poller = new Poller({
         // Fetch to top 20 latest stories from the Content API
         var ids = _.pluck(data, 'uuid').slice(0, 5);
         
-        console.log('bertha', ids)
+        console.log('bertha', ids);
         
         if (!ids) return;
         ft
@@ -21,13 +22,13 @@ var poller = new Poller({
                 bertha = articles;
             }, function (err) {
                 console.log(err);
-            })
+            });
     }
 });
 
 poller.on('error', function (err) {
-    console.error(err)
-})
+    console.error(err);
+});
 
 module.exports = {
     
@@ -40,4 +41,4 @@ module.exports = {
     },
 
   poller: poller
-}
+};
