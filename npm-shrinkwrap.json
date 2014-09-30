@@ -2,6 +2,11 @@
   "name": "next-article-mattc",
   "version": "0.0.2",
   "dependencies": {
+    "dateformat": {
+      "version": "1.0.8",
+      "from": "dateformat@^1.0.8",
+      "resolved": "https://registry.npmjs.org/dateformat/-/dateformat-1.0.8.tgz"
+    },
     "debug": {
       "version": "2.0.0",
       "from": "debug@^2.0.0",
@@ -156,7 +161,7 @@
             },
             "mime": {
               "version": "1.2.11",
-              "from": "mime@1.2.11",
+              "from": "mime@~1.2.9",
               "resolved": "https://registry.npmjs.org/mime/-/mime-1.2.11.tgz"
             },
             "ms": {
@@ -264,9 +269,9 @@
       }
     },
     "ft-api-client": {
-      "version": "3.0.18",
-      "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.19.tar.gz",
-      "resolved": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.19.tar.gz",
+      "version": "3.0.20",
+      "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.20.tar.gz",
+      "resolved": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.20.tar.gz",
       "dependencies": {
         "cheerio": {
           "version": "0.17.0",
@@ -344,7 +349,7 @@
                     },
                     "inherits": {
                       "version": "2.0.1",
-                      "from": "inherits@~2.0.1",
+                      "from": "inherits@2",
                       "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz"
                     }
                   }
@@ -528,7 +533,7 @@
           "dependencies": {
             "qs": {
               "version": "0.6.6",
-              "from": "qs@0.6.6",
+              "from": "qs@~0.6.0",
               "resolved": "https://registry.npmjs.org/qs/-/qs-0.6.6.tgz"
             },
             "formidable": {
@@ -538,7 +543,7 @@
             },
             "mime": {
               "version": "1.2.11",
-              "from": "mime@1.2.11",
+              "from": "mime@~1.2.9",
               "resolved": "https://registry.npmjs.org/mime/-/mime-1.2.11.tgz"
             },
             "component-emitter": {
@@ -624,7 +629,7 @@
                 },
                 "inherits": {
                   "version": "2.0.1",
-                  "from": "inherits@~2.0.1",
+                  "from": "inherits@2",
                   "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz"
                 }
               }
@@ -741,7 +746,7 @@
                 },
                 "inherits": {
                   "version": "2.0.1",
-                  "from": "inherits@~2.0.1",
+                  "from": "inherits@2",
                   "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz"
                 }
               }
@@ -792,7 +797,7 @@
               "dependencies": {
                 "inherits": {
                   "version": "2.0.1",
-                  "from": "inherits@2.0.1",
+                  "from": "inherits@2",
                   "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz"
                 }
               }
