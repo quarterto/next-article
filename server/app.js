@@ -144,6 +144,19 @@ app.get('/more-on/:id', function(req, res, next) {
         });
 });
 
+app.get('/', function (req, res, next) {
+  console.log('route: home');
+
+  // console.log('latest: ', latest.get());
+
+  res.render('home/base', {
+    today : dateFormat(new Date(), 'dddd dS mmmm'),
+    latest : latest.get()
+  });
+
+});
+
+
 // Start polling the data
 
 latest.init();

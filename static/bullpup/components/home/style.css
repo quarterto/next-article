@@ -1,0 +1,133 @@
+@font-face {
+    font-family: display;
+    src: url(fonts/Financier_Display_Regular.otf);
+}
+@font-face {
+    font-family: display_italic;
+    src: url(fonts/Financier_Display_Regular_Italic.otf);
+}
+
+@font-face {
+    font-family: text_regular;
+    src: url(fonts/Financier_Text_Regular.otf);
+}
+@font-face {
+    font-family: text_italic;
+    src: url(fonts/Financier_Text_Regular_Italic.otf);
+}
+@font-face {
+    font-family: text_bold;
+    src: url(fonts/Financier_Text_Bold.otf);
+}
+
+
+body  {
+
+  background-color: white;
+  margin: 0;
+  font-family: text_regular;
+
+}
+
+.page-wrapper {
+  margin: 0 auto;
+  width: 1024px;
+}
+
+.date-container {
+  font-family: text_bold;
+  background-color: black;
+  color: #eea200;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 0.2em;
+
+}
+
+.page-wrapper .pane {
+  min-height: 100vh;
+  background-size: 1024px;
+}
+
+.pane-1 {
+  background-image: url(img/Tap_to_Pay_With_Isis.jpg);
+  text-align: center;
+}
+
+.pane-1 h1 {
+  font-family: display;
+  margin: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 6em;
+
+}
+
+.pane-1 .quote {
+  font-family: display_italic;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.pane-1 .pane-content {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 80vh;
+}
+
+.pane .pane-title {
+  font-family: text_regular;
+  font-size: 1.5em;
+  color: white;
+  font-weight: bold;
+  background-color: black;
+  text-align: center;
+}
+
+.pane .pane-title span {
+  color: #eea200;
+}
+
+.pane-1 .pane-content .pane-title {
+  color: black;
+  background-color: transparent;
+  padding:10px;
+}
+
+
+.pane-1 .pane-content ul {
+  padding:10px;
+}
+
+.pane-1 .pane-content ul li.card {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  list-style-type: none;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  width:280px;
+  height:120px;
+  font-size: 1.5em;
+  text-align: left;
+}
+
+.pane-1 .pane-content ul li.card a {
+  color: #525252;
+  text-decoration: none;
+}
+
+.pane-2 {
+  background-image: url(img/referendum.jpg);
+}
+
+.pane-3 {
+  background-color: #fff1e0;
+}
+
+.pane-4 {
+  background-image: url(img/ISIS-militants.jpg);
+}
