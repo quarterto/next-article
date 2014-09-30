@@ -39,7 +39,7 @@ var formatSection = function (s) {
 /* UI */
 
 app.get('/stream/popular', function(req, res, next) {
-    res.render('/layout/base', { 
+    res.render('/layout/base', {
         context: 'Most popular',
         mode: 'compact',
         latest: latest.get(),
@@ -51,7 +51,7 @@ app.get('/stream/popular', function(req, res, next) {
 });
 
 app.get('/stream/latest', function(req, res, next) {
-    res.render('layout/base', { 
+    res.render('layout/base', {
         context: 'Latest',
         mode: 'compact',
         latest: latest.get(),
@@ -63,7 +63,7 @@ app.get('/stream/latest', function(req, res, next) {
 });
 
 app.get('/stream/picks', function(req, res, next) {
-    res.render('layout/base', { 
+    res.render('layout/base', {
         context: 'Top Stories',
         mode: 'compact',
         latest: latest.get(),
@@ -82,7 +82,7 @@ app.get('/search', function(req, res, next) {
         ft
         .search(decodeURI(req.query.q), count)
         .then(function (articles) {
-            
+
             var ids = articles.map(function (article) {
                 return article.id;
             });
@@ -90,7 +90,7 @@ app.get('/search', function(req, res, next) {
             ft
                 .get(ids)
                 .then( function (articles) {
-                    res.render('layout/base', { 
+                    res.render('layout/base', {
                         mode: 'compact',
                         stream: articles,
                         context: formatSection(req.query.q)
@@ -104,7 +104,7 @@ app.get('/search', function(req, res, next) {
             console.log(err);
             res.send(404);
         });
-    
+
 });
 
 // ft articles
@@ -112,7 +112,7 @@ app.get('/:id', function(req, res, next) {
     ft
         .get([req.params.id])
         .then(function (article) {
-            res.render('layout/base', { 
+            res.render('layout/base', {
                 mode: 'expand',
                 stream: article
             });
@@ -126,19 +126,19 @@ app.get('/more-on/:id', function(req, res, next) {
     ft
         .get([req.params.id])
         .then(function (article) {
-            
+
             // ...
             ft
                 .get(article[0].packages)
                 .then(function (articles) {
-                    res.render('more-on/base', { 
+                    res.render('more-on/base', {
                         mode: 'expand',
                         stream: articles
                     });
                 }, function (err) {
                     console.error(err);
                 });
-        
+
         }, function (err) {
             console.error(err);
         });
@@ -150,7 +150,7 @@ latest.init();
 popular.init();
 bertha.init();
 
-// 
+//
 var port = process.env.PORT || 3001;
 app.listen(port, function() {
       console.log("Listening on " + port);
