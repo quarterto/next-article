@@ -1,6 +1,7 @@
+'use strict';
 
 var Poller = require('ft-poller'),
-    var ft = require('ft-api-client')(process.env.apikey);
+    ft = require('ft-api-client')(process.env.apikey),
     latestNews,
     _ = require('lodash');
 
@@ -15,13 +16,13 @@ var poller = new Poller({
             .get(ids)
             .then(function (articles) {
                 latestNews = articles; 
-            })
+            });
     }
 });
 
 poller.on('error', function (err) {
-    console.error(err)
-})
+    console.error(err);
+});
 
 module.exports = {
     
@@ -35,4 +36,4 @@ module.exports = {
     },
 
   poller: poller
-}
+};

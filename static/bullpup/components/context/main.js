@@ -2,18 +2,18 @@
 (function () {
 
     var emit = function(name, data) {
-        console.log('emitting', name)
+        console.log('emitting', name);
         var event = document.createEvent('Event');
         event.initEvent(name, true, true);
         if (data) {
             event.detail = data;
         }
         document.dispatchEvent(event);
-    }
+    };
 
    var $ = function (selector) {
         return [].slice.call(document.querySelectorAll(selector));
-    }
+    };
 
     function hasClass(el, name) {
         return new RegExp('(\\s|^)'+name+'(\\s|$)').test(el.className);
@@ -30,18 +30,19 @@
     }
     
     function toggleClass(el, name) {
-        (hasClass(el, name)) ? removeClass(el, name) : addClass(el, name);
+        if (hasClass(el, name)) removeClass(el, name);
+	else addClass(el, name);
     }
     
     document.addEventListener('stream:inview', function (e) {
-        var f = '[data-capi-id="' + e.detail.capi.replace('capi-', '') + '"]'
+        var f = '[data-capi-id="' + e.detail.capi.replace('capi-', '') + '"]';
         
         $('.stream-list__item').map(function (el) {
-            removeClass(el, 'scrollspy-on')
+            removeClass(el, 'scrollspy-on');
         });
 
         $(f).map(function (el) {
-            addClass(el, 'scrollspy-on')
+            addClass(el, 'scrollspy-on');
         });
     });
  
@@ -49,9 +50,9 @@
     $('.stream-list__label').map(function (el) {
         el.addEventListener('click', function (evt) {
             toggleClass(el, 'stream-list__label-active');
-            
+
             var active = hasClass(el, 'stream-list__label-active') ? 'open' : 'close';
-           
+
             if (hasClass(el, 'u-disabled')) return false;
 
             if ( this.getAttribute('data-stream') ) {
@@ -64,9 +65,9 @@
 
             $(target).map(function (elm) {
                 toggleClass(elm, 'u-show');
-            })
+            });
         });        
-    })
+    });
     
     // Listen for clicks to CAPI resources and emit event 
     $('.context').map(function (el) {
@@ -75,7 +76,7 @@
             if (hasId) {
                 emit('index:capi', { capi: item.target.getAttribute('data-capi-id') });
             }
-        })
+        });
 
     });
 
