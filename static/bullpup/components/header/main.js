@@ -2,7 +2,7 @@
 (function () {
     var $ = function (selector) {
         return [].slice.call(document.querySelectorAll(selector));
-    }
+    };
     
     function hasClass(el, name) {
         return new RegExp('(\\s|^)'+name+'(\\s|$)').test(el.className);
@@ -19,7 +19,8 @@
     }
     
     function toggleClass(el, name) {
-        (hasClass(el, name)) ? removeClass(el, name) : addClass(el, name);
+        if (hasClass(el, name)) removeClass(el, name);
+        else addClass(el, name);
     }
 
     // Attach the trigram to the context menu (to show/hide on mobile)
@@ -27,9 +28,9 @@
         el.addEventListener('click', function (button) {
             $('.context__container').map(function (index) {
                 toggleClass(index, 'show');
-            })
-        })
-    })
+            });
+        });
+    });
     
     // Attach the splash/front to the Finacial Times logo
     $('.home__label').map(function (el) {
@@ -41,10 +42,10 @@
                 if (hasClass(splash, 'show')) {
                     setTimeout( function () { 
                         window.scrollTo(0, 0);
-                    }, 100)
+                    }, 100);
                 }
-            })
-        })
-    })
+            });
+        });
+    });
 
-})()   
+})();

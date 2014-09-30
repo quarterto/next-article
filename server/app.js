@@ -1,3 +1,4 @@
+'use strict';
 
 var express = require('express');
 var swig = require('swig');
@@ -21,18 +22,18 @@ var popular = require('./jobs/popular');
 var bertha  = require('./jobs/bertha');
 var ft      = require('ft-api-client')(process.env.apikey);
 
-GLOBAL.Promise = require('es6-promise').Promise;
+require('es6-promise').polyfill();
 
-var templates = { }
+var templates = { };
 
 var formatSection = function (s) {
     if(/(.*):(.*)/.test(s)) {
         var a = s.split(':')[1].replace(/"/g, '');
         console.log(123, a);
         return a;
-    } 
+    }
     return s;
-}
+};
 
 
 /* UI */
@@ -84,7 +85,7 @@ app.get('/search', function(req, res, next) {
             
             var ids = articles.map(function (article) {
                 return article.id;
-            })
+            });
 
             ft
                 .get(ids)
@@ -94,15 +95,15 @@ app.get('/search', function(req, res, next) {
                         stream: articles,
                         context: formatSection(req.query.q)
                     });
-                }, function () {
+                }, function(err) {
                     console.log(err);
                     res.send(404);
-                })
+                });
 
         }, function (err) {
             console.log(err);
             res.send(404);
-        })
+        });
     
 });
 
@@ -140,7 +141,7 @@ app.get('/more-on/:id', function(req, res, next) {
         
         }, function (err) {
             console.error(err);
-        })
+        });
 });
 
 // Start polling the data

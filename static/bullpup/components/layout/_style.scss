@@ -9,7 +9,6 @@ body {
 }
 
 .context__container {
-    width: 20%;
     float: left;
     position: absolute;
 }
@@ -20,7 +19,7 @@ body {
 }
 
 @media (min-width: 600px) {
-    .stream__container {
+    .context__container, .stream__container {
         margin-top: 40px;
     }
 }

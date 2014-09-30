@@ -31,13 +31,14 @@ a {
 .article-card__headline {
     margin: 10px 0;
     font-size: 30px;
+    font-family: FinancierDisplay, Georgia, serif;
     font-weight: normal;
     text-align: center;
     text-decoration: none; 
 }
 
 .article-card__link {
-    color: blue;
+    color: #272727;
     text-decoration: none;
 }
 
@@ -47,7 +48,7 @@ a {
 
 .article-card p {
     font-size: 18px;
-    font-family: Georgia, serif;
+    font-family: Metric, Arial, sans-serif;
     line-height: 26px;
 }
 
