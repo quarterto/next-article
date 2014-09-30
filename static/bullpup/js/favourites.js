@@ -54,6 +54,8 @@ window.addEventListener('DOMContentLoaded', function (evt) {
                     s.src = script.src;
                     document.head.appendChild(s);
                 });
+
+                document.documentElement.className += ' has-context';
             });
         }
     });
