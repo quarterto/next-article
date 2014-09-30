@@ -49,13 +49,7 @@ Me.prototype.reset = function () {
 Me.prototype.render = function (obj) {
     var history = this.getOrCreate();
     var links = history.sections.reverse().slice(0, 7).map(function (section) {
-        if(section.headline) {
-            return '<li class="stream-list__label"><a href="' + section.path + '"  class="stream-list__link">' + section.headline + '</a></li>';
-
-        } else {
-            return '<li class="stream-list__label"><a href="' + section.path + '">' + section.display + '</a></li>';
-
-        }
+        return '<li class="stream-list__label"><a href="' + section.path + '">' + section.display + '</a></li>';
     }).join('');
     return '<ul class="stream-list">' + links + '</ul>';
 };
