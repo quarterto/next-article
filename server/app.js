@@ -4,7 +4,7 @@ var express = require('express');
 var swig = require('swig');
 var dateFormat = require('dateformat');
 
-var app = express();
+var app = module.exports = express();
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
