@@ -6,19 +6,20 @@ var Poller = require('ft-poller'),
     _ = require('lodash');
 
 var poller = new Poller({
-    url: 'http://newsfeed.ft.com/api/latestNews', 
+    url: 'http://newsfeed.ft.com/api/latestNews',
     refreshInterval: 1000 * 60 * 5,
     parseData: function (data) {
 
         // Fetch to top 20 latest stories from the Content API
-        var ids = _.pluck(data, 'id').slice(0, 5);
-        
+        var ids = _.pluck(data, 'id').slice(0, 6);
+
         console.log('latest', ids);
-        
+
         if (!ids) return;
         ft
             .get(ids)
             .then(function (articles) {
+              // console.log('articles: ', articles);
                 latestNews = articles;
             }, function (err) {
                 console.log(err);
@@ -31,7 +32,7 @@ poller.on('error', function (err) {
 });
 
 module.exports = {
-    
+
     get: function() {
         return latestNews;
     },

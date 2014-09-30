@@ -22,6 +22,7 @@ var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var bertha  = require('./jobs/bertha');
 var ft      = require('ft-api-client')(process.env.apikey);
+var themes  = require('./jobs/themes');
 
 require('es6-promise').polyfill();
 
@@ -148,11 +149,14 @@ app.get('/more-on/:id', function(req, res, next) {
 app.get('/', function (req, res, next) {
   console.log('route: home');
 
-  // console.log('latest: ', latest.get());
+  // console.log('themes: ', themes.get());
 
   res.render('home/base', {
     today : dateFormat(new Date(), 'dddd dS mmmm'),
-    latest : latest.get()
+    latest : latest.get(),
+    analysis : '',
+    comment : '',
+    themes : themes.get()
   });
 
 });
@@ -163,6 +167,7 @@ app.get('/', function (req, res, next) {
 latest.init();
 popular.init();
 bertha.init();
+themes.init();
 
 //
 var port = process.env.PORT || 3001;

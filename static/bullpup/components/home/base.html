@@ -43,12 +43,32 @@
         <div class="pane-title">
           <span>4.</span> Significant Themes
         </div>
+          <ul class="themes">
+            {% for theme in themes %}
+              <li class="card">
+
+                {{ theme.name }}
+                <!-- <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a> -->
+
+                  <div class="themes_articles">
+                    <a class="close" href="javascript:void(0)">X</a>
+                    <ul>
+                      {% for article in theme.articles %}
+                      <li><a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+
+                  </div>
+
+              </li>
+            {% endfor %}
+          </ul>
 
 
       </div>
     </div>
 
-
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="/bullpup/components/home/main.js"></script>
 
   </body>

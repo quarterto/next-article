@@ -130,4 +130,40 @@ body  {
 
 .pane-4 {
   background-image: url(img/ISIS-militants.jpg);
+  position:relative;
+}
+
+.pane-4 ul.themes li.card {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  list-style-type: none;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  width:280px;
+  height:120px;
+  font-size: 1.5em;
+  text-align: left;
+
+}
+
+.pane-4 ul.themes li.card .themes_articles {
+  display: none;
+  position:absolute;
+  left:62px;
+  top:62px;
+
+  background-color: white;
+  border: solid 1px blue;
+
+  width: 900px;
+  height: 70vh;
+
+
+
+}
+.pane-4 ul.themes li.card .themes_articles li {
+  list-style-type: none;
 }
