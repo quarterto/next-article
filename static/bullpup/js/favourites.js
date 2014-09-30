@@ -29,17 +29,15 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     var contextUrl = '';
     /* 2. in article view render the context menu full mode */    
     if (onArticle(location.pathname) && context) {
-        contextUrl = '/context' + context;
         $('.ft-header-context').map(function (el) {
             el.innerHTML = localStorage.getItem(contextTitleKey);
         });
 
+    }
+    if(context) {
+        contextUrl = '/context' + context;
     } else {
-        if(context) {
-            contextUrl = '/context' + context + '&mode=stream';
-        } else {
-            contextUrl = '/context/search/?mode=stream';
-        }
+        contextUrl = '/context/search/';
     }
 
 
@@ -69,7 +67,10 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     var history = new Me('history');
     
 
-    display = document.getElementsByClassName('ft-header-context')[0].textContent.trim();
+    display = localStorage.getItem('ft.stream.context.display');
+    if(display) {
+        display = display.trim();
+    }
     headline = document.getElementsByClassName('article-card__headline')[0];
     if(headline) {
         headline = headline.textContent.trim();
