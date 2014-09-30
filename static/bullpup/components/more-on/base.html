@@ -1,0 +1,9 @@
+
+<ul class="more-on">
+{% for article in stream %}
+    <li>
+        <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a> 
+        - {{ article.lastUpdated|date('Y-m-d') }}
+    </li>
+{% endfor %}
+</ul>

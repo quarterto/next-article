@@ -118,8 +118,30 @@ app.get('/:id', function(req, res, next) {
             });
         }, function (err) {
             console.log(err);
+        })
+});
+
+// More-on
+app.get('/more-on/:id', function(req, res, next) {
+    ft
+        .get([req.params.id])
+        .then(function (article) {
+            
+            // ...
+            ft
+                .get(article[0].packages)
+                .then(function (articles) {
+                    res.render('more-on/base', { 
+                        mode: 'expand',
+                        stream: articles
+                    });
+                }, function (err) {
+                    console.error(err);
+                })
+        
+        }, function (err) {
+            console.error(err);
         });
-    
 });
 
 // Start polling the data
