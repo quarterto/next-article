@@ -2,6 +2,11 @@
   "name": "next-article-mattc",
   "version": "0.0.2",
   "dependencies": {
+    "dateformat": {
+      "version": "1.0.8",
+      "from": "dateformat@^1.0.8",
+      "resolved": "https://registry.npmjs.org/dateformat/-/dateformat-1.0.8.tgz"
+    },
     "debug": {
       "version": "2.0.0",
       "from": "debug@^2.0.0",
@@ -264,9 +269,9 @@
       }
     },
     "ft-api-client": {
-      "version": "3.0.18",
-      "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.19.tar.gz",
-      "resolved": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.19.tar.gz",
+      "version": "3.0.20",
+      "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.20.tar.gz",
+      "resolved": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.20.tar.gz",
       "dependencies": {
         "cheerio": {
           "version": "0.17.0",
