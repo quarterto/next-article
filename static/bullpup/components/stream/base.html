@@ -57,10 +57,17 @@
 
 	    <div class="article-card__body">
 		    {% if mode === 'compact' %}
-		    <p>{{ article.paragraphs(0, 1) }}</p>
-		    {% else %}
-			{{ article.body|raw }}
-		    {% endif %}
+            
+                <p>{{ article.paragraphs(0, 1) }}</p>
+                
+            {% else %}
+            
+                <p>{{ article.paragraphs(0, 1) }}</p>
+                <div class="more-on" data-article-id="{{ article.id }}"></div>
+                <p>{{ article.paragraphs(1, 100) }}</p>
+                
+                
+            {% endif %}
 	    </div>
         </div>
     
