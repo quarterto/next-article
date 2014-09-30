@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     
 
     display = document.getElementsByClassName('ft-header-context')[0].textContent.trim();
-    headline = document.getElementsByClassName('article-card__headline')[0]
+    headline = document.getElementsByClassName('article-card__headline')[0];
     if(headline) {
         headline = headline.textContent.trim();
     }
