@@ -25,6 +25,7 @@
     }
   ],
   "dependencies": {
+    "dateformat": "^1.0.8",
     "debug": "^2.0.0",
     "es6-promise": "*",
     "express": "^4.8.x",
@@ -32,8 +33,8 @@
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.19.tar.gz",
     "ft-poller": "0.0.4",
     "lodash": "^2.4.1",
-    "swig": "^1.4.2",
-    "node-sass": "^0.9.5-rc1"
+    "node-sass": "^0.9.5-rc1",
+    "swig": "^1.4.2"
   },
   "devDependencies": {
     "jshint": "^2.5.6"
