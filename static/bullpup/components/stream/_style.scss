@@ -18,7 +18,7 @@
 
 .article-card__headline {
     margin: 10px 0 30px 0;
-    font-size: 50px;
+    font-size: 40px;
     font-family: FinancierDisplay, Georgia, serif;
     font-weight: normal;
     text-align: center;
@@ -37,7 +37,7 @@
 }
 
 .article-card__viewcta {
-    right: 0;
+    right: 4px;
     position: absolute;
     font-weight: 600;
     color: $next-blue;
