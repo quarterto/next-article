@@ -2,8 +2,9 @@
 
 var express = require('express');
 var swig = require('swig');
+var dateFormat = require('dateformat');
 
-var app = express();
+var app = module.exports = express();
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
@@ -24,6 +25,7 @@ var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var bertha  = require('./jobs/bertha');
 var ft      = require('ft-api-client')(process.env.apikey);
+var themes  = require('./jobs/themes');
 
 require('es6-promise').polyfill();
 
@@ -121,6 +123,7 @@ app.get('/:id', function(req, res, next) {
         .then(function (article) {
             res.render('layout/base', {
                 mode: 'expand',
+                isArticle: true,
                 stream: article
             });
         }, function (err) {
@@ -151,11 +154,28 @@ app.get('/more-on/:id', function(req, res, next) {
         });
 });
 
+app.get('/', function (req, res, next) {
+  console.log('route: home');
+
+  // console.log('themes: ', themes.get());
+
+  res.render('home/base', {
+    today : dateFormat(new Date(), 'dddd dS mmmm'),
+    latest : latest.get(),
+    analysis : '',
+    comment : '',
+    themes : themes.get()
+  });
+
+});
+
+
 // Start polling the data
 
 latest.init();
 popular.init();
 bertha.init();
+themes.init();
 
 //
 var port = process.env.PORT || 3001;

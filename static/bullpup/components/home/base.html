@@ -1,0 +1,76 @@
+<html>
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>FINANCIAL TIMES</title>
+      <link rel="StyleSheet" href="/bullpup/components/home/style.css"/>
+      <link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.4.1">
+  </head>
+  <body>
+
+    <div class="page-wrapper">
+      <div class="pane pane-1">
+        <div class="date-container">{{ today }}</div>
+        <h1>FINANCIAL TIMES</h1>
+        <div class="quote">"the business of understanding"</div>
+
+        <div class="pane-content">
+          <div class="pane-title">
+            <span>1.</span> Distilled News
+          </div>
+          <ul>
+            {% for article in latest %}
+              <li class="card">
+                <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="pane pane-2">
+        <div class="pane-title">
+          <span>2.</span> Informed analysis
+        </div>
+
+
+      </div>
+      <div class="pane pane-3">
+        <div class="pane-title">
+          <span>3.</span> Sharpest Comment
+        </div>
+
+
+      </div>
+      <div class="pane pane-4">
+        <div class="pane-title">
+          <span>4.</span> Significant Themes
+        </div>
+          <ul class="themes">
+            {% for theme in themes %}
+              <li class="card">
+
+                {{ theme.name }}
+                <!-- <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a> -->
+
+                  <div class="themes_articles">
+                    <a class="close" href="javascript:void(0)">X</a>
+                    <ul>
+                      {% for article in theme.articles %}
+                      <li><a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+
+                  </div>
+
+              </li>
+            {% endfor %}
+          </ul>
+
+
+      </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/bullpup/components/home/main.js"></script>
+
+  </body>
+</html>
