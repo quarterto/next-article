@@ -16,9 +16,3 @@ npm install
 ```
 make run
 ```
-
-## Known issues
-
-### Images don't load
-
-In order for images to load you need to be using a subdomain of `ft.com`.  For localhost development, the recommendation is mapping `localhost.ft.com` to `127.0.0.1`.  It will be broken on herokuapp.com for now.  Track the progress of the underlying issue here:- https://redmine.labs.ft.com/issues/48232.
