@@ -4,6 +4,7 @@ body {
 }
 
 .context__container, .stream__container {
+    z-index: 2;
     float: left;
     min-height: 150vh;
 }
