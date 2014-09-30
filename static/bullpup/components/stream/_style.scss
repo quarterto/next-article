@@ -83,7 +83,22 @@
 .article-card__link,
 .article-card p a {
     color: $next-grey-dark;
+}
+
+.article-card__headline a, .article-card__themes a {
     text-decoration: none;
+}
+
+.more-on a {
+    color: $next-grey-dark;
+}
+
+div.more-on {
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    color: $next-grey-dark;
+    font-family: Metric, Arial, sans-serif;
+    line-height: 26px;
 }
 
 .article-card:first-child {
