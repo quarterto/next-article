@@ -118,7 +118,7 @@ app.get('/:id', function(req, res, next) {
             });
         }, function (err) {
             console.log(err);
-        })
+        });
 });
 
 // More-on
@@ -137,7 +137,7 @@ app.get('/more-on/:id', function(req, res, next) {
                     });
                 }, function (err) {
                     console.error(err);
-                })
+                });
         
         }, function (err) {
             console.error(err);
