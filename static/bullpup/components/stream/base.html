@@ -17,7 +17,7 @@
 		{% if mode === 'compact' %}<a href="/{{ article.id }}" class="article-card__viewcta">view full article</a>{% endif %}
             </div>
 
-            <p align="left" style="font-size: 14px;">
+            <p align="left" style="font-size: 14px;" class="article-card__themes">
                 <small>Latest in <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a>
                     / <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primaryTheme.name }}</a></small>
             </p>
