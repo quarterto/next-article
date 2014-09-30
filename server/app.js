@@ -77,8 +77,10 @@ app.get('/stream/picks', function(req, res, next) {
 //
 app.get('/search', function(req, res, next) {
 
+        var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
+
         ft
-        .search(decodeURI(req.query.q))
+        .search(decodeURI(req.query.q), count)
         .then(function (articles) {
             
             var ids = articles.map(function (article) {
@@ -117,7 +119,29 @@ app.get('/:id', function(req, res, next) {
         }, function (err) {
             console.log(err);
         });
-    
+});
+
+// More-on
+app.get('/more-on/:id', function(req, res, next) {
+    ft
+        .get([req.params.id])
+        .then(function (article) {
+            
+            // ...
+            ft
+                .get(article[0].packages)
+                .then(function (articles) {
+                    res.render('more-on/base', { 
+                        mode: 'expand',
+                        stream: articles
+                    });
+                }, function (err) {
+                    console.error(err);
+                });
+        
+        }, function (err) {
+            console.error(err);
+        });
 });
 
 // Start polling the data
