@@ -15,7 +15,7 @@ swig.setDefaults({ cache: false });
 
 app.use(express.static(__dirname + '/../static'));
 
-app.use('/components' require('./components.js'));
+app.use('/components', require('./components.js'));
 
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
