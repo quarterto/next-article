@@ -2,6 +2,7 @@
 
 var express = require('express');
 var swig = require('swig');
+var dateFormat = require('dateformat');
 
 var app = express();
 
