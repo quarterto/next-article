@@ -40,7 +40,6 @@ var formatSection = function (s) {
     return s;
 };
 
-
 /* UI */
 
 app.get('/stream/popular', function(req, res, next) {
@@ -88,9 +87,14 @@ app.get('/search', function(req, res, next) {
         .search(decodeURI(req.query.q), count)
         .then(function (articles) {
 
-            var ids = articles.map(function (article) {
-                return article.id;
-            });
+            var ids;
+            if (articles[0] instanceof Object) {
+                ids = articles.map(function (article) {
+                    return article.id;
+                });
+            } else {
+                ids = articles;
+            }
 
             ft
                 .get(ids)
