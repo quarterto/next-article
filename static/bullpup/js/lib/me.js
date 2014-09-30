@@ -25,11 +25,11 @@ Me.prototype.save = function (obj) {
     localStorage.setItem(this.key, JSON.stringify(obj)); 
 };
 
-Me.prototype.add = function (path, display) {
+Me.prototype.add = function (path, display, headline) {
     var current = this.getOrCreate();
     console.log(path, this.exists(path));
     if (!this.exists(path)) {
-        current.sections.push({ path: path, display: display });
+        current.sections.push({ path: path, display: display, headline: headline });
         return this.save(current);
     }
     return false;
@@ -49,7 +49,13 @@ Me.prototype.reset = function () {
 Me.prototype.render = function (obj) {
     var history = this.getOrCreate();
     var links = history.sections.reverse().slice(0, 7).map(function (section) {
-        return '<li class="stream-list__label"><a href="' + section.path + '" class="stream-list__link">' + section.display + '</a></li>';
+        if(section.headline) {
+            return '<li class="stream-list__label"><a href="' + section.path + '"  class="stream-list__link">' + section.headline + '</a></li>';
+
+        } else {
+            return '<li class="stream-list__label"><a href="' + section.path + '">' + section.display + '</a></li>';
+
+        }
     }).join('');
     return '<ul class="stream-list">' + links + '</ul>';
 };

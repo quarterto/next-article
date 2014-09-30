@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     
     var contextKey = 'ft.stream.context.url';
     var contextTitleKey = 'ft.stream.context.display';
-    var display;
+    var display, headline;
 
     /* 1. in stream mode store the context URL and content display name */
     if (!onArticle(location.pathname)) {
@@ -68,11 +68,16 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     var history = new Me('history');
     
-    if (!onArticle(location.pathname)) {
-        display = document.getElementsByClassName('ft-header-context')[0];
-        history.add(location.pathname + location.search, display.textContent.trim());
+
+    display = document.getElementsByClassName('ft-header-context')[0].textContent.trim();
+    headline = document.getElementsByClassName('article-card__headline')[0]
+    if(headline) {
+        headline = headline.textContent.trim();
     }
 
+    if (onArticle(location.pathname)) {
+        history.add(location.pathname, headline);
+    }
 
     /* */
 
@@ -80,9 +85,8 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     $('.save__button').map(function (el) {
         el.addEventListener('click', function (evt) {
-            display = document.getElementsByClassName('ft-header-context')[0];
-            fav.add(location.pathname + location.search, display.textContent.trim());
-            document.getElementById('me-fav').innerHTML = fav.render();
+            fav.add(location.pathname + location.search, display);
+            document.querySelector('[data-list-source="favourites"] .stream-list__content' ).innerHTML = fav.render();
         });
     });
 
