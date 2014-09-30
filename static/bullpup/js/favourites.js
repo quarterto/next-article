@@ -26,16 +26,20 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     }
 
     var context = localStorage.getItem(contextKey); 
-    var contextUrl = '/context' + context;
+    var contextUrl = '';
     /* 2. in article view render the context menu full mode */    
     if (onArticle(location.pathname) && context) {
-
+        contextUrl = '/context' + context
         $('.ft-header-context').map(function (el) {
             el.innerHTML = localStorage.getItem(contextTitleKey);
         });
 
     } else {
-        contextUrl += '&mode=stream';
+        if(context) {
+            contextUrl = '/context' + context + '&mode=stream';
+        } else {
+            contextUrl = '/context/search/?mode=stream'
+        }
     }
 
 
