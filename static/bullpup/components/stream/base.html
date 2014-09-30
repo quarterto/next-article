@@ -36,7 +36,7 @@
             </h3>
 
             <a href="/{{ article.id }}">
-                <img src="{{ article.largestImage.url }}" class="article-card__image article-card__image-{{ article.id }}" draggable="true"/>
+                <img src="{{ article.largestImage.url|resize(150) }}" class="article-card__image article-card__image-{{ article.id }}" draggable="true"/>
             </a>
             
             <p align="center">
@@ -72,50 +72,14 @@
                     {% endfor %}
                 </small>
             </p>
-            <p>
-                {{ article.paragraphs(0, 2) }}
-            </p>
-            <!-- 
-            <p>
-                <small>
-                    {% for org in article.tickerSymbols %}
-                    <a href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ org.code }}">{{ org.code }}</a>{% if !loop.last %}, {% endif %} 
-                    {% endfor %}
-                </small>
-            </p>
-            -->
-            <!-- 
-            {% if article.quotes.length > 0 %}
-                <div style="background-color: #ffc; padding: 10px;">
-                    {% for quote in article.quotes %}
-                        {{ quote.fields.body|safe }} 
-                        {% if quote.fields.attribution %}
-                            - {{ quote.fields.attribution }}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-            -->
 
-            {% if mode === 'compact' %}
-
-            <!--
-                <div class="article-card__more js-toggle" data-toggle=".more-{{ article.id }}">Open</div>
-                <section class="js-hide more-{{ article.id }}">
-                    {{ article.paragraphs(3, 100) }}
-                </section>
-            -->
-
-            {% else %}
-
-            <div class="more-on" data-article-id="{{ article.id }}"></div>
-
-            {{ article.paragraphs(3, 100) }}
-                            
-            {% endif %}
-            
-
-
+	    <div class="article-card__body">
+		    {% if mode === 'compact' %}
+		    <p>{{ article.paragraphs(0, 1) }}</p>
+		    {% else %}
+			{{ article.body|raw }}
+		    {% endif %}
+	    </div>
         </div>
     
     {% endif %}

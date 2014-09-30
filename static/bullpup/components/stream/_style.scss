@@ -1,6 +1,3 @@
-
-/* stream-list */
-
 a {
     text-decoration: none;
 }
@@ -23,11 +20,6 @@ a {
     margin: 10;
 }
 
-/** FIXME hide inline images for now (they are messy - bad resolution etc.) */
-.article-card p > img {
-    display: none;
-}
-
 .article-card__headline {
     margin: 10px 0;
     font-size: 30px;
@@ -35,6 +27,14 @@ a {
     font-weight: normal;
     text-align: center;
     text-decoration: none; 
+}
+
+.article-card__body {
+    clear: left;
+}
+
+.article-card__image {
+    float: left;
 }
 
 .article-card__link {
@@ -50,14 +50,6 @@ a {
     font-size: 18px;
     font-family: Metric, Arial, sans-serif;
     line-height: 26px;
-}
-
-.article-card__image {
-    display: none;
-    margin: 0 auto;
-    width: 150px;
-    height: 150px;
-    border: 2px solid #999;
 }
 
 .article-card__more {
