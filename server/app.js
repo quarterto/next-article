@@ -117,6 +117,7 @@ app.get('/:id', function(req, res, next) {
         .then(function (article) {
             res.render('layout/base', {
                 mode: 'expand',
+                isArticle: true,
                 stream: article
             });
         }, function (err) {
