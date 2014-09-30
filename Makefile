@@ -8,6 +8,7 @@ build:
 heroku-cfg:
 	@heroku config:set apikey=`cat ~/.ftapi`
 
-tests:
+.PHONY: test
+test:
 	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './node_modules/*' -o -name '*.min.*' \\)`
 	./node_modules/.bin/mocha

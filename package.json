@@ -8,7 +8,7 @@
     "Financial Times"
   ],
   "scripts": {
-    "test": "make tests"
+    "test": "make test"
   },
   "author": [
     {
