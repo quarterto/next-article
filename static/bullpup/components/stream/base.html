@@ -41,16 +41,21 @@
                 </li>
 		{% if article.authors.length > 0 %}
                 <li class="article-card__authors">
-                    By {% for author in article.authors %}
-                        <a href="/search?q={{ author.searchString }}">{{ author.name }}</a>{% if !loop.last %}, {% endif %}
+   	            By
+		    <ul class="article-card__authors__items">
+                    {% for author in article.authors %}
+                        <li><a href="/search?q={{ author.searchString }}">{{ author.name }}</a></li>
                     {% endfor %}
+		    </ul>
                 </li>
 		{% endif %}
 		{% if article.people.length > 0 || article.organisations.length > 0 %}
                 <li class="article-card__mentions">
-	      	Mentions
-	       	{% for person in article.people %}<a href="/search?q={{ person.searchString }}">{{ person.name }}</a>{% if !loop.last && article.organisations.length == 0 %}, {% endif %}{% endfor %}
-                {% for org in article.organisations %}<a href="/search?q={{ org.searchString }}">{{ org.name }}</a>{% if !loop.last %}, {% endif %}{% endfor %}
+   	            Mentions
+		    <ul class="article-card__mentions__items">
+                        {% for person in article.people %}<li><a href="/search?q={{ person.searchString }}">{{ person.name }}</a></li>{% endfor %}
+                        {% for org in article.organisations %}<li><a href="/search?q={{ org.searchString }}">{{ org.name }}</a></li>{% endfor %}
+		    </ul>
                 </li>
 		{% endif %}
             </ul>
