@@ -54,7 +54,7 @@ app.get('/search', function(req, res, next) {
             res.render('layout/base', {
                 mode: 'compact',
                 stream: popular.get().slice(0, (count || 5)), 
-                context: formatSection(req.query.q)
+                title: formatSection(req.query.q)
             });
 
             return;
@@ -80,7 +80,7 @@ app.get('/search', function(req, res, next) {
                     res.render('layout/base', {
                         mode: 'compact',
                         stream: articles,
-                        context: formatSection(req.query.q)
+                        title: formatSection(req.query.q)
                     });
                 }, function(err) {
                     console.log(err);

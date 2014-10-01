@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     if (!onArticle(location.pathname)) {
         // Every time you hit a new stream, you enter a new context
         context = location.pathname + location.search;
-        display = document.getElementsByClassName('ft-header-context')[0].textContent.trim();
+        display = document.getElementsByClassName('js-context')[0].textContent.trim();
         setContext(context, display);
         localStorage.setItem(contextTitleKey, display);
     } else {
@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     /* 2. in article view render the context menu full mode */    
     if (onArticle(location.pathname) && context) {
-        $('.ft-header-context').map(function (el) {
+        $('.js-context').map(function (el) {
             el.innerHTML = localStorage.getItem(contextTitleKey);
         });
 
