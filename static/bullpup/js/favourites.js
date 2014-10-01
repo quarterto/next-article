@@ -34,11 +34,10 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         });
 
     }
-    if(context) {
-        contextUrl = '/context' + context;
-    } else {
-        contextUrl = '/context/search/';
+    if(!context) {
+        context = document.querySelector('.article-card__themes a').getAttribute('href');
     }
+    contextUrl = '/context' + context;
 
 
     reqwest({
