@@ -24,7 +24,6 @@ app.use('/components', require('./components.js'));
 
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
-var bertha  = require('./jobs/bertha');
 var ft      = require('ft-api-client')(process.env.apikey);
 var themes  = require('./jobs/themes');
 
@@ -40,7 +39,6 @@ var templates = { };
 var formatSection = function (s) {
     if(/(.*):(.*)/.test(s)) {
         var a = s.split(':')[1].replace(/"/g, '');
-        console.log(123, a);
         return a;
     }
     return s;
@@ -50,6 +48,17 @@ var formatSection = function (s) {
 app.get('/search', function(req, res, next) {
 
         var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 5;
+
+        if (/^popular:most/i.test(req.query.q)) {
+            
+            res.render('layout/base', {
+                mode: 'compact',
+                stream: popular.get().slice(0, (count || 5)), 
+                context: formatSection(req.query.q)
+            });
+
+            return;
+        }
 
         ft
         .search(decodeURI(req.query.q), count)
@@ -161,7 +170,6 @@ app.get('/', function (req, res, next) {
 
 latest.init();
 popular.init();
-bertha.init();
 themes.init();
 
 //
