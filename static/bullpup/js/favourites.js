@@ -41,7 +41,6 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         }
     }
 
-    var contextUrl = '';
     /* 2. in article view render the context menu full mode */    
     if (onArticle(location.pathname) && context) {
         $('.ft-header-context').map(function (el) {
@@ -49,13 +48,9 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         });
 
     }
-    if(!context) {
-    }
-    contextUrl = '/context' + context;
-
 
     reqwest({
-        url: contextUrl, 
+        url: '/context' + context;, 
         crossOrigin: true, 
         success: function (res) {
             $('.context__container').map(function (el) {
@@ -75,7 +70,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         }
     });
 
-    /* Record each steam a user has looked at */
+    /* Record each ARTICLE a user has looked at */
 
     var history = new Me('history');
     
@@ -90,7 +85,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         history.add(location.pathname, headline);
     }
 
-    /* */
+    /* Record each STREAM a user has looked at */
 
     var fav = new Me('favourites');
 
