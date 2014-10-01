@@ -30,7 +30,7 @@
     "es6-promise": "*",
     "express": "^4.8.x",
     "fruitmachine": "^0.8.3",
-    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.21.tar.gz",
+    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.22.tar.gz",
     "ft-poller": "0.0.4",
     "lodash": "^2.4.1",
     "node-sass": "^0.9.5-rc1",
