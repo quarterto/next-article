@@ -30,7 +30,7 @@ var themes  = require('./jobs/themes');
 // Appended to all successful responeses
 var responseHeaders = {
     'Cache-Control': 'max-age=120, public'
-}
+};
 
 require('es6-promise').polyfill();
 
