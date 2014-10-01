@@ -5,6 +5,10 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     // "http://localhost:3001/search?q=authors:%22Richard%20McGregor%22"
 
+    function setContext(path, display) {
+        localStorage.setItem(contextKey, path);
+        localStorage.setItem(contextTitleKey, display);
+    }
     var onArticle = function (path) {
         return /^\/[a-f0-9]+-(.*)/.test(path); // '27a5e286-4314-11e4-8a43-00144feabdc0'; 
     };
@@ -12,20 +16,31 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     var $ = function (selector) {
         return [].slice.call(document.querySelectorAll(selector));
     };
+
+
     
     var contextKey = 'ft.stream.context.url';
     var contextTitleKey = 'ft.stream.context.display';
-    var display, headline;
+    var display, headline, context;
 
     /* 1. in stream mode store the context URL and content display name */
     if (!onArticle(location.pathname)) {
         // Every time you hit a new stream, you enter a new context
-        localStorage.setItem(contextKey, location.pathname + location.search);
-        display = document.getElementsByClassName('ft-header-context')[0];
-        localStorage.setItem(contextTitleKey, display.innerText);
+        context = location.pathname + location.search;
+        display = document.getElementsByClassName('ft-header-context')[0].textContent.trim();
+        setContext(context, display);
+        localStorage.setItem(contextTitleKey, display);
+    } else {
+        context = localStorage.getItem(contextKey);
+        display = localStorage.getItem(contextTitleKey);
+        if(!context) { 
+            //If they come directly to an article with no history, use the first theme for this article
+            context = document.querySelector('.article-card__themes a').getAttribute('href');
+            display = document.querySelector('.article-card__themes a').textContent.trim();
+            setContext(context, display);
+        }
     }
 
-    var context = localStorage.getItem(contextKey); 
     var contextUrl = '';
     /* 2. in article view render the context menu full mode */    
     if (onArticle(location.pathname) && context) {
@@ -35,7 +50,6 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     }
     if(!context) {
-        context = document.querySelector('.article-card__themes a').getAttribute('href');
     }
     contextUrl = '/context' + context;
 
@@ -66,10 +80,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     var history = new Me('history');
     
 
-    display = localStorage.getItem('ft.stream.context.display');
-    if(display) {
-        display = display.trim();
-    }
+
     headline = document.getElementsByClassName('article-card__headline')[0];
     if(headline) {
         headline = headline.textContent.trim();
@@ -85,7 +96,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     $('.save__button').map(function (el) {
         el.addEventListener('click', function (evt) {
-            fav.add(location.pathname + location.search, display);
+            fav.add(context, display);
             document.querySelector('[data-list-source="favourites"] .stream-list__content' ).innerHTML = fav.render();
         });
     });
