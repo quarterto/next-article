@@ -46,6 +46,16 @@
 
 .article-card__body {
     clear: left;
+
+    .more-on {
+	    clear: left;
+    }
+
+    img {
+	clear: left;
+	float: left;
+	margin: 0 14px 14px 0;
+    }
 }
 
 .article-card__image {
