@@ -8,12 +8,10 @@
     {% include "../splash/base.html" %}
 </div>
 
-{% if !isArticle %}
-    <section class="ft-header-context">
-        {% if context %}
-            {{ context }}
-        {% endif %}
-    </section>
-{% endif %}
+<section class="ft-header-context">
+    {% if context %}
+        {{ context }}
+    {% endif %}
+</section>
 
 <script src="/bullpup/components/header/main.js"></script>
