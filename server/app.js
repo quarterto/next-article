@@ -3,6 +3,7 @@
 var express = require('express');
 var swig = require('swig');
 var dateFormat = require('dateformat');
+var request = require('request');
 
 var app = module.exports = express();
 
@@ -85,9 +86,9 @@ app.get('/search', function(req, res, next) {
 });
 
 // ft articles
-app.get('/:id', function(req, res, next) {
+app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(req, res, next) {
     ft
-        .get([req.params.id])
+        .get([req.params[0]])
         .then(function (article) {
             res.set(responseHeaders);
             res.render('layout/base', {
@@ -122,6 +123,18 @@ app.get('/more-on/:id', function(req, res, next) {
         }, function (err) {
             console.error(err);
         });
+});
+
+// Uber-nav
+app.get('/uber-nav', function(req, res, next) {
+  request({
+    url: 'http://next-companies-et-al.herokuapp.com/v1/ubernav.json',
+    json: true
+  }, function (err, response, body) {
+     console.log(body);
+     res.set(responseHeaders);
+     res.render('uber/base', body);
+  });
 });
 
 app.get('/', function (req, res, next) {
