@@ -29,12 +29,6 @@ body {
     }
 }
 
-@media (min-width: 600px) {
-    .context__container, .stream__container {
-        margin-top: 40px;
-    }
-}
-
 .stream {
     max-width: 600px;
     margin: 0 auto;

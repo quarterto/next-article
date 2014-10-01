@@ -13,7 +13,7 @@
 
 .article-card {
     padding: 10px;
-    margin: 10;
+    margin: 10px 10px 20px 10px;
 }
 
 .article-card__headline {
@@ -66,7 +66,7 @@
     padding: 0 0 20px 0;
     color: $next-grey-light;
 
-    li {
+    > li {
 	// HACK: Metric glyphs are not centre aligned so hack them to appear so
 	// by increasing padding on top and decreasing padding from bottom
         padding: 4px 0 0px 0;
@@ -77,6 +77,29 @@
     a {
         color: $next-blue;
         text-decoration: none;
+    }
+}
+
+.article-card__mentions__items,
+.article-card__authors__items {
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+
+.article-card__mentions__items li,
+.article-card__authors__items li {
+    padding: 0;
+    margin: 0;
+    display: inline;
+    &:before {
+	content: '•';
+	display: inline-block;
+	padding: 0 10px 0 12px;
+	color: $next-grey-lighter;
+    }
+    &:first-child:before {
+	padding-left: 6px;
     }
 }
 
@@ -132,11 +155,6 @@ div.more-on {
     color: white;
 }
 
-.article-card {
-    border-top: 1px solid #999;
-    margin-bottom: 20px; 
-}
-
 /* utils */
 .js-hide {
     display: none;
@@ -148,6 +166,7 @@ div.more-on {
 
 .save__button {
     margin-top: 10px;
+    font-family: Metric, Arial, sans-serif;
 }
 
 .save__button-star:hover {
