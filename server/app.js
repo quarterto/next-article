@@ -27,6 +27,11 @@ var bertha  = require('./jobs/bertha');
 var ft      = require('ft-api-client')(process.env.apikey);
 var themes  = require('./jobs/themes');
 
+// Appended to all successful responeses
+var responseHeaders = {
+    'Cache-Control': 'max-age=120, public'
+}
+
 require('es6-promise').polyfill();
 
 var templates = { };
@@ -40,45 +45,7 @@ var formatSection = function (s) {
     return s;
 };
 
-/* UI */
 
-app.get('/stream/popular', function(req, res, next) {
-    res.render('/layout/base', {
-        context: 'Most popular',
-        mode: 'compact',
-        latest: latest.get(),
-        popular: popular.get(),
-        bertha: bertha.get(),
-        stream: popular.get(),
-        page: { id: 'popular' }
-    });
-});
-
-app.get('/stream/latest', function(req, res, next) {
-    res.render('layout/base', {
-        context: 'Latest',
-        mode: 'compact',
-        latest: latest.get(),
-        popular: popular.get(),
-        bertha: bertha.get(),
-        stream: latest.get(),
-        page: { id: 'latest' }
-    });
-});
-
-app.get('/stream/picks', function(req, res, next) {
-    res.render('layout/base', {
-        context: 'Top Stories',
-        mode: 'compact',
-        latest: latest.get(),
-        popular: popular.get(),
-        bertha: bertha.get(),
-        stream: bertha.get(),
-        page: { id: 'picks' }
-    });
-});
-
-//
 app.get('/search', function(req, res, next) {
 
         var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
@@ -99,6 +66,7 @@ app.get('/search', function(req, res, next) {
             ft
                 .get(ids)
                 .then( function (articles) {
+                    res.set(responseHeaders);
                     res.render('layout/base', {
                         mode: 'compact',
                         stream: articles,
@@ -121,6 +89,7 @@ app.get('/:id', function(req, res, next) {
     ft
         .get([req.params.id])
         .then(function (article) {
+            res.set(responseHeaders);
             res.render('layout/base', {
                 mode: 'expand',
                 isArticle: true,
@@ -141,6 +110,7 @@ app.get('/more-on/:id', function(req, res, next) {
             ft
                 .get(article[0].packages)
                 .then(function (articles) {
+                    res.set(responseHeaders);
                     res.render('more-on/base', {
                         mode: 'expand',
                         stream: articles
