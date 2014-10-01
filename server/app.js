@@ -136,6 +136,11 @@ app.get('/uber-nav', function(req, res, next) {
   });
 });
 
+// __gtg
+app.get('/__gtg', function(req, res, next) {
+  res.status(200).end();
+});
+
 app.get('/', function (req, res, next) {
   console.log('route: home');
 
