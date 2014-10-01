@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     }
 
     reqwest({
-        url: '/context' + context;, 
+        url: '/context' + context, 
         crossOrigin: true, 
         success: function (res) {
             $('.context__container').map(function (el) {
