@@ -65,10 +65,34 @@
     float: left;
     display: block;
     padding-bottom: 20px;
+    width: 50%;
+    img {
+        max-width: 100%;
+    }
 }
 
+
 .article-card__image + .article-card__metadata {
-    margin-left: 180px;
+    float: left;
+    width: 50%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .article-card__image {
+        display: block;
+        width: 100%;
+        text-align: center;
+        float: none;
+    }
+
+    .article-card__image + .article-card__metadata {
+        margin-left: 0;
+        width: 100%;
+        padding: 0;
+        float: none;
+    }
 }
 
 .article-card__metadata {
