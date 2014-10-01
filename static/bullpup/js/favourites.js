@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     /* 2. in article view render the context menu full mode */    
     if (onArticle(location.pathname) && context) {
-        $('.ft-header-context').map(function (el) {
+        $('.js-context').map(function (el) {
             el.innerHTML = localStorage.getItem(contextTitleKey);
         });
 
