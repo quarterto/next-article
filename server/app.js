@@ -8,7 +8,7 @@ var app = module.exports = express();
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/../static/components');
+app.set('views', __dirname + '/../static/bullpup/components');
 
 // not for production
 app.set('view cache', false);
