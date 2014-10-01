@@ -38,7 +38,6 @@ var templates = { };
 var formatSection = function (s) {
     if(/(.*):(.*)/.test(s)) {
         var a = s.split(':')[1].replace(/"/g, '');
-        console.log(123, a);
         return a;
     }
     return s;
@@ -49,11 +48,11 @@ app.get('/search', function(req, res, next) {
 
         var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 5;
 
-        if (/^popular:/.test(req.query.q)) {
+        if (/^popular:most/i.test(req.query.q)) {
             
             res.render('layout/base', {
                 mode: 'compact',
-                stream: popular.get(), 
+                stream: popular.get().slice(0, (count || 5)), 
                 context: formatSection(req.query.q)
             });
 
