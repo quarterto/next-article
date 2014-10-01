@@ -13,7 +13,7 @@
 
 .article-card {
     padding: 10px;
-    margin: 10;
+    margin: 10px 10px 20px 10px;
 }
 
 .article-card__headline {
@@ -132,11 +132,6 @@ div.more-on {
     color: white;
 }
 
-.article-card {
-    border-top: 1px solid #999;
-    margin-bottom: 20px; 
-}
-
 /* utils */
 .js-hide {
     display: none;
@@ -148,6 +143,7 @@ div.more-on {
 
 .save__button {
     margin-top: 10px;
+    font-family: Metric, Arial, sans-serif;
 }
 
 .save__button-star:hover {
