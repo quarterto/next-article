@@ -1,9 +1,32 @@
 .uber-nav {
 	margin: 0;
+	padding: 0;
+
 	background: $next-black;
 	font-family: Metric;
+
+	ul, li {
+		list-style: none;
+	}
+}
+
+.uber-nav__title {
+	padding: 10px 0 10px 0;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.uber-nav__children {
+	padding: 0;
+	margin: 0;
+}
+
+.uber-nav__child {
+	text-transform: initial;
+	font-weight: normal;
 }
 
 .uber-nav a {
 	color: $next-white;
+	text-decoration: none;
 }

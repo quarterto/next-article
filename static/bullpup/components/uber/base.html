@@ -1,7 +1,12 @@
 <ul class="uber-nav">
 {% for item in data %}
-    <li>
+    <li class="uber-nav__title" data-o-grid-colspan="12 M12 L3 XL3">
         <a href="{{ item.nextUrl }}">{{ item.title }}</a> 
+	<ul class="uber-nav__children">
+		{% for child in item.navigationItems %}
+		<li class="uber-nav__child"><a href="{{ child.nextUrl }}">{{ child.title }}</a></li>
+		{% endfor %}
+	</ul>
     </li>
 {% endfor %}
 </ul>
