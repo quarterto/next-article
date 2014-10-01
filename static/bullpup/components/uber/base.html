@@ -1,0 +1,7 @@
+<ul class="uber-nav">
+{% for item in data %}
+    <li>
+        <a href="{{ item.nextUrl }}">{{ item.title }}</a> 
+    </li>
+{% endfor %}
+</ul>

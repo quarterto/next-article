@@ -34,6 +34,7 @@
     "ft-poller": "0.0.4",
     "lodash": "^2.4.1",
     "node-sass": "^0.9.5-rc1",
+    "request": "^2.44.0",
     "swig": "^1.4.2"
   },
   "devDependencies": {
