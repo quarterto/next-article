@@ -1,12 +1,17 @@
+
 body {
     margin: 0;
     padding: 0;
 }
 
+.logo { 
+    max-width: 200px;
+}
+
 .ft-header {
     background-color: $next-black;
     text-align: center;
-    padding: 4px;
+    padding: 10px;
 }
 
 .ft-header:hover {
