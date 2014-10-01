@@ -28,9 +28,9 @@
                 </a>
             </h3>
 
-	    {% if article.largestImage %}
+	    {% if article.largestImage && isArticle %}
             <a href="/{{ article.id }}" class="article-card__image">
-                <img src="{{ article.largestImage.url|resize(150) }}" class="article-card__image-{{ article.id }}"/>
+                <img src="{{ article.largestImage.url|resize(600) }}" class="article-card__image-{{ article.id }}"/>
             </a>
 	    {% endif %}
             
