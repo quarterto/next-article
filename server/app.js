@@ -131,7 +131,6 @@ app.get('/uber-nav', function(req, res, next) {
     url: 'http://next-companies-et-al.herokuapp.com/v1/ubernav.json',
     json: true
   }, function (err, response, body) {
-     console.log(body);
      res.set(responseHeaders);
      res.render('uber/base', body);
   });
