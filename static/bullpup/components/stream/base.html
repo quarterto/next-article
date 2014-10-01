@@ -67,9 +67,9 @@
                 
             {% else %}
             
-                <p>{{ article.paragraphs(0, 1) }}</p>
+    	        <p>{{ article.paragraphs(0, 1, { removeImages: false }) }}</p>
                 <div class="more-on" data-article-id="{{ article.id }}"></div>
-                <p>{{ article.paragraphs(1, 100) }}</p>
+		<p>{{ article.paragraphs(1, 100, { removeImages: false }) }}</p>
                 
                 
             {% endif %}
