@@ -1,5 +1,4 @@
 body  {
-
   background-color: white;
   margin: 0;
   font-family: FinancierText;
@@ -34,12 +33,7 @@ body  {
 }
 
 .pane-1 h1 {
-  font-family: FinancierDisplay;
-  margin: 0;
-  color: white;
-  font-weight: bold;
-  font-size: 6em;
-
+  margin: 10px;
 }
 
 .pane-1 .quote {
