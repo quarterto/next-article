@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     if (!onArticle(location.pathname)) {
         // Every time you hit a new stream, you enter a new context
         context = location.pathname + location.search;
-        display = document.getElementsByClassName('ft-header-context')[0].textContent.trim();
+        display = document.getElementsByClassName('js-context')[0].textContent.trim();
         setContext(context, display);
         localStorage.setItem(contextTitleKey, display);
     } else {
