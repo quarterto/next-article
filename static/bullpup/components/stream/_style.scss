@@ -112,7 +112,7 @@
 	color: $next-grey-lighter;
     }
     &:first-child:before {
-	padding-left: 6px;
+	display: none;
     }
 }
 
