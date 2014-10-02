@@ -1,1 +1,1 @@
-web: make build && node server/app.js
+web: make build && forever server/app.js
