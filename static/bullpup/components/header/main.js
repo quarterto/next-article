@@ -26,6 +26,8 @@
     // Attach the trigram to the context menu (to show/hide on mobile)
     $('.icon__trigram').map(function (el) {
         el.addEventListener('click', function (button) {
+            removeClass(document.body, 'splash-on');
+            removeClass( $('.splash__container')[0], 'show');
             $('.context__container').map(function (index) {
                 toggleClass(index, 'show');
             });
