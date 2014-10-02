@@ -208,11 +208,18 @@ div.more-on {
 }
 
 .save__button {
+    font-family: Metric, Arial, sans-serif;
+    text-align: center;
+}
+
+@media (min-width: 600px) {
+  .save__button {
     position: absolute;
     right: 20px;
     top: 12px;
     margin-top: 10px;
-    font-family: Metric, Arial, sans-serif;
+    text-align: left;
+  }
 }
 
 .save__button-star:hover {
