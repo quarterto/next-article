@@ -1,4 +1,3 @@
-
 (function () {
 
     window.addEventListener("load", function () {
@@ -7,13 +6,15 @@
             return [].slice.call(document.querySelectorAll(selector));
         };
 
-        $('.more-on').forEach(function (el) {
-            reqwest('/more-on/ ' + el.getAttribute('data-article-id'), function (resp) {
-                el.innerHTML = resp;
-            });
+        $('.js-more-on').forEach(function (el) {
+            reqwest('/more-on/ ' + el.getAttribute('data-article-id'))
+		.then(function (resp) {
+                    el.innerHTML = resp;
+                }, function() {
+                    el.parentNode.removeChild(el);
+                });
         });
 
     }, false);
 
 })();
-
