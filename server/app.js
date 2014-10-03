@@ -120,11 +120,15 @@ app.get('/more-on/:id', function(req, res, next) {
             ft
                 .get(article[0].packages)
                 .then(function (articles) {
-                    res.set(responseHeaders);
-                    res.render('more-on/base', {
-                        mode: 'expand',
-                        stream: articles
-                    });
+		    if (articles.length > 0) {
+                        res.set(responseHeaders);
+                        res.render('more-on/base', {
+                            mode: 'expand',
+                            stream: articles
+                        });
+		    } else {
+			res.status(404).send();
+		    }
                 }, function (err) {
                     console.error(err);
                 });
