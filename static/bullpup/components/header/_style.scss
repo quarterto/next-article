@@ -50,6 +50,12 @@ body {
         width: 100%;
     }
 
+    .search__container {
+	left: 0;
+	top: 0;
+	position: absolute;
+    }
+
 }
 
 @media (max-width: 600px) {
@@ -57,12 +63,9 @@ body {
     .icon__trigram {
         display: block;    
     }
-
 }
 
 .search__container {
-	position: absolute;
 	margin-top: 7px;
 	margin-bottom: 7px;
-	left: 0;
 }
