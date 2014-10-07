@@ -19,10 +19,6 @@ swig.setFilter('resize', function(input, width) {
 });
 
 app.use('/dobi', express.static(__dirname + '/../static'));
-
-// Deprecated static assets route
-app.use('/bullpup', express.static(__dirname + '/../static'));
-
 app.use('/components', require('./components.js'));
 
 var latest  = require('./jobs/latest');
