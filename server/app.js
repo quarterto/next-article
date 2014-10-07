@@ -9,7 +9,7 @@ var app = module.exports = express();
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/../static/bullpup/components');
+app.set('views', __dirname + '/../static/components');
 
 // not for production
 app.set('view cache', false);
@@ -18,7 +18,10 @@ swig.setFilter('resize', function(input, width) {
   return 'http://image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(input) + '?width=' + width + '&source=docs&fit=scale-down';
 });
 
-app.use(express.static(__dirname + '/../static'));
+app.use('/dobi', express.static(__dirname + '/../static'));
+
+// Deprecated static assets route
+app.use('/bullpup', express.static(__dirname + '/../static'));
 
 app.use('/components', require('./components.js'));
 
