@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         url: '/user-preferences', 
         crossOrigin: true
     }).then(function (res) {
-        $('.context__container').map(function (el) {
+        $('.js-user-preferences__container').map(function (el) {
             var myTag = document.createElement('div');
             myTag.innerHTML = res;
             el.appendChild(myTag); 
@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     $('.save__button').map(function (el) {
         el.addEventListener('click', function (evt) {
-            emit('favourite:add', { uuid: path, path: path, displayText: displayText});
+            emit('favourite:add', { 'uuidv3': path, 'displayText': displayText});
         });
     });
 

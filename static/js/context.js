@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         url: '/context' + context, 
         crossOrigin: true, 
         success: function (res) {
-            $('.context__container').map(function (el) {
+            $('.js-context__container').map(function (el) {
                 var myTag = document.createElement('div');
                 myTag.innerHTML = res;
                 el.appendChild(myTag); 
