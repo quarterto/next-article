@@ -1032,57 +1032,6 @@
         }
       }
     },
-    "fruitmachine": {
-      "version": "0.8.3",
-      "from": "https://registry.npmjs.org/fruitmachine/-/fruitmachine-0.8.3.tgz",
-      "resolved": "https://registry.npmjs.org/fruitmachine/-/fruitmachine-0.8.3.tgz",
-      "dependencies": {
-        "event": {
-          "version": "0.2.2",
-          "from": "event@git://github.com/wilsonpage/event.git#fe2b57945950776629d3f90270de4062d0cefc2b",
-          "resolved": "git://github.com/wilsonpage/event.git#fe2b57945950776629d3f90270de4062d0cefc2b"
-        },
-        "model": {
-          "version": "0.1.1",
-          "from": "model@git://github.com/wilsonpage/model.git#3ee6cd3e466b627c1b159f9e2ffb45c668d01f34",
-          "resolved": "git://github.com/wilsonpage/model.git#3ee6cd3e466b627c1b159f9e2ffb45c668d01f34",
-          "dependencies": {
-            "utils": {
-              "version": "0.1.2",
-              "from": "utils@git://github.com/wilsonpage/utils.git#766a52b48ab43080442d68165f12ee1baa503d29",
-              "resolved": "git://github.com/wilsonpage/utils.git#766a52b48ab43080442d68165f12ee1baa503d29"
-            },
-            "event": {
-              "version": "0.2.2",
-              "from": "event@git://github.com/wilsonpage/event.git#fe2b57945950776629d3f90270de4062d0cefc2b",
-              "resolved": "git://github.com/wilsonpage/event.git#fe2b57945950776629d3f90270de4062d0cefc2b"
-            },
-            "mixin": {
-              "version": "0.1.0",
-              "from": "mixin@git://github.com/wilsonpage/mixin.git#0717124a39fa0ffde8d1e15cc4680b0317ccfacd",
-              "resolved": "git://github.com/wilsonpage/mixin.git#0717124a39fa0ffde8d1e15cc4680b0317ccfacd"
-            }
-          }
-        },
-        "utils": {
-          "version": "0.1.2",
-          "from": "utils@git://github.com/wilsonpage/utils.git#766a52b48ab43080442d68165f12ee1baa503d29",
-          "resolved": "git://github.com/wilsonpage/utils.git#766a52b48ab43080442d68165f12ee1baa503d29"
-        },
-        "extend": {
-          "version": "0.1.0",
-          "from": "extend@git://github.com/wilsonpage/extend.git#b4e48821ddf25d1445cfcc53acb7b0176c255cb9",
-          "resolved": "git://github.com/wilsonpage/extend.git#b4e48821ddf25d1445cfcc53acb7b0176c255cb9",
-          "dependencies": {
-            "utils": {
-              "version": "0.1.2",
-              "from": "utils@git://github.com/wilsonpage/utils.git#766a52b48ab43080442d68165f12ee1baa503d29",
-              "resolved": "git://github.com/wilsonpage/utils.git#766a52b48ab43080442d68165f12ee1baa503d29"
-            }
-          }
-        }
-      }
-    },
     "ft-api-client": {
       "version": "3.0.23",
       "from": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.25.tar.gz",
