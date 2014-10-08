@@ -55,25 +55,49 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     $('.js-save__button[data-save-target="favourites"]').map(function (el) {
         el.addEventListener('click', function (evt) {
-            emit('favourites:add', { 'uuidv3': streamPath, 'displayText': streamName});
+            var data = { 'uuidv3': streamPath, 'displayText': streamName};
+            toggle('favourites', data, el);
         });
     });
 
     $('.js-save__button[data-save-target="forlaters"]').map(function (el) {
         el.addEventListener('click', function (evt) {
             var headline = this.parentElement.getElementsByClassName('article-card__link')[0];
-            emit('forlaters:add', { 'uuidv3': headline.getAttribute('href'), 'displayText': headline.textContent.trim()});
+            var data = {'uuidv3': headline.getAttribute('href'), 'displayText': headline.textContent.trim()}
+            toggle('forlaters', data, el);
         });
     });
 
+    function toggle(key, data, saveBtn) {
+        var isSaved = (saveBtn.getAttribute('data-is-saved') === "true");
+        if(isSaved) {
+            emit(key + ':remove', data);
+        } else {
+            emit(key + ':add', data);
+        }
 
-    document.addEventListener('favourites:update', function(evt) {
+        toggleButtonState(saveBtn);
+
+    }
+
+    function toggleButtonState(saveBtn) {
+        var isSaved = (saveBtn.getAttribute('data-is-saved') === "true");
+        var existingText = saveBtn.textContent.trim();
+        saveBtn.textContent = saveBtn.getAttribute('data-toggle-text');
+        saveBtn.setAttribute('data-toggle-text', existingText);
+        saveBtn.setAttribute('data-is-saved', isSaved ? 'false' : 'true');
+
+    }
+
+    document.addEventListener('favourites:load', function(evt) {
         $('.js-save__button[data-save-target="favourites"]').map(function (el) {
             var isSaved = evt.detail.exists(streamPath);
-            el.setAttribute('data-is-saved', isSaved);
-            el.textContent = (isSaved ? 'Unfavourite this section' : 'Favourite this section');
+            if(isSaved) {
+                toggleButtonState(el);
+            }
         });
-    })
+    });
+
 });
 
 
