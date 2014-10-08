@@ -53,21 +53,6 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     });
 
 
-    $('.js-save__button[data-save-target="favourites"]').map(function (el) {
-        el.addEventListener('click', function (evt) {
-            var data = { 'uuidv3': streamPath, 'displayText': streamName};
-            toggle('favourites', data, el);
-        });
-    });
-
-    $('.js-save__button[data-save-target="forlaters"]').map(function (el) {
-        el.addEventListener('click', function (evt) {
-            var headline = this.parentElement.getElementsByClassName('article-card__link')[0];
-            var data = {'uuidv3': headline.getAttribute('href'), 'displayText': headline.textContent.trim()};
-            toggle('forlaters', data, el);
-        });
-    });
-
     function toggle(key, data, saveBtn) {
         var isSaved = (saveBtn.getAttribute('data-is-saved') === "true");
         if(isSaved) {
@@ -89,6 +74,25 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     }
 
+
+    //On click of save buttons, trigger the add/remove event and update the UI of the button
+    $('.js-save__button[data-save-target="favourites"]').map(function (el) {
+        el.addEventListener('click', function (evt) {
+            var data = { 'uuidv3': streamPath, 'displayText': streamName};
+            toggle('favourites', data, el);
+        });
+    });
+
+    $('.js-save__button[data-save-target="forlaters"]').map(function (el) {
+        el.addEventListener('click', function (evt) {
+            var headline = this.parentElement.getElementsByClassName('article-card__link')[0];
+            var data = {'uuidv3': headline.getAttribute('href'), 'displayText': headline.textContent.trim()};
+            toggle('forlaters', data, el);
+        });
+    });
+
+
+    //On page load, just update the UI of the button
     document.addEventListener('favourites:load', function(evt) {
         $('.js-save__button[data-save-target="favourites"]').map(function (el) {
             var isSaved = evt.detail.exists(streamPath);
@@ -97,7 +101,15 @@ window.addEventListener('DOMContentLoaded', function (evt) {
             }
         });
     });
-
+    document.addEventListener('forlaters:load', function(evt) {
+        $('.js-save__button[data-save-target="forlaters"]').map(function (el) {
+            var headline = el.parentElement.getElementsByClassName('article-card__link')[0];
+            var isSaved = evt.detail.exists(headline.getAttribute('href'));
+            if(isSaved) {
+                toggleButtonState(el);
+            }
+        });
+    });
 });
 
 
