@@ -21,8 +21,11 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     var contextKey = 'ft.stream.context.url';
     var contextTitleKey = 'ft.stream.context.display';
 
-    var path = localStorage.getItem(contextKey);
-    var displayText = localStorage.getItem(contextTitleKey);
+    var streamPath = localStorage.getItem(contextKey);
+    var streamName = localStorage.getItem(contextTitleKey);
+
+
+
 
     reqwest({
         url: '/user-preferences', 
@@ -36,7 +39,11 @@ window.addEventListener('DOMContentLoaded', function (evt) {
             var scripts = myTag.querySelectorAll('script');
             [].slice.call(scripts).map(function(script) {
                 var s = document.createElement('script');
-                s.src = script.src;
+                if(script.src) {
+                    s.src = script.src;
+                } else {
+                    s.innerHTML = script.innerHTML;
+                }
                 document.head.appendChild(s);
             });
 
@@ -45,12 +52,28 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         });
     });
 
-    $('.save__button').map(function (el) {
+
+    $('.js-save__button[data-save-target="favourites"]').map(function (el) {
         el.addEventListener('click', function (evt) {
-            emit('favourite:add', { 'uuidv3': path, 'displayText': displayText});
+            emit('favourites:add', { 'uuidv3': streamPath, 'displayText': streamName});
         });
     });
 
+    $('.js-save__button[data-save-target="forlaters"]').map(function (el) {
+        el.addEventListener('click', function (evt) {
+            var headline = this.parentElement.getElementsByClassName('article-card__link')[0];
+            emit('forlaters:add', { 'uuidv3': headline.getAttribute('href'), 'displayText': headline.textContent.trim()});
+        });
+    });
+
+
+    document.addEventListener('favourites:update', function(evt) {
+        $('.js-save__button[data-save-target="favourites"]').map(function (el) {
+            var isSaved = evt.detail.exists(streamPath);
+            el.setAttribute('data-is-saved', isSaved);
+            el.textContent = (isSaved ? 'Unfavourite this section' : 'Favourite this section');
+        });
+    })
 });
 
 

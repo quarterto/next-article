@@ -1,12 +1,14 @@
-<h1 class="stream-list__title js-context">
+
+<h1 class="stream-list__title">
+<span class="js-context">
 {% if title %}
     {{ title }} 
 {% endif %}
+</span>
+{% include "../save-button/base.html" %}
+
 </h1>
 
-<div class="save__button" align="right">
-    <span class="save__button-star">★</span> Favourite this section
-</div>
 
 {% for article in stream %}
     {% if article.raw %}
@@ -26,6 +28,7 @@
                 <a href="/{{ article.id }}" class="article-card__link">
                     {{ article.raw.item.title.title }}
                 </a>
+                
             </h3>
 
 	    {% if article.largestImage && isArticle %}

@@ -206,27 +206,3 @@ div.more-on {
 .js-show {
     display: block;
 }
-
-.save__button {
-    font-family: Metric, Arial, sans-serif;
-    text-align: center;
-}
-
-@media (min-width: 600px) {
-  .save__button {
-    position: absolute;
-    right: 20px;
-    top: 12px;
-    margin-top: 10px;
-    text-align: left;
-  }
-}
-
-.save__button-star:hover {
-    color: red;
-    cursor: hand;
-}
-
-.save__button-star {
-    color: blue;
-}
