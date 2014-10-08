@@ -25,6 +25,7 @@ body {
     }
     .stream__container {
         width: 100%;
+        box-sizing:border-box;
     }
 }
 
@@ -72,6 +73,21 @@ body {
     .stream {
         width: 100%;
     }
-
-
 }
+
+@media (min-width: 400px){
+  .stream__container, .has-context .stream__container {
+    width: 100%;
+    padding-left:150px;
+  }
+}
+
+@media (min-width: 700px){
+  padding-left:0;
+}
+
+
+
+
+
+
