@@ -1,3 +1,5 @@
 /static/styles.css
 /node_modules/
 /__attic/
+/.idea
+static/components/home/style.css
