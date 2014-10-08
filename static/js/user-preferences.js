@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     $('.js-save__button[data-save-target="forlaters"]').map(function (el) {
         el.addEventListener('click', function (evt) {
             var headline = this.parentElement.getElementsByClassName('article-card__link')[0];
-            var data = {'uuidv3': headline.getAttribute('href'), 'displayText': headline.textContent.trim()}
+            var data = {'uuidv3': headline.getAttribute('href'), 'displayText': headline.textContent.trim()};
             toggle('forlaters', data, el);
         });
     });
