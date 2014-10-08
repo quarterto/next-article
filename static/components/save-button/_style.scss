@@ -3,7 +3,7 @@
 	text-align: center;
 	background: none;
 	border: none;
-	font-size: 15px;
+	font-size: 16px;
 	&:before {
 		content: '\2606';
 		display: inline-block;
@@ -19,7 +19,7 @@
 
 	&[data-save-target="favourites"] {
 		position: absolute;
-		top: 17px;
+		top: 15px;
 		margin-left: 10px;
 	}
 }
@@ -40,5 +40,4 @@
 			color: $next-grey-light;
 		}
 	}
-
 }
