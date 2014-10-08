@@ -1,0 +1,43 @@
+.save__button {
+	font-family: Metric, Arial, sans-serif;
+	text-align: center;
+	background: none;
+	border: none;
+	font-size: 16px;
+	&:before {
+		content: '\2606';
+		display: inline-block;
+		margin-right: 4px;
+	}
+	&:hover {
+		color: $next-blue;
+		cursor: pointer;
+		&:before {
+			color: $next-blue;
+		}
+	}
+
+	&[data-save-target="favourites"] {
+		position: absolute;
+		top: 15px;
+		margin-left: 10px;
+	}
+}
+
+
+.save__button[data-is-saved="true"] {
+	color: $next-blue;
+	content: 'Unfavourite this section';
+	&:before {
+		color: $next-blue;
+		content: '\2605';
+		display: inline-block;
+	}
+	&:hover {
+		color: $next-grey-light;
+		cursor: pointer;
+		&:before {
+			color: $next-grey-light;
+		}
+	}
+}
