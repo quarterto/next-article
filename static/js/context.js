@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     };
 
     function extractSearchTerm(queryString) {
-        return queryString.match(/q=([^&]*)/)[1]
+        return queryString.match(/q=([^&]*)/)[1];
     }
 
     var contextKey = 'ft.stream.context.url';
