@@ -60,9 +60,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         } else {
             emit(key + ':add', data);
         }
-
         toggleButtonState(saveBtn);
-
     }
 
     function toggleButtonState(saveBtn) {
@@ -74,11 +72,14 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     }
 
+    function stripLeadingSlash(path) {
+        return path.replace(/^\/|\/$/g, '');
+    }
 
     //On click of save buttons, trigger the add/remove event and update the UI of the button
     $('.js-save__button[data-save-target="favourites"]').map(function (el) {
         el.addEventListener('click', function (evt) {
-            var data = { 'uuidv3': streamPath, 'displayText': streamName};
+            var data = { 'uuidv3': streamPath, 'displayText': streamName, 'resourceType': 'stream'};
             toggle('favourites', data, el);
         });
     });
@@ -86,7 +87,11 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     $('.js-save__button[data-save-target="forlaters"]').map(function (el) {
         el.addEventListener('click', function (evt) {
             var headline = this.parentElement.getElementsByClassName('article-card__link')[0];
-            var data = {'uuidv3': headline.getAttribute('href'), 'displayText': headline.textContent.trim()};
+            var data = {
+                'uuidv3': stripLeadingSlash(headline.getAttribute('href')), //remove leading slash 
+                'displayText': headline.textContent.trim(), 
+                'resourceType': 'article' //Fix to article for now
+            };
             toggle('forlaters', data, el);
         });
     });
@@ -104,7 +109,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     document.addEventListener('forlaters:load', function(evt) {
         $('.js-save__button[data-save-target="forlaters"]').map(function (el) {
             var headline = el.parentElement.getElementsByClassName('article-card__link')[0];
-            var isSaved = evt.detail.exists(headline.getAttribute('href'));
+            var isSaved = evt.detail.exists(stripLeadingSlash(headline.getAttribute('href')));
             if(isSaved) {
                 toggleButtonState(el);
             }
