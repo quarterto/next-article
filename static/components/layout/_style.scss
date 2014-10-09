@@ -3,6 +3,14 @@ body {
     padding: 0;
 }
 
+.header__container  {
+	position: fixed;
+	left:0;
+	top:0;
+	width: 100%;
+	z-index: 1000;
+}
+
 .context__container, .stream__container {
     z-index: 2;
     float: left;
@@ -12,6 +20,7 @@ body {
 .context__container {
     float: left;
     position: absolute;
+    margin-top: 36px;
 }
 
 .stream__container {
@@ -42,7 +51,7 @@ body {
     background-color: blue;
     width: 20%;
 }
-    
+
 .show {
     xbackground-color: #eee;
     display: block;
@@ -50,7 +59,7 @@ body {
 
 
 @media (max-width: 600px) {
-        
+
     .context__container, .has-context .context__container {
         width: 100%;
         display: none;
@@ -64,12 +73,12 @@ body {
     .show {
         display: block;
     }
-    
+
     .stream__container, .has-context .stream__container {
         width: 100%;
         margin-left: 0;
     }
-    
+
     .stream {
         width: 100%;
     }
