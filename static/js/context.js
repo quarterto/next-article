@@ -18,6 +18,9 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         return [].slice.call(document.querySelectorAll(selector));
     };
 
+    function extractSearchTerm(queryString) {
+        return queryString.match(/q=([^&]*)/)[1]
+    }
 
     var contextKey = 'ft.stream.context.url';
     var contextTitleKey = 'ft.stream.context.display';
@@ -26,7 +29,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     /* 1. in stream mode store the context URL and content display name */
     if (!onArticle(location.pathname)) {
         // Every time you hit a new stream, you enter a new context
-        context = location.pathname + location.search;
+        context = extractSearchTerm(location.search);
         display = document.getElementsByClassName('js-context')[0].textContent.trim();
         setContext(context, display);
         localStorage.setItem(contextTitleKey, display);
@@ -35,7 +38,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         display = localStorage.getItem(contextTitleKey);
         if(!context) { 
             //If they come directly to an article with no history, use the first theme for this article
-            context = document.querySelector('.article-card__themes a').getAttribute('href');
+            context = extractSearchTerm(document.querySelector('.article-card__themes a'));
             display = document.querySelector('.article-card__themes a').textContent.trim();
             setContext(context, display);
         }
@@ -51,7 +54,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     /* 3. request and render the context navigation */
     reqwest({
-        url: '/context' + context, 
+        url: '/context/search?q=' + context, 
         crossOrigin: true, 
         success: function (res) {
             $('.js-context__container').map(function (el) {
