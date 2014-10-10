@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         display = localStorage.getItem(contextTitleKey);
         if(!context) { 
             //If they come directly to an article with no history, use the first theme for this article
-            context = extractSearchTerm(document.querySelector('.article-card__themes a'));
+            context = extractSearchTerm(document.querySelector('.article-card__themes a').getAttribute('href'));
             display = document.querySelector('.article-card__themes a').textContent.trim();
             setContext(context, display);
         }
