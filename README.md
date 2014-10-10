@@ -26,5 +26,5 @@ make run-local
 Run dobi through the router (localhost:5050):
 
 ```
-make run -j2
+make run
 ```

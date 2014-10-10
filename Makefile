@@ -5,7 +5,10 @@ test:
 	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './node_modules/*' -o -name '*.min.*' \\)`
 	./node_modules/.bin/mocha
 
-run: run-local run-router
+run:
+	$(MAKE) -j2 _run
+
+_run: run-local run-router
 
 run-local: build
 	export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; nodemon server/app.js
