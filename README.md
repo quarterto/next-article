@@ -11,8 +11,20 @@ git clone https://github.com/Financial-Times/next-dobi.git
 npm install
 ```
 
+## Dependencies
+
+Please install `next-router` globally.
+
 ## Run
 
+Just run dobi on its own (localhost:3001):
+
 ```
-make run
+make run-local
+```
+
+Run dobi through the router (localhost:5050):
+
+```
+make run -j2
 ```
