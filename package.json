@@ -36,7 +36,7 @@
     "gulp-watch": "^1.0.7",
     "lodash": "^2.4.1",
     "node-sass": "^0.9.5-rc1",
-    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/tarball/master",
+    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/tarball/66f8473613eff2f3aa8ae9fb5f47b8d921bb020b",
     "request": "^2.44.0",
     "swig": "^1.4.2"
   },
