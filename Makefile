@@ -17,8 +17,10 @@ run-router:
 	export article=${PORT}; export dobi=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
 
 build:
-	@./node_modules/.bin/node-sass --source-comments normal static/styles.scss > static/styles.css
-	@./node_modules/.bin/node-sass --source-comments normal static/components/home/style.scss > static/components/home/style.css
+	@./node_modules/.bin/gulp
+
+watch:
+	@./node_modules/.bin/gulp watch
 
 heroku-cfg:
 	@heroku config:set apikey=`cat ~/.ftapi`

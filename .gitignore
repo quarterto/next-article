@@ -3,3 +3,4 @@
 /__attic/
 /.idea
 static/components/home/style.css
+.sass-cache
