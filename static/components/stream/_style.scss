@@ -3,7 +3,7 @@
 }
 
 .stream-list__title {
-    font-family: Metric;
+    font-family: BentonSans;
     font-weight: bold;
     text-transform: capitalize;
     text-align: center;
@@ -31,12 +31,8 @@
 .article-card__date {
     background: $next-grey-lighter;
     position: relative;
-    font-family: Metric, Arial, sans-serif;
+    font-family: BentonSans, Arial, sans-serif;
     text-align: center;
-
-    // HACK: Metric glyphs are not centre aligned so hack them to appear so
-    // by increasing padding on top and decreasing padding from bottom
-    padding: 4px 0 0 0;
 }
 
 .article-card__viewcta {
@@ -102,7 +98,7 @@
 }
 
 .article-card__metadata {
-    font-family: Metric, Arial, sans-serif;
+    font-family: BentonSans, Arial, sans-serif;
     text-transform: capitalize;
     list-style: none;
     margin: 0;
@@ -110,9 +106,7 @@
     color: $next-grey-light;
 
     > li {
-	// HACK: Metric glyphs are not centre aligned so hack them to appear so
-	// by increasing padding on top and decreasing padding from bottom
-        padding: 4px 0 0px 0;
+        padding: 0;
         margin: 2px 0 2px 0;
 	border-bottom: 2px solid $next-grey-lighter;
     }
@@ -163,7 +157,7 @@ div.more-on {
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
     color: $next-grey-dark;
-    font-family: Metric, Arial, sans-serif;
+    font-family: BentonSans, Arial, sans-serif;
     line-height: 26px;
 }
 
@@ -173,7 +167,7 @@ div.more-on {
 
 .article-card p {
     font-size: 18px;
-    font-family: Metric, Arial, sans-serif;
+    font-family: BentonSans, Arial, sans-serif;
     line-height: 26px;
     color: $next-grey-light;
 }
