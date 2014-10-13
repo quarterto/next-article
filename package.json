@@ -33,6 +33,7 @@
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.25.tar.gz",
     "ft-poller": "0.0.4",
     "gulp": "^3.8.8",
+    "gulp-watch": "^1.0.7",
     "lodash": "^2.4.1",
     "node-sass": "^0.9.5-rc1",
     "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/tarball/gulp",
@@ -42,7 +43,6 @@
   "devDependencies": {
     "jshint": "^2.5.6",
     "mocha": "^1.21.4",
-    "gulp-watch": "^1.0.7",
     "supertest": "^0.14.0"
   },
   "engines": {
