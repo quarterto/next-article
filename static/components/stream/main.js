@@ -1,4 +1,4 @@
- 
+
 
 (function () {
 
@@ -39,9 +39,6 @@
     document.addEventListener('index:capi', function (e) {
         window.location.hash = '#capi-' + e.detail.capi;
     });
-
-
-    emit('stream:loaded', { id: 123 });
 
     function hasClass(el, name) {
         return new RegExp('(\\s|^)'+name+'(\\s|$)').test(el.className);

@@ -18,6 +18,16 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         return [].slice.call(document.querySelectorAll(selector));
     };
 
+    var emit = function(name, data) {
+        console.log('emitting', name, data);
+        var event = document.createEvent('Event');
+        event.initEvent(name, true, true);
+        if (data) {
+            event.detail = data;
+        }
+        top.document.dispatchEvent(event);
+    };
+    
     function extractSearchTerm(queryString) {
         return queryString.match(/q=([^&]*)/)[1];
     }
@@ -33,6 +43,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         display = document.getElementsByClassName('js-context')[0].textContent.trim();
         setContext(context, display);
         localStorage.setItem(contextTitleKey, display);
+        emit('stream:open', {id: context});
     } else {
         context = localStorage.getItem(contextKey);
         display = localStorage.getItem(contextTitleKey);
