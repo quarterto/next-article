@@ -46,7 +46,7 @@ var formatSection = function (s) {
 
 app.get('/search', function(req, res, next) {
 
-        var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 5;
+        var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
 
         if (/^popular:most/i.test(req.query.q)) {
             
