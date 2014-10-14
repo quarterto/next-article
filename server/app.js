@@ -24,7 +24,6 @@ app.use('/components', require('./components.js'));
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var ft      = require('ft-api-client')(process.env.apikey);
-var themes  = require('./jobs/themes');
 
 // Appended to all successful responeses
 var responseHeaders = {
@@ -153,27 +152,14 @@ app.get('/__gtg', function(req, res, next) {
   res.status(200).end();
 });
 
-app.get('/', function (req, res, next) {
-  console.log('route: home');
-
-  // console.log('themes: ', themes.get());
-
-  res.render('home/base', {
-    today : dateFormat(new Date(), 'dddd dS mmmm'),
-    latest : latest.get(),
-    analysis : '',
-    comment : '',
-    themes : themes.get()
-  });
-
+app.get('/', function(req, res) {
+	res.redirect('/search?q=page:Front%20page');
 });
-
 
 // Start polling the data
 
 latest.init();
 popular.init();
-themes.init();
 
 //
 var port = process.env.PORT || 3001;
