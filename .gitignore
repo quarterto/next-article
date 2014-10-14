@@ -1,5 +1,7 @@
 /node_modules/
 /__attic/
 /.idea
-static/components/home/style.css
-.sass-cache
+/static/style.css
+/static/components/home/style.css
+/.sass-cache/
+/.node-version
