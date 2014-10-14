@@ -7,6 +7,9 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         return [].slice.call(document.querySelectorAll(selector));
     };
 
+    var onArticle = function (path) {
+        return /^\/[a-f0-9]+-(.*)/.test(path); // '27a5e286-4314-11e4-8a43-00144feabdc0'; 
+    };
 
     var emit = function(name, data) {
         var event = document.createEvent('Event');
@@ -50,6 +53,8 @@ window.addEventListener('DOMContentLoaded', function (evt) {
             document.documentElement.classList.add('has-user-preferences');
             document.documentElement.classList.add('has-context');
         });
+
+
     });
 
 
@@ -115,6 +120,24 @@ window.addEventListener('DOMContentLoaded', function (evt) {
             }
         });
     });
+
+    function saveHistory() {
+        var data, headline;
+        if(onArticle(location.pathname)) {
+            headline = document.querySelector('.article-card__headline .article-card__link');
+            data = {
+                'uuidv3': stripLeadingSlash(headline.getAttribute('href')), //remove leading slash 
+                'displayText': headline.textContent.trim(), 
+                'resourceType': 'article' //Fix to article for now
+            };
+        } else {
+            data = { 'uuidv3': streamPath, 'displayText': streamName, 'resourceType': 'stream'};
+        }
+        emit('history:add', data);
+    }
+
+    document.addEventListener('history:load', saveHistory);
+
 });
 
 

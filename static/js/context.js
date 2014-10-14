@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
 
     var contextKey = 'ft.stream.context.url';
     var contextTitleKey = 'ft.stream.context.display';
-    var display, headline, context;
+    var display, context;
 
     /* 1. in stream mode store the context URL and content display name */
     if (!onArticle(location.pathname)) {
