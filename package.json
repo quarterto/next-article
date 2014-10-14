@@ -30,7 +30,7 @@
     "es6-promise": "*",
     "express": "^4.8.x",
     "forever": "^0.11.1",
-    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.27.tar.gz",
+    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.28.tar.gz",
     "ft-poller": "0.0.4",
     "gulp": "^3.8.8",
     "gulp-watch": "^1.0.7",

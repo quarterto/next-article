@@ -1,0 +1,119 @@
+.search-filters{
+
+  $font-family-heading: BentonSans, sans-serif;
+  $font-family-text: FinancierDisplay, Georgia, serif;
+  $default-padding : 0.4em 0.2em;
+  $font-size-heading : 1em;
+  $font-size-subheading : 0.9em;
+  $font-size-text : 0.8em;
+
+  width:100%;
+  font-family:$font-family-text;
+  color:black;
+
+  h1{
+    font-family:$font-family-heading;
+    background-color:black;
+    color:white;
+    font-size:$font-size-heading;
+    padding:$default-padding;
+    margin:0;
+    position:relative;
+    cursor:pointer;
+  }
+
+  h1:after{
+    content:'';
+    position:absolute;
+    right:5px;
+    width:20px;
+    height:20px;
+    top:50%;
+    margin-top:-10px;
+    background:url(components/search-filters/triangle-white.svg) center center no-repeat;
+    background-size:100%;
+    transform: rotate(90deg);
+  }
+
+  & .filter{
+    display:none;
+  }
+
+  &.open{
+    h1:after{
+      transform: rotate(180deg);
+    }
+
+    .filter{
+      display:block;
+    }
+  }
+
+
+
+  h2{
+    font-family:$font-family-heading;
+    background-color: #d9d9d9;
+    color:black;
+    padding:$default-padding;
+    font-size:$font-size-subheading;
+    margin:0;
+    position: relative;
+    border-bottom:1px solid white;
+    cursor:pointer;
+  }
+
+  h2:after{
+    content:'';
+    position:absolute;
+    right:5px;
+    width:20px;
+    height:20px;
+    top:50%;
+    margin-top:-10px;
+    background:url(components/search-filters/triangle-black.svg) center center no-repeat;
+    background-size:100%;
+    transform: rotate(90deg);
+  }
+
+  .filter > div{
+    display:none;
+  }
+
+  .filter.open{
+    h2:after{
+      transform: rotate(180deg);
+    }
+
+    > div{
+      display:block;
+    }
+  }
+
+  ul{
+    margin:0;
+    padding:0;
+    list-style-type:none;
+  }
+
+  li{
+    display: block;
+    margin:0;
+    padding:0;
+    font-size:$font-size-text;
+
+    a{
+      display: block;
+      color:black;
+      padding:$default-padding;
+    }
+  }
+
+  form{
+    input[type="range"]{
+      display:block;
+      margin:1em 0;
+    }
+  }
+
+}
