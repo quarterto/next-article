@@ -4,7 +4,14 @@
         <h2>Date</h2>
         <div>
             <form>
-                <input type="range" />
+                <ul class="ranges">
+                    <li data-href="/search?f=initialP">Today</li>
+                    <li data-date="">This week</li>
+                    <li data-date="">This month</li>
+                    <li data-date="">This year</li>
+                </ul>
+                <input type="range" min="1" max="4" step="1" />
+                <a class="button" href="">OK</a>
             </form>
         </div>
     </div>
