@@ -5,3 +5,4 @@
 /static/components/home/style.css
 /.sass-cache/
 /.node-version
+.DS_Store

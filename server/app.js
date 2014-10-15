@@ -42,10 +42,46 @@ var formatSection = function (s) {
     return s;
 };
 
+var buildQuery = function(q, f){
+    var query = f ? (q + ' AND ' + f) : q;
+    return decodeURI(query);
+};
+
+function Filter(name, value){
+    this.name = name.trim();
+    this.isDate = name.toLowerCase().indexOf('date') > -1;
+    this.value = this.isDate ? parseDateFilterValue(value) : parseFilterValue(value);
+}
+
+var parseDateFilterValue = function(value){
+    return value.slice(1);
+};
+
+var parseFilterValue = function(value){
+    return value.replace(/"/g, '');
+};
+
+var parseFilterString = function(str){
+    if(!str){
+        return [];
+    }
+
+    str = decodeURI(str);
+
+    return str.split('AND').map(function(filter){
+        filter = filter.trim();
+        var name = filter.slice(0, filter.indexOf(':')),
+            value = filter.slice(filter.indexOf(':')+1);
+
+        return new Filter(name, value);
+    });
+};
+
 
 app.get('/search', function(req, res, next) {
 
-        var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
+        var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10,
+            query = buildQuery(req.query.q, req.query.f);
 
         if (/^popular:most/i.test(req.query.q)) {
             
@@ -58,10 +94,8 @@ app.get('/search', function(req, res, next) {
             return;
         }
 
-        ft
-        .search(decodeURI(req.query.q), count)
-        .then(function (articles) {
-
+        ft.search(query, count)
+            .then(function (articles) {
             var ids;
             if (articles[0] instanceof Object) {
                 ids = articles.map(function (article) {
@@ -71,13 +105,16 @@ app.get('/search', function(req, res, next) {
                 ids = articles;
             }
 
-            ft
-                .get(ids)
+            var filters = parseFilterString(req.query.f);
+            console.log('Filters', filters);
+
+            ft.get(ids)
                 .then( function (articles) {
                     res.set(responseHeaders);
                     res.render('layout/base', {
                         mode: 'compact',
                         stream: articles,
+                        filters : filters,
                         title: formatSection(req.query.q)
                     });
                 }, function(err) {
@@ -89,7 +126,6 @@ app.get('/search', function(req, res, next) {
             console.log(err);
             res.send(404);
         });
-
 });
 
 // ft articles

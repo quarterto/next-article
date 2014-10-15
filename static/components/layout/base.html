@@ -11,6 +11,11 @@
             {% include "../header/base.html" %}
         </div>
 
+        <!-- Component: selected-filters -->
+        <div class="selected-filters__container">
+            {% include "../selected-filters/base.html"  with {filters: filters} %}
+        </div>
+
         <!-- Component: context - FIXME - split in to nav & context --> 
         <div class ="context__container">
         <div class="js-context__container">
@@ -26,6 +31,7 @@
             </div>
         </div>
 
+        <script src="//build.origami.ft.com/bundles/js?modules=o-date@^1.0.0"></script>
         <script src="/dobi/components/layout/main.js"></script>
 
         <!-- libraries, vendor dependencies, shared CSS -->
