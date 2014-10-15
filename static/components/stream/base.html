@@ -13,71 +13,76 @@
 {% for article in stream %}
     {% if article.raw %}
 
-        <div class="article-card tone-{{ article.genre}}" id="capi-{{ article.id }}">
-            <div class="article-card__date">
-                {{ article.lastUpdated|date('l, j F, Y') }}
-		{% if mode === 'compact' %}<a href="/{{ article.id }}" class="article-card__viewcta">view full article</a>{% endif %}
-            </div>
-
-            <p align="left" style="font-size: 14px;" class="article-card__themes">
-                <small>Latest in <a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a>
-                    / <a href="/search?q={{ article.primaryTheme.taxonomy }}:{{ article.primaryTheme.name }}">{{ article.primaryTheme.name }}</a></small>
-            </p>
+        <div class="article-card tone-{{ article.genre}}{% if mode === 'compact' %} article-card--compact{% endif %}" id="capi-{{ article.id }}">
+            {% if mode !== 'compact' %}
+            <div class="article-card__themes article-card__metadata-list">
+                Latest in <ul>
+                    <li><a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a></li>
+                    {% if article.primaryTheme.name %}
+                    <li><a href="/search?q={{ article.primaryTheme.taxonomy }}:{{ article.primaryTheme.name }}">{{ article.primaryTheme.name }}</a></li>
+                    {% endif %}
+                </ul>
+            </div>  
+            {% endif %}   
 
             <h3 class="article-card__headline">
+                {% if mode === 'compact' %}
                 <a href="/{{ article.id }}" class="article-card__link">
                     {{ article.raw.item.title.title }}
                 </a>
+                {% else %}
+                    {{ article.raw.item.title.title }}
+                {% endif %}
+                {% if mode !== 'compact' %}
                 {% include "../save-button/base.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
-
+                {% endif %}
             </h3>
+            
+            {% if mode !== 'compact' %}
+                <div class="article-card__reading-info">
+                {% include "./byline.html" with article %}
+                {% include "./length.html" with article %}
+                </div>
+            {% endif %}
 
-	    {% if article.largestImage && isArticle %}
+            {% if article.people.length > 0 || article.organisations.length > 0 %}
+            <div class="article-card__mentions article-card__metadata-list">
+                Mentions
+                <ul class="article-card__mentions__items">
+                    {% for person in article.people %}<li><a href="/search?q={{ person.searchString }}">{{ person.name }}</a></li>{% endfor %}
+                    {% for org in article.organisations %}<li><a href="/search?q={{ org.searchString }}">{{ org.name }}</a></li>{% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+    	    {% if article.largestImage && isArticle %}
             <a href="/{{ article.id }}" class="article-card__image">
                 <img src="{{ article.largestImage.url|resize(600) }}" class="article-card__image-{{ article.id }}"/>
             </a>
-	    {% endif %}
-            
-	    <ul class="article-card__metadata">
-                <li class="article-card__length">
-                    {{ article.wordCount }} words - {{ article.readingTime }} minutes
-                    {% if article.has_video %} | <span style="color: red;">video</span> {% endif %}
-                </li>
-		{% if article.authors.length > 0 %}
-                <li class="article-card__authors">
-   	            By
-		    <ul class="article-card__authors__items">
-                    {% for author in article.authors %}
-                        <li><a href="/search?q={{ author.searchString }}">{{ author.name }}</a></li>
-                    {% endfor %}
-		    </ul>
-                </li>
-		{% endif %}
-		{% if article.people.length > 0 || article.organisations.length > 0 %}
-                <li class="article-card__mentions">
-   	            Mentions
-		    <ul class="article-card__mentions__items">
-                        {% for person in article.people %}<li><a href="/search?q={{ person.searchString }}">{{ person.name }}</a></li>{% endfor %}
-                        {% for org in article.organisations %}<li><a href="/search?q={{ org.searchString }}">{{ org.name }}</a></li>{% endfor %}
-		    </ul>
-                </li>
-		{% endif %}
-            </ul>
+    	    {% endif %}
 
-	    <div class="article-card__body">
 		    {% if mode === 'compact' %}
-            
-                <p>{{ article.paragraphs(0, 1) }}</p>
-                
+                {% if article.raw.item.images.length %}
+                <div  class="article-card__image">
+                    <img src="{{ article.raw.item.images[0].url|resize(300) }}" class="article-card__image-{{ article.id }}"/>
+                </div>
+                {% endif %}
+                <div class="article-card__body">
+                    {{ article.paragraphs(0, 1) }}
+                </div>
+                {% if mode === 'compact' %}
+                    {% include "./length.html" with article %}
+                    {% if mode === 'compact' %}
+                    {% include "../save-button/base.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
+                    {% endif %}
+                {% endif %}
             {% else %}
-            
-    	        <p>{{ article.paragraphs(0, 1, { removeImages: false }) }}</p>
-                <div class="js-more-on more-on" data-article-id="{{ article.id }}"></div>
-		<p>{{ article.paragraphs(1, 100, { removeImages: false }) }}</p>
-                
-                
+                <div class="article-card__body">
+        	        {{ article.paragraphs(0, 1, { removeImages: false }) }}
+                    <div class="js-more-on more-on" data-article-id="{{ article.id }}"></div>
+            		{{ article.paragraphs(1, 100, { removeImages: false }) }}
+                </div>
             {% endif %}
-	    </div>
         </div>
     
     {% endif %}

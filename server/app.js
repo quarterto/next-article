@@ -70,7 +70,6 @@ app.get('/search', function(req, res, next) {
             } else {
                 ids = articles;
             }
-
             ft
                 .get(ids)
                 .then( function (articles) {
