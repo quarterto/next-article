@@ -53,7 +53,7 @@ function Filter(name, value){
     this.isDate = name.toLowerCase().indexOf('date') > -1;
     this.value = this.isDate ? parseDateFilterValue(value) : parseFilterValue(value);
     if(this.isDate){
-        this.readableValue = 'Since ' + new Date(this.value).toDateString();
+        this.readableValue = (value[0] === '>' ? 'Since ' : 'Before ') + new Date(this.value).toDateString();
     }
 }
 
