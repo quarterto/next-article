@@ -13,6 +13,9 @@ _run: run-local run-router
 run-local: build
 	export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; nodemon server/app.js
 
+debug: build
+	export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; node --debug-brk server/app.js
+
 run-router:
 	export article=${PORT}; export dobi=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
 
