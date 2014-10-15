@@ -48,9 +48,13 @@ var buildQuery = function(q, f){
 };
 
 function Filter(name, value){
-    this.name = name.trim();
+    name = name.trim();
+    this.name = [name.slice(0,1).toUpperCase(), name.slice(1)].join('');
     this.isDate = name.toLowerCase().indexOf('date') > -1;
     this.value = this.isDate ? parseDateFilterValue(value) : parseFilterValue(value);
+    if(this.isDate){
+        this.readableValue = 'Since ' + new Date(this.value).toDateString();
+    }
 }
 
 var parseDateFilterValue = function(value){

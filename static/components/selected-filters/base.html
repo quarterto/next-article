@@ -5,7 +5,7 @@
         <ul>
             {% for filter in filters %}
                 {% if filter.isDate %}
-                    <li><b>Date</b>: <time> <data-o-component="o-date" datetime="{{filter.value}}">{{filter.value}}</time> </li>
+                    <li><b>Date</b>: <time data-o-component="o-date" class="o-date" datetime="{{filter.value}}">{{filter.readableValue}}</time> </li>
                 {% else %}
                     <li><b>{{filter.name}}</b>: {{filter.value}}</li>
                 {% endif %}
