@@ -32,6 +32,7 @@
     "forever": "^0.11.1",
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.27.tar.gz",
     "ft-poller": "0.0.4",
+    "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v0.0.1.tar.gz",
     "gulp": "^3.8.8",
     "gulp-watch": "^1.0.7",
     "lodash": "^2.4.1",

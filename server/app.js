@@ -26,6 +26,16 @@ var popular = require('./jobs/popular');
 var ft      = require('ft-api-client')(process.env.apikey);
 var themes  = require('./jobs/themes');
 
+var Flags = require('next-feature-flags-client');
+
+var f = new Flags('http://ft-next-api-feature-flags.herokuapp.com/prod');
+
+setInterval(function () {
+    f.get().forEach(function (flag) {
+        console.log(flag.name, flag.isSwitchedOn(), flag.isSwitchedOff(), flag.isPastSellByDate());
+    });
+}, 60000);
+
 // Appended to all successful responeses
 var responseHeaders = {
     'Cache-Control': 'max-age=120, public'
