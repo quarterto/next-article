@@ -1,0 +1,16 @@
+
+{% if filters && filters.length %}
+    <div class="selected-filters">
+        <h2>Search Filters</h2>
+        <ul>
+            {% for filter in filters %}
+                {% if filter.isDate %}
+                    <li><b>Date</b>: <time data-o-component="o-date" class="o-date" datetime="{{filter.value}}">{{filter.readableValue}}</time> </li>
+                {% else %}
+                    <li><b>{{filter.name}}</b>: {{filter.value}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
