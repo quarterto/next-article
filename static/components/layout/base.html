@@ -13,12 +13,12 @@
 
         <!-- Component: selected-filters -->
         <div class="selected-filters__container">
-            {% include "../selected-filters/base.html"  with {filters: filters} %}
+            {% include "../selected-filters/base.html"  with {filters: selectedFilters} %}
         </div>
 
  	<!-- Component: search-filters -->
         <div class="search-filters__container">
-            {% include "../search-filters/base.html" %}
+            {% include "../search-filters/base.html" with {filters: searchFilters} %}
         </div>
 
         <!-- Component: context - FIXME - split in to nav & context --> 

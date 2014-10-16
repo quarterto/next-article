@@ -1,4 +1,5 @@
 var FILTER_PARAM = 'f';
+var DATE_FILTER_NAME = 'initialPublishDateTime';
 
 
 function setToMidnight(d){
@@ -37,7 +38,8 @@ function datesAreEqual(date1, date2){
 }
 
 function getDateConstantName(val){
-    val = val.replace(/[><]/, '');
+    val = val.replace(new RegExp('[><]'), '');
+
     var date = new Date(val);
     for(var d in DateConstants){
         if(datesAreEqual(DateConstants[d], date)){
@@ -148,6 +150,19 @@ SearchFilters.prototype.addRemoveURLS = function addRemoveURLs(){
        filter.removeurl = searchFilters.getURLWithout(filter.name);
     });
 };
+
+SearchFilters.prototype.getDateSearchFilters = function getDateSearchFilters(){
+    var filters = [],
+        searchFilters = this;
+
+    Object.keys(DateConstants).forEach(function(key){
+        filters.push({url : searchFilters.getURLWith(DATE_FILTER_NAME, '>' + getDateConstantValue(key) ), text:key});
+    });
+
+    return filters;
+}
+
+
 
 /*
     STATIC METHODS / PROPERTIES

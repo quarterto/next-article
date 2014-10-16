@@ -59,4 +59,18 @@ describe('SearchFilters', function(){
         expect(filters[1].removeurl).to.equal(searchFilters.getURLWithout(filters[1].name));
     });
 
+
+    it('Should return a list of date filter options', function(){
+        var dateFilters = searchFilters.getDateSearchFilters();
+        var dateConstants = SearchFilters.getDateConstants();
+
+        expect(dateFilters[0].text).to.equal(Object.keys(dateConstants)[0]);
+        expect(dateFilters[1].text).to.equal(Object.keys(dateConstants)[1]);
+        expect(dateFilters[2].text).to.equal(Object.keys(dateConstants)[2]);
+
+        expect(dateFilters[0].url).to.contain(SearchFilters.getDateConstantValue(Object.keys(dateConstants)[0]));
+        expect(dateFilters[1].url).to.contain(SearchFilters.getDateConstantValue(Object.keys(dateConstants)[1]));
+        expect(dateFilters[2].url).to.contain(SearchFilters.getDateConstantValue(Object.keys(dateConstants)[2]));
+
+    })
 });

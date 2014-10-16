@@ -77,7 +77,10 @@ app.get('/search', function(req, res, next) {
                     res.render('layout/base', {
                         mode: 'compact',
                         stream: articles,
-                        filters : searchFilters.filters,
+                        selectedFilters : searchFilters.filters,
+                        searchFilters : {
+                            date : SearchFilters.getDateConstants()
+                        },
                         title: formatSection(req.query.q)
                     });
                 }, function(err) {
