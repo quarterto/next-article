@@ -8,6 +8,9 @@ verify:
 test:
 	./node_modules/.bin/mocha
 
+test-debug:
+	./node_modules/.bin/mocha --debug-brk
+
 run:
 	$(MAKE) -j2 _run
 

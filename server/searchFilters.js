@@ -21,11 +21,8 @@ function setToBeginningOfYear(d){
     return setToMidnight(d);
 }
 
-function getDateConstant(val){
-    return getDateConstantValue(DateConstants[getDateConstantName(val)]);
-}
-
-function getDateConstantValue(d){
+function getDateConstantValue(name){
+    var d = DateConstants[name];
     var isoString =  d.toISOString();
     return isoString.slice(0, isoString.length-5) + 'Z';
 }
@@ -69,8 +66,9 @@ function SearchFilters(req){
            }
         });
         return obj;
-    });
-    this.filters = this.parseFilterQuery(req.f);
+    }());
+    this.filters = this.parseFilterQuery(req.query.f);
+    this.addRemoveURLS();
 }
 
 SearchFilters.prototype.parseFilterQuery = function parseFilterQuery(q){
@@ -83,16 +81,14 @@ SearchFilters.prototype.parseFilterQuery = function parseFilterQuery(q){
 
     q = decodeURI(q);
     q.split('AND').forEach(function(item){
-        var name = item.slice(0, item.indexOf(':')),
-            value = item.slice(item.indexOf(':')+1),
+        var name = item.slice(0, item.indexOf(':')).trim(),
+            value = item.slice(item.indexOf(':')+1).trim(),
             filter = new Filter(name, value);
 
         if(filter.isDate){
             filter.title = 'Date';
             filter.text = getDateConstantName(value);
         }
-
-        filter.removeurl = searchFilters.getURLWithout.call(searchFilters, name);
 
         filters.push(filter);
     });
@@ -101,12 +97,15 @@ SearchFilters.prototype.parseFilterQuery = function parseFilterQuery(q){
 };
 
 SearchFilters.prototype.buildURL = function buildURL(f){
-    var url = path + '?';
+    var url = this.path + '?',
+        queryParams = [],
+        searchFilters = this;
+
     Object.keys(this.query).forEach(function(key){
-       url += key + '=' + this.query[key];
+       queryParams.push(key + '=' + searchFilters.query[key]);
     });
 
-    url += 'f=' + f;
+    url += (queryParams.join('&')) + '&f=' + f;
     return url;
 
 };
@@ -130,6 +129,22 @@ SearchFilters.prototype.getURLWith = function(name, value){
     f.push(name + ':' + value);
 
     return this.buildURL(f.join(' AND '));
+};
+
+SearchFilters.prototype.addRemoveURLS = function addRemoveURLs(){
+   var searchFilters = this;
+
+    this.filters.forEach(function(filter){
+       filter.removeurl = searchFilters.getURLWithout(filter.name);
+    });
+};
+
+SearchFilters.getDateConstants = function getDateConstants(){
+    return DateConstants;
+};
+
+SearchFilters.getDateConstantValue = function getDateConstantValueStatic(name){
+    return getDateConstantValue(name);
 };
 
 module.exports = SearchFilters;
