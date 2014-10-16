@@ -36,7 +36,7 @@ setInterval(function () {
     f.get().forEach(function (flag) {
         console.log(flag.name, flag.isSwitchedOn(), flag.isSwitchedOff(), flag.isPastSellByDate());
     });
-}, 2000);
+}, 60000);
 
 // Appended to all successful responeses
 var responseHeaders = {
