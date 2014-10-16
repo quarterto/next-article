@@ -114,6 +114,12 @@ SearchFilters.prototype.hasFilterFor = function hasFilterFor(name){
     });
 };
 
+SearchFilters.prototype.isFiltering = function isFiltering(name){
+    return this.filters.some(function(filter){
+        return filter.name === name;
+    });
+}
+
 SearchFilters.prototype.buildAPIQuery = function buildAPIQuery(){
     var query = this.query.q;
     var f = [];
@@ -153,11 +159,20 @@ SearchFilters.prototype.getURLWithout = function getURLWithout(filterName){
 };
 
 SearchFilters.prototype.getURLWith = function(name, value){
-    var f = [];
+    var f = [],
+        isFiltering = false;
+
     this.filters.forEach(function(filter){
+        if(filter.name === name){
+            isFiltering = true;
+            filter.value = value;
+        }
         f.push(filter.name + ':' + filter.value);
     });
-    f.push(name + ':' + value);
+
+    if(!isFiltering){
+        f.push(name + ':' + value);
+    }
 
     return this.buildURL(f.join(' AND '));
 };
