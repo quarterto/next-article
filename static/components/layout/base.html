@@ -10,6 +10,7 @@
         <div class="header__container">
             {% include "../header/base.html" %}
         </div>
+
         <div class="o-grid-row">
             <!-- Component: context - FIXME - split in to nav & context --> 
             <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
@@ -23,6 +24,16 @@
                 </div>
             </div>
         </div>
+
+        <!-- Component: selected-filters -->
+        <div class="selected-filters__container">
+            {% include "../selected-filters/base.html"  with {filters: filters} %}
+        </div>
+
+ 	    <!-- Component: search-filters -->
+        <div class="search-filters__container">
+        </div>
+
         <script src="/dobi/components/layout/main.js"></script>
 
         <!-- libraries, vendor dependencies, shared CSS -->
