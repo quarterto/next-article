@@ -109,6 +109,12 @@
 
 .article-card__byline {
     float: left;
+
+    [data-recent="true"] {
+        padding: 0 4px;
+        background-color: rgb(109, 219, 109);
+    }
+
 }
 
 .article-card__authors {
@@ -122,6 +128,8 @@
             text-decoration: underline;
         }
     } 
+
+    
 
     ul {
         display: inline;

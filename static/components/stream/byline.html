@@ -12,5 +12,8 @@
         {% endif %}
     </cite>
     {% endif %}
-    <time data-o-component="o-date" class="o-date" datetime="{{ article.lastUpdated.toISOString() }}">{{ article.lastUpdated|date('l, j F, Y') }}</time>
+
+    <time data-o-component="o-date" class="o-date"
+            data-recent="{{ (Date.now() - article.lastUpdated) / 1000 / 60 / 60 / 24 < 1.5 }}"
+            datetime="{{ article.lastUpdated.toISOString() }}">{{ article.lastUpdated|date('l, j F, Y') }}</time>
 </div>
