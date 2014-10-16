@@ -34,6 +34,12 @@ describe('SearchFilters', function(){
         expect(filters[0].value).to.equal('Bulgaria');
     });
 
+    it('Should replace the text for dates with something readable', function(){
+        var filter = searchFilters.filters[1];
+
+        expect(filter.text).to.equal('Today');
+    });
+
     it('Should be able to return a url without a given filter', function(){
         var url = searchFilters.getURLWithout('regions');
 

@@ -1,3 +1,6 @@
+var FILTER_PARAM = 'f';
+
+
 function setToMidnight(d){
     d.setSeconds(0);
     d.setMinutes(0);
@@ -27,10 +30,19 @@ function getDateConstantValue(name){
     return isoString.slice(0, isoString.length-5) + 'Z';
 }
 
+function datesAreEqual(date1, date2){
+    return date1.getYear() === date2.getYear() &&
+            date1.getMonth() === date2.getMonth() &&
+            date1.getDate() === date2.getDate();
+}
+
 function getDateConstantName(val){
+    debugger;
+
+    val = val.replace(/[><]/, '');
     var date = new Date(val);
     for(var d in DateConstants){
-        if(DateConstants[d] === date){
+        if(datesAreEqual(DateConstants[d], date)){
             return d;
         }
     }
@@ -61,7 +73,7 @@ function SearchFilters(req){
     this.query = (function(){
        var obj = {};
         Object.keys(req.query).forEach(function(key){
-           if(key !== 'f'){
+           if(key !== FILTER_PARAM){
                obj[key] = req.query[key];
            }
         });
@@ -105,7 +117,7 @@ SearchFilters.prototype.buildURL = function buildURL(f){
        queryParams.push(key + '=' + searchFilters.query[key]);
     });
 
-    url += (queryParams.join('&')) + '&f=' + f;
+    url += (queryParams.join('&')) + '&' + FILTER_PARAM + '=' + f;
     return url;
 
 };
@@ -139,6 +151,10 @@ SearchFilters.prototype.addRemoveURLS = function addRemoveURLs(){
     });
 };
 
+/*
+    STATIC METHODS / PROPERTIES
+ */
+
 SearchFilters.getDateConstants = function getDateConstants(){
     return DateConstants;
 };
@@ -146,5 +162,7 @@ SearchFilters.getDateConstants = function getDateConstants(){
 SearchFilters.getDateConstantValue = function getDateConstantValueStatic(name){
     return getDateConstantValue(name);
 };
+
+SearchFilters.FILTER_PARAM = FILTER_PARAM;
 
 module.exports = SearchFilters;

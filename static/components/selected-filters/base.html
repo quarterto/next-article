@@ -4,11 +4,7 @@
         <h2>Search Filters</h2>
         <ul>
             {% for filter in filters %}
-                {% if filter.isDate %}
-                    <li><b>Date</b>: <time data-o-component="o-date" class="o-date" datetime="{{filter.value}}">{{filter.readableValue}}</time> </li>
-                {% else %}
-                    <li><b>{{filter.name}}</b>: {{filter.value}}</li>
-                {% endif %}
+               <li><b>{{filter.title}}</b>: {{filter.text}} <a href="{{filter.removeurl}}">remove</a></li>
             {% endfor %}
         </ul>
     </div>
