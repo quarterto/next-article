@@ -37,8 +37,6 @@ function datesAreEqual(date1, date2){
 }
 
 function getDateConstantName(val){
-    debugger;
-
     val = val.replace(/[><]/, '');
     var date = new Date(val);
     for(var d in DateConstants){
