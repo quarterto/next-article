@@ -2,9 +2,13 @@
 .message__container {
     border: 1px solid #000;
     background-color: #ffc;
-    padding: 10px;
-    top: 10px;
     box-sizing: border-box;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    min-height: 30px;
+    padding: 10px;
 
     &:hover {
         background-color: #ff9;
