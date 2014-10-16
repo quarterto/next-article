@@ -108,6 +108,12 @@ SearchFilters.prototype.parseFilterQuery = function parseFilterQuery(q){
     return filters;
 };
 
+SearchFilters.prototype.hasFilterFor = function hasFilterFor(name){
+    return this.filters.some(function(filter){
+        return filter.name === name;
+    });
+};
+
 SearchFilters.prototype.buildURL = function buildURL(f){
     var url = this.path + '?',
         queryParams = [],
@@ -156,7 +162,9 @@ SearchFilters.prototype.getDateSearchFilters = function getDateSearchFilters(){
         searchFilters = this;
 
     Object.keys(DateConstants).forEach(function(key){
-        filters.push({url : searchFilters.getURLWith(DATE_FILTER_NAME, '>' + getDateConstantValue(key) ), text:key});
+        if(!searchFilters.hasFilterFor.call(searchFilters, key)){
+            filters.push({url : searchFilters.getURLWith(DATE_FILTER_NAME, '>' + getDateConstantValue(key) ), text:key});
+        }
     });
 
     return filters;

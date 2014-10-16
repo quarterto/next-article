@@ -79,7 +79,7 @@ app.get('/search', function(req, res, next) {
                         stream: articles,
                         selectedFilters : searchFilters.filters,
                         searchFilters : {
-                            date : SearchFilters.getDateConstants()
+                            date : searchFilters.getDateSearchFilters()
                         },
                         title: formatSection(req.query.q)
                     });
