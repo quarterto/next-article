@@ -176,10 +176,15 @@
 
 
     .article-card__body {
+        
         margin-bottom: 20px;
 
-        p {
-            margin: 0;
+        p:nth-child(1) {
+            margin-top: 0;
+        }
+
+        a {
+            text-decoration: underline;
         }
     }
 
@@ -192,14 +197,6 @@
             margin-left: 33%;
             padding-left: 14px;
         }
-    }
-
-    .article-card__length {
-        float: left;
-    }
-
-    .save__button {
-        float: right;
     }
 }
 

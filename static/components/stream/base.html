@@ -26,24 +26,16 @@
             {% endif %}   
 
             <h3 class="article-card__headline">
-                {% if mode === 'compact' %}
                 <a href="/{{ article.id }}" class="article-card__link">
                     {{ article.raw.item.title.title }}
                 </a>
-                {% else %}
-                    {{ article.raw.item.title.title }}
-                {% endif %}
-                {% if mode !== 'compact' %}
                 {% include "../save-button/base.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
-                {% endif %}
             </h3>
             
-            {% if mode !== 'compact' %}
                 <div class="article-card__reading-info">
                 {% include "./byline.html" with article %}
                 {% include "./length.html" with article %}
                 </div>
-            {% endif %}
 
             {% if article.people.length > 0 || article.organisations.length > 0 %}
             <div class="article-card__mentions article-card__metadata-list">
@@ -68,19 +60,13 @@
                 </div>
                 {% endif %}
                 <div class="article-card__body">
-                    {{ article.paragraphs(0, 1) }}
+                    {{ article.paragraphs(0, 2) }}
                 </div>
-                {% if mode === 'compact' %}
-                    {% include "./length.html" with article %}
-                    {% if mode === 'compact' %}
-                    {% include "../save-button/base.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
-                    {% endif %}
-                {% endif %}
             {% else %}
                 <div class="article-card__body">
-        	        {{ article.paragraphs(0, 1, { removeImages: false }) }}
+        	        {{ article.paragraphs(0, 2, { removeImages: false }) }}
                     <div class="js-more-on more-on" data-article-id="{{ article.id }}"></div>
-            		{{ article.paragraphs(1, 100, { removeImages: false }) }}
+            		{{ article.paragraphs(2, 100, { removeImages: false }) }}
                 </div>
             {% endif %}
         </div>
