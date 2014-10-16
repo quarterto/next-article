@@ -24,3 +24,4 @@ watch:
 
 heroku-cfg:
 	@heroku config:set apikey=`cat ~/.ftapi`
+	@heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
