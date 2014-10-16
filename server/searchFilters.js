@@ -1,4 +1,4 @@
-var FILTER_PARAM = 'f';
+var FILTER_PARAM = 'filter';
 var DATE_FILTER_NAME = 'initialPublishDateTime';
 
 
@@ -28,7 +28,7 @@ function setToBeginningOfYear(d){
 function getDateConstantValue(name){
     var d = DateConstants[name];
     var isoString =  d.toISOString();
-    return isoString.slice(0, isoString.length-5) + 'Z';
+    return isoString.slice(0, isoString.length-5) + isoString.slice(isoString.length-1);
 }
 
 function datesAreEqual(date1, date2){
@@ -79,7 +79,7 @@ function SearchFilters(req){
         });
         return obj;
     }());
-    this.filters = this.parseFilterQuery(req.query.f);
+    this.filters = this.parseFilterQuery(req.query[FILTER_PARAM]);
     this.addRemoveURLS();
 }
 
@@ -123,7 +123,11 @@ SearchFilters.prototype.buildURL = function buildURL(f){
        queryParams.push(key + '=' + searchFilters.query[key]);
     });
 
-    url += (queryParams.join('&')) + '&' + FILTER_PARAM + '=' + f;
+    url += (queryParams.join('&'));
+    if(f){
+        url += '&' + FILTER_PARAM + '=' + f;
+    }
+
     return url;
 
 };
