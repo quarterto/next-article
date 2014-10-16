@@ -28,13 +28,15 @@ var themes  = require('./jobs/themes');
 
 var Flags = require('next-feature-flags-client');
 
-var f = new Flags('http://ft-next-api-feature-flags.herokuapp.com/prod');
+var flagsNamespace = (process.env.FLAGS) ? process.env.FLAGS : 'prod';
+
+var f = new Flags('http://ft-next-api-feature-flags.herokuapp.com/' + flagsNamespace);
 
 setInterval(function () {
     f.get().forEach(function (flag) {
         console.log(flag.name, flag.isSwitchedOn(), flag.isSwitchedOff(), flag.isPastSellByDate());
     });
-}, 60000);
+}, 2000);
 
 // Appended to all successful responeses
 var responseHeaders = {
