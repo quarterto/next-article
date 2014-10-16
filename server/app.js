@@ -60,7 +60,7 @@ app.get('/search', function(req, res, next) {
             return;
         }
 
-        ft.search(req.query.q, count)
+        ft.search(searchFilters.buildAPIQuery(), count)
             .then(function (articles) {
             var ids;
             if (articles[0] instanceof Object) {

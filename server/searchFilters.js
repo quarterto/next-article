@@ -114,6 +114,16 @@ SearchFilters.prototype.hasFilterFor = function hasFilterFor(name){
     });
 };
 
+SearchFilters.prototype.buildAPIQuery = function buildAPIQuery(){
+    var query = this.query.q;
+    var f = [];
+    this.filters.forEach(function(filter){
+        f.push(filter.name + ':' + filter.value);
+    });
+
+    return f.length ? query + ' AND ' + f.join(' AND ') : query;
+};
+
 SearchFilters.prototype.buildURL = function buildURL(f){
     var url = this.path + '?',
         queryParams = [],
@@ -129,7 +139,6 @@ SearchFilters.prototype.buildURL = function buildURL(f){
     }
 
     return url;
-
 };
 
 SearchFilters.prototype.getURLWithout = function getURLWithout(filterName){
