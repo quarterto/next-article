@@ -1,0 +1,14 @@
+
+.message__container {
+    border: 1px solid #000;
+    background-color: #ffc;
+    padding: 10px;
+    top: 10px;
+    box-sizing: border-box;
+
+    &:hover {
+        background-color: #ff9;
+        cursor: hand;
+    }
+
+}
