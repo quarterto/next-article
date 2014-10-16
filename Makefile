@@ -1,8 +1,11 @@
 PORT := 3001
 
 .PHONY: test
-test:
+
+verify:
 	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './node_modules/*' -o -name '*.min.*' \\)`
+
+test:
 	./node_modules/.bin/mocha
 
 run:

@@ -131,3 +131,5 @@ SearchFilters.prototype.getURLWith = function(name, value){
 
     return this.buildURL(f.join(' AND '));
 };
+
+module.exports = SearchFilters;
