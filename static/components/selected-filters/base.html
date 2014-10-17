@@ -1,10 +1,10 @@
 
 {% if filters && filters.length %}
     <div class="selected-filters">
-        <h2>Search Filters</h2>
+        <h1>Search Filters</h1>
         <ul>
             {% for filter in filters %}
-               <li><b>{{filter.title}}</b>: {{filter.text}} <a href="{{filter.removeurl}}">remove</a></li>
+               <li><b>{{filter.title}}</b>: {{filter.text}} <a href="{{filter.removeurl}}">X</a></li>
             {% endfor %}
         </ul>
     </div>

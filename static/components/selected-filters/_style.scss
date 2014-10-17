@@ -1,4 +1,21 @@
 .selected-filters{
     margin-top:50px;
+   color:white;
+
+  h1{
+    font-family: BentonSans,sans-serif;
+    background-color: #000;
+    color: #fff;
+    font-size: 1em;
+    padding: .4em .2em;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+  }
+
+  a{
+    color:red;
+  }
+
 
 }
