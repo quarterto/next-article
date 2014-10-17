@@ -59,9 +59,12 @@ app.get('/search', function(req, res, next) {
 
             return;
         }
-
-        ft.search(searchFilters.buildAPIQuery(), count)
-            .then(function (articles) {
+        var query = searchFilters.buildAPIQuery();
+        console.log('Perform Search', query);
+        ft.search(query, count)
+            .then(function (result) {
+                console.log('search result', result);
+                var articles = result.articles;
             var ids;
             if (articles[0] instanceof Object) {
                 ids = articles.map(function (article) {
