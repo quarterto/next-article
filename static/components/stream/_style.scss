@@ -1,176 +1,238 @@
 .stream {
+    padding-top: 20px;
     position: relative;
 }
 
 .stream-list__title {
     font-family: BentonSans;
-    font-weight: bold;
+    font-weight: normal;
     text-transform: capitalize;
-    text-align: center;
-    font-size: 25px;
-    padding: 20px 0;
-    text-shadow: 1px 1px #fff;
+    font-size: 22px;
+    margin: 0;
+    line-height: 1.9;
+    background: #777;
+    padding: 0 10px;
+    color: #fff;
+    position: relative;
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
 }
 
 /* article__card */
 
 .article-card {
-    padding: 10px;
-    margin: 10px 10px 20px 10px;
+    margin-top: 20px;
+    clear: both;
+    margin-bottom: 50px;
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.article-card__metadata-list {
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #777;
+    font-family: BentonSans, Arial, sans-serif;
+    padding: 10px 0;
+    margin: 10px 0;
+    font-size: 12px;
+    line-height: 1.4;
+    clear: both;
+
+    ul {
+        display: inline;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        
+        &:before {
+            content: '•';
+            display: inline-block;
+            padding: 0 3px 0 1px;
+        }
+
+        &:first-child:before {
+            content: none;
+        }
+    }
+
+    a {
+        color: #9e2f50;
+
+        &:hover {
+            color: #9e2f50;
+        }
+    }
 }
 
 .article-card__headline {
-    margin: 10px 0 30px 0;
+    margin: 10px 0 20px;
     font-size: 40px;
-    font-family: FinancierDisplay, Georgia, serif;
-    font-weight: normal;
-    text-align: center;
+    font-family: FinancierDisplay,Georgia,serif;
+    font-weight: 400;
     text-decoration: none; 
+    line-height: 1.1;
+    
+    .save__button {
+        position: relative;
+        top: -5px;
+        line-height: 26px;
+        background-position: 0 7px;
+    }
 }
 
-.article-card__date {
-    background: $next-grey-lighter;
-    position: relative;
+.article-card__reading-info{
+    min-height: 40px;
+    after: {
+        content: '';
+        clear: both;
+    }
+}
+
+.article-card__length,
+.article-card__byline {
     font-family: BentonSans, Arial, sans-serif;
-    text-align: center;
+    font-size: 12px
 }
 
-.article-card__viewcta {
-    right: 4px;
-    position: absolute;
-    font-weight: 600;
-    color: $next-blue;
-    text-decoration: none;
+.article-card__byline {
+    float: left;
+
+    [data-recent="true"] {
+        padding: 0 4px;
+        background-color: rgb(109, 219, 109);
+    }
+
+}
+
+.article-card__authors {
+    font-style: normal;
+
+    a {
+        color: #9e2f50;
+
+        &:hover {
+            color: #9e2f50;
+            text-decoration: underline;
+        }
+    } 
+
+    
+
+    ul {
+        display: inline;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+
+        &:before {
+            content: ',\00a0';
+            display: inline;
+        }
+        &:first-child:before {
+            content: '';
+        }
+        &:last-child:before {
+            content: 'and\00a0';
+        }
+    }
+}
+
+.article-card__length {
+    float: right;
+    margin: 0;
 }
 
 .article-card__body {
-    clear: left;
-
-    .more-on {
-	    clear: left;
-    }
+    font-family: Georgia, Times New Roman, Sans-serif;
 
     img {
-	clear: left;
-	float: left;
-	margin: 0 14px 14px 0;
+    	clear: left;
+    	float: left;
+    	margin: 0 14px 14px 0;
     }
+    
+    a {
+        text-decoration: underline;
+    }
+
 }
 
 .article-card__image {
-    float: left;
     display: block;
-    padding-bottom: 20px;
-    width: 50%;
+    width: 100%;
+    text-align: center;
+
     img {
         max-width: 100%;
     }
 }
 
+.article-card--compact {
+    border-top: 1px solid #777;
+    padding-top: 10px;
 
-.article-card__image + .article-card__metadata {
-    float: left;
-    width: 50%;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
 
-@media (max-width: 600px) {
+    .article-card__body {
+        
+        margin-bottom: 20px;
+
+        p:nth-child(1) {
+            margin-top: 0;
+        }
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
     .article-card__image {
-        display: block;
-        width: 100%;
-        text-align: center;
-        float: none;
+        width: 33%;
+        float: left;
+        margin: 0 14px 14px 0;
+
+        + .article-card__body {
+            margin-left: 33%;
+            padding-left: 14px;
+        }
     }
-
-    .article-card__image + .article-card__metadata {
-        margin-left: 0;
-        width: 100%;
-        padding: 0;
-        float: none;
-    }
-
-    .article-card__date {
-        text-align: left;
-        padding-left: 4px;
-    }
-
-}
-
-.article-card__metadata {
-    font-family: BentonSans, Arial, sans-serif;
-    text-transform: capitalize;
-    list-style: none;
-    margin: 0;
-    padding: 0 0 20px 0;
-    color: $next-grey-light;
-
-    > li {
-        padding: 0;
-        margin: 2px 0 2px 0;
-	border-bottom: 2px solid $next-grey-lighter;
-    }
-
-    a {
-        color: $next-blue;
-        text-decoration: none;
-    }
-}
-
-.article-card__mentions__items,
-.article-card__authors__items {
-    padding: 0;
-    margin: 0;
-    display: inline;
-}
-
-.article-card__mentions__items li,
-.article-card__authors__items li {
-    padding: 0;
-    margin: 0;
-    display: inline;
-    &:before {
-	content: '•';
-	display: inline-block;
-	padding: 0 10px 0 12px;
-	color: $next-grey-lighter;
-    }
-    &:first-child:before {
-	display: none;
-    }
-}
-
-.article-card__link,
-.article-card p a {
-    color: $next-grey-dark;
-}
-
-.article-card__headline a, .article-card__themes a {
-    text-decoration: none;
-}
-
-.more-on a {
-    color: $next-grey-dark;
-}
-
-div.more-on {
-    border-top: 1px solid #999;
-    border-bottom: 1px solid #999;
-    color: $next-grey-dark;
-    font-family: BentonSans, Arial, sans-serif;
-    line-height: 26px;
 }
 
 .article-card:first-child {
     margin-top: 20px;
 }
 
-.article-card p {
-    font-size: 18px;
-    font-family: BentonSans, Arial, sans-serif;
-    line-height: 26px;
+.article-card__body p {
+    line-height: 1.4;
+    font-size: 16px;
     color: $next-grey-light;
 }
+
+.article-card__link,
+.article-card__body a {
+    color: $next-grey-dark;
+}
+
+.article-card__body .more-on {
+    font-family: BentonSans,Arial,sans-serif;
+}
+
+
 
 .article-card__more {
     margin: 0px auto 20px auto;

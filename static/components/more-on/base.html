@@ -1,12 +1,10 @@
 
-<div>
-    <small>Related links</small>
-</div>
-<ul class="more-on">
+<h2>Related links</h2>
+<ul>
 {% for article in stream %}
     <li>
         <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a> 
-        - {{ article.lastUpdated|date('Y-m-d') }}
+        - <time data-o-component="o-date" class="o-date" datetime="{{ article.lastUpdated.toISOString() }}">{{ article.lastUpdated|date('Y-m-d') }}</time>
     </li>
 {% endfor %}
 </ul>

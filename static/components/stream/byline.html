@@ -1,0 +1,19 @@
+<div class="article-card__byline">
+    {% if article.authors.length > 0 %}
+    <cite class="article-card__authors">By
+        {% if article.authors.length > 1 %}
+        <ul>
+            {% for author in article.authors %}
+            <li><a href="/search?q={{ author.searchString }}">{{ author.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <a href="/search?q={{ article.authors[0].searchString }}">{{ article.authors[0].name }}</a>
+        {% endif %}
+    </cite>
+    {% endif %}
+
+    <time data-o-component="o-date" class="o-date"
+            data-recent="{{ (Date.now() - article.lastUpdated) / 1000 / 60 / 60 / 24 < 1.5 }}"
+            datetime="{{ article.lastUpdated.toISOString() }}">{{ article.lastUpdated|date('l, j F, Y') }}</time>
+</div>
