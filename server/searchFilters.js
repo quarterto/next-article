@@ -118,7 +118,7 @@ SearchFilters.prototype.isFiltering = function isFiltering(name){
     return this.filters.some(function(filter){
         return filter.name === name;
     });
-}
+};
 
 SearchFilters.prototype.buildAPIQuery = function buildAPIQuery(){
     var query = this.query.q;
@@ -196,7 +196,7 @@ SearchFilters.prototype.getDateSearchFilters = function getDateSearchFilters(){
     });
 
     return filters;
-}
+};
 
 
 

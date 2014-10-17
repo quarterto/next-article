@@ -9,7 +9,7 @@ describe('SearchFilters', function(){
         path : '/path',
         query : {
             q : 'SearchTerm',
-            f : 'regions:Bulgaria AND initialPublishDateTime:>' + SearchFilters.getDateConstantValue('Today')
+            filter : 'regions:Bulgaria AND initialPublishDateTime:>' + SearchFilters.getDateConstantValue('Today')
         }
     };
 
@@ -43,12 +43,12 @@ describe('SearchFilters', function(){
     it('Should be able to return a url without a given filter', function(){
         var url = searchFilters.getURLWithout('regions');
 
-        expect(url).to.equal(requestStub.path + '?q=' + requestStub.query.q + '&f=initialPublishDateTime:>' + SearchFilters.getDateConstantValue('Today'));
+        expect(url).to.equal(requestStub.path + '?q=' + requestStub.query.q + '&filter=initialPublishDateTime:>' + SearchFilters.getDateConstantValue('Today'));
     });
 
     it('Should be able to return a url with a passed filter included', function(){
         var url = searchFilters.getURLWith('people', 'Obama');
-        var expectedURL = requestStub.path + '?q=' + requestStub.query.q + '&f=' + requestStub.query.f + ' AND people:Obama';
+        var expectedURL = requestStub.path + '?q=' + requestStub.query.q + '&filter=' + requestStub.query.filter + ' AND people:Obama';
         expect(url).to.equal(expectedURL);
     });
 
@@ -72,5 +72,5 @@ describe('SearchFilters', function(){
         expect(dateFilters[1].url).to.contain(SearchFilters.getDateConstantValue(Object.keys(dateConstants)[1]));
         expect(dateFilters[2].url).to.contain(SearchFilters.getDateConstantValue(Object.keys(dateConstants)[2]));
 
-    })
+    });
 });
