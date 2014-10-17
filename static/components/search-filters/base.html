@@ -1,80 +1,77 @@
+
 <section class="search-filters">
     <h1>Filter Search</h1>
     <div class="filter">
         <h2>Date</h2>
         <div>
-            <form>
-                <ul class="ranges">
-                    <li data-href="/search?f=initialP">Today</li>
-                    <li data-date="">This week</li>
-                    <li data-date="">This month</li>
-                    <li data-date="">This year</li>
-                </ul>
-                <input type="range" min="1" max="4" step="1" />
-                <a class="button" href="">OK</a>
-            </form>
-        </div>
-    </div>
-    <div class="filter">
-        <h2>Organisation</h2>
-        <div>
             <ul>
-                <li><a href="#">Suggestion 1</a></li>
-                <li><a href="#">Suggestion 2</a></li>
-                <li><a href="#">Suggestion 3</a></li>
+                {% for filter in filters.date %}
+                    <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
             </ul>
+
         </div>
     </div>
-    <div class="filter">
-        <h2>Regions</h2>
-        <div>
-            <ul>
-                <li><a href="#">Region 1</a></li>
-                <li><a href="#">Region 2</a></li>
-                <li><a href="#">Region 3</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="filter">
-        <h2>Sections</h2>
-        <div>
-            <ul>
-                <li><a href="#">Section 1</a></li>
-                <li><a href="#">Section 2</a></li>
-                <li><a href="#">Section 3</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="filter">
-        <h2>Topics</h2>
-        <div>
-            <ul>
-                <li><a href="#">Topic 1</a></li>
-                <li><a href="#">Topic 2</a></li>
-                <li><a href="#">Topic 3</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="filter">
-        <h2>Columns</h2>
-        <div>
-            <ul>
-                <li><a href="#">Brand 1</a></li>
-                <li><a href="#">Brand 2</a></li>
-                <li><a href="#">Brand 3</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="filter">
-        <h2>People</h2>
-        <div>
-            <ul>
-                <li><a href="#">Person 1</a></li>
-                <li><a href="#">Person 2</a></li>
-                <li><a href="#">Person 3</a></li>
-            </ul>
-        </div>
-    </div>
+    <!--<div class="filter">-->
+        <!--<h2>Organisation</h2>-->
+        <!--<div>-->
+            <!--<ul>-->
+                <!--<li><a href="#">Suggestion 1</a></li>-->
+                <!--<li><a href="#">Suggestion 2</a></li>-->
+                <!--<li><a href="#">Suggestion 3</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="filter">-->
+        <!--<h2>Regions</h2>-->
+        <!--<div>-->
+            <!--<ul>-->
+                <!--<li><a href="#">Region 1</a></li>-->
+                <!--<li><a href="#">Region 2</a></li>-->
+                <!--<li><a href="#">Region 3</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="filter">-->
+        <!--<h2>Sections</h2>-->
+        <!--<div>-->
+            <!--<ul>-->
+                <!--<li><a href="#">Section 1</a></li>-->
+                <!--<li><a href="#">Section 2</a></li>-->
+                <!--<li><a href="#">Section 3</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="filter">-->
+        <!--<h2>Topics</h2>-->
+        <!--<div>-->
+            <!--<ul>-->
+                <!--<li><a href="#">Topic 1</a></li>-->
+                <!--<li><a href="#">Topic 2</a></li>-->
+                <!--<li><a href="#">Topic 3</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="filter">-->
+        <!--<h2>Columns</h2>-->
+        <!--<div>-->
+            <!--<ul>-->
+                <!--<li><a href="#">Brand 1</a></li>-->
+                <!--<li><a href="#">Brand 2</a></li>-->
+                <!--<li><a href="#">Brand 3</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="filter">-->
+        <!--<h2>People</h2>-->
+        <!--<div>-->
+            <!--<ul>-->
+                <!--<li><a href="#">Person 1</a></li>-->
+                <!--<li><a href="#">Person 2</a></li>-->
+                <!--<li><a href="#">Person 3</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
 </section>
 
-        <script src="dobi/components/search-filters/main.js" />
+        <script src="dobi/components/search-filters/main.js"></script>

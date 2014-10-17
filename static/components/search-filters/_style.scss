@@ -2,6 +2,7 @@
 
   $font-family-heading: BentonSans, sans-serif;
   $font-family-text: FinancierDisplay, Georgia, serif;
+  $font-family-links: Metric, sans-serif;
   $default-padding : 0.4em 0.2em;
   $button-padding:0.6em 1em;
   $font-size-heading : 1em;
@@ -34,10 +35,18 @@
     background:url(components/search-filters/triangle-white.svg) center center no-repeat;
     background-size:100%;
     transform: rotate(90deg);
+
+      @media screen and (min-width: 600px){
+          display:none;
+      }
   }
 
   & .filter{
     display:none;
+
+      @media screen and (min-width: 600px){
+          display:block;
+      }
   }
 
   &.open{
@@ -75,10 +84,18 @@
     background:url(components/search-filters/triangle-black.svg) center center no-repeat;
     background-size:100%;
     transform: rotate(90deg);
+
+      @media screen and (min-width: 600px){
+          display:none;
+      }
   }
 
   .filter > div{
     display:none;
+
+      @media screen and (min-width: 600px){
+          display:block;
+      }
   }
 
   .filter.open{
@@ -105,7 +122,10 @@
 
     a{
       display: block;
-      color:black;
+      color:white;
+      text-decoration: none;
+      font-size:1.2em;
+      font-family: $font-family-links;
       padding:$default-padding;
     }
   }
