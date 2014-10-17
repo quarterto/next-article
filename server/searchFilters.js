@@ -1,6 +1,10 @@
 var FILTER_PARAM = 'filter';
 var DATE_FILTER_NAME = 'initialPublishDateTime';
 
+/*
+*  Date Stuff
+*  Do stuff with dates specific for the purposes of specifying search-style date ranges (ie 'last week')
+ */
 
 function setToMidnight(d){
     d.setSeconds(0);
@@ -48,6 +52,7 @@ function getDateConstantName(val){
     }
 }
 
+// Todo: Currently this is off by one hour as a result of BST - fix this
 var DateConstants = {
     'Today' : setToMidnight(new Date()),
     'This Week' : setToBeginningOfWeek(new Date()),
@@ -130,6 +135,10 @@ SearchFilters.prototype.buildAPIQuery = function buildAPIQuery(){
     return f.length ? query + ' AND ' + f.join(' AND ') : query;
 };
 
+/*
+*   return a url with the path and query params parsed out in the constructor, as well as the given filter string
+*   @param f {String} filter query string
+ */
 SearchFilters.prototype.buildURL = function buildURL(f){
     var url = this.path + '?',
         queryParams = [],
@@ -147,6 +156,11 @@ SearchFilters.prototype.buildURL = function buildURL(f){
     return url;
 };
 
+/*
+*    returns a url with the given filter removed from the querystring
+*    @param {String} filtername - the filter to remove
+*    @returns {String} A url to use in the 'Remove the filter' link
+ */
 SearchFilters.prototype.getURLWithout = function getURLWithout(filterName){
     var f = [];
     this.filters.forEach(function(filter){
@@ -157,6 +171,14 @@ SearchFilters.prototype.getURLWithout = function getURLWithout(filterName){
 
     return this.buildURL(f.join(' AND '));
 };
+
+/*
+*    generate a url with the given filter added to the querystring
+*    if there is already a filter for this - it will be updated
+*    @param name {String} the filtername (se API docs for valid field names)
+*    @param value {String} the filter value
+*    @returns {String} a url to use in a search filter link
+ */
 
 SearchFilters.prototype.getURLWith = function(name, value){
     var f = [],
@@ -177,6 +199,11 @@ SearchFilters.prototype.getURLWith = function(name, value){
     return this.buildURL(f.join(' AND '));
 };
 
+/*
+*    Admittedly a confusing function name
+*    Generates the correct urls to use in the 'remove' link for each search filter
+*
+ */
 SearchFilters.prototype.addRemoveURLS = function addRemoveURLs(){
    var searchFilters = this;
 
