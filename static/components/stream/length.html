@@ -1,0 +1,4 @@
+<p class="article-card__length">
+    {{ article.wordCount }} words - {{ article.readingTime }} minutes to read
+    {% if article.has_video %} | <span>video</span> {% endif %}
+</p>
