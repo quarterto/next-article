@@ -12,12 +12,6 @@
   font-family:$font-family-text;
   color:black;
 
-    @media screen and (min-width: 600px){
-        width: 200px;
-        position:absolute;
-        left:0;
-    }
-
   h1{
     font-family:$font-family-heading;
     background-color:black;

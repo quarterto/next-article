@@ -11,9 +11,19 @@
             {% include "../header/base.html" %}
         </div>
 
+
+
         <div class="o-grid-row">
             <!-- Component: context - FIXME - split in to nav & context --> 
             <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
+                <!-- Component: selected-filters -->
+                <div class="context selected-filters__container" {%if !selectedFilters %}style="display:none"{% endif %}>
+                    {% include "../selected-filters/base.html"  with {filters: selectedFilters} %}
+                </div>
+                <!-- Component: search-filters -->
+                <div class="context search-filters__container">
+                    {% include "../search-filters/base.html" with {filters: searchFilters} %}
+                </div>
                 <div class="js-context__container"></div>
                 <div class="js-user-preferences__container"></div>
             </div>
@@ -25,23 +35,15 @@
             </div>
         </div>
 
-        <!-- Component: selected-filters -->
-        <div class="selected-filters__container">
-            {% include "../selected-filters/base.html"  with {filters: selectedFilters} %}
-        </div>
 
- 	    <!-- Component: search-filters -->
-        <div class="search-filters__container">
-            {% include "../search-filters/base.html" with {filters: searchFilters} %}
-        </div>
 
         <!-- Component: context - FIXME - split in to nav & context --> 
         <div class ="context__container">
-        <div class="js-context__container">
-        </div>
+            <div class="js-context__container">
+            </div>
 
-        <div class="js-user-preferences__container">
-        </div>
+            <div class="js-user-preferences__container">
+            </div>
         </div>
 
 
