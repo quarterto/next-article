@@ -63,7 +63,7 @@ app.get('/search', function(req, res, next) {
         console.log('Perform Search', query);
         ft.search(query, count)
             .then(function (result) {
-                console.log('search result', result);
+                console.log('search result', JSON.stringify(result,null,2));
                 var articles = result.articles;
             var ids;
             if (articles[0] instanceof Object) {
@@ -81,9 +81,7 @@ app.get('/search', function(req, res, next) {
                         mode: 'compact',
                         stream: articles,
                         selectedFilters : searchFilters.filters,
-                        searchFilters : {
-                            date : searchFilters.getDateSearchFilters()
-                        },
+                        searchFilters : searchFilters.getSearchFilters(result.meta.facets),
                         title: formatSection(req.query.q)
                     });
                 }, function(err) {
