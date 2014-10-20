@@ -26,7 +26,7 @@ var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var ft      = require('ft-api-client')(process.env.apikey);
 
-// Appended to all successful responeses
+// Appended to all successful responses
 var responseHeaders = {
     'Cache-Control': 'max-age=120, public'
 };
