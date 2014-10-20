@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "dateformat": "^1.0.8",
+    "debowerify": "^0.9.1",
     "debug": "^2.0.0",
     "es6-promise": "*",
     "express": "^4.8.x",

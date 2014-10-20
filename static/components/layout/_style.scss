@@ -3,43 +3,10 @@ body {
     padding: 0;
 }
 
-.header__container  {
-	position: fixed;
-	left:0;
-	top:0;
-	width: 100%;
-	z-index: 1000;
-}
-
-$dobi-header-height: 36px;
-
 .context__container, 
 .stream__container {
     z-index: 2;
     float: left;
-    min-height: 150vh;
-}
-
-@media (min-width: 601px) {
-    .context__container {
-        margin-top: $dobi-header-height;
-    }
-}
-
-.stream__container {
-    margin-top: $dobi-header-height;
-}
-
-.has-context {
-    // .context__container {
-    // }
-    // .stream__container {
-    //     box-sizing:border-box;
-    // }
-}
-
-.stream {
-    height: 100vh;
 }
 
 .controls__container {
