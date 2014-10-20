@@ -225,6 +225,25 @@ SearchFilters.prototype.getDateSearchFilters = function getDateSearchFilters(){
     return filters;
 };
 
+SearchFilters.prototype.getSearchFilters = function(facets){
+    var filters = {},
+        searchFilters = this;
+
+    filters.date = this.getDateSearchFilters();
+    facets.forEach(function(facet){
+        var facetFilters = [];
+        facet.elements.forEach(function(element){
+            facetFilters.push({
+                url : searchFilters.getURLWith.call(searchFilters, facet.name, element.name),
+                text : element.name
+            });
+        });
+        filters[facet.name] = facetFilters;
+    });
+
+    return filters;
+};
+
 
 
 /*
