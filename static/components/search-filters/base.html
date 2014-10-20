@@ -12,7 +12,7 @@
 
         </div>
     </div>
-    {% if filters.organisations %}
+    {% if filters.organisations && filters.organisations.length %}
         <div class="filter">
             <h2>Organisation</h2>
             <div>
@@ -24,7 +24,7 @@
             </div>
         </div>
     {% endif %}
-    {% if filters.regions %}
+    {% if filters.regions && filters.regions.length %}
         <div class="filter">
             <h2>Regions</h2>
             <div>
@@ -36,7 +36,7 @@
             </div>
         </div>
     {% endif %}
-    {% if filters.sections %}
+    {% if filters.sections && filters.sections.length %}
     <div class="filter">
         <h2>Sections</h2>
         <div>
@@ -48,7 +48,7 @@
         </div>
     </div>
     {% endif %}
-    {% if filters.topics %}
+    {% if filters.topics && filters.topics.length %}
     <div class="filter">
         <h2>Topics</h2>
         <div>
@@ -60,7 +60,7 @@
         </div>
     </div>
     {% endif %}
-    {% if filters.brands %}
+    {% if filters.brands && filters.brands.length %}
     <div class="filter">
         <h2>Columns</h2>
         <div>
@@ -72,7 +72,7 @@
         </div>
     </div>
     {% endif %}
-    {% if filters.people %}
+    {% if filters.people && filters.people.length %}
     <div class="filter">
         <h2>People</h2>
         <div>

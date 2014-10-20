@@ -17,9 +17,11 @@
             <!-- Component: context - FIXME - split in to nav & context --> 
             <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
                 <!-- Component: selected-filters -->
-                <div class="context selected-filters__container" {%if !selectedFilters %}style="display:none"{% endif %}>
-                    {% include "../selected-filters/base.html"  with {filters: selectedFilters} %}
-                </div>
+                {% if selectedFilters && selectedFilters.length %}
+                    <div class="context selected-filters__container">
+                        {% include "../selected-filters/base.html"  with {filters: selectedFilters} %}
+                    </div>
+                {% endif %}
                 <!-- Component: search-filters -->
                 <div class="context search-filters__container">
                     {% include "../search-filters/base.html" with {filters: searchFilters} %}

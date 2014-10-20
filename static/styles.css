@@ -1076,6 +1076,9 @@ body {
 
   .show {
     display: block; } }
+.context.selected-filters__container, .context.search-filters__container {
+  padding: 0; }
+
 /* site-search */
 .site-search__field {
   font-size: 20px;
@@ -1418,7 +1421,6 @@ body {
       border-radius: 0.5em; }
 
 .selected-filters {
-  margin-top: 50px;
   color: white; }
   .selected-filters h1 {
     font-family: BentonSans,sans-serif;
@@ -1437,4 +1439,5 @@ body {
       margin: 0;
       padding: 0.2em 1em; }
   .selected-filters a {
-    color: red; }
+    color: red;
+    text-decoration: none; }
