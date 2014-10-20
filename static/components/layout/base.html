@@ -25,33 +25,12 @@
                     {% include "../search-filters/base.html" with {filters: searchFilters} %}
                 </div>
                 <div class="js-context__container"></div>
-                <div class="js-user-preferences__container"></div>
             </div>
             <!-- Component: stream --> 
             <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
                 <div class="stream">
                     {% include "../stream/base.html" %}
                 </div>
-            </div>
-        </div>
-
-
-
-        <!-- Component: context - FIXME - split in to nav & context --> 
-        <div class ="context__container">
-            <div class="js-context__container">
-            </div>
-
-            <div class="js-user-preferences__container">
-            </div>
-        </div>
-
-
-
-        <!-- Component: stream --> 
-        <div class="stream__container">
-            <div class="stream">
-                {% include "../stream/base.html" %}
             </div>
         </div>
 
@@ -64,8 +43,7 @@
         <script src="/dobi/js/context.js"></script>
         <script src="/dobi/js/user-preferences.js"></script>
         <script src="/dobi/js/more-on.js"></script>
-        <script src="/dobi/js/splash.js"></script>
+        <script src="/dobi/main.js"></script>
         <link rel="StyleSheet" href="/dobi/utils.css"/>
-
     </body>
 </html>
