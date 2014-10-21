@@ -48,6 +48,37 @@ var formatSection = function (s) {
 };
 
 
+app.get('/favourites', function(req,res,next) {
+    var userId = req.query.user;
+    var query = '';
+    var streams = [];
+    if(!userId) {
+        res.status(404).send();
+    }
+    var list = request.get({
+        url: 'http://ft-next-api-user-prefs.herokuapp.com/user/favourites',
+        headers: {
+            'X-FT-UID': userId
+        }
+    }, function(err, resp) {
+        if(resp.body) {
+            streams = JSON.parse(resp.body);
+            query = streams.map(function(el) {
+                return el.uuidv3;
+            }).join(' OR ');
+        }
+        req.url = '/search';
+        req.query = {
+            q: query,
+            friendly: 'favourites',
+            isFollowable: false
+        };
+        next('route');
+
+        // res.redirect('/search?friendly=favourites&q=' + query);
+    });
+});
+
 app.get('/search', function(req, res, next) {
         var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
         var searchFilters = new SearchFilters(req);
@@ -59,6 +90,7 @@ app.get('/search', function(req, res, next) {
                 stream: articles,
                 selectedFilters : searchFilters.filters,
                 searchFilters : searchFilters.getSearchFilters(facets),
+                isFollowable: req.query.isFollowable !== false,
                 title: title,
             });
         };
@@ -124,29 +156,7 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
         });
 });
 
-app.get('/myft/favourites', function(req,res,next) {
-    var userId = req.query.userId;
-    var query = '';
-    var streams = [];
-    if(!userId) {
-        res.status(404).send();
-    }
-    var list = request.get({
-        url: 'http://ft-next-api-user-prefs.herokuapp.com/user/' + req.params.list,
-        headers: {
-            'X-FT-UID': userId
-        }
-    }, function(err, resp) {
-        if(resp.body) {
-            streams = JSON.parse(resp.body);
-            query = streams.map(function(el) {
-                return el.uuidv3;
-                }).join(' OR ');
-        }
 
-        res.redirect('/search?friendly=' + req.params.list + '&q=' + query);
-    });
-});
 
 // More-on
 app.get('/more-on/:id', function(req, res, next) {

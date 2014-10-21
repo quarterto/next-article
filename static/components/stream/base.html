@@ -5,8 +5,9 @@
     {{ title }} 
 {% endif %}
 </span>
+{% if isFollowable %}
 {% include "../save-button/base.html" with { key: 'favourites', label: 'Favourite this section', toggleText: 'Unfavourite this section'} %}
-
+{% endif %}
 </h1>
 
         {% if stream.length === 0 %}
@@ -33,7 +34,7 @@
                 <a href="/{{ article.id }}" class="article-card__link">
                     {{ article.raw.item.title.title }}
                 </a>
-                {% include "../save-button/base.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
+
             </h3>
             
                 <div class="article-card__reading-info">
