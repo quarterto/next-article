@@ -51,7 +51,7 @@ var formatSection = function (s) {
 app.get('/search', function(req, res, next) {
         var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
         var searchFilters = new SearchFilters(req);
-
+        var title = req.query.friendly || formatSection(req.query.q);
         var render = function render(articles, searchFilters, facets){
             res.set(responseHeaders);
             res.render('layout/base', {
@@ -59,7 +59,7 @@ app.get('/search', function(req, res, next) {
                 stream: articles,
                 selectedFilters : searchFilters.filters,
                 searchFilters : searchFilters.getSearchFilters(facets),
-                title: formatSection(req.query.q)
+                title: title,
             });
         };
 
@@ -68,11 +68,12 @@ app.get('/search', function(req, res, next) {
             res.render('layout/base', {
                 mode: 'compact',
                 stream: popular.get().slice(0, (count || 5)), 
-                title: formatSection(req.query.q)
+                title: title
             });
 
             return;
         }
+
         var query = searchFilters.buildAPIQuery();
         console.log('Perform Search', query);
         ft.search(query, count)
@@ -121,6 +122,30 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
         }, function (err) {
             console.log(err);
         });
+});
+
+app.get('/myft/favourites', function(req,res,next) {
+    var userId = req.query.userId;
+    var query = '';
+    var streams = [];
+    if(!userId) {
+        res.status(404).send();
+    }
+    var list = request.get({
+        url: 'http://ft-next-api-user-prefs.herokuapp.com/user/' + req.params.list,
+        headers: {
+            'X-FT-UID': userId
+        }
+    }, function(err, resp) {
+        if(resp.body) {
+            streams = JSON.parse(resp.body);
+            query = streams.map(function(el) {
+                return el.uuidv3;
+                }).join(' OR ');
+        }
+
+        res.redirect('/search?friendly=' + req.params.list + '&q=' + query);
+    });
 });
 
 // More-on
