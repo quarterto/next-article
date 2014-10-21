@@ -26,7 +26,7 @@ var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var ft      = require('ft-api-client')(process.env.apikey);
 
-// Appended to all successful responeses
+// Appended to all successful responses
 var responseHeaders = {
     'Cache-Control': 'max-age=120, public'
 };
@@ -45,9 +45,19 @@ var formatSection = function (s) {
 
 
 app.get('/search', function(req, res, next) {
-
         var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
         var searchFilters = new SearchFilters(req);
+
+        var render = function render(articles, searchFilters, facets){
+            res.set(responseHeaders);
+            res.render('layout/base', {
+                mode: 'compact',
+                stream: articles,
+                selectedFilters : searchFilters.filters,
+                searchFilters : searchFilters.getSearchFilters(facets),
+                title: formatSection(req.query.q)
+            });
+        };
 
         if (/^popular:most/i.test(req.query.q)) {
             
@@ -63,33 +73,30 @@ app.get('/search', function(req, res, next) {
         console.log('Perform Search', query);
         ft.search(query, count)
             .then(function (result) {
-                console.log('search result', result);
+                console.log('search result', JSON.stringify(result,null,2));
                 var articles = result.articles;
-            var ids;
-            if (articles[0] instanceof Object) {
-                ids = articles.map(function (article) {
-                    return article.id;
-                });
-            } else {
-                ids = articles;
-            }
 
-            ft.get(ids)
-                .then( function (articles) {
-                    res.set(responseHeaders);
-                    res.render('layout/base', {
-                        mode: 'compact',
-                        stream: articles,
-                        selectedFilters : searchFilters.filters,
-                        searchFilters : {
-                            date : searchFilters.getDateSearchFilters()
-                        },
-                        title: formatSection(req.query.q)
+                if(!articles.length){
+                    render(articles, searchFilters, result.meta.facets);
+                    return;
+                }
+
+                var ids;
+                if (articles[0] instanceof Object) {
+                    ids = articles.map(function (article) {
+                        return article.id;
                     });
-                }, function(err) {
-                    console.log(err);
-                    res.send(404);
-                });
+                } else {
+                    ids = articles;
+                }
+
+                ft.get(ids)
+                    .then( function (articles) {
+                        render(articles, searchFilters, result.meta.facets);
+                    }, function(err) {
+                        console.log(err);
+                        res.send(404);
+                    });
 
         }, function (err) {
             console.log(err);

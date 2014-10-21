@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "dateformat": "^1.0.8",
+    "debowerify": "^0.9.1",
     "debug": "^2.0.0",
     "es6-promise": "*",
     "express": "^4.8.x",
@@ -36,7 +37,7 @@
     "gulp-watch": "^1.0.7",
     "lodash": "^2.4.1",
     "moment": "^2.8.3",
-    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/archive/2.0.0.tar.gz",
+    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/archive/master.tar.gz",
     "request": "^2.44.0",
     "swig": "^1.4.2"
   },

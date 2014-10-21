@@ -9,6 +9,10 @@
 
 </h1>
 
+        {% if stream.length === 0 %}
+            <p>No articles found.</p>
+        {% endif %}
+
 
 {% for article in stream %}
     {% if article.raw %}

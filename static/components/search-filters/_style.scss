@@ -36,17 +36,11 @@
     background-size:100%;
     transform: rotate(90deg);
 
-      @media screen and (min-width: 600px){
-          display:none;
-      }
   }
 
   & .filter{
     display:none;
 
-      @media screen and (min-width: 600px){
-          display:block;
-      }
   }
 
   &.open{
@@ -84,18 +78,10 @@
     background:url(components/search-filters/triangle-black.svg) center center no-repeat;
     background-size:100%;
     transform: rotate(90deg);
-
-      @media screen and (min-width: 600px){
-          display:none;
-      }
   }
 
   .filter > div{
     display:none;
-
-      @media screen and (min-width: 600px){
-          display:block;
-      }
   }
 
   .filter.open{

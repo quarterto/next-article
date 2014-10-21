@@ -12,66 +12,78 @@
 
         </div>
     </div>
-    <!--<div class="filter">-->
-        <!--<h2>Organisation</h2>-->
-        <!--<div>-->
-            <!--<ul>-->
-                <!--<li><a href="#">Suggestion 1</a></li>-->
-                <!--<li><a href="#">Suggestion 2</a></li>-->
-                <!--<li><a href="#">Suggestion 3</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="filter">-->
-        <!--<h2>Regions</h2>-->
-        <!--<div>-->
-            <!--<ul>-->
-                <!--<li><a href="#">Region 1</a></li>-->
-                <!--<li><a href="#">Region 2</a></li>-->
-                <!--<li><a href="#">Region 3</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="filter">-->
-        <!--<h2>Sections</h2>-->
-        <!--<div>-->
-            <!--<ul>-->
-                <!--<li><a href="#">Section 1</a></li>-->
-                <!--<li><a href="#">Section 2</a></li>-->
-                <!--<li><a href="#">Section 3</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="filter">-->
-        <!--<h2>Topics</h2>-->
-        <!--<div>-->
-            <!--<ul>-->
-                <!--<li><a href="#">Topic 1</a></li>-->
-                <!--<li><a href="#">Topic 2</a></li>-->
-                <!--<li><a href="#">Topic 3</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="filter">-->
-        <!--<h2>Columns</h2>-->
-        <!--<div>-->
-            <!--<ul>-->
-                <!--<li><a href="#">Brand 1</a></li>-->
-                <!--<li><a href="#">Brand 2</a></li>-->
-                <!--<li><a href="#">Brand 3</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="filter">-->
-        <!--<h2>People</h2>-->
-        <!--<div>-->
-            <!--<ul>-->
-                <!--<li><a href="#">Person 1</a></li>-->
-                <!--<li><a href="#">Person 2</a></li>-->
-                <!--<li><a href="#">Person 3</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
+    {% if filters.organisations && filters.organisations.length %}
+        <div class="filter">
+            <h2>Organisation</h2>
+            <div>
+                <ul>
+                    {% for filter in filters.organisations %}
+                        <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if filters.regions && filters.regions.length %}
+        <div class="filter">
+            <h2>Regions</h2>
+            <div>
+                <ul>
+                    {% for filter in filters.regions %}
+                    <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if filters.sections && filters.sections.length %}
+    <div class="filter">
+        <h2>Sections</h2>
+        <div>
+            <ul>
+                {% for filter in filters.sections %}
+                <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% if filters.topics && filters.topics.length %}
+    <div class="filter">
+        <h2>Topics</h2>
+        <div>
+            <ul>
+                {% for filter in filters.topics %}
+                <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% if filters.brands && filters.brands.length %}
+    <div class="filter">
+        <h2>Columns</h2>
+        <div>
+            <ul>
+                {% for filter in filters.brands %}
+                <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% if filters.people && filters.people.length %}
+    <div class="filter">
+        <h2>People</h2>
+        <div>
+            <ul>
+                {% for filter in filters.people %}
+                <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
 </section>
 
         <script src="dobi/components/search-filters/main.js"></script>
