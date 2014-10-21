@@ -25,9 +25,17 @@
             </div>  
             {% endif %}   
 
+            {% if article.tickerSymbols.length > 0 %}
+                <div class="article-card__ticker-symbols">
+                {% for entity in article.tickerSymbols %}
+                    <a href="http://markets.ft.com/research/Markets/Tearsheets/Directors-and-dealings?s={% symbol.code %}" data-ticker-symbols="{% symbol.code %}">{% symbol.code %}</a>
+                {% endfor %}
+                </div>
+            {% endif %}
+
             <h3 class="article-card__headline">
                 <a href="/{{ article.id }}" class="article-card__link">
-                    {{ article.raw.item.title.title }}
+                    {{ article.headline }}
                 </a>
                 {% include "../save-button/base.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
             </h3>
