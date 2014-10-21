@@ -1120,7 +1120,8 @@ body {
 .article-card__ticker-symbols {
   border-bottom: 1px solid #777;
   margin: 0 0 10px 0;
-  padding: 0 0 10px 0; }
+  padding: 0 0 10px 0;
+  font-family: BentonSans, Arial, sans-serif; }
 
 .article-card__tone {
   font-size: 10px;
@@ -1256,13 +1257,13 @@ body {
 .article-card__body .more-on {
   font-family: BentonSans,Arial,sans-serif; }
 
-.article-card__tone-news {
+.article-card__tone--news {
   border-top: 2px solid blue; }
 
-.article-card__tone-comment {
+.article-card__tone--comment {
   border-top: 2px solid green; }
 
-.article-card__tone-analysis {
+.article-card__tone--analysis {
   border-top: 2px solid red; }
 
 .article-card__more {

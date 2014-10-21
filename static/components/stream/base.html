@@ -17,7 +17,7 @@
 {% for article in stream %}
     {% if article.raw %}
 
-        <div class="article-card article-card__tone-{{ article.visualTone }}{% if mode === 'compact' %} article-card--compact{% endif %}" id="capi-{{ article.id }}">
+        <div class="article-card article-card__tone--{{ article.visualTone }}{% if mode === 'compact' %} article-card--compact{% endif %}" id="capi-{{ article.id }}">
 
             {% if mode === 'compact' %}
             <div class="article-card__tone">
