@@ -17,7 +17,14 @@
 {% for article in stream %}
     {% if article.raw %}
 
-        <div class="article-card tone-{{ article.genre}}{% if mode === 'compact' %} article-card--compact{% endif %}" id="capi-{{ article.id }}">
+        <div class="article-card article-card__tone-{{ article.visualTone }}{% if mode === 'compact' %} article-card--compact{% endif %}" id="capi-{{ article.id }}">
+
+            {% if mode === 'compact' %}
+            <div class="article-card__tone">
+                {{ article.visualTone }}
+            </div>
+            {% endif %}
+
             {% if mode !== 'compact' %}
             <div class="article-card__themes article-card__metadata-list">
                 Latest in <ul>
@@ -28,18 +35,6 @@
                 </ul>
             </div>  
             {% endif %}   
-
-            {% if article.tickerSymbols.length > 0 %}
-                <div class="article-card__ticker-symbols">
-                {% for symbol in article.tickerSymbols %}
-                <a
-                    href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
-                    class="article-card__ticker-symbols__item"
-                    data-ticker-symbols="{{ symbol.code }}"
-                    ></a>
-                {% endfor %}
-                </div>
-            {% endif %}
 
             <h3 class="article-card__headline">
                 <a href="/{{ article.id }}" class="article-card__link">
@@ -64,6 +59,19 @@
                 </ul>
             </div>
             {% endif %}
+            
+            {% if article.tickerSymbols.length > 0 %}
+            <div class="article-card__ticker-symbols">
+                {% for symbol in article.tickerSymbols %}
+                <a
+                    href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
+                    class="article-card__ticker-symbols__item"
+                    data-ticker-symbols="{{ symbol.code }}"
+                    ></a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
 
     	    {% if article.largestImage && isArticle %}
             <a href="/{{ article.id }}" class="article-card__image">
