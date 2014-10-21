@@ -41,8 +41,11 @@
             <div class="article-card__mentions article-card__metadata-list">
                 Mentions
                 <ul class="article-card__mentions__items">
-                    {% for person in article.people %}<li><a href="/search?q={{ person.searchString }}">{{ person.name }}</a></li>{% endfor %}
-                    {% for org in article.organisations %}<li><a href="/search?q={{ org.searchString }}">{{ org.name }}</a></li>{% endfor %}
+                    {% for entity in article.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                    {% for entity in article.organisations %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                    {% for entity in article.regions %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                    {% for entity in article.topics %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                    {% for entity in article.subjects %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
                 </ul>
             </div>
             {% endif %}
