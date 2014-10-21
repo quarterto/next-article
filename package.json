@@ -38,6 +38,7 @@
     "lodash": "^2.4.1",
     "moment": "^2.8.3",
     "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/archive/master.tar.gz",
+    "raven": "^0.7.2",
     "request": "^2.44.0",
     "swig": "^1.4.2"
   },

@@ -7,6 +7,10 @@ var request = require('request');
 var SearchFilters = require('./searchFilters.js');
 
 var app = module.exports = express();
+if (process.env.NODE_ENV === 'production') {
+	var raven = require('raven');
+	app.use(raven.middleware.express(process.env.RAVEN_URL));
+}
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
@@ -73,7 +77,6 @@ app.get('/search', function(req, res, next) {
         console.log('Perform Search', query);
         ft.search(query, count)
             .then(function (result) {
-                console.log('search result', JSON.stringify(result,null,2));
                 var articles = result.articles;
 
                 if(!articles.length){
