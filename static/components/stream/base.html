@@ -1,82 +1,27 @@
 
 <h1 class="stream-list__title">
-<span class="js-context">
-{% if title %}
-    {{ title }} 
-{% endif %}
-</span>
-{% if isFollowable %}
-{% include "../save-button/base.html" with { key: 'favourites', label: 'Add section to MyFT', toggleText: 'Remove section from MyFT'} %}
-{% endif %}
+    <span class="js-context">
+    {% if title %}
+        {{ title }} 
+    {% endif %}
+    </span>
+    {% if isFollowable %}
+    {% include "../save-button/base.html" with { key: 'favourites', label: 'Add section to MyFT', toggleText: 'Remove section from MyFT'} %}
+    {% endif %}
 </h1>
 
-        {% if stream.length === 0 %}
-            <p>No articles found.</p>
-        {% endif %}
+{% if stream.length === 0 %}
+    <p>No articles found.</p>
+{% endif %}
 
+{% for article in stream.items %}
 
-{% for article in stream %}
-    {% if article.raw %}
-
-        <div class="article-card tone-{{ article.genre}}{% if mode === 'compact' %} article-card--compact{% endif %}" id="capi-{{ article.id }}">
-            {% if mode !== 'compact' %}
-            <div class="article-card__themes article-card__metadata-list">
-                Latest in <ul>
-                    <li><a href="/search?q={{ article.primarySection.taxonomy }}:{{ article.primarySection.name }}">{{ article.primarySection.name }}</a></li>
-                    {% if article.primaryTheme.name %}
-                    <li><a href="/search?q={{ article.primaryTheme.taxonomy }}:{{ article.primaryTheme.name }}">{{ article.primaryTheme.name }}</a></li>
-                    {% endif %}
-                </ul>
-            </div>  
-            {% endif %}   
-
-            <h3 class="article-card__headline">
-                <a href="/{{ article.id }}" class="article-card__link">
-                    {{ article.raw.item.title.title }}
-                </a>
-
-            </h3>
-            
-                <div class="article-card__reading-info">
-                {% include "./byline.html" with article %}
-                {% include "./length.html" with article %}
-                </div>
-
-            {% if article.people.length > 0 || article.organisations.length > 0 %}
-            <div class="article-card__mentions article-card__metadata-list">
-                Mentions
-                <ul class="article-card__mentions__items">
-                    {% for person in article.people %}<li><a href="/search?q={{ person.searchString }}">{{ person.name }}</a></li>{% endfor %}
-                    {% for org in article.organisations %}<li><a href="/search?q={{ org.searchString }}">{{ org.name }}</a></li>{% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-
-    	    {% if article.largestImage && isArticle %}
-            <a href="/{{ article.id }}" class="article-card__image">
-                <img src="{{ article.largestImage.url|resize(600) }}" class="article-card__image-{{ article.id }}"/>
-            </a>
-    	    {% endif %}
-
-		    {% if mode === 'compact' %}
-                {% if article.raw.item.images.length %}
-                <div  class="article-card__image">
-                    <img src="{{ article.raw.item.images[0].url|resize(300) }}" class="article-card__image-{{ article.id }}"/>
-                </div>
-                {% endif %}
-                <div class="article-card__body">
-                    {{ article.paragraphs(0, 2) }}
-                </div>
-            {% else %}
-                <div class="article-card__body">
-        	        {{ article.paragraphs(0, 2, { removeImages: false }) }}
-                    <div class="js-more-on more-on" data-article-id="{{ article.id }}"></div>
-            		{{ article.paragraphs(2, 100, { removeImages: false }) }}
-                </div>
-            {% endif %}
-        </div>
-    
+    {% if article.type === 'fastft' %}
+        {% include "./cards/fastft.html" with { item: article.item } %}
+    {% elseif article.type === 'methode' %}
+        {% include "./cards/methode.html" with { item: article.item } %}
     {% endif %}
+    
 {% endfor %}
 
 <script src="/dobi/components/stream/main.js"></script>
