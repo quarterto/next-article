@@ -42,9 +42,6 @@
 			margin-right: 8px;
 		}
 
-		&:hover:before {
-			content: '\2605';
-		}
 	}
 }
 
@@ -57,10 +54,6 @@
 		&:before {
 			content: '\2605';
 			display: inline-block;
-		}
-		
-		&:hover:before {
-			content: '\2606';
 		}
 	}
 
