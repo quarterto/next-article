@@ -114,8 +114,8 @@ app.get('/search', function(req, res, next) {
         .then(function (result) {
             var articles = result.articles;
 
-            if(!articles.length){
-                throw "404";
+            if (!articles.length){
+                res.send(404);
                 return;
             }
 
@@ -154,7 +154,7 @@ app.get('/search', function(req, res, next) {
                   
                     res.render('layout/base', {
                         mode: 'compact',
-                        stream: { items: stream.items, meta: { facets: result.meta.facets }}, // FIXME add facets back in, esult.meta.facets)
+                        stream: { items: stream.items, meta: { facets: (result.meta) ? result.meta.facets : [] }},
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
