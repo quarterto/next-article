@@ -5,6 +5,9 @@
   font-style: normal;
   src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.eot");
   src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.eot?#iefix") format("embedded-opentype"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.woff") format("woff"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.ttf") format("truetype"); }
+.icon__close:before {
+  content: "\e011"; }
+
 .icon__menu:before {
   content: "\e014"; }
 
@@ -530,6 +533,9 @@ html {
  *
  *                     _deprecated: <msg>  Emits <msg> as a warning if referenced, but still works
  */
+.icon__close:before {
+  content: "\e011"; }
+
 .icon__menu:before {
   content: "\e014"; }
 
@@ -544,6 +550,9 @@ html {
   $name:             name of placeholder/class.
   $force-non-silent: <boolean> prevent silent mode
 */
+.icon__close:before {
+  content: "\e011"; }
+
 .icon__menu:before {
   content: "\e014"; }
 
@@ -897,6 +906,12 @@ html {
   background: #DDDDDD;
   color: #000000; }
 
+[data-target-panel="myft"] .icon::before {
+  content: '\2605';
+  display: inline-block;
+  font-family: BentonSans, Arial, sans-serif;
+  font-size: 20px; }
+
 .o-header__primary {
   display: table;
   width: 100%;
@@ -970,6 +985,44 @@ html {
   text-decoration: none;
   height: 28px; }
 
+.message__container {
+  padding: 20px;
+  background-color: #ccc;
+  display: inline-block;
+  font-family: Benton Sans, Helvetica, Arial;
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px 1px #666;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 2; }
+
+.message__close {
+  content: 'x';
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 5px; }
+  .message__close:hover {
+    color: #fff; }
+
+.message__title {
+  margin: 0 0 10px 0; }
+
+.message__body {
+  text-decoration: none; }
+
+[data-target-panel="myft"] {
+  transition: background-color 0.7s;
+  transition-delay: 0.5s; }
+  [data-target-panel="myft"].myft--add-favourite, [data-target-panel="myft"].myft--remove-favourite {
+    transition: none; }
+  [data-target-panel="myft"].myft--add-favourite {
+    background-color: rgba(0, 255, 0, 0.6); }
+  [data-target-panel="myft"].myft--remove-favourite {
+    background-color: rgba(255, 0, 0, 0.6); }
+
 .notify-badge {
   margin-left: 10px;
   background-color: red;
@@ -1023,9 +1076,8 @@ html {
     margin: 0 -10px 0 5px;
     line-height: 0;
     cursor: pointer;
-    padding: 0 10px 3px; }
-    .save__button[data-save-target="favourites"]:hover {
-      color: #868686; }
+    padding: 0 10px 3px;
+    opacity: 0.9; }
     .save__button[data-save-target="favourites"]:before {
       font-size: 24px;
       position: relative;
@@ -1033,15 +1085,16 @@ html {
       content: '\2606';
       display: inline-block;
       margin-right: 8px; }
+    .save__button[data-save-target="favourites"]:hover:before {
+      content: '\2605'; }
 
 .save__button[data-is-saved="true"][data-save-target="favourites"] {
-  color: #868686;
   content: 'Unfavourite this section'; }
-  .save__button[data-is-saved="true"][data-save-target="favourites"]:hover {
-    color: #fff; }
   .save__button[data-is-saved="true"][data-save-target="favourites"]:before {
     content: '\2605';
     display: inline-block; }
+  .save__button[data-is-saved="true"][data-save-target="favourites"]:hover:before {
+    content: '\2606'; }
 .save__button[data-is-saved="true"][data-save-target="forlaters"]:before {
   content: '\2691'; }
 

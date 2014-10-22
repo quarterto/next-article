@@ -149,6 +149,7 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
             res.render('layout/base', {
                 mode: 'expand',
                 isArticle: true,
+                isFollowable: true,
                 stream: article
             });
         }, function (err) {
