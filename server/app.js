@@ -65,22 +65,15 @@ app.get('/search/fastft', function(req, res, next) {
             data.posts.forEach(function (post) {
                 stream.push('fastft', post)
             });
-
-            res.render('layout/base', {
-                mode: 'compact',
-                stream: { items: stream.items, meta: { facets: [] }},
-                selectedFilters : searchFilters.filters,
-                searchFilters : searchFilters.getSearchFilters([]),
-                title: formatSection(req.query.q)
-            });
-        }).catch(function (err) {
-            console.log(err);
-            res.send(500, err);
-        })
-
-})
+    });
+});
 
 app.get('/search', function(req, res, next) {
+    
+    if (!req.query.q) {
+        res.redirect('/');
+        return;
+    }
         
     var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
     var searchFilters = new SearchFilters(req);
