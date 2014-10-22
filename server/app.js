@@ -109,11 +109,31 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
         .get([req.params[0]])
         .then(function (article) {
             res.set(responseHeaders);
-            res.render('layout/base', {
-                mode: 'expand',
-                isArticle: true,
-                stream: article
-            });
+	    res.vary(['Accept-Encoding', 'Accept']);
+	    switch(req.accepts(['html', 'json'])) {
+                case 'html':
+                    res.render('layout/base', {
+                        mode: 'expand',
+                        isArticle: true,
+                        stream: article
+                    });
+		    break;
+                case 'json':
+		    article = article[0];
+		    res.json({
+		        id: article.id,	    
+		        headline: article.headline,	    
+		        largestImage: article.largestImage,	    
+			body: [
+                            article.paragraphs(0, 2, { removeImages: false }).toString(),
+                            article.paragraphs(2, 100, { removeImages: false }).toString()
+		        ]
+		    });
+		    break;
+		default:
+		    res.status(406).end();
+		    break;
+	    }
         }, function (err) {
             console.log(err);
         });
