@@ -9,10 +9,6 @@ var Stream = require('../models/stream');
 var Clamo = require('fastft-api-client');
 
 var app = module.exports = express();
-if (process.env.NODE_ENV === 'production') {
-	var raven = require('raven');
-	app.use(raven.middleware.express(process.env.RAVEN_URL));
-}
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
@@ -156,18 +152,46 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
         .get([req.params[0]])
         .then(function (articles) {
             res.set(responseHeaders);
+            
+            res.vary(['Accept-Encoding', 'Accept']);
+    
+            console.log(req.accepts(['html', 'json']));
+            switch(req.accepts(['html', 'json'])) {
+                    case 'html':
+                        
+                        var stream = new Stream();
 
-            var stream = new Stream();
+                        articles.forEach(function (article) {
+                            stream.push('methode', article)
+                        });
 
-            articles.forEach(function (article) {
-                stream.push('methode', article)
-            });
+                        res.render('layout/base', {
+                            mode: 'expand',
+                            isArticle: true,
+                            stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
+                        });
+                
+                        break;
 
-            res.render('layout/base', {
-                mode: 'expand',
-                isArticle: true,
-                stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
-            });
+                    case 'json':
+
+                        var article = articles[0];
+                        res.json({
+                            id: article.id,	    
+                            headline: article.headline,	    
+                            largestImage: article.largestImage,	    
+                            body: [
+                                    article.paragraphs(0, 2, { removeImages: false }).toString(),
+                                    article.paragraphs(2, 100, { removeImages: false }).toString()
+                                ]
+                            });
+                        break;
+                    default:
+                        
+                        res.status(406).end();
+                        break;
+                }
+        
         }, function (err) {
             console.log(err);
         });
@@ -220,6 +244,11 @@ app.get('/__gtg', function(req, res, next) {
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
 });
+
+if (process.env.NODE_ENV === 'production') {
+	var raven = require('raven');
+	app.use(raven.middleware.express(process.env.RAVEN_URL));
+}
 
 // Start polling the data
 
