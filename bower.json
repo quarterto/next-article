@@ -1,6 +1,6 @@
 {
   "name": "next-dobi",
   "dependencies": {
-    "next-header": "https://github.com/Financial-Times/next-header.git#v1.0.16"
+    "next-header": "https://github.com/Financial-Times/next-header.git#v1.0.17"
   }
 }
