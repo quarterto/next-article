@@ -63,11 +63,10 @@
             {% if article.tickerSymbols.length > 0 %}
             <div class="article-card__ticker-symbols">
                 {% for symbol in article.tickerSymbols %}
-                <a
-                    href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
+                <span
                     class="article-card__ticker-symbols__item"
                     data-ticker-symbols="{{ symbol.code }}"
-                    ></a>
+                    ></span>
                 {% endfor %}
             </div>
             {% endif %}
