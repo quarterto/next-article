@@ -7,10 +7,6 @@ var request = require('request');
 var SearchFilters = require('./searchFilters.js');
 
 var app = module.exports = express();
-if (process.env.NODE_ENV === 'production') {
-	var raven = require('raven');
-	app.use(raven.middleware.express(process.env.RAVEN_URL));
-}
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
@@ -170,6 +166,11 @@ app.get('/__gtg', function(req, res, next) {
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
 });
+
+if (process.env.NODE_ENV === 'production') {
+	var raven = require('raven');
+	app.use(raven.middleware.express(process.env.RAVEN_URL));
+}
 
 // Start polling the data
 
