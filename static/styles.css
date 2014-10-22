@@ -1085,16 +1085,12 @@ html {
       content: '\2606';
       display: inline-block;
       margin-right: 8px; }
-    .save__button[data-save-target="favourites"]:hover:before {
-      content: '\2605'; }
 
 .save__button[data-is-saved="true"][data-save-target="favourites"] {
   content: 'Unfavourite this section'; }
   .save__button[data-is-saved="true"][data-save-target="favourites"]:before {
     content: '\2605';
     display: inline-block; }
-  .save__button[data-is-saved="true"][data-save-target="favourites"]:hover:before {
-    content: '\2606'; }
 .save__button[data-is-saved="true"][data-save-target="forlaters"]:before {
   content: '\2691'; }
 
