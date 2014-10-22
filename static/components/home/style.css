@@ -1,0 +1,135 @@
+/* line 1, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+body {
+  background-color: white;
+  margin: 0;
+  font-family: FinancierText; }
+
+/* line 8, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.page-wrapper {
+  margin: 0 auto;
+  width: 100%; }
+
+/* line 13, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.date-container {
+  font-family: FinancierText;
+  font-weight: bold;
+  background-color: black;
+  color: #eea200;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 0.2em; }
+
+/* line 25, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.page-wrapper .pane {
+  min-height: 100vh;
+  background-size: 100%; }
+
+/* line 30, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-1 {
+  background-image: url(img/Tap_to_Pay_With_Isis.jpg);
+  text-align: center; }
+
+/* line 35, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-1 h1 {
+  margin: 10px; }
+
+/* line 39, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-1 .quote {
+  font-family: FinancierDisplay;
+  font-style: italic;
+  color: white;
+  font-size: 2em;
+  font-weight: bold; }
+
+/* line 47, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-1 .pane-content {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 80vh; }
+
+/* line 52, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane .pane-title {
+  font-family: FinancierText;
+  font-size: 1.5em;
+  color: white;
+  font-weight: bold;
+  background-color: black;
+  text-align: center; }
+
+/* line 61, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane .pane-title span {
+  color: #eea200; }
+
+/* line 65, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-1 .pane-content .pane-title {
+  color: black;
+  background-color: transparent;
+  padding: 10px; }
+
+/* line 72, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-1 .pane-content ul {
+  padding: 10px; }
+
+/* line 76, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-1 .pane-content ul li.card {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  list-style-type: none;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  width: 280px;
+  height: 120px;
+  font-size: 1.5em;
+  text-align: left; }
+
+/* line 91, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-1 .pane-content ul li.card a {
+  color: #525252;
+  text-decoration: none; }
+
+/* line 96, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-2 {
+  background-image: url(img/referendum.jpg); }
+
+/* line 100, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-3 {
+  background-color: #fff1e0; }
+
+/* line 104, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-4 {
+  background-image: url(img/ISIS-militants.jpg);
+  position: relative; }
+
+/* line 109, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-4 ul.themes li.card {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  list-style-type: none;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  width: 280px;
+  height: 120px;
+  font-size: 1.5em;
+  text-align: left; }
+
+/* line 125, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-4 ul.themes li.card .themes_articles {
+  display: none;
+  position: absolute;
+  left: 62px;
+  top: 62px;
+  background-color: white;
+  border: solid 1px blue;
+  width: 900px;
+  height: 70vh; }
+
+/* line 140, /Users/rhys.evans/Sites/next/dobi/static/components/home/style.scss */
+.pane-4 ul.themes li.card .themes_articles li {
+  list-style-type: none; }
+

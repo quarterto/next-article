@@ -31,10 +31,7 @@
 		line-height: 0;
 		cursor: pointer;
 		padding: 0 10px 3px;
-
-		&:hover {
-			color: $next-grey-light;
-		}
+		opacity: 0.9;
 
 		&:before {
 			font-size: 24px;
@@ -44,6 +41,10 @@
 			display: inline-block;
 			margin-right: 8px;
 		}
+
+		&:hover:before {
+			content: '\2605';
+		}
 	}
 }
 
@@ -51,16 +52,15 @@
 .save__button[data-is-saved="true"] {
 
 	&[data-save-target="favourites"] {
-		color: $next-grey-light;
 		content: 'Unfavourite this section';
 		
-		&:hover {
-			color: #fff;
-		}
-
 		&:before {
 			content: '\2605';
 			display: inline-block;
+		}
+		
+		&:hover:before {
+			content: '\2606';
 		}
 	}
 

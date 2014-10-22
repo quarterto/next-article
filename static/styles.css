@@ -1076,9 +1076,8 @@ html {
     margin: 0 -10px 0 5px;
     line-height: 0;
     cursor: pointer;
-    padding: 0 10px 3px; }
-    .save__button[data-save-target="favourites"]:hover {
-      color: #868686; }
+    padding: 0 10px 3px;
+    opacity: 0.9; }
     .save__button[data-save-target="favourites"]:before {
       font-size: 24px;
       position: relative;
@@ -1086,15 +1085,16 @@ html {
       content: '\2606';
       display: inline-block;
       margin-right: 8px; }
+    .save__button[data-save-target="favourites"]:hover:before {
+      content: '\2605'; }
 
 .save__button[data-is-saved="true"][data-save-target="favourites"] {
-  color: #868686;
   content: 'Unfavourite this section'; }
-  .save__button[data-is-saved="true"][data-save-target="favourites"]:hover {
-    color: #fff; }
   .save__button[data-is-saved="true"][data-save-target="favourites"]:before {
     content: '\2605';
     display: inline-block; }
+  .save__button[data-is-saved="true"][data-save-target="favourites"]:hover:before {
+    content: '\2606'; }
 .save__button[data-is-saved="true"][data-save-target="forlaters"]:before {
   content: '\2691'; }
 

@@ -5,7 +5,9 @@
         {{ title }} 
     {% endif %}
     </span>
-    {% include "../save-button/base.html" with { key: 'favourites', label: 'Favourite this section', toggleText: 'Unfavourite this section'} %}
+    {% if isFollowable %}
+    {% include "../save-button/base.html" with { key: 'favourites', label: 'Add section to MyFT', toggleText: 'Remove section from MyFT'} %}
+    {% endif %}
 </h1>
 
 {% if stream.length === 0 %}
