@@ -34,8 +34,6 @@ window.addEventListener('DOMContentLoaded', function (evt) {
             emit(key + ':remove', data);
         } else {
             emit(key + ':add', data);
-            reqwest({url: 'http://ft-next-content-notifier.herokuapp.com/fake/' + data.uuidv3, crossOrigin: true});
-
         }
         toggleButtonState(saveBtn);
     }
