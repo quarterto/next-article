@@ -113,6 +113,7 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
         .get([req.params[0]])
         .then(function (article) {
             res.set(responseHeaders);
+	    res.vary(['Accept-Encoding', 'Accept']);
 	    switch(req.accepts(['html', 'json'])) {
                 case 'html':
                     res.render('layout/base', {
