@@ -71,7 +71,7 @@
 
     li {
         display: inline-block;
-        
+
         &:before {
             content: '•';
             display: inline-block;
@@ -97,9 +97,9 @@
     font-size: 40px;
     font-family: FinancierDisplay,Georgia,serif;
     font-weight: 400;
-    text-decoration: none; 
+    text-decoration: none;
     line-height: 1.1;
-    
+
     .save__button {
         position: relative;
         top: -5px;
@@ -142,9 +142,9 @@
             color: #9e2f50;
             text-decoration: underline;
         }
-    } 
+    }
 
-    
+
 
     ul {
         display: inline;
@@ -181,7 +181,7 @@
     	float: left;
     	margin: 0 14px 14px 0;
     }
-    
+
     a {
         text-decoration: underline;
     }
@@ -204,7 +204,7 @@
 
 
     .article-card__body {
-        
+
         margin-bottom: 20px;
 
         p:nth-child(1) {
@@ -293,3 +293,7 @@
 }
 
 
+video {
+	max-width: 100%;
+	height: auto;
+}

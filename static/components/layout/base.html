@@ -6,7 +6,7 @@
     </head>
     <body>
 
-        <!-- Component: header --> 
+        <!-- Component: header -->
         <div class="header__container">
             {% include "../header/base.html" %}
         </div>
@@ -14,7 +14,7 @@
 
 
         <div class="o-grid-row">
-            <!-- Component: context - FIXME - split in to nav & context --> 
+            <!-- Component: context - FIXME - split in to nav & context -->
             <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
                 <!-- Component: selected-filters -->
                 {% if selectedFilters && selectedFilters.length %}
@@ -28,7 +28,7 @@
                 </div>
                 <div class="js-context__container"></div>
             </div>
-            <!-- Component: stream --> 
+            <!-- Component: stream -->
             <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
                 <div class="stream">
                     {% include "../stream/base.html" %}
@@ -46,6 +46,7 @@
         <script src="/dobi/js/user-preferences.js"></script>
         <script src="/dobi/js/more-on.js"></script>
         <script src="/dobi/js/ticker-symbols.js"></script>
+        <script src="/dobi/js/videos.js"></script>
         <script src="/dobi/main.js"></script>
         <link rel="StyleSheet" href="/dobi/utils.css"/>
     </body>
