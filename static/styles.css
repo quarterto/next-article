@@ -1345,6 +1345,10 @@ body {
 .js-show {
   display: block; }
 
+video {
+  max-width: 100%;
+  height: auto; }
+
 .uber-nav {
   margin: 0;
   padding: 0;

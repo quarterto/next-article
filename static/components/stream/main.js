@@ -3,7 +3,7 @@
 (function () {
 
     var emit = function(name, data) {
-        console.log('emitting', name, data);
+        // console.log('emitting', name, data);
         var event = document.createEvent('Event');
         event.initEvent(name, true, true);
         if (data) {
@@ -11,7 +11,7 @@
         }
         top.document.dispatchEvent(event);
     };
-    
+
     function debounce(func, wait, immediate) {
         var timeout;
         return function() {
@@ -26,12 +26,12 @@
             if (callNow) func.apply(context, args);
         };
     }
-    
+
     var $ = function (selector) {
         return [].slice.call(document.querySelectorAll(selector));
     };
 
-    // Reload the stream when an index:open event is fired 
+    // Reload the stream when an index:open event is fired
     document.addEventListener('index:open', function (e) {
         location.href = '/stream/' + e.detail.stream;
     });
@@ -96,7 +96,7 @@
             return el.parentNode.id;
         })[0];
 
-        if (inView && inView.length > 0) { 
+        if (inView && inView.length > 0) {
             emit('stream:inview', { capi: inView  } );
         }
     };
