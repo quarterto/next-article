@@ -68,6 +68,37 @@ app.get('/search/fastft', function(req, res, next) {
     });
 });
 
+app.get('/favourites', function(req,res,next) {
+    var userId = req.query.user;
+    var query = '';
+    var streams = [];
+    if(!userId) {
+        res.status(404).send();
+    }
+    var list = request.get({
+        url: 'http://ft-next-api-user-prefs.herokuapp.com/user/favourites',
+        headers: {
+            'X-FT-UID': userId
+        }
+    }, function(err, resp) {
+        if(resp.body) {
+            streams = JSON.parse(resp.body);
+            query = streams.map(function(el) {
+                return el.uuidv3;
+            }).join(' OR ');
+        }
+        req.url = '/search';
+        req.query = {
+            q: query,
+            friendly: 'favourites',
+            isFollowable: false
+        };
+        next('route');
+
+        // res.redirect('/search?friendly=favourites&q=' + query);
+    });
+});
+
 app.get('/search', function(req, res, next) {
     
     if (!req.query.q) {
@@ -83,8 +114,8 @@ app.get('/search', function(req, res, next) {
         .then(function (result) {
             var articles = result.articles;
 
-            if(!articles.length){
-                throw "404";
+            if (!articles.length){
+                res.send(404);
                 return;
             }
 
@@ -107,14 +138,14 @@ app.get('/search', function(req, res, next) {
                 res.render('layout/base', {
                     mode: 'compact',
                     stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
-                    title: formatSection(req.query.q)
+                    title: formatSection(req.query.q),
+                    isFollowable: req.query.isFollowable !== false,
                 });
                 return;
             }
 
             ft.get(ids)
                 .then( function (articles) {
-
                     var stream = new Stream();
 
                     articles.forEach(function (article) {
@@ -123,10 +154,11 @@ app.get('/search', function(req, res, next) {
                   
                     res.render('layout/base', {
                         mode: 'compact',
-                        stream: { items: stream.items, meta: { facets: result.meta.facets }}, // FIXME add facets back in, esult.meta.facets)
+                        stream: { items: stream.items, meta: { facets: (result.meta) ? result.meta.facets : [] }},
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
-                        title: formatSection(req.query.q)
+                        title: formatSection(req.query.q),
+                        isFollowable: req.query.isFollowable !== false,
                     });
 
                 }, function(err) {
@@ -145,7 +177,6 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
         .get([req.params[0]])
         .then(function (articles) {
             res.set(responseHeaders);
-            
             res.vary(['Accept-Encoding', 'Accept']);
     
             console.log(req.accepts(['html', 'json']));
@@ -162,6 +193,7 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
                             mode: 'expand',
                             isArticle: true,
                             stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
+                            isFollowable: true
                         });
                 
                         break;
@@ -184,11 +216,13 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
                         res.status(406).end();
                         break;
                 }
-        
+
         }, function (err) {
             console.log(err);
         });
 });
+
+
 
 // More-on
 app.get('/more-on/:id', function(req, res, next) {

@@ -56,6 +56,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         el.addEventListener('click', function (evt) {
             var data = { 'uuidv3': streamPath, 'displayText': streamName, 'resourceType': 'stream'};
             toggle('favourites', data, el);
+
         });
     });
 
