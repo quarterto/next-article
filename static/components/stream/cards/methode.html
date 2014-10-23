@@ -58,7 +58,7 @@
     {% if item.has_video %}
 
         <!-- {{ item.videos|json }} -->
-        <video data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls placeholder="{{ item.largestImage.url }}">
+        <video data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
 			<source src="movie.mp4" type="video/mp4">
 			Your browser does not support the video tag.
 		</video>
