@@ -7,6 +7,7 @@ var request = require('request');
 var SearchFilters = require('./searchFilters.js');
 var Stream = require('../models/stream');
 var Clamo = require('fastft-api-client');
+var Flags = require('next-feature-flags-client');
 
 var app = module.exports = express();
 
@@ -27,6 +28,9 @@ app.use('/components', require('./components.js'));
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var ft      = require('ft-api-client')(process.env.apikey);
+
+var flagsNamespace = (process.env.FLAGS) ? process.env.FLAGS : 'production';
+var flags = new Flags('http://ft-next-api-feature-flags.herokuapp.com/' + flagsNamespace);
 
 // Appended to all successful responses
 var responseHeaders = {
@@ -140,6 +144,7 @@ app.get('/search', function(req, res, next) {
                     stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
                     title: formatSection(req.query.q),
                     isFollowable: req.query.isFollowable !== false,
+                    flags: flags.get() 
                 });
                 return;
             }
@@ -159,6 +164,7 @@ app.get('/search', function(req, res, next) {
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
                         isFollowable: req.query.isFollowable !== false,
+                        flags: flags.get() 
                     });
 
                 }, function(err) {
@@ -193,7 +199,8 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
                             mode: 'expand',
                             isArticle: true,
                             stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
-                            isFollowable: true
+                            isFollowable: true,
+                            flags: flags.get() 
                         });
                 
                         break;
@@ -238,7 +245,8 @@ app.get('/more-on/:id', function(req, res, next) {
                         res.set(responseHeaders);
                         res.render('more-on/base', {
                             mode: 'expand',
-                            stream: articles
+                            stream: articles,
+                            flags: flags.get() 
                         });
 		    } else {
 			res.status(404).send();
