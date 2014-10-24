@@ -31,11 +31,6 @@ var ft      = require('ft-api-client')(process.env.apikey);
 
 var flagsNamespace = (process.env.FLAGS) ? process.env.FLAGS : 'production';
 var flags = new Flags('http://ft-next-api-feature-flags.herokuapp.com/' + flagsNamespace);
-var featureFlags = {};
-
-setInterval(function () {
-    featureFlags = flags.get();
-}, 3000);
 
 // Appended to all successful responses
 var responseHeaders = {
@@ -149,7 +144,7 @@ app.get('/search', function(req, res, next) {
                     stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
                     title: formatSection(req.query.q),
                     isFollowable: req.query.isFollowable !== false,
-                    flags: featureFlags
+                    flags: flags.get() 
                 });
                 return;
             }
@@ -169,7 +164,7 @@ app.get('/search', function(req, res, next) {
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
                         isFollowable: req.query.isFollowable !== false,
-                        flags: featureFlags
+                        flags: flags.get() 
                     });
 
                 }, function(err) {
@@ -205,7 +200,7 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
                             isArticle: true,
                             stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
                             isFollowable: true,
-                            flags: featureFlags
+                            flags: flags.get() 
                         });
                 
                         break;
@@ -251,7 +246,7 @@ app.get('/more-on/:id', function(req, res, next) {
                         res.render('more-on/base', {
                             mode: 'expand',
                             stream: articles,
-                            flags: featureFlags
+                            flags: flags.get() 
                         });
 		    } else {
 			res.status(404).send();
