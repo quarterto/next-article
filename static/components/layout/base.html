@@ -3,8 +3,11 @@
         <link rel="stylesheet" href="/dobi/styles.css"/>
         <link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.4.1,o-grid@^2.1.5">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script>
+        </script>
     </head>
     <body>
+
 
         <!-- Component: header -->
         <div class="header__container">
@@ -12,28 +15,43 @@
         </div>
 
 
-
         <div class="o-grid-row">
-            <!-- Component: context - FIXME - split in to nav & context -->
-            <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
-                <!-- Component: selected-filters -->
-                {% if selectedFilters && selectedFilters.length %}
-                    <div class="context selected-filters__container">
-                        {% include "../selected-filters/base.html"  with {filters: selectedFilters} %}
+            
+            
+            {% if flags.contextNavigation.isSwitchedOn() %}
+                <!-- Component: context - FIXME - split in to nav & context -->
+                <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
+                    <!-- Component: selected-filters -->
+                    {% if selectedFilters && selectedFilters.length %}
+                        <div class="context selected-filters__container">
+                            {% include "../selected-filters/base.html"  with {filters: selectedFilters} %}
+                        </div>
+                    {% endif %}
+                    <!-- Component: search-filters -->
+                    <div class="context search-filters__container">
+                        {% include "../search-filters/base.html" with {filters: searchFilters} %}
                     </div>
-                {% endif %}
-                <!-- Component: search-filters -->
-                <div class="context search-filters__container">
-                    {% include "../search-filters/base.html" with {filters: searchFilters} %}
+                    <div class="js-context__container"></div>
                 </div>
-                <div class="js-context__container"></div>
-            </div>
-            <!-- Component: stream -->
-            <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
-                <div class="stream">
-                    {% include "../stream/base.html" %}
+            
+                <!-- Component: stream -->
+                <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
+                    <div class="stream">
+                        {% include "../stream/base.html" %}
+                    </div>
                 </div>
-            </div>
+            {% else %}
+            
+                <!-- Component: stream -->
+                <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
+                <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
+                    <div class="stream">
+                        {% include "../stream/base.html" %}
+                    </div>
+                </div>
+                <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
+
+            {% endif %}
         </div>
 
         <script src="//build.origami.ft.com/bundles/js?modules=o-date@^1.0.0"></script>
@@ -42,7 +60,11 @@
         <!-- libraries, vendor dependencies, shared CSS -->
 
         <script src="/dobi/vendor/reqwest.min.js"></script>
-        <script src="/dobi/js/context.js"></script>
+        
+        {% if flags.contextNavigation.isSwitchedOn() %}
+           <script src="/dobi/js/context.js"></script>
+        {% endif %}
+
         <script src="/dobi/js/user-preferences.js"></script>
         <script src="/dobi/js/more-on.js"></script>
         <script src="/dobi/js/ticker-symbols.js"></script>
