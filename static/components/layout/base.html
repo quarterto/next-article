@@ -6,26 +6,37 @@
     </head>
     <body>
 
-        <!-- Component: header --> 
+        <!-- Component: header -->
         <div class="header__container">
             {% include "../header/base.html" %}
         </div>
 
-        <!-- Component: context - FIXME - split in to nav & context --> 
-        <div class ="context__container">
-        <div class="js-context__container">
-        </div>
 
-        <div class="js-user-preferences__container">
-        </div>
-        </div>
-        <!-- Component: stream --> 
-        <div class="stream__container">
-            <div class="stream">
-                {% include "../stream/base.html" %}
+
+        <div class="o-grid-row">
+            <!-- Component: context - FIXME - split in to nav & context -->
+            <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
+                <!-- Component: selected-filters -->
+                {% if selectedFilters && selectedFilters.length %}
+                    <div class="context selected-filters__container">
+                        {% include "../selected-filters/base.html"  with {filters: selectedFilters} %}
+                    </div>
+                {% endif %}
+                <!-- Component: search-filters -->
+                <div class="context search-filters__container">
+                    {% include "../search-filters/base.html" with {filters: searchFilters} %}
+                </div>
+                <div class="js-context__container"></div>
+            </div>
+            <!-- Component: stream -->
+            <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
+                <div class="stream">
+                    {% include "../stream/base.html" %}
+                </div>
             </div>
         </div>
 
+        <script src="//build.origami.ft.com/bundles/js?modules=o-date@^1.0.0"></script>
         <script src="/dobi/components/layout/main.js"></script>
 
         <!-- libraries, vendor dependencies, shared CSS -->
@@ -34,9 +45,9 @@
         <script src="/dobi/js/context.js"></script>
         <script src="/dobi/js/user-preferences.js"></script>
         <script src="/dobi/js/more-on.js"></script>
-        <script src="/dobi/js/splash.js"></script>
-        <script src="/dobi/js/notify.js"></script>
+        <script src="/dobi/js/ticker-symbols.js"></script>
+        <script src="/dobi/js/videos.js"></script>
+        <script src="/dobi/main.js"></script>
         <link rel="StyleSheet" href="/dobi/utils.css"/>
-
     </body>
 </html>

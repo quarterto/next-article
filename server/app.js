@@ -4,6 +4,9 @@ var express = require('express');
 var swig = require('swig');
 var dateFormat = require('dateformat');
 var request = require('request');
+var SearchFilters = require('./searchFilters.js');
+var Stream = require('../models/stream');
+var Clamo = require('fastft-api-client');
 
 var app = module.exports = express();
 
@@ -25,6 +28,7 @@ var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var ft      = require('ft-api-client')(process.env.apikey);
 
+<<<<<<< HEAD
 var Flags = require('next-feature-flags-client');
 
 var flagsNamespace = (process.env.FLAGS) ? process.env.FLAGS : 'prod';
@@ -37,7 +41,7 @@ setInterval(function () {
     });
 }, 60000);
 
-// Appended to all successful responeses
+// Appended to all successful responses
 var responseHeaders = {
     'Cache-Control': 'max-age=120, public'
 };
@@ -54,71 +58,184 @@ var formatSection = function (s) {
     return s;
 };
 
+/*
+    FIXME - make a new route for this
+*/
+    
+app.get('/search/fastft', function(req, res, next) {
+
+    var searchFilters = new SearchFilters(req);
+    
+    Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
+    Clamo.config('timeout', 4000);
+    Clamo.search(req.query.q, {     // Eg, 'location:Japan'
+        limit: 10,
+        offset: 1
+        }).then(function (data) {
+            
+            var stream = new Stream();
+            
+            data.posts.forEach(function (post) {
+                stream.push('fastft', post)
+            });
+    });
+});
+
+app.get('/favourites', function(req,res,next) {
+    var userId = req.query.user;
+    var query = '';
+    var streams = [];
+    if(!userId) {
+        res.status(404).send();
+    }
+    var list = request.get({
+        url: 'http://ft-next-api-user-prefs.herokuapp.com/user/favourites',
+        headers: {
+            'X-FT-UID': userId
+        }
+    }, function(err, resp) {
+        if(resp.body) {
+            streams = JSON.parse(resp.body);
+            query = streams.map(function(el) {
+                return el.uuidv3;
+            }).join(' OR ');
+        }
+        req.url = '/search';
+        req.query = {
+            q: query,
+            friendly: 'favourites',
+            isFollowable: false
+        };
+        next('route');
+
+        // res.redirect('/search?friendly=favourites&q=' + query);
+    });
+});
 
 app.get('/search', function(req, res, next) {
+    
+    if (!req.query.q) {
+        res.redirect('/');
+        return;
+    }
+        
+    var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
+    var searchFilters = new SearchFilters(req);
+    var query = searchFilters.buildAPIQuery();
+    
+    ft.search(query, count)
+        .then(function (result) {
+            var articles = result.articles;
 
-        var count = (req.query.count && parseInt(req.query.count) < 30) ? req.query.count : 10;
+            if (!articles.length){
+                res.send(404);
+                return;
+            }
 
-        if (/^popular:most/i.test(req.query.q)) {
-            
-            res.render('layout/base', {
-                mode: 'compact',
-                stream: popular.get().slice(0, (count || 5)), 
-                title: formatSection(req.query.q)
-            });
-
-            return;
-        }
-
-        ft
-        .search(decodeURI(req.query.q), count)
-        .then(function (articles) {
-
-            var ids;
             if (articles[0] instanceof Object) {
-                ids = articles.map(function (article) {
+                var ids = articles.map(function (article) {
                     return article.id;
                 });
             } else {
-                ids = articles;
+                var ids = articles; // FIXME when is this ever not a Object?
             }
 
-            ft
-                .get(ids)
+            if (/^popular:most/i.test(req.query.q)) {
+                
+                var stream = new Stream();
+
+                articles.forEach(function (article) {
+                    stream.push('methode', article)
+                });
+                
+                res.render('layout/base', {
+                    mode: 'compact',
+                    stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
+                    title: formatSection(req.query.q),
+                    isFollowable: req.query.isFollowable !== false,
+                });
+                return;
+            }
+
+            ft.get(ids)
                 .then( function (articles) {
-                    res.set(responseHeaders);
+                    var stream = new Stream();
+
+                    articles.forEach(function (article) {
+                        stream.push('methode', article)
+                    });
+                  
                     res.render('layout/base', {
                         mode: 'compact',
-                        stream: articles,
-                        title: formatSection(req.query.q)
+                        stream: { items: stream.items, meta: { facets: (result.meta) ? result.meta.facets : [] }},
+                        selectedFilters : searchFilters.filters,
+                        searchFilters : searchFilters.getSearchFilters([]),
+                        title: formatSection(req.query.q),
+                        isFollowable: req.query.isFollowable !== false,
                     });
+
                 }, function(err) {
                     console.log(err);
                     res.send(404);
                 });
 
-        }, function (err) {
-            console.log(err);
-            res.send(404);
-        });
+    }, function (err) { console.log('ERR', err) })
 
-});
+})
+
 
 // ft articles
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(req, res, next) {
     ft
         .get([req.params[0]])
-        .then(function (article) {
+        .then(function (articles) {
             res.set(responseHeaders);
-            res.render('layout/base', {
-                mode: 'expand',
-                isArticle: true,
-                stream: article
-            });
+            res.vary(['Accept-Encoding', 'Accept']);
+    
+            console.log(req.accepts(['html', 'json']));
+            switch(req.accepts(['html', 'json'])) {
+                    case 'html':
+                        
+                        var stream = new Stream();
+
+                        articles.forEach(function (article) {
+                            stream.push('methode', article)
+                        });
+
+                        res.render('layout/base', {
+                            mode: 'expand',
+                            isArticle: true,
+                            stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
+                            isFollowable: true
+                        });
+                
+                        break;
+
+                    case 'json':
+
+                        var article = articles[0];
+                        res.json({
+                            id: article.id,	    
+                            headline: article.headline,	    
+                            largestImage: article.largestImage,	    
+                            body: [
+                                    article.paragraphs(0, 2, { removeImages: false }).toString(),
+                                    article.paragraphs(2, 100, { removeImages: false }).toString()
+                                ]
+                            });
+                        break;
+                    default:
+                        
+                        res.status(406).end();
+                        break;
+                }
+
         }, function (err) {
             console.log(err);
         });
 });
+
+
 
 // More-on
 app.get('/more-on/:id', function(req, res, next) {
@@ -167,6 +284,11 @@ app.get('/__gtg', function(req, res, next) {
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
 });
+
+if (process.env.NODE_ENV === 'production') {
+	var raven = require('raven');
+	app.use(raven.middleware.express(process.env.RAVEN_URL));
+}
 
 // Start polling the data
 

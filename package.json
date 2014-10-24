@@ -26,21 +26,26 @@
   ],
   "dependencies": {
     "dateformat": "^1.0.8",
+    "debowerify": "^0.9.1",
     "debug": "^2.0.0",
     "es6-promise": "*",
     "express": "^4.8.x",
     "forever": "^0.11.1",
-    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.27.tar.gz",
+    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.40.tar.gz",
+    "fastft-api-client": "https://github.com/Financial-Times/fastft-api-client/archive/0.11.0.tar.gz",
     "ft-poller": "0.0.4",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v0.0.1.tar.gz",
     "gulp": "^3.8.8",
     "gulp-watch": "^1.0.7",
     "lodash": "^2.4.1",
-    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/archive/2.0.0.tar.gz",
+    "moment": "^2.8.3",
+    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/archive/master.tar.gz",
+    "raven": "^0.7.2",
     "request": "^2.44.0",
     "swig": "^1.4.2"
   },
   "devDependencies": {
+    "chai": "^1.9.2",
     "jshint": "^2.5.6",
     "mocha": "^1.21.4",
     "supertest": "^0.14.0"

@@ -28,36 +28,6 @@ window.addEventListener('DOMContentLoaded', function (evt) {
     var streamName = localStorage.getItem(contextTitleKey);
 
 
-
-
-    reqwest({
-        url: '/user-preferences', 
-        crossOrigin: true
-    }).then(function (res) {
-        $('.js-user-preferences__container').map(function (el) {
-            var myTag = document.createElement('div');
-            myTag.innerHTML = res;
-            el.appendChild(myTag); 
-            //scripts wont execute, so grab them and append to head
-            var scripts = myTag.querySelectorAll('script');
-            [].slice.call(scripts).map(function(script) {
-                var s = document.createElement('script');
-                if(script.src) {
-                    s.src = script.src;
-                } else {
-                    s.innerHTML = script.innerHTML;
-                }
-                document.head.appendChild(s);
-            });
-
-            document.documentElement.classList.add('has-user-preferences');
-            document.documentElement.classList.add('has-context');
-        });
-
-
-    });
-
-
     function toggle(key, data, saveBtn) {
         var isSaved = (saveBtn.getAttribute('data-is-saved') === "true");
         if(isSaved) {
@@ -86,6 +56,7 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         el.addEventListener('click', function (evt) {
             var data = { 'uuidv3': streamPath, 'displayText': streamName, 'resourceType': 'stream'};
             toggle('favourites', data, el);
+
         });
     });
 

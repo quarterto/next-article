@@ -1,0 +1,40 @@
+/*
+Syntax error: Invalid CSS after "...ts/uber/style";": expected selector or at-rule, was "<<<<<<< HEAD"
+        on line 16 of /var/folders/x5/5jws9q9959ncg5g_hvfxv03nmmp7l5/T/gulp-ruby-sass/styles.scss
+
+11: @import "components/save-button/style";
+12: @import "components/layout/style";
+13: @import "components/site-search/style";
+14: @import "components/stream/style";
+15: @import "components/uber/style";
+16: <<<<<<< HEAD
+17: @import "components/notify/style";
+18: =======
+19: @import "components/more-on/style";
+20: @import "components/search-filters/style";
+21: @import "components/selected-filters/style";
+
+Backtrace:
+/var/folders/x5/5jws9q9959ncg5g_hvfxv03nmmp7l5/T/gulp-ruby-sass/styles.scss:16
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/scss/parser.rb:1312:in `expected'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/scss/parser.rb:1248:in `expected'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/scss/parser.rb:42:in `parse'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/engine.rb:409:in `_to_tree'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/engine.rb:274:in `render'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/plugin/compiler.rb:484:in `update_stylesheet'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/plugin/compiler.rb:214:in `block in update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/plugin/compiler.rb:208:in `each'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/plugin/compiler.rb:208:in `update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/plugin.rb:82:in `update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/exec.rb:489:in `watch_or_update'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/exec.rb:346:in `process_result'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/exec.rb:43:in `parse'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/lib/sass/exec.rb:22:in `parse!'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.14/bin/sass:13:in `<top (required)>'
+/usr/bin/sass:23:in `load'
+/usr/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"...ts/uber/style\";\": expected selector or at-rule, was \"<<<<<<< HEAD\"\A         on line 16 of /var/folders/x5/5jws9q9959ncg5g_hvfxv03nmmp7l5/T/gulp-ruby-sass/styles.scss\A \A 11: @import \"components/save-button/style\";\A 12: @import \"components/layout/style\";\A 13: @import \"components/site-search/style\";\A 14: @import \"components/stream/style\";\A 15: @import \"components/uber/style\";\A 16: <<<<<<< HEAD\A 17: @import \"components/notify/style\";\A 18: =======\A 19: @import \"components/more-on/style\";\A 20: @import \"components/search-filters/style\";\A 21: @import \"components/selected-filters/style\";"; }

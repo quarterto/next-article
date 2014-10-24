@@ -7,11 +7,13 @@ $next-grey-dark: #343434;
 $next-grey-light: #868686;
 $next-grey-lighter: #d9d9d9;
 
-@import "components/header/style";
+@import "next-header/main";
 @import "components/save-button/style";
 @import "components/layout/style";
 @import "components/site-search/style";
-@import "components/splash/style";
 @import "components/stream/style";
 @import "components/uber/style";
-@import "components/notify/style";
+@import "components/more-on/style";
+@import "components/search-filters/style";
+@import "components/selected-filters/style";
+@import "components/ticker-symbols/style";
