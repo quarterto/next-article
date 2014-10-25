@@ -6,7 +6,6 @@
     </head>
     <body>
 
-
         <!-- Component: header -->
         <div class="header__container">
             {% include "../header/base.html" %}
@@ -59,10 +58,7 @@
 
         <script src="/dobi/vendor/reqwest.min.js"></script>
         
-        {% if flags.contextNavigation.isSwitchedOn() %}
-           <script src="/dobi/js/context.js"></script>
-        {% endif %}
-
+        <script src="/dobi/js/context.js"></script>
         <script src="/dobi/js/user-preferences.js"></script>
         <script src="/dobi/js/more-on.js"></script>
         <script src="/dobi/js/ticker-symbols.js"></script>
