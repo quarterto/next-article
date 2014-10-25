@@ -43,7 +43,7 @@
     </div>
     {% endif %}
 
-    {% if item.tickerSymbols.length > 0 %}
+    {% if item.tickerSymbols.length > 0 && flags.marketData.isSwitchedOn() %}
     <div class="article-card__ticker-symbols">
         {% for symbol in item.tickerSymbols %}
         <a
