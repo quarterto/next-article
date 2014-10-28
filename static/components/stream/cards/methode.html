@@ -3,7 +3,9 @@
 
     {% if mode === 'compact' %}
     <div class="article-card__primary-tag">
-            {% if item.topics %}
+            {% if item.brand %}
+                {% set topic = item.brand %}
+            {% elseif item.topics %}
                 {% set topic = item.topics|first %}
             {% else %}
                 {% set topic = item.primarySection %}
@@ -59,6 +61,10 @@
         {% endfor %}
     </div>
     {% endif %}
+
+    {% if item.brand && item.authors.length > 0 %} 
+    <img class="article-card__headshot" src="http://image.webservices.ft.com/v1/images/raw/fthead:{{ item.authors[0].name|lower|replace(' ', '-') }}?source=http://www.ft.com&width=75"/>
+{% endif %}
 
     {% if item.has_video && flags.video.isSwitchedOn() %}
 
