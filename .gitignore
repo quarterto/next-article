@@ -1,8 +1,10 @@
 /bower_components/
 /node_modules/
 /__attic/
-/.idea
 /.sass-cache/
 /.node-version
 .DS_Store
 npm-debug.log
+/node-v*
+/tmp/
+.env

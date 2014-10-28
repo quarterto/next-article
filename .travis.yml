@@ -3,11 +3,7 @@ script:
 language: node_js
 node_js:
 - '0.10'
-deploy:
-  provider: heroku
-  api_key:
-    secure: clgIzgUdAV825/TAtVYSxq+XGZMm4/mNpLZvusZ2uzd5vzqbaxBoTHvrJmJKNqttlBfsRheertSiP5UtEtIUFXLs5Kr0aSUSKCM0IJLoranmkyghitwOD+6/JimF0PxU3YMBeEr2uErjJWYoolGyDMqGDCh2DMlN0aqExBW0JMM=
-  app: ft-next-dobi
-  on:
-    repo: Financial-Times/next-dobi
-    node: '0.10'
+before_install:
+- gem install sass --version 3.3
+after_success:
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && make deploy

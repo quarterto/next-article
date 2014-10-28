@@ -26,7 +26,6 @@
   ],
   "dependencies": {
     "dateformat": "^1.0.8",
-    "debowerify": "^0.9.1",
     "debug": "^2.0.0",
     "es6-promise": "*",
     "express": "^4.8.x",
@@ -35,19 +34,22 @@
     "fastft-api-client": "https://github.com/Financial-Times/fastft-api-client/archive/0.11.0.tar.gz",
     "ft-poller": "0.0.4",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v0.0.2.tar.gz",
-    "gulp": "^3.8.8",
-    "gulp-watch": "^1.0.7",
     "lodash": "^2.4.1",
     "moment": "^2.8.3",
-    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/archive/master.tar.gz",
     "raven": "^0.7.2",
     "request": "^2.44.0",
     "swig": "^1.4.2"
   },
   "devDependencies": {
+    "haikro": "^1.1.3",
+    "debowerify": "^0.8.2",
+    "bower": "^1.3.12",
     "chai": "^1.9.2",
+    "gulp": "^3.8.8",
+    "gulp-watch": "^1.0.7",
     "jshint": "^2.5.6",
     "mocha": "^1.21.4",
+    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/archive/master.tar.gz",
     "supertest": "^0.14.0"
   },
   "engines": {
