@@ -2,8 +2,13 @@
 <div class="article-card article-card__tone--{{ item.visualTone }}{% if mode === 'compact' %} article-card--compact{% endif %}" id="capi-{{ item.id }}">
 
     {% if mode === 'compact' %}
-    <div class="article-card__tone">
-        {{ item.visualTone }}
+    <div class="article-card__primary-tag">
+            {% if item.topics %}
+                {% set topic = item.topics|first %}
+            {% else %}
+                {% set topic = item.primarySection %}
+            {% endif %}
+            <a href="/search?q={{ topic.taxonomy }}:{{ topic.name }}">{{ topic.name }}</a>
     </div>
     {% endif %}
 
@@ -58,7 +63,7 @@
     {% if item.has_video && flags.video.isSwitchedOn() %}
 
         <!-- {{ item.videos|json }} -->
-        <video data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
+        <video class="article-card__video" data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
 			<source type="video/mp4">
 			Your browser does not support the video tag.
 		</video>

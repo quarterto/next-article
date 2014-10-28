@@ -27,7 +27,6 @@
 .article-card {
     margin-top: 20px;
     clear: both;
-    margin-bottom: 50px;
 
     a {
         text-decoration: none;
@@ -52,7 +51,17 @@
     font-family: BentonSans, Arial, sans-serif;
 }
 
-
+.article-card__primary-tag {
+    background-color: $next-orange;
+    font-weight: bold;
+    font-family: BentonSans, Arial, sans-serif;
+    padding: 4px;
+    margin-left: 10px;
+    display: inline-block;
+    a {
+        color: $next-black;
+    }
+}
 .article-card__metadata-list {
     border-top: 1px solid #777;
     border-bottom: 1px solid #777;
@@ -199,9 +208,9 @@
 }
 
 .article-card--compact {
-    border-top: 1px solid #777;
-    padding-top: 0;
-
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    margin-bottom: 0;
 
     .article-card__body {
 
@@ -226,8 +235,26 @@
             padding-left: 14px;
         }
     }
+    .article-card__mentions,
+    .article-card__video,
+    .article-card__body,
+    .article-card__image,
+    .article-card__ticker-symbols
+     {
+        display: none;
+    }
 }
 
+.article-card--expanded {
+        .article-card__mentions,
+    .article-card__video,
+    .article-card__body,
+    .article-card__image,
+    .article-card__ticker-symbols
+     {
+        display: initial;
+    }
+}
 .article-card:first-child {
     margin-top: 20px;
 }
@@ -247,17 +274,13 @@
     font-family: BentonSans,Arial,sans-serif;
 }
 
-.article-card__tone--news {
-    border-top: 2px solid blue;
+
+.article-card__tone--comment,
+.article-card__tone--analysis
+ {
+    background-color: $next-pink;
 }
 
-.article-card__tone--comment {
-    border-top: 2px solid green;
-}
-
-.article-card__tone--analysis {
-    border-top: 2px solid red;
-}
 
 .article-card__more {
     margin: 0px auto 20px auto;

@@ -1162,8 +1162,7 @@ body {
 /* article__card */
 .article-card {
   margin-top: 20px;
-  clear: both;
-  margin-bottom: 50px; }
+  clear: both; }
   .article-card a {
     text-decoration: none; }
     .article-card a:hover {
@@ -1180,6 +1179,16 @@ body {
   text-transform: uppercase;
   margin-bottom: 10px;
   font-family: BentonSans, Arial, sans-serif; }
+
+.article-card__primary-tag {
+  background-color: #dfab6c;
+  font-weight: bold;
+  font-family: BentonSans, Arial, sans-serif;
+  padding: 4px;
+  margin-left: 10px;
+  display: inline-block; }
+  .article-card__primary-tag a {
+    color: #303030; }
 
 .article-card__metadata-list {
   border-top: 1px solid #777;
@@ -1278,8 +1287,9 @@ body {
     max-width: 100%; }
 
 .article-card--compact {
-  border-top: 1px solid #777;
-  padding-top: 0; }
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  margin-bottom: 0; }
   .article-card--compact .article-card__body {
     margin-bottom: 20px; }
     .article-card--compact .article-card__body p:nth-child(1) {
@@ -1293,6 +1303,19 @@ body {
     .article-card--compact .article-card__image + .article-card__body {
       margin-left: 33%;
       padding-left: 14px; }
+  .article-card--compact .article-card__mentions,
+  .article-card--compact .article-card__video,
+  .article-card--compact .article-card__body,
+  .article-card--compact .article-card__image,
+  .article-card--compact .article-card__ticker-symbols {
+    display: none; }
+
+.article-card--expanded .article-card__mentions,
+.article-card--expanded .article-card__video,
+.article-card--expanded .article-card__body,
+.article-card--expanded .article-card__image,
+.article-card--expanded .article-card__ticker-symbols {
+  display: initial; }
 
 .article-card:first-child {
   margin-top: 20px; }
@@ -1309,14 +1332,9 @@ body {
 .article-card__body .more-on {
   font-family: BentonSans,Arial,sans-serif; }
 
-.article-card__tone--news {
-  border-top: 2px solid blue; }
-
-.article-card__tone--comment {
-  border-top: 2px solid green; }
-
+.article-card__tone--comment,
 .article-card__tone--analysis {
-  border-top: 2px solid red; }
+  background-color: #fff1e0; }
 
 .article-card__more {
   margin: 0px auto 20px auto;
