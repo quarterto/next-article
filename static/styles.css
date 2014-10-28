@@ -5,6 +5,9 @@
   font-style: normal;
   src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.eot");
   src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.eot?#iefix") format("embedded-opentype"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.woff") format("woff"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.ttf") format("truetype"); }
+.icon-arrow-down:before {
+  content: "\e001"; }
+
 .icon__close:before {
   content: "\e011"; }
 
@@ -533,6 +536,9 @@ html {
  *
  *                     _deprecated: <msg>  Emits <msg> as a warning if referenced, but still works
  */
+.icon-arrow-down:before {
+  content: "\e001"; }
+
 .icon__close:before {
   content: "\e011"; }
 
@@ -550,6 +556,9 @@ html {
   $name:             name of placeholder/class.
   $force-non-silent: <boolean> prevent silent mode
 */
+.icon-arrow-down:before {
+  content: "\e001"; }
+
 .icon__close:before {
   content: "\e011"; }
 
@@ -1054,6 +1063,21 @@ html {
   color: #FFFFFF;
   border: transparent; }
 
+.icon-arrow-down:before {
+  content: "\e001"; }
+
+.icon__close:before {
+  content: "\e011"; }
+
+.icon__menu:before {
+  content: "\e014"; }
+
+.icon__myft:before {
+  content: "\e016"; }
+
+.icon__search:before {
+  content: "\e018"; }
+
 .save__button {
   font-family: BentonSans, Arial, sans-serif;
   text-align: center;
@@ -1138,6 +1162,25 @@ body {
   padding: 3px;
   display: block;
   margin: 3px; }
+
+@font-face {
+  font-family: "ft-icons";
+  src: url(//build.origami.ft.com/files/o-ft-icons/build/ft-icons-49e2fa4f8edc0e0d40971992b7af90a5.eot);
+  src: url(//build.origami.ft.com/files/o-ft-icons/build/ft-icons-49e2fa4f8edc0e0d40971992b7af90a5.eot?#iefix) format("embedded-opentype"), url(//build.origami.ft.com/files/o-ft-icons/build/ft-icons-49e2fa4f8edc0e0d40971992b7af90a5.woff) format("woff"), url(//build.origami.ft.com/files/o-ft-icons/build/ft-icons-49e2fa4f8edc0e0d40971992b7af90a5.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+.icon-arrow-down {
+  font-family: "ft-icons";
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: normal !important;
+  font-style: normal !important;
+  speak: none;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 .stream {
   padding-top: 10px;
@@ -1267,7 +1310,6 @@ body {
       content: 'and\00a0'; }
 
 .article-card__length {
-  float: right;
   margin: 0; }
 
 .article-card__body {
@@ -1303,19 +1345,17 @@ body {
     .article-card--compact .article-card__image + .article-card__body {
       margin-left: 33%;
       padding-left: 14px; }
-  .article-card--compact .article-card__mentions,
-  .article-card--compact .article-card__video,
-  .article-card--compact .article-card__body,
-  .article-card--compact .article-card__image,
-  .article-card--compact .article-card__ticker-symbols {
-    display: none; }
+  .article-card--compact .article-card__expand {
+    float: right;
+    margin-top: -40px;
+    color: #868686; }
+    .article-card--compact .article-card__expand:hover {
+      text-decoration: none; }
 
-.article-card--expanded .article-card__mentions,
-.article-card--expanded .article-card__video,
-.article-card--expanded .article-card__body,
-.article-card--expanded .article-card__image,
-.article-card--expanded .article-card__ticker-symbols {
-  display: initial; }
+.article-card__expandable-content {
+  display: none; }
+  .article-card__expandable-content.js-show {
+    display: block; }
 
 .article-card:first-child {
   margin-top: 20px; }

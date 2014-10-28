@@ -1,3 +1,11 @@
+
+@include oFtIconsFontFace();
+
+.icon-arrow-down {
+    @include oFtIconsBaseIconStyles();
+    @extend %o-ft-icons-icon--arrow-down;
+}
+
 .stream {
     padding-top: 10px;
     position: relative;
@@ -178,7 +186,6 @@
 }
 
 .article-card__length {
-    float: right;
     margin: 0;
 }
 
@@ -235,26 +242,26 @@
             padding-left: 14px;
         }
     }
-    .article-card__mentions,
-    .article-card__video,
-    .article-card__body,
-    .article-card__image,
-    .article-card__ticker-symbols
-     {
-        display: none;
+   
+    .article-card__expand {
+        float: right;
+        margin-top: -40px;
+        color: $next-grey-light;
+
+        &:hover {
+            text-decoration: none;
+        }
     }
 }
 
-.article-card--expanded {
-        .article-card__mentions,
-    .article-card__video,
-    .article-card__body,
-    .article-card__image,
-    .article-card__ticker-symbols
-     {
-        display: initial;
+.article-card__expandable-content {
+    display: none;
+
+    &.js-show {
+        display: block;        
     }
 }
+
 .article-card:first-child {
     margin-top: 20px;
 }

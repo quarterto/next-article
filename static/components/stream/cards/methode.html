@@ -32,83 +32,89 @@
         {% include "../../save-button/base.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
     </h3>
 
-        <div class="article-card__reading-info">
-        {% include "../byline.html" with item %}
-        {% include "../length.html" with item %}
+    <div class="article-card__reading-info">
+    {% include "../byline.html" with item %}
+    </div>
+
+    <a href="#" class="article-card__expand js-toggle" data-toggle=".article-card__expandable-content">
+        <i class="icon-arrow-down"></i>
+    </a>   
+
+    <section class="article-card__expandable-content">
+        <div class="article-card__length">
+            {% include "../length.html" with item %}
+        </div> 
+
+        {% if item.people.length > 0 || item.organisations.length > 0 %}
+        <div class="article-card__mentions article-card__metadata-list">
+            Mentions
+            <ul class="article-card__mentions__items">
+                {% for entity in item.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                {% for entity in item.organisations %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                {% for entity in item.regions %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                {% for entity in item.topics %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+            </ul>
         </div>
+        {% endif %}
 
+        {% if item.tickerSymbols.length > 0 && flags.marketData.isSwitchedOn() %}
+        <div class="article-card__ticker-symbols">
+            {% for symbol in item.tickerSymbols %}
+            <a
+                href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
+                class="article-card__ticker-symbols__item"
+                data-ticker-symbols="{{ symbol.code }}"
+                ></a>
+            {% endfor %}
+        </div>
+        {% endif %}
 
-    {% if item.people.length > 0 || item.organisations.length > 0 %}
-    <div class="article-card__mentions article-card__metadata-list">
-        Mentions
-        <ul class="article-card__mentions__items">
-            {% for entity in item.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
-            {% for entity in item.organisations %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
-            {% for entity in item.regions %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
-            {% for entity in item.topics %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
-        </ul>
-    </div>
+        {% if item.brand && item.authors.length > 0 %} 
+        <img class="article-card__headshot" src="http://image.webservices.ft.com/v1/images/raw/fthead:{{ item.authors[0].name|lower|replace(' ', '-') }}?source=http://www.ft.com&width=75"/>
     {% endif %}
 
-    {% if item.tickerSymbols.length > 0 && flags.marketData.isSwitchedOn() %}
-    <div class="article-card__ticker-symbols">
-        {% for symbol in item.tickerSymbols %}
-        <a
-            href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
-            class="article-card__ticker-symbols__item"
-            data-ticker-symbols="{{ symbol.code }}"
-            ></a>
-        {% endfor %}
-    </div>
-    {% endif %}
+        {% if item.has_video && flags.video.isSwitchedOn() %}
 
-    {% if item.brand && item.authors.length > 0 %} 
-    <img class="article-card__headshot" src="http://image.webservices.ft.com/v1/images/raw/fthead:{{ item.authors[0].name|lower|replace(' ', '-') }}?source=http://www.ft.com&width=75"/>
-{% endif %}
-
-    {% if item.has_video && flags.video.isSwitchedOn() %}
-
-        <!-- {{ item.videos|json }} -->
-        <video class="article-card__video" data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
-			<source type="video/mp4">
-			Your browser does not support the video tag.
-		</video>
+            <!-- {{ item.videos|json }} -->
+            <video class="article-card__video" data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
+    			<source type="video/mp4">
+    			Your browser does not support the video tag.
+    		</video>
+            
+        {% else %}
         
-    {% else %}
-    
-        {% if item.largestImage && isArticle %}
-	    <a href="/{{ item.id }}" class="article-card__image">
-	        <img src="{{ item.largestImage.url|resize(600) }}" class="article-card__image-{{ item.id }}"/>
-	    </a>
-	    {% endif %}
+            {% if item.largestImage && isArticle %}
+    	    <a href="/{{ item.id }}" class="article-card__image">
+    	        <img src="{{ item.largestImage.url|resize(600) }}" class="article-card__image-{{ item.id }}"/>
+    	    </a>
+    	    {% endif %}
 
-    {% endif%}
-    
-    {% if mode === 'compact' %}
-
-        {% if !item.has_video || flags.video.isSwitchedOff() %}
-        
-            {% if item.raw.item.images.length %}
-                <div  class="article-card__image">
-                    <img src="{{ item.raw.item.images[0].url|resize(300) }}" class="article-card__image-{{ item.id }}"/>
-                </div>
-            {% endif %}
-
-            <div class="article-card__body">
-                {{ item.paragraphs(0, 2) }}
-            </div>
-    
         {% endif%}
         
-    {% else %}
+        {% if mode === 'compact' %}
 
-        <div class="article-card__body">
-            {{ item.paragraphs(0, 2, { removeImages: false }) }}
-            <div class="js-more-on more-on" data-article-id="{{ item.id }}"></div>
-            {{ item.paragraphs(2, 100, { removeImages: false }) }}
-        </div>
+            {% if !item.has_video || flags.video.isSwitchedOff() %}
+            
+                {% if item.raw.item.images.length %}
+                    <div  class="article-card__image">
+                        <img src="{{ item.raw.item.images[0].url|resize(300) }}" class="article-card__image-{{ item.id }}"/>
+                    </div>
+                {% endif %}
+
+                <div class="article-card__body">
+                    {{ item.paragraphs(0, 2) }}
+                </div>
         
-    {% endif %}
+            {% endif%}
+            
+        {% else %}
 
-
+            <div class="article-card__body">
+                {{ item.paragraphs(0, 2, { removeImages: false }) }}
+                <div class="js-more-on more-on" data-article-id="{{ item.id }}"></div>
+                {{ item.paragraphs(2, 100, { removeImages: false }) }}
+            </div>
+            
+        {% endif %}
+    </section>    
 </div>
