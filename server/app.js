@@ -22,7 +22,7 @@ swig.setFilter('resize', function(input, width) {
   return 'http://image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(input) + '?width=' + width + '&source=docs&fit=scale-down';
 });
 
-app.use('/dobi', express.static(__dirname + '/../static'));
+app.use('/dobi', express.static(__dirname + '/../public'));
 app.use('/components', require('./components.js'));
 
 var latest  = require('./jobs/latest');
@@ -139,7 +139,7 @@ app.get('/search', function(req, res, next) {
                     stream.push('methode', article)
                 });
                 
-                res.render('layout/base', {
+                res.render('layout', {
                     mode: 'compact',
                     stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
                     title: formatSection(req.query.q),
@@ -157,7 +157,7 @@ app.get('/search', function(req, res, next) {
                         stream.push('methode', article)
                     });
                   
-                    res.render('layout/base', {
+                    res.render('layout', {
                         mode: 'compact',
                         stream: { items: stream.items, meta: { facets: (result.meta) ? result.meta.facets : [] }},
                         selectedFilters : searchFilters.filters,
