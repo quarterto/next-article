@@ -38,7 +38,6 @@ clean:
 	# Clean+install dependencies
 	git clean -fxd
 	npm install
-	# ./node_modules/.bin/bower install
 
 deploy:
 	./node_modules/.bin/bower install
