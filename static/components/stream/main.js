@@ -78,11 +78,16 @@
     });
 
     /* Allow single article to be opened inline */
+    //TODO: reverse icon when panel open
     $('.article-card__expand.js-toggle').map(function (el) {
         el.addEventListener('click', function (evt) {
             evt.preventDefault();
             var target = this.getAttribute('data-toggle'),
-                article = findAncestorByClassName(el, target);
+                article = findAncestorByClassName(el, target),
+                icon = el.querySelector('i')
+                ;
+            toggleClass(icon, 'icon-arrow-up');
+            toggleClass(icon, 'icon-arrow-down');
             toggleClass(article.querySelector(target), 'js-show');
         });
     });

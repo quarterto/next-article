@@ -5,6 +5,10 @@
     @include oFtIconsBaseIconStyles();
     @extend %o-ft-icons-icon--arrow-down;
 }
+.icon-arrow-up {
+    @include oFtIconsBaseIconStyles();
+    @extend %o-ft-icons-icon--arrow-up;
+}
 
 .stream {
     padding-top: 10px;

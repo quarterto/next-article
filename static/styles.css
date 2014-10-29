@@ -8,6 +8,9 @@
 .icon-arrow-down:before {
   content: "\e001"; }
 
+.icon-arrow-up:before {
+  content: "\e006"; }
+
 .icon__close:before {
   content: "\e011"; }
 
@@ -539,6 +542,9 @@ html {
 .icon-arrow-down:before {
   content: "\e001"; }
 
+.icon-arrow-up:before {
+  content: "\e006"; }
+
 .icon__close:before {
   content: "\e011"; }
 
@@ -558,6 +564,9 @@ html {
 */
 .icon-arrow-down:before {
   content: "\e001"; }
+
+.icon-arrow-up:before {
+  content: "\e006"; }
 
 .icon__close:before {
   content: "\e011"; }
@@ -1066,6 +1075,9 @@ html {
 .icon-arrow-down:before {
   content: "\e001"; }
 
+.icon-arrow-up:before {
+  content: "\e006"; }
+
 .icon__close:before {
   content: "\e011"; }
 
@@ -1170,6 +1182,19 @@ body {
   font-weight: normal;
   font-style: normal; }
 .icon-arrow-down {
+  font-family: "ft-icons";
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: normal !important;
+  font-style: normal !important;
+  speak: none;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-arrow-up {
   font-family: "ft-icons";
   display: inline-block;
   vertical-align: middle;
