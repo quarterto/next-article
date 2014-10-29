@@ -151,7 +151,6 @@ app.get('/search', function(req, res, next) {
 
             ft.get(ids)
                 .then( function (articles) {
-                    console.log('about to start adding to stream!', articles.length);
                     var stream = new Stream();
 
                     articles.forEach(function (article) {
@@ -185,7 +184,7 @@ app.get('/search', function(req, res, next) {
 
 
 // ft articles
-app.get(/^\/fastft\/([0-9]+)/, function(req, res, next) {
+app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, function(req, res, next) {
     Clamo.getPost(req.params[0])
         .then(function(response) {
             var stream = new Stream();
