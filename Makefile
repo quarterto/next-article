@@ -6,7 +6,7 @@ app := ft-next-dobi
 
 test:
 	./node_modules/.bin/mocha --reporter spec -i tests/server/
-	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './tmp/*' -o -path './node-v0.10.32-linux-x64/*' -o -path './node_modules/*' -o -name '*.min.*' -o -path './bower_components/*' -o -path './static/*' -o -name 'bundle.js' \\)`
+	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './public/*' -o -path './tmp/*' -o -path './node-v0.10.32-linux-x64/*' -o -path './node_modules/*' -o -path './bower_components/*' -o -path './client/vendor/*' -o -name 'bundle.js' \\)`
 
 test-debug:
 	./node_modules/.bin/mocha --debug-brk --reporter spec -i tests/server/ 

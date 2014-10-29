@@ -18,8 +18,8 @@ function init () {
             var price = resp.data.latest_price.amount;
             var change = resp.data.latest_change.percentage;
             symbol.innerHTML = '<span class="article-card__ticker-symbols__item-' + isUp + '">' + resp.data.returned_symbol + ' ' + price + ' (' + change  + ')</span>';
-        })
-    })
+        });
+    });
 
 }
 
