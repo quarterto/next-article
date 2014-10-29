@@ -3,7 +3,7 @@
 
     {% if mode === 'compact' %}
     <div class="article-card__primary-tag">
-            {% if item.brand && item.brand.length %}
+            {% if item.brand %}
                 {% set topic = item.brand %}
             {% else %}
                 {% set topic = item.primarySection %}
