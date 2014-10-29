@@ -7,12 +7,11 @@ app := ft-next-dobi
 test:
 	./node_modules/.bin/mocha
 
-# commented out temporarily while restructuring app
-# test:
-# 	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './tmp/*' -o -path './node-v0.10.32-linux-x64/*' -o -path './node_modules/*' -o -name '*.min.*' -o -path './bower_components/*' -o -path './static/*' -o -name 'bundle.js' \\)`
+test:
+	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './tmp/*' -o -path './node-v0.10.32-linux-x64/*' -o -path './node_modules/*' -o -name '*.min.*' -o -path './bower_components/*' -o -path './static/*' -o -name 'bundle.js' \\)`
 
-# test-debug:
-# 	./node_modules/.bin/mocha --debug-brk
+test-debug:
+	./node_modules/.bin/mocha --debug-brk
 
 run:
 	$(MAKE) -j2 _run
