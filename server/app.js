@@ -67,7 +67,7 @@ app.get('/search/fastft', function(req, res, next) {
             var stream = new Stream();
             
             data.posts.forEach(function (post) {
-                stream.push('fastft', post)
+                stream.push('fastft', post);
             });
     });
 });
@@ -117,6 +117,7 @@ app.get('/search', function(req, res, next) {
     ft.search(query, count)
         .then(function (result) {
             var articles = result.articles;
+	    var ids;
 
             if (!articles.length){
                 res.send(404);
@@ -124,11 +125,11 @@ app.get('/search', function(req, res, next) {
             }
 
             if (articles[0] instanceof Object) {
-                var ids = articles.map(function (article) {
+                ids = articles.map(function (article) {
                     return article.id;
                 });
             } else {
-                var ids = articles; // FIXME when is this ever not a Object?
+                ids = articles; // FIXME when is this ever not a Object?
             }
 
             if (/^popular:most/i.test(req.query.q)) {
@@ -136,7 +137,7 @@ app.get('/search', function(req, res, next) {
                 var stream = new Stream();
 
                 articles.forEach(function (article) {
-                    stream.push('methode', article)
+                    stream.push('methode', article);
                 });
                 
                 res.render('layout/base', {
@@ -154,7 +155,7 @@ app.get('/search', function(req, res, next) {
                     var stream = new Stream();
 
                     articles.forEach(function (article) {
-                        stream.push('methode', article)
+                        stream.push('methode', article);
                     });
                   
                     res.render('layout/base', {
@@ -172,9 +173,9 @@ app.get('/search', function(req, res, next) {
                     res.send(404);
                 });
 
-    }, function (err) { console.log('ERR', err) })
+    }, function (err) { console.log('ERR', err); });
 
-})
+});
 
 
 // ft articles
@@ -192,7 +193,7 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
                         var stream = new Stream();
 
                         articles.forEach(function (article) {
-                            stream.push('methode', article)
+                            stream.push('methode', article);
                         });
 
                         res.render('layout/base', {

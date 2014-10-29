@@ -14,12 +14,12 @@
 
 var Stream = function () {
     this.items = [];
-}
+};
 
 Stream.prototype.push = function (type, item) {
     this.items.push({ type: type, item: item });
-}
+};
 
-Stream.prototype.sortByDate = function () { }
+Stream.prototype.sortByDate = function () { };
 
 module.exports = Stream;
