@@ -33,7 +33,7 @@
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.40.tar.gz",
     "fastft-api-client": "https://github.com/Financial-Times/fastft-api-client/archive/0.11.0.tar.gz",
     "ft-poller": "0.0.4",
-    "haikro": "^1.2.3",
+    "haikro": "^1.2.4",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v0.0.2.tar.gz",
     "lodash": "^2.4.1",
     "moment": "^2.8.3",
