@@ -1,12 +1,21 @@
 
-<div class="article-card article-card__tone--fastft" id="clamo-{{ item.uuid }}">
-    <div class="article-card__tone">
+<div class="article-card article-card__tone--fastft{% if mode === 'compact' %} article-card--compact{% endif %}" id="clamo-{{ item.uuid }}">
+    <div class="article-card__primary-tag">
         fastFT 
     </div>
     <h3 class="article-card__headline">
         {{ item.title }}
     </h3>
+
+    <div class="article-card__reading-info">
+    	{% include "../byline.html" with {item: {lastUpdated: item._datePublished}} %}
+    </div>
+
+		{% if mode === 'compact' %}
+    <section class="article-card__expandable-content">
     <div class="article-card__body">
         {{ item.content|raw }}
     </div>
+    </section>
+    {% endif %}
 </div>
