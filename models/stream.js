@@ -13,13 +13,7 @@
 */
 
 function isPromoted(item) {
-	var promote = ['comment', 'analysis'];
-
-	if(promote.indexOf(item) >= 0) {
-		return true;
-	} else {
-		return false;
-	}
+	return ['comment', 'analysis'].indexOf(item) >= 0;
 }
 
 var Stream = function () {
