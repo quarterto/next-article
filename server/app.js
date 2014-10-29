@@ -49,28 +49,17 @@ var formatSection = function (s) {
     return s;
 };
 
-/*
-    FIXME - make a new route for this
-*/
-    
-app.get('/search/fastft', function(req, res, next) {
+var mapQueryToClamo = function(q) {
+    return q.replace('sections:', 'sector:')
+        .replace('organisations:', 'company:')
+        .replace('regions:', 'location:')
+        .replace('topics:', 'topic:');
+}
 
-    var searchFilters = new SearchFilters(req);
     
-    Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
-    Clamo.config('timeout', 4000);
-    Clamo.search(req.query.q, {     // Eg, 'location:Japan'
-        limit: 10,
-        offset: 1
-        }).then(function (data) {
-            
-            var stream = new Stream();
-            
-            data.posts.forEach(function (post) {
-                stream.push('fastft', post)
-            });
-    });
-});
+Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
+Clamo.config('timeout', 4000);
+
 
 app.get('/favourites', function(req,res,next) {
     var userId = req.query.user;
@@ -114,11 +103,22 @@ app.get('/search', function(req, res, next) {
     var searchFilters = new SearchFilters(req);
     var query = searchFilters.buildAPIQuery();
     
-    ft.search(query, count)
-        .then(function (result) {
-            var articles = result.articles;
+    //AND from:date
+    var clamoPromise = Clamo.search(mapQueryToClamo(req.query.q), {     // Eg, 'location:Japan'
+        limit: 5,
+        offset: 0
+    });
 
-            if (!articles.length){
+    var methodePromise = ft.search(query, count);
+
+    Promise.all([clamoPromise, methodePromise])
+        .then(function (results) {
+            var fastFTPosts = results[0] ? results[0].posts : [];
+            var articles = results[1] ? results[1].articles : [];
+
+
+
+            if (!articles.length && !fastFTPosts.length){
                 res.send(404);
                 return;
             }
@@ -157,11 +157,15 @@ app.get('/search', function(req, res, next) {
                         stream.push('methode', article)
                     });
 
+                    fastFTPosts.forEach(function(post) {
+                        stream.push('fastft', post)
+                    });
+
                     stream.sortByToneAndLastPublished();
-                  
+
                     res.render('layout/base', {
                         mode: 'compact',
-                        stream: { items: stream.items, meta: { facets: (result.meta) ? result.meta.facets : [] }},
+                        stream: { items: stream.items, meta: { facets: (results[1].meta) ? results[1].meta.facets : [] }}, // TODO: Add back meta stuff
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
@@ -180,6 +184,25 @@ app.get('/search', function(req, res, next) {
 
 
 // ft articles
+app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, function(req, res, next) {
+    Clamo.getPost(req.params[0])
+        .then(function(response) {
+            var stream = new Stream();
+            stream.push('fastft', response.post);
+            res.render('layout/base', {
+                mode: 'expand',
+                isArticle: true,
+                stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
+                isFollowable: true,
+                flags: flags.get() 
+            });
+                     
+        }, function (err) {
+            console.log(err);
+            res.send(404);
+        });
+});
+
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(req, res, next) {
     ft
         .get([req.params[0]])
@@ -211,9 +234,9 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
 
                         var article = articles[0];
                         res.json({
-                            id: article.id,	    
-                            headline: article.headline,	    
-                            largestImage: article.largestImage,	    
+                            id: article.id,     
+                            headline: article.headline,     
+                            largestImage: article.largestImage,     
                             body: [
                                     article.paragraphs(0, 2, { removeImages: false }).toString(),
                                     article.paragraphs(2, 100, { removeImages: false }).toString()

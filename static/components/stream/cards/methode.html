@@ -5,8 +5,6 @@
     <div class="article-card__primary-tag">
             {% if item.brand %}
                 {% set topic = item.brand %}
-            {% elseif item.topics %}
-                {% set topic = item.topics|first %}
             {% else %}
                 {% set topic = item.primarySection %}
             {% endif %}

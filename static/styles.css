@@ -1210,7 +1210,7 @@ body {
   position: relative; }
 
 .stream-list__title {
-  font-family: BentonSans;
+  font-family: BentonSans, Arial, sans-serif;
   font-weight: normal;
   text-transform: capitalize;
   font-size: 22px;
@@ -1289,13 +1289,6 @@ body {
   font-weight: 400;
   text-decoration: none;
   line-height: 1.1; }
-  .article-card__tone--comment .article-card__headline, .article-card__tone--analysis .article-card__headline {
-    font-style: italic; }
-    .article-card__tone--comment .article-card__headline > a:before, .article-card__tone--analysis .article-card__headline > a:before {
-      content: url(components/stream/pullquote.svg);
-      display: inline; }
-  .article-card__tone--news .article-card__headline {
-    font-size: 24px; }
   .article-card__headline .save__button {
     position: relative;
     top: -5px;
@@ -1316,7 +1309,7 @@ body {
   float: left; }
   .article-card__byline [data-recent="true"] {
     padding: 0 4px;
-    background-color: #6ddb6d; }
+    font-weight: bold; }
 
 .article-card__authors {
   font-style: normal; }
@@ -1377,15 +1370,19 @@ body {
       padding-left: 14px; }
   .article-card--compact .article-card__expand {
     float: right;
-    margin-top: -40px;
-    color: #868686; }
+    margin-top: -48px;
+    color: #868686;
+    display: block;
+    padding: 8px; }
     .article-card--compact .article-card__expand:hover {
       text-decoration: none; }
+  .article-card--compact .article-card__expandable-content {
+    display: none; }
+    .article-card--compact .article-card__expandable-content.js-show {
+      display: block; }
 
-.article-card__expandable-content {
+.article-card__expand {
   display: none; }
-  .article-card__expandable-content.js-show {
-    display: block; }
 
 .article-card:first-child {
   margin-top: 20px; }
@@ -1401,10 +1398,6 @@ body {
 
 .article-card__body .more-on {
   font-family: BentonSans,Arial,sans-serif; }
-
-.article-card__tone--comment,
-.article-card__tone--analysis {
-  background-color: #fff1e0; }
 
 .article-card__more {
   margin: 0px auto 20px auto;
@@ -1444,6 +1437,39 @@ body {
 video {
   max-width: 100%;
   height: auto; }
+
+.article-card__tone--news .article-card__headline {
+  font-size: 24px; }
+
+.article-card__tone--comment .article-card__headline,
+.article-card__tone--analysis .article-card__headline {
+  font-style: italic; }
+  .article-card__tone--comment .article-card__headline > a:before,
+  .article-card__tone--analysis .article-card__headline > a:before {
+    content: url(components/stream/pullquote.svg);
+    display: inline; }
+.article-card__tone--comment.article-card--compact,
+.article-card__tone--analysis.article-card--compact {
+  background-color: #fff1e0; }
+
+.article-card__tone--fastft .article-card__primary-tag {
+  background-color: #343434;
+  color: white;
+  font-weight: bolder; }
+.article-card__tone--fastft .article-card__headline {
+  font-size: 25px;
+  font-family: BentonSans, Arial, sans-serif;
+  font-weight: 200; }
+.article-card__tone--fastft.article-card--compact {
+  background-color: #cc0000;
+  color: white; }
+  .article-card__tone--fastft.article-card--compact .article-card__link,
+  .article-card__tone--fastft.article-card--compact .article-card__expand {
+    color: white; }
+  .article-card__tone--fastft.article-card--compact .article-card__body p {
+    color: white;
+    font-family: BentonSans, Arial, sans-serif;
+    font-weight: 200; }
 
 .uber-nav {
   margin: 0;
