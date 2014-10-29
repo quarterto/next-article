@@ -56,10 +56,9 @@ var mapQueryToClamo = function(q) {
         .replace('topics:', 'topic:');
 }
 
-/*
-    FIXME - make a new route for this
-*/
     
+Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
+Clamo.config('timeout', 4000);
 
 
 app.get('/favourites', function(req,res,next) {
@@ -105,8 +104,6 @@ app.get('/search', function(req, res, next) {
     var query = searchFilters.buildAPIQuery();
     
     //AND from:date
-    Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
-    Clamo.config('timeout', 4000);
     var clamoPromise = Clamo.search(mapQueryToClamo(req.query.q), {     // Eg, 'location:Japan'
         limit: 5,
         offset: 0
@@ -188,15 +185,11 @@ app.get('/search', function(req, res, next) {
 
 
 // ft articles
-app.get(/^\/fastft\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(req, res, next) {
-    Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
-    Clamo.config('timeout', 4000);
+app.get(/^\/fastft\/([0-9]+)/, function(req, res, next) {
     Clamo.getPost(req.params[0])
-        .then(function(res, post) {
-
+        .then(function(response) {
             var stream = new Stream();
-
-            stream.push('fastft', post)
+            stream.push('fastft', response.post);
             res.render('layout/base', {
                 mode: 'expand',
                 isArticle: true,

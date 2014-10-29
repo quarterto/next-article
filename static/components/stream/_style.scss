@@ -366,6 +366,8 @@ video {
 
     .article-card__primary-tag {
         background-color: $next-grey-dark;
+        color: $next-white;
+        font-weight: bolder;
     }
     .article-card__headline {
         font-size: 25px;
@@ -376,9 +378,10 @@ video {
     &.article-card--compact {
         background-color: $next-red;
         color: $next-white;
-        .article-card__primary-tag {
+
+        .article-card__link,
+        .article-card__expand {
             color: $next-white;
-            font-weight: bolder;
         }
 
         .article-card__body p {

@@ -1453,7 +1453,9 @@ video {
   background-color: #fff1e0; }
 
 .article-card__tone--fastft .article-card__primary-tag {
-  background-color: #343434; }
+  background-color: #343434;
+  color: white;
+  font-weight: bolder; }
 .article-card__tone--fastft .article-card__headline {
   font-size: 25px;
   font-family: BentonSans, Arial, sans-serif;
@@ -1461,9 +1463,9 @@ video {
 .article-card__tone--fastft.article-card--compact {
   background-color: #cc0000;
   color: white; }
-  .article-card__tone--fastft.article-card--compact .article-card__primary-tag {
-    color: white;
-    font-weight: bolder; }
+  .article-card__tone--fastft.article-card--compact .article-card__link,
+  .article-card__tone--fastft.article-card--compact .article-card__expand {
+    color: white; }
   .article-card__tone--fastft.article-card--compact .article-card__body p {
     color: white;
     font-family: BentonSans, Arial, sans-serif;
