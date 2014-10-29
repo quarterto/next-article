@@ -1,5 +1,5 @@
 PORT := 3001
-app := ft-next-dobi
+app := ft-next-dobi-matthew
 
 .PHONY: test
 
