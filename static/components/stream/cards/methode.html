@@ -14,6 +14,8 @@
     </div>
     {% endif %}
 
+    {% include "../../save-button/base.html" with { key: 'forlaters', label: '', toggleText: '', ariaLabel: 'Save this article for later' } %}
+
     {% if mode !== 'compact' %}
     <div class="article-card__themes article-card__metadata-list">
         Latest in <ul>
@@ -29,7 +31,6 @@
         <a href="/{{ item.id }}" class="article-card__link">
             {{ item.headline }}
         </a>
-        {% include "../../save-button/base.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
     </h3>
 
     <div class="article-card__reading-info">

@@ -9,17 +9,13 @@
 	 }
 	
 	&[data-save-target="forlaters"] {
-		display: inline-block;
-		background: url(save.png) no-repeat 0 2px;
-		padding-left: 16px;
-		margin: 0 5px;
-		font-size: 12px;
-		color: #2e6e9e;
+		display: block;
+		background: url(components/stream/bookmark-default.svg) no-repeat 0 0;
+		width: 16px;
+		height: 25px;
 		cursor: pointer;
-
-		&:hover {
-			text-decoration: underline;
-		}
+		float: right;
+		margin-top: 10px;
 	}
 
 	&[data-save-target="favourites"] {
@@ -45,7 +41,6 @@
 	}
 }
 
-
 .save__button[data-is-saved="true"] {
 
 	&[data-save-target="favourites"] {
@@ -56,8 +51,8 @@
 			display: inline-block;
 		}
 	}
-
-	&[data-save-target="forlaters"]:before {
-		content: '\2691';
-	}
+	// TODO: this should ideally be a sprite as the icon momemtarily disappears on click
+	&[data-save-target="forlaters"] {
+		background-image: url(components/stream/bookmark-selected.svg);
+	}		
 }

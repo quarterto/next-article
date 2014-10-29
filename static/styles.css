@@ -1098,15 +1098,13 @@ html {
   .save__button:focus {
     outline: none; }
   .save__button[data-save-target="forlaters"] {
-    display: inline-block;
-    background: url(save.png) no-repeat 0 2px;
-    padding-left: 16px;
-    margin: 0 5px;
-    font-size: 12px;
-    color: #2e6e9e;
-    cursor: pointer; }
-    .save__button[data-save-target="forlaters"]:hover {
-      text-decoration: underline; }
+    display: block;
+    background: url(components/stream/bookmark-default.svg) no-repeat 0 0;
+    width: 16px;
+    height: 25px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px; }
   .save__button[data-save-target="favourites"] {
     background: #9e2f50;
     float: right;
@@ -1130,8 +1128,8 @@ html {
   .save__button[data-is-saved="true"][data-save-target="favourites"]:before {
     content: '\2605';
     display: inline-block; }
-.save__button[data-is-saved="true"][data-save-target="forlaters"]:before {
-  content: '\2691'; }
+.save__button[data-is-saved="true"][data-save-target="forlaters"] {
+  background-image: url(components/stream/bookmark-selected.svg); }
 
 body {
   margin: 0;
@@ -1429,6 +1427,14 @@ body {
   margin-top: 66px; }
 
 /* utils */
+.hide-visually {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden; }
+
 .js-hide {
   display: none; }
 
