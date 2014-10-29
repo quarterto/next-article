@@ -8,3 +8,5 @@ npm-debug.log
 /node-v*
 /tmp/
 .env
+/build/main.js
+/build/main.css
