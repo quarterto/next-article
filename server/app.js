@@ -173,7 +173,7 @@ app.get('/search', function(req, res, next) {
                     res.send(404);
                 });
 
-    }, function (err) { console.log('ERR', err); })
+    }, function (err) { console.log('ERR', err); });
 
 });
 
