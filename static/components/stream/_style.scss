@@ -121,6 +121,14 @@
     text-decoration: none;
     line-height: 1.1;
 
+    .article-card__tone--analysis & {
+        font-style: italic;
+    }
+
+    .article-card__tone--news & {
+        font-size: 24px;
+    }
+
     .save__button {
         position: relative;
         top: -5px;

@@ -1291,6 +1291,10 @@ body {
   font-weight: 400;
   text-decoration: none;
   line-height: 1.1; }
+  .article-card__tone--analysis .article-card__headline {
+    font-style: italic; }
+  .article-card__tone--news .article-card__headline {
+    font-size: 24px; }
   .article-card__headline .save__button {
     position: relative;
     top: -5px;
