@@ -66,6 +66,8 @@
     }
 
     /* Allow all articles to be opened inline */
+    //TODO: this will interact with single-article toggle below;
+    //needs a refactor when re-implemented
     $('.article-card__more.js-toggle').map(function (el) {
         el.addEventListener('click', function (evt) {
             toggleClass(el, 'js-active');
@@ -78,7 +80,6 @@
     });
 
     /* Allow single article to be opened inline */
-    //TODO: reverse icon when panel open
     $('.article-card__expand.js-toggle').map(function (el) {
         el.addEventListener('click', function (evt) {
             evt.preventDefault();

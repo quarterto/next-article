@@ -121,8 +121,14 @@
     text-decoration: none;
     line-height: 1.1;
 
+    .article-card__tone--comment &, 
     .article-card__tone--analysis & {
         font-style: italic;
+
+        > a:before {
+            content: url(components/stream/pullquote.svg);
+            display: inline;
+        }
     }
 
     .article-card__tone--news & {
@@ -254,7 +260,7 @@
             padding-left: 14px;
         }
     }
-   
+
     .article-card__expand {
         float: right;
         margin-top: -40px;
@@ -296,7 +302,7 @@
 
 .article-card__tone--comment,
 .article-card__tone--analysis
- {
+{
     background-color: $next-pink;
 }
 
