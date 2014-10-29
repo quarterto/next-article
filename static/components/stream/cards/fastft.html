@@ -9,13 +9,14 @@
 
     <div class="article-card__reading-info">
     	{% include "../byline.html" with {item: {lastUpdated: item._datePublished}} %}
-    </div>
 
-		{% if mode === 'compact' %}
+    </div>
+    <a href="#" class="article-card__expand js-toggle" data-toggle=".article-card__expandable-content">
+        <i class="icon-arrow-down"></i>
+    </a>
     <section class="article-card__expandable-content">
     <div class="article-card__body">
         {{ item.content|raw }}
     </div>
     </section>
-    {% endif %}
 </div>

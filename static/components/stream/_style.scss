@@ -249,9 +249,10 @@
 
     .article-card__expand {
         float: right;
-        margin-top: -40px;
+        margin-top: -48px;
         color: $next-grey-light;
         display: block;
+        padding: 8px;
         &:hover {
             text-decoration: none;
         }
@@ -379,5 +380,13 @@ video {
             color: $next-white;
             font-weight: bolder;
         }
+
+        .article-card__body p {
+            color: $next-white;
+            font-family: BentonSans, Arial, sans-serif;
+            font-weight: 200;
+        }
     }
+
+
 }

@@ -1370,9 +1370,10 @@ body {
       padding-left: 14px; }
   .article-card--compact .article-card__expand {
     float: right;
-    margin-top: -40px;
+    margin-top: -48px;
     color: #868686;
-    display: block; }
+    display: block;
+    padding: 8px; }
     .article-card--compact .article-card__expand:hover {
       text-decoration: none; }
   .article-card--compact .article-card__expandable-content {
@@ -1463,6 +1464,10 @@ video {
   .article-card__tone--fastft.article-card--compact .article-card__primary-tag {
     color: white;
     font-weight: bolder; }
+  .article-card__tone--fastft.article-card--compact .article-card__body p {
+    color: white;
+    font-family: BentonSans, Arial, sans-serif;
+    font-weight: 200; }
 
 .uber-nav {
   margin: 0;

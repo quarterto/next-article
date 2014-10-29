@@ -49,6 +49,13 @@ var formatSection = function (s) {
     return s;
 };
 
+var mapQueryToClamo = function(q) {
+    return q.replace('sections:', 'sector:')
+        .replace('organisations:', 'company:')
+        .replace('regions:', 'location:')
+        .replace('topics:', 'topic:');
+}
+
 /*
     FIXME - make a new route for this
 */
@@ -100,7 +107,7 @@ app.get('/search', function(req, res, next) {
     //AND from:date
     Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
     Clamo.config('timeout', 4000);
-    var clamoPromise = Clamo.search(req.query.q, {     // Eg, 'location:Japan'
+    var clamoPromise = Clamo.search(mapQueryToClamo(req.query.q), {     // Eg, 'location:Japan'
         limit: 5,
         offset: 0
     });
