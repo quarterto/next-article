@@ -58,12 +58,18 @@
 
         <script src="/dobi/vendor/reqwest.min.js"></script>
         
-        <script src="/dobi/js/context.js"></script>
-        <script src="/dobi/js/user-preferences.js"></script>
-        <script src="/dobi/js/more-on.js"></script>
-        <script src="/dobi/js/ticker-symbols.js"></script>
-        <script src="/dobi/js/videos.js"></script>
-        <script src="/dobi/main.js"></script>
-        <link rel="StyleSheet" href="/dobi/utils.css"/>
+	<script src="/dobi/js/context.js"></script>
+	<script src="/dobi/js/user-preferences.js"></script>
+	<script src="/dobi/js/more-on.js"></script>
+	<script src="/dobi/js/ticker-symbols.js"></script>
+	<script src="/dobi/js/videos.js"></script>
+	<script src="/dobi/main.js"></script>
+	<link rel="StyleSheet" href="/dobi/utils.css"/>
+	<script src="//cdn.ravenjs.com/1.1.15/jquery,native/raven.min.js"></script>
+	<script>
+		Raven.config('https://1430704766a840b4b36133662324f489@app.getsentry.com/32283', {
+			whitelistUrls: ['next.ft.com/dobi/scripts/']
+		}).install();
+	</script>
     </body>
 </html>
