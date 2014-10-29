@@ -156,6 +156,8 @@ app.get('/search', function(req, res, next) {
                     articles.forEach(function (article) {
                         stream.push('methode', article)
                     });
+
+                    stream.sortByToneAndLastPublished();
                   
                     res.render('layout/base', {
                         mode: 'compact',
