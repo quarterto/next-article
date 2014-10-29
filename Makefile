@@ -6,10 +6,10 @@ verify:
 	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './node_modules/*' -o -name '*.min.*' \\)`
 
 test:
-	./node_modules/.bin/mocha
+	./node_modules/.bin/mocha --reporter spec -i tests/server/
 
 test-debug:
-	./node_modules/.bin/mocha --debug-brk
+	./node_modules/.bin/mocha --debug-brk --reporter spec -i tests/server/ 
 
 run:
 	$(MAKE) -j2 _run

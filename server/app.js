@@ -5,7 +5,7 @@ var swig = require('swig');
 var dateFormat = require('dateformat');
 var request = require('request');
 var SearchFilters = require('./searchFilters.js');
-var Stream = require('../models/stream');
+var Stream = require('./models/stream');
 var Clamo = require('fastft-api-client');
 var Flags = require('next-feature-flags-client');
 
@@ -13,7 +13,7 @@ var app = module.exports = express();
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/../static/components');
+app.set('views', __dirname + '/../templates');
 
 // not for production
 app.set('view cache', false);
@@ -195,7 +195,7 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
                             stream.push('methode', article)
                         });
 
-                        res.render('layout/base', {
+                        res.render('layout', {
                             mode: 'expand',
                             isArticle: true,
                             stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
@@ -243,7 +243,7 @@ app.get('/more-on/:id', function(req, res, next) {
                 .then(function (articles) {
 		    if (articles.length > 0) {
                         res.set(responseHeaders);
-                        res.render('more-on/base', {
+                        res.render('components/more-on', {
                             mode: 'expand',
                             stream: articles,
                             flags: flags.get() 
@@ -267,7 +267,7 @@ app.get('/uber-nav', function(req, res, next) {
     json: true
   }, function (err, response, body) {
      res.set(responseHeaders);
-     res.render('uber/base', body);
+     res.render('components/uber-nav', body);
   });
 });
 

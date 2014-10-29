@@ -1,0 +1,89 @@
+
+<section class="search-filters">
+    <h1>Filter Search</h1>
+    <div class="filter">
+        <h2>Date</h2>
+        <div>
+            <ul>
+                {% for filter in filters.date %}
+                    <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    {% if filters.organisations && filters.organisations.length %}
+        <div class="filter">
+            <h2>Organisation</h2>
+            <div>
+                <ul>
+                    {% for filter in filters.organisations %}
+                        <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if filters.regions && filters.regions.length %}
+        <div class="filter">
+            <h2>Regions</h2>
+            <div>
+                <ul>
+                    {% for filter in filters.regions %}
+                    <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if filters.sections && filters.sections.length %}
+    <div class="filter">
+        <h2>Sections</h2>
+        <div>
+            <ul>
+                {% for filter in filters.sections %}
+                <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% if filters.topics && filters.topics.length %}
+    <div class="filter">
+        <h2>Topics</h2>
+        <div>
+            <ul>
+                {% for filter in filters.topics %}
+                <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% if filters.brands && filters.brands.length %}
+    <div class="filter">
+        <h2>Columns</h2>
+        <div>
+            <ul>
+                {% for filter in filters.brands %}
+                <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% if filters.people && filters.people.length %}
+    <div class="filter">
+        <h2>People</h2>
+        <div>
+            <ul>
+                {% for filter in filters.people %}
+                <li><a href="{{filter.url}}">{{filter.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+        <script src="dobi/components/search-filters/main.js"></script>
