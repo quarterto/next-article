@@ -1,4 +1,8 @@
 
+$fontSans: BentonSans, Arial, sans-serif;
+$fontSerif: Georgia, Times New Roman, serif; 
+$fontBrand: FinancierDisplay, Georgia, serif;
+
 @include oFtIconsFontFace();
 
 .icon-arrow-down {
@@ -16,7 +20,7 @@
 }
 
 .stream-list__title {
-    font-family: BentonSans, Arial, sans-serif;;
+    font-family: $fontSans;
     font-weight: normal;
     text-transform: capitalize;
     font-size: 22px;
@@ -53,31 +57,32 @@
     border-bottom: 1px solid #777;
     margin: 0 0 10px 0;
     padding: 0 0 10px 0;
-    font-family: BentonSans, Arial, sans-serif;
+    font-family: $fontSans;
 }
 
 .article-card__tone {
     font-size: 10px;
     text-transform: uppercase;
     margin-bottom: 10px;
-    font-family: BentonSans, Arial, sans-serif;
+    font-family: $fontSans;
 }
 
 .article-card__primary-tag {
     background-color: $next-orange;
     font-weight: bold;
-    font-family: BentonSans, Arial, sans-serif;
+    font-family: $fontSans;
     padding: 4px;
     margin-left: 10px;
     display: inline-block;
     a {
         color: $next-black;
+        font-size: 12px;
     }
 }
 .article-card__metadata-list {
     border-top: 1px solid #777;
     border-bottom: 1px solid #777;
-    font-family: BentonSans, Arial, sans-serif;
+    font-family: $fontSans;
     padding: 10px 0;
     margin: 0 0 10px 0;
     font-size: 12px;
@@ -115,11 +120,39 @@
 
 .article-card__headline {
     margin: 10px 0 20px;
-    font-size: 40px;
-    font-family: FinancierDisplay,Georgia,serif;
-    font-weight: 400;
+    font-family: $fontSans;
+    font-weight: 100;
     text-decoration: none;
     line-height: 1.1;
+
+    .article-card__tone--news &,
+    .article-card__tone--vanilla & {
+        font-size: 20px;
+    }
+    
+    .article-card__tone--comment &,
+    .article-card__tone--analysis & {
+        font-style: italic;
+        font-size: 24px;
+        font-family: $fontBrand;
+
+        > a:before {
+            content: url(components/stream/pullquote.svg);
+            display: inline;
+        }
+    
+    }
+
+    .article-card__tone--fastft & {
+        .article-card__headline {
+            font-size: 24px;
+            font-weight: 200;
+        }
+    }
+
+    &.article-card--compact {
+        background-color: $next-pink;
+    }
 
     .save__button {
         position: relative;
@@ -137,20 +170,23 @@
     }
 }
 
+.article-card__publication-date {
+    font-size: 12px;
+    font-family:  $fontSans;
+    color: $next-grey-light;
+    padding-left:16px;
+    background:transparent url(components/stream/time.svg) no-repeat left top;
+    
+}
+
 .article-card__length,
 .article-card__byline {
-    font-family: BentonSans, Arial, sans-serif;
+    font-family: $fontSans;
     font-size: 12px
 }
 
 .article-card__byline {
     float: left;
-
-    [data-recent="true"] {
-        padding: 0 4px;
-        font-weight: bold;
-    }
-
 }
 
 .article-card__authors {
@@ -194,7 +230,7 @@
 }
 
 .article-card__body {
-    font-family: Georgia, Times New Roman, Sans-serif;
+    font-family: $fontSerif;
 
     img {
     	clear: left;
@@ -252,7 +288,7 @@
         margin-top: -48px;
         color: $next-grey-light;
         display: block;
-        padding: 8px;
+        padding: 8px 2px;
         &:hover {
             text-decoration: none;
         }
@@ -288,7 +324,7 @@
 }
 
 .article-card__body .more-on {
-    font-family: BentonSans,Arial,sans-serif;
+    font-family: $fontSans;
 }
 
 
@@ -340,28 +376,12 @@ video {
 	height: auto;
 }
 
-.article-card__tone--news,
-.article-card__tone--vanilla {
-    .article-card__headline {
-        font-size: 24px;
-    }
-}
 .article-card__tone--comment,
 .article-card__tone--analysis {
-    .article-card__headline {
-        font-style: italic;
-
-        > a:before {
-            content: url(components/stream/pullquote.svg);
-            display: inline;
-        }
-    }
-
     &.article-card--compact {
         background-color: $next-pink;
     }
 }
-
 
 .article-card__tone--fastft {
 
@@ -370,12 +390,7 @@ video {
         color: $next-white;
         font-weight: bolder;
     }
-    .article-card__headline {
-        font-size: 25px;
-        font-family: BentonSans, Arial, sans-serif;
-        font-weight: 200;
-    }
-
+   
     &.article-card--compact {
         background-color: $next-red;
         color: $next-white;
@@ -387,7 +402,7 @@ video {
 
         .article-card__body p {
             color: $next-white;
-            font-family: BentonSans, Arial, sans-serif;
+            font-family: $fontSans;
             font-weight: 200;
         }
     }
