@@ -5,8 +5,9 @@
 /.node-version
 .DS_Store
 npm-debug.log
+/public/*.css
+/public/*.js
 /node-v*
 /tmp/
 .env
-/static/main.js
-/static/styles.css
+
