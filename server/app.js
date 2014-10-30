@@ -24,6 +24,7 @@ swig.setFilter('resize', function(input, width) {
 
 app.use('/dobi', express.static(__dirname + '/../public'));
 app.use('/components', require('./components.js'));
+app.use(require('./middleware/auth'));
 
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
@@ -180,6 +181,7 @@ app.get('/search', function(req, res, next) {
 
 // ft articles
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(req, res, next) {
+
     ft
         .get([req.params[0]])
         .then(function (articles) {
@@ -210,9 +212,9 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
 
                         var article = articles[0];
                         res.json({
-                            id: article.id,	    
-                            headline: article.headline,	    
-                            largestImage: article.largestImage,	    
+                            id: article.id,
+                            headline: article.headline,
+                            largestImage: article.largestImage,
                             body: [
                                     article.paragraphs(0, 2, { removeImages: false }).toString(),
                                     article.paragraphs(2, 100, { removeImages: false }).toString()

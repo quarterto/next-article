@@ -4,7 +4,6 @@ var reqwest = require('../../vendor/reqwest.min');
 // Enhances any ticker symbol found on the page with live pricing data
 function init () {
 
-
     console.log('prog enhance ticker');
 
     var host = 'http://next-companies-et-al.herokuapp.com/v1/mouseover/company/';

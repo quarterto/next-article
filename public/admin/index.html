@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>User admin</title>
+    </head>
+    <body>
+        <form id="auth">
+             <legend>Authentication</legend>
+             <select name="user-membership-level">
+                 <option value="ANONYMOUS">anonymous</option>
+                 <option value="EMAIL">email</option>
+                 <option value="REGISTERED">registered</option>
+                 <option value="SUBSCRIBED">subscribed</option>
+             </select>
+             <input type="submit">
+        </form>
+        <script>
+            (function () {
+                var subscriptionLevels = [null, 'anonymous', 'email', 'registered', 'subscribed'];
+                document.getElementById('auth').addEventListener('submit', function (ev) {
+                    ev.preventDefault();
+                    localStorage.setItem('ft.next.user.auth.level', (function () {
+                        var sel = document.querySelector('select[name="user-membership-level"]');
+                        return sel.options[sel.selectedIndex].value;
+                    })());
+                });
+            })();
+        </script>
+    </body>
+</html>
