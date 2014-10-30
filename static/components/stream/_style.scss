@@ -340,7 +340,8 @@ video {
 	height: auto;
 }
 
-.article-card__tone--news {
+.article-card__tone--news,
+.article-card__tone--vanilla {
     .article-card__headline {
         font-size: 24px;
     }
