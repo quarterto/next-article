@@ -5,7 +5,7 @@ var swig = require('swig');
 var dateFormat = require('dateformat');
 var request = require('request');
 var SearchFilters = require('./searchFilters.js');
-var Stream = require('../models/stream');
+var Stream = require('./models/stream');
 var Clamo = require('fastft-api-client');
 var Flags = require('next-feature-flags-client');
 
@@ -13,7 +13,7 @@ var app = module.exports = express();
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/../static/components');
+app.set('views', __dirname + '/../templates');
 
 // not for production
 app.set('view cache', false);
@@ -22,7 +22,7 @@ swig.setFilter('resize', function(input, width) {
   return 'http://image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(input) + '?width=' + width + '&source=docs&fit=scale-down';
 });
 
-app.use('/dobi', express.static(__dirname + '/../static'));
+app.use('/dobi', express.static(__dirname + '/../public'));
 app.use('/components', require('./components.js'));
 
 var latest  = require('./jobs/latest');
@@ -59,7 +59,6 @@ var mapQueryToClamo = function(q) {
     
 Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
 Clamo.config('timeout', 4000);
-
 
 app.get('/favourites', function(req,res,next) {
     var userId = req.query.user;
@@ -115,20 +114,17 @@ app.get('/search', function(req, res, next) {
         .then(function (results) {
             var fastFTPosts = results[0] ? results[0].posts : [];
             var articles = results[1] ? results[1].articles : [];
-
-
-
+            var ids;
             if (!articles.length && !fastFTPosts.length){
                 res.send(404);
                 return;
             }
-
             if (articles[0] instanceof Object) {
-                var ids = articles.map(function (article) {
+                ids = articles.map(function (article) {
                     return article.id;
                 });
             } else {
-                var ids = articles; // FIXME when is this ever not a Object?
+                ids = articles; // FIXME when is this ever not a Object?
             }
 
             if (/^popular:most/i.test(req.query.q)) {
@@ -136,10 +132,10 @@ app.get('/search', function(req, res, next) {
                 var stream = new Stream();
 
                 articles.forEach(function (article) {
-                    stream.push('methode', article)
+                    stream.push('methode', article);
                 });
                 
-                res.render('layout/base', {
+                res.render('layout', {
                     mode: 'compact',
                     stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
                     title: formatSection(req.query.q),
@@ -154,7 +150,7 @@ app.get('/search', function(req, res, next) {
                     var stream = new Stream();
 
                     articles.forEach(function (article) {
-                        stream.push('methode', article)
+                        stream.push('methode', article);
                     });
 
                     fastFTPosts.forEach(function(post) {
@@ -163,8 +159,7 @@ app.get('/search', function(req, res, next) {
 
                     stream.sortByToneAndLastPublished();
 
-                    res.render('layout/base', {
-                        mode: 'compact',
+                    res.render('layout', {
                         stream: { items: stream.items, meta: { facets: (results[1].meta) ? results[1].meta.facets : [] }}, // TODO: Add back meta stuff
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
@@ -178,12 +173,12 @@ app.get('/search', function(req, res, next) {
                     res.send(404);
                 });
 
-    }, function (err) { console.log('ERR', err) })
+    }, function (err) { console.log('ERR', err); });
 
-})
+});
 
 
-// ft articles
+// fast ft articles
 app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, function(req, res, next) {
     Clamo.getPost(req.params[0])
         .then(function(response) {
@@ -217,10 +212,10 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
                         var stream = new Stream();
 
                         articles.forEach(function (article) {
-                            stream.push('methode', article)
+                            stream.push('methode', article);
                         });
 
-                        res.render('layout/base', {
+                        res.render('layout', {
                             mode: 'expand',
                             isArticle: true,
                             stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
@@ -268,7 +263,7 @@ app.get('/more-on/:id', function(req, res, next) {
                 .then(function (articles) {
 		    if (articles.length > 0) {
                         res.set(responseHeaders);
-                        res.render('more-on/base', {
+                        res.render('components/more-on', {
                             mode: 'expand',
                             stream: articles,
                             flags: flags.get() 
@@ -292,7 +287,7 @@ app.get('/uber-nav', function(req, res, next) {
     json: true
   }, function (err, response, body) {
      res.set(responseHeaders);
-     res.render('uber/base', body);
+     res.render('components/uber-nav', body);
   });
 });
 

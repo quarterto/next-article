@@ -1,0 +1,9 @@
+./.git
+./tmp
+./bower_components
+./client
+./tests
+./.gitignore
+./.slugignore
+./Makefile
+.DS_Store
