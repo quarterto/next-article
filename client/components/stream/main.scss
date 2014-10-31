@@ -431,6 +431,16 @@ video {
 }
 
 //++++++++++++++++++
+//+ Ads
+//++++++++++++++++++
+.article-card__advert {
+    img {
+        float: none;
+    }
+    text-align: center;
+}
+
+//++++++++++++++++++
 //+ Utils
 //++++++++++++++++++
 .js-hide {
@@ -453,3 +463,19 @@ video {
     clear: both;
     height: 0;
 }
+
+.article-card__tone--fastft {
+    &.article-card--compact {
+        .article-card__link,
+        .article-card__expand {
+            color: $next-white;
+        }
+
+        .article-card__body p {
+            color: $next-white;
+            font-family: $fontSans;
+            font-weight: 200;
+        }
+    }
+}
+
