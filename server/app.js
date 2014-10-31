@@ -54,7 +54,7 @@ var mapQueryToClamo = function(q) {
         .replace('organisations:', 'company:')
         .replace('regions:', 'location:')
         .replace('topics:', 'topic:');
-}
+};
 
     
 Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
@@ -154,7 +154,7 @@ app.get('/search', function(req, res, next) {
                     });
 
                     fastFTPosts.forEach(function(post) {
-                        stream.push('fastft', post)
+                        stream.push('fastft', post);
                     });
 
                     stream.sortByToneAndLastPublished();

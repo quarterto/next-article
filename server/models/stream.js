@@ -40,7 +40,7 @@ Stream.prototype.sortByToneAndLastPublished = function() {
 			return -1;
 		} else if (isPromoted(getVisualTone(a)) === isPromoted(getVisualTone(b))) {
 			if(getPublishDate(a).getTime() > getPublishDate(b).getTime()) {
-				return -1
+				return -1;
 			} else if (getPublishDate(a).getTime() === getPublishDate(b).getTime()) {
 				return 0;
 			} else {
@@ -52,5 +52,5 @@ Stream.prototype.sortByToneAndLastPublished = function() {
 	});
 
 	this.items.unshift(latest);
-}
+};
 module.exports = Stream;
