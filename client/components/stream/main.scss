@@ -3,6 +3,9 @@ $fontSans: BentonSans, Arial, sans-serif;
 $fontSerif: Georgia, Times New Roman, serif; 
 $fontBrand: FinancierDisplay, Georgia, serif;
 
+//+++++++++++++++++++
+//+ Font icons
+//+++++++++++++++++++
 @include oFtIconsFontFace();
 
 .icon-arrow-down {
@@ -14,6 +17,9 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     @extend %o-ft-icons-icon--arrow-up;
 }
 
+//+++++++++++++++++++
+//+ Stream
+//+++++++++++++++++++
 .stream {
     padding-top: 10px;
     position: relative;
@@ -38,7 +44,9 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-/* article__card */
+//+++++++++++++++++++
+//+ Article card
+//+++++++++++++++++++
 
 .article-card {
     margin-top: 20px;
@@ -50,6 +58,31 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         &:hover {
             text-decoration: underline;
         }
+    }
+}
+
+.article-card__body {
+    font-family: $fontSerif;
+
+    img {
+        clear: left;
+        float: left;
+        margin: 0 14px 14px 0;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+}
+
+.article-card__image {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    img {
+        max-width: 100%;
     }
 }
 
@@ -67,9 +100,50 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     font-family: $fontSans;
 }
 
+.article-card__body p {
+    line-height: 1.4;
+    font-size: 16px;
+    color: $next-grey-light;
+}
+
+.article-card__link,
+.article-card__body a {
+    color: $next-grey-dark;
+}
+
+.article-card__body .more-on {
+    font-family: $fontSans;
+}
+
+.article-card__more {
+    margin: 0px auto 20px auto;
+    border: 1px solid #999;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 12px;
+
+    &:hover{
+        color: white;
+        background-color: #999;
+    }
+}
+
+.article-card__more-active {
+    background-color: red;
+    color: white;
+}
+
+.search-filters__container{
+  margin-top:66px;
+}
+
+//+++++++++++++++++++++
+//+ Primary tag
+//+++++++++++++++++++++
 .article-card__primary-tag {
     background-color: $next-orange;
-    font-weight: bold;
     font-family: $fontSans;
     padding: 4px;
     margin-left: 10px;
@@ -78,13 +152,31 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         color: $next-black;
         font-size: 12px;
     }
+
+    .article-card__tone--video & {
+        color: white;
+        a {
+            color: white;
+        }
+        background-color: $next-grey-light;
+    }
+    .article-card__tone--fastft & {
+        background-color: $next-grey-dark;
+        color: $next-white;
+        font-weight: bolder;
+    }
 }
+
+//+++++++++++++++++++++
+//+ Metadata
+//+++++++++++++++++++++
+.article-card__metadata {
+    margin-bottom: 10px;
+}
+
 .article-card__metadata-list {
-    border-top: 1px solid #777;
-    border-bottom: 1px solid #777;
     font-family: $fontSans;
     padding: 10px 0;
-    margin: 0 0 10px 0;
     font-size: 12px;
     line-height: 1.4;
     clear: both;
@@ -118,12 +210,49 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
+.article-card__publication-date {
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-family:  $fontSans;
+    color: $next-grey-light;
+    padding-left:16px;
+    background:transparent url(assets/img/time.svg) no-repeat left top;
+    
+}
+
+.article-card__length,
+.article-card__byline {
+    font-family: $fontSans;
+    font-size: 12px
+}
+
+.article-card__length {
+    margin: 0;
+    border-bottom:solid 1px #777;
+}
+
+.article-card__byline {
+    float: left;
+}
+
+.article-card__mentions {
+    border-bottom:solid 1px #777;
+}
+
+//+++++++++++++++++++++
+//+ Headlines
+//+++++++++++++++++++++
+
 .article-card__headline {
     margin: 10px 0 20px;
     font-family: $fontSans;
     font-weight: 100;
     text-decoration: none;
     line-height: 1.1;
+
+    &.article-card--compact {
+        background-color: $next-pink;
+    }
 
     .article-card__tone--news &,
     .article-card__tone--vanilla & {
@@ -140,54 +269,23 @@ $fontBrand: FinancierDisplay, Georgia, serif;
             content: url(assets/img/pullquote.svg);
             display: inline;
         }
-    
     }
 
     .article-card__tone--fastft & {
-        .article-card__headline {
-            font-size: 24px;
-            font-weight: 200;
+        font-size: 24px;
+        font-weight: 200;
+    }
+
+    .article-card__tone--video & {
+        a {
+            color: white; 
         }
     }
-
-    &.article-card--compact {
-        background-color: $next-pink;
-    }
-
-    .save__button {
-        position: relative;
-        top: -5px;
-        line-height: 26px;
-        background-position: 0 7px;
-    }
 }
 
-.article-card__reading-info{
-    min-height: 40px;
-    after: {
-        content: '';
-        clear: both;
-    }
-}
-
-.article-card__publication-date {
-    font-size: 12px;
-    font-family:  $fontSans;
-    color: $next-grey-light;
-    padding-left:16px;
-    background:transparent url(assets/img/time.svg) no-repeat left top;
-    
-}
-
-.article-card__length,
-.article-card__byline {
-    font-family: $fontSans;
-    font-size: 12px
-}
-
-.article-card__byline {
-    float: left;
-}
+//+++++++++++++++++++++
+//+ Authors
+//+++++++++++++++++++++
 
 .article-card__authors {
     font-style: normal;
@@ -195,13 +293,18 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     a {
         color: #9e2f50;
 
+        .article-card__tone--video & {
+            color: white;
+            &:hover{
+                color: white;
+            }
+        }
+
         &:hover {
             color: #9e2f50;
             text-decoration: underline;
         }
     }
-
-
 
     ul {
         display: inline;
@@ -225,35 +328,9 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article-card__length {
-    margin: 0;
-}
-
-.article-card__body {
-    font-family: $fontSerif;
-
-    img {
-    	clear: left;
-    	float: left;
-    	margin: 0 14px 14px 0;
-    }
-
-    a {
-        text-decoration: underline;
-    }
-
-}
-
-.article-card__image {
-    display: block;
-    width: 100%;
-    text-align: center;
-
-    img {
-        max-width: 100%;
-    }
-}
-
+//+++++++++++++++++++++
+//+ Compact card
+//+++++++++++++++++++++
 .article-card--compact {
     border: 1px solid #ccc;
     padding: 0 10px;
@@ -288,7 +365,8 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         margin-top: -48px;
         color: $next-grey-light;
         display: block;
-        padding: 8px 2px;
+        padding: 12px 1px 8px;
+        
         &:hover {
             text-decoration: none;
         }
@@ -303,97 +381,29 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article-card__expand {
-    display: none;
-}
+//+++++++++++++++++++++
+//+ Compact tones
+//+++++++++++++++++++++
 
-
-.article-card:first-child {
-    margin-top: 20px;
-}
-
-.article-card__body p {
-    line-height: 1.4;
-    font-size: 16px;
-    color: $next-grey-light;
-}
-
-.article-card__link,
-.article-card__body a {
-    color: $next-grey-dark;
-}
-
-.article-card__body .more-on {
-    font-family: $fontSans;
-}
-
-
-.article-card__more {
-    margin: 0px auto 20px auto;
-    border: 1px solid #999;
-    width: 50px;
-    line-height: 50px;
-    border-radius: 100px;
-    text-align: center;
-    font-size: 12px;
-}
-
-.article-card__more:hover {
-    color: white;
-    background-color: #999;
-}
-
-.article-card__more-active {
-    background-color: red;
-    color: white;
-}
-
-.search-filters__container{
-  margin-top:66px;
-}
-
-/* utils */
-.hide-visually {
-    position:absolute;
-    left:-10000px;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
-}
-
-.js-hide {
-    display: none;
-}
-
-.js-show {
-    display: block;
-}
-
-
-video {
-	max-width: 100%;
-	height: auto;
-}
-
-.article-card__tone--comment,
-.article-card__tone--analysis {
-    &.article-card--compact {
+.article-card--compact {
+    &.article-card__tone--comment,
+    &.article-card__tone--analysis {
         background-color: $next-pink;
+    }
+    
+    &.article-card__tone--fastft {
+        background-color: $next-red;
+        color: $next-white;  
+    }
+
+    &.article-card__tone--video {
+        background-color: black;
+        color: white;  
     }
 }
 
 .article-card__tone--fastft {
-
-    .article-card__primary-tag {
-        background-color: $next-grey-dark;
-        color: $next-white;
-        font-weight: bolder;
-    }
-   
     &.article-card--compact {
-        background-color: $next-red;
-        color: $next-white;
 
         .article-card__link,
         .article-card__expand {
@@ -406,6 +416,26 @@ video {
             font-weight: 200;
         }
     }
-
-
 }
+
+//++++++++++++++++++
+//+ Video
+//++++++++++++++++++
+
+video {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+//++++++++++++++++++
+//+ Utils
+//++++++++++++++++++
+.js-hide {
+    display: none;
+}
+
+.js-show {
+    display: block;
+}
+
