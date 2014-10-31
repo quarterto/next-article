@@ -51,8 +51,6 @@ app.get('/__gtg', function(req, res, next) {
   res.status(200).end();
 });
 
-app.use('/components', require('./components.js'));
-
 // Start polling the data
 latest.init();
 popular.init();
