@@ -1169,7 +1169,7 @@ html {
     content: '\2605';
     display: inline-block; }
 .save__button[data-is-saved="true"][data-save-target="forlaters"] {
-  background-image: url(components/stream/bookmark-selected.svg); }
+  background-image: url(assets/img/bookmark-selected.svg); }
 
 /* site-search */
 .site-search__field {
@@ -1302,7 +1302,7 @@ html {
     font-size: 24px;
     font-family: FinancierDisplay, Georgia, serif; }
     .article-card__tone--comment .article-card__headline > a:before, .article-card__tone--analysis .article-card__headline > a:before {
-      content: url(components/stream/pullquote.svg);
+      content: url(assets/img/pullquote.svg);
       display: inline; }
   .article-card__tone--fastft .article-card__headline .article-card__headline {
     font-size: 24px;
@@ -1325,7 +1325,7 @@ html {
   font-family: BentonSans, Arial, sans-serif;
   color: #868686;
   padding-left: 16px;
-  background: transparent url(components/stream/time.svg) no-repeat left top; }
+  background: transparent url(assets/img/time.svg) no-repeat left top; }
 
 .article-card__length,
 .article-card__byline {

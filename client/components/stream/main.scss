@@ -137,7 +137,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         font-family: $fontBrand;
 
         > a:before {
-            content: url(components/stream/pullquote.svg);
+            content: url(assets/img/pullquote.svg);
             display: inline;
         }
     
@@ -175,7 +175,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     font-family:  $fontSans;
     color: $next-grey-light;
     padding-left:16px;
-    background:transparent url(components/stream/time.svg) no-repeat left top;
+    background:transparent url(assets/img/time.svg) no-repeat left top;
     
 }
 
