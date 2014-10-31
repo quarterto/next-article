@@ -138,6 +138,10 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 .search-filters__container{
   margin-top:66px;
 }
+ //Hide show moew button on article
+ .article-card__expand {
+    display: none;
+ }
 
 //+++++++++++++++++++++
 //+ Primary tag
@@ -223,20 +227,19 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 .article-card__length,
 .article-card__byline {
     font-family: $fontSans;
-    font-size: 12px
+    font-size: 12px;
+    padding: 10px 0;
 }
 
 .article-card__length {
-    margin: 0;
-    border-bottom:solid 1px #777;
+    float: right;
+    width: 60%;
+    text-align:right;
 }
 
 .article-card__byline {
     float: left;
-}
-
-.article-card__mentions {
-    border-bottom:solid 1px #777;
+    width: 40%;
 }
 
 //+++++++++++++++++++++
@@ -362,10 +365,9 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 
     .article-card__expand {
         float: right;
-        margin-top: -48px;
         color: $next-grey-light;
         display: block;
-        padding: 12px 1px 8px;
+        padding: 0 1px 8px;
         
         &:hover {
             text-decoration: none;
@@ -439,3 +441,15 @@ video {
     display: block;
 }
 
+.border-b {
+    border-bottom: 1px solid #777;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}

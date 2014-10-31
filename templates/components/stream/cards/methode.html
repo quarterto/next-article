@@ -47,16 +47,18 @@
 
 <section class="article-card__expandable-content">
     <section class="article-card__metadata">
-        {% if item.authors.length > 0 %}
-        {% include "../byline.html" with item %}
-        {% endif %}
+        <div class="clearfix border-b">
+            {% if item.authors.length > 0 %}
+            {% include "../byline.html" with item %}
+            {% endif %}
 
-        <div class="article-card__length">
-            {% include "../length.html" with item %}
-        </div> 
+            <div class="article-card__length">
+                {% include "../length.html" with item %}
+            </div> 
+        </div>
 
         {% if item.people.length > 0 || item.organisations.length > 0 %}
-        <div class="article-card__mentions article-card__metadata-list">
+        <div class="border-b article-card__metadata-list">
             Mentions
             <ul class="article-card__mentions__items">
                 {% for entity in item.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
