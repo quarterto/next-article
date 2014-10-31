@@ -105,6 +105,9 @@
 
 <div class="article-card__body">
     {{ item.paragraphs(0, 2) }}
+    {% if flags.ads.isSwitchedOn() %}
+    <div class="article-card__advert"><img src="/dobi/assets/img/mpu.jpeg" /></div>
+    {% endif %}
 </div>
 
 {% endif%}
