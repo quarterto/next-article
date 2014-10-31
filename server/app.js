@@ -185,7 +185,8 @@ app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, function(req, res, next) {
         .then(function(response) {
             var stream = new Stream();
             stream.push('fastft', response.post);
-            res.render('layout/base', {
+            res.set(responseHeaders);
+            res.render('layout', {
                 mode: 'expand',
                 isArticle: true,
                 stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
