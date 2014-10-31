@@ -7,7 +7,6 @@ var request = require('request');
 var SearchFilters = require('./searchFilters.js');
 var Stream = require('./models/stream');
 var Clamo = require('fastft-api-client');
-var Flags = require('next-feature-flags-client');
 
 var app = module.exports = express();
 
@@ -24,14 +23,12 @@ swig.setFilter('resize', function(input, width) {
 
 app.use('/dobi', express.static(__dirname + '/../public'));
 app.use('/components', require('./components.js'));
+app.use(require('./middleware/namespace'));
 app.use(require('./middleware/auth'));
 
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var ft      = require('ft-api-client')(process.env.apikey);
-
-var flagsNamespace = (process.env.FLAGS) ? process.env.FLAGS : 'production';
-var flags = new Flags('http://ft-next-api-feature-flags.herokuapp.com/' + flagsNamespace);
 
 // Appended to all successful responses
 var responseHeaders = {
@@ -118,7 +115,7 @@ app.get('/search', function(req, res, next) {
     ft.search(query, count)
         .then(function (result) {
             var articles = result.articles;
-	    var ids;
+            var ids;
 
             if (!articles.length){
                 res.send(404);
@@ -141,14 +138,15 @@ app.get('/search', function(req, res, next) {
                     stream.push('methode', article);
                 });
                 
-                res.render('layout', {
+                res.ft.template = 'layout';
+                res.ft.viewData = {
                     mode: 'compact',
                     stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
                     title: formatSection(req.query.q),
-                    isFollowable: req.query.isFollowable !== false,
-                    flags: flags.get() 
-                });
-                return;
+                    isFollowable: req.query.isFollowable !== false
+                };
+
+                return next();
             }
 
             ft.get(ids)
@@ -159,15 +157,17 @@ app.get('/search', function(req, res, next) {
                         stream.push('methode', article);
                     });
                   
-                    res.render('layout', {
+                    res.ft.template = 'layout';
+                    res.ft.viewData = {
                         mode: 'compact',
                         stream: { items: stream.items, meta: { facets: (result.meta) ? result.meta.facets : [] }},
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
-                        isFollowable: req.query.isFollowable !== false,
-                        flags: flags.get() 
-                    });
+                        isFollowable: req.query.isFollowable !== false
+                    };
+
+                    next();
 
                 }, function(err) {
                     console.log(err);
@@ -198,13 +198,15 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
                             stream.push('methode', article);
                         });
 
-                        res.render('layout', {
+                        res.ft.template = 'layout';
+                        res.ft.viewData = {
                             mode: 'expand',
                             isArticle: true,
                             stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
-                            isFollowable: true,
-                            flags: flags.get() 
-                        });
+                            isFollowable: true
+                        };
+
+                        next();
                 
                         break;
 
@@ -244,16 +246,17 @@ app.get('/more-on/:id', function(req, res, next) {
             ft
                 .get(article[0].packages)
                 .then(function (articles) {
-		    if (articles.length > 0) {
+                    if (articles.length > 0) {
                         res.set(responseHeaders);
-                        res.render('components/more-on', {
+                        res.ft.template = 'components/more-on';
+                        res.ft.viewData = {
                             mode: 'expand',
-                            stream: articles,
-                            flags: flags.get() 
-                        });
-		    } else {
-			res.status(404).send();
-		    }
+                            stream: articles
+                        };
+                        next();
+                    } else {
+                        res.status(404).send();
+                    }
                 }, function (err) {
                     console.error(err);
                 });
@@ -265,13 +268,15 @@ app.get('/more-on/:id', function(req, res, next) {
 
 // Uber-nav
 app.get('/uber-nav', function(req, res, next) {
-  request({
-    url: 'http://next-companies-et-al.herokuapp.com/v1/ubernav.json',
-    json: true
-  }, function (err, response, body) {
-     res.set(responseHeaders);
-     res.render('components/uber-nav', body);
-  });
+    request({
+        url: 'http://next-companies-et-al.herokuapp.com/v1/ubernav.json',
+        json: true
+    }, function (err, response, body) {
+        res.set(responseHeaders);
+        res.ft.template = 'components/uber-nav';
+        res.ft.viewData = body;
+        next();
+    });
 });
 
 // __gtg
@@ -280,12 +285,16 @@ app.get('/__gtg', function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-	res.redirect('/search?q=page:Front%20page');
+    res.redirect('/search?q=page:Front%20page');
 });
 
+app.use(require('./middleware/flags'));
+app.use(require('./middleware/render'));
+
+
 if (process.env.NODE_ENV === 'production') {
-	var raven = require('raven');
-	app.use(raven.middleware.express(process.env.RAVEN_URL));
+    var raven = require('raven');
+    app.use(raven.middleware.express(process.env.RAVEN_URL));
 }
 
 // Start polling the data
