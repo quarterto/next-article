@@ -63,19 +63,24 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 }
 
 .stream-list__stream-link {
-    font-family: BentonSans, Arial, sans-serif;
-    padding: 10px;
+
     border: 1px solid #000;
-    background-color: $next-pink;
+    background-color: $next-orange;
     margin: 10px 0;
     .icon-arrow-right {
         float: right;
     }
     a {
         display: block;
+        padding: 10px;
+        font-family: BentonSans, Arial, sans-serif;
+        font-weight: bold;
         color: $next-black;
         text-decoration: none; 
-        &:hover {
+
+    }
+    &:hover {
+        a {
             text-decoration: underline;
         }
     }

@@ -1267,22 +1267,24 @@ html {
   font-family: BentonSans, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 12px; }
+  font-size: 12px;
+  text-align: center; }
 
 .stream-list__stream-link {
-  font-family: BentonSans, Arial, sans-serif;
-  padding: 10px;
   border: 1px solid #000;
-  background-color: #fff1e0;
+  background-color: #dfab6c;
   margin: 10px 0; }
   .stream-list__stream-link .icon-arrow-right {
     float: right; }
   .stream-list__stream-link a {
     display: block;
+    padding: 10px;
+    font-family: BentonSans, Arial, sans-serif;
+    font-weight: bold;
     color: #303030;
     text-decoration: none; }
-    .stream-list__stream-link a:hover {
-      text-decoration: underline; }
+  .stream-list__stream-link:hover a {
+    text-decoration: underline; }
 
 /* article__card */
 .article-card {
