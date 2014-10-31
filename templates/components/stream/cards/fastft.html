@@ -9,13 +9,14 @@
         </a>
       </h3>
 
-    <div class="article-card__reading-info">
-    	{% include "../byline.html" with {item: {lastUpdated: item._datePublished}} %}
 
-    </div>
     <a href="#" class="article-card__expand js-toggle" data-toggle=".article-card__expandable-content">
         <i class="icon-arrow-down"></i>
     </a>
+    <div class="article-card__publication-date">
+        {% include "../publication-date.html" with {item: {lastUpdated: item._datePublished}} %}
+    </div>
+
     <section class="article-card__expandable-content">
     <div class="article-card__body">
         {{ item.content|raw }}

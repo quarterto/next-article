@@ -85,8 +85,7 @@
             evt.preventDefault();
             var target = this.getAttribute('data-toggle'),
                 article = findAncestorByClassName(el, target),
-                icon = el.querySelector('i')
-                ;
+                icon = el.querySelector('i');
             toggleClass(icon, 'icon-arrow-up');
             toggleClass(icon, 'icon-arrow-down');
             toggleClass(article.querySelector(target), 'js-show');
