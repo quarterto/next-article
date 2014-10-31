@@ -30,7 +30,7 @@
     function findAncestorByClassName (el, cls) {
         while ((el = el.parentNode) && !hasClass(el, cls)) {
             return el;    
-        };
+        }
     }
 
     var $ = function (selector) {
