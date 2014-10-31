@@ -23,6 +23,7 @@ swig.setFilter('resize', function(input, width) {
 // not for production
 app.set('view cache', false);
 
+
 // set up middleware and routes 
 // TODO: needs tidying up
 app.use('/dobi', express.static(__dirname + '/../public'));
