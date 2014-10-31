@@ -1,4 +1,4 @@
-var SearchFilters = require('../../server/searchFilters.js');
+var SearchFilters = require('../../server/utils/searchFilters.js');
 var expect = require('chai').expect;
 
 describe('SearchFilters', function(){

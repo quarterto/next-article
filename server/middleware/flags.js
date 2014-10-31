@@ -6,4 +6,5 @@ module.exports = function (req, res, next) {
     if (res.ft.viewData) {
         res.ft.viewData.flags = flags.get();
     }
+    next();
 };
