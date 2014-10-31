@@ -8,30 +8,37 @@ var popular = require('./jobs/popular');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-    res.render('list', { });
+    res.ft.template = 'list';
+    next();
 });
 
 router.get('/splash', function(req, res, next) {
-    res.render('splash/base', { });
+    res.ft.template = 'splash/base';
+    next();
 });
 
 router.get('/sections', function(req, res, next) {
-    res.render('sections/base', { });
+    res.ft.template = 'sections/base';
+    next();
 });
 
 router.get('/site-search', function(req, res, next) {
-    res.render('site-search/base', { });
+    res.ft.template = 'site-search/base';
+    next();
 });
 
 router.get('/header', function(req, res, next) {
-    res.render('header/base', { });
+    res.ft.template = 'header/base';
+    next();
 });
 
 router.get('/stream', function(req, res, next) {
-    res.render('stream/base', {
+    res.ft.template = 'stream/base';
+    res.ft.viewData = {
         mode: 'compact',
         stream: popular.get()
-    });
+    };
+    next();
 });
 
 module.exports = router;
