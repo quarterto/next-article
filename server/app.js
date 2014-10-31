@@ -160,6 +160,7 @@ app.get('/search', function(req, res, next) {
                     stream.sortByToneAndLastPublished();
 
                     res.render('layout', {
+			mode: 'compact',
                         stream: { items: stream.items, meta: { facets: (results[1].meta) ? results[1].meta.facets : [] }}, // TODO: Add back meta stuff
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
@@ -229,9 +230,9 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(r
 
                         var article = articles[0];
                         res.json({
-                            id: article.id,     
-                            headline: article.headline,     
-                            largestImage: article.largestImage,     
+                            id: article.id,
+                            headline: article.headline,
+                            largestImage: article.largestImage,
                             body: [
                                     article.paragraphs(0, 2, { removeImages: false }).toString(),
                                     article.paragraphs(2, 100, { removeImages: false }).toString()
