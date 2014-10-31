@@ -12,12 +12,11 @@ module.exports = function(req, res, next) {
                 .get(article[0].packages)
                 .then(function (articles) {
                     if (articles.length > 0) {
-                        res.ft.template = 'components/more-on';
-                        res.ft.viewData = {
+                        require('../utils/cache-control')(res);
+                        res.layout('components/more-on', {
                             mode: 'expand',
                             stream: articles
-                        };
-                        next();
+                        });
                     } else {
                         res.status(404).send();
                     }

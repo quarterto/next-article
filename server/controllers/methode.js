@@ -19,22 +19,23 @@ module.exports = function(req, res, next) {
                         articles.forEach(function (article) {
                             stream.push('methode', article);
                         });
-
-                        res.ft.template = 'layout';
-                        res.ft.viewData = {
+                        require('../utils/cache-control')(res);
+                        
+                        res.render('layout', {
                             mode: 'expand',
                             isArticle: true,
                             stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
-                            isFollowable: true
-                        };
+                            isFollowable: true,
+                            flags: require('../utils/flags').get()
+                        });
 
-                        next();
-                
+                                
                         break;
 
                     case 'json':
 
                         var article = articles[0];
+                        require('../utils/cache-control')(res);
                         res.json({
                             id: article.id,
                             headline: article.headline,

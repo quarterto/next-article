@@ -7,8 +7,7 @@ module.exports = function(req, res, next) {
         url: 'http://next-companies-et-al.herokuapp.com/v1/ubernav.json',
         json: true
     }, function (err, response, body) {
-        res.ft.template = 'components/uber-nav';
-        res.ft.viewData = body;
-        next();
+        require('../utils/cache-control')(res);
+        res.render('components/uber-nav', body);
     });
 };

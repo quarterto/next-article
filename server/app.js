@@ -23,7 +23,6 @@ swig.setFilter('resize', function(input, width) {
 // not for production
 app.set('view cache', false);
 
-
 // set up middleware and routes 
 // TODO: needs tidying up
 app.use('/dobi', express.static(__dirname + '/../public'));
@@ -33,7 +32,6 @@ if (process.env.NODE_ENV === 'production') {
     app.use(raven.middleware.express(process.env.RAVEN_URL));
 }
 
-app.use(require('./middleware/namespace'));
 app.use(require('./middleware/auth'));
 
 
@@ -51,9 +49,6 @@ app.get('/__gtg', function(req, res, next) {
 });
 
 app.use('/components', require('./components.js'));
-
-app.use(require('./middleware/flags'));
-app.use(require('./middleware/render'));
 
 // Start polling the data
 latest.init();

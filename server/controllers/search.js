@@ -63,16 +63,15 @@ module.exports = function(req, res, next) {
                 articles.forEach(function (article) {
                     stream.push('methode', article);
                 });
-                
-                res.ft.template = 'layout';
-                res.ft.viewData = {
+                require('../utils/cache-control')(res);
+                res.render('layout', {
                     mode: 'compact',
                     stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
                     title: formatSection(req.query.q),
-                    isFollowable: req.query.isFollowable !== false
-                };
-
-                return next();
+                    isFollowable: req.query.isFollowable !== false,
+                    flags: require('../utils/flags').get()
+                });
+                return;
             }
 
             ft.get(ids)
@@ -87,18 +86,16 @@ module.exports = function(req, res, next) {
                     });
 
                     stream.sortByToneAndLastPublished();
-                  
-                    res.ft.template = 'layout';
-                    res.ft.viewData = {
+                    require('../utils/cache-control')(res);
+                    res.render('layout', {
                         mode: 'compact',
                         stream: { items: stream.items, meta: { facets: (results[1].meta) ? results[1].meta.facets : [] }},
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
-                        isFollowable: req.query.isFollowable !== false
-                    };
-
-                    next();
+                        isFollowable: req.query.isFollowable !== false,
+                        flags: require('../utils/flags').get()
+                    });
 
                 }, function(err) {
                     console.log(err);

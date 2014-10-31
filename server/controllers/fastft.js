@@ -8,15 +8,15 @@ module.exports = function(req, res, next) {
         .then(function(response) {
             var stream = new Stream();
             stream.push('fastft', response.post);
-            res.ft.template = 'layout';
-            res.ft.viewData =  {
+            require('../utils/cache-control')(res);
+            res.render('layout', {
                 mode: 'expand',
                 isArticle: true,
                 stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
                 isFollowable: true,
-            };
-            next();
-                     
+                flags: require('../utils/flags').get()
+            });
+                               
         }, function (err) {
             console.log(err);
             res.send(404);
