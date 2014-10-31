@@ -161,7 +161,7 @@ app.get('/search', function(req, res, next) {
 
                     res.render('layout', {
 			mode: 'compact',
-                        stream: { items: stream.items, meta: { facets: (results[1].meta) ? results[1].meta.facets : [] }}, // TODO: Add back meta stuff
+                        stream: { related: stream.related, items: stream.items, meta: { facets: (results[1].meta) ? results[1].meta.facets : [] }}, // TODO: Add back meta stuff
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
