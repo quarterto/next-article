@@ -1,35 +1,62 @@
 
 <div class="article-card article-card__tone--{{ item.visualTone }}{% if mode === 'compact' %} article-card--compact{% endif %}" id="capi-{{ item.id }}">
+    {% if item.has_video && flags.video.isSwitchedOn() %}
+    <!-- {{ item.videos|json }} -->
+    <video class="article-card__video" data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
+       <source type="video/mp4">
+           Your browser does not support the video tag.
+       </video>
+       {% endif%}
 
-    {% if mode === 'compact' %}
-    <div class="article-card__tone">
-        {{ item.visualTone }}
+       {% if mode === 'compact' %}
+       <div class="article-card__primary-tag">
+        {% if item.brand %}
+        {% set topic = item.brand %}
+        {% else %}
+        {% set topic = item.primarySection %}
+        {% endif %}
+        <a href="/search?q={{ topic.taxonomy }}:{{ topic.name }}">{{ topic.name }}</a>
     </div>
     {% endif %}
+
+    {% include "../../save-button.html" with { key: 'forlaters', label: '', toggleText: '', ariaLabel: 'Save this article for later' } %}
 
     {% if mode !== 'compact' %}
     <div class="article-card__themes article-card__metadata-list">
         Latest in <ul>
-            <li><a href="/search?q={{ item.primarySection.taxonomy }}:{{ item.primarySection.name }}">{{ item.primarySection.name }}</a></li>
-            {% if item.primaryTheme.name %}
-            <li><a href="/search?q={{ item.primaryTheme.taxonomy }}:{{ item.primaryTheme.name }}">{{ item.primaryTheme.name }}</a></li>
-            {% endif %}
-        </ul>
+        <li><a href="/search?q={{ item.primarySection.taxonomy }}:{{ item.primarySection.name }}">{{ item.primarySection.name }}</a></li>
+        {% if item.primaryTheme.name %}
+        <li><a href="/search?q={{ item.primaryTheme.taxonomy }}:{{ item.primaryTheme.name }}">{{ item.primaryTheme.name }}</a></li>
+        {% endif %}
+    </ul>
+</div>
+{% endif %}
+
+<h3 class="article-card__headline">
+    <a href="/{{ item.id }}" class="article-card__link">
+        {{ item.headline }}
+    </a>
+</h3>
+
+<a href="#" class="article-card__expand js-toggle" data-toggle=".article-card__expandable-content">
+    <i class="icon-arrow-down"></i>
+</a>   
+
+<div class="article-card__reading-info article-card__publication-date">
+    {% include "../publication-date.html" with item %}
+</div>
+
+<section class="article-card__expandable-content">
+
+    {% if item.authors.length > 0 %}
+    <div class="article-card__reading-info">
+        {% include "../byline.html" with item %}
     </div>
     {% endif %}
 
-    <h3 class="article-card__headline">
-        <a href="/{{ item.id }}" class="article-card__link">
-            {{ item.headline }}
-        </a>
-        {% include "../../save-button.html" with { key: 'forlaters', label: 'Save for later', toggleText: 'Saved for later'} %}
-    </h3>
-
-        <div class="article-card__reading-info">
-        {% include "../byline.html" with item %}
+    <div class="article-card__length">
         {% include "../length.html" with item %}
-        </div>
-
+    </div> 
 
     {% if item.people.length > 0 || item.organisations.length > 0 %}
     <div class="article-card__mentions article-card__metadata-list">
@@ -47,57 +74,49 @@
     <div class="article-card__ticker-symbols">
         {% for symbol in item.tickerSymbols %}
         <a
-            href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
-            class="article-card__ticker-symbols__item"
-            data-ticker-symbols="{{ symbol.code }}"
-            ></a>
+        href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
+        class="article-card__ticker-symbols__item"
+        data-ticker-symbols="{{ symbol.code }}"
+        ></a>
         {% endfor %}
     </div>
     {% endif %}
 
-    {% if item.has_video && flags.video.isSwitchedOn() %}
-
-        <!-- {{ item.videos|json }} -->
-        <video data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
-			<source type="video/mp4">
-			Your browser does not support the video tag.
-		</video>
-        
-    {% else %}
-    
-        {% if item.largestImage && isArticle %}
-	    <a href="/{{ item.id }}" class="article-card__image">
-	        <img src="{{ item.largestImage.url|resize(600) }}" class="article-card__image-{{ item.id }}"/>
-	    </a>
-	    {% endif %}
-
-    {% endif%}
-    
-    {% if mode === 'compact' %}
-
-        {% if !item.has_video || flags.video.isSwitchedOff() %}
-        
-            {% if item.raw.item.images.length %}
-                <div  class="article-card__image">
-                    <img src="{{ item.raw.item.images[0].url|resize(300) }}" class="article-card__image-{{ item.id }}"/>
-                </div>
-            {% endif %}
-
-            <div class="article-card__body">
-                {{ item.paragraphs(0, 2) }}
-            </div>
-    
-        {% endif%}
-        
-    {% else %}
-
-        <div class="article-card__body">
-            {{ item.paragraphs(0, 2, { removeImages: false }) }}
-            <div class="js-more-on more-on" data-article-id="{{ item.id }}"></div>
-            {{ item.paragraphs(2, 100, { removeImages: false }) }}
-        </div>
-        
+    {% if item.brand && item.authors.length > 0 %} 
+    <img class="article-card__headshot" src="http://image.webservices.ft.com/v1/images/raw/fthead:{{ item.authors[0].name|lower|replace(' ', '-') }}?source=http://www.ft.com&width=75"/>
     {% endif %}
 
 
+    {% if item.largestImage && isArticle %}
+    <a href="/{{ item.id }}" class="article-card__image">
+     <img src="{{ item.largestImage.url|resize(600) }}" class="article-card__image-{{ item.id }}"/>
+ </a>
+ {% endif %}
+
+ {% if mode === 'compact' %}
+
+ {% if !item.has_video || flags.video.isSwitchedOff() %}
+
+ {% if item.raw.item.images.length %}
+ <div  class="article-card__image">
+    <img src="{{ item.raw.item.images[0].url|resize(300) }}" class="article-card__image-{{ item.id }}"/>
+</div>
+{% endif %}
+
+<div class="article-card__body">
+    {{ item.paragraphs(0, 2) }}
+</div>
+
+{% endif%}
+
+{% else %}
+
+<div class="article-card__body">
+    {{ item.paragraphs(0, 2, { removeImages: false }) }}
+    <div class="js-more-on more-on" data-article-id="{{ item.id }}"></div>
+    {{ item.paragraphs(2, 100, { removeImages: false }) }}
+</div>
+
+{% endif %}
+</section>    
 </div>

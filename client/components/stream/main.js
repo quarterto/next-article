@@ -27,6 +27,12 @@
         };
     }
 
+    function findAncestorByClassName (el, cls) {
+        while ((el = el.parentNode) && !hasClass(el, cls)) {
+            return el;    
+        }
+    }
+
     var $ = function (selector) {
         return [].slice.call(document.querySelectorAll(selector));
     };
@@ -56,10 +62,12 @@
 
     function toggleClass(el, name) {
         if (hasClass(el, name)) removeClass(el, name);
-	else addClass(el, name);
+        else addClass(el, name);
     }
 
-    /* Allow each article to be opened inline */
+    /* Allow all articles to be opened inline */
+    //TODO: this will interact with single-article toggle below;
+    //needs a refactor when re-implemented
     $('.article-card__more.js-toggle').map(function (el) {
         el.addEventListener('click', function (evt) {
             toggleClass(el, 'js-active');
@@ -71,9 +79,20 @@
         });
     });
 
-
-    /* */
-
+    /* Allow single article to be opened inline */
+    $('.article-card__expand.js-toggle').map(function (el) {
+        el.addEventListener('click', function (evt) {
+            evt.preventDefault();
+            var target = this.getAttribute('data-toggle'),
+                article = findAncestorByClassName(el, target),
+                icon = el.querySelector('i')
+                ;
+            toggleClass(icon, 'icon-arrow-up');
+            toggleClass(icon, 'icon-arrow-down');
+            toggleClass(article.querySelector(target), 'js-show');
+        });
+    });
+    
     var tracks = $('.article-card__headline');
 
     function isElementInViewport (el) {
@@ -85,7 +104,7 @@
             rect.left >= 0 &&
             rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
             rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
-        );
+            );
     }
 
     var readable = function() {

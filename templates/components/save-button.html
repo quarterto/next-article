@@ -1,1 +1,3 @@
-<button class="save__button js-save__button" data-save-target="{{key}}" data-toggle-text="{{toggleText}}">{{label}}</button>
+<button class="save__button js-save__button" data-save-target="{{key}}" data-toggle-text="{{toggleText}}" {% if ariaLabel %}aria-label="{{ariaLabel}}"{% endif %}>
+	{{label}}
+</button>

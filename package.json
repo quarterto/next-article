@@ -30,7 +30,7 @@
     "es6-promise": "*",
     "express": "^4.8.x",
     "forever": "^0.11.1",
-    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.40.tar.gz",
+    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.0.43.tar.gz",
     "fastft-api-client": "https://github.com/Financial-Times/fastft-api-client/archive/0.11.0.tar.gz",
     "ft-poller": "0.0.4",
     "haikro": "^1.2.4",

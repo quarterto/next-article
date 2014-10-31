@@ -44,7 +44,6 @@ window.addEventListener('DOMContentLoaded', function (evt) {
         saveBtn.textContent = saveBtn.getAttribute('data-toggle-text');
         saveBtn.setAttribute('data-toggle-text', existingText);
         saveBtn.setAttribute('data-is-saved', isSaved ? 'false' : 'true');
-
     }
 
     function stripLeadingSlash(path) {
