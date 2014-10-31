@@ -54,14 +54,15 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         display: inline;
         margin: 0;
         padding: 0;
-    }
-    li {
-        list-style: none;
+        
+        > li {
+            list-style: none;
+        }
     }
 }
 
 .stream-list__heading {
-    font-family: BentonSans, Arial, sans-serif;
+    font-family: $fontSans;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 12px;
@@ -79,7 +80,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     a {
         display: block;
         padding: 10px;
-        font-family: BentonSans, Arial, sans-serif;
+        font-family: $fontSans;
         color: $next-black;
         text-decoration: none; 
 
