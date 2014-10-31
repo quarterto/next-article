@@ -5,6 +5,7 @@ var express = require('express');
 var latest  = require('./jobs/latest');
 var popular = require('./jobs/popular');
 var api = require('./utils/api');
+var Flags = require('./utils/flags');
 
 // create the app
 var app = module.exports = express();
@@ -12,13 +13,14 @@ var app = module.exports = express();
 // set up templating
 var swig = require('swig');
 
+require('./view-helpers/flag');
+require('./view-helpers/resize');
+
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/../templates');
 swig.setDefaults({ cache: false });
-swig.setFilter('resize', function(input, width) {
-  return 'http://image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(input) + '?width=' + width + '&source=docs&fit=scale-down';
-});
+
 
 // not for production
 app.set('view cache', false);

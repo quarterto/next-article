@@ -13,8 +13,8 @@
 
 
         <div class="o-grid-row">
-
-            {% if flags.contextNavigation.isSwitchedOn() %}
+            
+            {% flag contextNavigation %}
                 <!-- Component: context - FIXME - split in to nav & context -->
                 <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
                     <!-- Component: selected-filters -->
@@ -36,8 +36,8 @@
                         {% include "components/stream.html" %}
                     </div>
                 </div>
-            {% else %}
-            
+            {% endflag %}
+            {% flag !contextNavigation %}
                 <!-- Component: stream -->
                 <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
                 <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
@@ -47,7 +47,7 @@
                 </div>
                 <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
 
-            {% endif %}
+            {% endflag %}
         </div>
 
         <script src="//build.origami.ft.com/bundles/js?modules=o-date@^1.0.0"></script>
