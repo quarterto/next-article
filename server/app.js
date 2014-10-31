@@ -47,28 +47,16 @@ var formatSection = function (s) {
     return s;
 };
 
-/*
-    FIXME - make a new route for this
-*/
-    
-app.get('/search/fastft', function(req, res, next) {
+var mapQueryToClamo = function(q) {
+    return q.replace('sections:', 'sector:')
+        .replace('organisations:', 'company:')
+        .replace('regions:', 'location:')
+        .replace('topics:', 'topic:');
+};
 
-    var searchFilters = new SearchFilters(req);
     
-    Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
-    Clamo.config('timeout', 4000);
-    Clamo.search(req.query.q, {     // Eg, 'location:Japan'
-        limit: 10,
-        offset: 1
-        }).then(function (data) {
-            
-            var stream = new Stream();
-            
-            data.posts.forEach(function (post) {
-                stream.push('fastft', post);
-            });
-    });
-});
+Clamo.config('host', 'http://clamo.ftdata.co.uk/api');
+Clamo.config('timeout', 4000);
 
 app.get('/favourites', function(req,res,next) {
     var userId = req.query.user;
@@ -112,16 +100,23 @@ app.get('/search', function(req, res, next) {
     var searchFilters = new SearchFilters(req);
     var query = searchFilters.buildAPIQuery();
     
-    ft.search(query, count)
-        .then(function (result) {
-            var articles = result.articles;
-            var ids;
+    var clamoPromise = Clamo.search(mapQueryToClamo(req.query.q), {     // Eg, 'location:Japan'
+        limit: 5,
+        offset: 0
+    });
 
-            if (!articles.length){
+    var methodePromise = ft.search(query, count);
+
+
+    Promise.all([clamoPromise, methodePromise])
+        .then(function (results) {
+            var fastFTPosts = results[0] ? results[0].posts : [];
+            var articles = results[1] ? results[1].articles : [];
+            var ids;
+            if (!articles.length && !fastFTPosts.length){
                 res.send(404);
                 return;
             }
-
             if (articles[0] instanceof Object) {
                 ids = articles.map(function (article) {
                     return article.id;
@@ -156,11 +151,16 @@ app.get('/search', function(req, res, next) {
                     articles.forEach(function (article) {
                         stream.push('methode', article);
                     });
+                    fastFTPosts.forEach(function(post) {
+                        stream.push('fastft', post);
+                    });
+
+                    stream.sortByToneAndLastPublished();
                   
                     res.ft.template = 'layout';
                     res.ft.viewData = {
                         mode: 'compact',
-                        stream: { items: stream.items, meta: { facets: (result.meta) ? result.meta.facets : [] }},
+                        stream: { items: stream.items, meta: { facets: (results[1].meta) ? results[1].meta.facets : [] }},
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
@@ -179,7 +179,27 @@ app.get('/search', function(req, res, next) {
 });
 
 
-// ft articles
+// fast ft articles
+app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, function(req, res, next) {
+    Clamo.getPost(req.params[0])
+        .then(function(response) {
+            var stream = new Stream();
+            stream.push('fastft', response.post);
+            res.set(responseHeaders);
+            res.render('layout', {
+                mode: 'expand',
+                isArticle: true,
+                stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
+                isFollowable: true,
+                flags: flags.get() 
+            });
+                     
+        }, function (err) {
+            console.log(err);
+            res.send(404);
+        });
+});
+
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, function(req, res, next) {
 
     ft
