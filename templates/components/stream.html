@@ -20,11 +20,10 @@
         {% include "stream/cards/fastft.html" with { item: article.item } %}
     {% elseif article.type === 'methode' %}
         {% include "stream/cards/methode.html" with { item: article.item } %}
-        {% if article.has_video %}
-
-        {% endif %}
     {% endif %}
     
 {% endfor %}
 
-
+{% if stream.related %}
+    {% include "stream/related.html"%}
+{% endif %}

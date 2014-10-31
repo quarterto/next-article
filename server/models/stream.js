@@ -53,4 +53,24 @@ Stream.prototype.sortByToneAndLastPublished = function() {
 
 	this.items.unshift(latest);
 };
+
+Object.defineProperty(Stream.prototype, 'related', {
+    get: function () {
+    		var distinct = {};
+    		var topics = this.items.map(function(item) {
+    			return item.item.topics || [];
+    		}).reduce(function(a, b) {
+    			return a.concat(b);
+    		}).filter(function(current, index, self) {
+    			if(!distinct[current.searchString]) {
+    				distinct[current.searchString] = true;
+    				return true;
+    			}
+    			return false;
+    		});
+        return topics;
+    }
+});
+
+
 module.exports = Stream;

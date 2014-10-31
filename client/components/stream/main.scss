@@ -13,9 +13,14 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     @include oFtIconsBaseIconStyles();
     @extend %o-ft-icons-icon--arrow-up;
 }
+.icon-arrow-right {
+    @include oFtIconsBaseIconStyles();
+    @extend %o-ft-icons-icon--arrow-right;
+}
 
 .stream {
-    padding-top: 10px;
+    padding: 10px 0;
+
     position: relative;
 }
 
@@ -35,6 +40,44 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         content: '';
         display: block;
         clear: both;
+    }
+}
+
+.stream-list__related {
+    ul {
+        display: inline;
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        list-style: none;
+    }
+}
+
+.stream-list__heading {
+    font-family: BentonSans, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+}
+
+.stream-list__stream-link {
+    font-family: BentonSans, Arial, sans-serif;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: $next-pink;
+    margin: 10px 0;
+    .icon-arrow-right {
+        float: right;
+    }
+    a {
+        display: block;
+        color: $next-black;
+        text-decoration: none; 
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -406,6 +449,5 @@ video {
             font-weight: 200;
         }
     }
-
 
 }

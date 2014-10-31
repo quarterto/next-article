@@ -48,6 +48,9 @@ body {
 .icon-arrow-down:before {
   content: "\e001"; }
 
+.icon-arrow-right:before {
+  content: "\e004"; }
+
 .icon-arrow-up:before {
   content: "\e006"; }
 
@@ -582,6 +585,9 @@ html {
 .icon-arrow-down:before {
   content: "\e001"; }
 
+.icon-arrow-right:before {
+  content: "\e004"; }
+
 .icon-arrow-up:before {
   content: "\e006"; }
 
@@ -604,6 +610,9 @@ html {
 */
 .icon-arrow-down:before {
   content: "\e001"; }
+
+.icon-arrow-right:before {
+  content: "\e004"; }
 
 .icon-arrow-up:before {
   content: "\e006"; }
@@ -1115,6 +1124,9 @@ html {
 .icon-arrow-down:before {
   content: "\e001"; }
 
+.icon-arrow-right:before {
+  content: "\e004"; }
+
 .icon-arrow-up:before {
   content: "\e006"; }
 
@@ -1211,8 +1223,21 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-arrow-right {
+  font-family: "ft-icons";
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: normal !important;
+  font-style: normal !important;
+  speak: none;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
 .stream {
-  padding-top: 10px;
+  padding: 10px 0;
   position: relative; }
 
 .stream-list__title {
@@ -1230,6 +1255,34 @@ html {
     content: '';
     display: block;
     clear: both; }
+
+.stream-list__related ul {
+  display: inline;
+  margin: 0;
+  padding: 0; }
+.stream-list__related li {
+  list-style: none; }
+
+.stream-list__heading {
+  font-family: BentonSans, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px; }
+
+.stream-list__stream-link {
+  font-family: BentonSans, Arial, sans-serif;
+  padding: 10px;
+  border: 1px solid #000;
+  background-color: #fff1e0;
+  margin: 10px 0; }
+  .stream-list__stream-link .icon-arrow-right {
+    float: right; }
+  .stream-list__stream-link a {
+    display: block;
+    color: #303030;
+    text-decoration: none; }
+    .stream-list__stream-link a:hover {
+      text-decoration: underline; }
 
 /* article__card */
 .article-card {

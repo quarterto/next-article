@@ -1,0 +1,8 @@
+<div class="stream-list__related">
+	<h3 class="stream-list__heading">Related Topics</h3>
+	<ul>
+	{% for stream in stream.related %}
+		<li class="stream-list__stream-link"><a href="/search?q={{ stream.searchString }}">{{ stream.name }}<i class="icon-arrow-right"></i></a></li>
+	{% endfor %}
+	</ul>
+</div>
