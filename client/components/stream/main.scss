@@ -54,7 +54,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         display: inline;
         margin: 0;
         padding: 0;
-        
+
         > li {
             list-style: none;
         }
@@ -457,6 +457,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     &.article-card--compact {
 
         .article-card__link,
+        .article-card__publication-date,
         .article-card__expand {
             color: $next-white;
         }
