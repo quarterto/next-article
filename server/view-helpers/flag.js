@@ -7,8 +7,8 @@ require('swig').setTag('flag', function (str, line, parser, types, options, swig
     parser.on('start', function () {
         flags = Flags.get();
     });
-    parser.on('*', function (token) {
-        token.match === '!' && this.out.push(token.match);
+    parser.on(types.NOT, function (token) {
+        this.out.push(token.match);
     });
     parser.on(types.VAR, function (token) {
         this.out.push(token.match);
@@ -24,7 +24,7 @@ require('swig').setTag('flag', function (str, line, parser, types, options, swig
     }
     
     var flag = args[0];
-    var flags = args[1]
+    var flags = args[1];
     var isOn = flags[flag] && flags[flag].isSwitchedOn();
     var willRender = negate ? !isOn : isOn;
 
