@@ -68,8 +68,7 @@ module.exports = function(req, res, next) {
                     mode: 'compact',
                     stream: { items: popular.get().slice(0, (count || 5)), meta: { facets: [] } },
                     title: formatSection(req.query.q),
-                    isFollowable: req.query.isFollowable !== false,
-                    flags: require('../utils/flags').get()
+                    isFollowable: req.query.isFollowable !== false
                 });
                 return;
             }
@@ -93,8 +92,7 @@ module.exports = function(req, res, next) {
                         selectedFilters : searchFilters.filters,
                         searchFilters : searchFilters.getSearchFilters([]),
                         title: formatSection(req.query.q),
-                        isFollowable: req.query.isFollowable !== false,
-                        flags: require('../utils/flags').get()
+                        isFollowable: req.query.isFollowable !== false
                     });
 
                 }, function(err) {

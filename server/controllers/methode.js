@@ -25,8 +25,7 @@ module.exports = function(req, res, next) {
                             mode: 'expand',
                             isArticle: true,
                             stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
-                            isFollowable: true,
-                            flags: require('../utils/flags').get()
+                            isFollowable: true
                         });
 
                                 
