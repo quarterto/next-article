@@ -8,7 +8,7 @@ Dobi-III is the third and the last plane from Dobi line of aircraft designed by 
 
 ```
 git clone https://github.com/Financial-Times/next-dobi.git
-npm install
+npm install && bower install
 ```
 
 ## Dependencies
