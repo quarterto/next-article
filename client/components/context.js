@@ -1,6 +1,6 @@
 var reqwest = require('../vendor/reqwest.min');
 
-// "http://localhost:3001/search?q=authors:%22Richard%20McGregor%22"
+// "http://localhost:3003/search?q=authors:%22Richard%20McGregor%22"
 
 function setContext(path, display) {
     localStorage.setItem(contextKey, path);

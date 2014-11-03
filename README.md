@@ -13,7 +13,7 @@ Please install `next-router` globally.
 
 ## Run
 
-Just run grumman on its own (localhost:3001):
+Just run grumman on its own (localhost:3003):
 
 ```
 make run-local
