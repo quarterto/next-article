@@ -1,13 +1,9 @@
-# Next Dobi [![Build Status](https://travis-ci.org/Financial-Times/next-dobi.svg?branch=master)](https://travis-ci.org/Financial-Times/next-dobi)
-
-Dobi-III is the third and the last plane from Dobi line of aircraft designed by Lithuanian aviator [Jurgis Dobkevičius](http://en.wikipedia.org/wiki/Jurgis_Dobkevi%C4%8Dius). On June 8, 1926 it crashed at Kaunas Aerodrome killing its designer.
-
-![](http://upload.wikimedia.org/wikipedia/commons/6/6e/Jurgis_Dobkevi%C4%8Dius.jpg)
+# Next Grumman [![Build Status](https://travis-ci.org/Financial-Times/next-grumman.svg?branch=master)](https://travis-ci.org/Financial-Times/next-grumman)
 
 ## Installation
 
 ```
-git clone https://github.com/Financial-Times/next-dobi.git
+git clone https://github.com/Financial-Times/next-grumman.git
 npm install && bower install
 ```
 
@@ -17,13 +13,13 @@ Please install `next-router` globally.
 
 ## Run
 
-Just run dobi on its own (localhost:3001):
+Just run grumman on its own (localhost:3001):
 
 ```
 make run-local
 ```
 
-Run dobi through the router (localhost:5050):
+Run grumman through the router (localhost:5050):
 
 ```
 make run

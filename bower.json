@@ -1,5 +1,5 @@
 {
-  "name": "next-dobi",
+  "name": "next-grumman",
   "dependencies": {
     "next-header": "https://github.com/Financial-Times/next-header.git#v1.0.17",
     "raven-js": "~1.1.16"

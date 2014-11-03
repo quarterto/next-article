@@ -1,7 +1,7 @@
 var Raven = require('raven-js').Raven;
 
 Raven.config('https://1430704766a840b4b36133662324f489@app.getsentry.com/32283', {
-    whitelistUrls: ['next.ft.com/dobi/']
+    whitelistUrls: ['next.ft.com/grumman/']
 }).install();
 
 // require('./components/auth');

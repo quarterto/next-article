@@ -1,5 +1,5 @@
 PORT := 3001
-app := ft-next-dobi
+app := ft-next-grumman
 
 .PHONY: test
 
@@ -20,7 +20,7 @@ run-local: build
 	export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; nodemon server/app.js --watch server
 
 run-router:
-	export dobi=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
+	export grumman=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
 
 debug: build
 	export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; node --debug-brk server/app.js

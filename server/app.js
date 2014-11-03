@@ -28,7 +28,7 @@ app.set('view cache', false);
 
 // set up middleware and routes 
 // TODO: needs tidying up
-app.use('/dobi', express.static(__dirname + '/../public'));
+app.use('/grumman', express.static(__dirname + '/../public'));
 
 if (process.env.NODE_ENV === 'production') {
     var raven = require('raven');
