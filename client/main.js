@@ -11,5 +11,4 @@ require('./components/context');
 require('./components/more-on/main');
 require('./components/live-prices/main');
 require('./components/video');
-require('./components/article/main');
 

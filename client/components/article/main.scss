@@ -97,7 +97,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 //+ Article card
 //+++++++++++++++++++
 
-.article {
+.article-full {
     margin-top: 20px;
     clear: both;
 
@@ -110,7 +110,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article__body {
+.article-full__body {
     font-family: $fontSerif;
 
     img {
@@ -125,7 +125,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 
 }
 
-.article__image {
+.article-full__image {
     display: block;
     width: 100%;
     text-align: center;
@@ -135,36 +135,36 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article__ticker-symbols {
+.article-full__ticker-symbols {
     border-bottom: 1px solid #777;
     margin: 0 0 10px 0;
     padding: 0 0 10px 0;
     font-family: $fontSans;
 }
 
-.article__tone {
+.article-full__tone {
     font-size: 10px;
     text-transform: uppercase;
     margin-bottom: 10px;
     font-family: $fontSans;
 }
 
-.article__body p {
+.article-full__body p {
     line-height: 1.4;
     font-size: 16px;
     color: $next-grey-light;
 }
 
-.article__link,
-.article__body a {
+.article-full__link,
+.article-full__body a {
     color: $next-grey-dark;
 }
 
-.article__body .more-on {
+.article-full__body .more-on {
     font-family: $fontSans;
 }
 
-.article__more {
+.article-full__more {
     margin: 0px auto 20px auto;
     border: 1px solid #999;
     width: 50px;
@@ -179,7 +179,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article__more-active {
+.article-full__more-active {
     background-color: red;
     color: white;
 }
@@ -188,14 +188,14 @@ $fontBrand: FinancierDisplay, Georgia, serif;
   margin-top:66px;
 }
  //Hide show moew button on article
- .article__expand {
+ .article-full__expand {
     display: none;
  }
 
 //+++++++++++++++++++++
 //+ Primary tag
 //+++++++++++++++++++++
-.article__primary-tag {
+.article-full__primary-tag {
     background-color: $next-orange;
     font-family: $fontSans;
     padding: 4px;
@@ -206,14 +206,14 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         font-size: 12px;
     }
 
-    .article__tone--video & {
+    .article-full__tone--video & {
         color: white;
         a {
             color: white;
         }
         background-color: $next-grey-light;
     }
-    .article__tone--fastft & {
+    .article-full__tone--fastft & {
         background-color: $next-grey-dark;
         color: $next-white;
         font-weight: bolder;
@@ -223,11 +223,11 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 //+++++++++++++++++++++
 //+ Metadata
 //+++++++++++++++++++++
-.article__metadata {
+.article-full__metadata {
     margin-bottom: 10px;
 }
 
-.article__metadata-list {
+.article-full__metadata-list {
     font-family: $fontSans;
     padding: 10px 0;
     font-size: 12px;
@@ -263,7 +263,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article__publication-date {
+.article-full__publication-date {
     margin-bottom: 10px;
     font-size: 12px;
     font-family:  $fontSans;
@@ -273,20 +273,20 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     
 }
 
-.article__length,
-.article__byline {
+.article-full__length,
+.article-full__byline {
     font-family: $fontSans;
     font-size: 12px;
     padding: 10px 0;
 }
 
-.article__length {
+.article-full__length {
     float: right;
     width: 60%;
     text-align:right;
 }
 
-.article__byline {
+.article-full__byline {
     float: left;
     width: 40%;
 }
@@ -295,20 +295,20 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 //+ Headlines
 //+++++++++++++++++++++
 
-.article__headline {
+.article-full__headline {
     margin: 10px 0 20px;
     font-family: $fontSans;
     font-weight: 100;
     text-decoration: none;
     line-height: 1.1;
 
-    .article__tone--news &,
-    .article__tone--vanilla & {
+    .article-full__tone--news &,
+    .article-full__tone--vanilla & {
         font-size: 20px;
     }
     
-    .article__tone--comment &,
-    .article__tone--analysis & {
+    .article-full__tone--comment &,
+    .article-full__tone--analysis & {
         font-style: italic;
         font-size: 24px;
         font-family: $fontBrand;
@@ -319,7 +319,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         }
     }
 
-    .article__tone--fastft & {
+    .article-full__tone--fastft & {
         font-size: 24px;
         font-weight: 200;
     }
@@ -330,7 +330,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 //+ Authors
 //+++++++++++++++++++++
 
-.article__authors {
+.article-full__authors {
     font-style: normal;
 
     a {
@@ -378,7 +378,7 @@ video {
 //++++++++++++++++++
 //+ Ads
 //++++++++++++++++++
-.article__advert {
+.article-full__advert {
     img {
         float: none;
     }

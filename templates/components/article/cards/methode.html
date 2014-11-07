@@ -1,7 +1,7 @@
-<div class="article article__tone--{{ item.visualTone }}" id="capi-{{ item.id }}">
+<div class="article-full article-full__tone--{{ item.visualTone }}" id="capi-{{ item.id }}">
     {% if item.has_video && flags.video.isSwitchedOn() %}
     <!-- {{ item.videos|json }} -->
-    <video class="article__video" data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
+    <video class="article-full__video" data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
      <source type="video/mp4">
 Your browser does not support the video tag.
      </video>
@@ -9,7 +9,7 @@ Your browser does not support the video tag.
 
      {% include "../../bower/next-actions-component/templates/save-for-later.html" %}
 
-     <div class="article__themes article__metadata-list">
+     <div class="article-full__themes article-full__metadata-list">
         Latest in <ul>
         <li><a class="js-primary-section" href="/search?q={{ item.primarySection.taxonomy }}:{{ item.primarySection.name }}">{{ item.primarySection.name }}</a></li>
         {% if item.primaryTheme.name %}
@@ -18,30 +18,30 @@ Your browser does not support the video tag.
     </ul>
 </div>
 
-<h3 class="article__headline">
-    <a href="/{{ item.id }}" class="article__link article-card__link">
+<h3 class="article-full__headline">
+    <a href="/{{ item.id }}" class="article-full__link article-card__link">
         {{ item.headline }}
     </a>
 </h3>
 
 
-<div class="article__publication-date">
+<div class="article-full__publication-date">
     {% include "../publication-date.html" with item %}
 </div>
 
-<section class="article__metadata">
+<section class="article-full__metadata">
     <div class="clearfix border-b">
         {% if item.authors.length > 0 %}
         {% include "../byline.html" with item %}
         {% endif %}
 
-        <div class="article__length">
+        <div class="article-full__length">
             {% include "../length.html" with item %}
         </div> 
     </div>
 
     {% if item.people.length > 0 || item.organisations.length > 0 %}
-    <div class="border-b article__metadata-list">
+    <div class="border-b article-full__metadata-list">
         Mentions
         <ul>
             {% for entity in item.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
@@ -53,11 +53,11 @@ Your browser does not support the video tag.
     {% endif %}
 
     {% if item.tickerSymbols.length > 0 && flags.marketData.isSwitchedOn() %}
-    <div class="article__ticker-symbols">
+    <div class="article-full__ticker-symbols">
         {% for symbol in item.tickerSymbols %}
         <a
         href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
-        class="article__ticker-symbols__item"
+        class="article-full__ticker-symbols__item"
         data-ticker-symbols="{{ symbol.code }}"
         ></a>
         {% endfor %}
@@ -67,13 +67,13 @@ Your browser does not support the video tag.
 </section>
 
 {% if item.largestImage && isArticle %}
-<a href="/{{ item.id }}" class="article__image">
-   <img alt="{{item.largestImage.alt}}" src="{{ item.largestImage.url|resize(600) }}" class="article__image-{{ item.id }}"/>
+<a href="/{{ item.id }}" class="article-full__image">
+   <img alt="{{item.largestImage.alt}}" src="{{ item.largestImage.url|resize(600) }}" class="article-full__image-{{ item.id }}"/>
 </a>
 {% endif %}
 
 
-<div class="article__body">
+<div class="article-full__body">
     {{ item.paragraphs(0, 2, { removeImages: false }) }}
     <div class="js-more-on more-on" data-article-id="{{ item.id }}"></div>
     {{ item.paragraphs(2, 100, { removeImages: false }) }}

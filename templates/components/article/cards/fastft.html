@@ -1,19 +1,19 @@
 
-<div class="article article__tone--fastft{% if mode === 'compact' %} article--compact{% endif %}" id="clamo-{{ item.uuid }}">
-    <div class="article__primary-tag js-primary-section">
+<div class="article-full article-full__tone--fastft" id="clamo-{{ item.uuid }}">
+    <div class="article-full__primary-tag js-primary-section">
         fastFT 
     </div>
-    <h3 class="article__headline">
-        <a href="/fastft/{{ item.id }}/{{item.slug}}" class="article__link">
+    <h3 class="article-full__headline">
+        <a href="/fastft/{{ item.id }}/{{item.slug}}" class="article-full__link">
             {{ item.title }}
         </a>
     </h3>
 
-    <div class="article__publication-date">
+    <div class="article-full__publication-date">
         {% include "../publication-date.html" with {item: {lastUpdated: item._datePublished}} %}
     </div>
 
-    <div class="article__body">
+    <div class="article-full__body">
         {{ item.content|raw }}
     </div>
 </div>

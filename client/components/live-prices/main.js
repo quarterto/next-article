@@ -7,7 +7,7 @@ function init () {
     console.log('prog enhance ticker');
 
     var host = 'http://next-companies-et-al.herokuapp.com/v1/mouseover/company/';
-    var symbols = document.querySelectorAll('.article-card__ticker-symbols__item');
+    var symbols = document.querySelectorAll('.article-full__ticker-symbols__item');
 
     [].slice.call(symbols).forEach(function (symbol) {
         var code = symbol.getAttribute('data-ticker-symbols');
@@ -16,7 +16,7 @@ function init () {
             var isUp = (parseFloat(resp.data.latest_change.percentage) >= 0) ? 'up' : 'down'; 
             var price = resp.data.latest_price.amount;
             var change = resp.data.latest_change.percentage;
-            symbol.innerHTML = '<span class="article-card__ticker-symbols__item-' + isUp + '">' + resp.data.returned_symbol + ' ' + price + ' (' + change  + ')</span>';
+            symbol.innerHTML = '<span class="article-full__ticker-symbols__item-' + isUp + '">' + resp.data.returned_symbol + ' ' + price + ' (' + change  + ')</span>';
         });
     });
 
