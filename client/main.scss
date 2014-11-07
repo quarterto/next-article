@@ -71,12 +71,8 @@ $next-red: #c00;
 @import "next-header/main";
 @import "o-ft-icons/main";
 @import "components/save-button/main";
-@import "components/site-search/main";
 @import "components/stream/main";
-@import "components/uber-nav/main";
 @import "components/more-on/main";
-@import "components/search-filters/main";
-@import "components/selected-filters/main";
 @import "components/live-prices/main";
 
 @include oFtIconsFontFace();
