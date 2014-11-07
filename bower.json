@@ -2,6 +2,7 @@
   "name": "next-grumman",
   "dependencies": {
     "next-header": "https://github.com/Financial-Times/next-header.git#v1.0.17",
+    "next-actions-component": "https://github.com/Financial-Times/next-actions-component.git#v1.0.1",
     "raven-js": "~1.1.16"
   }
 }

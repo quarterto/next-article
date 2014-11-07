@@ -1,25 +1,23 @@
 
-<div class="article-card article-card__tone--fastft{% if mode === 'compact' %} article-card--compact{% endif %}" id="clamo-{{ item.uuid }}">
-    <div class="article-card__primary-tag">
+<div class="article article__tone--fastft{% if mode === 'compact' %} article--compact{% endif %}" id="clamo-{{ item.uuid }}">
+    <div class="article__primary-tag">
         fastFT 
     </div>
-    	<h3 class="article-card__headline">
-        <a href="/fastft/{{ item.id }}/{{item.slug}}" class="article-card__link">
+    	<h3 class="article__headline">
+        <a href="/fastft/{{ item.id }}/{{item.slug}}" class="article__link">
             {{ item.title }}
         </a>
       </h3>
 
 
-    <a href="#" class="article-card__expand js-toggle" data-toggle=".article-card__expandable-content">
+    <a href="#" class="article__expand js-toggle" data-toggle=".article__expandable-content">
         <i class="icon-arrow-down"></i>
     </a>
-    <div class="article-card__publication-date">
+    <div class="article__publication-date">
         {% include "../publication-date.html" with {item: {lastUpdated: item._datePublished}} %}
     </div>
 
-    <section class="article-card__expandable-content">
-    <div class="article-card__body">
+    <div class="article__body">
         {{ item.content|raw }}
     </div>
-    </section>
 </div>

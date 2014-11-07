@@ -7,7 +7,7 @@
        </video>
        {% endif%}
 
-    {% include "../../save-button.html" with { key: 'forlaters', label: '', toggleText: '', ariaLabel: 'Save this article for later' } %}
+    {% include "../../bower/next-actions-component/templates/save-for-later.html" %}
 
     <div class="article__themes article__metadata-list">
         Latest in <ul>
@@ -19,66 +19,62 @@
     </div>
 
 <h3 class="article__headline">
-    <a href="/{{ item.id }}" class="article__link">
+    <a href="/{{ item.id }}" class="article__link article-card__link">
         {{ item.headline }}
     </a>
 </h3>
 
-<a href="#" class="article__expand js-toggle" data-toggle=".article__expandable-content">
-    <i class="icon-arrow-down"></i>
-</a>   
 
 <div class="article__publication-date">
     {% include "../publication-date.html" with item %}
 </div>
 
-<section class="article__expandable-content">
-    <section class="article__metadata">
-        <div class="clearfix border-b">
-            {% if item.authors.length > 0 %}
-            {% include "../byline.html" with item %}
-            {% endif %}
-
-            <div class="article__length">
-                {% include "../length.html" with item %}
-            </div> 
-        </div>
-
-        {% if item.people.length > 0 || item.organisations.length > 0 %}
-        <div class="border-b article__metadata-list">
-            Mentions
-            <ul class="article__mentions__items">
-                {% for entity in item.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
-                {% for entity in item.organisations %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
-                {% for entity in item.regions %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
-                {% for entity in item.topics %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
-            </ul>
-        </div>
+<section class="article__metadata">
+    <div class="clearfix border-b">
+        {% if item.authors.length > 0 %}
+        {% include "../byline.html" with item %}
         {% endif %}
 
-        {% if item.tickerSymbols.length > 0 && flags.marketData.isSwitchedOn() %}
-        <div class="article__ticker-symbols">
-            {% for symbol in item.tickerSymbols %}
-            <a
-            href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
-            class="article__ticker-symbols__item"
-            data-ticker-symbols="{{ symbol.code }}"
-            ></a>
-            {% endfor %}
-        </div>
-        {% endif %}
+        <div class="article__length">
+            {% include "../length.html" with item %}
+        </div> 
+    </div>
 
-    </section>
-    
-    {% if item.brand && item.authors.length > 0 %} 
-    <img class="article__headshot" src="http://image.webservices.ft.com/v1/images/raw/fthead:{{ item.authors[0].name|lower|replace(' ', '-') }}?source=http://www.ft.com&width=75"/>
+    {% if item.people.length > 0 || item.organisations.length > 0 %}
+    <div class="border-b article__metadata-list">
+        Mentions
+        <ul class="article__mentions__items">
+            {% for entity in item.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+            {% for entity in item.organisations %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+            {% for entity in item.regions %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+            {% for entity in item.topics %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+        </ul>
+    </div>
     {% endif %}
 
+    {% if item.tickerSymbols.length > 0 && flags.marketData.isSwitchedOn() %}
+    <div class="article__ticker-symbols">
+        {% for symbol in item.tickerSymbols %}
+        <a
+        href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
+        class="article__ticker-symbols__item"
+        data-ticker-symbols="{{ symbol.code }}"
+        ></a>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-    {% if item.largestImage && isArticle %}
-    <a href="/{{ item.id }}" class="article__image">
-     <img src="{{ item.largestImage.url|resize(600) }}" class="article__image-{{ item.id }}"/>
- </a>
+</section>
+
+{% if item.brand && item.authors.length > 0 %} 
+<img class="article__headshot" src="http://image.webservices.ft.com/v1/images/raw/fthead:{{ item.authors[0].name|lower|replace(' ', '-') }}?source=http://www.ft.com&width=75"/>
+{% endif %}
+
+
+{% if item.largestImage && isArticle %}
+<a href="/{{ item.id }}" class="article__image">
+ <img src="{{ item.largestImage.url|resize(600) }}" class="article__image-{{ item.id }}"/>
+</a>
  {% endif %}
 
 
@@ -88,5 +84,4 @@
     {{ item.paragraphs(2, 100, { removeImages: false }) }}
 </div>
 
-</section>    
 </div>
