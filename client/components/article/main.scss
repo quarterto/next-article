@@ -324,11 +324,6 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         font-weight: 200;
     }
 
-    .article__tone--video & {
-        a {
-            color: white; 
-        }
-    }
 }
 
 //+++++++++++++++++++++
@@ -340,13 +335,6 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 
     a {
         color: #9e2f50;
-
-        .article__tone--video & {
-            color: white;
-            &:hover{
-                color: white;
-            }
-        }
 
         &:hover {
             color: #9e2f50;
