@@ -2,8 +2,6 @@
 
 require('es6-promise').polyfill();
 var express = require('express');
-var latest  = require('./jobs/latest');
-var popular = require('./jobs/popular');
 var api = require('./utils/api');
 var Flags = require('./utils/flags');
 
@@ -41,19 +39,13 @@ app.use(require('./middleware/auth'));
 app.get('/', function(req, res) {
     res.redirect('/search?q=page:Front%20page');
 });
-app.get('/favourites', require('./controllers/favourites'));
-app.get('/search', require('./controllers/search'));
 app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/fastft'));
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, require('./controllers/methode'));
 app.get('/more-on/:id', require('./controllers/more-on'));
-app.get('/uber-nav', require('./controllers/uber-nav'));
 app.get('/__gtg', function(req, res, next) {
   res.status(200).end();
 });
 
-// Start polling the data
-latest.init();
-popular.init();
 
 // Start the app
 var port = process.env.PORT || 3001;
