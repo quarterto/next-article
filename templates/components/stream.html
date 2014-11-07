@@ -6,7 +6,7 @@
     {% endif %}
     </span>
     {% if isFollowable %}
-    {% include "save-button.html" with { key: 'favourites', label: 'Follow this section', toggleText: 'Unfollow this section'} %}
+    {% include "./bower/next-actions-component/templates/favourite.html" %}
     {% endif %}
 </h1>
 
@@ -17,13 +17,9 @@
 {% for article in stream.items %}
 
     {% if article.type === 'fastft' %}
-        {% include "stream/cards/fastft.html" with { item: article.item } %}
+        {% include "article/cards/fastft.html" with { item: article.item } %}
     {% elseif article.type === 'methode' %}
-        {% include "stream/cards/methode.html" with { item: article.item } %}
+        {% include "article/cards/methode.html" with { item: article.item } %}
     {% endif %}
     
 {% endfor %}
-
-{% if stream.related.length %}
-    {% include "stream/related.html"%}
-{% endif %}

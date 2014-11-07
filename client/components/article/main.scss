@@ -97,7 +97,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 //+ Article card
 //+++++++++++++++++++
 
-.article-card {
+.article-full {
     margin-top: 20px;
     clear: both;
 
@@ -110,7 +110,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article-card__body {
+.article-full__body {
     font-family: $fontSerif;
 
     img {
@@ -125,7 +125,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 
 }
 
-.article-card__image {
+.article-full__image {
     display: block;
     width: 100%;
     text-align: center;
@@ -135,36 +135,36 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article-card__ticker-symbols {
+.article-full__ticker-symbols {
     border-bottom: 1px solid #777;
     margin: 0 0 10px 0;
     padding: 0 0 10px 0;
     font-family: $fontSans;
 }
 
-.article-card__tone {
+.article-full__tone {
     font-size: 10px;
     text-transform: uppercase;
     margin-bottom: 10px;
     font-family: $fontSans;
 }
 
-.article-card__body p {
+.article-full__body p {
     line-height: 1.4;
     font-size: 16px;
     color: $next-grey-light;
 }
 
-.article-card__link,
-.article-card__body a {
+.article-full__link,
+.article-full__body a {
     color: $next-grey-dark;
 }
 
-.article-card__body .more-on {
+.article-full__body .more-on {
     font-family: $fontSans;
 }
 
-.article-card__more {
+.article-full__more {
     margin: 0px auto 20px auto;
     border: 1px solid #999;
     width: 50px;
@@ -179,7 +179,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article-card__more-active {
+.article-full__more-active {
     background-color: red;
     color: white;
 }
@@ -188,14 +188,14 @@ $fontBrand: FinancierDisplay, Georgia, serif;
   margin-top:66px;
 }
  //Hide show moew button on article
- .article-card__expand {
+ .article-full__expand {
     display: none;
  }
 
 //+++++++++++++++++++++
 //+ Primary tag
 //+++++++++++++++++++++
-.article-card__primary-tag {
+.article-full__primary-tag {
     background-color: $next-orange;
     font-family: $fontSans;
     padding: 4px;
@@ -206,14 +206,14 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         font-size: 12px;
     }
 
-    .article-card__tone--video & {
+    .article-full__tone--video & {
         color: white;
         a {
             color: white;
         }
         background-color: $next-grey-light;
     }
-    .article-card__tone--fastft & {
+    .article-full__tone--fastft & {
         background-color: $next-grey-dark;
         color: $next-white;
         font-weight: bolder;
@@ -223,11 +223,11 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 //+++++++++++++++++++++
 //+ Metadata
 //+++++++++++++++++++++
-.article-card__metadata {
+.article-full__metadata {
     margin-bottom: 10px;
 }
 
-.article-card__metadata-list {
+.article-full__metadata-list {
     font-family: $fontSans;
     padding: 10px 0;
     font-size: 12px;
@@ -263,7 +263,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-.article-card__publication-date {
+.article-full__publication-date {
     margin-bottom: 10px;
     font-size: 12px;
     font-family:  $fontSans;
@@ -273,20 +273,20 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     
 }
 
-.article-card__length,
-.article-card__byline {
+.article-full__length,
+.article-full__byline {
     font-family: $fontSans;
     font-size: 12px;
     padding: 10px 0;
 }
 
-.article-card__length {
+.article-full__length {
     float: right;
     width: 60%;
     text-align:right;
 }
 
-.article-card__byline {
+.article-full__byline {
     float: left;
     width: 40%;
 }
@@ -295,24 +295,20 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 //+ Headlines
 //+++++++++++++++++++++
 
-.article-card__headline {
+.article-full__headline {
     margin: 10px 0 20px;
     font-family: $fontSans;
     font-weight: 100;
     text-decoration: none;
     line-height: 1.1;
 
-    &.article-card--compact {
-        background-color: $next-pink;
-    }
-
-    .article-card__tone--news &,
-    .article-card__tone--vanilla & {
+    .article-full__tone--news &,
+    .article-full__tone--vanilla & {
         font-size: 20px;
     }
     
-    .article-card__tone--comment &,
-    .article-card__tone--analysis & {
+    .article-full__tone--comment &,
+    .article-full__tone--analysis & {
         font-style: italic;
         font-size: 24px;
         font-family: $fontBrand;
@@ -323,34 +319,22 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         }
     }
 
-    .article-card__tone--fastft & {
+    .article-full__tone--fastft & {
         font-size: 24px;
         font-weight: 200;
     }
 
-    .article-card__tone--video & {
-        a {
-            color: white; 
-        }
-    }
 }
 
 //+++++++++++++++++++++
 //+ Authors
 //+++++++++++++++++++++
 
-.article-card__authors {
+.article-full__authors {
     font-style: normal;
 
     a {
         color: #9e2f50;
-
-        .article-card__tone--video & {
-            color: white;
-            &:hover{
-                color: white;
-            }
-        }
 
         &:hover {
             color: #9e2f50;
@@ -380,95 +364,6 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     }
 }
 
-//+++++++++++++++++++++
-//+ Compact card
-//+++++++++++++++++++++
-.article-card--compact {
-    border: 1px solid #ccc;
-    padding: 0 10px;
-    margin-bottom: 0;
-
-    .article-card__body {
-
-        margin-bottom: 20px;
-
-        p:nth-child(1) {
-            margin-top: 0;
-        }
-
-        a {
-            text-decoration: underline;
-        }
-    }
-
-    .article-card__image {
-        width: 33%;
-        float: left;
-        margin: 0 14px 14px 0;
-
-        + .article-card__body {
-            margin-left: 33%;
-            padding-left: 14px;
-        }
-    }
-
-    .article-card__expand {
-        float: right;
-        color: $next-grey-light;
-        display: block;
-        padding: 0 1px 8px;
-        
-        &:hover {
-            text-decoration: none;
-        }
-    }        
-
-    .article-card__expandable-content {
-        display: none;
-
-        &.js-show {
-            display: block;        
-        }
-    }
-}
-
-//+++++++++++++++++++++
-//+ Compact tones
-//+++++++++++++++++++++
-
-.article-card--compact {
-    &.article-card__tone--comment,
-    &.article-card__tone--analysis {
-        background-color: $next-pink;
-    }
-    
-    &.article-card__tone--fastft {
-        background-color: $next-red;
-        color: $next-white;  
-    }
-
-    &.article-card__tone--video {
-        background-color: black;
-        color: white;  
-    }
-}
-
-.article-card__tone--fastft {
-    &.article-card--compact {
-
-        .article-card__link,
-        .article-card__publication-date,
-        .article-card__expand {
-            color: $next-white;
-        }
-
-        .article-card__body p {
-            color: $next-white;
-            font-family: $fontSans;
-            font-weight: 200;
-        }
-    }
-}
 
 //++++++++++++++++++
 //+ Video
@@ -483,7 +378,7 @@ video {
 //++++++++++++++++++
 //+ Ads
 //++++++++++++++++++
-.article-card__advert {
+.article-full__advert {
     img {
         float: none;
     }
@@ -512,19 +407,4 @@ video {
     content: " ";
     clear: both;
     height: 0;
-}
-
-.article-card__tone--fastft {
-    &.article-card--compact {
-        .article-card__link,
-        .article-card__expand {
-            color: $next-white;
-        }
-
-        .article-card__body p {
-            color: $next-white;
-            font-family: $fontSans;
-            font-weight: 200;
-        }
-    }
 }
