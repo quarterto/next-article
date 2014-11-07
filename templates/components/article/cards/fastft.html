@@ -1,18 +1,14 @@
 
 <div class="article article__tone--fastft{% if mode === 'compact' %} article--compact{% endif %}" id="clamo-{{ item.uuid }}">
-    <div class="article__primary-tag">
+    <div class="article__primary-tag js-primary-section">
         fastFT 
     </div>
-    	<h3 class="article__headline">
+    <h3 class="article__headline">
         <a href="/fastft/{{ item.id }}/{{item.slug}}" class="article__link">
             {{ item.title }}
         </a>
-      </h3>
+    </h3>
 
-
-    <a href="#" class="article__expand js-toggle" data-toggle=".article__expandable-content">
-        <i class="icon-arrow-down"></i>
-    </a>
     <div class="article__publication-date">
         {% include "../publication-date.html" with {item: {lastUpdated: item._datePublished}} %}
     </div>

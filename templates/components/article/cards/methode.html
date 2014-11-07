@@ -2,21 +2,21 @@
     {% if item.has_video && flags.video.isSwitchedOn() %}
     <!-- {{ item.videos|json }} -->
     <video class="article__video" data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
-       <source type="video/mp4">
-           Your browser does not support the video tag.
-       </video>
-       {% endif%}
+     <source type="video/mp4">
+Your browser does not support the video tag.
+     </video>
+     {% endif%}
 
-    {% include "../../bower/next-actions-component/templates/save-for-later.html" %}
+     {% include "../../bower/next-actions-component/templates/save-for-later.html" %}
 
-    <div class="article__themes article__metadata-list">
+     <div class="article__themes article__metadata-list">
         Latest in <ul>
-            <li><a href="/search?q={{ item.primarySection.taxonomy }}:{{ item.primarySection.name }}">{{ item.primarySection.name }}</a></li>
-            {% if item.primaryTheme.name %}
-            <li><a href="/search?q={{ item.primaryTheme.taxonomy }}:{{ item.primaryTheme.name }}">{{ item.primaryTheme.name }}</a></li>
-            {% endif %}
-        </ul>
-    </div>
+        <li><a class="js-primary-section" href="/search?q={{ item.primarySection.taxonomy }}:{{ item.primarySection.name }}">{{ item.primarySection.name }}</a></li>
+        {% if item.primaryTheme.name %}
+        <li><a href="/search?q={{ item.primaryTheme.taxonomy }}:{{ item.primaryTheme.name }}">{{ item.primaryTheme.name }}</a></li>
+        {% endif %}
+    </ul>
+</div>
 
 <h3 class="article__headline">
     <a href="/{{ item.id }}" class="article__link article-card__link">
@@ -43,7 +43,7 @@
     {% if item.people.length > 0 || item.organisations.length > 0 %}
     <div class="border-b article__metadata-list">
         Mentions
-        <ul class="article__mentions__items">
+        <ul>
             {% for entity in item.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
             {% for entity in item.organisations %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
             {% for entity in item.regions %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
@@ -66,16 +66,11 @@
 
 </section>
 
-{% if item.brand && item.authors.length > 0 %} 
-<img class="article__headshot" src="http://image.webservices.ft.com/v1/images/raw/fthead:{{ item.authors[0].name|lower|replace(' ', '-') }}?source=http://www.ft.com&width=75"/>
-{% endif %}
-
-
 {% if item.largestImage && isArticle %}
 <a href="/{{ item.id }}" class="article__image">
- <img src="{{ item.largestImage.url|resize(600) }}" class="article__image-{{ item.id }}"/>
+   <img alt="{{item.largestImage.alt}}" src="{{ item.largestImage.url|resize(600) }}" class="article__image-{{ item.id }}"/>
 </a>
- {% endif %}
+{% endif %}
 
 
 <div class="article__body">

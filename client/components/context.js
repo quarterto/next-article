@@ -11,15 +11,6 @@ var $ = function (selector) {
     return [].slice.call(document.querySelectorAll(selector));
 };
 
-var emit = function(name, data) {
-    console.log('emitting', name, data);
-    var event = document.createEvent('Event');
-    event.initEvent(name, true, true);
-    if (data) {
-        event.detail = data;
-    }
-    top.document.dispatchEvent(event);
-};
 
 function extractSearchTerm(queryString) {
     return queryString.match(/q=([^&]*)/)[1];
@@ -35,8 +26,8 @@ context = localStorage.getItem(contextKey);
 display = localStorage.getItem(contextTitleKey);
 if(!context) { 
     //If they come directly to an article with no history, use the first theme for this article
-    context = extractSearchTerm(document.querySelector('.article-card__themes a').getAttribute('href'));
-    display = document.querySelector('.article-card__themes a').textContent.trim();
+    context = extractSearchTerm(document.querySelector('.js-primary-section').getAttribute('href'));
+    display = document.querySelector('.js-primary-section').textContent.trim();
     setContext(context, display);
 }
 
