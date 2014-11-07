@@ -1,0 +1,92 @@
+<div class="article article__tone--{{ item.visualTone }}" id="capi-{{ item.id }}">
+    {% if item.has_video && flags.video.isSwitchedOn() %}
+    <!-- {{ item.videos|json }} -->
+    <video class="article__video" data-brightcove-ref="{{item.videos[0].fields.sourceReference}}" width="100%" controls poster="{{ item.largestImage.url }}">
+       <source type="video/mp4">
+           Your browser does not support the video tag.
+       </video>
+       {% endif%}
+
+    {% include "../../save-button.html" with { key: 'forlaters', label: '', toggleText: '', ariaLabel: 'Save this article for later' } %}
+
+    <div class="article__themes article__metadata-list">
+        Latest in <ul>
+            <li><a href="/search?q={{ item.primarySection.taxonomy }}:{{ item.primarySection.name }}">{{ item.primarySection.name }}</a></li>
+            {% if item.primaryTheme.name %}
+            <li><a href="/search?q={{ item.primaryTheme.taxonomy }}:{{ item.primaryTheme.name }}">{{ item.primaryTheme.name }}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+<h3 class="article__headline">
+    <a href="/{{ item.id }}" class="article__link">
+        {{ item.headline }}
+    </a>
+</h3>
+
+<a href="#" class="article__expand js-toggle" data-toggle=".article__expandable-content">
+    <i class="icon-arrow-down"></i>
+</a>   
+
+<div class="article__publication-date">
+    {% include "../publication-date.html" with item %}
+</div>
+
+<section class="article__expandable-content">
+    <section class="article__metadata">
+        <div class="clearfix border-b">
+            {% if item.authors.length > 0 %}
+            {% include "../byline.html" with item %}
+            {% endif %}
+
+            <div class="article__length">
+                {% include "../length.html" with item %}
+            </div> 
+        </div>
+
+        {% if item.people.length > 0 || item.organisations.length > 0 %}
+        <div class="border-b article__metadata-list">
+            Mentions
+            <ul class="article__mentions__items">
+                {% for entity in item.people %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                {% for entity in item.organisations %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                {% for entity in item.regions %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+                {% for entity in item.topics %}<li><a href="/search?q={{ entity.searchString }}">{{ entity.name }}</a></li>{% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if item.tickerSymbols.length > 0 && flags.marketData.isSwitchedOn() %}
+        <div class="article__ticker-symbols">
+            {% for symbol in item.tickerSymbols %}
+            <a
+            href="http://markets.ft.com/research/Markets/Tearsheets/Summary?s={{ symbol.code }}"
+            class="article__ticker-symbols__item"
+            data-ticker-symbols="{{ symbol.code }}"
+            ></a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </section>
+    
+    {% if item.brand && item.authors.length > 0 %} 
+    <img class="article__headshot" src="http://image.webservices.ft.com/v1/images/raw/fthead:{{ item.authors[0].name|lower|replace(' ', '-') }}?source=http://www.ft.com&width=75"/>
+    {% endif %}
+
+
+    {% if item.largestImage && isArticle %}
+    <a href="/{{ item.id }}" class="article__image">
+     <img src="{{ item.largestImage.url|resize(600) }}" class="article__image-{{ item.id }}"/>
+ </a>
+ {% endif %}
+
+
+<div class="article__body">
+    {{ item.paragraphs(0, 2, { removeImages: false }) }}
+    <div class="js-more-on more-on" data-article-id="{{ item.id }}"></div>
+    {{ item.paragraphs(2, 100, { removeImages: false }) }}
+</div>
+
+</section>    
+</div>

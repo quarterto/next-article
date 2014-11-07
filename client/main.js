@@ -11,5 +11,5 @@ require('./components/save-button/main');
 require('./components/more-on/main');
 require('./components/live-prices/main');
 require('./components/video');
-require('./components/stream/main');
+require('./components/article/main');
 
