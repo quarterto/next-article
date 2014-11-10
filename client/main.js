@@ -5,6 +5,7 @@ Raven.config('https://1430704766a840b4b36133662324f489@app.getsentry.com/32283',
 }).install();
 
 // require('./components/auth');
+require('es6-promise').polyfill();
 require('next-header');
 require('next-actions-component');
 require('./components/context');
