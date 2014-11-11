@@ -1,7 +1,7 @@
 {
   "name": "next-grumman",
   "dependencies": {
-    "next-actions-component": "https://github.com/Financial-Times/next-actions-component.git#v1.0.1",
-    "next-wrapper": "https://github.com/Financial-Times/next-wrapper.git#^1.2.1"
+    "next-actions-component": "https://github.com/Financial-Times/next-actions-component.git#v1.0.6",
+    "next-wrapper": "https://github.com/Financial-Times/next-wrapper.git#^1.2.8"
   }
 }

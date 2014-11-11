@@ -7,7 +7,13 @@ Your browser does not support the video tag.
      </video>
      {% endif%}
 
-     {% include "../../bower/next-actions-component/templates/save-for-later.html" %}
+     <button
+         class="save-for-later js-save-for-later"
+         data-capi="{{ item.id }}"
+         data-headline="{{ item.headline }}"
+         data-toggle-text=""
+         aria-label="Save this article for later"
+         title="Save this article for later" data-is-saved="false"></button>
 
      <div class="article-full__themes article-full__metadata-list">
         Latest in <ul>
@@ -77,6 +83,16 @@ Your browser does not support the video tag.
     {{ item.paragraphs(0, 2, { removeImages: false }) }}
     <div class="js-more-on more-on" data-article-id="{{ item.id }}"></div>
     {{ item.paragraphs(2, 100, { removeImages: false }) }}
+
+       <p>
+        <span class="recommend js-recommend"
+            data-capi="{{ item.id }}"
+            data-headline="{{ item.headline }}"
+            data-toggle-text="Recommended by you" aria-label="Recommend this article" title="Recommend this article">
+                    Recommend this article
+            </span>
+        </p>
+
 </div>
 
 </div>
