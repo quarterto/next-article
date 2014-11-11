@@ -1,5 +1,5 @@
 
-var reqwest = require('../../vendor/reqwest.min');
+var reqwest = require('reqwest/reqwest.min');
 
 // Enhances any ticker symbol found on the page with live pricing data
 function init () {
