@@ -1,68 +1,40 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="/grumman/main.css"/>
-        <link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.4.1,o-grid@^2.1.5">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-
-        <script>
-        var FT = FT || {}; FT.Properties = FT.Properties || {}; FT.Properties.ENV = 't';
-        </script>
-        <!-- FT tracking module 1.2.4 -->
-        <script src="http://s2.ft-static.com/scripts/392b9acc/bundles/tracking.js"></script>
-        <noscript>
-        <img alt="" border="0" width="1" height="1" src="http://track.ft.com/track/track.js?javascript=disabled"/>
-        <img alt="" border="0" width="1" height="1" src="http://stats.ft.com/si/track.gif?WT.js=No"/>
-        </noscript>
-        
-        <!-- Component: header -->
-        <div class="header__container">
-            {% include "components/header.html" %}
+{% extends "../node_modules/next-wrapper/templates/layout.html" %}
+{% block body %}
+<div class="o-grid-row">
+    
+    {% flag contextNavigation %}
+        <!-- Component: context - FIXME - split in to nav & context -->
+        <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
+            <!-- Component: selected-filters -->
+            {% if selectedFilters && selectedFilters.length %}
+                <div class="context selected-filters__container">
+                    {% include "components/selected-filters.html"  with {filters: selectedFilters} %}
+                </div>
+            {% endif %}
+            <!-- Component: search-filters -->
+            <div class="context search-filters__container">
+                {% include "components/search-filters.html" with {filters: searchFilters} %}
+            </div>
+            <div class="js-context__container"></div>
         </div>
-
-
-        <div class="o-grid-row">
-            
-            {% flag contextNavigation %}
-                <!-- Component: context - FIXME - split in to nav & context -->
-                <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
-                    <!-- Component: selected-filters -->
-                    {% if selectedFilters && selectedFilters.length %}
-                        <div class="context selected-filters__container">
-                            {% include "components/selected-filters.html"  with {filters: selectedFilters} %}
-                        </div>
-                    {% endif %}
-                    <!-- Component: search-filters -->
-                    <div class="context search-filters__container">
-                        {% include "components/search-filters.html" with {filters: searchFilters} %}
-                    </div>
-                    <div class="js-context__container"></div>
-                </div>
-            
-                <!-- Component: stream -->
-                <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
-                    <div class="stream">
-                        {% include "components/stream.html" %}
-                    </div>
-                </div>
-            {% endflag %}
-            {% flag !contextNavigation %}
-                <!-- Component: stream -->
-                <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
-                <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
-                    <div class="stream">
-                        {% include "components/stream.html" %}
-                    </div>
-                </div>
-                <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
-
-            {% endflag %}
+    
+        <!-- Component: stream -->
+        <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
+            <div class="stream">
+                {% include "components/stream.html" %}
+            </div>
         </div>
+    {% endflag %}
+    {% flag !contextNavigation %}
+        <!-- Component: stream -->
+        <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
+        <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
+            <div class="stream">
+                {% include "components/stream.html" %}
+            </div>
+        </div>
+        <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
 
-        <script src="//build.origami.ft.com/bundles/js?modules=o-date@^1.0.0"></script>
-        <script src="/grumman/main.js"></script>
-
-    </body>
-</html>
+    {% endflag %}
+</div>
+{% endblock }

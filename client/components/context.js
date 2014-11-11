@@ -1,4 +1,4 @@
-var reqwest = require('../vendor/reqwest.min');
+var reqwest = require('reqwest/reqwest.min');
 
 // "http://localhost:3003/search?q=authors:%22Richard%20McGregor%22"
 

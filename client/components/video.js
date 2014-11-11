@@ -1,6 +1,6 @@
 'use strict';
 
-var reqwest = require('../vendor/reqwest.min');
+var reqwest = require('reqwest/reqwest.min');
 
 
 var $ = function (selector) {
