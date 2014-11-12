@@ -152,10 +152,9 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 .article-full__body p {
     line-height: 1.4;
     font-size: 16px;
-    color: $next-grey-light;
+    color: $next-grey-dark;
 }
 
-.article-full__link,
 .article-full__body a {
     color: $next-grey-dark;
 }
@@ -187,10 +186,6 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 .search-filters__container{
   margin-top:66px;
 }
- //Hide show moew button on article
- .article-full__expand {
-    display: none;
- }
 
 //+++++++++++++++++++++
 //+ Primary tag
@@ -211,7 +206,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         a {
             color: white;
         }
-        background-color: $next-grey-light;
+        background-color: $next-grey-dark;
     }
     .article-full__tone--fastft & {
         background-color: $next-grey-dark;
@@ -267,7 +262,7 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     margin-bottom: 10px;
     font-size: 12px;
     font-family:  $fontSans;
-    color: $next-grey-light;
+    color: $next-grey-dark;
     padding-left:16px;
     background:transparent url(assets/img/time.svg) no-repeat left top;
     
@@ -297,20 +292,20 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 
 .article-full__headline {
     margin: 10px 0 20px;
-    font-family: $fontSans;
-    font-weight: 100;
+    font-family: $fontSerif;
+    font-size: 30px;
+    line-height: 36px;
+    margin-top: -5px;
+    padding-bottom: 5px;
+    font-weight: 400;
     text-decoration: none;
-    line-height: 1.1;
-
-    .article-full__tone--news &,
-    .article-full__tone--vanilla & {
-        font-size: 20px;
+    a {
+        color: $next-black;
     }
+
     
     .article-full__tone--comment &,
     .article-full__tone--analysis & {
-        font-style: italic;
-        font-size: 24px;
         font-family: $fontBrand;
 
         > a:before {
@@ -319,10 +314,6 @@ $fontBrand: FinancierDisplay, Georgia, serif;
         }
     }
 
-    .article-full__tone--fastft & {
-        font-size: 24px;
-        font-weight: 200;
-    }
 
 }
 
