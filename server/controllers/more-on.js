@@ -8,7 +8,7 @@ module.exports = function(req, res, next) {
         .then(function (article) {
 
             // ...
-            ft
+            return ft
                 .get(article[0].packages)
                 .then(function (articles) {
                     if (articles.length > 0) {
@@ -26,5 +26,6 @@ module.exports = function(req, res, next) {
 
         }, function (err) {
             console.error(err);
-        });
+        })
+	.end();
 };
