@@ -22,7 +22,7 @@ module.exports = function(req, res, next) {
                     }
                 }, function (err) {
                     console.error(err);
-                })
+                });
 
         }, function (err) {
             console.error(err);

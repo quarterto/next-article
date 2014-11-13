@@ -96,3 +96,11 @@
 </div>
 
 </div>
+
+<div class="article__related">
+	<ul>
+	{% for story in item.packages %}
+		<li>{{ JSON.stringify(story) }}</li>
+	{% endfor %}
+	</ul>
+</div>
