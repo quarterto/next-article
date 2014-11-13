@@ -7,7 +7,9 @@ gulp.task('build', function () {
 	obt.build(gulp, {
 		sass: './client/main.scss',
 		js: './client/main.js',
-		buildFolder: './public'
+		buildFolder: './public',
+        env: process.env.ENVIRONMENT || 'production'
+
 	});
 });
 
