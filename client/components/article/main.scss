@@ -5,22 +5,21 @@ $fontSerif: Georgia, Times New Roman, serif;
 $fontBrand: FinancierDisplay, Georgia, serif;
 
 .stream {
-    padding: 10px 0;
-
     position: relative;
 }
 
 .stream-list__title {
+    //o-ft-typography-heading1
     font-family: $fontSans;
-    font-weight: normal;
-    text-transform: capitalize;
-    font-size: 22px;
-    margin: 0;
-    line-height: 1.9;
-    background: #777;
-    padding: 0 10px;
-    color: #fff;
-    position: relative;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: $next-black;
+    margin: 0 0 16px;
+    padding: 8px 0 7px;
+    border-top: 4px solid #a7a59b;
+    border-bottom: 1px dotted #a7a59b;
 
     &:after {
         content: '';
