@@ -17,9 +17,9 @@
 {% for article in stream.items %}
 
     {% if article.type === 'fastft' %}
-        {% include "article/cards/fastft.html" with { item: article.item } %}
+        {% include "./bower/next-article-card-component/templates/fastft.html" with { item: article.item , full: true} %}
     {% elseif article.type === 'methode' %}
-        {% include "article/cards/methode.html" with { item: article.item } %}
+        {% include "./bower/next-article-card-component/templates/methode.html" with { item: article.item, full: true } %}
     {% endif %}
     
 {% endfor %}
