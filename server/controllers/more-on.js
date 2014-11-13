@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
                 .then(function (articles) {
                     if (articles.length > 0) {
                         require('../utils/cache-control')(res);
-                        res.layout('components/more-on', {
+                        res.render('components/more-on', {
                             mode: 'expand',
                             stream: articles
                         });
