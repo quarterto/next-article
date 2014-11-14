@@ -2,6 +2,17 @@
 {% block body %}
 <div class="o-grid-row">
     
+    <h1 class="stream-list__title" data-o-grid-colspan="12">
+        <span class="js-context">
+        {% if title %}
+            {{ title }} 
+        {% endif %}
+        </span>
+        {% if isFollowable %}
+        {% include "./components/bower/next-actions-component/templates/favourite.html" %}
+        {% endif %}
+    </h1>
+
     {% flag contextNavigation %}
         <!-- Component: context - FIXME - split in to nav & context -->
         <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
@@ -19,22 +30,22 @@
         </div>
     
         <!-- Component: stream -->
-        <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
-            <div class="stream">
+        <div class="stream__container">
                 {% include "components/stream.html" %}
-            </div>
+
+            <div data-o-grid-colspan="S12 M4 L4 XL4" class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.item.id}}"></div>
+
         </div>
     {% endflag %}
     {% flag !contextNavigation %}
         <!-- Component: stream -->
-        <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
-        <div class="stream__container" data-o-grid-colspan="S12 M8 L6 XL6">
-            <div class="stream">
-                {% include "components/stream.html" %}
-            </div>
+        <div class="stream__container" >
+                {% include "components/stream.html" with {article: stream.items[0]} %}
         </div>
-        <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
+
+
 
     {% endflag %}
 </div>
 {% endblock %}
+

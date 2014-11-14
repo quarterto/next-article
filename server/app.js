@@ -35,6 +35,7 @@ app.get('/', function(req, res) {
 app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/fastft'));
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, require('./controllers/methode'));
 app.get('/more-on/:id', require('./controllers/more-on'));
+app.get('/more-on/:metadata/:id', require('./controllers/on-this-topic'));
 app.get('/__gtg', function(req, res, next) {
 	res.status(200).end();
 });

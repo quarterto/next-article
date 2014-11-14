@@ -2,8 +2,8 @@
 <h2>Related links</h2>
 <ul>
 {% for article in stream %}
-    <li>
-        <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a> 
+    <li class="article-card">
+        <a class="article-card--headline" href="/{{ article.id }}">{{ article.raw.item.title.title }}</a> 
         - <time data-o-component="o-date" class="o-date" datetime="{{ article.lastUpdated.toISOString() }}">{{ article.lastUpdated|date('Y-m-d') }}</time>
     </li>
 {% endfor %}

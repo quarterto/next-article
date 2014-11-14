@@ -15,7 +15,8 @@ module.exports = function(req, res, next) {
                         require('../utils/cache-control')(res);
                         res.render('components/more-on', {
                             mode: 'expand',
-                            stream: articles
+                            stream: articles,
+                            title: 'Related links'
                         });
                     } else {
                         res.status(404).send();
