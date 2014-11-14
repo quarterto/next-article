@@ -49,5 +49,5 @@ module.exports = function(req, res, next) {
             });
     }, function (err) {
         console.error(err);
-    }).end()
+    }).end();
 };
