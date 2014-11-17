@@ -4,7 +4,7 @@ var Stream = require('../models/stream');
 var ft = require('../utils/api').ft;
 
 module.exports = function(req, res, next) {
-
+// console.log('sheeeeiiiit')
     ft
         .get([req.params[0]])
         .then(function (articles) {
