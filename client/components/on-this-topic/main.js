@@ -4,8 +4,8 @@ var $ = function (selector) {
     return [].slice.call(document.querySelectorAll(selector));
 };
 
-$('.js-more-on').forEach(function (el) {
-    reqwest('/more-on/' + el.getAttribute('data-article-id'))
+$('.js-on-this-topic').forEach(function (el) {
+    reqwest('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))
         .then(function (resp) {
             el.innerHTML = resp;
             if (window.Origami) {
@@ -15,6 +15,7 @@ $('.js-more-on').forEach(function (el) {
             el.parentNode.removeChild(el);
         });
 });
+
 
 
 

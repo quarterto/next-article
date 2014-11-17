@@ -1,25 +1,18 @@
 
-<h1 class="stream-list__title">
-    <span class="js-context">
-    {% if title %}
-        {{ title }} 
-    {% endif %}
-    </span>
-    {% if isFollowable %}
-    {% include "./bower/next-actions-component/templates/favourite.html" %}
-    {% endif %}
-</h1>
-
-{% if stream.length === 0 %}
+{% if !article %}
     <p>No articles found.</p>
 {% endif %}
 
-{% for article in stream.items %}
 
-    {% if article.type === 'fastft' %}
-        {% include "./bower/next-article-card-component/templates/fastft.html" with { item: article.item , full: true} %}
-    {% elseif article.type === 'methode' %}
-        {% include "./bower/next-article-card-component/templates/methode.html" with { item: article.item, full: true } %}
-    {% endif %}
-    
-{% endfor %}
+
+
+    <div class="stream" data-o-grid-colspan="S12 M8 L8 XL8">
+        {% if article.type === 'fastft' %}
+            {% include "./bower/next-article-card-component/templates/fastft.html" with { item: article.item , full: true} %}
+        {% elseif article.type === 'methode' %}
+            {% include "./bower/next-article-card-component/templates/methode.html" with { item: article.item, full: true } %}
+        {% endif %}
+    </div>
+
+    <div data-o-grid-colspan="S12 M4 L4 XL4" class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.item.id}}"></div>
+
