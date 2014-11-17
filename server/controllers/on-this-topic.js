@@ -6,12 +6,18 @@ module.exports = function(req, res, next) {
     ft.get([req.params.id])
         .then(function(thisArticle) {
             var topic, query;
-            thisArticle = thisArticle[0];
+            if(thisArticle && thisArticle.length) {
+                thisArticle = thisArticle[0];
+            } else {
+                res.status(404).send();
+            }
             topic = thisArticle[req.params.metadata];
-            query = topic.taxonomy + ':' + topic.name;
             if(!topic) {
                 res.status(404).send();
             }
+
+            query = topic.taxonomy + ':' + topic.name;
+
             ft.search(query, 4)
             .then(function (results) {
                 var ids;
