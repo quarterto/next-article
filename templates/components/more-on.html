@@ -1,10 +1,13 @@
 
-<h2>Related links</h2>
+<h2>
+	{% if query %}
+	<a href="/search?q={{query}}">{{title}}<a></h2>
+	{% else %}
+	{{title}}
+	{% endif %}
+</h2>
 <ul>
 {% for article in stream %}
-    <li>
-        <a href="/{{ article.id }}">{{ article.raw.item.title.title }}</a> 
-        - <time data-o-component="o-date" class="o-date" datetime="{{ article.lastUpdated.toISOString() }}">{{ article.lastUpdated|date('Y-m-d') }}</time>
-    </li>
+    {% include "./bower/next-article-card-component/templates/methode.html" with {item: article} %}
 {% endfor %}
 </ul>

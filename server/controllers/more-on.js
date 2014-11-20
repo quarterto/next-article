@@ -16,7 +16,7 @@ module.exports = function(req, res, next) {
                         res.render('components/more-on', {
                             mode: 'expand',
                             stream: articles,
-                            title: 'Related links'
+                            title: 'Related to this story'
                         });
                     } else {
                         res.status(404).send();

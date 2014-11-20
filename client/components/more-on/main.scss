@@ -1,38 +1,24 @@
-.more-on {
-    &.more-on--loaded {
-        border-top: 1px solid #999;
-        border-bottom: 1px solid #999;
-        padding: 20px;  
-    }
-  
-
-    h2,
-    li {
-        font-size: 14px;
-        font-weight: normal;
+.more-on,
+.on-this-topic {
+    margin-bottom: 20px;
+    h2 {
+        padding: 5px 0;
+        border-top: 1px dotted #74736c;
+        border-bottom: 1px dotted #74736c;
+        font-size: 16px;
+        line-height: 20px;
+        font-family: BentonSans,Helvetica,Arial,sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        a {
+            color: $next-black;
+            text-decoration: none;
+        }
+        margin: 21px 0;
     }
     
-    h2 {
+    ul {
+        padding: 0;
         margin: 0;
     }
-
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin-bottom: 0;
-    }
-
-    li {
-        line-height: 1.6;
-    }
-
-    a {
-        color: #2e6e9e;;
-
-        &:hover {
-            color: #2e6e9e;;
-            text-decoration: underline;
-        }
-    } 
 }

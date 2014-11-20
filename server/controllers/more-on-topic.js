@@ -39,7 +39,7 @@ module.exports = function(req, res, next) {
 
                     if (articles.length > 0) {
                         require('../utils/cache-control')(res);
-                        res.render('components/on-this-topic', {
+                        res.render('components/more-on', {
                             mode: 'expand',
                             stream: articles,
                             query: query,
