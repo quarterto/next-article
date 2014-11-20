@@ -10,10 +10,12 @@ module.exports = function(req, res, next) {
                 thisArticle = thisArticle[0];
             } else {
                 res.status(404).send();
+                return;
             }
             topic = thisArticle[req.params.metadata];
             if(!topic) {
                 res.status(404).send();
+                return;
             }
 
             query = topic.taxonomy + ':' + topic.name;
@@ -45,6 +47,7 @@ module.exports = function(req, res, next) {
                         });
                     } else {
                         res.status(404).send();
+                        return;
                     }
                 }, function (err) {
                     console.error(err);
