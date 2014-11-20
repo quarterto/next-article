@@ -29,9 +29,3 @@ $('.js-on-this-topic').forEach(function (el) {
 });
 
 
-
-
-
-
-
-

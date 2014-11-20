@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
 
             // ...
             return ft
-                .get(article[0].packages)
+                .get(article[0].packages.slice(0,1))
                 .then(function (articles) {
                     if (articles.length > 0) {
                         require('../utils/cache-control')(res);

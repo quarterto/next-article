@@ -2,10 +2,16 @@
 
 var ft = require('../utils/api').ft;
 
+var titleMapping = {
+    'primarySection': 'section',
+    'primaryTheme': 'theme'
+
+}
+
 module.exports = function(req, res, next) {
     ft.get([req.params.id])
         .then(function(thisArticle) {
-            var topic, query;
+            var topic, query, topicTitle = titleMapping[req.params.metadata];
             if(thisArticle && thisArticle.length) {
                 thisArticle = thisArticle[0];
             } else {
@@ -43,7 +49,7 @@ module.exports = function(req, res, next) {
                             mode: 'expand',
                             stream: articles,
                             query: query,
-                            title: 'More from this topic - ' + topic.name
+                            title: 'More from this ' + topicTitle + ' - ' + topic.name
                         });
                     } else {
                         res.status(404).send();
