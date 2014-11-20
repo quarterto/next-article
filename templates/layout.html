@@ -1,4 +1,4 @@
-{% extends "../node_modules/next-wrapper/templates/layout.html" %}
+{% extends "components/bower/next-wrapper/templates/layout.html" %}
 {% block body %}
 <div class="o-grid-row">
     
@@ -10,39 +10,20 @@
         </span>
     </h1>
 
-    {% flag contextNavigation %}
-        <!-- Component: context - FIXME - split in to nav & context -->
-        <div class="context__container" data-o-grid-colspan="S12 M4 L4 XL4">
-            <!-- Component: selected-filters -->
-            {% if selectedFilters && selectedFilters.length %}
-                <div class="context selected-filters__container">
-                    {% include "components/selected-filters.html"  with {filters: selectedFilters} %}
-                </div>
-            {% endif %}
-            <!-- Component: search-filters -->
-            <div class="context search-filters__container">
-                {% include "components/search-filters.html" with {filters: searchFilters} %}
-            </div>
+    <div data-o-grid-colspan="S12 M4 L4 XL4">
+        {% flags leftNavBar %}
+        <div class="context__container">
+            {% flags contextNavigation %}
             <div class="js-context__container"></div>
+            {% endflags %}{# contextNavigation #}
         </div>
-    
-        <!-- Component: stream -->
-        <div class="stream__container">
-                {% include "components/stream.html" %}
+        {% endflags %}{# leftNavBar #}
+    </div>
 
-            <div data-o-grid-colspan="S12 M4 L4 XL4" class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.item.id}}"></div>
-
-        </div>
-    {% endflag %}
-    {% flag !contextNavigation %}
-        <!-- Component: stream -->
-        <div class="stream__container" >
-                {% include "components/stream.html" with {article: stream.items[0]} %}
-        </div>
-
-
-
-    {% endflag %}
+    <div class="stream__container" >
+            {% include "components/stream.html" with {article: stream.items[0]} %}
+    </div>
+    <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
 </div>
 {% endblock %}
 

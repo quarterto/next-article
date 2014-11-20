@@ -36,11 +36,12 @@
     "haikro": "^1.3.0",
     "lodash": "^2.4.1",
     "moment": "^2.8.3",
-    "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v1.0.3.tar.gz",
-    "next-wrapper": "https://github.com/Financial-Times/next-wrapper/archive/v1.2.13.tar.gz",
+    "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v2.0.0.tar.gz",
+    "next-wrapper": "https://github.com/Financial-Times/next-wrapper/archive/v3.0.0.tar.gz",
     "promise.prototype.end": "^1.0.0",
     "request": "^2.44.0",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "swigify": "0.0.3"
   },
   "devDependencies": {
     "bower": "^1.3.12",
