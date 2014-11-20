@@ -5,8 +5,7 @@ var ft = require('../utils/api').ft;
 var titleMapping = {
     'primarySection': 'section',
     'primaryTheme': 'theme'
-
-}
+};
 
 module.exports = function(req, res, next) {
     ft.get([req.params.id])
