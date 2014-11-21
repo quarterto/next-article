@@ -7,9 +7,15 @@ module.exports = function(req, res, next) {
         .get([req.params.id])
         .then(function (article) {
 
-            // ...
+            if(article && article.length) {
+                article = article[0];
+            } else {
+                res.status(404).send();
+                return;
+            }
+
             return ft
-                .get(article[0].packages.slice(0,1))
+                .get(article.packages.slice(0,1))
                 .then(function (articles) {
                     if (articles.length > 0) {
                         require('../utils/cache-control')(res);
