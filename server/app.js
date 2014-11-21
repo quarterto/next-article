@@ -40,6 +40,7 @@ app.get('/__gtg', function(req, res, next) {
 	res.status(200).end();
 });
 
+app.use(require('next-wrapper/node/raven'));
 
 // Start the app
 var port = process.env.PORT || 3001;
