@@ -37,7 +37,7 @@ module.exports = function(req, res, next) {
 					return [];
 				})
 				.then(function(ids) {
-					return ft.get(ids)
+					return ft.get(ids);
 				})
 				.then(function (articles) {
 					articles = articles.filter(function(article) {
@@ -55,7 +55,7 @@ module.exports = function(req, res, next) {
 					} else {
 						res.status(404).send();
 					}
-				})
+				});
 		})
 		.catch(next);
 };
