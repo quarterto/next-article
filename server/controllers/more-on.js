@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
 	ft
 		.get([req.params.id])
 		.then(function (article) {
-			if (article && article.length) {
+			if (article[0]) {
 				article = article[0];
 			} else {
 				res.status(404).send();
