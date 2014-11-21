@@ -54,7 +54,6 @@ module.exports = function(req, res, next) {
 						});
 					} else {
 						res.status(404).send();
-						return;
 					}
 				})
 		})
