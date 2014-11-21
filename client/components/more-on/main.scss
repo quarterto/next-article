@@ -13,6 +13,9 @@
         a {
             color: $next-black;
             text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
         }
         margin: 21px 0;
     }
