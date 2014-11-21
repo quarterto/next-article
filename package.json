@@ -37,7 +37,7 @@
     "lodash": "^2.4.1",
     "moment": "^2.8.3",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v2.0.0.tar.gz",
-    "next-wrapper": "https://github.com/Financial-Times/next-wrapper/archive/v3.1.0.tar.gz",
+    "next-wrapper": "https://github.com/Financial-Times/next-wrapper/archive/v3.1.1.tar.gz",
     "promise.prototype.end": "^1.0.0",
     "request": "^2.44.0",
     "swig": "^1.4.2",
