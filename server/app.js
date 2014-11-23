@@ -1,7 +1,6 @@
 'use strict';
 
 require('es6-promise').polyfill();
-require('promise.prototype.end');
 
 var express = require('express');
 var api = require('./utils/api');
