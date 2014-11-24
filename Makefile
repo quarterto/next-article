@@ -40,7 +40,7 @@ run:
 _run: run-local run-router
 
 run-local:
-	export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; nodemon server/app.js --watch server
+	export HOSTEDGRAPHITE_APIKEY=123; export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; nodemon server/app.js --watch server
 
 run-router:
 	export grumman=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
