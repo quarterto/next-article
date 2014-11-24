@@ -2,7 +2,7 @@
   "name": "next-grumman",
   "dependencies": {
     "next-user-preferences": "https://github.com/Financial-Times/next-user-preferences.git#^v2.0.0",
-    "next-wrapper": "https://github.com/Financial-Times/next-wrapper.git#^3.0.0",
+    "next-wrapper": "https://github.com/Financial-Times/next-wrapper.git#^3.1.2",
     "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^v1.1.1"
   }
 }
