@@ -1,5 +1,6 @@
 'use strict';
 
+var Metrics = require('next-metrics');
 var ft = require('../utils/api').ft;
 
 var titleMapping = {
@@ -8,7 +9,10 @@ var titleMapping = {
 };
 
 module.exports = function(req, res, next) {
-	ft.get([req.params.id])
+    
+    Metrics.instrument(res, { as: 'express.http.res' });
+	
+    ft.get([req.params.id])
 		.then(function(thisArticle) {
 			var topic, query, topicTitle = titleMapping[req.params.metadata];
 			if (thisArticle && thisArticle.length) {
