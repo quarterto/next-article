@@ -24,7 +24,7 @@ endif
 test:
 	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './public/*' -o -path './tmp/*' -o -path './node-v0.10.32-linux-x64/*' -o -path './node_modules/*' -o -path './bower_components/*' -o -path './client/vendor/*' -o -name 'bundle.js' \\)`
 	# Run all tests except for smoke tests
-	export ENVIRONMENT=production; ./node_modules/.bin/mocha --reporter spec -i -g 'smoke tests' tests/server/
+	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; ./node_modules/.bin/mocha --reporter spec -i -g 'smoke tests' tests/server/
 
 smoke-test:
 	# export DEBUG=ft-api-client:*,nock.*; 
