@@ -1,9 +1,13 @@
 'use strict';
 
 var ft = require('../utils/api').ft;
+var Metrics = require('next-metrics');
 
 module.exports = function(req, res, next) {
-	ft
+    
+    Metrics.instrument(res, { as: 'express.http.res' });
+	
+    ft
 		.get([req.params.id])
 		.then(function (article) {
 			if (article[0]) {

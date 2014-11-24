@@ -5,7 +5,11 @@ require('es6-promise').polyfill();
 var express = require('express');
 var api = require('./utils/api');
 var flags = require('next-feature-flags-client');
+var Metrics = require('next-metrics');
+
 flags.init();
+
+Metrics.init({ app: 'grumman', flushEvery: 30000 });
 
 var swig = require('swig');
 
@@ -44,5 +48,6 @@ app.use(require('next-wrapper/node/raven'));
 // Start the app
 var port = process.env.PORT || 3001;
 app.listen(port, function() {
-	console.log("Listening on " + port);
+    Metrics.count('express.start');
+    console.log("Listening on " + port);
 });

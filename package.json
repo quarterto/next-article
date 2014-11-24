@@ -38,6 +38,7 @@
     "moment": "^2.8.3",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v2.0.0.tar.gz",
     "next-wrapper": "https://github.com/Financial-Times/next-wrapper/archive/v3.1.2.tar.gz",
+    "next-metrics": "https://github.com/Financial-Times/next-metrics/archive/v1.0.0.tar.gz",
     "request": "^2.44.0",
     "swig": "^1.4.2",
     "swigify": "0.0.3"

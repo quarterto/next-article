@@ -2,8 +2,13 @@
 
 var Stream = require('../models/stream');
 var fastft = require('../utils/api').fastft;
+var Metrics = require('next-metrics');
 
 module.exports = function(req, res, next) {
+    
+    Metrics.instrument(res, { as: 'express.http.res' });
+
+    //
     fastft.getPost(req.params[0])
         .then(function(response) {
             var stream = new Stream();

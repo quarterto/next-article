@@ -2,9 +2,12 @@
 
 var Stream = require('../models/stream');
 var ft = require('../utils/api').ft;
+var Metrics = require('next-metrics');
 
 module.exports = function(req, res, next) {
-// console.log('sheeeeiiiit')
+
+    Metrics.instrument(res, { as: 'express.http.res' });
+    
     ft
         .get([req.params[0]])
         .then(function (articles) {
