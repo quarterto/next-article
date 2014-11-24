@@ -3,7 +3,6 @@ body {
     padding: 0;
 }
 
-.context__container, 
 .stream__container {
     z-index: 2;
     float: left;
@@ -24,25 +23,9 @@ body {
 
 
 @media (max-width: 600px) {
-
-    .context__container, .has-context .context__container {
-        width: 100%;
-        display: none;
-        position: absolute;
-        background-color: white;
-        &.show {
-            display: block;
-        }
-    }
-
     .show {
         display: block;
     }
-
-}
-
-.context.selected-filters__container, .context.search-filters__container{
-  padding:0;
 }
 
 //utils
