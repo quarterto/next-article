@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
 			}
 
 			return ft
-				.get(article.packages.slice(0,1))
+				.get(article.packages)
 				.then(function (articles) {
 					if (articles.length > 0) {
 					require('../utils/cache-control')(res);
