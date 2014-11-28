@@ -27,10 +27,11 @@ swig.setDefaults({ cache: false });
 // not for production
 app.set('view cache', false);
 
-// set up middleware and routes 
-// TODO: needs tidying up
-app.use('/grumman', express.static(__dirname + '/../public'));
-
+var assets = express.Router();
+assets.use('/', express.static(require('path').join(__dirname, '../public'), { 
+    maxAge: 120000 // 2 minutes 
+}));
+app.use('/grumman', assets); 
 
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
