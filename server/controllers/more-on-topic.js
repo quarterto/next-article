@@ -12,7 +12,6 @@ var titleMapping = {
 module.exports = function(req, res, next) {
     
     Metrics.instrument(res, { as: 'express.http.res' });
-	var stream = new Stream();
 
     ft.get([req.params.id])
 		.then(function(thisArticle) {
@@ -46,6 +45,8 @@ module.exports = function(req, res, next) {
 					return ft.get(ids);
 				})
 				.then(function (articles) {
+					var stream = new Stream();
+
 					articles = articles.filter(function(article) {
 						return article.id !== thisArticle.id;
 					});

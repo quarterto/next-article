@@ -84,7 +84,7 @@ function sortByLastPublished(items) {
             return 1;
         }
     });
-};
+}
 
 Object.defineProperty(Stream.prototype, 'related', {
     get: function () {
