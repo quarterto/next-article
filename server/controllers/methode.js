@@ -22,6 +22,7 @@ module.exports = function(req, res, next) {
                         articles.forEach(function (article) {
                             stream.push('methode', article);
                         });
+                        
                         require('../utils/cache-control')(res);
                         
                         res.render('layout', {

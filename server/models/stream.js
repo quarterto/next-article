@@ -12,10 +12,6 @@
 
 */
 
-function isPromoted(tone) {
-    return ['comment', 'analysis'].indexOf(tone) >= 0;
-}
-
 function getVisualTone(item) {
     return ['comment', 'analysis','feature'].indexOf(item.visualTone) >= 0 ? 'feature' : 'news';
 }
@@ -25,11 +21,10 @@ function getPublishDate(item) {
 }
 
 function isMediaCard(item, positionInStream) {
-    if(positionInStream % 3 === 0) {
-        return true;
-    } else if (getVisualTone(item) === 'feature') {
-        return true;
-    } else if (item.largestImage && item.largestImage.alt && item.largestImage.alt.indexOf("Ingram Pinn") >= 0) {
+    if( (positionInStream % 3 === 0) || 
+        (getVisualTone(item) === 'feature') ||
+        (item.largestImage && item.largestImage.alt && item.largestImage.alt.indexOf("Ingram Pinn") >= 0))
+    {
         return true;
     } else {
         return false;
@@ -40,21 +35,47 @@ var Stream = function () {
     this.items = [];
 };
 
+Object.defineProperty(Stream.prototype, 'texturedItems', {
+    get: function() {
+        if(this.items.length) {
+            return setPositionalAttributes(this.items);
+        } else {
+            return [];
+        }
+    }
+});
+
+Object.defineProperty(Stream.prototype, 'texturedAndSortedItems', {
+    get: function() {
+        if(this.items.length) {
+            return setPositionalAttributes(sortByLastPublished(this.items));
+        } else {
+            return [];
+        }
+    }
+});
+
+
 Stream.prototype.push = function (type, item) {
     var isLead =  (this.items.length === 0);
     this.items.push({ 
-        type: getVisualTone(item), 
-        item: item, 
-        isLead: isLead, 
-        showMedia: isMediaCard(item, this.items.length)
+        type: type === 'methode' ? getVisualTone(item) : type, 
+        item: item
     });
 };
 
+function setPositionalAttributes(items) {
+    return items.map(function(item, index) {
+        item.isLead = (index === 0);
+        item.showMedia = isMediaCard(item, index);
+        return item;
+    });
+}
+
 //Puts greater emphasis on comment and analysis
 // Latest news article first, followed by all comment and analysis, followed by rest of news
-Stream.prototype.sortByLastPublished = function() {
-    var latest = this.items.shift();
-    this.items.sort(function(a, b) {
+function sortByLastPublished(items) {
+    return items.sort(function(a, b) {
         if(getPublishDate(a).getTime() > getPublishDate(b).getTime()) {
             return -1;
         } else if (getPublishDate(a).getTime() === getPublishDate(b).getTime()) {
@@ -63,8 +84,6 @@ Stream.prototype.sortByLastPublished = function() {
             return 1;
         }
     });
-
-    this.items.unshift(latest);
 };
 
 Object.defineProperty(Stream.prototype, 'related', {
