@@ -2,24 +2,6 @@
 {% block body %}
 <div class="o-grid-row">
     
-    <h1 class="stream-list__title" data-o-grid-colspan="12">
-        <span class="js-context">
-        {% if title %}
-            {{ title }} 
-        {% endif %}
-        </span>
-    </h1>
-
-    <div data-o-grid-colspan="S12 M4 L4 XL4">
-        {% flags leftNavBar %}
-        <div class="context__container">
-            {% flags contextNavigation %}
-            <div class="js-context__container"></div>
-            {% endflags %}{# contextNavigation #}
-        </div>
-        {% endflags %}{# leftNavBar #}
-    </div>
-
     <div class="stream__container" >
             {% include "components/stream.html" with {article: stream.items[0]} %}
     </div>

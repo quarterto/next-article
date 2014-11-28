@@ -15,12 +15,17 @@ $fontBrand: FinancierDisplay, Georgia, serif;
     font-style: normal;
     font-size: 16px;
     line-height: 20px;
-    color: $next-black;
     padding-top: 8px;
     padding-bottom: 7px;
     border-top: 4px solid #a7a59b;
     border-bottom: 1px dotted #a7a59b;
-
+    a {
+        color: $next-black;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
     &:after {
         content: '';
         display: block;
