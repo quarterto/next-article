@@ -8,10 +8,12 @@
 
     <div class="stream" data-o-grid-colspan="S12 M8 L8 XL8">
         {% if article.type === 'fastft' %}
-            {% include "./bower/next-article-card-component/templates/fastft.html" with { item: article.item , full: true} %}
-        {% elseif article.type === 'methode' %}
-            {% include "./bower/next-article-card-component/templates/methode.html" with { item: article.item, full: true } %}
-        {% endif %}
+            {% include "./bower/next-article-card-component/templates/fastft.html" with { item: article.item} %}
+        {% elseif article.type === 'feature' %}
+            {% include "./bower/next-article-card-component/templates/feature-full.html" with { item: article.item} %}
+        {% elseif article.type === 'news' %}
+            {% include "./bower/next-article-card-component/templates/news-full.html" with { item: article.item} %}
+        {% endif %}    
     </div>
     
 	<div data-o-grid-colspan="S12 M4 L4 XL4">

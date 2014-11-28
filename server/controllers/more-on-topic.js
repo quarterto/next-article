@@ -2,6 +2,7 @@
 
 var Metrics = require('next-metrics');
 var ft = require('../utils/api').ft;
+var Stream = require('../models/stream');
 
 var titleMapping = {
 	'primarySection': 'section',
@@ -11,7 +12,7 @@ var titleMapping = {
 module.exports = function(req, res, next) {
     
     Metrics.instrument(res, { as: 'express.http.res' });
-	
+
     ft.get([req.params.id])
 		.then(function(thisArticle) {
 			var topic, query, topicTitle = titleMapping[req.params.metadata];
@@ -44,15 +45,21 @@ module.exports = function(req, res, next) {
 					return ft.get(ids);
 				})
 				.then(function (articles) {
+					var stream = new Stream();
+
 					articles = articles.filter(function(article) {
 						return article.id !== thisArticle.id;
+					});
+
+					articles.forEach(function(item) {
+						stream.push('methode', item);
 					});
 
 					if (articles.length > 0) {
 						require('../utils/cache-control')(res);
 						res.render('components/more-on', {
 							mode: 'expand',
-							stream: articles,
+							stream: stream.items,
 							query: query,
 							title: 'More from this ' + topicTitle + ' - ' + topic.name
 						});

@@ -2,11 +2,12 @@
 
 var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
+var Stream = require('../models/stream');
 
 module.exports = function(req, res, next) {
     
     Metrics.instrument(res, { as: 'express.http.res' });
-	
+
     ft
 		.get([req.params.id])
 		.then(function (article) {
@@ -21,12 +22,18 @@ module.exports = function(req, res, next) {
 				.get(article.packages)
 				.then(function (articles) {
 					if (articles.length > 0) {
-					require('../utils/cache-control')(res);
-					res.render('components/more-on', {
-						mode: 'expand',
-						stream: articles,
-						title: 'Related to this story'
-					});
+						
+						var stream = new Stream();
+
+						articles.forEach(function(item) {
+							stream.push('methode', item);
+						});
+						require('../utils/cache-control')(res);
+						res.render('components/more-on', {
+							mode: 'expand',
+							stream: stream.items,
+							title: 'Related to this story'
+						});
 					} else {
 						res.status(404).send();
 					}
