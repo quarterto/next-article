@@ -11,9 +11,9 @@
     {% if article.type === 'fastft' %}
         {% include "./bower/next-article-card-component/templates/fastft.html" with { item: article.item} %}
     {% elseif article.type === 'feature' %}
-        {% include "./bower/next-article-card-component/templates/feature.html" with { item: article.item} %}
+        {% include "./bower/next-article-card-component/templates/feature.html" with { item: article.item, isLead: false, showMedia: flags.moreOnImages.isSwitchedOn } %}
     {% elseif article.type === 'news' %}
-        {% include "./bower/next-article-card-component/templates/news.html" with { item: article.item} %}
+        {% include "./bower/next-article-card-component/templates/news.html" with { item: article.item,  isLead: false, showMedia: flags.moreOnImages.isSwitchedOn } %}
     {% endif %}    
 {% endfor %}
 </ul>
