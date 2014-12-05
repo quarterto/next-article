@@ -23,7 +23,8 @@ function getPublishDate(item) {
 function isMediaCard(item, positionInStream) {
     if( (positionInStream % 3 === 0) || 
         (getVisualTone(item) === 'feature') ||
-        (item.largestImage && item.largestImage.alt && item.largestImage.alt.indexOf("Ingram Pinn") >= 0))
+        (item.item.has_gallery) ||
+        (item.item.largestImage && item.item.largestImage.alt && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))    
     {
         return true;
     } else {
