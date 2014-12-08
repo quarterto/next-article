@@ -28,7 +28,7 @@ test:
 
 smoke-test:
 	# export DEBUG=ft-api-client:*,nock.*; 
-	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=${API_KEY}; export ENVIRONMENT=production; ./node_modules/.bin/mocha --reporter spec -g 'smoke tests' tests/server/
+	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export ENVIRONMENT=production; ./node_modules/.bin/mocha --reporter spec -g 'smoke tests' tests/server/
 
 
 test-debug:
