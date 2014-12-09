@@ -17,7 +17,9 @@ var swig = require('swig');
 var app = module.exports = express();
 
 
-require('next-wrapper').setup(app, flags, {
+var wrapper = require('next-wrapper')
+
+wrapper.setup(app, flags, {
 	appname: 'grumman'
 });
 
@@ -44,7 +46,7 @@ app.get('/__gtg', function(req, res, next) {
 	res.status(200).end();
 });
 
-app.use(require('next-wrapper').raven.middleware);
+app.use(wrapper.raven.middleware);
 
 // Start the app
 var port = process.env.PORT || 3001;
