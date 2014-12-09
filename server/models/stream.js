@@ -4,7 +4,9 @@
 
     A stream is a list of content of various types,
 
-    //TODO: consider altering 'methode' to 'capi' and 'fastft' to 'clamo' to match the controller file names / actual data sources
+    //TODO: consider altering 'methode' to 'capi' to match the controller file names / actual data sources
+    //TODO: hope that capi starts returning the info currently known as 'fastft' as fastft is a product not a proper data source - ultimately hope that 'fastft' is removed as a key
+
     [
       { type: 'methode,   item: { uuid: ... } },
       { type: 'fastft',   item: { uuid: ... } },
@@ -18,7 +20,6 @@ function getVisualTone(item) {
 }
 
 function getPublishDate(item) {
-    //TODO: consider altering 'fastft' to 'clamo'
     return item.type === 'fastft' ? item.item._datePublished : item.item.lastUpdated;
 }
 

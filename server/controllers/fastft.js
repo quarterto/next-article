@@ -1,24 +1,20 @@
 'use strict';
 
 var Stream = require('../models/stream');
-var clamo = require('../utils/api').clamo;
+var fastft = require('../utils/api').fastft;
 var Metrics = require('next-metrics');
 
 /*
-    Takes data from the clamo api and returns it in the required format
+    Takes data from the clamo api used by fastft and returns it in the required format
 */
 
 module.exports = function(req, res, next) {
 
     Metrics.instrument(res, { as: 'express.http.res' });
 
-    //
-    clamo.getPost(req.params[0])
+    fastft.getPost(req.params[0])
         .then(function(response) {
             var stream = new Stream();
-
-            //consider refactoring 'stream' to push to a key of 'clamo' rather than 'fastft'
-            //and alter those places which use this object?
             stream.push('fastft', response.post);
             require('../utils/cache-control')(res);
             res.render('layout', {

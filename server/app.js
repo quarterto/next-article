@@ -36,7 +36,7 @@ app.use('/grumman', assets);
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
 });
-app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/clamo'));
+app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/fastft'));
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, require('./controllers/capi'));
 app.get('/more-on/:id', require('./controllers/more-on'));
 app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));

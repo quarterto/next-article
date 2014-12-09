@@ -38,17 +38,20 @@ run:
 	$(MAKE) -j2 _run
 
 run-debug:
-	$(MAKE) -j2 _run-debug
+	$(MAKE) -j3 _run-debug
 
 _run: run-local run-router
 
-_run-debug: run-local-debug run-router
+_run-debug: run-local-debug run-router run-local-debug-inspector
 
 run-local:
 	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon server/app.js --watch server
 
 run-local-debug:
-	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; node-debug server/app.js
+	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon --debug server/app.js
+
+run-local-debug-inspector:
+	node-inspector;
 
 run-router:
 	export grumman=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
