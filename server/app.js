@@ -17,7 +17,7 @@ var swig = require('swig');
 var app = module.exports = express();
 
 
-var wrapper = require('next-wrapper')
+var wrapper = require('next-wrapper');
 
 wrapper.setup(app, flags, {
 	appname: 'grumman'
