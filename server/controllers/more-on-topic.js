@@ -10,7 +10,7 @@ var titleMapping = {
 };
 
 module.exports = function(req, res, next) {
-    
+
     Metrics.instrument(res, { as: 'express.http.res' });
 
     ft.get([req.params.id])
@@ -66,7 +66,10 @@ module.exports = function(req, res, next) {
 					} else {
 						res.status(404).send();
 					}
-				});
+				}, function (err) {
+                    console.log(err);
+                    res.send(404);
+                });
 		})
 		.catch(next);
 };
