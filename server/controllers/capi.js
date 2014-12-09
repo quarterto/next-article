@@ -4,27 +4,33 @@ var Stream = require('../models/stream');
 var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
 
+/*
+    Takes data from the content api and returns it in the required format
+*/
+
 module.exports = function(req, res, next) {
 
     Metrics.instrument(res, { as: 'express.http.res' });
-    
+
     ft
         .get([req.params[0]])
         .then(function (articles) {
             res.vary(['Accept-Encoding', 'Accept']);
-    
+
             console.log(req.accepts(['html', 'json']));
             switch(req.accepts(['html', 'json'])) {
                     case 'html':
-                        
+
                         var stream = new Stream();
 
+                        //consider refactoring 'stream' to push to a key of 'capi' rather than 'methode'
+                        //and alter those places which use this object?
                         articles.forEach(function (article) {
                             stream.push('methode', article);
                         });
-                        
+
                         require('../utils/cache-control')(res);
-                        
+
                         res.render('layout', {
                             mode: 'expand',
                             isArticle: true,
@@ -32,7 +38,7 @@ module.exports = function(req, res, next) {
                             isFollowable: true
                         });
 
-                                
+
                         break;
 
                     case 'json':
@@ -50,7 +56,7 @@ module.exports = function(req, res, next) {
                             });
                         break;
                     default:
-                        
+
                         res.status(406).end();
                         break;
                 }
