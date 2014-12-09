@@ -11,7 +11,7 @@ exports.ft = require('ft-api-client')(process.env.apikey, {
     errorHandler: ftErrorHandler
 });
 
-exports.fastft = require('fastft-api-client');
+exports.clamo = require('fastft-api-client');
 
-exports.fastft.config('host', 'http://clamo.ftdata.co.uk/api');
-exports.fastft.config('timeout', 4000);
+exports.clamo.config('host', 'http://clamo.ftdata.co.uk/api');
+exports.clamo.config('timeout', 4000);

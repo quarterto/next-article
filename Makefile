@@ -27,26 +27,31 @@ test:
 	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; ./node_modules/.bin/mocha --reporter spec -i -g 'smoke tests' tests/server/
 
 smoke-test:
-	# export DEBUG=ft-api-client:*,nock.*; 
+	# export DEBUG=ft-api-client:*,nock.*;
 	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export ENVIRONMENT=production; ./node_modules/.bin/mocha --reporter spec -g 'smoke tests' tests/server/
 
 
 test-debug:
-	./node_modules/.bin/mocha --debug-brk --reporter spec -i tests/server/ 
+	./node_modules/.bin/mocha --debug-brk --reporter spec -i tests/server/
 
 run:
 	$(MAKE) -j2 _run
 
+run-debug:
+	$(MAKE) -j2 _run-debug
+
 _run: run-local run-router
+
+_run-debug: run-local-debug run-router
 
 run-local:
 	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon server/app.js --watch server
 
+run-local-debug:
+	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; node-debug server/app.js
+
 run-router:
 	export grumman=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
-
-debug:
-	export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; node --debug-brk server/app.js
 
 build:
 	export ENVIRONMENT=development; ./node_modules/.bin/gulp

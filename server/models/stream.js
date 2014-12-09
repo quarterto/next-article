@@ -4,6 +4,7 @@
 
     A stream is a list of content of various types,
 
+    //TODO: consider altering 'methode' to 'capi' and 'fastft' to 'clamo' to match the controller file names / actual data sources
     [
       { type: 'methode,   item: { uuid: ... } },
       { type: 'fastft',   item: { uuid: ... } },
@@ -17,14 +18,15 @@ function getVisualTone(item) {
 }
 
 function getPublishDate(item) {
+    //TODO: consider altering 'fastft' to 'clamo'
     return item.type === 'fastft' ? item.item._datePublished : item.item.lastUpdated;
 }
 
 function isMediaCard(item, positionInStream) {
-    if( (positionInStream % 3 === 0) || 
+    if( (positionInStream % 3 === 0) ||
         (getVisualTone(item) === 'feature') ||
         (item.item.has_gallery) ||
-        (item.item.largestImage && item.item.largestImage.alt && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))    
+        (item.item.largestImage && item.item.largestImage.alt && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))
     {
         return true;
     } else {
@@ -59,8 +61,9 @@ Object.defineProperty(Stream.prototype, 'texturedAndSortedItems', {
 
 Stream.prototype.push = function (type, item) {
     var isLead =  (this.items.length === 0);
-    this.items.push({ 
-        type: type === 'methode' ? getVisualTone(item) : type, 
+    //TODO: consider altering 'methode' to 'capi' to match controller names / correct data source
+    this.items.push({
+        type: type === 'methode' ? getVisualTone(item) : type,
         item: item
     });
 };
