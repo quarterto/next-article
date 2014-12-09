@@ -1,25 +1,25 @@
 PORT := 3003
 app := ft-next-grumman
-BUNDLER_EXISTS := $(shell which bundler)
+OBT := $(shell which origami-build-tools)
+ROUTER := $(shell which next-router)
+API_KEY := $(shell cat ~/.ftapi)
 
 .PHONY: test
 
 install:
-ifeq ($(BUNDLER_EXISTS),)
-	@echo "Install Bundler globally"
-	@sudo gem install bundler
+ifeq ($(OBT),)
+	@echo "You need to install origami build tools first!  See docs here: http://origami.ft.com/docs/developer-guide/building-modules/"
+	exit 1
 endif
-	@echo "\nInstalling Ruby gems…"
-	@bundle install
-	@echo "\nInstalling Node modules. This might take a while…"
-	@npm install --silent
-	@echo "\nInstalling Bower components…"
-	@./node_modules/.bin/bower install --silent
-	@echo "\nBuilding project assets…"
-	@$(MAKE) build
-	@echo "\nRunning smoke tests…"
-	@$(MAKE) smoke-test
-	@echo "\nYou're good to go!\nType 'make run' and open http://localhost:5050"
+ifeq ($(ROUTER),)
+	@echo "You need to install the next router first!  See docs here: https://github.com/Financial-Times/next-router"
+	exit 1
+endif
+ifeq ($(API_KEY),)
+	@echo "You need an api key!  Speak to one of the next team to get one"
+	exit 1
+endif
+	origami-build-tools install
 
 test:
 	./node_modules/.bin/jshint `find . \\( -name '*.js' -o -name '*.json' \\) ! \\( -path './public/*' -o -path './tmp/*' -o -path './node-v0.10.32-linux-x64/*' -o -path './node_modules/*' -o -path './bower_components/*' -o -path './client/vendor/*' -o -name 'bundle.js' \\)`
@@ -40,7 +40,7 @@ run:
 _run: run-local run-router
 
 run-local:
-	export HOSTEDGRAPHITE_APIKEY=123; export apikey=`cat ~/.ftapi` ; export PORT=${PORT}; nodemon server/app.js --watch server
+	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon server/app.js --watch server
 
 run-router:
 	export grumman=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
