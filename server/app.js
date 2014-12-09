@@ -30,16 +30,16 @@ swig.setDefaults({ cache: false });
 app.set('view cache', false);
 
 var assets = express.Router();
-assets.use('/', express.static(require('path').join(__dirname, '../public'), { 
-    maxAge: 120000 // 2 minutes 
+assets.use('/', express.static(require('path').join(__dirname, '../public'), {
+    maxAge: 120000 // 2 minutes
 }));
-app.use('/grumman', assets); 
+app.use('/grumman', assets);
 
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
 });
 app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/fastft'));
-app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, require('./controllers/methode'));
+app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, require('./controllers/capi'));
 app.get('/more-on/:id', require('./controllers/more-on'));
 app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
 app.get('/__gtg', function(req, res, next) {

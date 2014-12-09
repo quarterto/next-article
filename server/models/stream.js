@@ -4,6 +4,9 @@
 
     A stream is a list of content of various types,
 
+    //TODO: consider altering 'methode' to 'capi' to match the controller file names / actual data sources
+    //TODO: hope that capi starts returning the info currently known as 'fastft' as fastft is a product not a proper data source - ultimately hope that 'fastft' is removed as a key
+
     [
       { type: 'methode,   item: { uuid: ... } },
       { type: 'fastft',   item: { uuid: ... } },
@@ -21,10 +24,10 @@ function getPublishDate(item) {
 }
 
 function isMediaCard(item, positionInStream) {
-    if( (positionInStream % 3 === 0) || 
+    if( (positionInStream % 3 === 0) ||
         (getVisualTone(item) === 'feature') ||
         (item.item.has_gallery) ||
-        (item.item.largestImage && item.item.largestImage.alt && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))    
+        (item.item.largestImage && item.item.largestImage.alt && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))
     {
         return true;
     } else {
@@ -59,8 +62,9 @@ Object.defineProperty(Stream.prototype, 'texturedAndSortedItems', {
 
 Stream.prototype.push = function (type, item) {
     var isLead =  (this.items.length === 0);
-    this.items.push({ 
-        type: type === 'methode' ? getVisualTone(item) : type, 
+    //TODO: consider altering 'methode' to 'capi' to match controller names / correct data source
+    this.items.push({
+        type: type === 'methode' ? getVisualTone(item) : type,
         item: item
     });
 };
