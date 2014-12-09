@@ -49,6 +49,8 @@ run-local:
 
 run-local-debug:
 	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon --debug server/app.js
+	# for all output from ft-api-client then switch to using this line for debug mode
+	# export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export DEBUG=ft-api-client*; export PORT=${PORT}; nodemon --debug server/app.js
 
 run-local-debug-inspector:
 	node-inspector;
