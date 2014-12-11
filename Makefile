@@ -2,7 +2,7 @@ PORT := 3003
 app := ft-next-grumman
 OBT := $(shell which origami-build-tools)
 ROUTER := $(shell which next-router)
-API_KEY := $(shell cat ~/.ftapi)
+API_KEY := $(@shell cat ~/.ftapi)
 
 .PHONY: test
 
