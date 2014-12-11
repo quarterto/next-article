@@ -1,4 +1,6 @@
+
 var flags = window.FT.flags;
+var Beacon = require('next-beacon-component');
 
 require('next-wrapper')();
 require('next-user-preferences');
@@ -8,10 +10,7 @@ if (flags.contentApiCalls.isSwitchedOn) {
     require('./components/more-on/main');
 }
 
-
 if (flags.beacon.isSwitchedOn) {
-
-    var Beacon = require('next-beacon-component');
 
     // fire a beacon after 5s of being on the page
     setTimeout(function () {
