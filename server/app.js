@@ -6,6 +6,7 @@ var express = require('express');
 var api = require('./utils/api');
 var flags = require('next-feature-flags-client');
 var Metrics = require('next-metrics');
+var errorMiddleware = require('express-errors-handler').middleware;
 
 flags.init();
 
@@ -46,7 +47,7 @@ app.get('/__gtg', function(req, res, next) {
 	res.status(200).end();
 });
 
-app.use(wrapper.raven.middleware);
+app.use(errorMiddleware);
 
 // Start the app
 var port = process.env.PORT || 3001;
