@@ -1,5 +1,5 @@
 'use strict';
-var raven = require('next-wrapper').raven;
+var raven = require('express-errors-handler');
 
 var ftErrorHandler = (process.env.NODE_ENV === 'production') ? function (err) {
     raven.captureMessage(err);
