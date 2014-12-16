@@ -1,0 +1,47 @@
+<html class="no-js">
+	<head>
+		<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.4.1,o-grid@^2.1.5">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="theme-color" content="#fff1e0"/>
+		<meta name="dfp_site" content="test.next.ft.com" />
+		<link rel="stylesheet" href="/{{__name}}/main.css"/>
+		<title>{{#title}}{{this}} &mdash; {{/title}}Financial Times</title>
+		{{#if @root.flags.javascript.isSwitchedOn}}
+		<script>
+			(function () {
+				var html = document.querySelector('html');
+				html.classList.remove('no-js');
+				html.classList.add('js');
+			}())
+		</script>
+		{{/if}}
+	</head>
+	<body>
+		{{#if @root.flags.analytics.isSwitchedOn}}
+			{{>ft-next-wrapper/templates/tracking}}
+		{{/if}}
+
+		{{>next-header/templates/main}}
+
+		<div class="o-grid-row">
+		    <div class="stream__container" >
+			    {% include "components/stream.html" with {article: stream.items[0]} %}
+		    </div>
+		    <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
+		</div>
+
+		{{#if @root.flags.alphasurvey.isSwitchedOn}}
+		{{>ft-next-wrapper/templates/survey}}
+		{{/if}}
+
+		{{#if @root.flags.javascript.isSwitchedOn}}
+		<script src="/{{__name}}/main.js"></script>
+		<script>
+		(function () {
+			var html = document.querySelector('html');
+			html.classList.add('js-success');
+		}())
+		</script>
+		{{/if}}
+	</body>
+</html>

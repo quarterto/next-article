@@ -1,4 +1,5 @@
 "use strict";
-require('swig').setFilter('isAdSlot', function(input) {
-	return input === 3 || input%5 === 3;
-});
+module.exports = function(options) {
+	var input = parseInt(options.fn(this), 10);
+	return input === 3 || input % 5 === 3;
+};
