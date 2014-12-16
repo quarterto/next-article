@@ -1,3 +1,4 @@
+/*jshint node:true*/
 'use strict';
 
 var Metrics = require('next-metrics');
@@ -11,9 +12,9 @@ var titleMapping = {
 
 module.exports = function(req, res, next) {
 
-    Metrics.instrument(res, { as: 'express.http.res' });
+	Metrics.instrument(res, { as: 'express.http.res' });
 
-    ft.get([req.params.id])
+	ft.get([req.params.id])
 		.then(function(thisArticle) {
 			var topic, query, topicTitle = titleMapping[req.params.metadata];
 			if (thisArticle && thisArticle.length) {
@@ -32,7 +33,6 @@ module.exports = function(req, res, next) {
 
 			return ft.search(query, 4)
 				.then(function (results) {
-					var ids;
 					var articles = results ? results.articles : [];
 					if (articles[0] instanceof Object) {
 						return articles.map(function (article) {
@@ -67,9 +67,9 @@ module.exports = function(req, res, next) {
 						res.status(404).send();
 					}
 				}, function (err) {
-                    console.log(err);
-                    res.send(404);
-                });
+					console.log(err);
+					res.send(404);
+				});
 		})
 		.catch(next);
 };

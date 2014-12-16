@@ -1,76 +1,76 @@
 @import "next-wrapper/main";
 
 $fontSans: BentonSans, Arial, sans-serif;
-$fontSerif: Georgia, Times New Roman, serif; 
+$fontSerif: Georgia, Times New Roman, serif;
 $fontBrand: FinancierDisplay, Georgia, serif;
 
 .stream {
-    position: relative;
+	position: relative;
 }
 
 .stream-list__title {
-    //o-ft-typography-heading1
-    font-family: $fontSans;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 20px;
-    padding-top: 8px;
-    padding-bottom: 7px;
-    border-top: 4px solid #a7a59b;
-    border-bottom: 1px dotted #a7a59b;
-    a {
-        color: $next-black;
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-    &:after {
-        content: '';
-        display: block;
-        clear: both;
-    }
+	//o-ft-typography-heading1
+	font-family: $fontSans;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 20px;
+	padding-top: 8px;
+	padding-bottom: 7px;
+	border-top: 4px solid #a7a59b;
+	border-bottom: 1px dotted #a7a59b;
+	a {
+		color: $next-black;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
 }
 
 .stream-list__related {
-    ul {
-        display: inline;
-        margin: 0;
-        padding: 0;
+	ul {
+		display: inline;
+		margin: 0;
+		padding: 0;
 
-        > li {
-            list-style: none;
-        }
-    }
+		> li {
+			list-style: none;
+		}
+	}
 }
 
 .stream-list__heading {
-    font-family: $fontSans;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 12px;
-    text-align: center;
+	font-family: $fontSans;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
 }
 
 .stream-list__stream-link {
 
-    border: 1px solid #000;
-    margin: 10px 0;
-    .icon-arrow-right {
-        float: right;
-    }
-    a {
-        display: block;
-        padding: 10px;
-        font-family: $fontSans;
-        color: $next-black;
-        text-decoration: none; 
+	border: 1px solid #000000;
+	margin: 10px 0;
+	.icon-arrow-right {
+		float: right;
+	}
+	a {
+		display: block;
+		padding: 10px;
+		font-family: $fontSans;
+		color: $next-black;
+		text-decoration: none;
 
-    }
-    &:hover {
-        a {
-            text-decoration: underline;
-        }
-    }
+	}
+	&:hover {
+		a {
+			text-decoration: underline;
+		}
+	}
 }
