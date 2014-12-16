@@ -32,7 +32,7 @@ var initAds = (function(){
             ads.init();
             called = true;
         }
-    }
+    };
 }());
 
 var $ = function (selector) {
