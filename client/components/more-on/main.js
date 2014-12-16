@@ -5,26 +5,15 @@ var articleCard = require('next-article-card-component');
 var ads = require('next-ads-component');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
-Promise.allDone = function(promises){
-	return new Promise(function(resolve){
-		var count = promises.length,
-			doneCount = 0,
-			results = [],
-			check = function(){
-				if(doneCount === count){
-					resolve(results);
-				}
-			},
-			increment = function(result){
-				doneCount++;
-				results.push();
-				check();
-			};
-
-		promises.forEach(function(promise){
-			promise.then(increment, increment);
+Promise.allSettled = function(promises){
+	var resolveWhenSettled = function(promise) {
+		return new Promise(function(res) {
+			promise.then(res, function() {
+				res();
+			});
 		});
-	});
+	};
+	return Promise.all(promises.map(resolveWhenSettled));
 };
 
 var initAds = (function(){
@@ -63,4 +52,4 @@ $('.js-on-this-topic').forEach(function (el) {
 		}));
 });
 
-Promise.allDone(reqwestPromises).then(initAds);
+Promise.allSettled(reqwestPromises).then(initAds);
