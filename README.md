@@ -1,4 +1,4 @@
-# Next Grumman [![Build Status](https://travis-ci.org/Financial-Times/next-grumman.svg?branch=master)](https://travis-ci.org/Financial-Times/next-grumman)
+# Next Grumman
 
 ## Installation
 
