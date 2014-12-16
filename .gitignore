@@ -10,5 +10,6 @@ npm-debug.log
 /node-v*
 /tmp/
 .env
+.idea/
 /templates/components/bower/
 

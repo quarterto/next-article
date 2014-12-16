@@ -11,14 +11,6 @@ ifeq ($(OBT),)
 	@echo "You need to install origami build tools first!  See docs here: http://origami.ft.com/docs/developer-guide/building-modules/"
 	exit 1
 endif
-ifeq ($(ROUTER),)
-	@echo "You need to install the next router first!  See docs here: https://github.com/Financial-Times/next-router"
-	exit 1
-endif
-ifeq ($(API_KEY),)
-	@echo "You need an api key!  Speak to one of the next team to get one"
-	exit 1
-endif
 	origami-build-tools install
 
 test:
@@ -35,6 +27,14 @@ test-debug:
 	./node_modules/.bin/mocha --debug-brk --reporter spec -i tests/server/
 
 run:
+ifeq ($(ROUTER),)
+	@echo "You need to install the next router first!  See docs here: https://github.com/Financial-Times/next-router"
+	exit 1
+endif
+ifeq ($(API_KEY),)
+	@echo "You need an api key!  Speak to one of the next team to get one"
+	exit 1
+endif
 	$(MAKE) -j2 _run
 
 run-debug:
