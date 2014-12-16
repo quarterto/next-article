@@ -8,12 +8,18 @@
 
 <ul>
 {% for article in stream %}
+    <li>
     {% if article.type === 'fastft' %}
         {% include "./bower/next-article-card-component/templates/fastft.html" with { item: article.item} %}
     {% elseif article.type === 'feature' %}
         {% include "./bower/next-article-card-component/templates/feature.html" with { item: article.item, isLead: false, showMedia: flags.moreOnImages.isSwitchedOn } %}
     {% elseif article.type === 'news' %}
         {% include "./bower/next-article-card-component/templates/news.html" with { item: article.item,  isLead: false, showMedia: flags.moreOnImages.isSwitchedOn } %}
-    {% endif %}    
+    {% endif %}
+
+    {% if loop.index|isAdSlot %}
+        </li><li><div class="advertising" data-ft-ad-type="mpu"></div>
+    {% endif %}
+    </li>
 {% endfor %}
 </ul>

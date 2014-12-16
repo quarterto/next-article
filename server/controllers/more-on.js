@@ -4,6 +4,7 @@ var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
 var Stream = require('../models/stream');
 
+
 module.exports = function(req, res, next) {
 
     Metrics.instrument(res, { as: 'express.http.res' });

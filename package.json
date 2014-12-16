@@ -37,7 +37,7 @@
     "haikro": "^1.3.0",
     "lodash": "^2.4.1",
     "moment": "^2.8.3",
-    "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v2.0.0.tar.gz",
+    "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v2.3.5.tar.gz",
     "next-metrics": "https://github.com/Financial-Times/next-metrics/archive/v1.0.3.tar.gz",
     "next-wrapper": "https://github.com/Financial-Times/next-wrapper/archive/v3.3.4.tar.gz",
     "request": "^2.44.0",

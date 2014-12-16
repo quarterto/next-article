@@ -14,6 +14,8 @@ Metrics.init({ app: 'grumman', flushEvery: 30000 });
 
 var swig = require('swig');
 
+require('./view-helpers/isAdSlot');
+
 // create the app
 var app = module.exports = express();
 
