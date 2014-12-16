@@ -63,6 +63,11 @@ var unmockFastFT = function () {
 
 describe('smoke tests for the app', function () {
 
+	before(function(done) {
+		this.timeout(5000);
+		setTimeout(done, 3000);
+	});
+
 	it('Should serve a good to go page', function (done) {
 		request
 		.get('http://localhost:' +  process.env.PORT + '/__gtg', function (req, res) {
