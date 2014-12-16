@@ -1,5 +1,6 @@
 {
   "name": "ft-next-grumman",
+  "private": true,
   "description": "Render a Next FT Article",
   "main": "app.js",
   "scripts": {
