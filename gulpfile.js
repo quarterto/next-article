@@ -1,14 +1,17 @@
+/*jshint node:true*/
+'use strict';
+
 var gulp = require('gulp');
-var watch = require('gulp-watch');
+require('gulp-watch');
 var obt = require('origami-build-tools');
 
 gulp.task('build', function () {
 	obt.build(gulp, {
-        sass: './client/main.scss',
-        js: './client/main.js',
-        buildFolder: './public',
-        transforms: [require('swigify')()],
-        env: process.env.ENVIRONMENT || 'production'
+		sass: './client/main.scss',
+		js: './client/main.js',
+		buildFolder: './public',
+		transforms: [require('swigify')()],
+		env: process.env.ENVIRONMENT || 'production'
 	});
 });
 

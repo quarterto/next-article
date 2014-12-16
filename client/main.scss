@@ -1,42 +1,41 @@
 body {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .stream__container {
-    z-index: 2;
-    float: left;
+	z-index: 2;
+	float: left;
 }
 
 .controls__container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: blue;
-    width: 20%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: blue;
+	width: 20%;
 }
 
 .show {
-    xbackground-color: #eee;
-    display: block;
+	display: block;
 }
 
 
 @media (max-width: 600px) {
-    .show {
-        display: block;
-    }
+	.show {
+		display: block;
+	}
 }
 
 //utils
 
 
 .u-hidden {
-    display: none;
+	display: none;
 }
 
 .u-show {
-    display: block;
+	display: block;
 }
 
 
@@ -50,4 +49,3 @@ body {
 @import "next-ads-component/main";
 
 @include oFtIconsFontFace();
-

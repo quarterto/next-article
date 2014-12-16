@@ -1,3 +1,4 @@
+/*jshint node:true*/
 'use strict';
 
 var ft = require('../utils/api').ft;
@@ -7,12 +8,12 @@ var Stream = require('../models/stream');
 
 module.exports = function(req, res, next) {
 
-    Metrics.instrument(res, { as: 'express.http.res' });
+	Metrics.instrument(res, { as: 'express.http.res' });
 
-    ft
+	ft
 		.get([req.params.id])
 		.then(function (article) {
-            if (article[0] && article[0].packages && article[0].packages.length > 0) {
+			if (article[0] && article[0].packages && article[0].packages.length > 0) {
 				article = article[0];
 			} else {
 				res.status(404).send();
@@ -39,9 +40,9 @@ module.exports = function(req, res, next) {
 						res.status(404).send();
 					}
 				}, function (err) {
-                    console.log(err);
-                    res.send(404);
-                });
+					console.log(err);
+					res.send(404);
+				});
 		})
 		.catch(next);
 };

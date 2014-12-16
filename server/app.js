@@ -1,9 +1,9 @@
+/*jshint node:true*/
 'use strict';
 
 require('es6-promise').polyfill();
 
 var express = require('express');
-var api = require('./utils/api');
 var flags = require('next-feature-flags-client');
 var Metrics = require('next-metrics');
 var errorMiddleware = require('express-errors-handler').middleware;
@@ -34,7 +34,7 @@ app.set('view cache', false);
 
 var assets = express.Router();
 assets.use('/', express.static(require('path').join(__dirname, '../public'), {
-    maxAge: 120000 // 2 minutes
+	maxAge: 120000 // 2 minutes
 }));
 app.use('/grumman', assets);
 
@@ -54,6 +54,6 @@ app.use(errorMiddleware);
 // Start the app
 var port = process.env.PORT || 3001;
 app.listen(port, function() {
-    Metrics.count('express.start');
-    console.log("Listening on " + port);
+	Metrics.count('express.start');
+	console.log("Listening on " + port);
 });
