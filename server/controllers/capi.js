@@ -66,5 +66,5 @@ module.exports = function(req, res, next) {
 				}
 
 		})
-       		.catch(next);
+		.catch(next);
 };
