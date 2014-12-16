@@ -4,6 +4,7 @@
 var Stream = require('../models/stream');
 var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
+var cacheControl = require('../utils/cache-control');
 
 /*
 	Takes data from the content api and returns it in the required format
@@ -23,20 +24,22 @@ module.exports = function(req, res, next) {
 					case 'html':
 
 						var stream = new Stream();
+						var title = undefined;
 
 						//consider refactoring 'stream' to push to a key of 'capi' rather than 'methode'
 						//and alter those places which use this object?
 						articles.forEach(function (article) {
 							stream.push('methode', article);
+							title = article.headline;
 						});
 
-						require('../utils/cache-control')(res);
-
+						res.set(cacheControl);
 						res.render('layout', {
 							mode: 'expand',
 							isArticle: true,
 							stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
-							isFollowable: true
+							isFollowable: true,
+							title: title
 						});
 
 
@@ -62,7 +65,6 @@ module.exports = function(req, res, next) {
 						break;
 				}
 
-		}, function (err) {
-			console.log(err);
-		});
+		})
+       		.catch(next);
 };

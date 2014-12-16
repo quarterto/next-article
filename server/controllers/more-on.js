@@ -4,6 +4,7 @@
 var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
 var Stream = require('../models/stream');
+var cacheControl = require('../utils/cache-control');
 
 
 module.exports = function(req, res, next) {
@@ -30,7 +31,7 @@ module.exports = function(req, res, next) {
 						articles.forEach(function(item) {
 							stream.push('methode', item);
 						});
-						require('../utils/cache-control')(res);
+						res.set(cacheControl);
 						res.render('components/more-on', {
 							mode: 'expand',
 							stream: stream.items,

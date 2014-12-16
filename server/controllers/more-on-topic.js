@@ -4,6 +4,7 @@
 var Metrics = require('next-metrics');
 var ft = require('../utils/api').ft;
 var Stream = require('../models/stream');
+var cacheControl = require('../utils/cache-control');
 
 var titleMapping = {
 	'primarySection': 'section',
@@ -56,7 +57,7 @@ module.exports = function(req, res, next) {
 					});
 
 					if (articles.length > 0) {
-						require('../utils/cache-control')(res);
+						res.set(cacheControl);
 						res.render('components/more-on', {
 							mode: 'expand',
 							stream: stream.items,

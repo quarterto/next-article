@@ -24,10 +24,16 @@
 		{{>next-header/templates/main}}
 
 		<div class="o-grid-row">
-		    <div class="stream__container" >
-			    {% include "components/stream.html" with {article: stream.items[0]} %}
-		    </div>
-		    <div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
+			<div class="stream__container" >
+			{{#if stream.items}}
+				{{#stream.items}}
+					{{> stream}}
+				{{/stream.items}}
+			{{else}}
+				<p>No article found.</p>
+			{{/if}}
+			</div>
+			<div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
 		</div>
 
 		{{#if @root.flags.alphasurvey.isSwitchedOn}}
