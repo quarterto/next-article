@@ -14,8 +14,6 @@ gulp.task('build', function () {
 	});
 });
 
-require('next-wrapper/gulp')(gulp);
-
 gulp.task('watch', function() {
 	gulp.watch('./client/**/*', ['default']);
 });
