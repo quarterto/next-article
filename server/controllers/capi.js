@@ -24,7 +24,7 @@ module.exports = function(req, res, next) {
 					case 'html':
 
 						var stream = new Stream();
-						var title = undefined;
+						var title;
 
 						//consider refactoring 'stream' to push to a key of 'capi' rather than 'methode'
 						//and alter those places which use this object?
