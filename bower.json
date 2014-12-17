@@ -1,9 +1,9 @@
 {
   "name": "next-grumman",
   "dependencies": {
-    "next-user-preferences": "https://github.com/Financial-Times/next-user-preferences.git#^v2.0.0",
+    "next-user-preferences": "https://github.com/Financial-Times/next-user-preferences.git#^v2.2.0",
     "next-wrapper": "https://github.com/Financial-Times/next-wrapper.git#^3.2.1",
-    "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^v2.1.1",
+    "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^v2.2.5",
     "next-beacon-component": "https://github.com/Financial-Times/next-beacon-component/archive/v0.2.0.tar.gz",
     "next-ads-component" : "https://github.com/Financial-Times/next-ads-component.git#^v0.2.3",
     "next-feature-flags-client" : "https://github.com/Financial-Times/next-feature-flags-client.git#^v2.3.5"
