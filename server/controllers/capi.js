@@ -1,7 +1,6 @@
 /*jshint node:true*/
 'use strict';
 
-var Stream = require('../models/stream');
 var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
 var cacheControl = require('../utils/cache-control');
