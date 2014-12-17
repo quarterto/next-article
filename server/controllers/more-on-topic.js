@@ -58,7 +58,7 @@ module.exports = function(req, res, next) {
 
 					if (articles.length > 0) {
 						res.set(cacheControl);
-						res.render('components/more-on', {
+						res.render('more-on', {
 							mode: 'expand',
 							stream: stream.items,
 							query: query,

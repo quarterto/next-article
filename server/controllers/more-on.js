@@ -32,7 +32,7 @@ module.exports = function(req, res, next) {
 							stream.push('methode', item);
 						});
 						res.set(cacheControl);
-						res.render('components/more-on', {
+						res.render('more-on', {
 							mode: 'expand',
 							stream: stream.items,
 							title: 'Related to this story'

@@ -1,13 +1,13 @@
 <h2>
-	{% if query %}
+{{#if query}}
 	<a href="/search?q={{query}}">{{title}}<a></h2>
-	{% else %}
+{{else}}
 	{{title}}
-	{% endif %}
+{{/if}}
 </h2>
 
 <ul>
-{% for article in stream %}
+{{#stream}}
 	<li>
 	{% if article.type === 'fastft' %}
 		{% include "../../bower_components/next-article-card-component/templates/fastft.html" with { item: article.item} %}
@@ -17,9 +17,9 @@
 		{% include "../../bower_components/next-article-card-component/templates/news.html" with { item: article.item,  isLead: false, showMedia: flags.moreOnImages.isSwitchedOn } %}
 	{% endif %}
 
-	{% if loop.index|isAdSlot %}
+	{{#isAdSlot @index}}
 		</li><li><div class="advertising" data-ft-ad-type="mpu"></div>
-	{% endif %}
+	{{/isAdSlot}}
 	</li>
-{% endfor %}
+{{/stream}}
 </ul>
