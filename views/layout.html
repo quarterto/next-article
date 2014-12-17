@@ -1,0 +1,68 @@
+<html class="no-js">
+	<head>
+		<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.4.1,o-grid@^2.1.5">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="theme-color" content="#fff1e0"/>
+		<meta name="dfp_site" content="test.next.ft.com" />
+		<link rel="stylesheet" href="/{{__name}}/main.css"/>
+		<title>{{#title}}{{this}} &mdash; {{/title}}Financial Times</title>
+		{{#if @root.flags.javascript.isSwitchedOn}}
+		<script>
+			(function () {
+				var html = document.querySelector('html');
+				html.classList.remove('no-js');
+				html.classList.add('js');
+			}())
+		</script>
+		{{/if}}
+	</head>
+	<body>
+		{{#if @root.flags.analytics.isSwitchedOn}}
+			{{>ft-next-wrapper/templates/tracking}}
+		{{/if}}
+
+		{{>next-header/templates/main}}
+
+		<div class="o-grid-row">
+			<div class="stream__container" >
+			{{#if article.id}}
+				<h1 class="stream-list__title" data-o-grid-colspan="12">
+					<a href="/search?q={{article.primarySection.taxonomy}}:{{article.primarySection.name}}">{{article.primarySection.name}}</a>
+				</h1>
+				<div class="stream" data-o-grid-colspan="S12 M8 L8 XL8">
+				{{#with article}}
+					{{#ifEquals type "fastft"}}
+						{{>next-article-card-component/templates/fastft-full}}
+					{{else}}
+						{{>next-article-card-component/templates/news-full}}
+					{{/ifEquals}}
+				{{/with}}
+				</div>
+
+				<div data-o-grid-colspan="S12 M4 L4 XL4">
+					<div class="js-more-on more-on" data-article-id="{{article.id}}"></div>
+					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
+					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
+				</div>
+			{{else}}
+				<p>No article found.</p>
+			{{/if}}
+			</div>
+			<div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
+		</div>
+
+		{{#if @root.flags.alphasurvey.isSwitchedOn}}
+		{{>ft-next-wrapper/templates/survey}}
+		{{/if}}
+
+		{{#if @root.flags.javascript.isSwitchedOn}}
+		<script src="/{{__name}}/main.js"></script>
+		<script>
+		(function () {
+			var html = document.querySelector('html');
+			html.classList.add('js-success');
+		}())
+		</script>
+		{{/if}}
+	</body>
+</html>

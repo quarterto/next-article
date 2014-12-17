@@ -27,19 +27,7 @@ body {
 	}
 }
 
-//utils
-
-
-.u-hidden {
-	display: none;
-}
-
-.u-show {
-	display: block;
-}
-
-
-@import "next-wrapper/main";
+@import "ft-next-wrapper/main";
 @import "next-header/main";
 @import "next-article-card-component/main";
 @import "next-user-preferences/main";

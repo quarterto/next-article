@@ -16,15 +16,13 @@ endif
 test:
 	origami-build-tools verify
 	# Run all tests except for smoke tests
-	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; ./node_modules/.bin/mocha --reporter spec -i -g 'smoke tests' tests/server/
+	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; mocha --reporter spec -i -g 'smoke tests' tests/server/
 
 smoke-test:
-	# export DEBUG=ft-api-client:*,nock.*;
-	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export ENVIRONMENT=production; ./node_modules/.bin/mocha --reporter spec -g 'smoke tests' tests/server/
-
+	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export ENVIRONMENT=production; mocha --reporter spec -g 'smoke tests' tests/server/
 
 test-debug:
-	./node_modules/.bin/mocha --debug-brk --reporter spec -i tests/server/
+	@mocha --debug-brk --reporter spec -i tests/server/
 
 run:
 ifeq ($(ROUTER),)
@@ -62,16 +60,14 @@ build:
 	export ENVIRONMENT=development; ./node_modules/.bin/gulp
 
 build-production:
-	@./node_modules/.bin/bower install
-	@./node_modules/.bin/gulp
+	@bower install
+	@gulp
 
 watch:
-	@./node_modules/.bin/gulp watch
+	@gulp watch
 
 clean:
-	# Clean+install dependencies
 	git clean -fxd
-	$(MAKE) install
 
 deploy:
 
@@ -79,10 +75,10 @@ deploy:
 	npm prune --production
 
 	# Package+deploy
-	@./node_modules/.bin/haikro build deploy \
+	@haikro build deploy \
 		--app $(app) \
 		--heroku-token $(HEROKU_AUTH_TOKEN) \
 		--commit `git rev-parse HEAD` \
 		--verbose
 
-clean-deploy: clean deploy
+clean-deploy: clean install deploy

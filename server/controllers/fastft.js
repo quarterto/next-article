@@ -4,6 +4,7 @@
 var Stream = require('../models/stream');
 var fastft = require('../utils/api').fastft;
 var Metrics = require('next-metrics');
+var cacheControl = require('../utils/cache-control');
 
 /*
 	Takes data from the clamo api used by fastft and returns it in the required format
@@ -17,7 +18,7 @@ module.exports = function(req, res, next) {
 		.then(function(response) {
 			var stream = new Stream();
 			stream.push('fastft', response.post);
-			require('../utils/cache-control')(res);
+			res.set(cacheControl);
 			res.render('layout', {
 				mode: 'expand',
 				isArticle: true,
@@ -25,8 +26,6 @@ module.exports = function(req, res, next) {
 				isFollowable: true
 			});
 
-		}, function (err) {
-			console.log(err);
-			res.send(404);
-		});
+		})
+		.catch(next);
 };

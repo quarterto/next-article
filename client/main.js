@@ -2,7 +2,8 @@
 var flags = require('next-feature-flags-client');
 var Beacon = require('next-beacon-component');
 
-require('next-wrapper');
+require('ft-next-wrapper');
+require('next-header');
 require('next-user-preferences');
 require('next-article-card-component');
 
