@@ -1,1 +1,1 @@
-web: ./node_modules/.bin/forever server/app.js
+web: forever server/app.js
