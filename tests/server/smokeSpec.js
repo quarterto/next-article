@@ -3,6 +3,7 @@
 'use strict';
 
 require('es6-promise').polyfill();
+var PORT = process.env.PORT || 3001;
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
@@ -17,11 +18,10 @@ var search = require('fs').readFileSync('tests/fixtures/search-for__climate-chan
 var fastftSearch = require('fs').readFileSync('tests/fixtures/fastft/index.json', { encoding: 'utf8' });
 var fastftPost = require('fs').readFileSync('tests/fixtures/fastft/post.json', { encoding: 'utf8' });
 
-var host = 'http://localhost:' + process.env.PORT;
+var host = 'http://localhost:' + PORT;
 
 var servesGoodHTML = function (url, done) {
-	request
-	.get(host + url, function (req, res) {
+	request.get(host + url, function(req, res) {
 		expect(res.headers['content-type']).to.match(/text\/html/);
 		expect(res.statusCode).to.equal(200);
 		done();
@@ -69,8 +69,7 @@ describe('smoke tests for the app', function () {
 	});
 
 	it('Should serve a good to go page', function (done) {
-		request
-		.get('http://localhost:' +  process.env.PORT + '/__gtg', function (req, res) {
+		request.get('http://localhost:' +  PORT + '/__gtg', function(req, res) {
 			expect(res.statusCode).to.equal(200);
 			done();
 		});
@@ -78,7 +77,7 @@ describe('smoke tests for the app', function () {
 
 	it('Should serve a main.js file', function (done) {
 		request
-		.get('http://localhost:' +  process.env.PORT + '/grumman/main.js', function (req, res) {
+		.get('http://localhost:' +  PORT + '/grumman/main.js', function (req, res) {
 			expect(res.headers['content-type']).to.match(/application\/javascript/);
 			expect(res.statusCode).to.equal(200);
 			done();
@@ -87,7 +86,7 @@ describe('smoke tests for the app', function () {
 
 	it('Should serve a main.css file', function (done) {
 		request
-		.get('http://localhost:' +  process.env.PORT + '/grumman/main.css', function (req, res) {
+		.get('http://localhost:' +  PORT + '/grumman/main.css', function (req, res) {
 			expect(res.headers['content-type']).to.match(/text\/css/);
 			expect(res.statusCode).to.equal(200);
 			done();

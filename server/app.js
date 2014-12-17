@@ -21,6 +21,7 @@ app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, require('.
 app.get('/more-on/:id', require('./controllers/more-on'));
 app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
 app.get('/__gtg', function(req, res) {
+	console.log('gtg requested');
 	res.status(200).end();
 });
 
