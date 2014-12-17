@@ -25,10 +25,25 @@
 
 		<div class="o-grid-row">
 			<div class="stream__container" >
-			{{#if stream.items}}
-				{{#stream.items}}
-					{{> stream}}
-				{{/stream.items}}
+			{{#if article.id}}
+				<h1 class="stream-list__title" data-o-grid-colspan="12">
+					<a href="/search?q={{article.primarySection.taxonomy}}:{{article.primarySection.name}}">{{article.primarySection.name}}</a>
+				</h1>
+				<div class="stream" data-o-grid-colspan="S12 M8 L8 XL8">
+				{{#with article}}
+					{{#ifEquals type "fastft"}}
+						{{>next-article-card-component/templates/fastft-full}}
+					{{else}}
+						{{>next-article-card-component/templates/news-full}}
+					{{/ifEquals}}
+				{{/with}}
+				</div>
+
+				<div data-o-grid-colspan="S12 M4 L4 XL4">
+					<div class="js-more-on more-on" data-article-id="{{article.id}}"></div>
+					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
+					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
+				</div>
 			{{else}}
 				<p>No article found.</p>
 			{{/if}}

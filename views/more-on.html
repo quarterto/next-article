@@ -9,17 +9,15 @@
 <ul>
 {{#stream}}
 	<li>
-	{% if article.type === 'fastft' %}
-		{% include "../../bower_components/next-article-card-component/templates/fastft.html" with { item: article.item} %}
-	{% elseif article.type === 'feature' %}
-		{% include "../../bower_components/next-article-card-component/templates/feature.html" with { item: article.item, isLead: false, showMedia: flags.moreOnImages.isSwitchedOn } %}
-	{% elseif article.type === 'news' %}
-		{% include "../../bower_components/next-article-card-component/templates/news.html" with { item: article.item,  isLead: false, showMedia: flags.moreOnImages.isSwitchedOn } %}
-	{% endif %}
+	{{#ifEquals type "fastft"}}
+		{{>next-article-card-component/templates/fastft}}
+	{{else}}
+		{{>next-article-card-component/templates/news}}
+	{{/ifEquals}}
 
-	{{#isAdSlot @index}}
+	{{#ifIsAdSlot @index}}
 		</li><li><div class="advertising" data-ft-ad-type="mpu"></div>
-	{{/isAdSlot}}
+	{{/ifIsAdSlot}}
 	</li>
 {{/stream}}
 </ul>

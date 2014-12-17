@@ -17,53 +17,48 @@ module.exports = function(req, res, next) {
 	ft
 		.get([req.params[0]])
 		.then(function (articles) {
+			var article = articles[0];
 			res.vary(['Accept-Encoding', 'Accept']);
+			res.set(cacheControl);
+			article = {
+				id: article.id,
+				authors: article.authors,
+				people: article.people,
+				organisations: article.organisations,
+				regions: article.regions,
+				topics: article.topics,
+				headline: article.headline,
+				lastUpdated: article.lastUpdated,
+				standFirst: article.standFirst,
+				primarySection: article.primarySection,
+				body: [
+					article.paragraphs(0, 2, { removeImages: false }).toString(),
+					article.paragraphs(2, 100, { removeImages: false }).toString()
+				],
+				largestImage: article.largestImage,
+				has_gallery: article.has_gallery,
+				video: article.video,
+				has_video: article.has_video,
+				showMedia: article.showMedia,
+				wordCount: article.wordCount,
+				readingTime: article.readingTime
+			};
 
-			console.log(req.accepts(['html', 'json']));
 			switch(req.accepts(['html', 'json'])) {
-					case 'html':
+				case 'html':
+					res.render('layout', { article: article });
+					break;
 
-						var stream = new Stream();
-						var title;
+				case 'json':
+					res.set(cacheControl);
+					res.json(article);
+					break;
 
-						//consider refactoring 'stream' to push to a key of 'capi' rather than 'methode'
-						//and alter those places which use this object?
-						articles.forEach(function (article) {
-							stream.push('methode', article);
-							title = article.headline;
-						});
+				default:
+					res.status(406).end();
+					break;
 
-						res.set(cacheControl);
-						res.render('layout', {
-							mode: 'expand',
-							isArticle: true,
-							stream: { items: stream.items, meta: { facets: [] }}, // FIXME add facets back in, esult.meta.facets)
-							isFollowable: true,
-							title: title
-						});
-
-
-						break;
-
-					case 'json':
-
-						var article = articles[0];
-						require('../utils/cache-control')(res);
-						res.json({
-							id: article.id,
-							headline: article.headline,
-							largestImage: article.largestImage,
-							body: [
-									article.paragraphs(0, 2, { removeImages: false }).toString(),
-									article.paragraphs(2, 100, { removeImages: false }).toString()
-								]
-							});
-						break;
-					default:
-
-						res.status(406).end();
-						break;
-				}
+			}
 
 		})
 		.catch(next);
