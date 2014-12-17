@@ -1,5 +1,5 @@
 /*jshint node:true*/
-/*global it, describe, beforeEach, afterEach*/
+/*global it, describe, before, beforeEach, afterEach*/
 'use strict';
 
 require('es6-promise').polyfill();
