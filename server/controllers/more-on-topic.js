@@ -60,7 +60,7 @@ module.exports = function(req, res, next) {
 						res.set(cacheControl);
 						res.render('more-on', {
 							mode: 'expand',
-							stream: stream.items,
+							stream: stream.texturedItems,
 							query: query,
 							title: 'More from this ' + topicTitle + ' - ' + topic.name
 						});

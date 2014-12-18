@@ -1,11 +1,10 @@
 'use strict';
 
+var cardViewModel = require('next-article-card-component/node/view-model');
+
 /*
 
 	A stream is a list of content of various types,
-
-	//TODO: consider altering 'methode' to 'capi' to match the controller file names / actual data sources
-	//TODO: hope that capi starts returning the info currently known as 'fastft' as fastft is a product not a proper data source - ultimately hope that 'fastft' is removed as a key
 
 	[
 	  { type: 'methode,   item: { uuid: ... } },
@@ -27,7 +26,7 @@ function isMediaCard(item, positionInStream) {
 	if( (positionInStream % 3 === 0) ||
 		(getVisualTone(item) === 'feature') ||
 		(item.item.has_gallery) ||
-		(item.item.largestImage && item.item.largestImage.alt && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))
+		(item.item.largestImage && item.item.largestImage.alt && (typeof item.item.largestImage.alt === "string") && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))
 	{
 		return true;
 	} else {
@@ -39,10 +38,23 @@ var Stream = function () {
 	this.items = [];
 };
 
+Stream.merge = function () {
+	var stream = new Stream();
+	[].forEach.call(arguments, function (str) {
+		stream.items = stream.items.concat(str.items);
+	});
+	stream.items = sortByLastPublished(stream.items);
+	return stream;
+};
+
+Stream.prototype.setViewConf = function (obj) {
+	this.viewConf = obj;
+};
+
 Object.defineProperty(Stream.prototype, 'texturedItems', {
 	get: function() {
 		if(this.items.length) {
-			return setPositionalAttributes(this.items);
+			return this.getItemsForView();
 		} else {
 			return [];
 		}
@@ -52,7 +64,7 @@ Object.defineProperty(Stream.prototype, 'texturedItems', {
 Object.defineProperty(Stream.prototype, 'texturedAndSortedItems', {
 	get: function() {
 		if(this.items.length) {
-			return setPositionalAttributes(sortByLastPublished(this.items));
+			return this.getItemsForView(sortByLastPublished(this.items));
 		} else {
 			return [];
 		}
@@ -61,20 +73,128 @@ Object.defineProperty(Stream.prototype, 'texturedAndSortedItems', {
 
 
 Stream.prototype.push = function (type, item) {
-	//TODO: consider altering 'methode' to 'capi' to match controller names / correct data source
 	this.items.push({
 		type: type === 'methode' ? getVisualTone(item) : type,
+		isFeature: (type === 'methode' ? getVisualTone(item) : type) === 'feature' ? true : false,
 		item: item
 	});
 };
 
-function setPositionalAttributes(items) {
+Stream.prototype.getItemsForView = function (items) {
+	items = items || this.items;
 	return items.map(function(item, index) {
-		item.isLead = (index === 0);
-		item.showMedia = isMediaCard(item, index);
-		return item;
-	});
-}
+
+		var conf = {
+			type: item.type,
+			isLead: (index === 0),
+			dataFormat: item.type === 'fastft' ? 'fastft' : 'methode',
+			showMedia: isMediaCard(item, index)
+		};
+		if (this.viewConf) {
+			Object.keys(this.viewConf).forEach(function (key) {
+				conf[key] = this.viewConf[key];
+			}.bind(this));
+		}
+		return cardViewModel(item.item, conf);
+	}.bind(this));
+};
+
+// REVIEW:MA This is view logic.
+Stream.prototype.getTiled = function (rows, cols) {
+	var layout = [];
+	// column divided into 6 vertically as divisible by 2 or 3
+	var columnFullness = 0;
+	var layoutFullness = 0;
+	var rowFullness = 0;
+	var row = [];
+	var column = [];
+
+	this.items.some(function(item, index) {
+		if (columnFullness === 6) {
+			columnFullness = 0;
+			row.push(column);
+			rowFullness++;
+			column = [];
+			if (rowFullness === cols) {
+				layout.push(row);
+				layoutFullness++;
+				rowFullness = 0;
+				row = [];
+				if (layoutFullness === rows) {
+					return true;
+				}
+			}
+		}
+
+		var spaceLeft = 6 - columnFullness;
+		var wantsLead = (index < 2);
+		var wantsMedia = isMediaCard(item, index);
+		var getsLead = false;
+		var getsMedia = false;
+
+		switch (spaceLeft) {
+			case 2:
+				getsLead = false;
+				getsMedia = false;
+				break;
+			case 3:
+				getsLead = false;
+				getsMedia = true;
+				break;
+			case 4:
+				if (wantsLead) {
+					getsLead = true;
+					getsMedia = false;
+				} else {
+					getsLead = false;
+					getsMedia = false;
+				}
+				break;
+			default:
+				getsLead = wantsLead;
+				getsMedia = wantsMedia;
+		}
+
+		var conf = {
+			type: item.type,
+			isLead: getsLead,
+			dataFormat: item.type === 'fastft' ? 'fastft' : 'methode',
+			showMedia: getsMedia,
+			isTile: true
+		};
+
+		if (this.viewConf) {
+			Object.keys(this.viewConf).forEach(function (key) {
+				conf[key] = this.viewConf[key];
+			}.bind(this));
+		}
+
+		if (conf.showMedia && conf.isLead) {
+			columnFullness += 6;
+		} else if (conf.showMedia && !conf.isLead) {
+			columnFullness += 3;
+		} else if (!conf.showMedia && conf.isLead) {
+			columnFullness += 4;
+		} else if (!conf.showMedia && !conf.isLead) {
+			columnFullness += 2;
+		}
+
+		column.push(cardViewModel(item.item, conf));
+	}.bind(this));
+
+	if (column.length) {
+		row.push(column);
+	}
+	if (row.length) {
+		layout.push(row);
+	}
+	return layout;
+};
+
+
+
+
+
 
 //Puts greater emphasis on comment and analysis
 // Latest news article first, followed by all comment and analysis, followed by rest of news

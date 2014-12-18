@@ -1,3 +1,5 @@
+{{#if stream.length}}
+
 <h2>
 {{#if query}}
 	<a href="/search?q={{query}}">{{title}}<a></h2>
@@ -9,16 +11,16 @@
 <ul>
 {{#each stream}}
 	<li>
-	{{#with item}}
-		{{#ifEquals type "fastft"}}
-			{{>next-article-card-component/templates/fastft}}
-		{{else}}
-			{{>next-article-card-component/templates/news}}
-		{{/ifEquals}}
-	{{/with}}
+	{{#ifEquals type "fastft"}}
+		{{>next-article-card-component/templates/fastft}}
+	{{else}}
+		{{>next-article-card-component/templates/news}}
+	{{/ifEquals}}
 	{{#ifIsAdSlot @index}}
 		</li><li><div class="advertising" data-ft-ad-type="mpu"></div>
 	{{/ifIsAdSlot}}
 	</li>
 {{/each}}
 </ul>
+
+{{/if}}
