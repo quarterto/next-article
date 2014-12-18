@@ -4,7 +4,9 @@
 
 ```
 git clone https://github.com/Financial-Times/next-grumman.git
-npm install && bower install
+cd next-grumman
+make install
+make build
 ```
 
 ## Dependencies
