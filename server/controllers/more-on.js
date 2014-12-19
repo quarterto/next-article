@@ -30,7 +30,7 @@ module.exports = function(req, res, next) {
 						res.set(cacheControl);
 						res.render('more-on', {
 							mode: 'expand',
-							stream: stream.items,
+							stream: stream.texturedItems,
 							title: 'Related to this story'
 						});
 					} else {
