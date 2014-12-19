@@ -10,6 +10,7 @@
     "next-header": "~3.0.5"
   },
   "resolutions": {
-    "o-dom": "~0.4.0"
+    "o-dom": "~0.4.0",
+    "next-ads-component": "^v0.3.2"
   }
 }

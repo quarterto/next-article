@@ -16,7 +16,7 @@
 */
 
 function getVisualTone(item) {
-	return ['comment', 'analysis','feature'].indexOf(item.visualTone) >= 0 ? 'feature' : 'news';
+	return item.visualTone && ['comment', 'analysis','feature'].indexOf(item.visualTone) >= 0 ? 'feature' : 'news';
 }
 
 function getPublishDate(item) {
