@@ -36,7 +36,7 @@ module.exports = function(req, res, next) {
 				],
 				largestImage: article.largestImage,
 				has_gallery: article.has_gallery,
-				video: article.video,
+				videos: article.videos,
 				has_video: article.has_video,
 				showMedia: article.showMedia,
 				wordCount: article.wordCount,
