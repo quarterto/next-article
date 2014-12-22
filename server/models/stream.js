@@ -1,7 +1,5 @@
 'use strict';
 
-var cardViewModel = require('next-article-card-component/node/view-model');
-
 /*
 
 	A stream is a list of content of various types,
@@ -14,25 +12,6 @@ var cardViewModel = require('next-article-card-component/node/view-model');
 
 */
 
-function getVisualTone(item) {
-	return item.visualTone && ['comment', 'analysis','feature'].indexOf(item.visualTone) >= 0 ? 'feature' : 'news';
-}
-
-function getPublishDate(item) {
-	return item.type === 'fastft' ? item.item._datePublished : item.item.lastUpdated;
-}
-
-function isMediaCard(item, positionInStream) {
-	if( (positionInStream % 3 === 0) ||
-		(getVisualTone(item) === 'feature') ||
-		(item.item.has_gallery) ||
-		(item.item.largestImage && item.item.largestImage.alt && (typeof item.item.largestImage.alt === "string") && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))
-	{
-		return true;
-	} else {
-		return false;
-	}
-}
 
 var Stream = function () {
 	this.items = [];
@@ -192,10 +171,6 @@ Stream.prototype.getTiled = function (rows, cols) {
 };
 
 
-
-
-
-
 //Puts greater emphasis on comment and analysis
 // Latest news article first, followed by all comment and analysis, followed by rest of news
 function sortByLastPublished(items) {
@@ -210,15 +185,42 @@ function sortByLastPublished(items) {
 	});
 }
 
+function cardViewModel(article, options) {
+	Object.keys(options).forEach(function (key) {
+		article[key] = options[key];
+	});
+	return article;
+};
+
+function getVisualTone(item) {
+	return ['comment', 'analysis','feature'].indexOf(item.visualTone) >= 0 ? 'feature' : 'news';
+}
+
+function getPublishDate(item) {
+	return item.type === 'fastft' ? item.item._datePublished : item.item.lastUpdated;
+}
+
+function isMediaCard(item, positionInStream) {
+	if( (positionInStream % 3 === 0) ||
+		(getVisualTone(item) === 'feature') ||
+		(item.item.has_gallery) ||
+		(item.item.largestImage && item.item.largestImage.alt && (typeof item.item.largestImage.alt === "string") && item.item.largestImage.alt.indexOf("Ingram Pinn") >= 0))
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
 Object.defineProperty(Stream.prototype, 'related', {
-	get: function () {
-			var distinct = {};
-			var topics = this.items.map(function(item) {
+	get: function() {
+		var distinct = {};
+		var topics = this.items.map(function(item) {
 				return item.item.topics || [];
 			}).reduce(function(a, b) {
 				return a.concat(b);
 			}).filter(function(current, index, self) {
-				if(!distinct[current.searchString]) {
+				if (!distinct[current.searchString]) {
 					distinct[current.searchString] = true;
 					return true;
 				}
