@@ -48,6 +48,8 @@ module.exports = function(req, res, next) {
 				.then(function (articles) {
 					var stream = new Stream();
 
+					articles = articles.filter(function (elem) {return !!elem;}); //api's currently return 'undefined' from some erroneous uuid's
+
 					articles = articles.filter(function(article) {
 						return article.id !== thisArticle.id;
 					});
@@ -67,9 +69,6 @@ module.exports = function(req, res, next) {
 					} else {
 						res.status(404).send();
 					}
-				}, function (err) {
-					console.log(err);
-					res.send(404);
 				});
 		})
 		.catch(next);
