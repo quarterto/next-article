@@ -30,6 +30,8 @@ module.exports = function(req, res, next) {
 				lastUpdated: article.lastUpdated,
 				standFirst: article.standFirst,
 				primarySection: article.primarySection,
+				primaryTheme: article.primaryTheme,
+				packages: article.packages,
 				body: [
 					article.paragraphs(0, 2, { removeImages: false }).toString(),
 					article.paragraphs(2, 100, { removeImages: false }).toString()
