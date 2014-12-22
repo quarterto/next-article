@@ -41,8 +41,12 @@
 
 				<div data-o-grid-colspan="S12 M4 L4 XL4">
 					<div class="js-more-on more-on" data-article-id="{{article.id}}"></div>
+					{{#if article.primaryTheme}}
 					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
+					{{/if}}
+					{{#if article.primarySection}}
 					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
+					{{/if}}
 				</div>
 			{{else}}
 				<p>No article found.</p>
