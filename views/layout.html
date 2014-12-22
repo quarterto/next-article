@@ -40,11 +40,13 @@
 				</div>
 
 				<div data-o-grid-colspan="S12 M4 L4 XL4">
+					{{#if article.packages }}
 					<div class="js-more-on more-on" data-article-id="{{article.id}}"></div>
-					{{#if article.primaryTheme}}
+					{{/if}}
+					{{#if article.primaryTheme }}
 					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
 					{{/if}}
-					{{#if article.primarySection}}
+					{{#if article.primarySection }}
 					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
 					{{/if}}
 				</div>
