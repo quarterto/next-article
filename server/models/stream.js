@@ -190,7 +190,7 @@ function cardViewModel(article, options) {
 		article[key] = options[key];
 	});
 	return article;
-};
+}
 
 function getVisualTone(item) {
 	return ['comment', 'analysis','feature'].indexOf(item.visualTone) >= 0 ? 'feature' : 'news';
