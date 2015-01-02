@@ -8,7 +8,8 @@
     "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^v0.2.3",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client.git#^v2.3.5",
     "next-header": "^3.0.7",
-    "isomorphic-fetch": "^1.1.0"
+    "isomorphic-fetch": "^1.1.0",
+    "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v1.0.1"
   },
   "resolutions": {
     "o-dom": "~0.4.0",

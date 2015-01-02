@@ -6,23 +6,11 @@
 		<meta name="dfp_site" content="test.next.ft.com" />
 		<link rel="stylesheet" href="/{{__name}}/main.css"/>
 		<title>{{#title}}{{this}} &mdash; {{/title}}Financial Times</title>
-		{{#if @root.flags.javascript.isSwitchedOn}}
-		<script>
-			(function () {
-				var html = document.querySelector('html');
-				html.classList.remove('no-js');
-				html.classList.add('js');
-			}())
-		</script>
-		{{/if}}
+		{{>next-mustard/check}}
 	</head>
 	<body>
-		{{#if @root.flags.analytics.isSwitchedOn}}
-			{{>ft-next-wrapper/templates/tracking}}
-		{{/if}}
-
+		{{>ft-next-wrapper/templates/tracking}}
 		{{>next-header/templates/main}}
-
 		<div class="o-grid-row">
 			<div class="stream__container" >
 			{{#if article.id}}
@@ -57,18 +45,18 @@
 			<div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
 		</div>
 
-		{{#if @root.flags.alphasurvey.isSwitchedOn}}
 		{{>ft-next-wrapper/templates/survey}}
-		{{/if}}
-
-		{{#if @root.flags.javascript.isSwitchedOn}}
-		<script src="/{{__name}}/main.js"></script>
 		<script>
-		(function () {
-			var html = document.querySelector('html');
-			html.classList.add('js-success');
-		}())
+		(function (src) {
+			if (cutsTheMustard) {
+				document.documentElement.classList.add('js-success');
+				var o = document.createElement('script');
+				o.async = o.defer = true;
+				o.src = src;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(o, s);
+			}
+		}('/{{__name}}/main.js'));
 		</script>
-		{{/if}}
 	</body>
 </html>
