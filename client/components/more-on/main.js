@@ -1,6 +1,5 @@
-"use strict";
+'use strict';
 
-var reqwest = require('reqwest/reqwest.min');
 var articleCard = require('next-article-card-component');
 var ads = require('next-ads-component');
 
@@ -26,14 +25,24 @@ var initAds = (function(){
 	};
 }());
 
+var fetchText = function(url) {
+	return fetch(url)
+		.then(function(response) {
+			if (response.status >= 400 && response.status < 600) {
+				throw new Error("Bad response from server for " + url);
+			}
+			return response.text();
+		});
+}
+
 var $ = function (selector) {
 	return [].slice.call(document.querySelectorAll(selector));
 };
 
-var reqwestPromises = [];
+var fetchPromises = [];
 
 $('.js-more-on').forEach(function (el) {
-	reqwestPromises.push(reqwest('/more-on/' + el.getAttribute('data-article-id'))
+	fetchPromises.push(fetchText('/more-on/' + el.getAttribute('data-article-id'))
 		.then(function (resp) {
 			el.innerHTML = resp;
 			articleCard.init(el);
@@ -43,7 +52,7 @@ $('.js-more-on').forEach(function (el) {
 });
 
 $('.js-on-this-topic').forEach(function (el) {
-	reqwestPromises.push(reqwest('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))
+	fetchPromises.push(fetchText('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))
 		.then(function (resp) {
 			el.innerHTML = resp;
 			articleCard.init(el);
@@ -52,4 +61,4 @@ $('.js-on-this-topic').forEach(function (el) {
 		}));
 });
 
-Promise.allSettled(reqwestPromises).then(initAds);
+Promise.allSettled(fetchPromises).then(initAds);

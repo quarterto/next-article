@@ -7,11 +7,14 @@
     "next-beacon-component": "https://github.com/Financial-Times/next-beacon-component.git#^v0.4.0",
     "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^v0.2.3",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client.git#^v2.3.5",
-    "next-header": "^3.0.7"
+    "next-header": "^3.0.7",
+    "isomorphic-fetch": "^1.1.0"
   },
   "resolutions": {
     "o-dom": "~0.4.0",
     "next-ads-component": "^v0.3.2",
-    "next-user-model-component": "^v1.0.0"
+    "next-user-model-component": "^v1.0.0",
+    "isomorphic-fetch": "^1.1.0",
+    "fetch": ">=0.4.0"
   }
 }
