@@ -25,7 +25,8 @@
     "nock": "^0.50.0",
     "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/archive/master.tar.gz",
     "request": "^2.44.0",
-    "sinon": "^1.12.1"
+    "sinon": "^1.12.1",
+    "through2": "^0.6.3"
   },
   "engines": {
     "node": "0.10.x"
