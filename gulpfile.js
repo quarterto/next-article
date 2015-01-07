@@ -3,6 +3,7 @@
 
 var gulp = require('gulp');
 require('gulp-watch');
+var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var obt = require('origami-build-tools');
@@ -64,10 +65,11 @@ gulp.task('build', function () {
 });
 
 gulp.task('minify-js',['build', 'sourcemap'], function(){
-	return gulp.src(mainJsFile)
+	return gulp.src([mainJsFile])
 		.pipe(sourcemaps.init({loadMaps:true}))
-		.pipe(uglify({inSourceMap:jsSourcemapFile, outSourceMap:jsSourcemapFile}))
-		.pipe(sourcemaps.write('./public/'))
+			.pipe(concat(mainJsFile))
+			.pipe(uglify())
+		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest('./public/'));
 });
 
