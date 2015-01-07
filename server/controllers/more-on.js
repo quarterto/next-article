@@ -24,9 +24,12 @@ module.exports = function(req, res, next) {
 				.then(function(articles) {
 					if (articles.length > 0) {
 						var stream = new Stream();
-						articles.forEach(function(item) {
-							stream.push('methode', item);
-						});
+						articles
+							// some articles may be undefined
+							.filter(function (a) { return !!a; })
+							.forEach(function(item) {
+								stream.push('methode', item);
+							});
 						res.set(cacheControl);
 						res.render('more-on', {
 							mode: 'expand',
