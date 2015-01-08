@@ -7,7 +7,7 @@
     "next-beacon-component": "https://github.com/Financial-Times/next-beacon-component.git#^v0.6.1",
     "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^v0.3.2",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client.git#^v2.3.5",
-    "next-header": "^3.0.7",
+    "next-header": "^3.2.2",
     "isomorphic-fetch": "^1.1.0",
     "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v1.0.1"
   },
