@@ -58,22 +58,20 @@ gulp.task('build', function () {
 		sass: './client/main.scss',
 		js: './client/main.js',
 		buildFolder: './public',
-		env: process.env.ENVIRONMENT || 'production',
-		sourcemaps : true,
-		compress : {js:false, scss:true}
+		env: 'development'
 	});
 });
 
-gulp.task('minify-js',['build', 'sourcemap'], function(){
-	return gulp.src([mainJsFile])
+gulp.task('minify-js',['build'], function(){
+	return gulp.src(mainJsFile)
 		.pipe(sourcemaps.init({loadMaps:true}))
 			.pipe(concat(mainJsFile))
 			.pipe(uglify())
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest('./public/'));
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest('.'))
 });
 
-gulp.task('sourcemap', ['build'], function(){
+gulp.task('sourcemap', ['build', 'minify-js'], function(){
 	return gulp.src(mainJsFile)
 		.pipe(gulpSourcemapExtration({app:'grumman'}))
 		.pipe(gulp.dest('./public/'));
@@ -83,7 +81,7 @@ gulp.task('watch', function() {
 	gulp.watch('./client/**/*', ['default']);
 });
 
-gulp.task('build-dev', ['build', 'sourcemap']);
-gulp.task('build-prod', ['build', 'sourcemap', 'minify-js']);
+gulp.task('build-dev', ['build']);
+gulp.task('build-prod', ['build', 'minify-js', 'sourcemap']);
 
 gulp.task('default', ['build-dev']);
