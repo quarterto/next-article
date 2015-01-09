@@ -8,14 +8,12 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var obt = require('origami-build-tools');
 var through = require('through2');
-var fs = require('fs');
-
 function fixSourcemapUrl(opt){
 	var app = opt.app;
 
 	function extract(file, enc, cb){
 		if (file.isNull()) return cb(null, file);
-		if (file.isStream()) return cb(new PluginError('gulp-sourcemapfixed', 'Streaming not supported'));
+		if (file.isStream()) return cb(new Error('Streaming not supported'));
 		var regex = new RegExp('^(//# sourceMappingURL=)(.+)/(main.js.map)$', 'm');
 		var contents = file.contents.toString('utf8');
 		var newContents = contents.replace(regex, "$1/" + app + "/$3");
@@ -27,7 +25,6 @@ function fixSourcemapUrl(opt){
 }
 
 var mainJsFile = './public/main.js';
-var jsSourcemapFile = './public/main.js.map';
 
 function getOBTConfig(env){
 	return {
@@ -49,13 +46,13 @@ gulp.task('build-sass', function(){
 
 gulp.task('build', ['build-js', 'build-sass']);
 
-gulp.task('minify-js',['build-js'], function(){
+gulp.task('minify-js',['build'], function(){
 	return gulp.src(mainJsFile)
 		.pipe(sourcemaps.init({loadMaps:true}))
 			.pipe(concat(mainJsFile))
 			.pipe(uglify())
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('.'))
+		.pipe(gulp.dest('.'));
 });
 
 gulp.task('sourcemap', ['minify-js'], function(){

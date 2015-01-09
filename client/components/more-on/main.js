@@ -2,6 +2,7 @@
 
 var articleCard = require('next-article-card-component');
 var ads = require('next-ads-component');
+var fetch = require('isomorphic-fetch');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
 Promise.allSettled = function(promises){
@@ -33,7 +34,7 @@ var fetchText = function(url) {
 			}
 			return response.text();
 		});
-}
+};
 
 var $ = function (selector) {
 	return [].slice.call(document.querySelectorAll(selector));
