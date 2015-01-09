@@ -29,17 +29,27 @@ function fixSourcemapUrl(opt){
 var mainJsFile = './public/main.js';
 var jsSourcemapFile = './public/main.js.map';
 
-
-gulp.task('build', function () {
-	return obt.build(gulp, {
+function getOBTConfig(env){
+	return {
 		sass: './client/main.scss',
 		js: './client/main.js',
 		buildFolder: './public',
-		env: 'development'
-	});
+		env: env
+	};
+}
+
+
+gulp.task('build-js', function () {
+	return obt.build.js(gulp, getOBTConfig('development'));
 });
 
-gulp.task('minify-js',['build'], function(){
+gulp.task('build-sass', function(){
+	return obt.build.sass(gulp, getOBTConfig(process.env.ENVIRONMENT || 'production'));
+});
+
+gulp.task('build', ['build-js', 'build-sass']);
+
+gulp.task('minify-js',['build-js'], function(){
 	return gulp.src(mainJsFile)
 		.pipe(sourcemaps.init({loadMaps:true}))
 			.pipe(concat(mainJsFile))
@@ -48,7 +58,7 @@ gulp.task('minify-js',['build'], function(){
 		.pipe(gulp.dest('.'))
 });
 
-gulp.task('sourcemap', ['build', 'minify-js'], function(){
+gulp.task('sourcemap', ['minify-js'], function(){
 	return gulp.src(mainJsFile)
 		.pipe(fixSourcemapUrl({app:'grumman'}))
 		.pipe(gulp.dest('./public/'));
