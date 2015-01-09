@@ -19,32 +19,7 @@ module.exports = function(req, res, next) {
 			var article = articles[0];
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
-			article = {
-				id: article.id,
-				authors: article.authors,
-				people: article.people,
-				organisations: article.organisations,
-				regions: article.regions,
-				topics: article.topics,
-				headline: article.headline,
-				lastUpdated: article.lastUpdated,
-				standFirst: article.standFirst,
-				primarySection: article.primarySection,
-				primaryTheme: article.primaryTheme,
-				packages: article.packages,
-				body: [
-					article.paragraphs(0, 2, { removeImages: false }).toString(),
-					article.paragraphs(2, 100, { removeImages: false }).toString()
-				],
-				largestImage: article.largestImage,
-				has_gallery: article.has_gallery,
-				videos: article.videos,
-				has_video: article.has_video,
-				showMedia: article.showMedia,
-				wordCount: article.wordCount,
-				readingTime: article.readingTime
-			};
-
+			
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
 					res.render('layout', { article: article });
