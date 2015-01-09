@@ -37,7 +37,7 @@ function getOBTConfig(env){
 
 
 gulp.task('build-js', function () {
-	return obt.build.js(gulp, getOBTConfig('development'));
+	return obt.build.js(gulp, getOBTConfig(process.env.ENVIRONMENT || 'production'));
 });
 
 gulp.task('build-sass', function(){
