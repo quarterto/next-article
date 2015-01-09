@@ -1,13 +1,11 @@
 'use strict';
 var flags = require('next-feature-flags-client');
-var Beacon = require('next-beacon-component');
 
 require('isomorphic-fetch');
 require('ft-next-wrapper');
 require('next-header');
 require('next-user-preferences');
 require('next-article-card-component');
-
 
 var emit = function(name, data) {
 	var event = document.createEvent('Event');
@@ -31,15 +29,9 @@ flags.init().then(function(){
 	if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
 		require('./components/more-on/main');
 	}
-
-	if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
-
-		// fire a beacon after 5s of being on the page
-		setTimeout(function() {
-			Beacon.fire('click', {
-				uuid: location.pathname.slice(1)
-			});
-		}, 5000);
-
+	
+    if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
+        require('next-beacon-component');
 	}
+
 });
