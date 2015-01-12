@@ -16,12 +16,17 @@
 		<div class="o-grid-row">
 			<div class="stream__container" >
 			{{#if article.id}}
-				<h1>{{article.title}}</h1>
-				<span>{{article.byline}}</span><br>
-				<time datetime="{{article.publishedDate}}">{{article.publishedDate}}</time>
-				
+				<h3 class="article-card__headline article-card__headline--large">{{article.title}}</h3>
+				<div class="article-card__byline">
+					<cite>{{article.byline}}</cite>
+				</div>		
+				<time data-o-component="o-date" class="o-date article-card__time" datetime="{{article.publishedDate}}" data-o-date-js>
+					{{article.publishedDate}}
+				</time>
 				<div class="stream" data-o-grid-colspan="S12 M8 L8 XL8">
-					{{{article.bodyXML}}}
+					<div class="article-card__body">
+						{{{article.bodyXML}}}
+					</div>
 				</div>
 			{{else}}
 				<p>No article found.</p>
