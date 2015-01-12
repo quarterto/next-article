@@ -3,6 +3,7 @@ app := ft-next-grumman
 OBT := $(shell which origami-build-tools)
 ROUTER := $(shell which next-router)
 API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
+API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
 
 .PHONY: test
 
@@ -33,6 +34,10 @@ ifeq ($(API_KEY),)
 	@echo "You need an api key!  Speak to one of the next team to get one"
 	exit 1
 endif
+ifeq ($(API2_KEY),)
+	@echo "You need an api key for CAPI v2! Speak to one of the next team to get one"
+	exit 1
+endif
 	$(MAKE) -j2 _run
 
 run-debug:
@@ -43,7 +48,7 @@ _run: run-local run-router
 _run-debug: run-local-debug run-router run-local-debug-inspector
 
 run-local:
-	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon server/app.js --watch server
+	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nodemon server/app.js --watch server
 
 run-local-debug:
 	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon --debug server/app.js
