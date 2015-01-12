@@ -14,8 +14,8 @@ module.exports = function(req, res, next) {
 	Metrics.instrument(res, { as: 'express.http.res' });
 
 	if(res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
-		//Example article: http://int.api.ft.com/content/834ffdf2-728c-11e1-9be9-00144feab49a
-		fetch('http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462', {
+		//Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
+		fetch('http://int.api.ft.com/content/' + req.params[0], {
 			headers: {
 			  'X-Api-Key': process.env.api2key
 			}
@@ -29,7 +29,6 @@ module.exports = function(req, res, next) {
         .then(function(response) {
 			var article = response;
 			res.render('layout_2', { article: article });
-			//res.json(response);
 		})
 		.catch(next);
 		

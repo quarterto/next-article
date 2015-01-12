@@ -16,8 +16,8 @@
 		<div class="o-grid-row">
 			<div class="stream__container" >
 			{{#if article.id}}
-				<time data-o-component="o-date" class="o-date article-card__time" datetime="{{article.publishedDate}}" data-o-date-js>
-					{{article.publishedDate}}
+				<time data-o-component="o-date" class="o-date article-card__time" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+					{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
 				</time>
 				<h3 class="article-card__headline article-card__headline--large">{{article.title}}</h3>
 				<div class="article-card__byline">
