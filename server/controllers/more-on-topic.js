@@ -30,7 +30,7 @@ module.exports = function(req, res, next) {
 				return;
 			}
 
-			query = topic.taxonomy + ':' + topic.name;
+			query = topic.taxonomy + ':"' + topic.name + '"';
 
 			return ft.search(query, 4)
 				.then(function (results) {
@@ -63,7 +63,7 @@ module.exports = function(req, res, next) {
 						res.render('more-on', {
 							mode: 'expand',
 							stream: stream.texturedItems,
-							query: query,
+							query: topic.searchString,
 							title: 'More from this ' + topicTitle + ' - ' + topic.name
 						});
 					} else {
