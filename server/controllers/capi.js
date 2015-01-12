@@ -22,7 +22,6 @@ module.exports = function(req, res, next) {
 			}
 		})
 		.then(function(response) {
-			console.log(JSON.stringify());
 			if (response.status >= 400) {
             	throw new Error("Bad response from server");
         	}
@@ -30,8 +29,8 @@ module.exports = function(req, res, next) {
         })
         .then(function(response) {
 			var article = response;
-			//res.render('layout', { article: article });
-			res.json(response);
+			res.render('layout_2', { article: article });
+			//res.json(response);
 		})
 		.catch(next);
 		
