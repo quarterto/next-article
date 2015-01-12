@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.4.1,o-grid@^2.1.5">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="theme-color" content="#fff1e0"/>
+		<meta name="dfp_site" content="test.next.ft.com" />
+		<link rel="stylesheet" href="/{{__name}}/main.css"/>
+		<title>{{#title}}{{this}} &mdash; {{/title}}Financial Times</title>
+		{{>next-mustard/check}}
+	</head>
+	<body>
+		{{>ft-next-wrapper/templates/tracking}}
+		{{>next-header/templates/main}}
+		<div class="o-grid-row">
+			<div class="stream__container" >
+			{{#if article.id}}
+				<time data-o-component="o-date" class="o-date article-card__time" datetime="{{article.publishedDate}}" data-o-date-js>
+					{{article.publishedDate}}
+				</time>
+				<h3 class="article-card__headline article-card__headline--large">{{article.title}}</h3>
+				<div class="article-card__byline">
+					<cite>{{article.byline}}</cite>
+				</div>		
+				<div class="stream" data-o-grid-colspan="S12 M8 L8 XL8">
+					<div class="article-card__body">
+						{{{article.bodyXML}}}
+					</div>
+				</div>
+			{{else}}
+				<p>No article found.</p>
+			{{/if}}
+			</div>
+			<div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
+		</div>
+
+		{{>ft-next-wrapper/templates/survey}}
+		<script>
+		(function (src) {
+			if (cutsTheMustard) {
+				document.documentElement.classList.add('js-success');
+				var o = document.createElement('script');
+				o.async = o.defer = true;
+				o.src = src;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(o, s);
+			}
+		}('/{{__name}}/main.js'));
+		</script>
+	</body>
+</html>
