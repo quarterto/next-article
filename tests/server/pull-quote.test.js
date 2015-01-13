@@ -1,3 +1,4 @@
+"use strict";
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
 var pullQuotesTransform = require('../../server/transforms/pull-quotes');

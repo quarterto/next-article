@@ -29,9 +29,9 @@ flags.init().then(function(){
 	if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
 		require('./components/more-on/main');
 	}
-	
-    if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
-        require('next-beacon-component');
+
+	if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
+		require('next-beacon-component');
 	}
 
 });
