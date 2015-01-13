@@ -16,7 +16,7 @@ module.exports = function(req, res, next) {
 
 	if(res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
 		//Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
-		fetch('http://int.api.ft.com/content/' + req.params[0], {
+		fetch('http://int.api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 			headers: {
 			  'X-Api-Key': process.env.api2key
 			}
@@ -41,7 +41,7 @@ module.exports = function(req, res, next) {
 			var article = articles[0];
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
-		
+
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
 					res.render('layout', { article: article });
@@ -59,6 +59,6 @@ module.exports = function(req, res, next) {
 			}
 
 		})
-		.catch(next);	
+		.catch(next);
 	}
 };
