@@ -4,6 +4,7 @@
 var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
 var cacheControl = require('../utils/cache-control');
+var fetchres = require('fetchres');
 
 /*
 	Takes data from the content api and returns it in the required format
@@ -20,18 +21,19 @@ module.exports = function(req, res, next) {
 			  'X-Api-Key': process.env.api2key
 			}
 		})
+		.then(fetchres.json)
 		.then(function(response) {
-			if (response.status >= 400) {
-            	throw new Error("Bad response from server");
-        	}
-        	return response.json();
-        })
-        .then(function(response) {
 			var article = response;
 			res.render('layout_2', { article: article });
 		})
-		.catch(next);
-		
+		.catch(function(err) {
+	        if (err instanceof fetchres.BadServerResponseError) {
+	            res.status(404).end();
+	        } else {
+	        	next(err);
+	        }
+	    });
+
 	} else {
 		ft
 		.get([req.params[0]])
