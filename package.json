@@ -10,6 +10,7 @@
     "debug": "^2.0.0",
     "express-errors-handler": "^1.0.0",
     "fastft-api-client": "https://github.com/Financial-Times/fastft-api-client/archive/v1.0.0.tar.gz",
+    "fetchres": "0.0.8",
     "forever": "^0.11.1",
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.9.4.tar.gz",
     "ft-next-express": "^2.2.0",
