@@ -9,7 +9,8 @@
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client.git#^v2.3.5",
     "next-header": "^4.0.1",
     "isomorphic-fetch": "^1.1.0",
-    "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v1.0.1"
+    "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v1.0.1",
+    "o-quote": "~1.1.0"
   },
   "resolutions": {
     "o-dom": "~0.4.0",

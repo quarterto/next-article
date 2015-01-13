@@ -5,6 +5,8 @@ var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
+var cheerio = require('cheerio');
+var pullQuotesTransform = require('../transforms/pull-quotes');
 
 /*
 	Takes data from the content api and returns it in the required format
@@ -14,25 +16,28 @@ module.exports = function(req, res, next) {
 
 	Metrics.instrument(res, { as: 'express.http.res' });
 
-	if(res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
-		//Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
+	if (res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
+
+		// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
 		fetch('http://int.api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 			headers: {
 			  'X-Api-Key': process.env.api2key
 			}
 		})
 		.then(fetchres.json)
-		.then(function(response) {
-			var article = response;
+		.then(function(article) {
+			var $ = cheerio.load(article.bodyXML);
+			$('pull-quote').replaceWith(pullQuotesTransform);
+			article.bodyXML = $.html();
 			res.render('layout_2', { article: article });
 		})
 		.catch(function(err) {
-	        if (err instanceof fetchres.BadServerResponseError) {
-	            res.status(404).end();
-	        } else {
-	        	next(err);
-	        }
-	    });
+			if (err instanceof fetchres.BadServerResponseError) {
+				res.status(404).end();
+			} else {
+				next(err);
+			}
+		});
 
 	} else {
 		ft
