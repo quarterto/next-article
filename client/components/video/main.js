@@ -54,13 +54,12 @@ function vimeoInit (el) {
 
 function makeIframe(attrs) {
 	var iframe = document.createElement('iframe');
-	attrs.concat([
+	attrs = attrs.concat([
 		['frameborder', '0'],
 		['webkitallowfullscreen', 'true'],
 		['mozallowfullscreen', 'true'],
 		['allowfullscreen', 'true']
 	]);
-
 	attrs.forEach(function(attr){
 		iframe.setAttribute(attr[0], attr[1]);
 	});
