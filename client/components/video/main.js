@@ -4,7 +4,8 @@ var brightcove = require('./brightcove');
 
 var video = {
 	'video.ft.com': [],
-	'youtube.com': []
+	'youtube.com': [],
+	'player.vimeo.com': []
 };
 
 var videoTags = [].slice.call(document.querySelectorAll('a'));
@@ -37,7 +38,36 @@ function brightcoveInit (el) {
 }
 
 function youtubeInit (el) { 
-	console.log('youtube vid');
+	var attrs = [
+		['src', el.getAttribute('href')],
+		['width', '560'],
+		['height', '315'],
+	];
+	el.parentNode.replaceChild(makeIframe(attrs), el);
+}
+
+function vimeoInit (el) { 
+	var attrs = [
+		['src', el.getAttribute('href')],
+		['width', '500'],
+		['height', '281'],
+	];
+  	el.parentNode.replaceChild(makeIframe(attrs), el);
+}
+
+function makeIframe(attrs) {
+	var iframe = document.createElement('iframe');
+	attrs.concat([
+		['frameborder', '0'],
+		['webkitallowfullscreen', 'true'],
+		['mozallowfullscreen', 'true'],
+		['allowfullscreen', 'true']
+	]);
+
+	attrs.forEach(function(attr){
+		iframe.setAttribute(attr[0], attr[1]);
+	});
+	return iframe;
 }
 
 function embedVideo (type, el) {
@@ -46,7 +76,10 @@ function embedVideo (type, el) {
 			brightcoveInit(el);
 		break;
 		case 'youtube.com':
-			youtubeInit();
+			youtubeInit(el);
+		break;
+		case 'player.vimeo.com':
+			vimeoInit(el);
 		break;
 	}
 }
