@@ -19,8 +19,8 @@ var emit = function(name, data) {
 };
 
 function clearNotification() {
-//var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
-//emit('notifications:remove', { uuid: 'Article:' + uuid });
+	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
+	emit('notifications:remove', { uuid: 'Article:' + uuid });
 }
 
 clearNotification();
