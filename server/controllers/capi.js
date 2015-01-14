@@ -28,6 +28,7 @@ module.exports = function(req, res, next) {
 		.then(function(article) {
 			var $ = cheerio.load(article.bodyXML);
 			$('pull-quote').replaceWith(pullQuotesTransform);
+			$('blockquote').attr('class', 'o-quote o-quote--standard');
 			article.bodyXML = $.html();
 			res.render('layout_2', { article: article });
 		})
