@@ -10,18 +10,15 @@ var video = {
 
 var videoTags = [].slice.call(document.querySelectorAll('a'));
 
-(function initVideos () {
-	Object.keys(video).forEach(function(key){
-		videoTags.forEach(function(el){
-			el.getAttribute('href').indexOf(key) > -1 && video[key].push(el);				
-		});
-		video[key].forEach(function(el){
-			embedVideo(key, el);
-		});	
+Object.keys(video).forEach(function(key){
+	videoTags.forEach(function(el){
+		el.getAttribute('href').indexOf(key) > -1 && video[key].push(el);				
 	});
+	video[key].forEach(function(el){
+		embedVideo(key, el);
+	});	
+});
 	
-})();	
-
 function brightcoveInit (el) {
 	var url = el.getAttribute('href');
 	var videoId = url.slice((url.lastIndexOf('/')+1));
