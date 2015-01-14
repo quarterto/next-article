@@ -69,7 +69,7 @@ build-production:
 	@gulp build-prod
 
 watch:
-	@gulp watch
+	export ENVIRONMENT=development; gulp watch
 
 clean:
 	git clean -fxd

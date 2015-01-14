@@ -55,8 +55,12 @@ flags.init().then(function(){
 		require('./components/more-on/main');
 	}
 
-	if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
-		require('next-beacon-component');
+    if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
+        require('next-beacon-component');
+	}
+
+	if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
+		require('./components/video/main');
 	}
 
 });
