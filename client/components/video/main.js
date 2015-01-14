@@ -1,39 +1,55 @@
 'use strict';
 var flags = require('next-feature-flags-client');
+var brightcove = require('./brightcove');
 
-flags.init().then(function(){
-	var videos = ['video.ft.com', 'youtube.com']
-	;
+var video = {
+	'video.ft.com': [],
+	'youtube.com': []
+};
 
-	[].slice.call(document.querySelectorAll('a')).forEach(function(el) {
-		 el.innerHTML.trim() === '' && checkVideo(el);
-	});
+var videoTags = [].slice.call(document.querySelectorAll('a'));
 
-	function checkVideo (el) {
-		videos.forEach(function(video){
-			el.getAttribute('href').indexOf(video) > -1 && embedVideo(video, el);
+(function initVideos () {
+	Object.keys(video).forEach(function(key){
+		videoTags.forEach(function(el){
+			el.getAttribute('href').indexOf(key) > -1 && video[key].push(el);				
 		});
-	}
+		video[key].forEach(function(el){
+			embedVideo(key, el);
+		});	
+	});
+	
+})();	
 
-	function embedVideo (type, el) {
-		switch (type) {
-			case 'video.ft.com':
-				//Ideally we use client-side templating here
-				var videoEl = document.createElement('video');
-					videoEl.setAttribute('controls', 'true');
-					videoEl.setAttribute('src', el.getAttribute('href'));
-				el.parentNode.replaceChild(videoEl, el);	
-				break;
-			case 'youtube.com':
-				var videoEl = document.createElement('iframe');
-					videoEl.setAttribute('width', '560');
-					videoEl.setAttribute('height', '315');
-					videoEl.setAttribute('frameborder', '315');
-					videoEl.setAttribute('allowfullscreen', 'true');
-					//href needs to look like: //www.youtube.com/embed/D8axiZqKkcw otherwise CORS error
-					videoEl.setAttribute('src', el.getAttribute('href'));
-					el.parentNode.replaceChild(videoEl, el);	
-				break;
-		}
+function brightcoveInit (el) {
+	var url = el.getAttribute('href');
+	var videoId = url.slice((url.lastIndexOf('/')+1));
+	
+	brightcove(videoId).then(function(url){
+		var videoEl = document.createElement('video');
+		videoEl.setAttribute('src', url);
+		videoEl.setAttribute('controls', 'true');
+		el.parentNode.replaceChild(videoEl, el);
+	}).catch(function(e){
+		el.parentNode.removeChild(el);	
+		setTimeout(function() { throw e; });
+	});	
+}
+
+function youtubeInit (el) { 
+	console.log('youtube vid');
+}
+
+function embedVideo (type, el) {
+	switch (type) {
+		case 'video.ft.com':
+			brightcoveInit(el);
+		break;
+		case 'youtube.com':
+			youtubeInit();
+		break;
 	}
-});
+}
+
+
+
