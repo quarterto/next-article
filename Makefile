@@ -27,7 +27,7 @@ test-debug:
 
 run:
 ifeq ($(ROUTER),)
-	@echo "You need to install the next router first!  See docs here: https://github.com/Financial-Times/next-router"
+	@echo "You need to install the next router first!  See docs here: http://git.svc.ft.com/projects/NEXT/repos/router/browse"
 	exit 1
 endif
 ifeq ($(API_KEY),)
