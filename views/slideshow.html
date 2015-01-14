@@ -3,7 +3,7 @@
 	<ol class="o-gallery__items">
 		{{#each slides}}
 		<li class="o-gallery__item"{{#if @first}} aria-selected="true"{{/if}}>
-			<div class="o-gallery__item__content"><img alt="" src="{{#resize 600}}{{url}}{{/resize}}"></div>
+			<div class="o-gallery__item__content"><img alt="{{alt}}" src="{{#resize 600}}{{url}}{{/resize}}"></div>
 			<div class="o-gallery__item__caption">{{caption}}</div>
 		</li>
 		{{/each}}
@@ -13,7 +13,7 @@
 	<ol class="o-gallery__items">
 		{{#each slides}}
 		<li class="o-gallery__item"{{#if @first}} aria-selected="true"{{/if}}>
-			<div class="o-gallery__item__content"><img alt="" src="{{#resize 150}}{{url}}{{/resize}}"></div>
+			<div class="o-gallery__item__content"><img alt="{{alt}}" src="{{#resize 150}}{{url}}{{/resize}}"></div>
 		</li>
 		{{/each}}
 	</ol>
