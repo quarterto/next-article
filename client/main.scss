@@ -38,4 +38,10 @@ body {
 $o-quote-is-silent: false;
 @import "o-quote/main";
 
+// HACK
+.o-gallery {
+	max-width: 600px;
+}
+// ENDHACK
+
 @include oFtIconsFontFace();
