@@ -29,9 +29,8 @@ flags.init().then(function(){
 	var allFlags = flags.getAll();
 
 	if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
-		var href;
 		[].slice.call(document.querySelectorAll('.article-card__body a[href]')).forEach(function(el) {
-			href = /\/([a-f0-9-]+)\.html#slide0$/.exec(el.getAttribute('href'));
+			var href = /\/([a-f0-9-]+)\.html#slide0$/.exec(el.getAttribute('href'));
 			if (el.innerHTML && href) {
 				fetch('/embedded-components/slideshow/' + href[1])
 					.then(fetchres.text)
