@@ -43,7 +43,12 @@ module.exports = function(req, res, next) {
 					return [];
 				})
 				.then(function(ids) {
-					return ft.get(ids);
+					// only try and get articles if you have ids, otherwise continue to next step
+					if(ids && ids.length){
+						return ft.get(ids);
+					}else{
+						return Promise.resolve([]);
+					}
 				})
 				.then(function (articles) {
 					var stream = new Stream();
