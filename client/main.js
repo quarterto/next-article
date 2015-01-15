@@ -9,7 +9,7 @@ require('next-article-card-component');
 var Gallery = require('o-gallery');
 var fetchres = require('fetchres');
 
-var emit = function(name, data) {
+function emit(name, data) {
 	var event = document.createEvent('Event');
 	event.initEvent(name, true, true);
 	if (data) {
@@ -25,41 +25,47 @@ function clearNotification() {
 
 clearNotification();
 
-flags.init().then(function(){
-	var allFlags = flags.getAll();
+function init() {
+	flags.init().then(function () {
+		var allFlags = flags.getAll();
 
-	if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
-		[].slice.call(document.querySelectorAll('.article-card__body a[href]')).forEach(function(el) {
-			var href = /\/([a-f0-9-]+)\.html#slide0$/.exec(el.getAttribute('href'));
-			if (el.innerHTML && href) {
-				fetch('/embedded-components/slideshow/' + href[1])
-					.then(fetchres.text)
-					.then(function(data) {
-						var container = document.createElement("div");
-						container.innerHTML = data;
-						el.parentNode.replaceChild(container, el);
-						return container;
-					})
-					.then(function(el) {
-						return Gallery.init(el);
-					})
-					.catch(function(err) {
-						setTimeout(function() { console.log(err); });
-					});
-			}
-		});
-	}
+		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
+			[].slice.call(document.querySelectorAll('.article-card__body a[href]')).forEach(function (el) {
+				var href = /\/([a-f0-9-]+)\.html#slide0$/.exec(el.getAttribute('href'));
+				if (el.innerHTML && href) {
+					fetch('/embedded-components/slideshow/' + href[1])
+						.then(fetchres.text)
+						.then(function (data) {
+							var container = document.createElement("div");
+							container.innerHTML = data;
+							el.parentNode.replaceChild(container, el);
+							return container;
+						})
+						.then(function (el) {
+							return Gallery.init(el);
+						})
+						.catch(function (err) {
+							setTimeout(function () {
+								console.log(err);
+							});
+						});
+				}
+			});
+		}
 
-	if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
-		require('./components/more-on/main');
-	}
+		if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
+			require('./components/more-on/main');
+		}
 
-    if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
-        require('next-beacon-component');
-	}
+		if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
+			require('next-beacon-component');
+		}
 
-	if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
-		require('./components/video/main');
-	}
+		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
+			require('./components/video/main');
+		}
 
-});
+	});
+}
+
+document.addEventListener('polyfillsLoaded', init);
