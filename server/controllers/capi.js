@@ -19,7 +19,7 @@ module.exports = function(req, res, next) {
 	if (res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
 
 		// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
-		fetch('http://int.api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
+		fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 			headers: {
 				'X-Api-Key': process.env.api2key
 			}
