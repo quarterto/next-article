@@ -68,4 +68,9 @@ function init() {
 	});
 }
 
-document.addEventListener('polyfillsLoaded', init);
+if(window.ftNextInitCalled){
+	init();
+}else{
+	document.addEventListener('polyfillsLoaded', init);
+}
+
