@@ -13,9 +13,9 @@
     "o-quote": "~1.1.0"
   },
   "resolutions": {
+    "o-fonts": "^1.5.0",
     "o-dom": "~0.4.0",
-    "o-fonts": "~1.5.0",
-    "o-assets": "~1.0.0",
-    "o-colors": "^2.4.0"
+    "o-colors": "^2.4.0",
+    "o-assets": ">= 0.4.0 < 2"
   }
 }
