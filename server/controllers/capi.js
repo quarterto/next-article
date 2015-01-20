@@ -42,9 +42,8 @@ module.exports = function(req, res, next) {
 
 	} else {
 		ft
-		.get([req.params[0]])
-		.then(function (articles) {
-			var article = articles[0];
+		.get(req.params[0])
+		.then(function (article) {
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
 
