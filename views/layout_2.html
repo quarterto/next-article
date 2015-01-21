@@ -16,17 +16,34 @@
 		<div class="o-grid-row">
 			<div class="stream__container" >
 			{{#if article.id}}
-				<time data-o-component="o-date" class="o-date article-card__time"  data-capi-id="{{ id }}" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+				<time data-o-component="o-date" class="o-date article-card__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
 					{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
 				</time>
 				<h3 class="article-card__headline article-card__headline--large">{{article.title}}</h3>
 				<div class="article-card__byline">
 					<cite>{{article.byline}}</cite>
-				</div>		
+				</div>
 				<div class="stream" data-o-grid-colspan="S12 M8 L8 XL8">
+					{{#if article.mentions}}
+					<div class="article-card__metadata-list article-card__mentions" data-track-comp-name="mentions" aria-expanded="false">
+						Mentions:
+						<div class="article-card__mentions__items">
+							<ul>
+							{{#each article.mentions}}
+								<li><a class="article-card__tag" href="{{ url }}">{{name}}</a></li>
+							{{/each}}
+							</ul>
+							<button class="article-card__mentions__toggle">view more<i class="icon-arrow-down"></i></button>
+						</div>
+					</div>
+					{{/if}}
+
+
 					<div class="article-card__body">
 						{{{article.bodyXML}}}
 					</div>
+
+
 				</div>
 			{{else}}
 				<p>No article found.</p>
@@ -36,17 +53,6 @@
 		</div>
 
 		{{>ft-next-wrapper/templates/survey}}
-		<script>
-		(function (src) {
-			if (cutsTheMustard) {
-				document.documentElement.classList.add('js-success');
-				var o = document.createElement('script');
-				o.async = o.defer = true;
-				o.src = src;
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(o, s);
-			}
-		}('/{{__name}}/main.js'));
-		</script>
+		{{>ft-next-wrapper/templates/addscripts}}
 	</body>
 </html>

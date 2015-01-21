@@ -4,7 +4,7 @@ var flags = require('next-feature-flags-client');
 require('isomorphic-fetch');
 require('ft-next-wrapper');
 require('next-header');
-require('next-user-preferences');
+
 require('next-article-card-component');
 var Gallery = require('o-gallery');
 var fetchres = require('fetchres');
@@ -20,7 +20,9 @@ function emit(name, data) {
 
 function clearNotification() {
 	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
-	emit('notifications:remove', { uuid: uuid });
+	if (uuid) {
+		emit('notifications:remove', { uuid: uuid });
+	}
 }
 
 clearNotification();
@@ -52,6 +54,10 @@ function init() {
 				}
 			});
 		}
+		if (allFlags.userPreferences && allFlags.userPreferences.isSwitchedOn) {
+			require('next-user-preferences');
+		}
+
 
 		if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
 			require('./components/more-on/main');
@@ -63,6 +69,10 @@ function init() {
 
 		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
 			require('./components/video/main');
+		}
+
+		if (allFlags.streamsFromContentApiV2 && allFlags.streamsFromContentApiV2.isSwitchedOn) {
+			require('./components/capi2-related/main');
 		}
 
 	});
