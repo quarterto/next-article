@@ -8,18 +8,28 @@ var fetchres = require('fetchres');
 var cheerio = require('cheerio');
 var pullQuotesTransform = require('../transforms/pull-quotes');
 
-/*
-	Takes data from the content api and returns it in the required format
-*/
+
+
+var getMentions = function (annotations) {
+	return annotations.filter(function (an) {
+		return an.predicate.indexOf('mentions') > -1;
+	}).map(function (an, i) {
+		return {
+			url: '/organisations/' + an.uri.split('/').pop(),
+			name: 'name' + i + ' unvailable'
+		}
+	});
+}
 
 module.exports = function(req, res, next) {
 
 	Metrics.instrument(res, { as: 'express.http.res' });
 
 	if (res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
-
+		var contentEndpoint = res.locals.flags.streamsFromContentApiV2.isSwitchedOn ? 'enrichedcontent' : 'content';
 		// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
-		fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
+		// http://int.api.ft.com/enrichedcontent/3e9e7958-cffe-3257-bd84-41706f03f039 has more annotationss
+		fetch('http://api.ft.com/' + contentEndpoint +'/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 			headers: {
 				'X-Api-Key': process.env.api2key
 			}
@@ -29,8 +39,14 @@ module.exports = function(req, res, next) {
 			var $ = cheerio.load(article.bodyXML);
 			$('pull-quote').replaceWith(pullQuotesTransform);
 			$('blockquote').attr('class', 'o-quote o-quote--standard');
+
 			article.bodyXML = $.html();
-			res.render('layout_2', { article: article });
+			if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
+				article.mentions = getMentions(article.annotations);
+			}
+			res.render('layout_2', {
+				article: article
+			});
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
@@ -42,9 +58,8 @@ module.exports = function(req, res, next) {
 
 	} else {
 		ft
-		.get([req.params[0]])
-		.then(function (articles) {
-			var article = articles[0];
+		.get(req.params[0])
+		.then(function (article) {
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
 
