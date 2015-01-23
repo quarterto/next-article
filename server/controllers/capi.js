@@ -15,10 +15,17 @@ var getMentions = function (annotations) {
 		return an.predicate.indexOf('mentions') > -1;
 	}).map(function (an) {
 		//TODO : this should go in next-express topicUrl helper
-		var pluralisedType = an.type === 'PERSON' ? 'people' : an.type.toLowerCase() + 's';
-		return {
-			url: '/' + pluralisedType + '/' + an.uri.split('/').pop(),
-			name: an.label
+		try {
+			var pluralisedType = an.type === 'PERSON' ? 'people' : an.type.toLowerCase() + 's';
+			return {
+				url: '/' + pluralisedType + '/' + an.uri.split('/').pop(),
+				name: an.label
+			}
+		} catch (e) {
+			return {
+				url: '#',
+				name: 'unavialable'
+			}
 		}
 	});
 }
