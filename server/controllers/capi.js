@@ -24,7 +24,7 @@ var getMentions = function (annotations) {
 		} catch (e) {
 			return {
 				url: '#',
-				name: 'unavialable'
+				name: 'unavailable'
 			}
 		}
 	});
