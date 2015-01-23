@@ -13,10 +13,12 @@ var pullQuotesTransform = require('../transforms/pull-quotes');
 var getMentions = function (annotations) {
 	return annotations.filter(function (an) {
 		return an.predicate.indexOf('mentions') > -1;
-	}).map(function (an, i) {
+	}).map(function (an) {
+		//TODO : this should go in next-express topicUrl helper
+		var pluralisedType = an.type === 'PERSON' ? 'people' : an.type.toLowerCase() + 's';
 		return {
-			url: '/organisations/' + an.uri.split('/').pop(),
-			name: 'name' + i + ' unvailable'
+			url: '/' + pluralisedType + '/' + an.uri.split('/').pop(),
+			name: an.label
 		}
 	});
 }
