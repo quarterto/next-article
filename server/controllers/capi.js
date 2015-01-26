@@ -18,7 +18,7 @@ var getMentions = function (annotations) {
 		try {
 			var pluralisedType = an.type === 'PERSON' ? 'people' : an.type.toLowerCase() + 's';
 			return {
-				url: '/' + pluralisedType + '/' + an.uri.split('/').pop(),
+				url: '/stream/' + pluralisedType + '/' + an.uri.split('/').pop(),
 				name: an.label
 			}
 		} catch (e) {
