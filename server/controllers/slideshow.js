@@ -1,7 +1,7 @@
 /*jshint node:true*/
+/*global fetch*/
 'use strict';
 
-var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {

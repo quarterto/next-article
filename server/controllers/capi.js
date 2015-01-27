@@ -29,7 +29,7 @@ var getMentions = function (annotations) {
 			};
 		}
 	});
-}
+};
 
 module.exports = function(req, res, next) {
 
