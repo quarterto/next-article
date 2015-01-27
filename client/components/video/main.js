@@ -1,5 +1,4 @@
 'use strict';
-var flags = require('next-feature-flags-client');
 var brightcove = require('./brightcove');
 
 var video = {
@@ -12,29 +11,29 @@ var videoTags = [].slice.call(document.querySelectorAll('a'));
 
 Object.keys(video).forEach(function(key){
 	videoTags.forEach(function(el){
-		el.getAttribute('href').indexOf(key) > -1 && video[key].push(el);				
+		el.getAttribute('href').indexOf(key) > -1 && video[key].push(el);
 	});
 	video[key].forEach(function(el){
 		embedVideo(key, el);
-	});	
+	});
 });
-	
+
 function brightcoveInit (el) {
 	var url = el.getAttribute('href');
 	var videoId = url.slice((url.lastIndexOf('/')+1));
-	
+
 	brightcove(videoId).then(function(url){
 		var videoEl = document.createElement('video');
 		videoEl.setAttribute('src', url);
 		videoEl.setAttribute('controls', 'true');
 		el.parentNode.replaceChild(videoEl, el);
 	}).catch(function(e){
-		el.parentNode.removeChild(el);	
+		el.parentNode.removeChild(el);
 		setTimeout(function() { throw e; });
-	});	
+	});
 }
 
-function youtubeInit (el) { 
+function youtubeInit (el) {
 	var attrs = [
 		['src', el.getAttribute('href')],
 		['width', '560'],
@@ -43,7 +42,7 @@ function youtubeInit (el) {
 	el.parentNode.replaceChild(makeIframe(attrs), el);
 }
 
-function vimeoInit (el) { 
+function vimeoInit (el) {
 	var attrs = [
 		['src', el.getAttribute('href')],
 		['width', '500'],

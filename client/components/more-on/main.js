@@ -1,3 +1,4 @@
+/*global fetch*/
 'use strict';
 
 var articleCard = require('next-article-card-component');

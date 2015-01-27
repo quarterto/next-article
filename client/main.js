@@ -1,3 +1,4 @@
+/*global fetch, console*/
 'use strict';
 var flags = require('next-feature-flags-client');
 
@@ -16,7 +17,7 @@ function emit(name, data) {
 		event.detail = data;
 	}
 	document.dispatchEvent(event);
-};
+}
 
 function clearNotification() {
 	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
@@ -78,9 +79,8 @@ function init() {
 	});
 }
 
-if(window.ftNextInitCalled){
+if (window.ftNextInitCalled){
 	init();
-}else{
+} else {
 	document.addEventListener('polyfillsLoaded', init);
 }
-

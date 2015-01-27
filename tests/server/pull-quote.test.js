@@ -1,3 +1,4 @@
+/*global it*/
 "use strict";
 var cheerio = require('cheerio');
 var expect = require('chai').expect;

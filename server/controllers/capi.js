@@ -1,3 +1,4 @@
+/*global fetch*/
 /*jshint node:true*/
 'use strict';
 
@@ -20,12 +21,12 @@ var getMentions = function (annotations) {
 			return {
 				url: '/stream/' + pluralisedType + '/' + an.uri.split('/').pop(),
 				name: an.label
-			}
+			};
 		} catch (e) {
 			return {
 				url: '#',
 				name: 'unavailable'
-			}
+			};
 		}
 	});
 }

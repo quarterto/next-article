@@ -1,4 +1,3 @@
-/* global fetch*/
 'use strict';
 
 var container = document.querySelector('.article-card__mentions');
