@@ -15,39 +15,38 @@
 		{{>next-header/templates/main}}
 		<div class="o-grid-row">
 			<div class="stream__container" >
-			{{#if article.id}}
-				<time data-o-component="o-date" class="o-date article-card__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-					{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-				</time>
-				<h3 class="article-card__headline article-card__headline--large">{{article.title}}</h3>
-				<div class="article-card__byline">
-					<cite>{{article.byline}}</cite>
-				</div>
 				<div class="stream" data-o-grid-colspan="S12 M8 L8 XL8">
-					{{#if article.mentions}}
-					<div class="article-card__metadata-list article-card__mentions" data-track-comp-name="mentions" aria-expanded="false">
-						Mentions:
-						<div class="article-card__mentions__items">
-							<ul>
-							{{#each article.mentions}}
-								<li><a class="article-card__tag" href="{{ url }}">{{name}}</a></li>
-							{{/each}}
-							</ul>
-							<button class="article-card__mentions__toggle">view more<i class="icon-arrow-down"></i></button>
+				{{#if article.id}}
+					<time data-o-component="o-date" class="o-date article-card__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+						{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+					</time>
+					<h3 class="article-card__headline article-card__headline--large">{{article.title}}</h3>
+					<div class="article-card__byline">
+						<cite class="article-card__authors">{{article.byline}}</cite>
+					</div>
+					
+						{{#if article.mentions}}
+						<div class="article-card__metadata-list article-card__mentions" data-track-comp-name="mentions" aria-expanded="false">
+							Mentions:
+							<div class="article-card__mentions__items">
+								<ul>
+								{{#each article.mentions}}
+									<li>
+										<a class="article-card__tag" href="{{ url }}">{{name}}</a>
+									</li>
+								{{/each}}
+								</ul>
+								<button class="article-card__mentions__toggle">view more<i class="icon-arrow-down"></i></button>
+							</div>
 						</div>
-					</div>
-					{{/if}}
-
-
-					<div class="article-card__body">
-						{{{article.bodyXML}}}
-					</div>
-
-
+						{{/if}}
+						<div class="article-card__body">
+							{{{article.bodyXML}}}
+						</div>
+				{{else}}
+					<p>No article found.</p>
+				{{/if}}
 				</div>
-			{{else}}
-				<p>No article found.</p>
-			{{/if}}
 			</div>
 			<div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
 		</div>
