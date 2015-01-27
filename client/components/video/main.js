@@ -78,6 +78,3 @@ function embedVideo (type, el) {
 		break;
 	}
 }
-
-
-

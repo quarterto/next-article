@@ -11,7 +11,7 @@ function brightcove(videoId) {
 			}
 			return response.json();
 		})
-		.then(function (data) {	
+		.then(function (data) {
 			return data.renditions[0].url;
 		});
 }
