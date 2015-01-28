@@ -41,6 +41,12 @@ body {
 $o-quote-is-silent: false;
 @import "o-quote/main";
 
+
+.advertising {
+	padding:0;
+	box-shadow: none;
+}
+
 // HACK
 video,
 .o-gallery {

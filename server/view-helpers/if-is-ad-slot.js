@@ -6,7 +6,7 @@ module.exports = function(index, options) {
 	}
 
 	var input = parseInt(index, 10);
-	if (input === 2 || input % 5 === 2) {
+	if (input === 3) {
 		return options.fn(this);
 	}
 };
