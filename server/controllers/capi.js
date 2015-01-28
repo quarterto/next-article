@@ -8,6 +8,7 @@ var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 var cheerio = require('cheerio');
 var pullQuotesTransform = require('../transforms/pull-quotes');
+var ftContentTransform = require('../transforms/ft-content');
 
 
 
@@ -48,6 +49,7 @@ module.exports = function(req, res, next) {
 		.then(function(article) {
 			var $ = cheerio.load(article.bodyXML);
 			$('pull-quote').replaceWith(pullQuotesTransform);
+			$('ft-content').replaceWith(ftContentTransform);
 			$('blockquote').attr('class', 'o-quote o-quote--standard');
 
 			article.bodyXML = $.html();
