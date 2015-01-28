@@ -56,6 +56,7 @@ module.exports = function(req, res, next) {
 			if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
 				article.mentions = getMentions(article.annotations);
 			}
+			article.id = article.id.replace('http://www.ft.com/thing/', '');
 			res.render('layout_2', {
 				article: article
 			});

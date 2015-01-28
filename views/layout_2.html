@@ -24,7 +24,7 @@
 					<div class="article-card__byline">
 						<cite class="article-card__authors">{{article.byline}}</cite>
 					</div>
-					
+
 						{{#if article.mentions}}
 						<div class="article-card__metadata-list article-card__mentions" data-track-comp-name="mentions" aria-expanded="false">
 							Mentions:
@@ -46,6 +46,13 @@
 				{{else}}
 					<p>No article found.</p>
 				{{/if}}
+				</div>
+
+				<div data-o-grid-colspan="S12 M4 L4 XL4">
+					<div class="advertising" data-ft-ad-type="mpu" article-right-rail-ad></div>
+					<div class="js-more-on more-on" data-article-id="{{article.id}}"></div>
+					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
+					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
 				</div>
 			</div>
 			<div data-o-grid-colspan="S12 M2 L3 XL3">&nbsp;</div>
