@@ -12,7 +12,7 @@ ifeq ($(OBT),)
 	@echo "You need to install origami build tools first!  See docs here: http://origami.ft.com/docs/developer-guide/building-modules/"
 	exit 1
 endif
-	origami-build-tools install
+	origami-build-tools install --verbose
 
 test:
 	origami-build-tools verify
