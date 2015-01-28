@@ -12,4 +12,5 @@ npm-debug.log
 .env
 .idea/
 /templates/components/bower/
+.editorconfig
 
