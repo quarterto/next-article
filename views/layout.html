@@ -17,15 +17,15 @@
 			<div class="stream__container" >
 			{{#if article.id}}
 				<div class="o-grid-row">
-					<div data-o-grid-colspan="0 L2 XL2">&nbsp;</div>
-					<h1 class="stream-list__title" data-o-grid-colspan="12 L8 XL8">
+					<div data-o-grid-colspan="0 L1 XL2">&nbsp;</div>
+					<h1 class="stream-list__title" data-o-grid-colspan="12 L10 XL8">
 						<a href="/stream/{{ article.primarySection.taxonomy }}/{{encode article.primarySection.name}}">{{article.primarySection.name}}</a>
 					</h1>
-					<div data-o-grid-colspan="0 L2 XL2">&nbsp;</div>
+					<div data-o-grid-colspan="0 L1 XL2">&nbsp;</div>
 				</div>
 				<div class="o-grid-row">
-					<div data-o-grid-colspan="0 L2 XL2">&nbsp;</div>
-					<div class="stream" data-o-grid-colspan="S12 M8 L5 XL5">
+					<div data-o-grid-colspan="0 L1 XL2">&nbsp;</div>
+					<div class="stream" data-o-grid-colspan="S12 M8 L6 XL5">
 					{{#with article}}
 						{{#ifEquals type "fastft"}}
 							{{>next-article-card-component/templates/fastft-full}}
@@ -46,7 +46,7 @@
 						<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
 						{{/if}}
 					</div>
-					<div data-o-grid-colspan="0 L2 XL2">&nbsp;</div>
+					<div data-o-grid-colspan="0 L1 XL2">&nbsp;</div>
 				</div>
 			{{else}}
 				<p>No article found.</p>
