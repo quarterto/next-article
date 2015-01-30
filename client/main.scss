@@ -57,6 +57,7 @@ video,
 
 @include oFtIconsFontFace();
 @include oFontsInclude(FinancierDisplayWeb);
+@include oFontsInclude(FinancierDisplayText);
 
 // NEW ARTICLE
 .article {
@@ -85,7 +86,7 @@ video,
 }
 
 .article__body {
-	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
+	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayText);
 	font-size: 24px;
 	line-height: 35px;
 	color: #333333;
