@@ -5,6 +5,7 @@ var flags = require('next-feature-flags-client');
 require('isomorphic-fetch');
 require('ft-next-wrapper');
 require('next-header');
+var authors = require('./components/authors');
 
 require('next-article-card-component');
 var Gallery = require('o-gallery');
@@ -74,6 +75,10 @@ function init() {
 
 		if (allFlags.streamsFromContentApiV2 && allFlags.streamsFromContentApiV2.isSwitchedOn) {
 			require('./components/capi2-related/main');
+		}
+
+		if (allFlags.articleTemplate2 && allFlags.articleTemplate2.isSwitchedOn) {
+			authors(document.querySelector('.article__meta__byline'));
 		}
 
 	});

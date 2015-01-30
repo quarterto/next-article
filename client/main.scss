@@ -83,6 +83,11 @@ video,
 
 .article__meta__byline {
 	font-style: normal;
+
+	a {
+		font-weight: bold;
+		color: #333333;
+	}
 }
 
 .article__body {
