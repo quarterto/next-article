@@ -57,7 +57,7 @@ module.exports = function(req, res, next) {
 				article.mentions = getMentions(article.annotations);
 			}
 			article.id = article.id.replace('http://www.ft.com/thing/', '');
-			res.render('layout_2', {
+			res.render((res.locals.flags.articleTemplate2.isSwitchedOn ? 'layout_2-improved' : 'layout_2'), {
 				article: article
 			});
 		})
