@@ -18,7 +18,7 @@ Object.keys(video).forEach(function(key){
 	});
 });
 
-function brightcoveInit (el) {
+function brightcoveInit(el) {
 	var url = el.getAttribute('href');
 	var videoId = url.slice((url.lastIndexOf('/')+1));
 
@@ -33,16 +33,18 @@ function brightcoveInit (el) {
 	});
 }
 
-function youtubeInit (el) {
+function youtubeInit(el) {
+	var youtubeEmbedUrl = el.getAttribute('href')
+		.replace(/https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([A-Za-z0-9])/, "https://youtube.com/embed/$1");
 	var attrs = [
-		['src', el.getAttribute('href')],
+		['src', youtubeEmbedUrl],
 		['width', '560'],
 		['height', '315'],
 	];
 	el.parentNode.replaceChild(makeIframe(attrs), el);
 }
 
-function vimeoInit (el) {
+function vimeoInit(el) {
 	var attrs = [
 		['src', el.getAttribute('href')],
 		['width', '500'],
