@@ -1,6 +1,7 @@
 {
   "name": "next-grumman",
   "dependencies": {
+    "o-fonts": "https://github.com/Financial-Times/o-fonts.git#^1.6.4",
     "ft-next-wrapper": "https://github.com/Financial-Times/next-wrapper.git#^v5.3.0",
     "next-user-preferences": "https://github.com/Financial-Times/next-user-preferences.git#^v3.0.0",
     "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^v6.0.0",
@@ -19,6 +20,6 @@
     "o-assets": ">= 0.4.0 < 2",
     "o-grid": "^3.0.0",
     "next-ui-setup": "^v3.0.0",
-    "o-fonts": "^1.6.0"
+    "o-fonts": "1.6.4"
   }
 }
