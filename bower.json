@@ -10,6 +10,7 @@
     "next-header": "^4.0.4",
     "isomorphic-fetch": "^1.1.0",
     "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v2.0.0",
+    "next-ui-setup": "https://github.com/Financial-Times/next-ui-setup.git#^v3.0.0",
     "o-quote": "~1.1.0"
   },
   "resolutions": {
@@ -17,7 +18,7 @@
     "o-dom": "~0.4.0",
     "o-colors": "^2.4.0",
     "o-assets": ">= 0.4.0 < 2",
-    "next-ui-setup": ">=2.0.0 <4.0.0",
-    "o-grid": "^3.0.0"
+    "o-grid": "^3.0.0",
+    "next-ui-setup": "^v3.0.0"
   }
 }
