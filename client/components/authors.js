@@ -6,7 +6,7 @@ function init(el) {
 	var authors = el.innerText
 		.split("and")
 		.map(function(person) {
-			 return person.replace(/(.*)\b(?:,|in) [A-Za-z ]+$/, '$1').trim();
+			return person.replace(/(.*)\b(?:,|in) [A-Za-z ]+$/, '$1').trim();
 		});
 	var byline = el.innerHTML;
 	authors.forEach(function(author) {
