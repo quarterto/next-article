@@ -42,7 +42,7 @@ module.exports = function(req, res, next) {
 		// http://int.api.ft.com/enrichedcontent/3e9e7958-cffe-3257-bd84-41706f03f039 has more annotationss
 		fetch('http://contentapi2.ft.com/' + contentEndpoint + '/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 			headers: {
-				'X-Api-Key': process.env.api2key
+				'X-Api-Key': process.env._prod_capi2_key
 			}
 		})
 		.then(fetchres.json)
