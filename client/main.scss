@@ -92,7 +92,7 @@ video,
 	margin-bottom: 3em;
 
 	p {
-		margin: 0.3em 0 0.4em 0;
+		margin: 0.3em 0 0.4em;
 	}
 
 	a {
@@ -100,7 +100,7 @@ video,
 	}
 }
 
-.article__meta__time::before{
+.article__meta__time::before {
 	background-image: url("http://localhost:5050/grumman/assets/img/time.svg");
 	background-repeat: no-repeat;
 	width: 20px;
