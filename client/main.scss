@@ -56,3 +56,54 @@ video,
 // ENDHACK
 
 @include oFtIconsFontFace();
+@include oFontsInclude(FinancierDisplayWeb);
+
+// NEW ARTICLE
+.article__title {
+	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
+	font-weight: bold;
+	font-size: 45px;
+	color: #000000;
+}
+
+.article__meta {
+	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
+}
+
+.article__meta__byline {
+	font-style: normal;
+}
+
+.article__body {
+	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
+	font-size: 24px;
+	line-height: 30px;
+	color: #333333;
+	margin-bottom: 3em;
+
+	p {
+		margin: 0.3em 0 0.4em 0;
+	}
+
+	a {
+		color: #333333;
+	}
+}
+
+.article__meta__time::before{
+	background-image: url("http://localhost:5050/grumman/assets/img/time.svg");
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	content: " ";
+	background-position: left center;
+	background-size: 100%;
+	margin-bottom: -4px;
+	margin-right: 2px;
+}
+.article__meta {
+	font-size: 19px;
+	color: #333333;
+	margin-bottom: 1em;
+}
