@@ -2,6 +2,7 @@
   "registry": {
     "search": [
       "https://origami-registry-proxy.herokuapp.com",
+      "http://registry.origami.ft.com",
       "https://bower.herokuapp.com"
     ]
   }
