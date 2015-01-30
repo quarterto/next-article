@@ -1,0 +1,16 @@
+<div class="article-card article-card--full article-card--fastft" data-clamo-id="clamo-{{ uuid }}">
+
+    <h3 class="article-card__headline article-card__headline--large">
+        <a href="/fastft/{{ id }}/{{slug}}" class="article-card__link">
+            {{ title }}
+        </a>
+    </h3>
+
+    <div class="article-card__body">
+        {{{paragraphs content start=0 end=3}}}
+        {{#if @root.flags.ads.isSwitchedOn}}
+        <div class="advertising article-body-ad" data-ft-ad-type="article"></div>
+        {{/if}}
+        {{{paragraphs content start=4}}}
+    </div>
+</div>
