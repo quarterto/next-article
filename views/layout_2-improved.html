@@ -22,8 +22,9 @@
 					<time data-o-component="o-date" class="o-date article__meta__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
 						{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
 					</time>
-					by
-					<cite class="article__meta__byline">{{article.byline}}</cite>
+					{{#if article.byline}}
+					by <cite class="article__meta__byline">{{article.byline}}</cite>
+					{{/if}}
 				</div>
 				<div class="article__body">
 					{{{article.bodyXML}}}
