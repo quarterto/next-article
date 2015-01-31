@@ -98,6 +98,10 @@ $o-big-number-is-silent: false;
 	a {
 		color: #333333;
 	}
+
+	video {
+		max-width: 100%;
+	}
 }
 
 .article__meta__time::before {
