@@ -12,6 +12,7 @@ var bigNumberTransform = require('../transforms/big-number');
 var ftContentTransform = require('../transforms/ft-content');
 var relativeLinksTransform = require('../transforms/relative-links');
 var slideshowTransform = require('../transforms/slideshow');
+var trimmedLinksTransform = require('../transforms/trimmed-links');
 
 var getMentions = function (annotations) {
 	return annotations.filter(function (an) {
@@ -53,6 +54,8 @@ module.exports = function(req, res, next) {
 
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
+					article.bodyXML = article.bodyXML.replace(/ \. \. \. /g, '&thinsp;&hellip;&thinsp;');
+					article.bodyXML = article.bodyXML.replace(/\. \. \./g, '&hellip;');
 					var $ = cheerio.load(article.bodyXML);
 					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
 					$('pull-quote').replaceWith(pullQuotesTransform);
@@ -60,8 +63,10 @@ module.exports = function(req, res, next) {
 					$('ft-content').replaceWith(ftContentTransform);
 					$('blockquote').attr('class', 'o-quote o-quote--standard');
 					$('a').replaceWith(relativeLinksTransform);
+					$('a').replaceWith(trimmedLinksTransform);
 
 					article.bodyXML = $.html();
+					article.bodyXML = article.bodyXML.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 					if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
 						article.mentions = getMentions(article.annotations);
 					}
