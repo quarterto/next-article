@@ -12,7 +12,8 @@
     "isomorphic-fetch": "^1.1.0",
     "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v2.0.0",
     "next-ui-setup": "https://github.com/Financial-Times/next-ui-setup.git#^v3.1.0",
-    "o-quote": "~1.1.0"
+    "o-quote": "~1.1.0",
+    "o-big-number": "Financial-Times/o-big-number#~1.0.0"
   },
   "resolutions": {
     "o-dom": "~0.4.0",

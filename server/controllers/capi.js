@@ -8,8 +8,10 @@ var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 var cheerio = require('cheerio');
 var pullQuotesTransform = require('../transforms/pull-quotes');
+var bigNumberTransform = require('../transforms/big-number');
 var ftContentTransform = require('../transforms/ft-content');
 var relativeLinksTransform = require('../transforms/relative-links');
+var slideshowTransform = require('../transforms/slideshow');
 
 var getMentions = function (annotations) {
 	return annotations.filter(function (an) {
@@ -47,7 +49,9 @@ module.exports = function(req, res, next) {
 		.then(fetchres.json)
 		.then(function(article) {
 			var $ = cheerio.load(article.bodyXML);
+			$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
 			$('pull-quote').replaceWith(pullQuotesTransform);
+			$('big-number').replaceWith(bigNumberTransform);
 			$('ft-content').replaceWith(ftContentTransform);
 			$('blockquote').attr('class', 'o-quote o-quote--standard');
 			$('a').replaceWith(relativeLinksTransform);

@@ -7,9 +7,9 @@ var fetchres = require('fetchres');
 module.exports = function(req, res, next) {
 
 	// E.g. 4eb77dd4-9b35-11e4-be20-002128161462
-	fetch('http://int.contentapi.ft.com/content/items/v1/' + req.params.id, {
+	fetch('http://api.ft.com/content/items/v1/' + req.params.id, {
 			headers: {
-				'X-Api-Key': process.env.api2key
+				'X-Api-Key': process.env.apikey
 			}
 		})
 		.then(fetchres.json)
@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
 
 				// When in INT the URLs to images don't work.  Hack for now.
 				data.item.assets[0].fields.slides = data.item.assets[0].fields.slides.map(function(slide) {
-					slide.url = 'http://im.ft-static.com/content/images/0069a6cd-6629-4d49-8acb-2eaba7f61f7c.img';
+//					slide.url = 'http://im.ft-static.com/content/images/0069a6cd-6629-4d49-8acb-2eaba7f61f7c.img';
 					return slide;
 				});
 				res.render('slideshow', data.item.assets[0].fields);

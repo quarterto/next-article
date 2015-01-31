@@ -16,8 +16,8 @@ it('should understand that article pages are article pages', function() {
 	expect($.html()).to.equal('<a href="/f3970f88-0475-11df-8603-00144feabdc0" title="Cadbury and Kraft agree &#xA3;11.6bn deal - FT.com">Cadbury was bought by <strong>Kraft</strong></a>');
 });
 
-it('should understand not to remove slide hint', function() {
-	var $ = cheerio.load('<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>');
+it('should support odd types of links', function() {
+	var $ = cheerio.load('<a href="http://www.ft.com/cms/6214279a-60eb-11de-aa12-00144feabdc0.html" title="BlackRock in new league with BGI deal - FT.com">bought the Barclays Global Investors</a>');
 	$('a').replaceWith(relativeLinksTransform);
-	expect($.html()).to.equal('<a href="/f3970f88-0475-11df-8603-00144feabdc0#slide0"></a>');
+	expect($.html()).to.equal('<a href="/6214279a-60eb-11de-aa12-00144feabdc0" title="BlackRock in new league with BGI deal - FT.com">bought the Barclays Global Investors</a>');
 });

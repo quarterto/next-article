@@ -34,13 +34,14 @@ function init() {
 		var allFlags = flags.getAll();
 
 		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
-			[].slice.call(document.querySelectorAll('.article__body a[href]')).forEach(function (el) {
-				var href = /\/([a-f0-9-]+)\.html#slide0$/.exec(el.getAttribute('href'));
-				if (el.innerHTML && href) {
-					fetch('/embedded-components/slideshow/' + href[1])
+			[].slice.call(document.querySelectorAll('ft-slideshow')).forEach(function(el) {
+				var uuid = el.getAttribute('data-uuid');
+				if (uuid) {
+					fetch('/embedded-components/slideshow/' + uuid)
 						.then(fetchres.text)
 						.then(function (data) {
 							var container = document.createElement("div");
+							container.setAttribute('class', "article__gallery");
 							container.innerHTML = data;
 							el.parentNode.replaceChild(container, el);
 							return container;

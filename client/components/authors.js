@@ -3,7 +3,7 @@
 module.exports = init;
 
 function init(el) {
-	var authors = el.innerText
+	var authors = el.innerText.replace(/,/, ' and ')
 		.split("and")
 		.map(function(person) {
 			return person.replace(/(.*)\b(?:,|in) [A-Za-z ]+$/, '$1').trim();
