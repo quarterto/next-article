@@ -34,7 +34,7 @@ function init() {
 		var allFlags = flags.getAll();
 
 		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
-			[].slice.call(document.querySelectorAll('.article-card__body a[href]')).forEach(function (el) {
+			[].slice.call(document.querySelectorAll('.article__body a[href]')).forEach(function (el) {
 				var href = /\/([a-f0-9-]+)\.html#slide0$/.exec(el.getAttribute('href'));
 				if (el.innerHTML && href) {
 					fetch('/embedded-components/slideshow/' + href[1])
