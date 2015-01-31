@@ -1,22 +1,24 @@
 'use strict';
 var brightcove = require('./brightcove');
 
-var video = {
-	'video.ft.com': [],
-	'youtube.com': [],
-	'player.vimeo.com': []
-};
+var video = [
+	'video.ft.com',
+	'youtube.com',
+	'player.vimeo.com'
+];
 
 var videoTags = [].slice.call(document.querySelectorAll('a'));
 
-Object.keys(video).forEach(function(key){
-	videoTags.forEach(function(el){
-		el.getAttribute('href').indexOf(key) > -1 && video[key].push(el);
+videoTags.filter(function(el) {
+		return el.innerText === '';
+	})
+	.forEach(function(el) {
+		video.forEach(function(key) {
+			if (el.getAttribute('href').indexOf(key) > -1) {
+				embedVideo(key, el);
+			}
+		});
 	});
-	video[key].forEach(function(el){
-		embedVideo(key, el);
-	});
-});
 
 function brightcoveInit(el) {
 	var url = el.getAttribute('href');
