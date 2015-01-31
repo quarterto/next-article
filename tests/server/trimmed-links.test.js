@@ -31,5 +31,7 @@ it('should ensure trailing commas go outside of a tags', function() {
 it('should fix the spaces even if editorial are blatantly trolling me', function() {
 	var $ = cheerio.load("<a>distort the CPIH measure\n</a> , ");
 	$('a').replaceWith(trimmedLinksTransform);
-	expect($.html()).to.equal('<a>distort the CPIH measure</a> , ');
+
+	// these additional spaces are tidied up later
+	expect($.html()).to.equal('<a>distort the CPIH measure</a>  , ');
 });
