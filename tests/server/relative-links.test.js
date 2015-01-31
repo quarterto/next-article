@@ -21,3 +21,9 @@ it('should support odd types of links', function() {
 	$('a').replaceWith(relativeLinksTransform);
 	expect($.html()).to.equal('<a href="/6214279a-60eb-11de-aa12-00144feabdc0" title="BlackRock in new league with BGI deal - FT.com">bought the Barclays Global Investors</a>');
 });
+
+it('shouldn\' strip content after a relative link', function() {
+	var $ = cheerio.load('<p>For Israelis and Lebanese, <a href=\"/9ffb1208-a6ef-11e4-8a71-00144feab7de\">Hizbollah&#x2019;s border attack</a> this week brought back uncomfortable memories of the start of their 2006 war, which left hundreds dead and ruined swaths of Lebanon.</p>');
+	$('a').replaceWith(relativeLinksTransform);
+	expect($.html()).to.equal('<p>For Israelis and Lebanese, <a href=\"/9ffb1208-a6ef-11e4-8a71-00144feab7de\">Hizbollah&#x2019;s border attack</a> this week brought back uncomfortable memories of the start of their 2006 war, which left hundreds dead and ruined swaths of Lebanon.</p>');
+});

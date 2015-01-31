@@ -9,5 +9,5 @@ module.exports = function(index, el) {
 	if (/^\/stream\//.test(el.attr('href'))) {
 		el.attr('href', el.attr('href').replace(/_/g, ' '));
 	}
-	return el;
+	return el.clone();
 };

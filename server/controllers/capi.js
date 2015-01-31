@@ -48,22 +48,36 @@ module.exports = function(req, res, next) {
 		})
 		.then(fetchres.json)
 		.then(function(article) {
-			var $ = cheerio.load(article.bodyXML);
-			$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
-			$('pull-quote').replaceWith(pullQuotesTransform);
-			$('big-number').replaceWith(bigNumberTransform);
-			$('ft-content').replaceWith(ftContentTransform);
-			$('blockquote').attr('class', 'o-quote o-quote--standard');
-			$('a').replaceWith(relativeLinksTransform);
+			res.vary(['Accept-Encoding', 'Accept']);
+			res.set(cacheControl);
 
-			article.bodyXML = $.html();
-			if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
-				article.mentions = getMentions(article.annotations);
+			switch(req.accepts(['html', 'json'])) {
+				case 'html':
+					var $ = cheerio.load(article.bodyXML);
+					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
+					$('pull-quote').replaceWith(pullQuotesTransform);
+					$('big-number').replaceWith(bigNumberTransform);
+					$('ft-content').replaceWith(ftContentTransform);
+					$('blockquote').attr('class', 'o-quote o-quote--standard');
+					$('a').replaceWith(relativeLinksTransform);
+
+					article.bodyXML = $.html();
+					if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
+						article.mentions = getMentions(article.annotations);
+					}
+					article.id = article.id.replace('http://www.ft.com/thing/', '');
+					res.render((res.locals.flags.articleTemplate2.isSwitchedOn ? 'layout_2-improved' : 'layout_2'), {
+						article: article
+					});
+					break;
+
+				case 'json':
+					res.set(cacheControl);
+					res.set('Content-Type: application/json');
+					res.send(JSON.stringify(article, undefined, 2));
+					res.end();
+					break;
 			}
-			article.id = article.id.replace('http://www.ft.com/thing/', '');
-			res.render((res.locals.flags.articleTemplate2.isSwitchedOn ? 'layout_2-improved' : 'layout_2'), {
-				article: article
-			});
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
