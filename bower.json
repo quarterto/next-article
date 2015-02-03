@@ -4,7 +4,7 @@
     "o-fonts": "https://github.com/Financial-Times/o-fonts.git#^1.6.4",
     "ft-next-wrapper": "https://github.com/Financial-Times/next-wrapper.git#^v5.3.0",
     "next-user-preferences": "https://github.com/Financial-Times/next-user-preferences.git#^v3.0.0",
-    "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^v6.0.0",
+    "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^v6.0.3",
     "next-beacon-component": "https://github.com/Financial-Times/next-beacon-component.git#^v0.7.0",
     "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^v0.3.8",
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client.git#^v2.3.5",
