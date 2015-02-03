@@ -13,4 +13,5 @@ npm-debug.log
 .idea/
 /templates/components/bower/
 .editorconfig
-
+public/main.css-asset-hash.json
+public/main.js-asset-hash.json
