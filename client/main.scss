@@ -29,6 +29,7 @@ body {
 	}
 }
 
+@import "next-colors/main";
 @import "ft-next-wrapper/main";
 @import "next-header/main";
 @import "next-article-card-component/main";
@@ -43,6 +44,7 @@ $o-quote-is-silent: false;
 @import "o-quote/main";
 $o-big-number-is-silent: false;
 @import "o-big-number/main";
+@import "o-ft-icons/main";
 
 .advertising {
 	padding: 0;
@@ -53,46 +55,98 @@ $o-big-number-is-silent: false;
 @include oFontsInclude(FinancierDisplayWeb);
 @include oFontsInclude(FinancierDisplayText);
 
+//ARTICLE COLOUR BRANDS
+.colour-brand {
+	padding-bottom: 40px;
+}
+.article-colour-brand-default {
+	background-color: $next-pink-salmon;
+}
+.article-colour-brand-opinion {
+	background-color: #b34462; //$next-claret;
+}
+.article-colour-brand-analysis {
+	background-color: #5fadcf; //$next-blue;
+}
+
 // NEW ARTICLE
 .article {
 	padding-left: 1em;
 	padding-right: 1em;
 }
-
+.article-brand-offset {
+	margin-top: -40px;
+}
+// @include oGridRespondTo(L) {
+// 	.article-brand-offset {
+// 		margin-top: 0;
+// 	}
+// }
 .article__title {
 	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
 	font-weight: 500;
-	font-size: 60px;
 	color: #000000;
+	font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .article__meta {
 	font-family: Arial;
-	border-bottom: 1px solid #cec6b9;
-	padding-bottom: 10px;
 	margin-bottom: 1em;
-	font-size: 16px;
+	font-size: 12px;
+	line-height: 16px;
 	color: #333333;
 }
 
 .article__meta__byline {
 	font-style: normal;
-
+	display:inline-block;
+	
 	a {
 		font-weight: bold;
 		color: #333333;
 	}
 }
 
+@include oGridRespondTo(L) {
+	.article__meta__byline {
+		padding-top: 20px;
+	}
+}
+
+.btn-panel  {
+	.dummycon {
+		float:right;
+		&:after{
+			display: block;
+			content: '';
+			width: 20px;
+			height: 20px;
+			float: right;
+			border-radius: 50%;
+			background-color: rgba(0,0,0,.5);
+		}		
+	}
+	.dummycon:nth-of-type(1) {
+		margin-left: 15px;
+	}
+}
+//TODO: this returns 'inherit' and resolves to fontTimes;
+//oFontsGetFontFamilyWithFallbacks(FinancierDisplayText);
 .article__body {
-	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayText);
-	font-size: 24px;
+	font-family: FinancierDisplayText; 
+	font-size: 16px;
 	color: #333333;
 	margin-bottom: 3em;
+	
+	> img {
+		max-width: 100%;
+	}
 
 	p {
 		margin: 0.3em 0 0.4em;
-		line-height: 35px;
+		line-height: 24px;
 	}
 
 	a {
@@ -102,6 +156,12 @@ $o-big-number-is-silent: false;
 	video {
 		width: 100%;
 	}
+}
+
+.article__meta__time {
+	margin-top: 30px;
+	display: inline-block;
+	margin-bottom: 0;
 }
 
 .article__meta__time::before {
@@ -120,4 +180,54 @@ $o-big-number-is-silent: false;
 
 .article__gallery {
 	line-height: initial;
+}
+@include oGridRespondTo(S) {
+   	.article__title {
+		font-size: 60px;
+	}
+
+	.article__meta {
+		font-size: 16px;	
+	}
+	.article__body {
+		font-size: 24px;
+		
+		& p {
+			line-height: 35px;
+		}
+	}
+}
+
+
+//TODO: for dev
+body:before {
+	content: '';
+	display: inline;
+	position: absolute;
+	background-color: rgba(0,0,0,.8);
+	padding: 10px;
+	font-weight: bold;
+	font-size:24px;
+	color: white;
+}
+
+@include oGridRespondTo(S) {
+	body:before {
+		content: 'S';
+	}
+}
+@include oGridRespondTo(M) {
+	body:before {
+		content: 'M';
+	}
+}
+@include oGridRespondTo(L) {
+	body:before {
+		content: 'L';
+	}
+}
+@include oGridRespondTo(XL) {
+	body:before {
+		content: 'XL';
+	}
 }

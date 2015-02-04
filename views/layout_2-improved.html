@@ -13,29 +13,52 @@
 	<body>
 		{{>ft-next-wrapper/templates/tracking}}
 		{{>next-header/templates/main}}
-		<div class="o-grid-row">
-			<div data-o-grid-colspan="0 L2 XL2">&nbsp;</div>
-			<div class="article" data-o-grid-colspan="S12 M12 L8 XL8">
-			{{#if article.id}}
-				<h3 class="article__title">{{article.title}}</h3>
-				<div class="article__meta">
-					<time data-o-component="o-date" class="o-date article__meta__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-						{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-					</time>
-					{{#if article.byline}}
-					by <cite class="article__meta__byline">{{article.byline}}</cite>
-					{{/if}}
+		
+		{{#if article.id}}
+		<div class="article-colour-brand-default colour-brand">
+			<div class="o-grid-row">
+				<div data-o-grid-colspan="S12 L2">
+					<div class="article__meta">
+						<time data-o-component="o-date" class="o-date article__meta__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+							{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+						</time>
+					</div>
 				</div>
-				<div class="article__body">
+				<div data-o-grid-colspan="S12 L8">
+					<h3 class="article__title">{{article.title}}</h3>
+				</div>
+				<div data-o-grid-colspan="0 L2">&nbsp;</div>
+			</div>	
+		</div>	
+		<div class="article-brand-offset">
+			<div class="o-grid-row">
+				<div class="article__meta">
+					<div data-o-grid-colspan="12 L2">
+						<div data-o-grid-colspan="8 L12">
+							{{#if article.byline}}
+								<cite class="article__meta__byline">{{article.byline}}</cite>
+							{{/if}}
+						</div>
+						<div data-o-grid-colspan="4 L12" class="btn-panel">
+							<span class="dummycon"></span>
+							<span class="dummycon"></span>
+						</div>
+					</div>	
+				</div>
+				<div class="article__body" data-o-grid-colspan="S12 L8">
+					<img src="http://www.placehold.it/1000x600" />
 					{{{article.bodyXML}}}
 				</div>
-			{{else}}
-				<p>No article found.</p>
-			{{/if}}
-			</div>
-			<div data-o-grid-colspan="0 L2 XL2">&nbsp;</div>
+				<div data-o-grid-colspan="0 L2">&nbsp;</div>
+			</div>	
 		</div>
-
+		
+	{{else}}
+		<div class="o-grid-row">
+			<p>No article found.</p>
+		</div>
+	{{/if}}
+		
 		{{>ft-next-wrapper/templates/survey}}
 		{{>ft-next-wrapper/templates/addscripts}}
 	</body>
