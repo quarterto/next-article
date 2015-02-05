@@ -71,22 +71,19 @@ $brandOffset: 80px;
 //ARTICLE COLOUR BRANDS
 .colour-brand {
 	padding-bottom: $brandOffset;
-}
-.article-colour-brand-default {
-	background-color: $next-pink-salmon;
-}
-.article-colour-brand-opinion {
-	background-color: #b34462; //$next-claret;
-}
-.article-colour-brand-analysis {
-	background-color: #5fadcf; //$next-blue;
-}
 
-// NEW ARTICLE
-.article {
-	padding-left: 1em;
-	padding-right: 1em;
+	.article-type-default & {
+		background-color: $next-pink-salmon;
+	}
+	.article-type-analysis & {
+		background-color: #b34462; //$next-claret;
+
+	}
+	.article-type-opinion & {
+		background-color: #5fadcf; //$next-blue;
+	}
 }
+// NEW ARTICLE
 .article-brand-offset {
 	margin-top: -$brandOffset;
 }
@@ -109,8 +106,7 @@ $brandOffset: 80px;
 
 .article__meta__byline {
 	font-style: normal;
-	display:inline-block;
-	
+		
 	a {
 		font-weight: bold;
 		color: #333333;
@@ -142,10 +138,6 @@ $brandOffset: 80px;
 	color: #333333;
 	margin-bottom: 3em;
 	
-	> img {
-		max-width: 100%;
-	}
-
 	p {
 		margin: 0.3em 0 0.4em;
 		line-height: 24px;
@@ -160,9 +152,27 @@ $brandOffset: 80px;
 	}
 }
 
-.article__meta__time {
+.article__img-primary {
+	max-width: 100%;
+}
+.article__img-inline {
+	float: left;
+	margin: 10px 10px 0 0;
+	max-width: 100%;
+}
+
+.article__type {
+	display: block;
 	margin-top: 10px;
-	display: inline-block;
+	text-transform: uppercase;
+	font-family: Arial, sans-serif;
+	font-weight: 600;
+
+	.article-type-analysis & {
+		text-align: center;
+	}
+}
+.article__meta__time {
 	margin-bottom: 0;
 }
 
@@ -203,17 +213,19 @@ $brandOffset: 80px;
 			line-height: 35px;
 		}
 	}
-
+	.article__img-inline {
+		max-width: 300px;
+	}
 }
 @include oGridRespondTo(L) {
+	.article__meta {
+		padding-top: $brandOffset + 20px;
+	}
 	.article__title {
 		margin-top: 20px;
 	}
-	.article__meta__time {
+	.article__type {
 		margin-top: 30px;	
-	}
-	.article__meta__byline {
-		padding-top: $brandOffset + 20px;
 	}
 	.btn-panel {
 		margin-top: 20px;
