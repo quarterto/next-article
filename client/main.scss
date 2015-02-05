@@ -1,4 +1,6 @@
 $o-grid-mode: snappy;
+$o-grid-debug-mode: true;
+
 body {
 	margin: 0;
 	padding: 0;
@@ -21,7 +23,6 @@ body {
 .show {
 	display: block;
 }
-
 
 @media (max-width: 600px) {
 	.show {
@@ -46,6 +47,18 @@ $o-big-number-is-silent: false;
 @import "o-big-number/main";
 @import "o-ft-icons/main";
 
+$brandOffset: 80px;
+
+//Clearfix
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
 .advertising {
 	padding: 0;
 	box-shadow: none;
@@ -57,7 +70,7 @@ $o-big-number-is-silent: false;
 
 //ARTICLE COLOUR BRANDS
 .colour-brand {
-	padding-bottom: 40px;
+	padding-bottom: $brandOffset;
 }
 .article-colour-brand-default {
 	background-color: $next-pink-salmon;
@@ -75,19 +88,14 @@ $o-big-number-is-silent: false;
 	padding-right: 1em;
 }
 .article-brand-offset {
-	margin-top: -40px;
+	margin-top: -$brandOffset;
 }
-// @include oGridRespondTo(L) {
-// 	.article-brand-offset {
-// 		margin-top: 0;
-// 	}
-// }
 .article__title {
 	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
 	font-weight: 500;
 	color: #000000;
 	font-size: 36px;
-    margin-top: 20px;
+    margin-top: 0;
     margin-bottom: 20px;
 }
 
@@ -109,13 +117,7 @@ $o-big-number-is-silent: false;
 	}
 }
 
-@include oGridRespondTo(L) {
-	.article__meta__byline {
-		padding-top: 20px;
-	}
-}
-
-.btn-panel  {
+.btn-panel {
 	.dummycon {
 		float:right;
 		&:after{
@@ -132,8 +134,8 @@ $o-big-number-is-silent: false;
 		margin-left: 15px;
 	}
 }
-//TODO: this returns 'inherit' and resolves to fontTimes;
-//oFontsGetFontFamilyWithFallbacks(FinancierDisplayText);
+//TODO: oFontsGetFontFamilyWithFallbacks(FinancierDisplayText) returns 'inherit' 
+//and resolves to font Times;
 .article__body {
 	font-family: FinancierDisplayText; 
 	font-size: 16px;
@@ -159,7 +161,7 @@ $o-big-number-is-silent: false;
 }
 
 .article__meta__time {
-	margin-top: 30px;
+	margin-top: 10px;
 	display: inline-block;
 	margin-bottom: 0;
 }
@@ -181,13 +183,18 @@ $o-big-number-is-silent: false;
 .article__gallery {
 	line-height: initial;
 }
+
+//++++++++++++++++++++++++++
+//+ Breakpoints
+//++++++++++++++++++++++++++
 @include oGridRespondTo(S) {
    	.article__title {
 		font-size: 60px;
 	}
 
 	.article__meta {
-		font-size: 16px;	
+		font-size: 16px;
+		line-height: 20px;	
 	}
 	.article__body {
 		font-size: 24px;
@@ -196,8 +203,29 @@ $o-big-number-is-silent: false;
 			line-height: 35px;
 		}
 	}
-}
 
+}
+@include oGridRespondTo(L) {
+	.article__title {
+		margin-top: 20px;
+	}
+	.article__meta__time {
+		margin-top: 30px;	
+	}
+	.article__meta__byline {
+		padding-top: $brandOffset + 20px;
+	}
+	.btn-panel {
+		margin-top: 20px;
+		.dummycon {
+			float:left;
+		}
+		.dummycon:nth-of-type(1) {
+			margin-right: 15px;
+			margin-left: 0;
+		}
+	}
+}
 
 //TODO: for dev
 body:before {
@@ -210,7 +238,6 @@ body:before {
 	font-size:24px;
 	color: white;
 }
-
 @include oGridRespondTo(S) {
 	body:before {
 		content: 'S';
