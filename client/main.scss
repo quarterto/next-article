@@ -204,7 +204,7 @@ $inline-img-width: 300px;
 	}
 	.article__img-inline,
 	.article__img-inline-offset {
-		max-width: $$inline-img-width;
+		max-width: $inline-img-width;
 	}
 }
 @include oGridRespondTo(M) {
@@ -223,7 +223,7 @@ $inline-img-width: 300px;
 	}
 	.article__img-inline,
 	.article__img-inline-offset {
-		max-width: $$inline-img-width;
+		max-width: $inline-img-width;
 	}
 }
 @include oGridRespondTo(L) {
@@ -247,11 +247,11 @@ $inline-img-width: 300px;
 		}
 	}
 	.article__img-inline-offset {
-		margin-left: -$$inline-img-width/2;
+		margin-left: -$inline-img-width/2;
 	}
 	.article__pullquote {
 		width: 780px;
-		margin-left: -$$inline-img-width/2;
+		margin-left: -$inline-img-width/2;
 	}
 }
 
