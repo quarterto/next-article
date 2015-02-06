@@ -134,15 +134,15 @@ $inlineImgWidth: 300px;
 }
 .article__meta__actions {
 	.dummycon {
-		float:right;
-		&:after{
+		float: right;
+		&:after {
 			display: block;
 			content: '';
 			width: 20px;
 			height: 20px;
 			float: right;
 			border-radius: 50%;
-			background-color: rgba(0,0,0,.5);
+			background-color: rgba(0, 0, 0, 0.5);
 		}
 	}
 	.dummycon:nth-of-type(1) {
@@ -190,7 +190,7 @@ $inlineImgWidth: 300px;
 //+ Breakpoints
 //++++++++++++++++++++++++++
 @include oGridRespondTo(S) {
-   	.article__title {
+	.article__title {
 		font-size: 60px;
 	}
 	.article__meta {
@@ -199,7 +199,7 @@ $inlineImgWidth: 300px;
 	}
 	.article__body {
 		font-size: 24px;
-		& p {
+		p {
 			line-height: 35px;
 		}
 	}
@@ -213,7 +213,7 @@ $inlineImgWidth: 300px;
 		margin-top: 20px;
 	}
 	.article__type {
-		margin-top: 30px;	
+		margin-top: 30px;
 	}
 	.article__meta {
 		padding-top: $brandOffset + 20px;
@@ -221,7 +221,7 @@ $inlineImgWidth: 300px;
 	.article__meta__actions {
 		margin-top: 20px;
 		.dummycon {
-			float:left;
+			float: left;
 		}
 		.dummycon:nth-of-type(1) {
 			margin-right: 15px;
@@ -239,7 +239,7 @@ $inlineImgWidth: 300px;
 
 //DUMMY STYLES - for demo purposes only
 .dummypullquote {
-	background-color: #ccc;
+	background-color: $next-grey-dark;
 	padding: 10px;
 	height: 150px;
 }
