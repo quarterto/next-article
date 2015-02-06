@@ -37,7 +37,6 @@ var getMentions = function (annotations) {
 module.exports = function(req, res, next) {
 
 	Metrics.instrument(res, { as: 'express.http.res' });
-
 	if (res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
 		var contentEndpoint = res.locals.flags.streamsFromContentApiV2.isSwitchedOn ? 'enrichedcontent' : 'content';
 		// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
@@ -49,6 +48,7 @@ module.exports = function(req, res, next) {
 		})
 		.then(fetchres.json)
 		.then(function(article) {
+			console.log(article);
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
 
