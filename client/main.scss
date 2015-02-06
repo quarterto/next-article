@@ -132,7 +132,7 @@ $inline-img-width: 300px;
 	margin-right: 2px;
 	opacity: 0.6;
 }
-.article__meta__actions {
+.article__actions {
 	.dummycon {
 		float: right;
 		&:after {
@@ -237,13 +237,7 @@ $inline-img-width: 300px;
 	.article__title {
 		margin-top: 20px;
 	}
-	.article__type {
-		margin-top: 30px;
-	}
-	.article__meta {
-		padding-top: $brandOffset + 20px;
-	}
-	.article__meta__actions {
+	.article__actions {
 		margin-top: 20px;
 		.dummycon {
 			float: left;
@@ -264,7 +258,14 @@ $inline-img-width: 300px;
 		margin-left: -$inline-img-width/2;
 	}
 }
-
+@include oGridRespondTo(XL) {
+	.article__type {
+		margin-top: 30px;
+	}
+	.article__actions {
+		padding-top: $brandOffset + 20px;
+	}
+}
 //DUMMY STYLES - for demo purposes only
 .dummypullquote {
 	background-color: $next-grey-dark;

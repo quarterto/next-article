@@ -17,12 +17,12 @@
 		<article class="article article--default">
 			<div class="article__colour-brand">
 				<div class="o-grid-row">
-					<div data-o-grid-colspan="S12 L2">
+					<div data-o-grid-colspan="12 XL2">
 						<div class="article__type">
 							News		
 						</div>
 					</div>
-					<div data-o-grid-colspan="S12 L8">
+					<div data-o-grid-colspan="12 L8">
 						<h3 class="article__title">{{article.title}}</h3>
 					</div>
 					<div data-o-grid-colspan="0 L2">&nbsp;</div>
@@ -30,34 +30,31 @@
 			</div>	
 			<div class="article__brand-offset">
 				<div class="o-grid-row">
-					<div data-o-grid-colspan="12 L2" class="article__meta">
-						<div class="o-grid-row">
-							<div data-o-grid-colspan="8 L12">
-								{{#if article.byline}}
-									<time data-o-component="o-date" class="o-date article__meta__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-										{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-									</time> by <cite class="article__meta__byline">{{article.byline}}</cite>
-								{{/if}}
-							</div>
-							<div data-o-grid-colspan="4 L12" class="article__meta__actions">
-								<span class="dummycon"></span>
-								<span class="dummycon"></span>
-							</div>
-						</div>
+					<div data-o-grid-colspan="12 XL2" class="article__actions">
+						<span class="dummycon"></span>
+						<span class="dummycon"></span>
 					</div>
-					
-					<div data-o-grid-colspan="12 L6 XL7" class="article__img-primary">
+					<div data-o-grid-colspan="12 L8 XL7" class="article__img-primary">
 						<img src="http://www.placehold.it/1000x600" />
 					</div>
-
 					<div data-o-grid-colspan="12 L4 XL3" class="article__mpu">
-						<img src="http://www.placehold.it/300x250" />
+						<img src="/grumman/assets/img/mpu.jpeg" />
 					</div>
 				</div>	
 				<div class="o-grid-row">
-					<div data-o-grid-colspan="0 L2" class="leanne">&nbsp;</div>
-					
-					<div class="article__body" data-o-grid-colspan="12 L6">
+					<div data-o-grid-colspan="0 XL2">&nbsp;</div>
+					<div data-o-grid-colspan="12 L8 XL7" class="article__meta">
+						{{#if article.byline}}
+							<time data-o-component="o-date" class="o-date article__meta__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+							</time> by <cite class="article__meta__byline">{{article.byline}}</cite>
+						{{/if}}
+					</div>			
+					<div data-o-grid-colspan="0 XL2">&nbsp;</div>
+				</div>
+				<div class="o-grid-row">
+					<div data-o-grid-colspan="0 XL2">&nbsp;</div>
+					<div class="article__body" data-o-grid-colspan="12 L8 XL7">
 						<!-- DUMY CODE FOR DEMO PURPOSES UNTIL WE HAVE INLINE IMAGES -->
 						
 						<!-- <p>
