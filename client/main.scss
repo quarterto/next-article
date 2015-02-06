@@ -1,5 +1,5 @@
 $o-grid-mode: snappy;
-//$o-grid-debug-mode: true;
+$o-grid-debug-mode: true;
 
 body {
 	margin: 0;
@@ -169,7 +169,13 @@ $inline-img-width: 300px;
 	}
 }
 .article__img-primary {
-	max-width: 100%;
+	> img {
+		max-width: 100%;
+	}
+}
+.article__mpu {
+	text-align: center;
+	padding: 10px 0;
 }
 .article__img-inline,
 .article__img-inline-offset {
@@ -210,6 +216,7 @@ $inline-img-width: 300px;
 @include oGridRespondTo(M) {
 	.article__title {
 		font-size: 60px;
+		line-height: 60px;
 	}
 	.article__meta {
 		font-size: 16px;
@@ -245,6 +252,9 @@ $inline-img-width: 300px;
 			margin-right: 15px;
 			margin-left: 0;
 		}
+	}
+	.article__mpu {
+		padding-top: 0;
 	}
 	.article__img-inline-offset {
 		margin-left: -$inline-img-width/2;
