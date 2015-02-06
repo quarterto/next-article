@@ -1,5 +1,4 @@
 $o-grid-mode: snappy;
-$o-grid-debug-mode: true;
 
 body {
 	margin: 0;
@@ -47,18 +46,9 @@ $o-big-number-is-silent: false;
 @import "o-big-number/main";
 @import "o-ft-icons/main";
 
+//VARIABLES
 $brandOffset: 80px;
 $inlineImgWidth: 300px;
-
-//Clearfix
-.clearfix:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
-}
 
 .advertising {
 	padding: 0;
@@ -69,52 +59,80 @@ $inlineImgWidth: 300px;
 @include oFontsInclude(FinancierDisplayWeb);
 @include oFontsInclude(FinancierDisplayText);
 
+
 //ARTICLE COLOUR BRANDS
-.colour-brand {
+.article__colour-brand {
 	padding-bottom: $brandOffset;
 
-	.article-type-default & {
+	.article--default & {
 		background-color: $next-pink-salmon;
 	}
-	.article-type-analysis & {
-		background-color: #b34462; //$next-claret;
+	.article--analysis & {
+		background-color: #b34462;//TODO: convert to $next-colour
 
 	}
-	.article-type-opinion & {
-		background-color: #5fadcf; //$next-blue;
+	.article--opinion & {
+		background-color: #5fadcf;//TODO: convert to $next-colour
 	}
 }
-// NEW ARTICLE
-.article-brand-offset {
+
+//ARTICLE BRAND OFFSET
+.article__brand-offset {
 	margin-top: -$brandOffset;
 }
+
+//ARTICLE ELEMENTS
 .article__title {
 	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
 	font-weight: 500;
-	color: #000000;
+	color: $next-black;
 	font-size: 36px;
     margin-top: 0;
     margin-bottom: 20px;
 }
+.article__type {
+	display: block;
+	margin-top: 10px;
+	text-transform: uppercase;
+	font-family: Arial, sans-serif;
+	font-weight: 600;
 
+	.article-type-analysis & {
+		text-align: center;
+	}
+}
+//ARTICLE META ELEMENTS
 .article__meta {
 	font-family: Arial;
 	margin-bottom: 1em;
 	font-size: 12px;
 	line-height: 16px;
-	color: #333333;
+	color: $next-grey-dark;
 }
-
 .article__meta__byline {
 	font-style: normal;
-		
 	a {
 		font-weight: bold;
-		color: #333333;
+		color: $next-grey-dark;
 	}
 }
-
-.btn-panel {
+.article__meta__time {
+	margin-bottom: 0;
+}
+.article__meta__time::before {
+	background-image: url("/grumman/assets/img/time.svg");
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	content: " ";
+	background-position: left center;
+	background-size: 100%;
+	margin-bottom: -4px;
+	margin-right: 2px;
+	opacity: 0.6;
+}
+.article__meta__actions {
 	.dummycon {
 		float:right;
 		&:after{
@@ -131,12 +149,13 @@ $inlineImgWidth: 300px;
 		margin-left: 15px;
 	}
 }
+//ARTICLE BODY ELEMENTS
 //TODO: oFontsGetFontFamilyWithFallbacks(FinancierDisplayText) returns 'inherit' 
 //and resolves to font Times;
 .article__body {
 	font-family: FinancierDisplayText; 
 	font-size: 16px;
-	color: #333333;
+	color: $next-grey-dark;
 	margin-bottom: 3em;
 	
 	p {
@@ -145,14 +164,13 @@ $inlineImgWidth: 300px;
 	}
 
 	a {
-		color: #333333;
+		color: $next-grey-dark;
 	}
 
 	video {
 		width: 100%;
 	}
 }
-
 .article__img-primary {
 	max-width: 100%;
 }
@@ -165,36 +183,6 @@ $inlineImgWidth: 300px;
 .article__pullquote {
 	display: block;
 }
-
-.article__type {
-	display: block;
-	margin-top: 10px;
-	text-transform: uppercase;
-	font-family: Arial, sans-serif;
-	font-weight: 600;
-
-	.article-type-analysis & {
-		text-align: center;
-	}
-}
-.article__meta__time {
-	margin-bottom: 0;
-}
-
-.article__meta__time::before {
-	background-image: url("/grumman/assets/img/time.svg");
-	background-repeat: no-repeat;
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	content: " ";
-	background-position: left center;
-	background-size: 100%;
-	margin-bottom: -4px;
-	margin-right: 2px;
-	opacity: 0.6;
-}
-
 .article__gallery {
 	line-height: initial;
 }
@@ -206,7 +194,6 @@ $inlineImgWidth: 300px;
    	.article__title {
 		font-size: 60px;
 	}
-
 	.article__meta {
 		font-size: 16px;
 		line-height: 20px;	
@@ -224,16 +211,16 @@ $inlineImgWidth: 300px;
 	}
 }
 @include oGridRespondTo(L) {
-	.article__meta {
-		padding-top: $brandOffset + 20px;
-	}
 	.article__title {
 		margin-top: 20px;
 	}
 	.article__type {
 		margin-top: 30px;	
 	}
-	.btn-panel {
+	.article__meta {
+		padding-top: $brandOffset + 20px;
+	}
+	.article__meta__actions {
 		margin-top: 20px;
 		.dummycon {
 			float:left;
@@ -252,7 +239,7 @@ $inlineImgWidth: 300px;
 	}
 }
 
-//DUMMY STYLES
+//DUMMY STYLES - for demo purposes only
 .dummypullquote {
 	background-color: #ccc;
 	padding: 10px;
