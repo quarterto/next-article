@@ -1,4 +1,5 @@
 $o-grid-mode: snappy;
+$o-grid-debug-mode: true;
 
 body {
 	margin: 0;
@@ -58,7 +59,6 @@ $inlineImgWidth: 300px;
 @include oFtIconsFontFace();
 @include oFontsInclude(FinancierDisplayWeb);
 @include oFontsInclude(FinancierDisplayText);
-
 
 //ARTICLE COLOUR BRANDS
 .article__colour-brand {
@@ -150,10 +150,8 @@ $inlineImgWidth: 300px;
 	}
 }
 //ARTICLE BODY ELEMENTS
-//TODO: oFontsGetFontFamilyWithFallbacks(FinancierDisplayText) returns 'inherit'
-//and resolves to font Times;
 .article__body {
-	font-family: FinancierDisplayText;
+	font-family: oFontsGetFontFamilyWithFallbacks(FinancierTextWeb);
 	font-size: 16px;
 	color: $next-grey-dark;
 	margin-bottom: 3em;
@@ -190,6 +188,26 @@ $inlineImgWidth: 300px;
 //+ Breakpoints
 //++++++++++++++++++++++++++
 @include oGridRespondTo(S) {
+	.article__title {
+		font-size: 45px;
+		line-height: 50px;
+	}
+	.article__meta {
+		font-size: 14px;
+		line-height: 20px;
+	}
+	.article__body {
+		font-size: 21px;
+		p {
+			line-height: 28px;
+		}
+	}
+	.article__img-inline,
+	.article__img-inline-offset {
+		max-width: $inlineImgWidth;
+	}
+}
+@include oGridRespondTo(M) {
 	.article__title {
 		font-size: 60px;
 	}
