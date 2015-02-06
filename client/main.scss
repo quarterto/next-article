@@ -87,8 +87,8 @@ $inlineImgWidth: 300px;
 	font-weight: 500;
 	color: $next-black;
 	font-size: 36px;
-    margin-top: 0;
-    margin-bottom: 20px;
+	margin-top: 0;
+	margin-bottom: 20px;
 }
 .article__type {
 	display: block;
@@ -143,21 +143,20 @@ $inlineImgWidth: 300px;
 			float: right;
 			border-radius: 50%;
 			background-color: rgba(0,0,0,.5);
-		}		
+		}
 	}
 	.dummycon:nth-of-type(1) {
 		margin-left: 15px;
 	}
 }
 //ARTICLE BODY ELEMENTS
-//TODO: oFontsGetFontFamilyWithFallbacks(FinancierDisplayText) returns 'inherit' 
+//TODO: oFontsGetFontFamilyWithFallbacks(FinancierDisplayText) returns 'inherit'
 //and resolves to font Times;
 .article__body {
-	font-family: FinancierDisplayText; 
+	font-family: FinancierDisplayText;
 	font-size: 16px;
 	color: $next-grey-dark;
 	margin-bottom: 3em;
-	
 	p {
 		margin: 0.3em 0 0.4em;
 		line-height: 24px;
@@ -174,7 +173,7 @@ $inlineImgWidth: 300px;
 .article__img-primary {
 	max-width: 100%;
 }
-.article__img-inline, 
+.article__img-inline,
 .article__img-inline-offset {
 	float: left;
 	margin: 10px 10px 0 0;
@@ -196,11 +195,10 @@ $inlineImgWidth: 300px;
 	}
 	.article__meta {
 		font-size: 16px;
-		line-height: 20px;	
+		line-height: 20px;
 	}
 	.article__body {
 		font-size: 24px;
-		
 		& p {
 			line-height: 35px;
 		}
