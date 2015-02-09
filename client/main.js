@@ -10,6 +10,8 @@ var authors = require('./components/authors');
 require('next-article-card-component');
 var Gallery = require('o-gallery');
 var fetchres = require('fetchres');
+var viewport = require('o-viewport');
+	viewport.listenTo('resize');
 
 function emit(name, data) {
 	var event = document.createEvent('Event');
@@ -61,7 +63,6 @@ function init() {
 			require('next-user-preferences');
 		}
 
-
 		if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
 			require('./components/more-on/main');
 		}
@@ -72,6 +73,16 @@ function init() {
 
 		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
 			require('./components/video/main');
+			
+			//[Re-]position mpu
+			var adSlots = require('./components/ad-slots/main');
+			document.addEventListener('oViewport.resize', function(){
+				adSlots.placeMpu();
+			});
+			document.addEventListener('oViewport.orientation', function(){
+				adSlots.placeMpu();
+			});
+			adSlots.placeMpu();
 		}
 
 		if (allFlags.streamsFromContentApiV2 && allFlags.streamsFromContentApiV2.isSwitchedOn) {
@@ -81,7 +92,6 @@ function init() {
 		if (allFlags.articleTemplate2 && allFlags.articleTemplate2.isSwitchedOn) {
 			authors(document.querySelector('.article__meta__byline'));
 		}
-
 	});
 }
 
