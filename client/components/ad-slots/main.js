@@ -9,7 +9,6 @@ var mpuSlotL = document.querySelector('[data-ad-mpu="l"]');
 var mpuSlotXs = document.querySelector('[data-ad-mpu="xs"]');
 
 function placeMpu () {
-	console.log('placeMpu called');
 	var breakpoint = getCurrentBreakpoint().toLowerCase();
 	if (breakpoint === 'l' || breakpoint === 'xl') {
 		mpuSlotL.appendChild(dummyAd);
