@@ -48,7 +48,6 @@ module.exports = function(req, res, next) {
 		})
 		.then(fetchres.json)
 		.then(function(article) {
-			console.log(article);
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
 
