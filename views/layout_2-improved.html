@@ -24,15 +24,27 @@
 					</div>
 					<div data-o-grid-colspan="12 L8">
 						<h3 class="article__title">{{article.title}}</h3>
+					
 					</div>
 					<div data-o-grid-colspan="0 L2">&nbsp;</div>
 				</div>	
 			</div>	
 			<div class="article__brand-offset">
 				<div class="o-grid-row">
-					<div data-o-grid-colspan="12 XL2" class="article__actions">
-						<span class="dummycon"></span>
-						<span class="dummycon"></span>
+					<div data-o-grid-colspan="12 XL2">
+						<div class="o-grid-row">
+							<div class="brand-top-offset article__meta">
+								<div data-o-grid-colspan="8 S10 L6 XL12">	
+									<time data-o-component="o-date" class="o-date article__meta__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+										{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+									</time>
+								</div>
+								<div data-o-grid-colspan="4 S2 XL12" class="article__actions">	
+									<span class="article__actions__action"></span>
+									<span class="article__actions__action"></span>
+								</div>		
+							</div>
+						</div>
 					</div>
 					<div data-o-grid-colspan="12 L8 XL7" class="article__img-primary">
 						<img src="http://www.placehold.it/1000x600" />
@@ -45,9 +57,7 @@
 					<div data-o-grid-colspan="0 XL2">&nbsp;</div>
 					<div data-o-grid-colspan="12 L8 XL7" class="article__meta">
 						{{#if article.byline}}
-							<time data-o-component="o-date" class="o-date article__meta__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-							</time> by <cite class="article__meta__byline">{{article.byline}}</cite>
+							<cite class="article__meta__byline">{{article.byline}}</cite>
 						{{/if}}
 					</div>			
 					<div data-o-grid-colspan="0 XL2">&nbsp;</div>
