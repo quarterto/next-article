@@ -21,6 +21,8 @@ module.exports = function(req, res, next) {
 //					slide.url = 'http://im.ft-static.com/content/images/0069a6cd-6629-4d49-8acb-2eaba7f61f7c.img';
 					return slide;
 				});
+
+				// HACK - Disable the layout on slideshows
 				data.item.assets[0].fields.layout = false;
 				res.render('slideshow', data.item.assets[0].fields);
 			} else {
