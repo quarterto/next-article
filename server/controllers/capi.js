@@ -78,6 +78,7 @@ module.exports = function(req, res, next) {
 					article.id = article.id.replace('http://www.ft.com/thing/', '');
 					res.render((res.locals.flags.articleTemplate2.isSwitchedOn ? 'layout_2-improved' : 'layout_2'), {
 						article: article,
+						title: article.title,
 						layout: 'wrapper'
 					});
 					break;
