@@ -2,37 +2,55 @@
 <article class="article article--default">
 	<div class="article__colour-brand">
 		<div class="o-grid-row">
-			<div data-o-grid-colspan="S12 L2">
+			<div data-o-grid-colspan="12 XL2">
 				<div class="article__type">
 					News
 				</div>
 			</div>
-			<div data-o-grid-colspan="S12 L8">
+			<div data-o-grid-colspan="12 L8">
 				<h3 class="article__title">{{article.title}}</h3>
+
 			</div>
 			<div data-o-grid-colspan="0 L2">&nbsp;</div>
 		</div>
 	</div>
 	<div class="article__brand-offset">
 		<div class="o-grid-row">
-			<div data-o-grid-colspan="12 L2" class="article__meta">
+			<div data-o-grid-colspan="12 XL2">
 				<div class="o-grid-row">
-					<div data-o-grid-colspan="8 L12">
-						{{#if article.byline}}
+					<div class="brand-top-offset article__meta">
+						<div data-o-grid-colspan="8 S10 L6 XL12">
 							<time data-o-component="o-date" class="o-date article__meta__time"  data-capi-id="" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
 								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-							</time> by <cite class="article__meta__byline">{{article.byline}}</cite>
-						{{/if}}
-					</div>
-					<div data-o-grid-colspan="4 L12" class="article__meta__actions">
-						<span class="dummycon"></span>
-						<span class="dummycon"></span>
+							</time>
+						</div>
+						<div data-o-grid-colspan="4 S2 XL12" class="article__actions">
+							<span class="article__actions__action"></span>
+							<span class="article__actions__action"></span>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="article__body" data-o-grid-colspan="S12 L8">
+			<div data-o-grid-colspan="12 L8 XL7" class="article__img-primary">
+				<img src="http://www.placehold.it/1000x600" />
+			</div>
+			<div data-o-grid-colspan="0 L4 XL3" class="article__mpu" data-ad-mpu="l">
+			</div>
+		</div>
+		<div class="o-grid-row">
+			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
+			<div data-o-grid-colspan="12 L8 XL7" class="article__meta">
+				{{#if article.byline}}
+					<cite class="article__meta__byline">{{article.byline}}</cite>
+				{{/if}}
+			</div>
+			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
+		</div>
+		<div class="o-grid-row">
+			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
+			<div class="article__body" data-o-grid-colspan="12 L8 XL7">
 				<!-- DUMY CODE FOR DEMO PURPOSES UNTIL WE HAVE INLINE IMAGES -->
-				<!-- <img src="http://www.placehold.it/1000x600" class="article__img-primary" /> -->
+
 				<!-- <p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse semper commodo augue eu accumsan. Donec nunc lorem, porta ac iaculis et, egestas a orci. Quisque quis mollis odio. Nulla eu cursus libero. Nullam sit amet nulla a libero pulvinar congue. Mauris nec sem a arcu egestas pulvinar. Nunc tempus volutpat eros a fringilla. Nullam eu augue at ex posuere aliquet. Curabitur sollicitudin purus orci, eu auctor risus maximus in. Phasellus egestas, elit sit amet pharetra efficitur, odio magna bibendum tortor, vitae iaculis tellus arcu blandit velit. In hac habitasse platea dictumst. Cras rutrum ipsum diam, nec rhoncus lacus ullamcorper id. Nullam mi leo, suscipit vitae posuere quis, placerat et leo. Quisque aliquam aliquet risus a malesuada. Vivamus in mattis est. Duis interdum ornare pharetra.
 				</p>

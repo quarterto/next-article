@@ -111,13 +111,15 @@ $inline-img-width: 300px;
 }
 .article__meta__byline {
 	font-style: normal;
+	display: block;
+	margin: 10px 0;
 	a {
 		font-weight: bold;
 		color: $next-grey-dark;
 	}
 }
 .article__meta__time {
-	margin-bottom: 0;
+	margin-bottom: 10px;
 }
 .article__meta__time::before {
 	background-image: url("/grumman/assets/img/time.svg");
@@ -132,23 +134,23 @@ $inline-img-width: 300px;
 	margin-right: 2px;
 	opacity: 0.6;
 }
-.article__meta__actions {
-	.dummycon {
+.article__actions__action {
+	float: right;
+	margin-bottom: 10px;
+	&:after {
+		display: block;
+		content: '';
+		width: 20px;
+		height: 20px;
 		float: right;
-		&:after {
-			display: block;
-			content: '';
-			width: 20px;
-			height: 20px;
-			float: right;
-			border-radius: 50%;
-			background-color: rgba(0, 0, 0, 0.5);
-		}
+		border-radius: 50%;
+		background-color: rgba(0, 0, 0, 0.5);
 	}
-	.dummycon:nth-of-type(1) {
-		margin-left: 15px;
+	&:nth-of-type(2) {
+		margin-right: 15px;
 	}
 }
+
 //ARTICLE BODY ELEMENTS
 .article__body {
 	font-family: oFontsGetFontFamilyWithFallbacks(FinancierTextWeb);
@@ -173,7 +175,13 @@ $inline-img-width: 300px;
 	}
 }
 .article__img-primary {
-	max-width: 100%;
+	> img {
+		max-width: 100%;
+	}
+}
+.article__mpu {
+	text-align: center;
+	padding: 10px 0;
 }
 .article__img-inline,
 .article__img-inline-offset {
@@ -214,6 +222,7 @@ $inline-img-width: 300px;
 @include oGridRespondTo(M) {
 	.article__title {
 		font-size: 60px;
+		line-height: 60px;
 	}
 	.article__meta {
 		font-size: 16px;
@@ -234,21 +243,8 @@ $inline-img-width: 300px;
 	.article__title {
 		margin-top: 20px;
 	}
-	.article__type {
-		margin-top: 30px;
-	}
-	.article__meta {
-		padding-top: $brandOffset + 20px;
-	}
-	.article__meta__actions {
-		margin-top: 20px;
-		.dummycon {
-			float: left;
-		}
-		.dummycon:nth-of-type(1) {
-			margin-right: 15px;
-			margin-left: 0;
-		}
+	.article__mpu {
+		padding-top: 0;
 	}
 	.article__img-inline-offset {
 		margin-left: -$inline-img-width/2;
@@ -258,7 +254,21 @@ $inline-img-width: 300px;
 		margin-left: -$inline-img-width/2;
 	}
 }
-
+@include oGridRespondTo(XL) {
+	.article__type {
+		margin-top: 30px;
+	}
+	.article__actions {
+		margin-top: 20px;
+	}
+	.article__actions__action {
+		float: left;
+		margin-right: 15px;
+	}
+	.brand-top-offset {
+		padding-top: $brandOffset + 20px;
+	}
+}
 //DUMMY STYLES - for demo purposes only
 .dummypullquote {
 	background-color: $next-grey-dark;
