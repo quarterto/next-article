@@ -14,9 +14,8 @@
     "fetchres": "0.0.8",
     "forever": "^0.11.1",
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.10.4.tar.gz",
-    "ft-next-express": "^3.0.0",
+    "ft-next-express": "^4.0.0",
     "haikro": "^1.9.1",
-    "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client/archive/v2.3.5.tar.gz",
     "next-metrics": "https://github.com/Financial-Times/next-metrics/archive/v1.2.0.tar.gz"
   },
   "devDependencies": {

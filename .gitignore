@@ -15,3 +15,4 @@ npm-debug.log
 .editorconfig
 public/main.css-asset-hash.json
 public/main.js-asset-hash.json
+public/main.js.map
