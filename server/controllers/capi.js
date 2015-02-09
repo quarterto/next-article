@@ -37,7 +37,6 @@ var getMentions = function (annotations) {
 module.exports = function(req, res, next) {
 
 	Metrics.instrument(res, { as: 'express.http.res' });
-
 	if (res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
 		var contentEndpoint = res.locals.flags.streamsFromContentApiV2.isSwitchedOn ? 'enrichedcontent' : 'content';
 		// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
@@ -49,6 +48,7 @@ module.exports = function(req, res, next) {
 		})
 		.then(fetchres.json)
 		.then(function(article) {
+			console.log(article);
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
 
@@ -78,7 +78,8 @@ module.exports = function(req, res, next) {
 					}
 					article.id = article.id.replace('http://www.ft.com/thing/', '');
 					res.render((res.locals.flags.articleTemplate2.isSwitchedOn ? 'layout_2-improved' : 'layout_2'), {
-						article: article
+						article: article,
+						layout: 'wrapper'
 					});
 					break;
 
@@ -107,7 +108,10 @@ module.exports = function(req, res, next) {
 
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
-					res.render('layout', { article: article });
+					res.render('layout', {
+						article: article,
+						layout: 'wrapper'
+					});
 					break;
 
 				case 'json':

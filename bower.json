@@ -12,15 +12,11 @@
     "isomorphic-fetch": "^1.1.0",
     "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v2.0.0",
     "next-ui-setup": "https://github.com/Financial-Times/next-ui-setup.git#^v3.1.0",
-    "o-quote": "~1.1.0",
+    "o-quote": "https://github.com/Financial-Times/o-quote.git#bogdis-design",
     "o-big-number": "Financial-Times/o-big-number#~1.0.0"
   },
   "resolutions": {
-    "o-dom": "~0.4.0",
-    "o-colors": "^2.4.0",
-    "o-assets": ">= 0.4.0 < 2",
-    "o-grid": "^3.0.0",
-    "next-ui-setup": "^v3.0.0",
-    "o-fonts": "1.6.4"
+    "o-fonts": "^1.6.0",
+    "o-colors": "^2.3.17"
   }
 }
