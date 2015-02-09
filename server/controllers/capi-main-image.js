@@ -1,3 +1,4 @@
+/*jshint node:true*/
 /*global fetch*/
 'use strict';
 var fetchres = require('fetchres');
