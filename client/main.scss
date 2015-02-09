@@ -112,7 +112,7 @@ $inline-img-width: 300px;
 .article__meta__byline {
 	font-style: normal;
 	display: block;
-	margin: 10px 0 10px;
+	margin: 10px 0;
 	a {
 		font-weight: bold;
 		color: $next-grey-dark;
@@ -262,7 +262,7 @@ $inline-img-width: 300px;
 		margin-right: 15px;
 	}
 	.brand-top-offset {
-		padding-top: $brandOffset + 20px;		
+		padding-top: $brandOffset + 20px;
 	}
 }
 //DUMMY STYLES - for demo purposes only

@@ -73,7 +73,7 @@ function init() {
 
 		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
 			require('./components/video/main');
-			
+
 			//[Re-]position mpu
 			var adSlots = require('./components/ad-slots/main');
 			document.addEventListener('oViewport.resize', function(){
