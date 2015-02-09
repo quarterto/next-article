@@ -72,7 +72,8 @@ module.exports = function(req, res, next) {
 					}
 					article.id = article.id.replace('http://www.ft.com/thing/', '');
 					res.render((res.locals.flags.articleTemplate2.isSwitchedOn ? 'layout_2-improved' : 'layout_2'), {
-						article: article
+						article: article,
+						layout: 'wrapper'
 					});
 					break;
 
@@ -101,7 +102,10 @@ module.exports = function(req, res, next) {
 
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
-					res.render('layout', { article: article });
+					res.render('layout', {
+						article: article,
+						layout: 'wrapper'
+					});
 					break;
 
 				case 'json':
