@@ -64,7 +64,7 @@ function init() {
 		}
 
 		if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
-			require('./components/more-on/main');
+			require('./components/more-on/main').init(allFlags);
 		}
 
 		if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {

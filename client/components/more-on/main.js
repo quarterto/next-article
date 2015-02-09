@@ -2,7 +2,8 @@
 'use strict';
 
 var articleCard = require('next-article-card-component');
-var ads = require('next-ads-component');
+
+
 
 // Sort of like Promise.all but will be called whether they fail or succeed
 Promise.allSettled = function(promises){
@@ -16,15 +17,16 @@ Promise.allSettled = function(promises){
 	return Promise.all(promises.map(resolveWhenSettled));
 };
 
-var initAds = (function(){
+var initAds = function(flags){
 	var called = false;
 	return function(){
-		if(!called){
+		if(!called && flags.ads.isSwitchedOn){
+			var ads = require('next-ads-component');
 			ads.init();
 			called = true;
 		}
 	};
-}());
+};
 
 var fetchText = function(url) {
 	return fetch(url)
@@ -62,4 +64,7 @@ $('.js-on-this-topic').forEach(function (el) {
 		}));
 });
 
-Promise.allSettled(fetchPromises).then(initAds);
+module.exports.init = function(flags){
+	Promise.allSettled(fetchPromises).then(initAds(flags));
+};
+
