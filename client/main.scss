@@ -109,10 +109,16 @@ $inline-img-width: 300px;
 	line-height: 16px;
 	color: $next-grey-dark;
 }
-.article__meta__byline {
-	font-style: normal;
+.article__byline {
+	margin-top: 10px;
+	margin-bottom: 10px;
 	display: block;
-	margin: 10px 0;
+	font-family: Arial;
+	font-style: normal;
+	font-size: 12px;
+	line-height: 16px;
+	color: $next-grey-dark;
+
 	a {
 		font-weight: bold;
 		color: $next-grey-dark;
@@ -174,10 +180,8 @@ $inline-img-width: 300px;
 		width: 100%;
 	}
 }
-.article__img-primary {
-	> img {
-		max-width: 100%;
-	}
+.article__img-main {
+	max-width: 100%;
 }
 .article__mpu {
 	text-align: center;
