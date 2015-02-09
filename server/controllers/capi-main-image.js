@@ -14,10 +14,11 @@ module.exports = function(req, res, next) {
 		.then(function(article) {
 			res.set(cacheControl);
 			var images = article.item.images;
+			var image;
 			if (images.length === 0) {
 				res.status(404).end();
 			} else {
-				images = images.sort(function(a, b) {
+				image = images.sort(function(a, b) {
 						return a.width*a.height < b.width*b.height;
 					})[0];
 				res.redirect(image.url);
