@@ -13,10 +13,15 @@ module.exports = function(req, res, next) {
 		.then(fetchres.json)
 		.then(function(article) {
 			res.set(cacheControl);
-			var image = article.item.images.sort(function(a, b) {
-					return a.width*a.height < b.width*b.height;
-				})[0];
-			res.redirect(image.url);
+			var images = article.item.images;
+			if (images.length === 0) {
+				res.status(404).end();
+			} else {
+				images = images.sort(function(a, b) {
+						return a.width*a.height < b.width*b.height;
+					})[0];
+				res.redirect(image.url);
+			}
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
