@@ -11,12 +11,13 @@
 		font-weight: 700;
 		font-style: normal;
 		margin: 21px 0;
-		a {
-			color: $next-black;
-			text-decoration: none;
-			&:hover {
-				text-decoration: underline;
-			}
+	}
+
+	a {
+		color: $next-black;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
 		}
 	}
 
