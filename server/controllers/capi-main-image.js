@@ -13,15 +13,13 @@ module.exports = function(req, res, next) {
 		.then(fetchres.json)
 		.then(function(article) {
 			res.set(cacheControl);
-			var images = article.item.images;
-			var image;
+			var images = article.item.images.filter(function(image) {
+					return image === 'wide-format';
+				});
 			if (images.length === 0) {
 				res.status(404).end();
 			} else {
-				image = images.sort(function(a, b) {
-						return a.width*a.height < b.width*b.height;
-					})[0];
-				res.redirect(image.url);
+				res.redirect(images[0].url);
 			}
 		})
 		.catch(function(err) {
