@@ -62,18 +62,18 @@ $inline-img-width: 300px;
 @include oFontsInclude(FinancierDisplayText);
 
 //ARTICLE COLOUR BRANDS
-.article__colour-brand {
+.article__color-brand {
 	padding-bottom: $brandOffset;
 
 	.article--default & {
 		background-color: $next-pink-salmon;
 	}
 	.article--analysis & {
-		background-color: #b34462;//TODO: convert to $next-colour
+		background-color: #f6e9d8;//TODO: convert to $next-color
 
 	}
 	.article--opinion & {
-		background-color: #5fadcf;//TODO: convert to $next-colour
+		background-color: #5fadcf;//TODO: convert to $next-color
 	}
 }
 
