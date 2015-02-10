@@ -65,6 +65,10 @@ $inline-img-width: 300px;
 .article__color-brand {
 	padding-bottom: $brandOffset;
 
+	// &-offset {
+	// 	background-color: #f6e9d8;
+	// }
+
 	.article--default & {
 		background-color: #f6e9d8;
 	}
@@ -183,6 +187,7 @@ $inline-img-width: 300px;
 }
 .article__img-main {
 	max-width: 100%;
+	width: 100%;
 }
 .article__mpu {
 	text-align: center;
