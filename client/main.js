@@ -1,4 +1,3 @@
-/*global fetch, console*/
 'use strict';
 var flags = require('next-feature-flags-client');
 
@@ -6,12 +5,11 @@ require('isomorphic-fetch');
 require('ft-next-wrapper');
 require('next-header');
 var authors = require('./components/authors');
+var slideshow = require('./components/slideshow');
 
 require('next-article-card-component');
-var Gallery = require('o-gallery');
-var fetchres = require('fetchres');
 var viewport = require('o-viewport');
-	viewport.listenTo('resize');
+viewport.listenTo('resize');
 
 function emit(name, data) {
 	var event = document.createEvent('Event');
@@ -22,43 +20,22 @@ function emit(name, data) {
 	document.dispatchEvent(event);
 }
 
-function clearNotification() {
-	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
-	if (uuid) {
-		emit('notifications:remove', { uuid: uuid });
-	}
-}
-
-clearNotification();
 
 function init() {
 	flags.init().then(function () {
+		var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
+		function clearNotification() {
+			emit('notifications:remove', { uuid: uuid });
+		}
+		if (uuid) clearNotification();
+
 		var allFlags = flags.getAll();
 
 		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
-			[].slice.call(document.querySelectorAll('ft-slideshow')).forEach(function(el) {
-				var uuid = el.getAttribute('data-uuid');
-				if (uuid) {
-					fetch('/embedded-components/slideshow/' + uuid)
-						.then(fetchres.text)
-						.then(function (data) {
-							var container = document.createElement("div");
-							container.setAttribute('class', "article__gallery");
-							container.innerHTML = data;
-							el.parentNode.replaceChild(container, el);
-							return container;
-						})
-						.then(function (el) {
-							return Gallery.init(el);
-						})
-						.catch(function (err) {
-							setTimeout(function () {
-								console.log(err);
-							});
-						});
-				}
-			});
+			slideshow(document.querySelectorAll('ft-slideshow'));
+			authors(uuid, document.querySelector('.article__byline'));
 		}
+
 		if (allFlags.userPreferences && allFlags.userPreferences.isSwitchedOn) {
 			require('next-user-preferences');
 		}
@@ -87,10 +64,6 @@ function init() {
 
 		if (allFlags.streamsFromContentApiV2 && allFlags.streamsFromContentApiV2.isSwitchedOn) {
 			require('./components/capi2-related/main');
-		}
-
-		if (allFlags.articleTemplate2 && allFlags.articleTemplate2.isSwitchedOn) {
-			authors(document.querySelector('.article__meta__byline'));
 		}
 	});
 }

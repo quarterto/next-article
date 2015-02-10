@@ -1,16 +1,16 @@
+/*global fetch*/
 "use strict";
 
-module.exports = init;
+var fetchres = require('fetchres');
 
-function init(el) {
-	var authors = el.innerText.replace(/,/, ' and ')
-		.split("and")
-		.map(function(person) {
-			return person.replace(/(.*)\b(?:,|in) [A-Za-z ]+$/, '$1').trim();
+module.exports = function(uuid, el) {
+	fetch('/' + uuid + '/authors')
+		.then(fetchres.json)
+		.then(function(authors) {
+			var byline = el.innerHTML;
+			authors.forEach(function(author) {
+				byline = byline.replace(author, '<a href="/stream/authors/' + author + '">'+ author + '</a>');
+			});
+			el.innerHTML = byline;
 		});
-	var byline = el.innerHTML;
-	authors.forEach(function(author) {
-		byline = byline.replace(author, '<a href="/stream/authors/' + author + '">'+ author + '</a>');
-	});
-	el.innerHTML = byline;
-}
+};

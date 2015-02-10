@@ -12,10 +12,10 @@ function placeMpu () {
 	var breakpoint = getCurrentBreakpoint().toLowerCase();
 	if (breakpoint === 'l' || breakpoint === 'xl') {
 		mpuSlotL.appendChild(dummyAd);
-		mpuSlotXs.innerHTML('');
+		mpuSlotXs.innerHTML = '';
 	} else {
 		mpuSlotXs.appendChild(dummyAd);
-		mpuSlotL.innerHTML('');
+		mpuSlotL.innerHTML = '';
 	}
 }
 
