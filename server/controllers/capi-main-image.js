@@ -14,7 +14,7 @@ module.exports = function(req, res, next) {
 		.then(function(article) {
 			res.set(cacheControl);
 			var images = article.item.images.filter(function(image) {
-					return image === 'wide-format';
+					return image.type === 'wide-format';
 				});
 			if (images.length === 0) {
 				res.status(404).end();
