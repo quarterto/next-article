@@ -8,7 +8,9 @@ var dummyAd = document.createElement('img');
 var mpuSlotL = document.querySelector('[data-ad-mpu="l"]');
 var mpuSlotXs = document.querySelector('[data-ad-mpu="xs"]');
 
-function placeMpu () {
+function placeMpu() {
+	// temporarily disable
+	return;
 	var breakpoint = getCurrentBreakpoint().toLowerCase();
 	if (breakpoint === 'l' || breakpoint === 'xl') {
 		mpuSlotL.appendChild(dummyAd);
