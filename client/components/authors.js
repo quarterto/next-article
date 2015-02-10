@@ -4,13 +4,15 @@
 var fetchres = require('fetchres');
 
 module.exports = function(uuid, el) {
-	fetch('/' + uuid + '/authors')
-		.then(fetchres.json)
-		.then(function(authors) {
-			var byline = el.innerHTML;
-			authors.forEach(function(author) {
-				byline = byline.replace(author, '<a href="/stream/authors/' + author + '">'+ author + '</a>');
+	if (uuid && el) {
+		return fetch('/' + uuid + '/authors')
+			.then(fetchres.json)
+			.then(function(authors) {
+				var byline = el.innerHTML;
+				authors.forEach(function(author) {
+					byline = byline.replace(author, '<a href="/stream/authors/' + author + '">'+ author + '</a>');
+				});
+				el.innerHTML = byline;
 			});
-			el.innerHTML = byline;
-		});
+	}
 };
