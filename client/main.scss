@@ -66,10 +66,10 @@ $inline-img-width: 300px;
 	padding-bottom: $brandOffset;
 
 	.article--default & {
-		background-color: $next-pink-salmon;
+		background-color: #f6e9d8;
 	}
 	.article--analysis & {
-		background-color: #f6e9d8;//TODO: convert to $next-color
+		background-color: #b34462;//TODO: convert to $next-color
 
 	}
 	.article--opinion & {
