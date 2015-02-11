@@ -34,7 +34,7 @@ module.exports = function(req, res, next) {
 						res.render('more-on', {
 							mode: 'expand',
 							stream: stream.texturedItems,
-							title: 'Related to this story'
+							title: 'See also'
 						});
 					} else {
 						res.status(404).send();
