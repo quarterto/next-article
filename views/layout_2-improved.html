@@ -9,7 +9,6 @@
 			</div>
 			<div data-o-grid-colspan="12 L8">
 				<h3 class="article__title">{{{article.titleHTML}}}</h3>
-
 			</div>
 			<div data-o-grid-colspan="0 L2">&nbsp;</div>
 		</div>
@@ -38,7 +37,8 @@
 				}
 			</script>
 			<div data-o-grid-colspan="12 L8 XL7" class="no-img-img">
-				<img src="{{#resize 700}}http://ft-next-grumman.herokuapp.com/{{article.id}}/main-image{{/resize}}" class="article__img-main" onerror="noImgHack()"/>
+			    <img src="{{#resize 700}}http://ft-next-grumman.herokuapp.com/{{article.id}}/main-image{{/resize}}" alt="Article image" class="article__img-main"
+					srcset="{{#resize 1400}}http://ft-next-grumman.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="noImgHack()">
 			</div>
 			<div data-o-grid-colspan="12 L8 XL7" class="no-img-spacer"><!--hack until we can query image presence in CAPI2 -->&nbsp;</div>
 			<div data-o-grid-colspan="0 L4 XL3" class="article__mpu" data-ad-mpu="l">
