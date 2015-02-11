@@ -295,7 +295,9 @@ $inline-img-width: 300px;
 	.article__brand-offset {
 		margin-top: -30px;
 	}
-	@include oGridRespondTo(L) {
+}
+@include oGridRespondTo(L) {
+	.no-img-hack {
 		.no-img-spacer {
 			display: block;
 		}
@@ -309,7 +311,9 @@ $inline-img-width: 300px;
 			margin-top: -220px;
 		}
 	}
-	@include oGridRespondTo(XL) {
+}
+@include oGridRespondTo(XL) {
+	.no-img-hack {
 		.article__mpu {
 			margin-top: 58px;
 		}
