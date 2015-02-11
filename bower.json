@@ -18,6 +18,7 @@
   },
   "resolutions": {
     "o-fonts": "^1.6.0",
+    "o-ft-forms": "~0.13.2",
     "o-colors": "^2.3.17"
   }
 }
