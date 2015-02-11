@@ -25,7 +25,11 @@
 						</div>
 						<div data-o-grid-colspan="4 S2 XL12" class="article__actions">
 							<span class="article__actions__action"></span>
-							<span class="article__actions__action"></span>
+							<span class="article__actions__action">
+								{{#if @root.flags.userPreferences.isSwitchedOn }}
+									<button data-capi="{{article.id}}" data-headline="{{headline}}" class="save-for-later js-save-for-later" data-toggle-text="Saved for later" aria-label="Save this article for later" title="Save this article for later" >Save</button>
+								{{/if}}
+							</span>
 						</div>
 					</div>
 				</div>
