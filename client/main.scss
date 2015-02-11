@@ -280,3 +280,49 @@ $inline-img-width: 300px;
 	padding: 10px;
 	height: 150px;
 }
+
+//STYLES for a hack that resets the page where there is no article image.
+//When we can query article image presence correctly in CAPI2, the below
+//can be removed along with inline script and event handlers and
+//all class|='no-img' classes in the view
+.no-img-spacer {
+	display: none;
+}
+.no-img-hack {
+	.article__color-brand {
+		padding-bottom: 20px;
+	}
+	.article__brand-offset {
+		margin-top: -30px;
+	}
+}
+@include oGridRespondTo(L) {
+	.no-img-hack {
+		.no-img-spacer {
+			display: block;
+		}
+		.article__mpu {
+			margin-top: 10px;
+		}
+		.article__byline {
+			margin-top: -260px;
+		}
+		.article__body {
+			margin-top: -220px;
+		}
+	}
+}
+@include oGridRespondTo(XL) {
+	.no-img-hack {
+		.article__mpu {
+			margin-top: 58px;
+		}
+		.article__body {
+			margin-top: -250px;
+		}
+		.brand-top-offset {
+			padding-top: 50px;
+		}
+	}
+}
+//NO IMAGE HACK ENDS
