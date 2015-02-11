@@ -32,8 +32,8 @@
 			</div>
 			<script>
 				function noImgHack () {
-					document.querySelector('.no-img-img').style.display = 'none';			
-					document.querySelector('.article').className += ' no-img-hack';		
+					document.querySelector('.no-img-img').style.display = 'none';
+					document.querySelector('.article').className += ' no-img-hack';
 				}
 			</script>
 			<div data-o-grid-colspan="12 L8 XL7" class="no-img-img">
@@ -62,7 +62,22 @@
 		</div>
 		<div class='o-grid-row'>
 			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
-			<div data-o-grid-colspan="12 L8 XL7" class='more-on js-more-on' data-article-id='{{article.id}}'></div>
+			<div data-o-grid-colspan="12 L8 XL7">
+				{{#if @root.flags.userPreferences.isSwitchedOn}}
+				<p>
+					<span
+					class="recommend js-recommend"
+					data-capi="{{id}}"
+					data-headline="{{headline}}"
+					data-toggle-text="You recommended this"
+					aria-label="Recommend this article to you colleagues"
+					title="Recommend this article to your colleagues">
+						Recommend this article to your colleagues
+					</span>
+				</p>
+				{{/if}}
+				<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
+			</div>
 			<div data-o-grid-colspan="0 L2">&nbsp;</div>
 		</div>
 	</div>
