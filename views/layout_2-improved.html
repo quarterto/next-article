@@ -30,10 +30,17 @@
 					</div>
 				</div>
 			</div>
-			<div data-o-grid-colspan="12 L8 XL7">
+			<script>
+				function noImgHack () {
+					document.querySelector('.no-img-img').style.display = 'none';			
+					document.querySelector('.article').className += ' no-img-hack';		
+				}
+			</script>
+			<div data-o-grid-colspan="12 L8 XL7" class="no-img-img">
 			    <img src="{{#resize 700}}http://ft-next-grumman.herokuapp.com/{{article.id}}/main-image{{/resize}}" alt="Article image" class="article__img-main"
-					srcset="{{#resize 1400}}http://ft-next-grumman.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x">
+					srcset="{{#resize 1400}}http://ft-next-grumman.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="noImgHack()">
 			</div>
+			<div data-o-grid-colspan="12 L8 XL7" class="no-img-spacer"><!--hack until we can query image presence in CAPI2 -->&nbsp;</div>
 			<div data-o-grid-colspan="0 L4 XL3" class="article__mpu" data-ad-mpu="l">
 			</div>
 		</div>
@@ -51,6 +58,11 @@
 			<div class="article__body" data-o-grid-colspan="12 L8 XL7">
 				{{{article.bodyXML}}}
 			</div>
+			<div data-o-grid-colspan="0 L2">&nbsp;</div>
+		</div>
+		<div class='o-grid-row'>
+			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
+			<div data-o-grid-colspan="12 L8 XL7" class='more-on js-more-on' data-article-id='{{article.id}}'></div>
 			<div data-o-grid-colspan="0 L2">&nbsp;</div>
 		</div>
 	</div>

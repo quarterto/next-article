@@ -6,6 +6,7 @@ require('ft-next-wrapper');
 require('next-header');
 var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
+var moreOn = require('./components/more-on/main');
 
 require('next-article-card-component');
 var viewport = require('o-viewport');
@@ -41,7 +42,7 @@ function init() {
 		}
 
 		if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
-			require('./components/more-on/main').init(allFlags);
+			moreOn.init(allFlags);
 		}
 
 		if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
