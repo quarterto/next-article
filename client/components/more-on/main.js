@@ -14,7 +14,7 @@ function allSettled(promises) {
 		});
 	};
 	return Promise.all(promises.map(resolveWhenSettled));
-};
+}
 
 var initAds = function(flags) {
 	var called = false;
@@ -47,7 +47,8 @@ module.exports.init = function(flags){
 	});
 
 	$('.js-on-this-topic').forEach(function(el) {
-		fetchPromises.push(fetchText('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))
+		fetchPromises.push(fetch('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))
+			.then(fetchres.text)
 			.then(function(resp) {
 				el.innerHTML = resp;
 				articleCard.init(el);
