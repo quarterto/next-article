@@ -13,7 +13,7 @@ it('should understand that topic pages are stream pages', function() {
 it('should understand that places are now regions', function() {
 	var $ = cheerio.load('<a href="http://www.ft.com/topics/places/Greece">Greece</a>');
 	$('a').replaceWith(relativeLinksTransform);
-	expect($.html()).to.equal('<a href="/tream/regions/Greece">Greece</a>');
+	expect($.html()).to.equal('<a href="/stream/regions/Greece">Greece</a>');
 });
 
 it('should understand that article pages are article pages', function() {
