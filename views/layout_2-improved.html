@@ -32,10 +32,10 @@
 				</div>
 			</div>
 			<script>
-			function noImgHack () {
-				document.querySelector('.no-img-img').style.display = 'none';			
-				document.querySelector('.article').classList.add('no-img-hack');		
-			}
+				function noImgHack () {
+					document.querySelector('.no-img-img').style.display = 'none';			
+					document.querySelector('.article').className += ' no-img-hack';		
+				}
 			</script>
 			<div data-o-grid-colspan="12 L8 XL7" class="no-img-img">
 				<img src="{{#resize 700}}http://ft-next-grumman.herokuapp.com/{{article.id}}/main-image{{/resize}}" class="article__img-main" onerror="noImgHack()"/>
