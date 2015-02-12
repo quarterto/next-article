@@ -13,6 +13,8 @@ var ftContentTransform = require('../transforms/ft-content');
 var relativeLinksTransform = require('../transforms/relative-links');
 var slideshowTransform = require('../transforms/slideshow');
 var trimmedLinksTransform = require('../transforms/trimmed-links');
+var replaceHrs = require('../transforms/replace-hrs');
+var replaceEllipses = require('../transforms/replace-ellipses');
 
 var getMentions = function (annotations) {
 	return annotations.filter(function (an) {
@@ -53,8 +55,8 @@ module.exports = function(req, res, next) {
 
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
-					article.bodyXML = article.bodyXML.replace(/ \. \. \. /g, '&thinsp;&hellip;&thinsp;');
-					article.bodyXML = article.bodyXML.replace(/\. \. \./g, '&hellip;');
+					article.bodyXML = replaceEllipses(article.bodyXML);
+					article.bodyXML = replaceHrs(article.bodyXML);
 					var $ = cheerio.load(article.bodyXML);
 					//Add inline MPU slot
 					var inlineMpuSlot = $('<div />').addClass('article__mpu').attr({

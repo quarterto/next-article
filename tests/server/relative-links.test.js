@@ -10,6 +10,12 @@ it('should understand that topic pages are stream pages', function() {
 	expect($.html()).to.equal('<a href="/stream/themes/Greece Debt Crisis" title="Greece debt crisis in depth - FT.com">Greece&#x2019;s <strong>debt</strong></a>');
 });
 
+it('should understand that places are now regions', function() {
+	var $ = cheerio.load('<a href="http://www.ft.com/topics/places/Greece">Greece</a>');
+	$('a').replaceWith(relativeLinksTransform);
+	expect($.html()).to.equal('<a href="/stream/regions/Greece">Greece</a>');
+});
+
 it('should understand that article pages are article pages', function() {
 	var $ = cheerio.load('<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html" title="Cadbury and Kraft agree &#xA3;11.6bn deal - FT.com">Cadbury was bought by <strong>Kraft</strong></a>');
 	$('a').replaceWith(relativeLinksTransform);
