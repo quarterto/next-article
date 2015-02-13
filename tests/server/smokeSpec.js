@@ -13,7 +13,8 @@ var request = require('request');
 var fastft = require('fastft-api-client');
 var fastftMocks = require('fastft-api-client/mocks');
 
-var article = require('fs').readFileSync('tests/fixtures/03b49444-16c9-11e3-bced-00144feabdc0', { encoding: 'utf8' });
+var articleV1 = require('fs').readFileSync('tests/fixtures/capi1.json', { encoding: 'utf8' });
+var articleV2 = require('fs').readFileSync('tests/fixtures/capi2.json', { encoding: 'utf8' });
 var search = require('fs').readFileSync('tests/fixtures/search-for__climate-change', { encoding: 'utf8' });
 var fastftSearch = require('fs').readFileSync('tests/fixtures/fastft/index.json', { encoding: 'utf8' });
 var fastftPost = require('fs').readFileSync('tests/fixtures/fastft/post.json', { encoding: 'utf8' });
@@ -32,7 +33,7 @@ var servesGoodHTML = function (url, done) {
 
 var uniqueIdArticle = (function () {
 	var count = 999;
-	var articleObject = JSON.parse(article);
+	var articleObject = JSON.parse(articleV1);
 	return function () {
 		articleObject.item.id = (count--) + articleObject.item.id.substr(3);
 		return JSON.stringify(articleObject);
@@ -45,6 +46,11 @@ var mockMethode = function (n) {
 		.get('/content/items/v1/XXX?apiKey=YYY')
 		.times(n || 20)
 		.reply(200, uniqueIdArticle);
+	nock('http://api.ft.com')
+		.filteringPath(/content\/.*\?apiKey=.*$/, 'content/XXX?apiKey=YYY')
+		.get('/content/XXX?apiKey=YYY')
+		.times(n || 20)
+		.reply(200, articleV2);	
 	nock('http://api.ft.com')
 		.filteringPath(/apiKey=(.*)?$/, 'apiKey=YYY')
 		.post('/content/search/v1?apiKey=YYY')
