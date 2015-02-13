@@ -1,5 +1,5 @@
 PORT := 3003
-app := ft-next-grumman
+app := ft-next-grumman-v002
 OBT := $(shell which origami-build-tools)
 ROUTER := $(shell which next-router)
 API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
