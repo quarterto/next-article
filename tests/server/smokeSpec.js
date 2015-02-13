@@ -22,6 +22,7 @@ var fastftPost = require('fs').readFileSync('tests/fixtures/fastft/post.json', {
 var host = 'http://localhost:' + PORT;
 
 var servesGoodHTML = function (url, done) {
+	console.log(host + url);
 	request.get(host + url, function(req, res) {
 		expect(res.headers['content-type']).to.match(/text\/html/);
 		expect(res.statusCode).to.equal(200);
@@ -46,11 +47,14 @@ var mockMethode = function (n) {
 		.get('/content/items/v1/XXX?apiKey=YYY')
 		.times(n || 20)
 		.reply(200, uniqueIdArticle);
-	nock('http://api.ft.com')
-		.filteringPath(/content\/.*\?apiKey=.*$/, 'content/XXX?apiKey=YYY')
-		.get('/content/XXX?apiKey=YYY')
-		.times(n || 20)
-		.reply(200, articleV2);	
+	nock('http://api.ft.com', {
+			reqheaders: {
+				'X-Api-Key': process.env.api2key
+			}
+		})
+		.filteringPath(/content\/.*\?sjl=WITH_RICH_CONTENT$/, 'content/XXX?sjl=WITH_RICH_CONTENT')
+		.get('/content/XXX?sjl=WITH_RICH_CONTENT')
+		.reply(200, articleV2);
 	nock('http://api.ft.com')
 		.filteringPath(/apiKey=(.*)?$/, 'apiKey=YYY')
 		.post('/content/search/v1?apiKey=YYY')
