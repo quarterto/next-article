@@ -22,7 +22,6 @@ var fastftPost = require('fs').readFileSync('tests/fixtures/fastft/post.json', {
 var host = 'http://localhost:' + PORT;
 
 var servesGoodHTML = function (url, done) {
-	console.log(host + url);
 	request.get(host + url, function(req, res) {
 		expect(res.headers['content-type']).to.match(/text\/html/);
 		expect(res.statusCode).to.equal(200);
