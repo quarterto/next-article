@@ -1,10 +1,4 @@
-$o-grid-mode: snappy;
 //$o-grid-debug-mode: true;
-
-body {
-	margin: 0;
-	padding: 0;
-}
 
 .stream__container {
 	z-index: 2;
@@ -30,9 +24,10 @@ body {
 	}
 }
 
-@import "next-colors/main";
-@import "ft-next-wrapper/main";
+@import "next-ui-setup/main";
+
 @import "next-header/main";
+@import "next-footer/main";
 @import "next-article-card-component/main";
 @import "next-user-preferences/main";
 @import "o-ft-icons/main";

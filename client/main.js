@@ -2,7 +2,7 @@
 var flags = require('next-feature-flags-client');
 
 require('isomorphic-fetch');
-require('ft-next-wrapper');
+require('next-ui-setup');
 require('next-header');
 var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
