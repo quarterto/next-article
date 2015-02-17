@@ -75,15 +75,7 @@ clean:
 	git clean -fxd
 
 deploy:
-
-	# Pre-deploy clean
-	npm prune --production
-
-	# Package+deploy
-	@haikro build deploy \
-		--app $(app) \
-		--heroku-token $(HEROKU_AUTH_TOKEN) \
-		--commit `git rev-parse HEAD` \
-		--verbose
-
+	next-build-tools configure
+	next-build-tools deploy
+	
 clean-deploy: clean install deploy
