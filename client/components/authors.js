@@ -1,5 +1,5 @@
 /*global fetch*/
-"use strict";
+'use strict';
 
 var fetchres = require('fetchres');
 
