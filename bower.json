@@ -14,7 +14,7 @@
     "next-ui-setup": "https://github.com/Financial-Times/next-ui-setup.git#^v3.3.0",
     "o-quote": "https://github.com/Financial-Times/o-quote.git#bogdis-design",
     "o-big-number": "Financial-Times/o-big-number#~1.0.0",
-    "next-footer": "Financial-Times/next-footer#~1.1.0",
+    "next-footer": "Financial-Times/next-footer#~1.2.0",
     "next-messaging" : "https://github.com/Financial-Times/next-messaging.git#^1.0.0"
   },
   "resolutions": {
