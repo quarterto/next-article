@@ -4,6 +4,9 @@ OBT := $(shell which origami-build-tools)
 ROUTER := $(shell which next-router)
 API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
 API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
+GIT_HASH := $(shell git rev-parse --short HEAD)
+TEST_HOST := "ft-grumman-branch-${GIT_HASH}"
+TEST_URL ?= "http://ft-grumman-branch-${GIT_HASH}.herokuapp.com/"
 
 .PHONY: test
 
@@ -87,3 +90,10 @@ deploy:
 		--verbose
 
 clean-deploy: clean install deploy
+
+provision:
+	next-build-tools provision ${TEST_HOST}
+	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*,EXPIRY=${ONE_HOUR_FROM_NOW},APP_NAME=${TEST_HOST},HEROKU_AUTH_TOKEN=${HEROKU_AUTH_TOKEN}"
+	next-build-tools deploy ${TEST_HOST}
+	npm install
+	make smoke

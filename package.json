@@ -14,6 +14,8 @@
     "fetchres": "0.0.8",
     "forever": "^0.11.1",
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.10.4.tar.gz",
+    "heroku-seppuku": "https://github.com/Financial-Times/heroku-seppuku/archive/v1.0.3.tar.gz",
+    "next-build-tools": "^1.6.4",
     "ft-next-express": "^5.0.0",
     "haikro": "^1.9.1",
     "next-metrics": "https://github.com/Financial-Times/next-metrics/archive/v1.2.0.tar.gz"
