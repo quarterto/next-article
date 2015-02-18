@@ -2,6 +2,8 @@
 
 "use strict";
 
+var https = require('https');
+
 module.exports = {
 
 	"Js-success Test" : function (browser) {

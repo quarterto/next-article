@@ -97,3 +97,6 @@ provision:
 	next-build-tools deploy ${TEST_HOST}
 	npm install
 	make smoke
+
+smoke:
+	export TEST_URL=${TEST_URL}; ./node_modules/nightwatch/bin/nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox,chrome
