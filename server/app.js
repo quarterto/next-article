@@ -5,6 +5,8 @@ var express = require('ft-next-express');
 var Metrics = require('next-metrics');
 var ifIsAdSlotHelper = require('./view-helpers/if-is-ad-slot');
 
+require('heroku-seppuku')();
+
 Metrics.init({ app: 'grumman', flushEvery: 30000 });
 
 var app = module.exports = express({

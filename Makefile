@@ -4,6 +4,11 @@ OBT := $(shell which origami-build-tools)
 ROUTER := $(shell which next-router)
 API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
 API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
+GIT_HASH := $(shell git rev-parse --short HEAD)
+TEST_HOST := "ft-grumman-branch-${GIT_HASH}"
+TEST_URL ?= "http://ft-grumman-branch-${GIT_HASH}.herokuapp.com/"
+TEN_MINS_FROM_NOW := $(shell node -e "var d = new Date(); d.setMinutes(d.getMinutes() + 10); console.log(d.toISOString())")
+
 
 .PHONY: test
 
@@ -79,3 +84,13 @@ deploy:
 	next-build-tools deploy
 	
 clean-deploy: clean install deploy
+
+provision:
+	next-build-tools provision ${TEST_HOST}
+	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*,EXPIRY=${TEN_MINS_FROM_NOW},APP_NAME=${TEST_HOST},HEROKU_AUTH_TOKEN=${HEROKU_AUTH_TOKEN}"
+	next-build-tools deploy ${TEST_HOST}
+	npm install
+	#make smoke
+
+smoke:
+	export TEST_URL=${TEST_URL}; ./node_modules/nightwatch/bin/nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox,chrome
