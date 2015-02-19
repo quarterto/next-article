@@ -2,8 +2,8 @@
 var flags = require('next-feature-flags-client');
 
 require('isomorphic-fetch');
-require('next-ui-setup');
-require('next-header');
+var uiSetup = require('next-ui-setup');
+var header = require('next-header');
 var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
 var moreOn = require('./components/more-on/main');
@@ -24,6 +24,9 @@ function emit(name, data) {
 
 
 function init() {
+	uiSetup.init();
+	header.init();
+
 	flags.init().then(function () {
 		var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
 		function clearNotification() {
