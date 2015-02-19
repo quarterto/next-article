@@ -7,6 +7,8 @@ API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
 GIT_HASH := $(shell git rev-parse --short HEAD)
 TEST_HOST := "ft-grumman-branch-${GIT_HASH}"
 TEST_URL ?= "http://ft-grumman-branch-${GIT_HASH}.herokuapp.com/"
+ONE_HOUR_FROM_NOW := $(shell node -e "var d = new Date(); d.setHours(d.getHours() + 1); console.log(d.toISOString())")
+
 
 .PHONY: test
 
