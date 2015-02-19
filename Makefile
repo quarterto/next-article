@@ -48,7 +48,7 @@ _run: run-local run-router
 _run-debug: run-local-debug run-router run-local-debug-inspector
 
 run-local:
-	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nodemon server/app.js --watch server
+	export NODE_DEBUG=request; export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nodemon server/app.js --watch server
 
 run-local-debug:
 	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon --debug server/app.js
