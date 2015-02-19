@@ -7,7 +7,7 @@ API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
 GIT_HASH := $(shell git rev-parse --short HEAD)
 TEST_HOST := "ft-grumman-branch-${GIT_HASH}"
 TEST_URL ?= "http://ft-grumman-branch-${GIT_HASH}.herokuapp.com/"
-ONE_HOUR_FROM_NOW := $(shell node -e "var d = new Date(); d.setHours(d.getHours() + 1); console.log(d.toISOString())")
+TEN_MINS_FROM_NOW := $(shell node -e "var d = new Date(); d.setMinutes(d.getMinutes() + 10); console.log(d.toISOString())")
 
 
 .PHONY: test
@@ -95,7 +95,7 @@ clean-deploy: clean install deploy
 
 provision:
 	next-build-tools provision ${TEST_HOST}
-	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*,EXPIRY=${ONE_HOUR_FROM_NOW},APP_NAME=${TEST_HOST},HEROKU_AUTH_TOKEN=${HEROKU_AUTH_TOKEN}"
+	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*,EXPIRY=${TEN_MINS_FROM_NOW},APP_NAME=${TEST_HOST},HEROKU_AUTH_TOKEN=${HEROKU_AUTH_TOKEN}"
 	next-build-tools deploy ${TEST_HOST}
 	npm install
 	make smoke
