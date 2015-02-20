@@ -1,3 +1,6 @@
+/* global fetch */
+'use strict';
+
 var fetchres = require('fetchres');
 
 var numberOfArticles = 1;
@@ -8,7 +11,16 @@ var articleIsLoading = false;
 var currentArticleUid;
 
 function throttle(func, time){
-	//var timeout
+	var callable = true;
+	return function(){
+		if(callable){
+			callable = false;
+			func();
+			setTimeout(function(){
+				callable = true;
+			}, time);
+		}
+	};
 }
 
 function extractArticleUid(article){
@@ -19,7 +31,7 @@ function updateUrl(scroll){
 	for(var i= 0, l=breakpoints.length; i<l; i++){
 		if(
 			scroll > breakpoints[i] &&
-			(i == (l-1) || scroll < breakpoints[i+1]) &&
+			(i === (l-1) || scroll < breakpoints[i+1]) &&
 			articleUIDS[i] !== currentArticleUid
 		){
 			var uid = articleUIDS[i];
@@ -66,8 +78,7 @@ function loadArticle(){
 		.catch(function(err){
 			articleIsLoading = false;
 			throw err;
-
-		})
+		});
 }
 
 function heightOfLastArticle(){
@@ -86,12 +97,12 @@ function onScroll(){
 	var distance = distanceFromBottomOfPage();
 	var height = heightOfLastArticle();
 	var loadTriggerPoint = (height / 10) * 8;
-	var showTriggerPoint =(height / 10) * 1;
+	var updateUrlThrottled = throttle(updateUrl, 500);
 	if(distance <= loadTriggerPoint && !articleIsLoading){
 		loadArticle();
 	}
 
-	updateUrl(window.scrollY);
+	updateUrlThrottled(window.scrollY);
 }
 
 

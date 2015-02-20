@@ -1,6 +1,7 @@
+/*global fetch*/
+/*jshint node:true*/
 'use strict';
 
-var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
@@ -16,9 +17,28 @@ var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
 var request = require('request');
 
+var getMentions = function (annotations) {
+	return annotations.filter(function (an) {
+		return an.predicate.indexOf('mentions') > -1;
+	}).map(function (an) {
+		//TODO : this should go in next-express topicUrl helper
+		try {
+			var pluralisedType = an.type === 'PERSON' ? 'people' : an.type.toLowerCase() + 's';
+			return {
+				url: '/stream/' + pluralisedType + '/' + an.uri.split('/').pop(),
+				name: an.label
+			};
+		} catch (e) {
+			return {
+				url: '#',
+				name: 'unavailable'
+			};
+		}
+	});
+};
+
 function fetchArticle(uid){
 	var url = 'http://api.ft.com/content/items/v1/' + uid;
-	console.log('fetch ' + url);
 	return fetch(url, {
 		headers: {
 			'X-Api-Key': process.env.api2key
@@ -41,7 +61,7 @@ function getCurrentArticleSection(uid){
 	.catch(function(e){
 		console.error(e);
 	});
-};
+}
 
 function getArticleSectionList(section){
 	var requestbody = {
@@ -87,6 +107,7 @@ module.exports = function(req, res, next){
 		res.status(404).end();
 	}
 
+	Metrics.instrument(res, { as: 'express.http.res' });
 	var uid = req.params[0];
 	getCurrentArticleSection(uid)
 	.then(getArticleSectionList)
