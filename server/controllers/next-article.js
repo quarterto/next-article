@@ -73,7 +73,6 @@ function getArticleSectionList(section){
 
 
 	return new Promise(function(resolve, reject){
-		console.log('request articles in section ' + section.name + ' with id ' + section.id);
 		request({
 			method : "POST",
 			uri : 'http://contentapi.ft.com/content/search/v1/',
@@ -86,7 +85,6 @@ function getArticleSectionList(section){
 				return reject(err);
 			}
 
-			console.log(response);
 			resolve(response.results[0].results.map(function(result){
 				return result.id;
 			}));

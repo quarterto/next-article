@@ -9,14 +9,17 @@ var articleUIDS = [];
 var breakpoints = [0];
 var articleIsLoading = false;
 var currentArticleUid;
+var updateUrlThrottled;
 
 function throttle(func, time){
 	var callable = true;
 	return function(){
+		var args = [].slice.call(arguments);
 		if(callable){
 			callable = false;
-			func();
+			func.apply(null, args);
 			setTimeout(function(){
+				console.log('timeout', callable);
 				callable = true;
 			}, time);
 		}
@@ -97,7 +100,6 @@ function onScroll(){
 	var distance = distanceFromBottomOfPage();
 	var height = heightOfLastArticle();
 	var loadTriggerPoint = (height / 10) * 8;
-	var updateUrlThrottled = throttle(updateUrl, 500);
 	if(distance <= loadTriggerPoint && !articleIsLoading){
 		loadArticle();
 	}
@@ -112,9 +114,9 @@ function init(flag){
 		lastArticleUID = extractArticleUid(document.querySelector('article'));
 		currentArticleUid = lastArticleUID;
 		articleUIDS.push(lastArticleUID);
+		updateUrlThrottled = throttle(updateUrl, 500);
 		window.addEventListener('scroll', onScroll);
 	}
-
 }
 
 
