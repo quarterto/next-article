@@ -8,6 +8,7 @@ var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
 var moreOn = require('./components/more-on/main');
 var messaging = require('next-messaging');
+var infiniteScroll = require('./components/infinite-scroll/main');
 
 require('next-article-card-component');
 var viewport = require('o-viewport');
@@ -27,6 +28,7 @@ function init() {
 	uiSetup.init();
 	header.init();
 
+
 	flags.init().then(function () {
 		var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
 		function clearNotification() {
@@ -35,6 +37,8 @@ function init() {
 		if (uuid) clearNotification();
 
 		var allFlags = flags.getAll();
+
+		infiniteScroll.init(allFlags.articleInfiniteScroll);
 
 		messaging.init();
 
