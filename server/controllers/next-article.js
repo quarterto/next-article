@@ -83,22 +83,33 @@ function getNextArticle(articleList, currentId){
 }
 
 module.exports = function(req, res, next){
+	if(res.locals.flags.articleInfiniteScroll.isSwitchedOff){
+		res.status(404).end();
+	}
+
 	var uid = req.params[0];
 	getCurrentArticleSection(uid)
 	.then(getArticleSectionList)
 	.then(function(articles) {
 		var nextArticle = getNextArticle(articles, uid);
-		return fetchArticle(nextArticle);
+		if(nextArticle){
+			return fetchArticle(nextArticle);
+		}
+
+		res.status(404).end();
+
+
 	}).then(function(article){
 				require('fs').writeFileSync('article.json', JSON.stringify(article, null, 4), {encoding:'utf8'});
 				res.vary(['Accept-Encoding', 'Accept']);
 				res.set(cacheControl);
 
 				switch(req.accepts(['html', 'json'])) {
+
 					case 'html':
-						article.bodyXML = replaceEllipses(article.body.body);
-						article.bodyXML = replaceHrs(article.body.body);
-						var $ = cheerio.load(article.body.body);
+						article.bodyXML = replaceEllipses(article.bodyXML || article.body.body);
+						article.bodyXML = replaceHrs(article.bodyXML);
+						var $ = cheerio.load(article.bodyXML);
 						//Add inline MPU slot
 						var inlineMpuSlot = $('<div />').addClass('article__mpu').attr({
 							'data-o-grid-colspan': '12 L0',
@@ -114,7 +125,7 @@ module.exports = function(req, res, next){
 						$('a').replaceWith(trimmedLinksTransform);
 
 						article.bodyXML = $.html();
-						article.bodyXML = article.body.body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
+						article.bodyXML = article.bodyXML.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 						if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
 							article.mentions = getMentions(article.annotations);
 						}
@@ -125,7 +136,7 @@ module.exports = function(req, res, next){
 						res.render((res.locals.flags.articleTemplate2.isSwitchedOn ? 'layout_2-improved' : 'layout_2'), {
 							article: article,
 							title: article.title.title,
-							layout: 'wrapper'
+							layout: false
 						});
 						break;
 
