@@ -16,7 +16,6 @@ function extractArticleUid(article){
 }
 
 function updateUrl(scroll){
-	console.log('updateUrl', scroll, breakpoints);
 	for(var i= 0, l=breakpoints.length; i<l; i++){
 		if(
 			scroll > breakpoints[i] &&
@@ -97,7 +96,6 @@ function onScroll(){
 
 
 function init(flag){
-	console.log('infinteScrollFlag', flag);
 	if(flag.isSwitchedOn){
 		window.scrollTo(0,0);
 		lastArticleUID = extractArticleUid(document.querySelector('article'));
