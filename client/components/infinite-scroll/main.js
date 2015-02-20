@@ -1,16 +1,34 @@
 var fetchres = require('fetchres');
 
 var numberOfArticles = 1;
-var currentArticleUID;
+var lastArticleUID;
 var articleUIDS = [];
+var breakpoints = [0];
 var articleIsLoading = false;
+var currentArticleUid;
+
+function throttle(func, time){
+	//var timeout
+}
 
 function extractArticleUid(article){
 	return article.getAttribute('data-capi-id');
 }
 
-function updateUrl(){
-	console.log('updateURL');
+function updateUrl(scroll){
+	console.log('updateUrl', scroll, breakpoints);
+	for(var i= 0, l=breakpoints.length; i<l; i++){
+		if(
+			scroll > breakpoints[i] &&
+			(i == (l-1) || scroll < breakpoints[i+1]) &&
+			articleUIDS[i] !== currentArticleUid
+		){
+			var uid = articleUIDS[i];
+			history.replaceState({uid: uid}, '', '/' + uid);
+			break;
+		}
+	}
+
 }
 
 function extractArticleHTML(html){
@@ -29,7 +47,7 @@ function loadArticle(){
 	}
 
 	articleIsLoading = true;
-	fetch('/' + currentArticleUID + '/next-article')
+	fetch('/' + lastArticleUID + '/next-article')
 		.then(fetchres.text)
 		.then(function(response){
 			articleIsLoading = false;
@@ -40,9 +58,10 @@ function loadArticle(){
 			var article = extractArticleHTML(response);
 			var uid = extractArticleUid(article.childNodes[0]);
 			document.body.insertBefore(article, document.querySelector('body script:last-child'));
+			breakpoints.push(topOfLastArticle());
 			numberOfArticles++;
 			articleUIDS.push(uid);
-			currentArticleUID = uid;
+			lastArticleUID = uid;
 
 		})
 		.catch(function(err){
@@ -54,6 +73,10 @@ function loadArticle(){
 
 function heightOfLastArticle(){
 	return document.querySelector('article:last-of-type').offsetHeight;
+}
+
+function topOfLastArticle(){
+	return document.querySelector('article:last-of-type').offsetTop;
 }
 
 function distanceFromBottomOfPage(){
@@ -69,15 +92,17 @@ function onScroll(){
 		loadArticle();
 	}
 
-	updateUrl();
+	updateUrl(window.scrollY);
 }
 
 
 function init(flag){
 	console.log('infinteScrollFlag', flag);
 	if(flag.isSwitchedOn){
-		currentArticleUID = extractArticleUid(document.querySelector('article'));
-		articleUIDS.push(currentArticleUID);
+		window.scrollTo(0,0);
+		lastArticleUID = extractArticleUid(document.querySelector('article'));
+		currentArticleUid = lastArticleUID;
+		articleUIDS.push(lastArticleUID);
 		window.addEventListener('scroll', onScroll);
 	}
 
