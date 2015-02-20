@@ -19,7 +19,6 @@ function throttle(func, time){
 			callable = false;
 			func.apply(null, args);
 			setTimeout(function(){
-				console.log('timeout', callable);
 				callable = true;
 			}, time);
 		}
@@ -39,6 +38,7 @@ function updateUrl(scroll){
 		){
 			var uid = articleUIDS[i];
 			history.replaceState({uid: uid}, '', '/' + uid);
+			currentArticleUid = uid;
 			break;
 		}
 	}
