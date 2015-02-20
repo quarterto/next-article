@@ -119,7 +119,6 @@ module.exports = function(req, res, next){
 
 
 	}).then(function(article){
-				require('fs').writeFileSync('article.json', JSON.stringify(article, null, 4), {encoding:'utf8'});
 				res.vary(['Accept-Encoding', 'Accept']);
 				res.set(cacheControl);
 
