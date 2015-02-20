@@ -7,7 +7,7 @@ var https = require('https');
 module.exports = {
 
 	"Js-success Test" : function (browser) {
-		console.log('Testing host', browser.launch_url+"/b70cc2d6-b809-11e4-b6a5-00144feab7de");
+		console.log('Testing host', browser.launch_url+"b70cc2d6-b809-11e4-b6a5-00144feab7de");
 		browser
 			.url(browser.launch_url+"/b70cc2d6-b809-11e4-b6a5-00144feab7de")
 			.waitForElementVisible('body', 5000)
