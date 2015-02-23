@@ -50,8 +50,16 @@ function extractArticleHTML(html){
 	var fragment = document.createDocumentFragment();
 	div.innerHTML = html;
 	fragment.appendChild(div.querySelector('article'));
-	fragment.appendChild(document.querySelector('.alpha-survey__container').cloneNode(true));
-	fragment.appendChild(document.querySelector('.opt-out').cloneNode(true));
+	var survey = document.querySelector('.alpha-survey__container');
+	var optout = document.querySelector('.opt-out');
+	if(survey){
+		fragment.appendChild(survey.cloneNode(true));
+	}
+
+	if(optout){
+		fragment.appendChild(optout.cloneNode(true));
+	}
+
 	return fragment;
 }
 
