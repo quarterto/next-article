@@ -79,7 +79,10 @@
 					</span>
 				</p>
 				{{/if}}
-				<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
+				{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
+					<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
+				{{/if}}
+
 			</div>
 			<div data-o-grid-colspan="0 L2">&nbsp;</div>
 		</div>
