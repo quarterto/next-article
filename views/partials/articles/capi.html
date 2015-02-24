@@ -1,23 +1,23 @@
-<div class="article-card article-card--{{type}} article-card--full" data-capi-id="{{ id }}">
-	<time data-o-component="o-date" class="o-date article-card__time" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
+<div class="next-card--article next-card--article--{{type}} next-card--article--full" data-capi-id="{{ id }}">
+	<time data-o-component="o-date" class="o-date next-card--article__time" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
 		{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
 	</time>
-	<h3 class="article-card__headline article-card__headline--large" data-track-comp-name="headline">
-		<a href="/{{id}}" class="article-card__link">{{headline}}</a>
+	<h3 class="next-card--article__headline next-card--article__headline--large" data-track-comp-name="headline">
+		<a href="/{{id}}" class="next-card--article__link">{{headline}}</a>
 	</h3>
 
 	{{#if @root.flags.userPreferences.isSwitchedOn }}
 		<button data-capi="{{id}}" data-headline="{{headline}}" class="save-for-later js-save-for-later" data-toggle-text="Saved for later" aria-label="Save this article for later" title="Save this article for later" >Save</button>
 	{{/if}}
 
-	<div class="article-card__summary">{{{standFirst}}}</div>
+	<div class="next-card--article__summary">{{{standFirst}}}</div>
 
 	{{#if authors}}
-		<div class="article-card__byline">
+		<div class="next-card--article__byline">
 		{{#ifEquals authors.length 1}}
 			<a href="/stream/{{authors.0.taxonomy}}/{{encode authors.0.name}}">{{authors.0.name}}</a>
 		{{else}}
-			<cite class="article-card__authors" data-track-comp-name="authors">
+			<cite class="next-card--article__authors" data-track-comp-name="authors">
 				<ul>
 				{{#each authors}}
 					<li><a href="/stream/{{taxonomy}}/{{encode name}}">{{name}}</a></li>
@@ -28,19 +28,19 @@
 		</div>
 	{{/if}}
 
-	<div class="article-card__metadata">
+	<div class="next-card--article__metadata">
         {{#if relatedTopics}}
-        <div class="article-card__metadata-list" data-track-comp-name="mentions">
+        <div class="next-card--article__metadata-list" data-track-comp-name="mentions">
             Related Topics:
-            <ul class="article-card__mentions__items">
+            <ul class="next-card--article__mentions__items">
             {{#each relatedTopics}}
-                <li><a class="article-card__tag" href="/stream/{{taxonomy}}/{{encode name}}">{{name}}</a></li>
+                <li><a class="next-card--article__tag" href="/stream/{{taxonomy}}/{{encode name}}">{{name}}</a></li>
             {{/each}}
             </ul>
         </div>
         {{/if}}
 
-		<div class="article-card__length">
+		<div class="next-card--article__length">
 			{{wordCount}} words -
 			{{#ifEquals readingTime 0 }}
 			less than a minute
@@ -77,7 +77,7 @@
 				{{/ifEquals}}
 
 				{{#ifEquals raw.item.assets.[0].type 'video'}}
-					<div class="article-card__media article-card__media--full-width article-card__media--video">
+					<div class="next-card--article__media next-card--article__media--full-width next-card--article__media--video">
 						<video data-brightcove-ref="{{videos.0.fields.sourceReference}}" width="100%" controls poster="{{ largestImage.url }}">
 							<source type="video/mp4">Your browser does not support the video tag.</source>
 						</video>
@@ -90,8 +90,8 @@
 			{{#unless has_gallery}}
 			{{#unless has_video}}
 			{{#if largestImage}}
-			<div class="article-card__media article-card__media--full-width article-card__media--image">
-				<img alt="{{largestImage.alt}}" src="{{#resize 700}}{{largestImage.url}}{{/resize}}" class="article-card__image-{{ id }}"/>
+			<div class="next-card--article__media next-card--article__media--full-width next-card--article__media--image">
+				<img alt="{{largestImage.alt}}" src="{{#resize 700}}{{largestImage.url}}{{/resize}}" class="next-card--article__image-{{ id }}"/>
 			</div>
 			{{/if}}
 			{{/unless}}
@@ -99,7 +99,7 @@
 			{{/unless}}
 
 
-    <div class="article-card__body">
+    <div class="next-card--article__body">
         {{{paragraphs body start=0 end=3}}}
         {{#if @root.flags.ads.isSwitchedOn}}
         <div class="advertising article-body-ad" data-ft-ad-type="article"></div>
