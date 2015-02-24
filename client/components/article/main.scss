@@ -73,3 +73,72 @@ $fontBrand: FinancierDisplay, Georgia, serif;
 		}
 	}
 }
+
+.next-card--article__body {
+	font-family: $fontSerif;
+	font-size: 16px;
+	line-height: 1.4em;
+	margin: 0 0 $vertical-gap;
+	color: $next-grey-dark;
+
+	p {
+		margin: 0;
+	}
+
+	p + p {
+		margin-top: $vertical-gap;
+	}
+
+}
+
+.next-card--article__authors {
+	font-style: normal;
+
+	a {
+		color: $next-blue;
+
+		&:hover {
+			color: $next-black;
+			text-decoration: none;
+			border-bottom: 1px dotted $next-black;
+		}
+	}
+
+	ul {
+		display: inline;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		display: inline-block;
+
+		&:before {
+			content: ',\00a0';
+			display: inline;
+		}
+		&:first-child:before {
+			content: '';
+		}
+		&:last-child:before {
+			content: 'and\00a0';
+		}
+	}
+}
+
+.next-card--article__headline--large {
+	font-size: 30px;
+	line-height: 36px;
+}
+
+.next-card--article__length,
+.next-card--article__byline {
+	font-family: $fontSans;
+	font-size: 12px;
+}
+
+.next-card--article__byline {
+	display: inline-block;
+	margin-bottom: 4px;
+	max-width: 90%; //allow space for expand button
+}
