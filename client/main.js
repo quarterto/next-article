@@ -1,8 +1,7 @@
 'use strict';
-var flags = require('next-feature-flags-client');
+var setup = require('next-js-setup');
 
-require('isomorphic-fetch');
-var uiSetup = require('next-ui-setup');
+var flags = require('next-feature-flags-client');
 var header = require('next-header');
 var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
@@ -25,9 +24,8 @@ function emit(name, data) {
 
 
 function init() {
-	uiSetup.init();
+	setup.init();
 	header.init();
-
 
 	flags.init().then(function () {
 		var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');

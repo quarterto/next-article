@@ -19,3 +19,4 @@ public/main.js-asset-hash.json
 public/main.js.map
 /tests/browser/reports
 /tests/browser/screenshots
+/npm-debug.log.*
