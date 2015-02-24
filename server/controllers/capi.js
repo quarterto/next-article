@@ -58,12 +58,6 @@ module.exports = function(req, res, next) {
 					article.bodyXML = replaceEllipses(article.bodyXML);
 					article.bodyXML = replaceHrs(article.bodyXML);
 					var $ = cheerio.load(article.bodyXML);
-					//Add inline MPU slot
-					var inlineMpuSlot = $('<div />').addClass('article__mpu').attr({
-						'data-o-grid-colspan': '12 L0',
-						'data-ad-mpu': 'xs'
-					});
-					$('p').eq(0).after(inlineMpuSlot);
 					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
 					$('pull-quote').replaceWith(pullQuotesTransform);
 					$('big-number').replaceWith(bigNumberTransform);
