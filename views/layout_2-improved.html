@@ -2,6 +2,9 @@
 <article class="article article--default" data-capi-id="{{article.id}}">
 	<div class="article__color-brand">
 		<div class="o-grid-row">
+			{{#if @root.flags.ads.isSwitchedOn}}
+				<div class="advertising" data-o-ads-position="banlb" data-o-ads-page-type="art"></div>
+			{{/if}}
 			<div data-o-grid-colspan="12 XL2">
 				<div class="article__type">
 					News
@@ -44,7 +47,6 @@
 					srcset="{{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="noImgHack()">
 			</div>
 			<div data-o-grid-colspan="12 L8 XL7" class="no-img-spacer"><!--hack until we can query image presence in CAPI2 -->&nbsp;</div>
-			<div data-o-grid-colspan="0 L4 XL3" class="article__mpu" data-ad-mpu="l">
 			</div>
 		</div>
 		<div class="o-grid-row">
