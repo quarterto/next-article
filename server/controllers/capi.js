@@ -36,6 +36,20 @@ var getMentions = function (annotations) {
 	});
 };
 
+var createAdSlot = function ($, position, options){
+	options = options || {};
+	var containerAttrs = options.containerAttrs || { 'data-o-grid-colspan': '0 L6 XL6' };
+	var slot = $('<div />').addClass('advertising').attr({
+		'data-o-ads-position': position,
+		'data-o-ads-page-type': 'art'
+	});
+
+	var container = $('<div />').attr(containerAttrs).append(slot);
+
+
+	return container;
+};
+
 module.exports = function(req, res, next) {
 
 	Metrics.instrument(res, { as: 'express.http.res' });
@@ -58,6 +72,17 @@ module.exports = function(req, res, next) {
 					article.bodyXML = replaceEllipses(article.bodyXML);
 					article.bodyXML = replaceHrs(article.bodyXML);
 					var $ = cheerio.load(article.bodyXML);
+
+					if (res.locals.flags.ads.isSwitchedOn) {
+						var paragraphs = $('p');
+						if (paragraphs.length > 10) {
+							paragraphs.eq(1).after(createAdSlot($, 'hlfmpu'));
+							paragraphs.eq(10).after(createAdSlot($, 'mpu'));
+						} else {
+							paragraphs.eq(1).after(createAdSlot($, 'mpu'));
+						}
+					}
+
 					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
 					$('pull-quote').replaceWith(pullQuotesTransform);
 					$('big-number').replaceWith(bigNumberTransform);
@@ -67,6 +92,7 @@ module.exports = function(req, res, next) {
 					$('a').replaceWith(trimmedLinksTransform);
 
 					article.bodyXML = $.html();
+
 					article.bodyXML = article.bodyXML.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 					if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
 						article.mentions = getMentions(article.annotations);

@@ -61,19 +61,7 @@
 		<div class="o-grid-row">
 			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
 			<div class="article__body" data-o-grid-colspan="12 L8 XL7">
-			{{#if @root.flags.ads.isSwitchedOn}}
-				{{{paragraphs article.bodyXML start=0 end=2}}}
-				<div data-o-grid-colspan="0 L6 XL6">
-					<div class="advertising" data-o-ads-position="hlfmpu" data-o-ads-page-type="art"></div>
-				</div>
-				{{{paragraphs article.bodyXML start=3 end=10}}}
-				<div data-o-grid-colspan="0 L6 XL6">
-					<div class="advertising" data-o-ads-position="mpu" data-o-ads-page-type="art"></div>
-				</div>
-				{{{paragraphs article.bodyXML start=11}}}
-			{{else}}
 				{{{article.bodyXML}}}
-			{{/if}}
 			</div>
 			<div data-o-grid-colspan="0 L2">&nbsp;</div>
 		</div>
