@@ -9,18 +9,15 @@
     "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client.git#^v3.0.0",
     "next-barrier-component": "https://github.com/Financial-Times/next-barrier-component.git#^1.0.0",
     "next-header": "^5.0.0",
-    "isomorphic-fetch": "^1.1.0",
     "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v2.2.1",
-    "next-ui-setup": "https://github.com/Financial-Times/next-ui-setup.git#^v4.0.0",
+    "next-sass-setup": "https://github.com/Financial-Times/next-sass-setup.git#^v5.0.0",
+    "next-js-setup": "https://github.com/Financial-Times/next-js-setup.git#^v1.0.0",
     "o-quote": "https://github.com/Financial-Times/o-quote.git#bogdis-design",
     "o-big-number": "Financial-Times/o-big-number#~1.0.0",
     "next-footer": "Financial-Times/next-footer#^1.3.3",
     "next-messaging": "https://github.com/Financial-Times/next-messaging.git#^1.0.0"
   },
   "resolutions": {
-    "o-fonts": "^1.6.0",
-    "o-colors": "^2.3.17",
-    "o-ft-forms": "~0.13.2",
-    "next-ui-setup": "^v4.0.0"
+    "o-ft-forms": "~0.13.2"
   }
 }

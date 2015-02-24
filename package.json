@@ -16,7 +16,7 @@
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.10.4.tar.gz",
     "heroku-seppuku": "https://github.com/Financial-Times/heroku-seppuku/archive/v1.0.3.tar.gz",
     "next-build-tools": "^1.6.4",
-    "ft-next-express": "^5.0.0",
+    "ft-next-express": "^6.1.0",
     "haikro": "^1.9.1",
     "next-build-tools": "^1.6.4",
     "request": "^2.44.0",
