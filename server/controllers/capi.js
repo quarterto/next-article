@@ -118,7 +118,18 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				res.status(404).end();
+				fetch('http://api.ft.com/content/items/v1/' + req.params[0] + '?feature.blogposts=on', {
+					headers: {
+						'X-Api-Key': process.env.apikey
+					}
+				})
+					.then(fetchres.json)
+					.then(function(data) {
+						res.render('layout_404', { layout: 'wrapper', url: data.item.location.uri });
+					})
+					.catch(function() {
+						res.status(404).end();
+					});
 			} else {
 				next(err);
 			}

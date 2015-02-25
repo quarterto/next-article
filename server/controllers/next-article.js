@@ -47,9 +47,6 @@ function fetchArticle(uid){
 	.then(fetchres.json)
 	.then(function(article) {
 		return article.item;
-	})
-	.catch(function(e){
-		console.error(e);
 	});
 }
 
