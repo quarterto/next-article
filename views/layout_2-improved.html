@@ -83,6 +83,9 @@
 				{{/if}}
 				{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
 					<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
+					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
+					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
+
 				{{/if}}
 
 			</div>
