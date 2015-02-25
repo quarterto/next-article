@@ -118,7 +118,7 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				fetch('http://api.ft.com/content/items/v1/' + req.params[0], {
+				fetch('http://api.ft.com/content/items/v1/' + req.params[0] + '?feature.blogposts=on', {
 					headers: {
 						'X-Api-Key': process.env.apikey
 					}
