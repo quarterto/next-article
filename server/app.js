@@ -16,7 +16,7 @@ var app = module.exports = express({
 });
 
 app.get('/', function(req, res) {
-	//res.redirect('/search?q=page:Front%20page');
+	res.redirect('/search?q=page:Front%20page');
 });
 
 // The Access endpoint calls this to establish content classification
