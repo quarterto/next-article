@@ -21,7 +21,7 @@
     "next-build-tools": "^1.6.4",
     "request": "^2.44.0",
     "next-metrics": "https://github.com/Financial-Times/next-metrics/archive/v1.2.0.tar.gz",
-    "ft-api-client" : "https://github.com/Financial-Times/ft-api-client/archive/v3.12.1.tar.gz"
+    "ft-api-client" : "https://github.com/Financial-Times/ft-api-client/archive/v3.13.0.tar.gz"
   },
   "devDependencies": {
     "chai": "^1.9.2",
