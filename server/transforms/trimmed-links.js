@@ -4,12 +4,23 @@
 var $ = require('cheerio');
 module.exports = function(index, el) {
 	el = $(el);
+	var matches;
+	var contents = el.html()
+		.replace("\n", " ")
+		.replace('&#x201C;', '“')
+		.replace('&#x201D;', '”');
+
+	var quoteReg = /^“ ?(.*) ?”$/;
+	matches = quoteReg.exec(contents);
+	if (matches) {
+		el.html(matches[1]);
+		return '“' + $.html(el) + '”';
+	}
+
 	var trailingReg = /([ ,.;:] ?)$/;
 	var trailing = '';
 	var leadingReg = /^([ ,.;:] ?)/;
 	var leading = '';
-	var matches;
-	var contents = el.html().replace("\n", " ");
 	matches = trailingReg.exec(contents);
 	if (matches) {
 		contents = contents.replace(trailingReg, '');

@@ -28,6 +28,18 @@ it('should ensure trailing commas go outside of a tags', function() {
 	expect($.html()).to.equal('<p>including <a href="http://www.ft.com/intl/indepth/living-with-cheaper-oil">oil</a>, and in the stuttering performance</p>');
 });
 
+it('should only link within quotes', function() {
+	var $ = cheerio.load('he was <a href="http://www.ft.com/intl/cms/s/2/3d2ba75c-1fdf-11e3-8861-00144feab7de.html#axzz3QvWy0Wvl" title="China’s ‘sent-down’ youth - FT.com">“sent down”</a> to the countryside');
+	$('a').replaceWith(trimmedLinksTransform);
+	expect($.html()).to.equal('he was &#x201C;<a href=\"http://www.ft.com/intl/cms/s/2/3d2ba75c-1fdf-11e3-8861-00144feab7de.html#axzz3QvWy0Wvl\" title=\"China&#x2019;s &#x2018;sent-down&#x2019; youth - FT.com\">sent down</a>&#x201D; to the countryside');
+});
+
+it('should only not include the quote if the string starts and finishes with a quote', function() {
+	var $ = cheerio.load('<a href="http://www.ft.com/intl/cms/s/2/3d2ba75c-1fdf-11e3-8861-00144feab7de.html#axzz3QvWy0Wvl" title="China’s ‘sent-down’ youth - FT.com">he was “sent down”</a> to the countryside');
+	$('a').replaceWith(trimmedLinksTransform);
+	expect($.html()).to.equal('<a href=\"http://www.ft.com/intl/cms/s/2/3d2ba75c-1fdf-11e3-8861-00144feab7de.html#axzz3QvWy0Wvl\" title=\"China&#x2019;s &#x2018;sent-down&#x2019; youth - FT.com\">he was &#x201C;sent down&#x201D;</a> to the countryside');
+});
+
 it('should fix the spaces even if editorial are blatantly trolling me', function() {
 	var $ = cheerio.load("<a>distort the CPIH measure\n</a> , ");
 	$('a').replaceWith(trimmedLinksTransform);
