@@ -17,7 +17,7 @@
 	</div>
 	<div class="article__brand-offset">
 		<div class="o-grid-row">
-			<div data-o-grid-colspan="12 L8 XL2">
+			<div data-o-grid-colspan="12 L12 XL2">
 				<div class="o-grid-row">
 					<div class="brand-top-offset article__meta">
 						<div data-o-grid-colspan="8 S10 L6 XL12">
@@ -36,59 +36,44 @@
 					</div>
 				</div>
 			</div>
-			<script>
-				function noImgHack () {
-					document.querySelector('article').className += ' no-img-hack';
-				}
-			</script>
-			<div data-o-grid-colspan="12 L8 XL7" class="no-img-img">
-			    <img src="{{#resize 700}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}}" alt="Article image" class="article__img-main"
-					srcset="{{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="noImgHack()">
-			</div>
-			<div data-o-grid-colspan="12 L8 XL7" class="no-img-spacer"><!--hack until we can query image presence in CAPI2 -->&nbsp;</div>
-			</div>
-		</div>
-		<div class="o-grid-row">
-			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
 			<div data-o-grid-colspan="12 L8 XL7">
+				<div class="article__main-image">
+					<img src="{{#resize 700}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}}" alt="Article image"
+						srcset="{{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="this.parentNode.innerHTML='&nbsp;'">
+				</div>
+				<div>
 				{{#if article.byline}}
 					<cite class="article__byline">By {{article.byline}}</cite>
 				{{/if}}
-			</div>
-			<div data-o-grid-colspan="0 XL3">&nbsp;</div>
-		</div>
-		<div class="o-grid-row">
-			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
-			<div class="article__body" data-o-grid-colspan="12 L8 XL7">
-				{{{article.bodyXML}}}
-			</div>
-			<div data-o-grid-colspan="0 L2">&nbsp;</div>
-		</div>
-		<div class='o-grid-row'>
-			<div data-o-grid-colspan="0 XL2">&nbsp;</div>
-			<div data-o-grid-colspan="12 L8 XL7">
-				{{#if @root.flags.userPreferences.isSwitchedOn}}
-				<p>
-					<span
-					class="recommend js-recommend"
-					data-capi="{{article.id}}"
-					data-headline="{{article.title}}"
-					data-toggle-text="You recommended this"
-					aria-label="Recommend this article to you colleagues"
-					title="Recommend this article to your colleagues">
-						Recommend this article to your colleagues
-					</span>
-				</p>
-				{{/if}}
-				{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
-					<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
-					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
-					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
+				</div>
+				<div class="article__body">
+					{{{article.bodyXML}}}
+				</div>
+				<div>
+					{{#if @root.flags.userPreferences.isSwitchedOn}}
+					<p>
+						<span
+						class="recommend js-recommend"
+						data-capi="{{article.id}}"
+						data-headline="{{article.title}}"
+						data-toggle-text="You recommended this"
+						aria-label="Recommend this article to you colleagues"
+						title="Recommend this article to your colleagues">
+							Recommend this article to your colleagues
+						</span>
+					</p>
+					{{/if}}
+					{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
+						<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
+						<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
+						<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
 
-				{{/if}}
-
+					{{/if}}
+				</div>
 			</div>
-			<div data-o-grid-colspan="0 L2">&nbsp;</div>
+			<div data-o-grid-colspan="0 L4 XL3">
+				<div class="advertising" data-o-ads-position="mpu" data-o-ads-page-type="art"></div>
+			</div>
 		</div>
 	</div>
 </article>
