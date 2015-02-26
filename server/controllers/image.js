@@ -1,10 +1,9 @@
+/*global fetch, process*/
 'use strict';
 
 var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
-
-	console.log(req.params.id);
 	fetch('http://api.ft.com/content/' + req.params.id, {
 		headers: {
 			'X-Api-Key': process.env.api2key
