@@ -13,6 +13,7 @@ var ftContentTransform = require('../transforms/ft-content');
 var relativeLinksTransform = require('../transforms/relative-links');
 var slideshowTransform = require('../transforms/slideshow');
 var trimmedLinksTransform = require('../transforms/trimmed-links');
+var pHackTransform = require('../transforms/p-hack');
 var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
 
@@ -63,6 +64,7 @@ module.exports = function(req, res, next) {
 					$('pull-quote').replaceWith(pullQuotesTransform);
 					$('big-number').replaceWith(bigNumberTransform);
 					$('ft-content').replaceWith(ftContentTransform);
+					$('p').replaceWith(pHackTransform);
 					$('blockquote').attr('class', 'o-quote o-quote--standard');
 					$('a').replaceWith(relativeLinksTransform);
 					$('a').replaceWith(trimmedLinksTransform);
