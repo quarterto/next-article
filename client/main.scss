@@ -47,11 +47,6 @@ $o-big-number-is-silent: false;
 $brandOffset: 80px;
 $inline-img-width: 300px;
 
-.advertising {
-	padding: 0;
-	box-shadow: none;
-}
-
 @include oFtIconsFontFace();
 @include oFontsInclude(FinancierDisplayWeb);
 @include oFontsInclude(FinancierDisplayText);
