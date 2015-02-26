@@ -172,7 +172,13 @@ $inline-img-width: 300px;
 		max-width: 100%;
 		width: 100%;
 	}
-	min-height: 100px;
+	min-height: 35px;
+}
+
+@include oGridRespondTo(XL) {
+	.article__main-image {
+		min-height: 90px;
+	}
 }
 .article__mpu {
 	text-align: center;
