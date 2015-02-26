@@ -1,9 +1,6 @@
 <article class="article article--default" data-capi-id="{{article.id}}">
 	<div class="article__color-brand">
 		<div class="o-grid-row">
-			{{#if @root.flags.ads.isSwitchedOn}}
-				<div class="advertising" data-o-ads-position="banlb" data-o-ads-page-type="art"></div>
-			{{/if}}
 			<div data-o-grid-colspan="12 XL2">
 				<div class="article__type">
 					News
@@ -71,8 +68,7 @@
 					{{/if}}
 				</div>
 			</div>
-			<div data-o-grid-colspan="0 L4 XL3">
-				<div class="advertising" data-o-ads-position="mpu" data-o-ads-page-type="art"></div>
+			<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3">
 			</div>
 		</div>
 	</div>
