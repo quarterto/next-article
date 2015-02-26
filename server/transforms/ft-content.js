@@ -14,5 +14,7 @@ module.exports = function(index, el) {
 			return '<img src="/embedded-components/image' + url + '"/ >';
 		case 'http://www.ft.com/ontology/content/Article':
 			return '<a href="' + url + '">' + text + '</a>';
+		default:
+			return '';
 	}
 };
