@@ -150,9 +150,10 @@ $inline-img-width: 300px;
 	font-size: 16px;
 	color: $next-grey-dark;
 	margin-bottom: 3em;
-	> p {
+	> ft-paragraph {
 		margin: 0.3em 0 0.4em;
 		line-height: 24px;
+		display: block;
 	}
 
 	blockquote {
@@ -202,7 +203,7 @@ $inline-img-width: 300px;
 	}
 	.article__body {
 		font-size: 21px;
-		> p {
+		> ft-paragraph {
 			line-height: 28px;
 		}
 	}
@@ -222,7 +223,7 @@ $inline-img-width: 300px;
 	}
 	.article__body {
 		font-size: 24px;
-		> p {
+		> ft-paragraph {
 			line-height: 35px;
 		}
 	}
