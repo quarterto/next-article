@@ -3,7 +3,7 @@
   "dependencies": {
     "o-fonts": "^1.6.4",
     "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^v7.0.0",
-    "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#vanilla",
+    "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^v3.0.0",
     "next-barrier-component": "https://github.com/Financial-Times/next-barrier-component.git#^1.0.0",
     "next-header": "^5.0.0",
     "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^v2.2.1",
@@ -16,7 +16,6 @@
   },
   "resolutions": {
     "o-ft-forms": "~0.13.2",
-    "next-ads-component": "vanilla",
     "next-feature-flags-client": "^v5.0.0"
   }
 }
