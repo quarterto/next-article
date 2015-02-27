@@ -1,144 +1,225 @@
+//VARIABLES
+$brand-offset: 80px;
+$inline-img-width: 300px;
 
-$fontSans: BentonSans, Arial, sans-serif;
-$fontSerif: Georgia, Times New Roman, serif;
-$fontBrand: FinancierDisplay, Georgia, serif;
+//ARTICLE COLOUR BRANDS
+.article__color-brand {
+	padding-bottom: $brand-offset;
 
-.stream {
-	position: relative;
-}
-
-.stream-list__title {
-	//o-ft-typography-heading1
-	font-family: $fontSans;
-	font-weight: 700;
-	font-style: normal;
-	font-size: 16px;
-	line-height: 20px;
-	padding-top: 8px;
-	padding-bottom: 7px;
-	border-top: 4px solid #a7a59b;
-	border-bottom: 1px dotted #a7a59b;
-	a {
-		color: $next-black;
-		text-decoration: none;
-		&:hover {
-			text-decoration: underline;
-		}
+	.article--default & {
+		background-color: #f6e9d8;
 	}
-	&:after {
-		content: '';
-		display: block;
-		clear: both;
+	.article--analysis & {
+		background-color: #b34462;//TODO: convert to $next-color
+
+	}
+	.article--opinion & {
+		background-color: #5fadcf;//TODO: convert to $next-color
 	}
 }
 
-.stream-list__related {
-	ul {
-		display: inline;
-		margin: 0;
-		padding: 0;
-
-		> li {
-			list-style: none;
-		}
-	}
+//ARTICLE BRAND OFFSET
+.article__brand-offset {
+	margin-top: -$brand-offset;
 }
 
-.stream-list__heading {
-	font-family: $fontSans;
+//ARTICLE ELEMENTS
+.article__title {
+	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
+	font-weight: 500;
+	color: $next-black;
+	font-size: 36px;
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+.article__type {
+	display: block;
+	margin-top: 10px;
 	text-transform: uppercase;
-	font-weight: bold;
+	font-family: Arial, sans-serif;
+	font-weight: 600;
+
+	.article-type-analysis & {
+		text-align: center;
+	}
+}
+.article__inline-image {
+	float: left;
+	clear: left;
+	margin-right: 1em;
+	margin-bottom: 1em;
+}
+//ARTICLE META ELEMENTS
+.article__meta {
+	font-family: Arial;
+	margin-bottom: 1em;
 	font-size: 12px;
-	text-align: center;
+	line-height: 16px;
+	color: $next-grey-dark;
 }
-
-.stream-list__stream-link {
-
-	border: 1px solid #000000;
-	margin: 10px 0;
-	.icon-arrow-right {
-		float: right;
-	}
-	a {
-		display: block;
-		padding: 10px;
-		font-family: $fontSans;
-		color: $next-black;
-		text-decoration: none;
-
-	}
-	&:hover {
-		a {
-			text-decoration: underline;
-		}
-	}
-}
-
-.next-card--article__body {
-	font-family: $fontSerif;
-	font-size: 16px;
-	line-height: 1.4em;
-	margin: 0 0 $vertical-gap;
+.article__byline {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: block;
+	font-family: Arial;
+	font-style: normal;
+	font-size: 14px;
+	line-height: 16px;
 	color: $next-grey-dark;
 
-	p {
-		margin: 0;
+	a {
+		font-weight: bold;
+		color: $next-grey-dark;
 	}
-
-	p + p {
-		margin-top: $vertical-gap;
+}
+.article__meta__time {
+	margin-bottom: 10px;
+}
+.article__meta__time::before {
+	background-image: url("/grumman/assets/img/time.svg");
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	content: " ";
+	background-position: left center;
+	background-size: 100%;
+	margin-bottom: -4px;
+	margin-right: 2px;
+	opacity: 0.6;
+}
+.article__actions__action {
+	float: right;
+	margin-bottom: 10px;
+	&:nth-of-type(2) {
+		margin-right: 15px;
 	}
-
 }
 
-.next-card--article__authors {
-	font-style: normal;
+//ARTICLE BODY ELEMENTS
+.article__body {
+	font-family: oFontsGetFontFamilyWithFallbacks(FinancierTextWeb);
+	font-size: 16px;
+	color: $next-grey-dark;
+	margin-bottom: 3em;
+	> ft-paragraph {
+		margin: 0.3em 0 0.4em;
+		line-height: 24px;
+		display: block;
+	}
+
+	blockquote {
+		margin: 1.5em 0;
+	}
 
 	a {
-		color: $next-blue;
-
-		&:hover {
-			color: $next-black;
-			text-decoration: none;
-			border-bottom: 1px dotted $next-black;
-		}
+		color: $next-grey-dark;
 	}
 
-	ul {
-		display: inline;
-		margin: 0;
-		padding: 0;
-	}
-
-	li {
-		display: inline-block;
-
-		&:before {
-			content: ',\00a0';
-			display: inline;
-		}
-		&:first-child:before {
-			content: '';
-		}
-		&:last-child:before {
-			content: 'and\00a0';
-		}
+	video {
+		width: 100%;
 	}
 }
-
-.next-card--article__headline--large {
-	font-size: 30px;
-	line-height: 36px;
+.article__main-image {
+	img {
+		max-width: 100%;
+		width: 100%;
+	}
+	min-height: 35px;
 }
 
-.next-card--article__length,
-.next-card--article__byline {
-	font-family: $fontSans;
-	font-size: 12px;
+@include oGridRespondTo(XL) {
+	.article__main-image {
+		min-height: 90px;
+	}
+}
+.article__mpu {
+	text-align: center;
+	padding: 10px 0;
+}
+.article__img-inline,
+.article__img-inline-offset {
+	float: left;
+	margin: 10px 10px 0 0;
+	max-width: 100%;
+}
+.article__pullquote {
+	display: block;
+}
+.article__gallery {
+	line-height: initial;
 }
 
-.next-card--article__byline {
-	display: inline-block;
-	margin-bottom: 4px;
-	max-width: 90%; //allow space for expand button
+//++++++++++++++++++++++++++
+//+ Breakpoints
+//++++++++++++++++++++++++++
+@include oGridRespondTo(S) {
+	.article__title {
+		font-size: 45px;
+		line-height: 50px;
+	}
+	.article__meta {
+		font-size: 14px;
+		line-height: 20px;
+	}
+	.article__body {
+		font-size: 21px;
+		> ft-paragraph {
+			line-height: 28px;
+		}
+	}
+	.article__img-inline,
+	.article__img-inline-offset {
+		max-width: $inline-img-width;
+	}
+}
+@include oGridRespondTo(M) {
+	.article__title {
+		font-size: 60px;
+		line-height: 60px;
+	}
+	.article__meta {
+		font-size: 16px;
+		line-height: 20px;
+	}
+	.article__body {
+		font-size: 24px;
+		> ft-paragraph {
+			line-height: 35px;
+		}
+	}
+	.article__img-inline,
+	.article__img-inline-offset {
+		max-width: $inline-img-width;
+	}
+}
+@include oGridRespondTo(L) {
+	.article__title {
+		margin-top: 20px;
+	}
+	.article__mpu {
+		padding-top: 0;
+	}
+	.article__img-inline-offset {
+		margin-left: -$inline-img-width/2;
+	}
+	.article__pullquote {
+		width: 780px;
+		margin-left: -$inline-img-width/2;
+	}
+}
+@include oGridRespondTo(XL) {
+	.article__type {
+		margin-top: 30px;
+	}
+	.article__actions {
+		margin-top: 20px;
+	}
+	.article__actions__action {
+		float: left;
+		margin-right: 15px;
+	}
+	.brand-top-offset {
+		padding-top: $brand-offset + 20px;
+	}
 }
