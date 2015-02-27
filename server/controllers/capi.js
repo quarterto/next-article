@@ -17,10 +17,11 @@ var pHackTransform = require('../transforms/p-hack');
 var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
 
-var getMentions = function (annotations) {
-	return annotations.filter(function (an) {
+var getMentions = function(annotations) {
+	return annotations.filter(function(an) {
 		return an.predicate.indexOf('mentions') > -1;
-	}).map(function (an) {
+	}).map(function(an) {
+
 		//TODO : this should go in next-express topicUrl helper
 		try {
 			var pluralisedType = an.type === 'PERSON' ? 'people' : an.type.toLowerCase() + 's';
@@ -40,15 +41,14 @@ var getMentions = function (annotations) {
 module.exports = function(req, res, next) {
 
 	Metrics.instrument(res, { as: 'express.http.res' });
-	if (res.locals.flags.articlesFromContentApiV2.isSwitchedOn) {
-		var contentEndpoint = res.locals.flags.streamsFromContentApiV2.isSwitchedOn ? 'enrichedcontent' : 'content';
-		// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
-		// http://int.api.ft.com/enrichedcontent/3e9e7958-cffe-3257-bd84-41706f03f039 has more annotationss
-		fetch('http://api.ft.com/' + contentEndpoint + '/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
-			headers: {
-				'X-Api-Key': process.env.api2key
-			}
-		})
+	var contentEndpoint = res.locals.flags.streamsFromContentApiV2.isSwitchedOn ? 'enrichedcontent' : 'content';
+	// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
+	// http://int.api.ft.com/enrichedcontent/3e9e7958-cffe-3257-bd84-41706f03f039 has more annotationss
+	fetch('http://api.ft.com/' + contentEndpoint + '/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
+		headers: {
+			'X-Api-Key': process.env.api2key
+		}
+	})
 		.then(fetchres.json)
 		.then(function(article) {
 			res.vary(['Accept-Encoding', 'Accept']);
@@ -112,34 +112,4 @@ module.exports = function(req, res, next) {
 				next(err);
 			}
 		});
-
-	} else {
-		ft
-		.get(req.params[0])
-		.then(function (article) {
-			res.vary(['Accept-Encoding', 'Accept']);
-			res.set(cacheControl);
-
-			switch(req.accepts(['html', 'json'])) {
-				case 'html':
-					res.render('layout', {
-						article: article,
-						layout: 'wrapper'
-					});
-					break;
-
-				case 'json':
-					res.set(cacheControl);
-					res.json(article);
-					break;
-
-				default:
-					res.status(406).end();
-					break;
-
-			}
-
-		})
-		.catch(next);
-	}
 };
