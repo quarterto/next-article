@@ -116,15 +116,13 @@ function onScroll(){
 }
 
 
-function init(flag){
-	if(flag.isSwitchedOn){
-		window.scrollTo(0,0);
-		lastArticleUID = extractArticleUid(document.querySelector('article'));
-		currentArticleUid = lastArticleUID;
-		articleUIDS.push(lastArticleUID);
-		updateUrlThrottled = throttle(updateUrl, 500);
-		window.addEventListener('scroll', onScroll);
-	}
+function init(){
+	window.scrollTo(0,0);
+	lastArticleUID = extractArticleUid(document.querySelector('article'));
+	currentArticleUid = lastArticleUID;
+	articleUIDS.push(lastArticleUID);
+	updateUrlThrottled = throttle(updateUrl, 500);
+	window.addEventListener('scroll', onScroll);
 }
 
 
