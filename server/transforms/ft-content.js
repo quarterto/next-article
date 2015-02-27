@@ -11,7 +11,7 @@ module.exports = function(index, el) {
 
 	switch (type) {
 		case 'http://www.ft.com/ontology/content/ImageSet':
-			return '<img src="/embedded-components/image' + url + '"/ >';
+			return '<img class="article__inline-image" src="/embedded-components/image' + url + '"/ >';
 		case 'http://www.ft.com/ontology/content/Article':
 			return '<a href="' + url + '">' + text + '</a>';
 		default:
