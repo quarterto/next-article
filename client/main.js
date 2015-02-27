@@ -1,7 +1,5 @@
 'use strict';
 var setup = require('next-js-setup');
-
-var flags = require('next-feature-flags-client');
 var header = require('next-header');
 var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
@@ -24,10 +22,9 @@ function emit(name, data) {
 
 
 function init() {
-	setup.init();
-	header.init();
-
-	flags.init().then(function () {
+	setup.init().then(function (result) {
+		var flags = result.flags;
+		header.init();
 		var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
 		function clearNotification() {
 			emit('notifications:remove', { uuid: uuid });
@@ -40,24 +37,16 @@ function init() {
 
 		messaging.init();
 
-		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
+		if (flags.get('articlesFromContentApiV2')) {
 			slideshow(document.querySelectorAll('ft-slideshow'));
 			authors(uuid, document.querySelector('.article__byline'));
 		}
 
-		if (allFlags.userPreferences && allFlags.userPreferences.isSwitchedOn) {
-			require('next-user-preferences');
-		}
-
-		if (allFlags.contentApiCalls && allFlags.contentApiCalls.isSwitchedOn) {
+		if (flags.get('contentApiCalls')) {
 			moreOn.init(allFlags);
 		}
 
-		if (allFlags.beacon && allFlags.beacon.isSwitchedOn) {
-			require('next-beacon-component');
-		}
-
-		if (allFlags.articlesFromContentApiV2 && allFlags.articlesFromContentApiV2.isSwitchedOn) {
+		if (flags.get('articlesFromContentApiV2')) {
 			require('./components/video/main');
 
 			//[Re-]position mpu
@@ -71,7 +60,7 @@ function init() {
 			adSlots.placeMpu();
 		}
 
-		if (allFlags.streamsFromContentApiV2 && allFlags.streamsFromContentApiV2.isSwitchedOn) {
+		if (flags.get('streamsFromContentApiV2')) {
 			require('./components/capi2-related/main');
 		}
 	});
