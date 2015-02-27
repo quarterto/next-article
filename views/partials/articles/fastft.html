@@ -7,10 +7,6 @@
     </h3>
 
     <div class="article-card__body">
-        {{{paragraphs content start=0 end=3}}}
-        {{#if @root.flags.ads.isSwitchedOn}}
-        <div class="advertising article-body-ad" data-ft-ad-type="article"></div>
-        {{/if}}
-        {{{paragraphs content start=4}}}
+        {{content}}
     </div>
 </div>
