@@ -79,7 +79,7 @@ module.exports = function(req, res, next) {
 
 					// HACK - Force the last word in the title never to be an ‘orphan’
 					article.titleHTML = article.title.replace(/(.*)(\s)/, '$1&nbsp;');
-					res.render((res.locals.flags.articleTemplate2.isSwitchedOn ? 'layout_2-improved' : 'layout_2'), {
+					res.render('layout', {
 						article: article,
 						title: article.title,
 						layout: 'wrapper'
