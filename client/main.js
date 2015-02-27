@@ -31,27 +31,27 @@ function init() {
 		}
 		if (uuid) clearNotification();
 
-		var allFlags = flags.getAll();
-
-		infiniteScroll.init(allFlags.articleInfiniteScroll);
+		if (flags.get('articleInfiniteScroll').isSwitchedOn) {
+			infiniteScroll.init();
+		}
 
 		messaging.init();
 
-		if (flags.get('articlesFromContentApiV2')) {
+		if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
 			slideshow(document.querySelectorAll('ft-slideshow'));
 			authors(uuid, document.querySelector('.article__byline'));
 		}
 
-		if (flags.get('contentApiCalls')) {
-			moreOn.init(allFlags);
+		if (flags.get('contentApiCalls').isSwitchedOn) {
+			moreOn.init(flags.getAll());
 		}
 
-		if (flags.get('articlesFromContentApiV2')) {
+		if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
 			require('./components/video/main');
 
 		}
 
-		if (flags.get('streamsFromContentApiV2')) {
+		if (flags.get('streamsFromContentApiV2').isSwitchedOn) {
 			require('./components/capi2-related/main');
 		}
 	});
