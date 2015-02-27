@@ -13,7 +13,7 @@ it('should turn capi v2 ft-content links into a tags', function() {
 it('should turn capi v2 ft-content image into img tags', function() {
 	var $ = cheerio.load('<p><ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/4e2487ee-422b-11e4-39b2-97bbf262bf2b"></ft-content>Another left-aligned landscape image here.</p>');
 	$('ft-content').replaceWith(ftContentTransform);
-	expect($.html()).to.equal('<p><img src="/embedded-components/image/4e2487ee-422b-11e4-39b2-97bbf262bf2b">Another left-aligned landscape image here.</p>');
+	expect($.html()).to.equal('<p><img class="article__inline-image" src="/embedded-components/image/4e2487ee-422b-11e4-39b2-97bbf262bf2b">Another left-aligned landscape image here.</p>');
 });
 
 it('should turn capi v2 ft-content unrecognised content types into nothing', function() {

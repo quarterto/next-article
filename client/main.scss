@@ -92,6 +92,12 @@ $inline-img-width: 300px;
 		text-align: center;
 	}
 }
+.article__inline-image {
+	float: left;
+	clear: left;
+	margin-right: 1em;
+	margin-bottom: 1em;
+}
 //ARTICLE META ELEMENTS
 .article__meta {
 	font-family: Arial;
