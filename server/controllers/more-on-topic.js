@@ -68,7 +68,7 @@ module.exports = function(req, res, next) {
 						res.render('more-on', {
 							mode: 'expand',
 							stream: stream.texturedItems,
-							query: topic.taxonomy + '/' + encodeURIComponent(topic.name),
+							path: '/stream/' + topic.taxonomy + '/' + encodeURIComponent(topic.name),
 							title: 'More from this ' + topicTitle + ' - ' + topic.name
 						});
 					} else {
