@@ -49,15 +49,6 @@ function init() {
 		if (flags.get('articlesFromContentApiV2')) {
 			require('./components/video/main');
 
-			//[Re-]position mpu
-			var adSlots = require('./components/ad-slots/main');
-			document.addEventListener('oViewport.resize', function(){
-				adSlots.placeMpu();
-			});
-			document.addEventListener('oViewport.orientation', function(){
-				adSlots.placeMpu();
-			});
-			adSlots.placeMpu();
 		}
 
 		if (flags.get('streamsFromContentApiV2')) {
