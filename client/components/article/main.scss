@@ -121,11 +121,11 @@ $inline-img-width: 300px;
 	}
 }
 .article__main-image {
+	min-height: 35px;
 	img {
 		max-width: 100%;
 		width: 100%;
 	}
-	min-height: 35px;
 }
 
 @include oGridRespondTo(XL) {

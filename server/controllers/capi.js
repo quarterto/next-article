@@ -2,7 +2,6 @@
 /*jshint node:true*/
 'use strict';
 
-var ft = require('../utils/api').ft;
 var Metrics = require('next-metrics');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
