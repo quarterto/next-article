@@ -60,11 +60,13 @@ module.exports = function(req, res, next) {
 					var $ = cheerio.load(article.bodyXML);
 
 					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
-					$('pull-quote').replaceWith(pullQuotesTransform);
 					$('big-number').replaceWith(bigNumberTransform);
 					$('ft-content').replaceWith(ftContentTransform);
 					$('p').replaceWith(pHackTransform);
 					$('blockquote').attr('class', 'o-quote o-quote--standard');
+					$('pull-quote').replaceWith(pullQuotesTransform);
+
+					// HACK - Fix for paragraphs in blockquotes
 					$('blockquote > ft-paragraph').replaceWith(function(index, el) {
 						el = $(el);
 						return '<p>' + el.html() + '</p>';
