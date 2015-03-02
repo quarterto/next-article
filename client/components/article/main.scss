@@ -134,9 +134,16 @@ $inline-img-width: 300px;
 
 .article__main-image--failed {
 	visibility: hidden;
-	height: 90px;
+	height: 35px;
 	padding-bottom: 0;
 }
+
+@include oGridRespondTo(XL) {
+	.article__main-image--failed {
+		height: 90px;
+	}
+}
+
 .article__mpu {
 	text-align: center;
 	padding: 10px 0;
