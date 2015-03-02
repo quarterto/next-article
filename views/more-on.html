@@ -1,8 +1,8 @@
 {{#if stream.length}}
 
 <h2>
-{{#if query}}
-	<a href="/search?q={{query}}">{{title}}</a></h2>
+{{#if path}}
+	<a href="{{path}}">{{title}}</a></h2>
 {{else}}
 	{{title}}
 {{/if}}
