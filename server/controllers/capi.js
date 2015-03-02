@@ -65,6 +65,10 @@ module.exports = function(req, res, next) {
 					$('ft-content').replaceWith(ftContentTransform);
 					$('p').replaceWith(pHackTransform);
 					$('blockquote').attr('class', 'o-quote o-quote--standard');
+					$('blockquote > ft-paragraph').replaceWith(function(index, el) {
+						el = $(el);
+						return '<p>' + el.html() + '</p>';
+					});
 					$('a').replaceWith(relativeLinksTransform);
 					$('a').replaceWith(trimmedLinksTransform);
 
