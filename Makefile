@@ -90,7 +90,7 @@ provision:
 	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*,EXPIRY=${TEN_MINS_FROM_NOW},APP_NAME=${TEST_HOST},HEROKU_AUTH_TOKEN=${HEROKU_AUTH_TOKEN}"
 	next-build-tools deploy ${TEST_HOST}
 	npm install
-	#make smoke
+	make smoke
 
 smoke:
 	export TEST_URL=${TEST_URL}; ./node_modules/nightwatch/bin/nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox,chrome
