@@ -19,7 +19,7 @@ module.exports = function(req, res, next) {
 			.then(fetchres.json);
 	})
 	.then(function(image) {
-		res.redirect('http://com.ft.imagepublish.prod.s3.amazonaws.com/' + image.identifiers[0].identifierValue);
+		res.redirect(image.binaryUrl);
 	})
 	.catch(function(err) {
 		if (err instanceof fetchres.BadServerResponseError) {
