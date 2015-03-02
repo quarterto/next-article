@@ -121,17 +121,21 @@ $inline-img-width: 300px;
 	}
 }
 .article__main-image {
-	min-height: 35px;
+	position: relative;
+	padding-bottom: 9% * 100% / 16%; // 56.25%;
+	background: rgba(0, 0, 0, 0.4);
+
 	img {
+		position: absolute;
 		max-width: 100%;
 		width: 100%;
 	}
 }
 
-@include oGridRespondTo(XL) {
-	.article__main-image {
-		min-height: 90px;
-	}
+.article__main-image--failed {
+	visibility: hidden;
+	height: 90px;
+	padding-bottom: 0;
 }
 .article__mpu {
 	text-align: center;
