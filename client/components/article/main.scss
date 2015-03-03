@@ -5,17 +5,6 @@ $inline-img-width: 300px;
 //ARTICLE COLOUR BRANDS
 .article__color-brand {
 	padding-bottom: $brand-offset;
-
-	.article--default & {
-		background-color: #f6e9d8;
-	}
-	.article--analysis & {
-		background-color: #b34462;//TODO: convert to $next-color
-
-	}
-	.article--opinion & {
-		background-color: #5fadcf;//TODO: convert to $next-color
-	}
 }
 
 //ARTICLE BRAND OFFSET
@@ -25,8 +14,8 @@ $inline-img-width: 300px;
 
 //ARTICLE ELEMENTS
 .article__title {
-	font-family: oFontsGetFontFamilyWithFallbacks(FinancierDisplayWeb);
-	font-weight: 500;
+	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-weight: 300;
 	color: $next-black;
 	font-size: 36px;
 	margin-top: 0;
@@ -36,7 +25,7 @@ $inline-img-width: 300px;
 	display: block;
 	margin-top: 10px;
 	text-transform: uppercase;
-	font-family: Arial, sans-serif;
+	font-family: MetricWeb;
 	font-weight: 600;
 
 	.article-type-analysis & {
@@ -58,7 +47,7 @@ $inline-img-width: 300px;
 
 //ARTICLE META ELEMENTS
 .article__meta {
-	font-family: Arial;
+	font-family: MetricWeb;
 	margin-bottom: 1em;
 	font-size: 12px;
 	line-height: 16px;
@@ -68,7 +57,7 @@ $inline-img-width: 300px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	display: block;
-	font-family: Arial;
+	font-family: MetricWeb;
 	font-style: normal;
 	font-size: 14px;
 	line-height: 16px;
@@ -105,7 +94,8 @@ $inline-img-width: 300px;
 
 //ARTICLE BODY ELEMENTS
 .article__body {
-	font-family: oFontsGetFontFamilyWithFallbacks(FinancierTextWeb);
+	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-weight: 100;
 	font-size: 16px;
 	color: $next-grey-dark;
 	margin-bottom: 3em;
