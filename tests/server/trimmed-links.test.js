@@ -16,7 +16,13 @@ it('should trim the inside of a tags, pad the outside without damaging their int
 	expect($.html()).to.equal('The last time <a href="http://www.ft.com/intl/world/asia-pacific/china"><strong>China</strong></a> was the world&#x2019;s largest economy');
 });
 
-it('should ensure trailing commas go outside of a tags even when padded with an additional space', function() {
+it('should not link a trailing full stop', function() {
+	var $ = cheerio.load('<p>The barristers opinion, commissioned by Jesse Norman, a prominent Conservative backbencher and member of the Treasury select committee, calls into question whether <a href="/d6fff9f4-bddc-11e4-9d09-00144feab7de">the Banks newly revamped governance structure is robust enough to hold its officials and employees to account. \n</a></p>');
+	$('a').replaceWith(trimmedLinksTransform);
+	expect($.html()).to.equal('<p>The barristers opinion, commissioned by Jesse Norman, a prominent Conservative backbencher and member of the Treasury select committee, calls into question whether <a href="/d6fff9f4-bddc-11e4-9d09-00144feab7de">the Banks newly revamped governance structure is robust enough to hold its officials and employees to account</a>.  </p>');
+});
+
+/bin/bash: q:x: command not found
 	var $ = cheerio.load('<p>including <a href="http://www.ft.com/intl/indepth/living-with-cheaper-oil">oil, </a> and in the stuttering performance</p>');
 	$('a').replaceWith(trimmedLinksTransform);
 	expect($.html()).to.equal('<p>including <a href="http://www.ft.com/intl/indepth/living-with-cheaper-oil">oil</a>,  and in the stuttering performance</p>');
