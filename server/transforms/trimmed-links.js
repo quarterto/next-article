@@ -17,9 +17,9 @@ module.exports = function(index, el) {
 		return '“' + $.html(el) + '”';
 	}
 
-	var trailingReg = /([ ,.;:] ?)$/;
+	var trailingReg = /([ ,.;:]\s*)$/m;
 	var trailing = '';
-	var leadingReg = /^([ ,.;:] ?)/;
+	var leadingReg = /^([ ,.;:]\s*)/m;
 	var leading = '';
 	matches = trailingReg.exec(contents);
 	if (matches) {
