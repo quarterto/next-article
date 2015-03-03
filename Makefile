@@ -67,7 +67,7 @@ run-router:
 	export grumman=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
 
 build:
-	export ENVIRONMENT=development; ./node_modules/.bin/gulp build-dev;
+	export ENVIRONMENT=development; gulp build-dev;
 
 build-production:
 	@bower install
