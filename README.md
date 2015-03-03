@@ -11,7 +11,7 @@ make build
 
 ## Dependencies
 
-Please install [`next-router`](http://git.svc.ft.com:8080/projects/NEXT/repos/router/browse) globally.
+Please install [`next-router`](http://git.svc.ft.com/projects/NEXT/repos/router/browse) globally.
 
 ## Run
 
