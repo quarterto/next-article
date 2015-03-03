@@ -44,6 +44,7 @@ module.exports = function(req, res, next) {
 	// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
 	// http://int.api.ft.com/enrichedcontent/3e9e7958-cffe-3257-bd84-41706f03f039 has more annotationss
 	fetch('http://api.ft.com/' + contentEndpoint + '/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
+		timeout: 3000,
 		headers: {
 			'X-Api-Key': process.env.api2key
 		}
@@ -102,6 +103,7 @@ module.exports = function(req, res, next) {
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
 				fetch('http://api.ft.com/content/items/v1/' + req.params[0] + '?feature.blogposts=on', {
+					timeout: 3000,
 					headers: {
 						'X-Api-Key': process.env.apikey
 					}

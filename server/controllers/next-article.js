@@ -40,6 +40,7 @@ var getMentions = function (annotations) {
 function fetchArticle(uid){
 	var url = 'http://api.ft.com/content/items/v1/' + uid;
 	return fetch(url, {
+		timeout: 3000,
 		headers: {
 			'X-Api-Key': process.env.api2key
 		}
