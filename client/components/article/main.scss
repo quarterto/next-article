@@ -49,6 +49,13 @@ $inline-img-width: 300px;
 	margin-right: 1em;
 	margin-bottom: 1em;
 }
+
+@include oGridRespondTo(XL) {
+	.article__inline-image {
+		margin-left: -200px;
+	}
+}
+
 //ARTICLE META ELEMENTS
 .article__meta {
 	font-family: Arial;
@@ -109,7 +116,12 @@ $inline-img-width: 300px;
 	}
 
 	blockquote {
-		margin: 1.5em 0;
+		margin-top: 1.5em;
+		margin-bottom: 1.5em;
+
+		@include oGridRespondTo(XL) {
+			margin-left: -200px;
+		}
 	}
 
 	a {
