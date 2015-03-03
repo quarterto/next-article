@@ -18,5 +18,4 @@ $o-big-number-is-silent: false;
 @import "o-ft-icons/main";
 
 @include oFtIconsFontFace();
-@include oFontsInclude(FinancierDisplayWeb);
-@include oFontsInclude(FinancierDisplayText);
+@include oFontsInclude(MetricWeb);
