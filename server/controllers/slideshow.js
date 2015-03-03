@@ -8,6 +8,7 @@ module.exports = function(req, res, next) {
 
 	// E.g. 4eb77dd4-9b35-11e4-be20-002128161462
 	fetch('http://api.ft.com/content/items/v1/' + req.params.id, {
+			timeout: 3000,
 			headers: {
 				'X-Api-Key': process.env.apikey
 			}

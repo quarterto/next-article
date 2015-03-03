@@ -5,6 +5,7 @@ var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
 	fetch('http://api.ft.com/content/' + req.params.id, {
+		timeout: 3000,
 		headers: {
 			'X-Api-Key': process.env.api2key
 		}
@@ -12,6 +13,7 @@ module.exports = function(req, res, next) {
 	.then(fetchres.json)
 	.then(function(image) {
 		return fetch(image.members[0].id, {
+				timeout: 3000,
 				headers: {
 					'X-Api-Key': process.env.api2key
 				}

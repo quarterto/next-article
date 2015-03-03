@@ -6,6 +6,7 @@ var cacheControl = require('../utils/cache-control');
 
 module.exports = function(req, res, next) {
 	fetch('http://api.ft.com/content/items/v1/' + req.params[0], {
+		timeout: 3000,
 		headers: {
 			'X-Api-Key': process.env.apikey
 		}
