@@ -15,6 +15,7 @@ var trimmedLinksTransform = require('../transforms/trimmed-links');
 var pHackTransform = require('../transforms/p-hack');
 var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
+var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
 
 var getMentions = function(annotations) {
 	return annotations.filter(function(an) {
@@ -57,6 +58,7 @@ module.exports = function(req, res, next) {
 				case 'html':
 					article.bodyXML = replaceEllipses(article.bodyXML);
 					article.bodyXML = replaceHrs(article.bodyXML);
+					article.bodyXML = pStrongsToH3s(article.bodyXML);
 					var $ = cheerio.load(article.bodyXML);
 
 					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
