@@ -22,7 +22,7 @@ it('should not link a trailing full stop', function() {
 	expect($.html()).to.equal('<p>The barristers opinion, commissioned by Jesse Norman, a prominent Conservative backbencher and member of the Treasury select committee, calls into question whether <a href="/d6fff9f4-bddc-11e4-9d09-00144feab7de">the Banks newly revamped governance structure is robust enough to hold its officials and employees to account</a>.  </p>');
 });
 
-/bin/bash: q:x: command not found
+it('should ensure trailing commas go outside of a tags even when padded with an additional space', function() {
 	var $ = cheerio.load('<p>including <a href="http://www.ft.com/intl/indepth/living-with-cheaper-oil">oil, </a> and in the stuttering performance</p>');
 	$('a').replaceWith(trimmedLinksTransform);
 	expect($.html()).to.equal('<p>including <a href="http://www.ft.com/intl/indepth/living-with-cheaper-oil">oil</a>,  and in the stuttering performance</p>');
