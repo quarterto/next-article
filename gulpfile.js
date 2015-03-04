@@ -95,6 +95,6 @@ gulp.task('watch', function() {
 });
 
 gulp.task('build-dev', ['build']);
-gulp.task('build-prod', ['build-js', 'minify-js']);
+gulp.task('build-prod', ['build', 'minify-js']);
 
 gulp.task('default', ['build-dev']);
