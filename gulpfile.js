@@ -3,13 +3,10 @@
 
 var gulp = require('gulp');
 require('gulp-watch');
-var concat = require('gulp-concat');
 var uglify = require('uglify-js');
 var sourcemap = require('convert-source-map');
 var obt = require('origami-build-tools');
 var through = require('through2');
-var source = require('vinyl-source-stream');
-var streamify = require('gulp-streamify');
 
 var fs =require('fs');
 var path = require('path');
@@ -98,11 +95,6 @@ gulp.task('minify-js',['build-js'], function(){
 		.pipe(gulp.dest('./public/'));
 });
 
-gulp.task('sourcemap', ['minify-js'], function(){
-	return gulp.src(mainJsFile)
-		.pipe(fixSourcemapUrl({app:'grumman'}))
-		.pipe(gulp.dest('./public/'));
-});
 
 gulp.task('watch', function() {
 	gulp.watch('./client/**/*', ['default']);
