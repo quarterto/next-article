@@ -11,70 +11,73 @@
 			<div data-o-grid-colspan="0 L2">&nbsp;</div>
 		</div>
 	</div>
-	<div class="o-grid-row">
-		<div data-o-grid-colspan="12 L12 XL2">
-			<div class="o-grid-row">
-				<div class="brand-top-offset article__meta">
-					<div data-o-grid-colspan="8 S10 L6 XL12">
-						<time data-o-component="o-date" class="o-date article__meta__time" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-							{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-						</time>
-					</div>
-					<div data-o-grid-colspan="4 S2 XL12" class="article__actions">
-						<span class="article__actions__action">
-							{{#if @root.flags.userPreferences.isSwitchedOn }}
-								<button data-capi="{{article.id}}" data-headline="{{headline}}" class="save-for-later save-for-later--large js-save-for-later" data-toggle-text="" aria-label="Save this article for later" title="Save this article for later"></button>
-							{{/if}}
-						</span>
-						<span class="article__actions__action"></span>
+	<div class="article__brand-offset">
+		<div class="o-grid-row">
+			<div data-o-grid-colspan="12 L12 XL2">
+				<div class="o-grid-row">
+					<div class="brand-top-offset article__meta">
+						<div data-o-grid-colspan="8 S10 L6 XL12">
+							<time data-o-component="o-date" class="o-date article__meta__time" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+							</time>
+						</div>
+						<div data-o-grid-colspan="4 S2 XL12" class="article__actions">
+							<span class="article__actions__action">
+								{{#if @root.flags.userPreferences.isSwitchedOn }}
+									<button data-capi="{{article.id}}" data-headline="{{headline}}" class="save-for-later save-for-later--large js-save-for-later" data-toggle-text="" aria-label="Save this article for later" title="Save this article for later"></button>
+								{{/if}}
+							</span>
+							<span class="article__actions__action"></span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div data-o-grid-colspan="12 L8 XL7">
-			<div class="article__main-image">
-				<img src="{{#resize 700}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}}" alt="Article image"
-					srcset="{{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="this.parentNode.className += ' article__main-image--failed'; this.parentNode.removeChild(this);">
-			</div>
-			<div>
-			{{#if article.byline}}
-				<cite class="article__byline">By {{article.byline}}</cite>
-			{{/if}}
-			</div>
-			<div class="article__body">
+			<div data-o-grid-colspan="12 L8 XL7">
+				<div class="article__main-image">
+					<img src="{{#resize 700}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}}" alt="Article image"
+						srcset="{{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="this.parentNode.className += ' article__main-image--failed'; this.parentNode.removeChild(this);">
+				</div>
+				<div>
+				{{#if article.byline}}
+					<cite class="article__byline">By {{article.byline}}</cite>
+				{{/if}}
+				</div>
 				{{#if showTOC}}
-				<ul>
-					{{#each subheaders}}
-					<li>
-						<a href="#{{this.id}}">{{this.text}}</a>
-					</li>
-					{{/each}}
-				</ul>
+					<ul class="article__toc">
+						{{#each subheaders}}
+							<li class="article__toc__item">
+								<a class="article__toc__link" href="#{{this.id}}">{{this.text}}</a>
+							</li>
+						{{/each}}
+					</ul>
 				{{/if}}
-				{{{article.bodyXML}}}
+				<div class="article__body">
+					{{{article.bodyXML}}}
+				</div>
+				<div>
+					{{#if @root.flags.userPreferences.isSwitchedOn}}
+					<p>
+						<span
+						class="recommend js-recommend"
+						data-capi="{{article.id}}"
+						data-headline="{{article.title}}"
+						data-toggle-text="You recommended this"
+						aria-label="Recommend this article to you colleagues"
+						title="Recommend this article to your colleagues">
+							Recommend this article to your colleagues
+						</span>
+					</p>
+					{{/if}}
+					{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
+						<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
+						<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
+						<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
+
+					{{/if}}
+				</div>
 			</div>
-			<div>
-				{{#if @root.flags.userPreferences.isSwitchedOn}}
-				<p>
-					<span
-					class="recommend js-recommend"
-					data-capi="{{article.id}}"
-					data-headline="{{article.title}}"
-					data-toggle-text="You recommended this"
-					aria-label="Recommend this article to you colleagues"
-					title="Recommend this article to your colleagues">
-						Recommend this article to your colleagues
-					</span>
-				</p>
-				{{/if}}
-				{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
-					<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
-					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
-					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
-				{{/if}}
+			<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3">
 			</div>
-		</div>
-		<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3">
 		</div>
 	</div>
 </article>
