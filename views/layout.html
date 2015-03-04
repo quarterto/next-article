@@ -42,6 +42,15 @@
 			{{/if}}
 			</div>
 			<div class="article__body">
+				{{#if showTOC}}
+				<ul>
+					{{#each subheaders}}
+					<li>
+						<a href="#{{this.id}}">{{this.text}}</a>
+					</li>
+					{{/each}}
+				</ul>
+				{{/if}}
 				{{{article.bodyXML}}}
 			</div>
 			<div>
@@ -62,7 +71,6 @@
 					<div class='more-on js-more-on' data-article-id='{{article.id}}'></div>
 					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}"></div>
 					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}"></div>
-
 				{{/if}}
 			</div>
 		</div>
