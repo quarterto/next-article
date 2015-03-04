@@ -15,7 +15,7 @@ $inline-img-width: 300px;
 //ARTICLE ELEMENTS
 .article__title {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-	font-weight: 300;
+	font-weight: 400;
 	color: $next-black;
 	font-size: 36px;
 	margin-top: 0;
@@ -33,10 +33,16 @@ $inline-img-width: 300px;
 	}
 }
 .article__inline-image {
-	float: left;
-	clear: left;
-	margin-right: 1em;
-	margin-bottom: 1em;
+	display: block;
+	margin: 35px auto;
+}
+
+@include oGridRespondTo(M) {
+	.article__inline-image {
+		float: left;
+		clear: left;
+		margin: 50px 50px 50px 0;
+	}
 }
 
 @include oGridRespondTo(XL) {
@@ -95,10 +101,9 @@ $inline-img-width: 300px;
 //ARTICLE BODY ELEMENTS
 .article__body {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-	font-weight: 100;
+	font-weight: 400;
 	font-size: 16px;
 	color: $next-grey-dark;
-	margin-bottom: 3em;
 	> ft-paragraph {
 		margin: 0.3em 0 0.4em;
 		line-height: 24px;
@@ -188,8 +193,8 @@ $inline-img-width: 300px;
 }
 @include oGridRespondTo(M) {
 	.article__title {
-		font-size: 60px;
-		line-height: 60px;
+		font-size: 50px;
+		line-height: 55px;
 	}
 	.article__meta {
 		font-size: 16px;
@@ -197,6 +202,7 @@ $inline-img-width: 300px;
 	}
 	.article__body {
 		font-size: 24px;
+		font-weight: 100;
 		> ft-paragraph {
 			line-height: 35px;
 		}
@@ -231,8 +237,5 @@ $inline-img-width: 300px;
 	.article__actions__action {
 		float: left;
 		margin-right: 15px;
-	}
-	.brand-top-offset {
-		padding-top: $brand-offset + 20px;
 	}
 }

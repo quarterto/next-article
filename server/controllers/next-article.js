@@ -6,7 +6,6 @@ var Metrics = require('next-metrics');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 var cheerio = require('cheerio');
-require('es6-promise').polyfill();
 var pullQuotesTransform = require('../transforms/pull-quotes');
 var bigNumberTransform = require('../transforms/big-number');
 var ftContentTransform = require('../transforms/ft-content');

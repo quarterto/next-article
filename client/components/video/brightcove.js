@@ -12,7 +12,10 @@ function brightcove(videoId) {
 			return response.json();
 		})
 		.then(function (data) {
-			return data.renditions[0].url;
+			return {
+				src: data.renditions[0].url,
+				poster: data.videoStillURL
+			};
 		});
 }
 

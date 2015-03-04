@@ -24,9 +24,13 @@ function brightcoveInit(el) {
 	var url = el.getAttribute('href');
 	var videoId = url.slice((url.lastIndexOf('/')+1));
 
-	brightcove(videoId).then(function(url){
+	brightcove(videoId).then(function(data) {
 		var videoEl = document.createElement('video');
-		videoEl.setAttribute('src', url);
+		videoEl.setAttribute('src', data.src);
+		videoEl.setAttribute(
+			'poster',
+			'//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(data.poster) + '?width=690&source=grumman&fit=scale-down'
+		);
 		videoEl.setAttribute('controls', 'true');
 		el.parentNode.replaceChild(videoEl, el);
 	}).catch(function(e){

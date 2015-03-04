@@ -2,7 +2,6 @@
 /*global it, describe, before, beforeEach, afterEach*/
 'use strict';
 
-require('es6-promise').polyfill();
 var PORT = process.env.PORT || 3001;
 
 var expect = require('chai').expect;
