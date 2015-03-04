@@ -34,7 +34,7 @@ $inline-img-width: 300px;
 }
 .article__inline-image {
 	display: block;
-	margin: 35px auto 35px auto;
+	margin: 35px auto;
 }
 
 @include oGridRespondTo(M) {
