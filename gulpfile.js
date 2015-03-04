@@ -13,7 +13,6 @@ var path = require('path');
 
 
 function writeSourceMap(fileName, contents, done){
-	console.log('writeSourceMap', fileName);
 	var sourceMapFile = fs.createWriteStream(path.resolve(fileName));
 	sourceMapFile.on('open', function(){
 		sourceMapFile.write(contents, 'utf8', done);
@@ -24,11 +23,9 @@ function writeSourceMap(fileName, contents, done){
 function extractSourceMap(opt){
 
 	var fileName = opt.sourceMap;
-	console.log('extractSourceMap', opt, fileName);
 
 	function extract(file, enc, cb){
 		var fileContents = file.contents.toString();
-		//console.log(fileContents);
 		var sourceMapContents = sourcemap.fromSource(fileContents).toJSON();
 		writeSourceMap(fileName, sourceMapContents, function(){
 			cb(null, file);
@@ -43,11 +40,8 @@ function minify(opt){
 	var sourceMapIn = opt.sourceMapIn;
 	var sourceMapOut = opt.sourceMapOut;
 
-	console.log('minify', opt);
-
 	function minifyFile(file, enc, cb){
 		if (file.isNull()) return cb(null, file);
-		if (file.isStream()) return cb(new Error('Streaming not supported'));
 		var result = uglify.minify(file.contents.toString(), {
 			fromString:true,
 			inSourceMap:sourceMapIn,
