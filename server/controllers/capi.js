@@ -54,7 +54,6 @@ module.exports = function(req, res, next) {
 		.then(function(article) {
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
-
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
 					article.bodyXML = replaceEllipses(article.bodyXML);
