@@ -77,8 +77,7 @@ module.exports = function(req, res, next) {
 					$('a').replaceWith(relativeLinksTransform);
 					$('a').replaceWith(trimmedLinksTransform);
 
-					var subheaders = $('.ft-subhead');
-					subheaders.attr('id', addSubheaderIds);
+					var subheaders = $('.ft-subhead').attr('id', addSubheaderIds);
 
 					article.bodyXML = $.html();
 

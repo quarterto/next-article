@@ -51,12 +51,6 @@ $inline-img-width: 300px;
 	}
 }
 
-@include oGridRespondTo(XL) {
-	.article--toc .article__main {
-		margin-top: 54px;
-	}
-}
-
 //ARTICLE META ELEMENTS
 .article__meta {
 	font-family: MetricWeb;
@@ -65,12 +59,6 @@ $inline-img-width: 300px;
 	line-height: 16px;
 	color: $next-grey-dark;
 	overflow: hidden;
-
-	@include oGridRespondTo(L, XL) {
-		.article--toc & {
-			margin-bottom: 54px;
-		}
-	}
 }
 .article__byline {
 	margin-top: 10px;
@@ -113,12 +101,6 @@ $inline-img-width: 300px;
 .article__toc {
 	max-width: 305px;
 	padding: 0;
-
-	@include oGridRespondTo(L) {
-		position: absolute;
-		width: 305px;
-		margin-top: -54px;
-	}
 }
 .article__toc__items {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
@@ -193,6 +175,28 @@ $inline-img-width: 300px;
 .article__gallery {
 	line-height: initial;
 }
+.ft-subhead {
+	padding-right: 40px;
+	position: relative;
+
+	.back-top-top {
+		position: absolute;
+		top: 0.5em;
+		right: 0;
+		margin-top: -8px;
+	}
+	.back-top-top__text {
+		position: absolute;
+		left: -9999px;
+	}
+	.back-top-top__icon {
+		display: block;
+		background: url('/grumman/assets/img/back-to-top.svg') no-repeat;
+		background-size: contain;
+		width: 24px;
+		height: 21px;
+	}
+}
 
 //++++++++++++++++++++++++++
 //+ Breakpoints
@@ -256,9 +260,6 @@ $inline-img-width: 300px;
 @include oGridRespondTo(XL) {
 	.article__type {
 		margin-top: 30px;
-	}
-	.article__actions {
-		margin-top: 20px;
 	}
 	.article__actions__action {
 		float: left;

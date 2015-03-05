@@ -22,7 +22,17 @@ module.exports.init = function (flags) {
 
 		window.setTimeout(function () {
 			window.clearInterval(interval);
-			document.body.scrollTop = scrollTo;
+			window.location.hash = event.target.value;
 		}, duration);
+	});
+
+	// add 'back top top' links
+	var link = document.createElement('a');
+	link.setAttribute('href', '#top');
+	link.setAttribute('class', 'back-top-top');
+	link.innerHTML = '<span class="back-top-top__text">Back to top</span><span class="back-top-top__icon" />';
+
+	[].forEach.call(document.querySelectorAll('.ft-subhead'), function(subheader) {
+		subheader.appendChild(link.cloneNode(true));
 	});
 };
