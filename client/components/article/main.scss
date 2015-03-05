@@ -51,6 +51,12 @@ $inline-img-width: 300px;
 	}
 }
 
+@include oGridRespondTo(XL) {
+	.article--toc .article__main {
+		margin-top: 54px;
+	}
+}
+
 //ARTICLE META ELEMENTS
 .article__meta {
 	font-family: MetricWeb;
@@ -58,6 +64,13 @@ $inline-img-width: 300px;
 	font-size: 12px;
 	line-height: 16px;
 	color: $next-grey-dark;
+	overflow: hidden;
+
+	@include oGridRespondTo(L, XL) {
+		.article--toc & {
+			margin-bottom: 54px;
+		}
+	}
 }
 .article__byline {
 	margin-top: 10px;
@@ -98,7 +111,14 @@ $inline-img-width: 300px;
 	}
 }
 .article__toc {
+	max-width: 305px;
 	padding: 0;
+
+	@include oGridRespondTo(L) {
+		position: absolute;
+		width: 305px;
+		margin-top: -54px;
+	}
 }
 .article__toc__items {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);

@@ -1,4 +1,4 @@
-<article class="article article--default" data-capi-id="{{article.id}}">
+<article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}">
 	<div class="article__color-brand">
 		<div class="o-grid-row">
 			<div data-o-grid-colspan="12 XL2">
@@ -11,7 +11,7 @@
 			<div data-o-grid-colspan="0 L2">&nbsp;</div>
 		</div>
 	</div>
-	<div class="o-grid-row">
+	<div class="article__main o-grid-row">
 		<div data-o-grid-colspan="12 L12 XL2">
 			<div class="o-grid-row">
 				<div class="brand-top-offset article__meta">
