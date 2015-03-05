@@ -3,73 +3,12 @@
 
 var gulp = require('gulp');
 require('gulp-watch');
-var uglify = require('uglify-js');
-var sourcemap = require('convert-source-map');
 var obt = require('origami-build-tools');
-var through = require('through2');
-
-var fs =require('fs');
-var path = require('path');
-
-
-function writeSourceMap(fileName, contents, done){
-	var sourceMapFile = fs.createWriteStream(path.resolve(fileName));
-	sourceMapFile.on('open', function(){
-		sourceMapFile.write(contents, 'utf8', done);
-	});
-}
-
-
-function extractSourceMap(opt){
-
-	var fileName = opt.sourceMap;
-
-	function extract(file, enc, cb){
-		var fileContents = file.contents.toString();
-		var sourceMapContents = sourcemap.fromSource(fileContents).toJSON();
-		writeSourceMap(fileName, sourceMapContents, function(){
-			cb(null, file);
-		});
-	}
-
-	return through.obj(extract);
-}
-
-function minify(opt){
-
-	var sourceMapIn = opt.sourceMapIn;
-	var sourceMapOut = opt.sourceMapOut;
-
-	function minifyFile(file, enc, cb){
-		if (file.isNull()) return cb(null, file);
-		var result = uglify.minify(file.contents.toString(), {
-			fromString:true,
-			inSourceMap:sourceMapIn,
-			outSourceMap:sourceMapOut,
-			sourceMapIncludeSources:true
-		});
-		file.contents = new Buffer(result.code, 'utf8');
-		writeSourceMap(sourceMapIn, result.map, function(){
-			cb(null, file);
-		});
-	}
-
-	return through.obj(minifyFile);
-
-}
+var extractSourceMap = require('next-gulp-tasks').extractSourceMap;
+var minify = require('next-gulp-tasks').minify;
+var getOBTConfig = require('next-gulp-tasks').getOBTConfig;
 
 var mainJsFile = './public/main.js';
-
-function getOBTConfig(env){
-	return {
-		sass: './client/main.scss',
-		js: './client/main.js',
-		buildFolder: './public',
-		env: env,
-		sourcemaps : true
-	};
-}
-
 
 gulp.task('build-js', function () {
 	return obt.build.js(gulp, getOBTConfig(process.env.ENVIRONMENT || 'development'));
@@ -84,7 +23,7 @@ gulp.task('build', ['build-js', 'build-sass']);
 gulp.task('minify-js',['build-js'], function(){
 	var sourceMapFile = './public/main.js.map';
 	return gulp.src(mainJsFile)
-		.pipe(extractSourceMap({sourceMap:sourceMapFile}))
+		.pipe(extractSourceMap({saveTo:sourceMapFile}))
 		.pipe(minify({sourceMapIn:sourceMapFile,sourceMapOut:'/grumman/main.js.map'}))
 		.pipe(gulp.dest('./public/'));
 });
