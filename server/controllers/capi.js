@@ -52,8 +52,10 @@ module.exports = function(req, res, next) {
 	})
 		.then(fetchres.json)
 		.then(function(article) {
-			res.vary(['Accept-Encoding', 'Accept']);
+			res.vary(['Accept-Encoding', 'Accept', 'X-FT-UID']);
 			res.set(cacheControl);
+			res.set('X-FT-UID', article.id);
+			res.set('X-FT-Content-Classification', article.contentClassification);
 
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':

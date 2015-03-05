@@ -19,8 +19,7 @@ app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
 });
 
-// The Access endpoint calls this to establish content classification
-app.head(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, require('./controllers/access'));
+app.use(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)/, require('./controllers/access'));
 
 app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/fastft'));
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)\/main-image/, require('./controllers/capi-main-image'));
