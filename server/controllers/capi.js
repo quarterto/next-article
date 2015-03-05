@@ -13,6 +13,7 @@ var relativeLinksTransform = require('../transforms/relative-links');
 var slideshowTransform = require('../transforms/slideshow');
 var trimmedLinksTransform = require('../transforms/trimmed-links');
 var pHackTransform = require('../transforms/p-hack');
+var subheadersTransform = require('../transforms/subheaders');
 var addSubheaderIds = require('../transforms/add-subheader-ids');
 var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
@@ -77,7 +78,9 @@ module.exports = function(req, res, next) {
 					$('a').replaceWith(relativeLinksTransform);
 					$('a').replaceWith(trimmedLinksTransform);
 
-					var subheaders = $('.ft-subhead').attr('id', addSubheaderIds);
+					var subheaders = $('.ft-subhead')
+						.attr('id', addSubheaderIds)
+						.replaceWith(subheadersTransform);
 
 					article.bodyXML = $.html();
 
@@ -94,9 +97,11 @@ module.exports = function(req, res, next) {
 						article: article,
 						title: article.title,
 						subheaders: subheaders.map(function() {
+							var $subhead = $(this);
+
 							return {
-								text: $(this).text(),
-								id: $(this).attr('id')
+								text: $subhead.find('.ft-subhead__title').text(),
+								id: $subhead.attr('id')
 							};
 						}).get(),
 						showTOC: res.locals.flags.articleTOC.isSwitchedOn && subheaders.length > 2,

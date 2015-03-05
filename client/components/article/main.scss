@@ -101,6 +101,11 @@ $inline-img-width: 300px;
 .article__toc {
 	max-width: 305px;
 	padding: 0;
+	display: none;
+
+	.js & {
+		display: block;
+	}
 }
 .article__toc__items {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
@@ -181,9 +186,8 @@ $inline-img-width: 300px;
 
 	.back-top-top {
 		position: absolute;
-		top: 0.5em;
+		top: 8px;
 		right: 0;
-		margin-top: -8px;
 	}
 	.back-top-top__text {
 		position: absolute;
