@@ -32,6 +32,16 @@
 			</div>
 		</div>
 		<div data-o-grid-colspan="12 L8 XL7">
+			{{#if showTOC}}
+				<div class="article__toc o-ft-forms__field-group">
+					<select class="article__toc__items o-ft-forms__field--select">
+						<option disabled selected>Table of contents</option>
+						{{#each subheaders}}
+							<option value="{{this.id}}">{{this.text}}</option>
+						{{/each}}
+					</select>
+				</div>
+			{{/if}}
 			<div class="article__main-image">
 				<img src="{{#resize 700}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}}" alt="Article image"
 					srcset="{{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="this.parentNode.className += ' article__main-image--failed'; this.parentNode.removeChild(this);">
@@ -41,15 +51,6 @@
 				<cite class="article__byline">By {{article.byline}}</cite>
 			{{/if}}
 			</div>
-				{{#if showTOC}}
-					<ul class="article__toc">
-						{{#each subheaders}}
-							<li class="article__toc__item">
-								<a class="article__toc__link" href="#{{this.id}}">{{this.text}}</a>
-							</li>
-						{{/each}}
-					</ul>
-				{{/if}}
 			<div class="article__body">
 				{{{article.bodyXML}}}
 			</div>

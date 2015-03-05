@@ -5,6 +5,7 @@ var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
 var moreOn = require('./components/more-on/main');
 var messaging = require('next-messaging');
+var toc = require('./components/article/toc');
 
 require('next-article-card-component');
 var viewport = require('o-viewport');
@@ -49,6 +50,8 @@ function init() {
 		if (flags.get('streamsFromContentApiV2').isSwitchedOn) {
 			require('./components/capi2-related/main');
 		}
+
+		toc.init(flags);
 	});
 }
 

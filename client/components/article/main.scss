@@ -98,19 +98,10 @@ $inline-img-width: 300px;
 	}
 }
 .article__toc {
-	margin: 0;
 	padding: 0;
-	list-style: none;
 }
-.article__toc__link {
+.article__toc__items {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-	font-weight: 500;
-	font-size: 1.5em;
-	color: #000000;
-	text-decoration: none;
-}
-.article__toc__link:hover {
-	text-decoration: underline;
 }
 
 //ARTICLE BODY ELEMENTS

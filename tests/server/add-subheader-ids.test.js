@@ -16,3 +16,9 @@ it('should remove non-alphanumeric characters', function() {
 	$('.ft-subhead').attr('id', addSubheaderIds);
 	expect($('.ft-subhead').attr('id')).to.equal('anxiety-over-the-rallys-health');
 });
+
+it('should leading/trailing spaces', function() {
+	var $ = cheerio.load('<h3 class="ft-subhead"> Anxiety over the rally <h3>');
+	$('.ft-subhead').attr('id', addSubheaderIds);
+	expect($('.ft-subhead').attr('id')).to.equal('anxiety-over-the-rally');
+});
