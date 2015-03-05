@@ -9,24 +9,25 @@
   "dependencies": {
     "cheerio": "^0.18.0",
     "debug": "^2.0.0",
+    "es6-promise": "^2.0.1",
     "express-errors-handler": "^1.0.0",
     "fastft-api-client": "https://github.com/Financial-Times/fastft-api-client/archive/v1.0.0.tar.gz",
     "fetchres": "0.0.8",
     "forever": "^0.11.1",
-    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.10.4.tar.gz",
+    "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.13.0.tar.gz",
+    "ft-next-express": "^6.1.0",
     "heroku-seppuku": "https://github.com/Financial-Times/heroku-seppuku/archive/v1.0.3.tar.gz",
     "next-build-tools": "^1.6.4",
-    "ft-next-express": "^6.1.0",
-    "next-build-tools": "^1.6.4",
-    "request": "^2.44.0",
     "next-metrics": "https://github.com/Financial-Times/next-metrics/archive/v1.2.0.tar.gz",
-    "ft-api-client" : "https://github.com/Financial-Times/ft-api-client/archive/v3.13.0.tar.gz"
+    "request": "^2.44.0"
   },
   "devDependencies": {
     "chai": "^1.9.2",
+    "convert-source-map": "^0.5.0",
     "gulp": "^3.8.8",
     "gulp-concat": "^2.4.3",
     "gulp-sourcemaps": "^1.3.0",
+    "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.0.2",
     "gulp-watch": "^1.0.7",
     "mocha": "^1.21.4",
@@ -35,7 +36,10 @@
     "nodemon": "^1.3.5",
     "origami-build-tools": "*",
     "sinon": "^1.12.1",
-    "through2": "^0.6.3"
+    "through2": "^0.6.3",
+    "uglify-js": "^2.4.16",
+    "vinyl-source-stream": "^1.0.0",
+    "next-gulp-tasks" : "Financial-Times/next-gulp-tasks.git#v1"
   },
   "engines": {
     "node": "0.12.x"
