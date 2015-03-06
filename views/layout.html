@@ -28,7 +28,7 @@
 		{{#if showTOC}}
 			<div data-o-grid-colspan="12 XLoffset2">
 				<div class="article__toc o-ft-forms__field-group">
-					<select class="article__toc__items o-ft-forms__field--select">
+					<select class="article__toc__items o-ft-forms__field--select" data-trackable="toc">
 						<option disabled selected>Table of contents</option>
 						{{#each subheaders}}
 							<option value="{{this.id}}">{{this.text}}</option>
