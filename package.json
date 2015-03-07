@@ -42,6 +42,6 @@
     "next-gulp-tasks" : "Financial-Times/next-gulp-tasks.git#v1"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": "0.10.x"
   }
 }
