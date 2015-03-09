@@ -47,9 +47,7 @@ function init() {
 
 		}
 
-		if (flags.get('streamsFromContentApiV2').isSwitchedOn) {
-			require('./components/capi2-related/main');
-		}
+		require('./components/capi2-related/main');
 
 		toc.init(flags);
 	});
