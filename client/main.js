@@ -21,44 +21,36 @@ function emit(name, data) {
 }
 
 
-function init() {
-	setup.init().then(function (result) {
-		var flags = result.flags;
-		header.init();
-		var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
-		function clearNotification() {
-			emit('notifications:remove', { uuid: uuid });
-		}
-		if (uuid) clearNotification();
+setup.bootstrap(function (result) {
+	var flags = result.flags;
+	header.init();
+	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
+	function clearNotification() {
+		emit('notifications:remove', { uuid: uuid });
+	}
+	if (uuid) clearNotification();
 
-		if (flags.get('articleInfiniteScroll').isSwitchedOn) {
-			infiniteScroll.init();
-		}
+	if (flags.get('articleInfiniteScroll').isSwitchedOn) {
+		infiniteScroll.init();
+	}
 
-		messaging.init();
+	messaging.init();
 
-		if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
-			slideshow(document.querySelectorAll('ft-slideshow'));
-			authors(uuid, document.querySelector('.article__byline'));
-		}
+	if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
+		slideshow(document.querySelectorAll('ft-slideshow'));
+		authors(uuid, document.querySelector('.article__byline'));
+	}
 
-		if (flags.get('contentApiCalls').isSwitchedOn) {
-			moreOn.init(flags.getAll());
-		}
+	if (flags.get('contentApiCalls').isSwitchedOn) {
+		moreOn.init(flags.getAll());
+	}
 
-		if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
-			require('./components/video/main');
+	if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
+		require('./components/video/main');
 
-		}
+	}
 
-		if (flags.get('streamsFromContentApiV2').isSwitchedOn) {
-			require('./components/capi2-related/main');
-		}
-	});
-}
-
-if (window.ftNextInitCalled){
-	init();
-} else {
-	document.addEventListener('polyfillsLoaded', init);
-}
+	if (flags.get('streamsFromContentApiV2').isSwitchedOn) {
+		require('./components/capi2-related/main');
+	}
+});
