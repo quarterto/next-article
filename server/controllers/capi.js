@@ -20,6 +20,7 @@ var replaceEllipses = require('../transforms/replace-ellipses');
 var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
 
 var getMentions = function(annotations) {
+	annotations = annotations || [];
 	return annotations.filter(function(an) {
 		return an.predicate.indexOf('mentions') > -1;
 	}).map(function(an) {
