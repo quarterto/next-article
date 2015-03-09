@@ -84,9 +84,7 @@ module.exports = function(req, res, next) {
 					article.bodyXML = $.html();
 
 					article.bodyXML = article.bodyXML.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
-					if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
-						article.mentions = getMentions(article.annotations);
-					}
+					article.mentions = getMentions(article.annotations);
 					article.id = article.id.replace('http://www.ft.com/thing/', '');
 
 					// HACK - Force the last word in the title never to be an ‘orphan’
