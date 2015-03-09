@@ -1,14 +1,17 @@
 'use strict';
+
+var viewport = require('o-viewport');
+
 var setup = require('next-js-setup');
 var header = require('next-header');
+var messaging = require('next-messaging');
+require('next-article-card-component');
+
 var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
 var moreOn = require('./components/more-on/main');
-var messaging = require('next-messaging');
 var toc = require('./components/article/toc');
 
-require('next-article-card-component');
-var viewport = require('o-viewport');
 viewport.listenTo('resize');
 
 function emit(name, data) {

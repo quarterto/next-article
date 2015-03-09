@@ -5,6 +5,7 @@ $inline-img-width: 300px;
 //ARTICLE COLOUR BRANDS
 .article__color-brand {
 	padding-bottom: $brand-offset;
+	background-color: #3B3E7F;
 }
 
 //ARTICLE BRAND OFFSET
@@ -13,14 +14,47 @@ $inline-img-width: 300px;
 }
 
 //ARTICLE ELEMENTS
+.article__title,
+.article__stand-first {
+	color: #ffffff;
+}
 .article__title {
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-family: oFontsGetFontFamilyWithFallbacks(MillerDisplay);
 	font-weight: 400;
-	color: $next-black;
 	font-size: 36px;
 	margin-top: 0;
 	margin-bottom: 20px;
 }
+.article__stand-first {
+	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-weight: 100;
+}
+.article__authors {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.article__author {
+	display: inline-block;
+	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-weight: 100;
+	color: #ffffff;
+
+	&:before {
+		content: ', ';
+	}
+	&:first-child:before {
+		content: '';
+	}
+	&:last-child:before {
+		content: 'and';
+	}
+}
+.article__author__link {
+	color: inherit;
+	text-decoration: none;
+}
+
 .article__type {
 	display: block;
 	margin-top: 10px;
@@ -75,21 +109,9 @@ $inline-img-width: 300px;
 		color: $next-grey-dark;
 	}
 }
-.article__meta__time {
+.article__timestamp {
+	color: #ffffff;
 	margin-bottom: 10px;
-}
-.article__meta__time::before {
-	background-image: url("/grumman/assets/img/time.svg");
-	background-repeat: no-repeat;
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	content: " ";
-	background-position: left center;
-	background-size: 100%;
-	margin-bottom: -4px;
-	margin-right: 2px;
-	opacity: 0.6;
 }
 .article__actions__action {
 	float: right;
@@ -142,6 +164,7 @@ $inline-img-width: 300px;
 }
 .article__main-image {
 	position: relative;
+	margin-top: -30px;
 	padding-bottom: 9% * 100% / 16%; // 56.25%;
 	background: rgba(0, 0, 0, 0.4);
 
