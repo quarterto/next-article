@@ -5,7 +5,6 @@ var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
 var moreOn = require('./components/more-on/main');
 var messaging = require('next-messaging');
-var infiniteScroll = require('./components/infinite-scroll/main');
 
 require('next-article-card-component');
 var viewport = require('o-viewport');
@@ -30,10 +29,6 @@ function init() {
 			emit('notifications:remove', { uuid: uuid });
 		}
 		if (uuid) clearNotification();
-
-		if (flags.get('articleInfiniteScroll').isSwitchedOn) {
-			infiniteScroll.init();
-		}
 
 		messaging.init();
 
