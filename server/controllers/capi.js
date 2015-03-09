@@ -20,6 +20,7 @@ var replaceEllipses = require('../transforms/replace-ellipses');
 var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
 
 var getMentions = function(annotations) {
+	annotations = annotations || [];
 	return annotations.filter(function(an) {
 		return an.predicate.indexOf('mentions') > -1;
 	}).map(function(an) {
@@ -84,9 +85,7 @@ module.exports = function(req, res, next) {
 					article.bodyXML = $.html();
 
 					article.bodyXML = article.bodyXML.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
-					if (res.locals.flags.streamsFromContentApiV2.isSwitchedOn) {
-						article.mentions = getMentions(article.annotations);
-					}
+					article.mentions = getMentions(article.annotations);
 					article.id = article.id.replace('http://www.ft.com/thing/', '');
 
 					// HACK - Force the last word in the title never to be an ‘orphan’
