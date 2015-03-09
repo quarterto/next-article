@@ -20,41 +20,32 @@ function emit(name, data) {
 	document.dispatchEvent(event);
 }
 
+setup.bootstrap(function (result) {
+	var flags = result.flags;
+	header.init();
+	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
+	function clearNotification() {
+		emit('notifications:remove', { uuid: uuid });
+	}
+	if (uuid) clearNotification();
 
-function init() {
-	setup.init().then(function (result) {
-		var flags = result.flags;
-		header.init();
-		var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
-		function clearNotification() {
-			emit('notifications:remove', { uuid: uuid });
-		}
-		if (uuid) clearNotification();
+	messaging.init();
 
-		messaging.init();
+	if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
+		slideshow(document.querySelectorAll('ft-slideshow'));
+		authors(uuid, document.querySelector('.article__byline'));
+	}
 
-		if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
-			slideshow(document.querySelectorAll('ft-slideshow'));
-			authors(uuid, document.querySelector('.article__byline'));
-		}
+	if (flags.get('contentApiCalls').isSwitchedOn) {
+		moreOn.init(flags.getAll());
+	}
 
-		if (flags.get('contentApiCalls').isSwitchedOn) {
-			moreOn.init(flags.getAll());
-		}
+	if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
+		require('./components/video/main');
+	}
 
-		if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
-			require('./components/video/main');
+	require('./components/capi2-related/main');
 
-		}
 
-		require('./components/capi2-related/main');
-
-		toc.init(flags);
-	});
-}
-
-if (window.ftNextInitCalled){
-	init();
-} else {
-	document.addEventListener('polyfillsLoaded', init);
-}
+	toc.init(flags);
+});
