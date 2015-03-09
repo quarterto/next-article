@@ -30,7 +30,8 @@ gulp.task('minify-js',['build-js'], function(){
 
 
 gulp.task('watch', function() {
-	gulp.watch('./client/**/*', ['default']);
+	gulp.watch('./client/**/*.js', ['build-js']);
+	gulp.watch('./client/**/*.scss', ['build-sass']);
 });
 
 gulp.task('build-dev', ['build']);
