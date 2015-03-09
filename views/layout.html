@@ -1,41 +1,51 @@
 <article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}">
 	<div class="article__color-brand">
+		<div class="article__color-brand__bg" style="background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}})"></div>
 		<div class="o-grid-row">
-			<div data-o-grid-colspan="12 L7 XLoffset2">
+			<div data-o-grid-colspan="12 XLoffset2">
+				<p class="article__theme">{{{articleV1.metadata.primaryTheme.term.name}}}</p>
+			</div>
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<h3 class="article__title">{{{article.titleHTML}}}</h3>
+			</div>
+			<div data-o-grid-colspan="12 L4 XL3">
 				<h4 class="article__stand-first">{{{articleV1.editorial.standFirst}}}</h4>
-				{{#if articleV1.metadata.authors.length}}
-					<ul class="article__authors">
-						{{#each articleV1.metadata.authors}}
-							<li class="article__author">
-								<a class="article__author__link" href="/stream/authors/{{this.term.name}}">
-									{{this.term.name}}
-								</a>
-							</li>
-						{{/each}}
-					</ul>
-				{{/if}}
-				<div class="o-grid-row">
-					<div data-o-grid-colspan="8">
-						<time data-o-component="o-date" class="o-date article__timestamp" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-							{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-						</time>
-					</div>
-					<div data-o-grid-colspan="4">
-						<!-- <a href="">Save</a>
-						<a href="">Share</a> -->
-					</div>
-				</div>
-				{{#if showTOC}}
-					<div class="article__toc o-ft-forms__field-group">
-						<select class="article__toc__items o-ft-forms__field--select" data-trackable="toc">
-							<option disabled selected>Table of contents</option>
-							{{#each subheaders}}
-								<option value="{{this.id}}">{{this.text}}</option>
+			</div>
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
+				<div class="article__meta">
+					{{#if articleV1.metadata.authors.length}}
+						<ul class="article__authors">
+							{{#each articleV1.metadata.authors}}
+								<li class="article__author">
+									<a class="article__author__link" href="/stream/authors/{{this.term.name}}">
+										{{this.term.name}}
+									</a>
+								</li>
 							{{/each}}
-						</select>
+						</ul>
+					{{/if}}
+					<div class="o-grid-row">
+						<div data-o-grid-colspan="8">
+							<time data-o-component="o-date" class="o-date article__timestamp" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+							</time>
+						</div>
+						<div class="article__actions" data-o-grid-colspan="4">
+							<a class="article__actions__action" href="">Save</a>
+							<a class="article__actions__action" href="">Share</a>
+						</div>
 					</div>
-				{{/if}}
+					{{#if showTOC}}
+						<div class="article__toc o-ft-forms__field-group">
+							<select class="article__toc__items o-ft-forms__field--select" data-trackable="toc">
+								<option disabled selected>Table of contents</option>
+								{{#each subheaders}}
+									<option value="{{this.id}}">{{this.text}}</option>
+								{{/each}}
+							</select>
+						</div>
+					{{/if}}
+				</div>
 			</div>
 		</div>
 	</div>

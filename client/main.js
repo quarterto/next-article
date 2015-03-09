@@ -49,6 +49,7 @@ setup.bootstrap(function (result) {
 
 	require('./components/capi2-related/main');
 
-
 	toc.init(flags);
+
+	document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 });
