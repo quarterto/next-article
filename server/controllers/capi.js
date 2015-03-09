@@ -43,10 +43,9 @@ var getMentions = function(annotations) {
 module.exports = function(req, res, next) {
 
 	Metrics.instrument(res, { as: 'express.http.res' });
-	var contentEndpoint = res.locals.flags.streamsFromContentApiV2.isSwitchedOn ? 'enrichedcontent' : 'content';
 	// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
 	// http://int.api.ft.com/enrichedcontent/3e9e7958-cffe-3257-bd84-41706f03f039 has more annotationss
-	fetch('http://api.ft.com/' + contentEndpoint + '/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
+	fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 		timeout: 3000,
 		headers: {
 			'X-Api-Key': process.env.api2key
