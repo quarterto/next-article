@@ -13,6 +13,8 @@ var relativeLinksTransform = require('../transforms/relative-links');
 var slideshowTransform = require('../transforms/slideshow');
 var trimmedLinksTransform = require('../transforms/trimmed-links');
 var pHackTransform = require('../transforms/p-hack');
+var subheadersTransform = require('../transforms/subheaders');
+var addSubheaderIds = require('../transforms/add-subheader-ids');
 var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
 var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
@@ -76,6 +78,10 @@ module.exports = function(req, res, next) {
 					$('a').replaceWith(relativeLinksTransform);
 					$('a').replaceWith(trimmedLinksTransform);
 
+					var subheaders = $('.ft-subhead')
+						.attr('id', addSubheaderIds)
+						.replaceWith(subheadersTransform);
+
 					article.bodyXML = $.html();
 
 					article.bodyXML = article.bodyXML.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
@@ -86,9 +92,19 @@ module.exports = function(req, res, next) {
 
 					// HACK - Force the last word in the title never to be an ‘orphan’
 					article.titleHTML = article.title.replace(/(.*)(\s)/, '$1&nbsp;');
+
 					res.render('layout', {
 						article: article,
 						title: article.title,
+						subheaders: subheaders.map(function() {
+							var $subhead = $(this);
+
+							return {
+								text: $subhead.find('.ft-subhead__title').text(),
+								id: $subhead.attr('id')
+							};
+						}).get(),
+						showTOC: res.locals.flags.articleTOC.isSwitchedOn && subheaders.length > 2,
 						layout: 'wrapper'
 					});
 					break;
