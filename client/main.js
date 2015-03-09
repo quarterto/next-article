@@ -50,4 +50,3 @@ setup.bootstrap(function (result) {
 
 	toc.init(flags);
 });
-

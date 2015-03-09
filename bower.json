@@ -2,7 +2,7 @@
   "name": "next-grumman",
   "dependencies": {
     "o-fonts": "^1.6.4",
-    "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^7.0.0",
+    "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^8.0.0",
     "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^3.0.0",
     "next-barrier-component": "https://github.com/Financial-Times/next-barrier-component.git#^1.0.0",
     "next-header": "^5.0.0",
@@ -16,7 +16,7 @@
   },
   "resolutions": {
     "o-ft-forms": "~0.13.2",
-    "next-feature-flags-client": "^5.0.0",
-    "o-ft-icons": "next"
+    "o-ft-icons": "next",
+    "next-feature-flags-client": "^v5.0.0"
   }
 }
