@@ -2,11 +2,16 @@
 	<div class="article__header">
 		<div class="article__header__bg" style="background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}})"></div>
 		<div class="o-grid-row">
-			<div data-o-grid-colspan="12 XLoffset2">
-				<p class="article__theme">
-					{{{articleV1.metadata.primaryTheme.term.name}}}
-				</p>
-			</div>
+			{{#with articleV1.metadata.primaryTheme.term}}
+				<div data-o-grid-colspan="12 XLoffset2">
+					<p class="article__theme">
+						{{>articles/follow-button this}}
+						<a class="article__authors__link" href="/stream/{{taxonomy}}/{{name}}">
+							{{name}}
+						</a>
+					</p>
+				</div>
+			{{/with}}
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<h3 class="article__title">{{{article.titleHTML}}}</h3>
 			</div>
@@ -15,21 +20,37 @@
 			</div>
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<div class="article__meta">
-					{{#if articleV1.metadata.authors.length}}
-						<p class="article__authors">
-							By
-							{{#each articleV1.metadata.authors}}
-								{{#ifAll @first @last}}{{else}}
-									{{#if @first}}{{else}}
-										{{#if @last}} and {{else}}, {{/if}}
-									{{/if}}
-								{{/ifAll}}
-								<a class="article__authors__author" href="/stream/authors/{{this.term.name}}">
-									{{this.term.name}}
+					<p class="article__byline">
+						{{#ifEquals articleV1.metadata.primarySection.term.name 'Columnists'}}
+							{{#with articleV1.metadata.authors.[0].term}}
+								{{>articles/follow-button this type='author'}}
+								<a class="article__author" href="/stream/authors/{{name}}">
+									{{name}}
 								</a>
-							{{/each}}
-						</p>
-					{{/if}}
+							{{/with}}
+						{{else}}
+							{{#with articleV1.metadata.authors}}
+								By
+								{{#each this}}
+									{{#ifAll @first @last}}{{else}}
+										{{#if @first}}{{else}}
+											{{#if @last}} and {{else}}, {{/if}}
+										{{/if}}
+									{{/ifAll}}
+									<a class="article__author" href="/stream/authors/{{this.term.name}}">
+										{{term.name}}
+									</a>
+								{{/each}}
+							{{else}}
+								{{#with ../articleV1.metadata.primarySection.term}}
+									{{>articles/follow-button this type='author'}}
+									<a class="article__section" href="/stream/sections/{{name}}">
+										{{name}}
+									</a>
+								{{/with}}
+							{{/with}}
+						{{/ifEquals}}
+					</p>
 					<div class="o-grid-row">
 						<div data-o-grid-colspan="8">
 							<time data-o-component="o-date" class="o-date article__timestamp" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
@@ -37,8 +58,15 @@
 							</time>
 						</div>
 						<div class="article__actions" data-o-grid-colspan="4">
-							<!-- <a class="article__actions__action" href="">Save</a>
-							<a class="article__actions__action" href="">Share</a> -->
+							<button
+								class="article__actions__action article__actions__action--save"
+								data-content-id="{{article.id}}"
+								data-headline="{{headline}}"
+								data-user-prefs-button="saveForLater"
+								data-alternate-text="Saved">
+								<span class="next-buttons__text">Save</span>
+							</button>
+							<!-- <a class="article__actions__action" href="">Share</a> -->
 						</div>
 					</div>
 					{{#if showTOC}}
