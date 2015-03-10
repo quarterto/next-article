@@ -61,7 +61,7 @@ module.exports = function(req, res, next) {
 		.then(fetchres.json)
 		.then(function(articles) {
 			var articleV1 = articles[0],
-			 	article   = articles[1];
+				article = articles[1];
 
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
