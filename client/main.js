@@ -7,7 +7,6 @@ var header = require('next-header');
 var messaging = require('next-messaging');
 require('next-article-card-component');
 
-var authors = require('./components/authors');
 var slideshow = require('./components/slideshow');
 var moreOn = require('./components/more-on/main');
 var toc = require('./components/article/toc');
@@ -36,7 +35,6 @@ setup.bootstrap(function (result) {
 
 	if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
 		slideshow(document.querySelectorAll('ft-slideshow'));
-		authors(uuid, document.querySelector('.article__byline'));
 	}
 
 	if (flags.get('contentApiCalls').isSwitchedOn) {
