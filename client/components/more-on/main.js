@@ -18,9 +18,9 @@ function allSettled(promises) {
 var initAds = function(flags) {
 	var called = false;
 	return function() {
-		if (!called && flags.ads.isSwitchedOn){
+		if (!called && flags.get('ads').isSwitchedOn){
 			var ads = require('next-ads-component');
-			ads.init();
+			ads.init(flags);
 			called = true;
 		}
 	};

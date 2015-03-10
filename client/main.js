@@ -24,7 +24,7 @@ function emit(name, data) {
 
 setup.bootstrap(function (result) {
 	var flags = result.flags;
-	header.init();
+	header.init(flags);
 	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
 	function clearNotification() {
 		emit('notifications:remove', { uuid: uuid });
@@ -38,7 +38,7 @@ setup.bootstrap(function (result) {
 	}
 
 	if (flags.get('contentApiCalls').isSwitchedOn) {
-		moreOn.init(flags.getAll());
+		moreOn.init(flags);
 	}
 
 	if (flags.get('articlesFromContentApiV2').isSwitchedOn) {

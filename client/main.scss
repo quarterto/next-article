@@ -1,9 +1,7 @@
-@import "o-ft-icons/main";
 $o-quote-is-silent: false;
 @import "o-quote/main";
 $o-big-number-is-silent: false;
 @import "o-big-number/main";
-@import "o-ft-icons/main";
 
 @import "next-sass-setup/main";
 @import "next-header/main";
@@ -18,9 +16,6 @@ $o-big-number-is-silent: false;
 @import "components/more-on/main";
 @import "components/timeline/main";
 @import "components/capi2-related/main";
-
-@include oFtIconsFontFace();
-@include oFontsInclude(MetricWeb);
 
 // HACKS
 
