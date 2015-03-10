@@ -25,6 +25,18 @@ $inline-img-width: 300px;
 .article__theme {
 	margin: 10px 0 0;
 }
+.article__authors__link {
+	color: inherit;
+	font-size: 18px;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+	@include oGridRespondTo(L) {
+		font-size: 22px;
+	}
+}
 .article__title {
 	margin: 20px 0 0;
 	font-size: 36px;

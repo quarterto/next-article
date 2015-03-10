@@ -2,18 +2,13 @@
 	<div class="article__header">
 		<div class="article__header__bg" style="background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}})"></div>
 		<div class="o-grid-row">
-			{{#with articleV1.metadata.primaryTheme}}
+			{{#with articleV1.metadata.primaryTheme.term}}
 				<div data-o-grid-colspan="12 XLoffset2">
 					<p class="article__theme">
-						<button
-							class="next-buttons--follow next-buttons--light"
-							data-concept-id="{{term.taxonomy}}:&quot;{{term.name}}&quot;"
-							data-trackable="follow"
-							data-user-prefs-button="follow"
-							data-alternate-label="Unfollow this topic"
-							aria-label="Follow this topic"
-							title="Follow this topic"></button>
-						{{term.name}}
+						{{>articles/follow-button this}}
+						<a class="article__authors__link" href="/stream/{{taxonomy}}/{{name}}">
+							{{name}}
+						</a>
 					</p>
 				</div>
 			{{/with}}
@@ -25,28 +20,37 @@
 			</div>
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<div class="article__meta">
-					{{#if articleV1.metadata.authors.length}}
-						<p class="article__authors">
-							{{#each articleV1.metadata.authors}}
-								{{#ifAll @first @last}}{{else}}
-									{{#if @first}}{{else}}
-										{{#if @last}} and {{else}}, {{/if}}
-									{{/if}}
-								{{/ifAll}}
-								<button
-									class="next-buttons--follow next-buttons--light"
-									data-concept-id="authors:&quot;{{this.term.name}}&quot;"
-									data-trackable="follow"
-									data-user-prefs-button="follow"
-									data-alternate-label="Unfollow this author"
-									aria-label="Follow this author"
-									title="Follow this author"></button>
-								<a class="article__authors__author" href="/stream/authors/{{this.term.name}}">
-									{{this.term.name}}
+					<p class="article__authors">
+						{{#ifEquals articleV1.metadata.primarySection.term.name 'Columnists'}}
+							{{#with articleV1.metadata.authors.[0].term}}
+								{{>articles/follow-button this type='author'}}
+								<a class="article__authors__author" href="/stream/authors/{{name}}">
+									{{name}}
 								</a>
-							{{/each}}
-						</p>
-					{{/if}}
+							{{/with}}
+						{{else}}
+							{{#with articleV1.metadata.authors}}
+								By
+								{{#each this}}
+									{{#ifAll @first @last}}{{else}}
+										{{#if @first}}{{else}}
+											{{#if @last}} and {{else}}, {{/if}}
+										{{/if}}
+									{{/ifAll}}
+									<a class="article__authors__author" href="/stream/authors/{{this.term.name}}">
+										{{term.name}}
+									</a>
+								{{/each}}
+							{{else}}
+								{{#with ../articleV1.metadata.primarySection.term}}
+									{{>articles/follow-button this type='author'}}
+									<a class="article__authors__author" href="/stream/sections/{{name}}">
+										{{name}}
+									</a>
+								{{/with}}
+							{{/with}}
+						{{/ifEquals}}
+					</p>
 					<div class="o-grid-row">
 						<div data-o-grid-colspan="8">
 							<time data-o-component="o-date" class="o-date article__timestamp" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
