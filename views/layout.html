@@ -20,11 +20,11 @@
 			</div>
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<div class="article__meta">
-					<p class="article__authors">
+					<p class="article__byline">
 						{{#ifEquals articleV1.metadata.primarySection.term.name 'Columnists'}}
 							{{#with articleV1.metadata.authors.[0].term}}
 								{{>articles/follow-button this type='author'}}
-								<a class="article__authors__author" href="/stream/authors/{{name}}">
+								<a class="article__author" href="/stream/authors/{{name}}">
 									{{name}}
 								</a>
 							{{/with}}
@@ -37,14 +37,14 @@
 											{{#if @last}} and {{else}}, {{/if}}
 										{{/if}}
 									{{/ifAll}}
-									<a class="article__authors__author" href="/stream/authors/{{this.term.name}}">
+									<a class="article__author" href="/stream/authors/{{this.term.name}}">
 										{{term.name}}
 									</a>
 								{{/each}}
 							{{else}}
 								{{#with ../articleV1.metadata.primarySection.term}}
 									{{>articles/follow-button this type='author'}}
-									<a class="article__authors__author" href="/stream/sections/{{name}}">
+									<a class="article__section" href="/stream/sections/{{name}}">
 										{{name}}
 									</a>
 								{{/with}}

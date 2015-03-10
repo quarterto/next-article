@@ -32,6 +32,7 @@ function brightcoveInit(el) {
 			'//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(data.poster) + '?width=690&source=grumman&fit=scale-down'
 		);
 		videoEl.setAttribute('controls', 'true');
+		videoEl.className = 'article__video';
 		el.parentNode.replaceChild(videoEl, el);
 	}).catch(function(e){
 		el.parentNode.removeChild(el);
