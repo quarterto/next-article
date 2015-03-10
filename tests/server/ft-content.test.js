@@ -27,3 +27,15 @@ it('should turn capi v2 ft-content links with pretty content into pretty links',
 	$('ft-content').replaceWith(ftContentTransform);
 	expect($.html()).to.equal('<a href="/f203bf76-a241-11e4-bbb8-00144feab7de">aunched a programme of <b>quantitative</b> easing to </a>');
 });
+
+it('should promote main images to main images', function() {
+	var $ = cheerio.load('<body><ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/12395166-c6cd-11e4-3f5b-978e959e1c97"></ft-content><p>Tim says “aluminum”, Jony says “aluminium”.</p></body>');
+	$('ft-content').replaceWith(ftContentTransform);
+	expect($.html()).to.equal('<body><img class=\"article__main-image\" src=\"/embedded-components/image/12395166-c6cd-11e4-3f5b-978e959e1c97\"><p>Tim says &#x201C;aluminum&#x201D;, Jony says &#x201C;aluminium&#x201D;.</p></body>');
+});
+
+it('should not promote not main images to main images', function() {
+	var $ = cheerio.load('<body><p>First paragraph</p><ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/12395166-c6cd-11e4-3f5b-978e959e1c97"></ft-content><p>Tim says “aluminum”, Jony says “aluminium”.</p></body>');
+	$('ft-content').replaceWith(ftContentTransform);
+	expect($.html()).to.equal('<body><p>First paragraph</p><img class=\"article__inline-image\" src=\"/embedded-components/image/12395166-c6cd-11e4-3f5b-978e959e1c97\"><p>Tim says &#x201C;aluminum&#x201D;, Jony says &#x201C;aluminium&#x201D;.</p></body>');
+});

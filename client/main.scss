@@ -21,3 +21,11 @@ $o-big-number-is-silent: false;
 
 @include oFtIconsFontFace();
 @include oFontsInclude(MetricWeb);
+
+// HACKS
+
+// This image should be resized by the image service, but that
+// requires fixes in the Content API to return the right content type
+.article__main-image {
+	max-width: 100%;
+}

@@ -31,6 +31,9 @@ $inline-img-width: 300px;
 	font-weight: inherit;
 	line-height: 1em;
 }
+.article__main-image {
+	margin-top: -$brand-offset;
+}
 .article__stand-first {
 	margin: 20px 0 0;
 	padding-left: 10px;
@@ -164,30 +167,6 @@ $inline-img-width: 300px;
 
 	video {
 		width: 100%;
-	}
-}
-.article__main-image {
-	position: relative;
-	margin-top: -$brand-offset;
-	padding-bottom: 9% * 100% / 16%; // 56.25%;
-	background: rgba(0, 0, 0, 0.4);
-
-	img {
-		position: absolute;
-		max-width: 100%;
-		width: 100%;
-	}
-}
-
-.article__main-image--failed {
-	visibility: hidden;
-	height: 35px;
-	padding-bottom: 0;
-}
-
-@include oGridRespondTo(XL) {
-	.article__main-image--failed {
-		height: 90px;
 	}
 }
 
