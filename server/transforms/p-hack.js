@@ -1,4 +1,3 @@
-/*jshint laxbreak:true*/
 "use strict";
 
 var $ = require('cheerio');

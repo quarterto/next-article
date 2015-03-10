@@ -1,15 +1,12 @@
-/*jshint node:true*/
-/*global fetch*/
 'use strict';
 var fetchres = require('fetchres');
 var cacheControl = require('../utils/cache-control');
+var fetchCapiV1 = require('../utils/fetch-capi-v1');
 
 module.exports = function(req, res, next) {
-	fetch('http://api.ft.com/content/items/v1/' + req.params[0], {
-		timeout: 3000,
-		headers: {
-			'X-Api-Key': process.env.apikey
-		}
+	fetchCapiV1({
+		uuid: req.params[0],
+		useElasticSearch: res.local.flags.elasticSearchItemGet
 	})
 		.then(fetchres.json)
 		.then(function(article) {

@@ -1,4 +1,3 @@
-/*jshint node:true*/
 'use strict';
 var raven = require('express-errors-handler');
 var Metrics = require('next-metrics');

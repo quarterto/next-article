@@ -1,4 +1,3 @@
-/*global fetch*/
 'use strict';
 
 function brightcove(videoId) {

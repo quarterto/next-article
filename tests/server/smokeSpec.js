@@ -1,4 +1,3 @@
-/*jshint node:true*/
 /*global it, describe, before, beforeEach, afterEach*/
 'use strict';
 
