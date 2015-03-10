@@ -27,6 +27,7 @@ var servesGoodHTML = function (url, done) {
 		done();
 	}, function (err) {
 		console.log(err);
+		done(err);
 	});
 };
 
