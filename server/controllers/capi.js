@@ -73,9 +73,9 @@ module.exports = function(req, res, next) {
 
 					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
 					$('big-number').replaceWith(bigNumberTransform);
+					$('img').replaceWith(externalImgTransform);
 					$('ft-content').replaceWith(ftContentTransform);
 					$('p').replaceWith(pHackTransform);
-					$('img').replaceWith(externalImgTransform);
 					$('blockquote').attr('class', 'o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
 
