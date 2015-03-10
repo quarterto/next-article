@@ -3,12 +3,15 @@ $brand-offset: 30px;
 $inline-img-width: 300px;
 
 //ARTICLE COLOUR BRANDS
-.article__color-brand {
+.article__header {
 	position: relative;
 	padding-bottom: $brand-offset + 20;
 	background-color: #3B3E7F;
+	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-weight: 100;
+	color: #ffffff;
 }
-.article__color-brand__bg {
+.article__header__bg {
 	width: 100%;
 	height: 100%;
 	background-size: cover;
@@ -19,79 +22,58 @@ $inline-img-width: 300px;
 }
 
 //ARTICLE ELEMENTS
-.article__title,
-.article__stand-first {
-	color: #ffffff;
-}
 .article__theme {
 	margin: 10px 0 0;
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-	font-weight: 100;
-	color: #ffffff;
 }
 .article__title {
 	margin: 20px 0 0;
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-	font-weight: 100;
 	font-size: 36px;
+	font-weight: inherit;
 	line-height: 1em;
 }
 .article__stand-first {
 	margin: 20px 0 0;
 	padding-left: 10px;
 	border-left: 1px solid #ffffff;
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-	font-weight: 100;
 	font-size: 21px;
+	font-weight: inherit;
 }
 .article__meta {
 	margin: 20px 0 0;
 }
 .article__authors {
-	list-style: none;
 	margin: 0;
 	padding: 0;
-}
-.article__author {
-	display: inline-block;
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 400;
-	color: #ffffff;
+	font-size: 16px;
+
+	@include oGridRespondTo(L) {
+		font-size: 18px;
+	}
+}
+.article__authors__author {
+	color: inherit;
+	text-decoration: none;
 
 	&:hover {
 		text-decoration: underline;
-	}
-	&:before {
-		content: ',';
-	}
-	&:first-child:before {
-		display: none;
-	}
-	&:last-child:before {
-		content: 'and';
 	}
 }
 .article__author__link {
 	color: inherit;
 	text-decoration: none;
 }
-.article__timestamp {
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+.article__timestamp,
+.article__actions__action {
 	font-weight: 400;
 	font-size: 12px;
-	color: #ffffff;
 	text-transform: uppercase;
-	margin-bottom: 10px;
 }
 .article__actions {
 	text-align: right;
 }
 .article__actions__action {
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-	font-weight: 400;
-	font-size: 12px;
-	color: #ffffff;
-	text-transform: uppercase;
+	color: inherit;
 	text-decoration: none;
 
 	&:hover {
@@ -119,17 +101,6 @@ $inline-img-width: 300px;
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 }
 
-.article__type {
-	display: block;
-	margin-top: 10px;
-	text-transform: uppercase;
-	font-family: MetricWeb;
-	font-weight: 600;
-
-	.article-type-analysis & {
-		text-align: center;
-	}
-}
 .article__inline-image {
 	display: block;
 	margin: 35px auto;
@@ -308,10 +279,5 @@ $inline-img-width: 300px;
 	.article__pullquote {
 		width: 780px;
 		margin-left: -$inline-img-width/2;
-	}
-}
-@include oGridRespondTo(XL) {
-	.article__type {
-		margin-top: 30px;
 	}
 }

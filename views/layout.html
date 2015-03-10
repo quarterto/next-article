@@ -1,9 +1,11 @@
 <article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}">
-	<div class="article__color-brand">
-		<div class="article__color-brand__bg" style="background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}})"></div>
+	<div class="article__header">
+		<div class="article__header__bg" style="background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}})"></div>
 		<div class="o-grid-row">
 			<div data-o-grid-colspan="12 XLoffset2">
-				<p class="article__theme">{{{articleV1.metadata.primaryTheme.term.name}}}</p>
+				<p class="article__theme">
+					{{{articleV1.metadata.primaryTheme.term.name}}}
+				</p>
 			</div>
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<h3 class="article__title">{{{article.titleHTML}}}</h3>
@@ -14,15 +16,19 @@
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<div class="article__meta">
 					{{#if articleV1.metadata.authors.length}}
-						<ul class="article__authors">
+						<p class="article__authors">
+							By
 							{{#each articleV1.metadata.authors}}
-								<li class="article__author">
-									<a class="article__author__link" href="/stream/authors/{{this.term.name}}">
-										{{this.term.name}}
-									</a>
-								</li>
+								{{#ifAll @first @last}}{{else}}
+									{{#if @first}}{{else}}
+										{{#if @last}} and {{else}}, {{/if}}
+									{{/if}}
+								{{/ifAll}}
+								<a class="article__authors__author" href="/stream/authors/{{this.term.name}}">
+									{{this.term.name}}
+								</a>
 							{{/each}}
-						</ul>
+						</p>
 					{{/if}}
 					<div class="o-grid-row">
 						<div data-o-grid-colspan="8">
