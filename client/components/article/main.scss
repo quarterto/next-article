@@ -166,30 +166,6 @@ $inline-img-width: 300px;
 		width: 100%;
 	}
 }
-.article__main-image {
-	position: relative;
-	margin-top: -$brand-offset;
-	padding-bottom: 9% * 100% / 16%; // 56.25%;
-	background: rgba(0, 0, 0, 0.4);
-
-	img {
-		position: absolute;
-		max-width: 100%;
-		width: 100%;
-	}
-}
-
-.article__main-image--failed {
-	visibility: hidden;
-	height: 35px;
-	padding-bottom: 0;
-}
-
-@include oGridRespondTo(XL) {
-	.article__main-image--failed {
-		height: 90px;
-	}
-}
 
 .article__mpu {
 	text-align: center;
