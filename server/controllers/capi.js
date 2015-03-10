@@ -16,7 +16,6 @@ var addSubheaderIds = require('../transforms/add-subheader-ids');
 var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
 var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
-var externalImgTransform = require('../transforms/external-img');
 
 var getMentions = function(annotations) {
 	annotations = annotations || [];
@@ -75,7 +74,6 @@ module.exports = function(req, res, next) {
 					$('big-number').replaceWith(bigNumberTransform);
 					$('ft-content').replaceWith(ftContentTransform);
 					$('p').replaceWith(pHackTransform);
-					$('img').replaceWith(externalImgTransform);
 					$('blockquote').attr('class', 'o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
 
