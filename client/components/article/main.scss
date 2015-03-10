@@ -110,14 +110,20 @@ $inline-img-width: 300px;
 }
 
 @include oGridRespondTo(M) {
+	.o-big-number,
 	.article__inline-image {
 		float: left;
 		clear: left;
 		margin: 50px 50px 50px 0;
 	}
+
+	.o-big-number {
+		width: 300px;
+	}
 }
 
 @include oGridRespondTo(XL) {
+	.o-big-number,
 	.article__inline-image {
 		margin-left: -200px;
 	}
