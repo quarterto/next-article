@@ -2,6 +2,11 @@
 'use strict';
 
 function brightcove(videoId) {
+
+	if (!videoId.match(/^\d{13}$/)) {
+		return Promise.reject(new Error('Invalid video id: ' + videoId));
+	}
+
 	return fetch('http://ft-next-brightcove-proxy-api.herokuapp.com/' + videoId)
 		.then(function(response) {
 			if (response.status === 404) {
