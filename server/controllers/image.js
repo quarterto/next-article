@@ -1,4 +1,3 @@
-/*global fetch, process*/
 'use strict';
 
 var fetchres = require('fetchres');

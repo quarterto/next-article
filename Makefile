@@ -8,6 +8,7 @@ GIT_HASH := $(shell git rev-parse --short HEAD)
 TEST_HOST := "ft-grumman-branch-${GIT_HASH}"
 TEST_URL ?= "http://ft-grumman-branch-${GIT_HASH}.herokuapp.com/"
 TEN_MINS_FROM_NOW := $(shell node -e "var d = new Date(); d.setMinutes(d.getMinutes() + 10); console.log(d.toISOString())")
+ELASTIC_SEARCH_URL := $(shell cat ~/.nextElasticSearchUrl 2>/dev/null)
 
 
 .PHONY: test
@@ -20,7 +21,7 @@ endif
 	origami-build-tools install
 
 test:
-	origami-build-tools verify
+	next-build-tools verify
 	# Run all tests except for smoke tests
 	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; mocha --reporter spec -i -g 'smoke tests' tests/server/
 
@@ -33,6 +34,10 @@ test-debug:
 run:
 ifeq ($(ROUTER),)
 	@echo "You need to install the next router first!  See docs here: http://git.svc.ft.com/projects/NEXT/repos/router/browse"
+	exit 1
+endif
+ifeq ($(ELASTIC_SEARCH_URL),)
+	@echo "You need an elasticSearch url!  Speak to one of the next team to get one"
 	exit 1
 endif
 ifeq ($(API_KEY),)
@@ -53,10 +58,10 @@ _run: run-local run-router
 _run-debug: run-local-debug run-router run-local-debug-inspector
 
 run-local:
-	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nodemon server/app.js --watch server
+	export ELASTIC_SEARCH_URL=${ELASTIC_SEARCH_URL}; export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nodemon server/app.js --watch server
 
 run-local-debug:
-	export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon --debug server/app.js
+	export ELASTIC_SEARCH_URL=${ELASTIC_SEARCH_URL}; export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon --debug server/app.js
 	# for all output from ft-api-client then switch to using this line for debug mode
 	# export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export DEBUG=ft-api-client*; export PORT=${PORT}; nodemon --debug server/app.js
 

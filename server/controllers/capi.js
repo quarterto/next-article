@@ -1,5 +1,3 @@
-/*global fetch*/
-/*jshint node:true*/
 'use strict';
 
 var Metrics = require('next-metrics');

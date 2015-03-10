@@ -1,4 +1,3 @@
-/*jshint node:true*/
 'use strict';
 
 var ft = require('../utils/api').ft;
