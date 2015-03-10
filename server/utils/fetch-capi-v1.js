@@ -4,7 +4,7 @@ module.exports = function(opts) {
 	var uuid = opts.uuid;
 	var useElasticSearch = opts.useElasticSearch;
 	var url = useElasticSearch
-		? ELASTIC_SEARCH_URL + '/' + uuid
+		? process.env.ELASTIC_SEARCH_URL + '/' + uuid
 		: 'http://api.ft.com/content/items/v1/' + uuid + '?feature.blogposts=on';
 
 	return fetch(url, {
