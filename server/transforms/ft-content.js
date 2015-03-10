@@ -1,8 +1,8 @@
 "use strict";
 
 var $ = require('cheerio');
-module.exports = function(index, el) {
-	el = $(el);
+module.exports = function(index, originEl) {
+	var el = $(originEl);
 	var text = el.html();
 	var url = el.attr('url');
 	var type = el.attr('type');
@@ -10,6 +10,9 @@ module.exports = function(index, el) {
 
 	switch (type) {
 		case 'http://www.ft.com/ontology/content/ImageSet':
+			if (originEl.parentNode.tagName === 'body' && $(originEl.parentNode).children().first().html() === el.html()) {
+				return '<img class="article__main-image" src="/embedded-components/image' + url + '"/ >';
+			}
 			return '<img class="article__inline-image" src="/embedded-components/image' + url + '"/ >';
 		case 'http://www.ft.com/ontology/content/Article':
 			return '<a href="' + url + '">' + text + '</a>';
