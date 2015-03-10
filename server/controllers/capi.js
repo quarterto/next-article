@@ -49,15 +49,16 @@ module.exports = function(req, res, next) {
 			headers: {
 				'X-Api-Key': process.env.apikey
 			}
-		}).then(fetchres.json);
+		});
 	var articleV2Promise = fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 			timeout: 3000,
 			headers: {
 				'X-Api-Key': process.env.api2key
 			}
-		}).then(fetchres.json);
+		});
 
 	Promise.all([articleV1Promise, articleV2Promise])
+		.then(fetchres.json)
 		.then(function(articles) {
 			var articleV1 = articles[0],
 			 	article   = articles[1];
