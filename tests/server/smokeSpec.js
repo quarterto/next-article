@@ -40,11 +40,17 @@ var uniqueIdArticle = (function () {
 }());
 
 var mockMethode = function (n) {
+
 	nock('http://api.ft.com')
 		.filteringPath(/v1\/.*\?apiKey=.*$/, 'v1/XXX?apiKey=YYY')
 		.get('/content/items/v1/XXX?apiKey=YYY')
 		.times(n || 20)
 		.reply(200, uniqueIdArticle);
+	// non-ft client requests
+	nock('http://api.ft.com')
+		.filteringPath(/v1\/.*$/, 'v1/XXX')
+		.get('/content/items/v1/XXX')
+		.reply(200, articleV1);
 	nock('http://api.ft.com', {
 			reqheaders: {
 				'X-Api-Key': process.env.api2key
