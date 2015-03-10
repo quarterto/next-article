@@ -15,7 +15,7 @@ $inline-img-width: 300px;
 	width: 100%;
 	height: 100%;
 	background-size: cover;
-	background-position: 0;
+	background-position: 50%;
 	-webkit-filter: blur(5px);
 	-moz-filter: blur(5px);
 	-o-filter: blur(5px);
@@ -81,28 +81,37 @@ $inline-img-width: 300px;
 		text-decoration: underline;
 	}
 }
+.article__actions {
+	text-align: right;
+}
 .article__timestamp,
 .article__actions__action {
 	font-weight: 400;
 	font-size: 12px;
 	text-transform: uppercase;
 }
-.article__actions {
-	text-align: right;
-}
 .article__actions__action {
 	color: inherit;
-	text-decoration: none;
 
-	&:hover {
-		text-decoration: underline;
-	}
 	&:before {
 		content: '|';
 		margin-right: 5px;
 	}
 	&:first-child:before {
 		display: none;
+	}
+}
+.article__actions__action--save {
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	font-weight: inherit;
+	font-size: 12px;
+	font-family: inherit;
+
+	&:hover {
+		text-decoration: underline;
+		cursor: pointer;
 	}
 }
 .article__toc {

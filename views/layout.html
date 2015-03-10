@@ -58,8 +58,15 @@
 							</time>
 						</div>
 						<div class="article__actions" data-o-grid-colspan="4">
-							<!-- <a class="article__actions__action" href="">Save</a>
-							<a class="article__actions__action" href="">Share</a> -->
+							<button
+								class="article__actions__action article__actions__action--save"
+								data-content-id="{{article.id}}"
+								data-headline="{{headline}}"
+								data-user-prefs-button="saveForLater"
+								data-alternate-text="Saved">
+								<span class="next-buttons__text">Save</span>
+							</button>
+							<!-- <a class="article__actions__action" href="">Share</a> -->
 						</div>
 					</div>
 					{{#if showTOC}}
