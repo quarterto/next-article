@@ -12,7 +12,7 @@
     "es6-promise": "^2.0.1",
     "express-errors-handler": "^1.0.0",
     "fastft-api-client": "https://github.com/Financial-Times/fastft-api-client/archive/v1.0.0.tar.gz",
-    "fetchres": "0.0.8",
+    "fetchres": "^1.0.4",
     "forever": "^0.11.1",
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.13.0.tar.gz",
     "ft-next-express": "^6.1.0",
@@ -39,7 +39,7 @@
     "through2": "^0.6.3",
     "uglify-js": "^2.4.16",
     "vinyl-source-stream": "^1.0.0",
-    "next-gulp-tasks" : "Financial-Times/next-gulp-tasks.git#v1"
+    "next-gulp-tasks": "Financial-Times/next-gulp-tasks.git#v1"
   },
   "engines": {
     "node": "0.10.x"

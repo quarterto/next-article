@@ -40,18 +40,27 @@ var getMentions = function(annotations) {
 };
 
 module.exports = function(req, res, next) {
-
 	Metrics.instrument(res, { as: 'express.http.res' });
-	// Example article: http://int.api.ft.com/content/54307a12-37fa-11e3-8f44-002128161462
-	// http://int.api.ft.com/enrichedcontent/3e9e7958-cffe-3257-bd84-41706f03f039 has more annotationss
-	fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
-		timeout: 3000,
-		headers: {
-			'X-Api-Key': process.env.api2key
-		}
-	})
+
+	var articleV1Promise = fetch('http://api.ft.com/content/items/v1/' + req.params[0], {
+			timeout: 3000,
+			headers: {
+				'X-Api-Key': process.env.apikey
+			}
+		});
+	var articleV2Promise = fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
+			timeout: 3000,
+			headers: {
+				'X-Api-Key': process.env.api2key
+			}
+		});
+
+	Promise.all([articleV1Promise, articleV2Promise])
 		.then(fetchres.json)
-		.then(function(article) {
+		.then(function(articles) {
+			var articleV1 = articles[0],
+				article = articles[1];
+
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
 			switch(req.accepts(['html', 'json'])) {
@@ -91,6 +100,7 @@ module.exports = function(req, res, next) {
 
 					res.render('layout', {
 						article: article,
+						articleV1: articleV1.item,
 						title: article.title,
 						subheaders: subheaders.map(function() {
 							var $subhead = $(this);

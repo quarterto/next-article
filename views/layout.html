@@ -1,53 +1,65 @@
 <article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}">
-	<div class="article__color-brand">
+	<div class="article__header">
+		<div class="article__header__bg" style="background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}})"></div>
 		<div class="o-grid-row">
-			<div data-o-grid-colspan="12 XL2">
-				<div class="article__type">
-				</div>
+			<div data-o-grid-colspan="12 XLoffset2">
+				<p class="article__theme">
+					{{{articleV1.metadata.primaryTheme.term.name}}}
+				</p>
 			</div>
-			<div data-o-grid-colspan="12 L8">
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<h3 class="article__title">{{{article.titleHTML}}}</h3>
 			</div>
-			<div data-o-grid-colspan="0 L2">&nbsp;</div>
-		</div>
-	</div>
-	<div class="article__meta brand-top-offset o-grid-row">
-		<div data-o-grid-colspan="8 S10 L6 XLoffset2">
-			<time data-o-component="o-date" class="o-date article__meta__time" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-				{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-			</time>
-		</div>
-		<div data-o-grid-colspan="4 S2" class="article__actions">
-			<span class="article__actions__action">
-				{{#if @root.flags.userPreferences.isSwitchedOn }}
-					<button data-capi="{{article.id}}" data-headline="{{headline}}" class="save-for-later save-for-later--large js-save-for-later" data-toggle-text="" aria-label="Save this article for later" title="Save this article for later"></button>
-				{{/if}}
-			</span>
-			<span class="article__actions__action"></span>
-		</div>
-		{{#if showTOC}}
-			<div data-o-grid-colspan="12 XLoffset2">
-				<div class="article__toc o-ft-forms__field-group">
-					<select class="article__toc__items o-ft-forms__field--select" data-trackable="toc">
-						<option disabled selected>Table of contents</option>
-						{{#each subheaders}}
-							<option value="{{this.id}}">{{this.text}}</option>
-						{{/each}}
-					</select>
+			<div data-o-grid-colspan="12 L4 XL3">
+				<h4 class="article__stand-first">{{{articleV1.editorial.standFirst}}}</h4>
+			</div>
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
+				<div class="article__meta">
+					{{#if articleV1.metadata.authors.length}}
+						<p class="article__authors">
+							By
+							{{#each articleV1.metadata.authors}}
+								{{#ifAll @first @last}}{{else}}
+									{{#if @first}}{{else}}
+										{{#if @last}} and {{else}}, {{/if}}
+									{{/if}}
+								{{/ifAll}}
+								<a class="article__authors__author" href="/stream/authors/{{this.term.name}}">
+									{{this.term.name}}
+								</a>
+							{{/each}}
+						</p>
+					{{/if}}
+					<div class="o-grid-row">
+						<div data-o-grid-colspan="8">
+							<time data-o-component="o-date" class="o-date article__timestamp" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+							</time>
+						</div>
+						<div class="article__actions" data-o-grid-colspan="4">
+							<!-- <a class="article__actions__action" href="">Save</a>
+							<a class="article__actions__action" href="">Share</a> -->
+						</div>
+					</div>
+					{{#if showTOC}}
+						<div class="article__toc o-ft-forms__field-group">
+							<select class="article__toc__items o-ft-forms__field--select" data-trackable="toc">
+								<option disabled selected>Table of contents</option>
+								{{#each subheaders}}
+									<option value="{{this.id}}">{{this.text}}</option>
+								{{/each}}
+							</select>
+						</div>
+					{{/if}}
 				</div>
 			</div>
-		{{/if}}
+		</div>
 	</div>
 	<div class="article__main o-grid-row">
 		<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 			<div class="article__main-image">
 				<img src="{{#resize 700}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}}" alt="Article image"
 					srcset="{{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/{{article.id}}/main-image{{/resize}} 2x" onerror="this.parentNode.className += ' article__main-image--failed'; this.parentNode.removeChild(this);">
-			</div>
-			<div>
-			{{#if article.byline}}
-				<cite class="article__byline">By {{article.byline}}</cite>
-			{{/if}}
 			</div>
 			<div class="article__body">
 				{{{article.bodyXML}}}
