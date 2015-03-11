@@ -132,7 +132,7 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				fetch('http://api.ft.com/content/items/v1/' + req.params[0] + '?feature.blogposts=on', {
+				return fetch('http://api.ft.com/content/items/v1/' + req.params[0] + '?feature.blogposts=on', {
 					timeout: 3000,
 					headers: {
 						'X-Api-Key': process.env.apikey
@@ -142,8 +142,12 @@ module.exports = function(req, res, next) {
 					.then(function(data) {
 						res.render('layout_404', { layout: 'wrapper', url: data.item.location.uri });
 					})
-					.catch(function() {
-						res.status(404).end();
+					.catch(function(err) {
+						if (err instanceof fetchres.BadServerResponseError) {
+							res.status(404).end();
+						} else {
+							next(err);
+						}
 					});
 			} else {
 				next(err);
