@@ -25,7 +25,7 @@ var servesGoodHTML = function (url, done) {
 		expect(res.statusCode).to.equal(200);
 		done();
 	}, function (err) {
-		console.log(err);
+		console.log("An error has occurred", err);
 		done(err);
 	});
 };
@@ -50,6 +50,10 @@ var mockMethode = function (n) {
 	nock('http://api.ft.com')
 		.filteringPath(/v1\/.*$/, 'v1/XXX')
 		.get('/content/items/v1/XXX')
+		.reply(200, articleV1);
+	nock('http://elastic/')
+		.filteringPath(/\/.*$/, '/XXX')
+		.get('/XXX')
 		.reply(200, articleV1);
 	nock('http://api.ft.com', {
 			reqheaders: {
