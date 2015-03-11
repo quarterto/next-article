@@ -3,6 +3,8 @@ $o-quote-is-silent: false;
 $o-big-number-is-silent: false;
 @import "o-big-number/main";
 @import "o-forms/main";
+$o-gallery-is-silent: false;
+@import "o-gallery/main";
 
 @import "next-sass-setup/main";
 @import "next-header/main";
