@@ -17,7 +17,6 @@
     "ft-api-client": "https://github.com/Financial-Times/ft-api-client/archive/v3.13.0.tar.gz",
     "ft-next-express": "^6.3.0",
     "heroku-seppuku": "https://github.com/Financial-Times/heroku-seppuku/archive/v1.0.3.tar.gz",
-    "next-build-tools": "^1.8.0",
     "next-metrics": "https://github.com/Financial-Times/next-metrics/archive/v1.2.0.tar.gz",
     "request": "^2.44.0"
   },
@@ -31,6 +30,7 @@
     "gulp-uglify": "^1.0.2",
     "gulp-watch": "^1.0.7",
     "mocha": "^1.21.4",
+    "next-build-tools": "^1.10.0",
     "nightwatch": "^0.5.36",
     "nock": "^0.50.0",
     "nodemon": "^1.3.5",
