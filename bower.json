@@ -9,7 +9,7 @@
     "next-header": "^6.0.0",
     "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^2.2.1",
     "next-sass-setup": "https://github.com/Financial-Times/next-sass-setup.git#^5.0.0",
-    "next-js-setup": "https://github.com/Financial-Times/next-js-setup.git#^1.3.0",
+    "next-js-setup": "https://github.com/Financial-Times/next-js-setup.git#^1.5.1",
     "o-quote": "https://github.com/Financial-Times/o-quote.git#bogdis-design",
     "o-big-number": "Financial-Times/o-big-number#~1.0.0",
     "next-footer": "Financial-Times/next-footer#^1.3.3",
