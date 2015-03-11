@@ -2,17 +2,12 @@
 
 var express = require('ft-next-express');
 var Metrics = require('next-metrics');
-var ifIsAdSlotHelper = require('./view-helpers/if-is-ad-slot');
 
 require('heroku-seppuku')();
 
 Metrics.init({ app: 'grumman', flushEvery: 30000 });
 
-var app = module.exports = express({
-	helpers: {
-		ifIsAdSlot: ifIsAdSlotHelper
-	}
-});
+var app = module.exports = express();
 
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
