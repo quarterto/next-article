@@ -26,7 +26,7 @@ test:
 	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; mocha --reporter spec -i -g 'smoke tests' tests/server/
 
 smoke-test:
-	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export api2key=67890; export ENVIRONMENT=production; mocha --reporter spec -g 'smoke tests' tests/server/
+	export ELASTIC_SEARCH_URL='http://elastic'; export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export api2key=67890; export ENVIRONMENT=production; mocha --reporter spec -g 'smoke tests' tests/server/
 
 test-debug:
 	@mocha --debug-brk --reporter spec -i tests/server/
