@@ -3,7 +3,7 @@
 	display: block;
 	margin: 35px auto;
 
-	@include oGridRespondTo(M) {
+	@include oGridRespondTo(S) {
 		@include box-sizing(border-box);
 		float: left;
 		clear: left;

@@ -6,7 +6,7 @@ $inline-img-width: 300px;
 .article__header {
 	position: relative;
 	padding-bottom: $header-offset + 20;
-	background-color: #3b3e7f;
+	@include oColorsFor(ng-brand, background);
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
 	color: #ffffff;
@@ -163,8 +163,9 @@ $inline-img-width: 300px;
 
 	.back-top-top {
 		position: absolute;
-		top: 8px;
+		top: 50%;
 		right: 0;
+		margin-top: -10px;
 	}
 	.back-top-top__text {
 		position: absolute;
@@ -175,7 +176,7 @@ $inline-img-width: 300px;
 		background: url('/grumman/assets/img/back-to-top.svg') no-repeat;
 		background-size: contain;
 		width: 24px;
-		height: 21px;
+		height: 20px;
 	}
 }
 .article__big-number,
@@ -183,11 +184,6 @@ $inline-img-width: 300px;
 	width: 100%;
 	margin-top: 1.5em;
 	margin-bottom: 1.5em;
-}
-.article__big-number {
-	@include oGridRespondTo(L) {
-		@include oBigNumberStandardBig;
-	}
 }
 .article__pull-quote {
 	@include oGridRespondTo(L) {

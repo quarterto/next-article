@@ -5,6 +5,7 @@ $o-big-number-is-silent: false;
 @import "o-forms/main";
 $o-gallery-is-silent: false;
 @import "o-gallery/main";
+@import "o-colors/main";
 
 @import "next-sass-setup/main";
 @import "next-header/main";
@@ -17,6 +18,7 @@ $o-gallery-is-silent: false;
 
 @import "_mixins";
 @import "_helpers";
+@import "_setup";
 @import "components/article/main";
 @import "components/more-on/main";
 @import "components/timeline/main";
