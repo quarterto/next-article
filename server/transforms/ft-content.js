@@ -13,7 +13,7 @@ module.exports = function(index, originEl) {
 			if (originEl.parentNode.tagName === 'body' && $(originEl.parentNode).children().first().html() === el.html()) {
 				return '<img class="article__main-image" src="/embedded-components/image' + url + '"/ >';
 			}
-			return '<img class="article__inline-image" src="/embedded-components/image' + url + '"/ >';
+			return '<img class="article__inline-image g-inline-element g-pull-out" src="/embedded-components/image' + url + '"/ >';
 		case 'http://www.ft.com/ontology/content/Article':
 			return '<a href="' + url + '">' + text + '</a>';
 		default:

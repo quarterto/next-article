@@ -2,6 +2,25 @@
 $header-offset: 30px;
 $inline-img-width: 300px;
 
+//GRUMMAN HELPERS
+.g-inline-element {
+	display: block;
+	margin: 35px auto;
+
+	@include oGridRespondTo(M) {
+		box-sizing: border-box;
+		float: left;
+		clear: left;
+		margin: 50px 50px 50px 0;
+		max-width: 300px;
+	}
+}
+.g-pull-out {
+	@include oGridRespondTo(XL) {
+		margin-left: -200px;
+	}
+}
+
 //ARTICLE HEADER
 .article__header {
 	position: relative;
@@ -128,31 +147,6 @@ $inline-img-width: 300px;
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 }
 
-.article__inline-image {
-	display: block;
-	margin: 35px auto;
-}
-
-@include oGridRespondTo(M) {
-	.o-big-number,
-	.article__inline-image {
-		float: left;
-		clear: left;
-		margin: 50px 50px 50px 0;
-	}
-
-	.o-big-number {
-		width: 300px;
-	}
-}
-
-@include oGridRespondTo(XL) {
-	.o-big-number,
-	.article__inline-image {
-		margin-left: -200px;
-	}
-}
-
 
 //ARTICLE BODY ELEMENTS
 .article__body {
@@ -197,9 +191,6 @@ $inline-img-width: 300px;
 	margin: 10px 10px 0 0;
 	max-width: 100%;
 }
-.article__pullquote {
-	display: block;
-}
 .article__gallery {
 	line-height: initial;
 }
@@ -224,6 +215,15 @@ $inline-img-width: 300px;
 		height: 21px;
 	}
 }
+.article__pull-quote {
+	width: 100%;
+
+	@include oGridRespondTo(L) {
+		@include oQuoteStandardBig;
+	}
+}
+
+
 .article__rail-advert {
 	margin-top: 0.3em;
 }
@@ -273,10 +273,6 @@ $inline-img-width: 300px;
 		padding-top: 0;
 	}
 	.article__img-inline-offset {
-		margin-left: -$inline-img-width/2;
-	}
-	.article__pullquote {
-		width: 780px;
 		margin-left: -$inline-img-width/2;
 	}
 }
