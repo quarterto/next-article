@@ -100,11 +100,15 @@ module.exports = function(req, res, next) {
 					// HACK - Force the last word in the title never to be an ‘orphan’
 					article.titleHTML = article.title.replace(/(.*)(\s)/, '$1&nbsp;');
 
+					if (article.mainImage) {
+						article.mainImage = article.mainImage.id.replace(/^http:\/\/api\.ft\.com\/content\//, '')
+					}
+
 					res.render('layout', {
 						article: article,
 						articleV1: articleV1.item,
 						title: article.title,
-						mainImage: article.mainImage.id.replace(/^http:\/\/api\.ft\.com\/content\//, ''),
+						mainImage: article.mainImage,
 						subheaders: subheaders.map(function() {
 							var $subhead = $(this);
 
