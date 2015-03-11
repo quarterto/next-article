@@ -2,7 +2,7 @@
   "name": "next-grumman",
   "dependencies": {
     "o-fonts": "^1.6.4",
-    "next-feature-flags-client": "https://github.com/Financial-Times/next-feature-flags-client.git#if-flags-available-on-client-dont-redownload",
+    "next-feature-flags-client": "^v5.1.0",
     "next-article-card-component": "https://github.com/Financial-Times/next-article-card-component.git#^8.0.0",
     "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^4.0.0",
     "next-barrier-component": "https://github.com/Financial-Times/next-barrier-component.git#^1.0.0",
