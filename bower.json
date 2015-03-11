@@ -19,6 +19,6 @@
     "o-forms": "^1.0.0-beta.8"
   },
   "resolutions": {
-    "next-feature-flags-client": "if-flags-available-on-client-dont-redownload"
+    "next-feature-flags-client": "v5.1.0"
   }
 }
