@@ -33,17 +33,13 @@ setup.bootstrap(function (result) {
 
 	messaging.init();
 
-	if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
-		slideshow(document.querySelectorAll('ft-slideshow'));
-	}
+	slideshow(document.querySelectorAll('ft-slideshow'));
 
 	if (flags.get('contentApiCalls').isSwitchedOn) {
 		moreOn.init(flags);
 	}
 
-	if (flags.get('articlesFromContentApiV2').isSwitchedOn) {
-		require('./components/video/main');
-	}
+	require('./components/video/main');
 
 	require('./components/capi2-related/main');
 
