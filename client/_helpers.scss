@@ -1,0 +1,18 @@
+// GRUMMAN HELPER CLASSES
+.ng-inline-element {
+	display: block;
+	margin: 35px auto;
+
+	@include oGridRespondTo(S) {
+		@include box-sizing(border-box);
+		float: left;
+		clear: left;
+		margin: 50px 50px 50px 0;
+		max-width: 300px;
+	}
+}
+.ng-pull-out {
+	@include oGridRespondTo(XL) {
+		margin-left: -200px;
+	}
+}
