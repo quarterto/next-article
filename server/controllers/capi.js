@@ -101,7 +101,7 @@ module.exports = function(req, res, next) {
 					article.titleHTML = article.title.replace(/(.*)(\s)/, '$1&nbsp;');
 
 					if (article.mainImage) {
-						article.mainImage = article.mainImage.id.replace(/^http:\/\/api\.ft\.com\/content\//, '')
+						article.mainImage = article.mainImage.id.replace(/^http:\/\/api\.ft\.com\/content\//, '');
 					}
 
 					res.render('layout', {
