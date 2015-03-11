@@ -141,8 +141,12 @@ module.exports = function(req, res, next) {
 					.then(function(data) {
 						res.render('layout_404', { layout: 'wrapper', url: data.item.location.uri });
 					})
-					.catch(function() {
-						res.status(404).end();
+					.catch(function(err) {
+						if (err instanceof fetchres.BadServerResponseError) {
+							res.status(404).end();
+						} else {
+							next(err);
+						}
 					});
 			} else {
 				next(err);

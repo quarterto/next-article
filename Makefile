@@ -6,7 +6,7 @@ API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
 API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
 GIT_HASH := $(shell git rev-parse --short HEAD)
 TEST_HOST := "ft-grumman-branch-${GIT_HASH}"
-TEST_URL ?= "http://ft-grumman-branch-${GIT_HASH}.herokuapp.com/"
+TEST_URL ?= "http://ft-grumman-branch-${GIT_HASH}.herokuapp.com/fb368c7a-c804-11e4-8210-00144feab7de"
 TEN_MINS_FROM_NOW := $(shell node -e "var d = new Date(); d.setMinutes(d.getMinutes() + 10); console.log(d.toISOString())")
 ELASTIC_SEARCH_URL := $(shell cat ~/.nextElasticSearchUrl 2>/dev/null)
 
@@ -98,4 +98,4 @@ provision:
 	make smoke
 
 smoke:
-	export TEST_URL=${TEST_URL}; ./node_modules/nightwatch/bin/nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox,chrome
+	export TEST_URL=${TEST_URL}; nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox,chrome
