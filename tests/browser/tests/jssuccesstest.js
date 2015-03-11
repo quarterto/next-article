@@ -7,11 +7,12 @@ var https = require('https');
 module.exports = {
 
 	"Js-success Test" : function (browser) {
-		console.log('Testing host', browser.launch_url+"b70cc2d6-b809-11e4-b6a5-00144feab7de");
+        var canariedURL = "http://next.ft.com/b70cc2d6-b809-11e4-b6a5-00144feab7de?canary=grumman:" + browser.launch_url.substring(browser.launch_url.indexOf("http://"+7),browser.launch_url.length-1);
+		console.log('Testing host: ', canariedURL);
 		browser
-			.url(browser.launch_url+"b70cc2d6-b809-11e4-b6a5-00144feab7de")
+			.url(canariedURL)
 			.waitForElementVisible('body', 5000)
-			.assert.attributeEquals(".js", "class", " js")
+			.assert.attributeEquals(".js", "class", " js js-success")
 			.end();
 	},
 
