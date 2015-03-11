@@ -1,5 +1,6 @@
 'use strict';
 
+var fetchCapiV1 = require('../utils/fetch-capi-v1');
 var Metrics = require('next-metrics');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
@@ -43,11 +44,9 @@ var getMentions = function(annotations) {
 module.exports = function(req, res, next) {
 	Metrics.instrument(res, { as: 'express.http.res' });
 
-	var articleV1Promise = fetch('http://api.ft.com/content/items/v1/' + req.params[0], {
-			timeout: 3000,
-			headers: {
-				'X-Api-Key': process.env.apikey
-			}
+	var articleV1Promise = fetchCapiV1({
+			uuid: req.params[0],
+			useElasticSearch: res.locals.flags.elasticSearchItemGet
 		});
 	var articleV2Promise = fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 			timeout: 3000,
