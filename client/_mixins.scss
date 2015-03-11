@@ -1,0 +1,12 @@
+@mixin filter($funcs...) {
+	-webkit-filter: $funcs;
+	-moz-filter: $funcs;
+	-o-filter: $funcs;
+	-ms-filter: $funcs;
+	filter: $funcs;
+}
+@mixin box-sizing($value) {
+	-webkit-box-sizing: $value;
+	-moz-box-sizing: $value;
+	box-sizing: $value;
+}

@@ -10,11 +10,12 @@
     "next-sass-setup": "https://github.com/Financial-Times/next-sass-setup.git#^5.0.0",
     "next-js-setup": "https://github.com/Financial-Times/next-js-setup.git#^1.3.0",
     "o-quote": "https://github.com/Financial-Times/o-quote.git#bogdis-design",
-    "o-big-number": "Financial-Times/o-big-number#~1.0.0",
+    "o-big-number": "Financial-Times/o-big-number#~1.1.0",
     "next-footer": "Financial-Times/next-footer#^1.3.3",
     "next-messaging": "https://github.com/Financial-Times/next-messaging.git#^1.0.0",
     "o-gallery": "^1.6.1",
     "next-buttons": "Financial-Times/next-buttons#~1.0.0-beta.7",
-    "o-forms": "^1.0.0-beta.8"
+    "o-forms": "^1.0.0-beta.8",
+    "o-colors": "~2.4.7"
   }
 }
