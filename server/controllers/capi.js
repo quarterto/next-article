@@ -132,7 +132,7 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				return fetch('http://api.ft.com/content/items/v1/' + req.params[0] + '?feature.blogposts=on', {
+				fetch('http://api.ft.com/content/items/v1/' + req.params[0] + '?feature.blogposts=on', {
 					timeout: 3000,
 					headers: {
 						'X-Api-Key': process.env.apikey
