@@ -104,6 +104,7 @@ module.exports = function(req, res, next) {
 						article: article,
 						articleV1: articleV1.item,
 						title: article.title,
+						mainImage: article.mainImage.id.replace(/^http:\/\/api\.ft\.com\/content\//, ''),
 						subheaders: subheaders.map(function() {
 							var $subhead = $(this);
 
