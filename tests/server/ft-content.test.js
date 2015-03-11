@@ -13,7 +13,7 @@ it('should turn capi v2 ft-content links into a tags', function() {
 it('should turn capi v2 ft-content image into img tags', function() {
 	var $ = cheerio.load('<p><ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/4e2487ee-422b-11e4-39b2-97bbf262bf2b"></ft-content>Another left-aligned landscape image here.</p>');
 	$('ft-content').replaceWith(ftContentTransform);
-	expect($.html()).to.equal('<p><img class="article__inline-image g-inline-element g-pull-out" src="/embedded-components/image/4e2487ee-422b-11e4-39b2-97bbf262bf2b">Another left-aligned landscape image here.</p>');
+	expect($.html()).to.equal('<p><img class="article__inline-image ng-inline-element ng-pull-out" src="/embedded-components/image/4e2487ee-422b-11e4-39b2-97bbf262bf2b">Another left-aligned landscape image here.</p>');
 });
 
 it('should turn capi v2 ft-content unrecognised content types into nothing', function() {
@@ -37,5 +37,5 @@ it('should promote main images to main images', function() {
 it('should not promote not main images to main images', function() {
 	var $ = cheerio.load('<body><p>First paragraph</p><ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/12395166-c6cd-11e4-3f5b-978e959e1c97"></ft-content><p>Tim says “aluminum”, Jony says “aluminium”.</p></body>');
 	$('ft-content').replaceWith(ftContentTransform);
-	expect($.html()).to.equal('<body><p>First paragraph</p><img class="article__inline-image g-inline-element g-pull-out" src="/embedded-components/image/12395166-c6cd-11e4-3f5b-978e959e1c97"><p>Tim says &#x201C;aluminum&#x201D;, Jony says &#x201C;aluminium&#x201D;.</p></body>');
+	expect($.html()).to.equal('<body><p>First paragraph</p><img class="article__inline-image ng-inline-element ng-pull-out" src="/embedded-components/image/12395166-c6cd-11e4-3f5b-978e959e1c97"><p>Tim says &#x201C;aluminum&#x201D;, Jony says &#x201C;aluminium&#x201D;.</p></body>');
 });

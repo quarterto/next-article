@@ -76,7 +76,7 @@ module.exports = function(req, res, next) {
 					$('img').replaceWith(externalImgTransform);
 					$('ft-content').replaceWith(ftContentTransform);
 					$('p').replaceWith(pHackTransform);
-					$('blockquote').attr('class', 'o-quote o-quote--standard');
+					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
 
 					// HACK - Fix for paragraphs in blockquotes

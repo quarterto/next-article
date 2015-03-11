@@ -2,25 +2,6 @@
 $header-offset: 30px;
 $inline-img-width: 300px;
 
-//GRUMMAN HELPERS
-.g-inline-element {
-	display: block;
-	margin: 35px auto;
-
-	@include oGridRespondTo(M) {
-		box-sizing: border-box;
-		float: left;
-		clear: left;
-		margin: 50px 50px 50px 0;
-		max-width: 300px;
-	}
-}
-.g-pull-out {
-	@include oGridRespondTo(XL) {
-		margin-left: -200px;
-	}
-}
-
 //ARTICLE HEADER
 .article__header {
 	position: relative;
@@ -35,11 +16,7 @@ $inline-img-width: 300px;
 	height: 100%;
 	background-size: cover;
 	background-position: 50%;
-	-webkit-filter: blur(5px);
-	-moz-filter: blur(5px);
-	-o-filter: blur(5px);
-	-ms-filter: blur(5px);
-	filter: blur(5px);
+	@include filter(blur(5px));
 	opacity: 0.2;
 	position: absolute;
 	top: 0;
@@ -160,15 +137,6 @@ $inline-img-width: 300px;
 		display: block;
 	}
 
-	blockquote {
-		margin-top: 1.5em;
-		margin-bottom: 1.5em;
-
-		@include oGridRespondTo(XL) {
-			margin-left: -200px;
-		}
-	}
-
 	a {
 		color: $next-grey-dark;
 	}
@@ -185,18 +153,13 @@ $inline-img-width: 300px;
 	text-align: center;
 	padding: 10px 0;
 }
-.article__img-inline,
-.article__img-inline-offset {
-	float: left;
-	margin: 10px 10px 0 0;
-	max-width: 100%;
-}
 .article__gallery {
 	line-height: initial;
 }
-.ft-subhead {
+.article__subhead {
 	padding-right: 40px;
 	position: relative;
+	border-bottom: 1px solid black;
 
 	.back-top-top {
 		position: absolute;
@@ -215,9 +178,18 @@ $inline-img-width: 300px;
 		height: 21px;
 	}
 }
+.article__big-number,
 .article__pull-quote {
 	width: 100%;
-
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+.article__big-number {
+	@include oGridRespondTo(L) {
+		@include oBigNumberStandardBig;
+	}
+}
+.article__pull-quote {
 	@include oGridRespondTo(L) {
 		@include oQuoteStandardBig;
 	}
@@ -241,10 +213,6 @@ $inline-img-width: 300px;
 			line-height: 28px;
 		}
 	}
-	.article__img-inline,
-	.article__img-inline-offset {
-		max-width: $inline-img-width;
-	}
 }
 @include oGridRespondTo(M) {
 	.article__title {
@@ -260,10 +228,6 @@ $inline-img-width: 300px;
 			line-height: 35px;
 		}
 	}
-	.article__img-inline,
-	.article__img-inline-offset {
-		max-width: $inline-img-width;
-	}
 }
 @include oGridRespondTo(L) {
 	.article__title {
@@ -271,8 +235,5 @@ $inline-img-width: 300px;
 	}
 	.article__mpu {
 		padding-top: 0;
-	}
-	.article__img-inline-offset {
-		margin-left: -$inline-img-width/2;
 	}
 }

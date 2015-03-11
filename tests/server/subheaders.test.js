@@ -10,7 +10,7 @@ it('should update subheaders', function() {
 	$('.ft-subhead').replaceWith(subheadersTransform);
 
 	expect($.html()).to.equal(
-		'<h3 class="ft-subhead g-pull-out">' +
+		'<h3 class="ft-subhead article__subhead ng-pull-out">' +
 			'<span class="ft-subhead__title">The new big earners</span>' +
 			'<a class="back-top-top" href="#top">' +
 				'<span class="back-top-top__text">Back to top</span>' +

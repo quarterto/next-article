@@ -4,6 +4,6 @@ var $ = require('cheerio');
 
 module.exports = function(index, el) {
 	el = $(el);
-	el.addClass('article__inline-image g-inline-element g-pull-out');
+	el.addClass('article__inline-image ng-inline-element ng-pull-out');
 	return el.clone();
 };
