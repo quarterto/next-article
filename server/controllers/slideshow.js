@@ -1,6 +1,7 @@
 'use strict';
 
 var fetchres = require('fetchres');
+var fetchCapiV1 = require('../utils/fetch-capi-v1');
 
 module.exports = function(req, res, next) {
 
