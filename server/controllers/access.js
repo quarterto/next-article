@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(req, res, next) {
-	var apiKey = res.locals.flags.articlesFromContentApiV2.isSwitchedOn ? process.env.apikey : process.env.api2key;
+	var apiKey = process.env.apikey;
 	var api = require('ft-api-client')(apiKey);
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
 		api.get(req.params[0]).then(function(article){

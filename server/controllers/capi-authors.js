@@ -6,7 +6,7 @@ var fetchCapiV1 = require('../utils/fetch-capi-v1');
 module.exports = function(req, res, next) {
 	fetchCapiV1({
 		uuid: req.params[0],
-		useElasticSearch: res.locals.flags.elasticSearchItemGet
+		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
 		.then(fetchres.json)
 		.then(function(article) {
