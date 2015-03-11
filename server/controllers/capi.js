@@ -46,7 +46,7 @@ module.exports = function(req, res, next) {
 
 	var articleV1Promise = fetchCapiV1({
 			uuid: req.params[0],
-			useElasticSearch: res.locals.flags.elasticSearchItemGet
+			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 		});
 	var articleV2Promise = fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
 			timeout: 3000,

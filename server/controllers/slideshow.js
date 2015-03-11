@@ -8,7 +8,7 @@ module.exports = function(req, res, next) {
 	// E.g. 4eb77dd4-9b35-11e4-be20-002128161462
 	fetchCapiV1({
 		uuid: req.params[0],
-		useElasticSearch: res.locals.flags.elasticSearchItemGet
+		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
 		.then(fetchres.json)
 		.then(function(data) {
