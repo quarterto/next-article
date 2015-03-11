@@ -126,17 +126,17 @@ describe('smoke tests for the app', function () {
 			servesGoodHTML('/d0a14962-6e56-11e4-afe5-00144feabdc0', done);
 		});
 
-//		it('Should serve a fastft article', function (done) {
-//			servesGoodHTML('/fastft/237332/rocket-internet-has-12-proven-losers-1st-half', done);
-//		});
-//
-//		it('Should serve a more-on list', function (done) {
-//			servesGoodHTML('/more-on/c7d19712-6df5-11e4-8f96-00144feabdc0', done);
-//		});
-//
-//		it('Should serve an on this topic list', function (done) {
-//			servesGoodHTML('/more-on/primaryTheme/c7d19712-6df5-11e4-8f96-00144feabdc0', done);
-//		});
+		it('Should serve a fastft article', function (done) {
+			servesGoodHTML('/fastft/237332/rocket-internet-has-12-proven-losers-1st-half', done);
+		});
+
+		it('Should serve a more-on list', function (done) {
+			servesGoodHTML('/more-on/c7d19712-6df5-11e4-8f96-00144feabdc0', done);
+		});
+
+		it('Should serve an on this topic list', function (done) {
+			servesGoodHTML('/more-on/primaryTheme/c7d19712-6df5-11e4-8f96-00144feabdc0', done);
+		});
 
 	});
 });
