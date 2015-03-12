@@ -76,7 +76,7 @@ module.exports = function(req, res, next) {
 					$('pull-quote').replaceWith(pullQuotesTransform);
 
 					// insert test related
-					if (articleV1.item.package.length > 0 && $('ft-paragraph').length >= 6) {
+					if ($('ft-paragraph').length >= 6) {
 						var paraHook = $('ft-paragraph').get(4);
 						$(paraHook).prepend('<div class="js-more-on-inline"></div>');
 					}
