@@ -55,7 +55,7 @@ module.exports.init = function(flags){
 			}, function() {
 				inlineRelatedAnchor.parentNode.removeChild(inlineRelatedAnchor);
 			}));
-	};
+	}
 
 	$('.js-on-this-topic').forEach(function(el) {
 		fetchPromises.push(fetch('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))

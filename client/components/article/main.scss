@@ -4,9 +4,9 @@ $inline-img-width: 300px;
 
 //ARTICLE HEADER
 .article__header {
+	@include oColorsFor(ng-brand, background);
 	position: relative;
 	padding-bottom: $header-offset + 20;
-	@include oColorsFor(ng-brand, background);
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
 	color: #ffffff;
@@ -181,10 +181,10 @@ $inline-img-width: 300px;
 	}
 }
 .article__related--inline {
+	@include oColorsFor(ng-brand, text);
 	position: relative;
 	padding: 10px 20px;
 	border-left: 2px solid oColorsGetColorFor(ng-brand, border);
-	@include oColorsFor(ng-brand, text);
 }
 .article__related__title,
 .article__related__article {
