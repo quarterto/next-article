@@ -1,13 +1,10 @@
 'use strict';
 
 var ft = require('../utils/api').ft;
-var Metrics = require('next-metrics');
 var Stream = require('../models/stream');
 var cacheControl = require('../utils/cache-control');
 
 module.exports = function(req, res, next) {
-	Metrics.instrument(res, { as: 'express.http.res' });
-
 	ft
 		.get([req.params.id])
 		.then(function(article) {

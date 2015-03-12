@@ -1,6 +1,7 @@
 'use strict';
 var raven = require('express-errors-handler');
 var Metrics = require('next-metrics');
+Metrics.init({ app: 'grumman', flushEvery: 30000 });
 
 var ftErrorHandler = (process.env.NODE_ENV === 'production') ? function(err) {
 	raven.captureMessage(err);
