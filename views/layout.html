@@ -1,7 +1,6 @@
 <article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}">
 	<div class="article__header">
-		{{! TODO: Re-add resize helper (1400) once CAPI Content-Type bug fixed }}
-		<div class="article__header__bg" style="background-image: url(/embedded-components/image/{{mainImage}})"></div>
+		<div class="article__header__bg" style="background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/embedded-components/image/{{mainImage}}{{/resize}})"></div>
 		<div class="o-grid-row">
 			{{#with articleV1.metadata.primaryTheme.term}}
 				<div data-o-grid-colspan="12 XLoffset2">
