@@ -75,6 +75,12 @@ module.exports = function(req, res, next) {
 					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
 
+					// insert test related
+					if (articleV1._source.item.package.length > 0 && $('ft-paragraph').length >= 6) {
+						var paraHook = $('ft-paragraph').get(4);
+						$(paraHook).prepend('<div class="js-more-on-inline"></div>');
+					}
+
 					// HACK - Fix for paragraphs in blockquotes
 					$('blockquote > ft-paragraph').replaceWith(function(index, el) {
 						el = $(el);
@@ -95,6 +101,7 @@ module.exports = function(req, res, next) {
 
 					// HACK - Force the last word in the title never to be an ‘orphan’
 					article.titleHTML = article.title.replace(/(.*)(\s)/, '$1&nbsp;');
+
 
 					if (article.mainImage) {
 						article.mainImage = article.mainImage.id.replace(/^http:\/\/api\.ft\.com\/content\//, '');

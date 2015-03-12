@@ -7,7 +7,7 @@
 		@include box-sizing(border-box);
 		float: left;
 		clear: left;
-		margin: 50px 50px 50px 0;
+		margin: 10px 50px 50px 0;
 		max-width: 300px;
 	}
 }
@@ -15,4 +15,28 @@
 	@include oGridRespondTo(XL) {
 		margin-left: -200px;
 	}
+}
+.ng-title-link {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+.ng-list-reset {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.ng-main-image-bg:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: 50%;
+	@include filter(blur(5px));
+	opacity: 0.2;
+	position: absolute;
+	top: 0;
+	left: 0;
 }

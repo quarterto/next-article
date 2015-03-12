@@ -11,17 +11,6 @@ $inline-img-width: 300px;
 	font-weight: 100;
 	color: #ffffff;
 }
-.article__header__bg {
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-	background-position: 50%;
-	@include filter(blur(5px));
-	opacity: 0.2;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
 
 //ARTICLE META ELEMENTS
 .article__theme {
@@ -190,6 +179,34 @@ $inline-img-width: 300px;
 	@include oGridRespondTo(L) {
 		@include oQuoteStandardBig;
 	}
+}
+.article__related--inline {
+	position: relative;
+	padding: 10px 20px;
+	@include oColorsFor(ng-brand, background);
+	color: #ffffff;
+}
+.article__related__title,
+.article__related__article {
+	position: relative;
+	margin: 0;
+}
+.article__related__title {
+	font-size: 16px;
+	line-height: 1em;
+	text-transform: uppercase;
+}
+.article__related__article {
+	margin-top: 5px;
+
+	.article__related__link {
+		color: inherit;
+	}
+}
+.article__related__timestamp {
+	text-transform: uppercase;
+	font-size: 15px;
+	opacity: 0.4;
 }
 
 
