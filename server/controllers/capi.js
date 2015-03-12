@@ -1,7 +1,6 @@
 'use strict';
 
 var fetchCapiV1 = require('../utils/fetch-capi-v1');
-var Metrics = require('next-metrics');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 var cheerio = require('cheerio');
@@ -42,8 +41,6 @@ var getMentions = function(annotations) {
 };
 
 module.exports = function(req, res, next) {
-	Metrics.instrument(res, { as: 'express.http.res' });
-
 	var articleV1Promise = fetchCapiV1({
 			uuid: req.params[0],
 			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
