@@ -105,7 +105,7 @@ module.exports = function(req, res, next) {
 
 					res.render('layout', {
 						article: article,
-						articleV1: articleV1.item,
+						articleV1: res.locals.flags.elasticSearchItemGet.isSwitchedOn ? articleV1._source.item : articleV1.item,
 						title: article.title,
 						mainImage: article.mainImage,
 						subheaders: subheaders.map(function() {
