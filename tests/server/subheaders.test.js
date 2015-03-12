@@ -12,7 +12,7 @@ it('should update subheaders', function() {
 	expect($.html()).to.equal(
 		'<h3 class="ft-subhead article__subhead ng-pull-out">' +
 			'<span class="ft-subhead__title">The new big earners</span>' +
-			'<a class="back-top-top" href="#top">' +
+			'<a class="back-top-top" href="#top" data-trackable="back-to-top">' +
 				'<span class="back-top-top__text">Back to top</span>' +
 				'<span class="back-top-top__icon"></span>' +
 			'</a>' +
