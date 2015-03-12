@@ -94,6 +94,7 @@ provision:
 	next-build-tools provision ${TEST_HOST}
 	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*,EXPIRY=${TEN_MINS_FROM_NOW},APP_NAME=${TEST_HOST},HEROKU_AUTH_TOKEN=${HEROKU_AUTH_TOKEN}"
 	next-build-tools deploy ${TEST_HOST}
+	sleep 5
 	make smoke
 
 smoke:
