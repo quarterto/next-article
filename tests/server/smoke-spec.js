@@ -12,6 +12,7 @@ var fastft = require('fastft-api-client');
 var fastftMocks = require('fastft-api-client/mocks');
 
 var articleV1 = require('fs').readFileSync('tests/fixtures/capi1.json', { encoding: 'utf8' });
+var articleElastic = require('fs').readFileSync('tests/fixtures/elastic.json', { encoding: 'utf8' });
 var articleV2 = require('fs').readFileSync('tests/fixtures/capi2.json', { encoding: 'utf8' });
 var search = require('fs').readFileSync('tests/fixtures/search-for__climate-change', { encoding: 'utf8' });
 var fastftSearch = require('fs').readFileSync('tests/fixtures/fastft/index.json', { encoding: 'utf8' });
@@ -54,7 +55,7 @@ var mockMethode = function (n) {
 	nock('http://elastic/')
 		.filteringPath(/\/.*$/, '/XXX')
 		.get('/XXX')
-		.reply(200, articleV1);
+		.reply(200, articleElastic);
 	nock('http://api.ft.com', {
 			reqheaders: {
 				'X-Api-Key': process.env.api2key
