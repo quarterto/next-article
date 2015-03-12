@@ -16,9 +16,9 @@ $o-gallery-is-silent: false;
 @import "next-barrier-component/client/main";
 @import "next-messaging/src/main";
 
-@import "_mixins";
-@import "_helpers";
-@import "_setup";
+@import "mixins";
+@import "helpers";
+@import "setup";
 @import "components/article/main";
 @import "components/more-on/main";
 @import "components/timeline/main";

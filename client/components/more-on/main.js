@@ -45,6 +45,18 @@ module.exports.init = function(flags){
 			}));
 	});
 
+	var inlineRelatedAnchor = document.querySelector('.js-more-on-inline');
+	if (inlineRelatedAnchor) {
+		fetchPromises.push(fetch('/more-on/' + document.querySelector('.article').getAttribute('data-capi-id') + '?count=1&view=inline')
+			.then(fetchres.text)
+			.then(function(resp) {
+				inlineRelatedAnchor.innerHTML = resp;
+				articleCard.init(inlineRelatedAnchor);
+			}, function() {
+				inlineRelatedAnchor.parentNode.removeChild(inlineRelatedAnchor);
+			}));
+	}
+
 	$('.js-on-this-topic').forEach(function(el) {
 		fetchPromises.push(fetch('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))
 			.then(fetchres.text)

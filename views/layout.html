@@ -1,6 +1,11 @@
+<style>
+	.ng-main-image-bg:before {
+		background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/embedded-components/image/{{mainImage}}{{/resize}});
+	}
+</style>
+
 <article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}">
-	<div class="article__header">
-		<div class="article__header__bg" style="background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/embedded-components/image/{{mainImage}}{{/resize}})"></div>
+	<div class="article__header ng-main-image-bg">
 		<div class="o-grid-row">
 			{{#with articleV1.metadata.primaryTheme.term}}
 				<div data-o-grid-colspan="12 XLoffset2">

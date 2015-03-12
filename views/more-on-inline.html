@@ -1,0 +1,23 @@
+{{#if stream.length}}
+	<div class="article__related--inline ng-pull-out ng-inline-element ng-main-image-bg ng-main-image-bg--light">
+		<h3 class="article__related__title">See also</h3>
+		<ul class="ng-list-reset">
+			{{#each stream}}
+				{{#with raw.item}}
+					<li>
+						<p class="article__related__article">
+							<a class="article__related__link ng-title-link" href="/{{id}}">{{title.title}}</a>
+						</p>
+						<time
+							class="o-date article__related__timestamp"
+							data-o-component="o-date"
+							datetime="{{#dateformat}}{{lifecycle.initialPublishDateTime}}{{/dateformat}}"
+							data-o-date-js>
+							{{#dateformat "dddd, d mmmm, yyyy"}}{{lifecycle.initialPublishDateTime}}{{/dateformat}}
+						</time>
+					</li>
+				{{/with}}
+			{{/each}}
+		</ul>
+	</div>
+{{/if}}

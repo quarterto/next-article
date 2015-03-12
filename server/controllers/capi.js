@@ -55,7 +55,7 @@ module.exports = function(req, res, next) {
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(fetchres.json)
 		.then(function(articles) {
-			var articleV1 = articles[0],
+			var articleV1 = res.locals.flags.elasticSearchItemGet.isSwitchedOn ? articles[0]._source : articles[0],
 				article = articles[1];
 
 			res.vary(['Accept-Encoding', 'Accept']);
@@ -74,6 +74,12 @@ module.exports = function(req, res, next) {
 					$('p').replaceWith(pHackTransform);
 					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
+
+					// insert test related
+					if (articleV1.item.package.length > 0 && $('ft-paragraph').length >= 6) {
+						var paraHook = $('ft-paragraph').get(4);
+						$(paraHook).prepend('<div class="js-more-on-inline"></div>');
+					}
 
 					// HACK - Fix for paragraphs in blockquotes
 					$('blockquote > ft-paragraph').replaceWith(function(index, el) {
@@ -102,7 +108,7 @@ module.exports = function(req, res, next) {
 
 					res.render('layout', {
 						article: article,
-						articleV1: res.locals.flags.elasticSearchItemGet.isSwitchedOn ? articleV1._source.item : articleV1.item,
+						articleV1: articleV1.item,
 						title: article.title,
 						mainImage: article.mainImage,
 						subheaders: subheaders.map(function() {

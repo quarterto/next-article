@@ -7,12 +7,42 @@
 		@include box-sizing(border-box);
 		float: left;
 		clear: left;
-		margin: 50px 50px 50px 0;
+		margin: 10px 50px 20px 0;
 		max-width: 300px;
 	}
 }
 .ng-pull-out {
 	@include oGridRespondTo(XL) {
 		margin-left: -200px;
+	}
+}
+.ng-title-link {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+.ng-list-reset {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.ng-main-image-bg {
+	&:before {
+		@include filter(blur(5px));
+		content: '';
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: 50%;
+		opacity: 0.2;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	&.ng-main-image-bg--light:before {
+		@include filter(blur(0));
+		opacity: 0.1;
 	}
 }

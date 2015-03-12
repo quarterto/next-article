@@ -23,11 +23,12 @@ module.exports = function(req, res, next) {
 						articles
 							// some articles may be undefined
 							.filter(function (a) { return !!a; })
+							.slice(0, req.query.count || undefined)
 							.forEach(function(item) {
 								stream.push('methode', item);
 							});
 						res.set(cacheControl);
-						res.render('more-on', {
+						res.render('more-on' + (req.query.view ? '-' + req.query.view : ''), {
 							mode: 'expand',
 							stream: stream.texturedItems,
 							title: 'See also'
