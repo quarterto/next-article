@@ -1,6 +1,8 @@
 "use strict";
 
+var resize = require('../utils/resize');
 var $ = require('cheerio');
+
 module.exports = function(index, originEl) {
 	var el = $(originEl);
 	var text = el.html();
@@ -10,10 +12,16 @@ module.exports = function(index, originEl) {
 
 	switch (type) {
 		case 'http://www.ft.com/ontology/content/ImageSet':
+			var resizedUrl1x;
+			var resizedUrl2x;
 			if (originEl.parentNode.tagName === 'body' && $(originEl.parentNode).children().first().html() === el.html()) {
-				return '<img class="article__main-image" src="/embedded-components/image' + url + '"/ >';
+				resizedUrl1x = resize({ width: 700, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
+				resizedUrl2x = resize({ width: 1400, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
+				return '<img class="article__main-image" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x"/>';
 			}
-			return '<img class="article__inline-image ng-inline-element ng-pull-out" src="/embedded-components/image' + url + '"/ >';
+			resizedUrl1x = resize({ width: 300, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
+			resizedUrl2x = resize({ width: 600, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
+			return '<img class="article__inline-image ng-inline-element ng-pull-out" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x" />';
 		case 'http://www.ft.com/ontology/content/Article':
 			return '<a href="' + url + '">' + text + '</a>';
 		default:

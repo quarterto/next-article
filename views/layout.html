@@ -1,7 +1,6 @@
 <style>
 	.ng-main-image-bg:before {
-		{{! TODO: Re-add resize helper (1400) once CAPI Content-Type bug fixed }}
-		background-image: url(/embedded-components/image/{{mainImage}});
+		background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/embedded-components/image/{{mainImage}}{{/resize}});
 	}
 </style>
 
