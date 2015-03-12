@@ -55,7 +55,7 @@ module.exports = function(req, res, next) {
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(fetchres.json)
 		.then(function(articles) {
-			var articleV1 = res.locals.flags.elasticSearchItemGet.isSwitchedOn ? articleV1._source : articles[0],
+			var articleV1 = res.locals.flags.elasticSearchItemGet.isSwitchedOn ? articles[0]._source : articles[0],
 				article = articles[1];
 
 			res.vary(['Accept-Encoding', 'Accept']);
