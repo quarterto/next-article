@@ -4,7 +4,9 @@ var express = require('ft-next-express');
 
 require('heroku-seppuku')();
 
-var app = module.exports = express();
+var app = module.exports = express({
+	metrics: true
+});
 
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
