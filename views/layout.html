@@ -6,9 +6,7 @@
 				<div data-o-grid-colspan="12 XLoffset2">
 					<p class="article__theme">
 						{{>articles/follow-button this}}
-						<a class="article__authors__link" href="/stream/{{taxonomy}}/{{name}}">
-							{{name}}
-						</a>
+						<a class="article__authors__link" href="/stream/{{taxonomy}}/{{name}}">{{name}}</a>
 					</p>
 				</div>
 			{{/with}}
@@ -22,9 +20,7 @@
 						{{#ifEquals articleV1.metadata.primarySection.term.name 'Columnists'}}
 							{{#with articleV1.metadata.authors.[0].term}}
 								{{>articles/follow-button this type='author'}}
-								<a class="article__author" href="/stream/authors/{{name}}">
-									{{name}}
-								</a>
+								<a class="article__author" href="/stream/authors/{{name}}">{{name}}</a>
 							{{/with}}
 						{{else}}
 							{{#with articleV1.metadata.authors}}
@@ -35,16 +31,12 @@
 											{{#if @last}} and {{else}}, {{/if}}
 										{{/if}}
 									{{/ifAll}}
-									<a class="article__author" href="/stream/authors/{{this.term.name}}">
-										{{term.name}}
-									</a>
+									<a class="article__author" href="/stream/authors/{{this.term.name}}">{{term.name}}</a>
 								{{/each}}
 							{{else}}
 								{{#with ../articleV1.metadata.primarySection.term}}
 									{{>articles/follow-button this type='author'}}
-									<a class="article__section" href="/stream/sections/{{name}}">
-										{{name}}
-									</a>
+									<a class="article__section" href="/stream/sections/{{name}}">{{name}}</a>
 								{{/with}}
 							{{/with}}
 						{{/ifEquals}}
