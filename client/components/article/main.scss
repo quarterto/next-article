@@ -5,10 +5,13 @@ $header-offset: 30px;
 .article__header {
 	@include oColorsFor(ng-brand, background);
 	position: relative;
-	padding-bottom: $header-offset + 20;
+	padding-bottom: 20px;
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
 	color: #ffffff;
+}
+.article__header--overlap {
+	padding-bottom: $header-offset + 20;
 }
 
 //ARTICLE META ELEMENTS

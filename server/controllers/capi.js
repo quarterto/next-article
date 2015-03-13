@@ -122,6 +122,10 @@ module.exports = function(req, res, next) {
 							};
 						}).get(),
 						showTOC: res.locals.flags.articleTOC.isSwitchedOn && subheaders.length > 2,
+						// if there's a video or sideshow first, we overlap them on the header
+						headerOverlap:
+							$('> a:first-child').attr('data-asset-type') === 'video' ||
+							$('> ft-paragraph:first-child > ft-slideshow:first-child').length,
 						layout: 'wrapper'
 					});
 					break;
