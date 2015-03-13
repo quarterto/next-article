@@ -41,7 +41,7 @@
 											{{#if @last}} and {{else}}, {{/if}}
 										{{/if}}
 									{{/ifAll}}
-									<a class="article__author ng-title-link" href="/stream/authors/{{this.term.name}}" data-trackable="authors | {{@index}}">{{term.name}}</a>
+									<a class="article__author ng-title-link" href="/stream/authors/{{this.term.name}}" data-trackable="authors">{{term.name}}</a>
 								{{/each}}
 							{{else}}
 								{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
