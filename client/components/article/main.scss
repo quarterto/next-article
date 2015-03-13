@@ -30,9 +30,6 @@ $inline-img-width: 300px;
 	font-weight: inherit;
 	line-height: 1em;
 }
-.article__main-image {
-	margin-top: -$header-offset;
-}
 .article__stand-first {
 	margin: 20px 0 0;
 	padding-left: 10px;
@@ -129,6 +126,10 @@ $inline-img-width: 300px;
 	}
 }
 
+.article__main-image {
+	width: 100%;
+	margin-top: 10px;
+}
 .article__mpu {
 	text-align: center;
 	padding: 10px 0;
@@ -172,10 +173,10 @@ $inline-img-width: 300px;
 	}
 }
 .article__related--inline {
-	@include oColorsFor(ng-brand, text);
+	@include oColorsFor(ng-brand, background);
+	color: #ffffff;
 	position: relative;
 	padding: 10px 20px;
-	border-left: 2px solid oColorsGetColorFor(ng-brand, border);
 }
 .article__related__title,
 .article__related__article {
@@ -209,7 +210,7 @@ $inline-img-width: 300px;
 
 
 .article__rail-advert {
-	margin-top: 0.3em;
+	margin-top: 17px;
 }
 
 //++++++++++++++++++++++++++

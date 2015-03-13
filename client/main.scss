@@ -23,11 +23,3 @@ $o-gallery-is-silent: false;
 @import "components/more-on/main";
 @import "components/timeline/main";
 @import "components/capi2-related/main";
-
-// HACKS
-
-// This image should be resized by the image service, but that
-// requires fixes in the Content API to return the right content type
-.article__main-image {
-	max-width: 100%;
-}

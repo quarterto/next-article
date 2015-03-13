@@ -15,9 +15,9 @@ module.exports = function(index, originEl) {
 			var resizedUrl1x;
 			var resizedUrl2x;
 			if (originEl.parentNode.tagName === 'body' && $(originEl.parentNode).children().first().html() === el.html()) {
-				resizedUrl1x = resize({ width: 700, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
-				resizedUrl2x = resize({ width: 1400, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
-				return '<img class="article__main-image" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x"/>';
+				resizedUrl1x = resize({ width: 470, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
+				resizedUrl2x = resize({ width: 940, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
+				return '<img class="article__main-image ng-pull-out ng-inline-element" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x"/>';
 			}
 			resizedUrl1x = resize({ width: 300, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
 			resizedUrl2x = resize({ width: 600, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });

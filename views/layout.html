@@ -1,11 +1,5 @@
-<style>
-	.article__header:before {
-		background-image: url({{#resize 1400}}http://ft-next-grumman-v002.herokuapp.com/embedded-components/image/{{mainImage}}{{/resize}});
-	}
-</style>
-
 <article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}" data-trackable="article">
-	<div class="article__header ng-main-image-bg" data-trackable="header">
+	<div class="article__header" data-trackable="header">
 		<div class="o-grid-row">
 			{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
 			{{#with articleV1.metadata.primaryTheme.term}}
