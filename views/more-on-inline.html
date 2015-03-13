@@ -1,3 +1,14 @@
+{{!-- use the first item's wide format image as the bg --}}
+{{#each stream.[0].raw.item.images}}
+	{{#ifEquals type 'wide-format'}}
+		<style>
+			.article__related--inline:before {
+				background-image: url({{#resize 300}}{{url}}{{/resize}});
+			}
+		</style>
+	{{/ifEquals}}
+{{/each}}
+
 {{#if stream.length}}
 	<div class="article__related--inline ng-pull-out ng-inline-element ng-main-image-bg ng-main-image-bg--light">
 		<h3 class="article__related__title">See also</h3>
