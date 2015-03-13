@@ -10,6 +10,7 @@ var nock = require('nock');
 var request = require('request');
 var fastft = require('fastft-api-client');
 var fastftMocks = require('fastft-api-client/mocks');
+var $ = require('cheerio');
 
 var articleV1 = require('fs').readFileSync('tests/fixtures/capi1.json', { encoding: 'utf8' });
 var articleElastic = require('fs').readFileSync('tests/fixtures/elastic.json', { encoding: 'utf8' });
@@ -17,6 +18,7 @@ var articleV2 = require('fs').readFileSync('tests/fixtures/capi2.json', { encodi
 var search = require('fs').readFileSync('tests/fixtures/search-for__climate-change', { encoding: 'utf8' });
 var fastftSearch = require('fs').readFileSync('tests/fixtures/fastft/index.json', { encoding: 'utf8' });
 var fastftPost = require('fs').readFileSync('tests/fixtures/fastft/post.json', { encoding: 'utf8' });
+var pages = require('fs').readFileSync('tests/fixtures/site/v1/pages.json', { encoding: 'utf8' });
 
 var host = 'http://localhost:' + PORT;
 
@@ -67,7 +69,9 @@ var mockMethode = function (n) {
 	nock('http://api.ft.com')
 		.filteringPath(/apiKey=(.*)?$/, 'apiKey=YYY')
 		.post('/content/search/v1?apiKey=YYY')
-		.reply(200, search);
+		.reply(200, search)
+		.get('/site/v1/pages?apiKey=YYY')
+		.reply(200, pages);
 };
 
 var mockFastFT = function () {
@@ -140,4 +144,26 @@ describe('smoke tests for the app', function () {
 		});
 
 	});
+
+	describe('tracking', function () {
+
+		beforeEach(function () {
+			mockMethode();
+		});
+
+		it('should add tracking to all article links', function (done) {
+			request.get(host + '/d0a14962-6e56-11e4-afe5-00144feabdc0', function(error, res, body) {
+				$(body).find('.article a').each(function (index, el) {
+					var link = $(el);
+					expect(link.attr('data-trackable'), 'href="' + link.attr('href') + '"').to.not.be.undefined;
+				});
+				done();
+			}, function (err) {
+				console.log('An error has occurred', err);
+				done(err);
+			});
+		});
+
+	});
+
 });

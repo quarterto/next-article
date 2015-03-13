@@ -90,6 +90,7 @@ module.exports = function(req, res, next) {
 					});
 					$('a').replaceWith(relativeLinksTransform);
 					$('a').replaceWith(trimmedLinksTransform);
+					$('a').attr('data-trackable', 'link');
 
 					var subheaders = $('.ft-subhead')
 						.attr('id', addSubheaderIds)
