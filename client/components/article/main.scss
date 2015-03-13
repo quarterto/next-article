@@ -16,16 +16,12 @@ $inline-img-width: 300px;
 .article__theme {
 	margin: 10px 0 0;
 }
-.article__authors__link {
+.article__theme__link {
 	color: inherit;
 	font-size: 18px;
-	text-decoration: none;
 
 	@include oGridRespondTo(L) {
 		font-size: 22px;
-	}
-	&:hover {
-		text-decoration: underline;
 	}
 }
 .article__title {
@@ -60,11 +56,6 @@ $inline-img-width: 300px;
 .article__author,
 .article__section {
 	color: inherit;
-	text-decoration: none;
-
-	&:hover {
-		text-decoration: underline;
-	}
 }
 .article__actions {
 	text-align: right;

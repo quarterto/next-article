@@ -23,7 +23,7 @@ module.exports = function(index, originEl) {
 			resizedUrl2x = resize({ width: 600, url: 'http://ft-next-grumman-v002.herokuapp.com/embedded-components/image' + url });
 			return '<img class="article__inline-image ng-inline-element ng-pull-out" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x" />';
 		case 'http://www.ft.com/ontology/content/Article':
-			return '<a href="' + url + '">' + text + '</a>';
+			return '<a href="' + url + '" data-trackable="link">' + text + '</a>';
 		default:
 			return '';
 	}
