@@ -4,15 +4,15 @@
 	}
 </style>
 
-<article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}">
-	<div class="article__header ng-main-image-bg">
+<article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}" data-trackable="article">
+	<div class="article__header ng-main-image-bg" data-trackable="header">
 		<div class="o-grid-row">
 			{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
 			{{#with articleV1.metadata.primaryTheme.term}}
 				<div data-o-grid-colspan="12 XLoffset2">
 					<p class="article__theme">
 						{{>articles/follow-button this}}
-						<a class="article__authors__link" href="/stream/{{taxonomy}}/{{name}}">{{name}}</a>
+						<a class="article__theme__link ng-title-link" href="/stream/{{taxonomy}}/{{name}}" data-trackable="theme">{{name}}</a>
 					</p>
 				</div>
 			{{/with}}
@@ -29,7 +29,7 @@
 						{{#ifEquals articleV1.metadata.primarySection.term.name 'Columnists'}}
 							{{#with articleV1.metadata.authors.[0].term}}
 								{{>articles/follow-button this type='author'}}
-								<a class="article__author" href="/stream/authors/{{name}}">{{name}}</a>
+								<a class="article__author ng-title-link" href="/stream/authors/{{name}}" data-trackable="author">{{name}}</a>
 							{{/with}}
 						{{else}}
 							{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
@@ -41,13 +41,13 @@
 											{{#if @last}} and {{else}}, {{/if}}
 										{{/if}}
 									{{/ifAll}}
-									<a class="article__author" href="/stream/authors/{{this.term.name}}">{{term.name}}</a>
+									<a class="article__author ng-title-link" href="/stream/authors/{{this.term.name}}" data-trackable="authors | {{@index}}">{{term.name}}</a>
 								{{/each}}
 							{{else}}
 								{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
 								{{#with ../articleV1.metadata.primarySection.term}}
 									{{>articles/follow-button this type='author'}}
-									<a class="article__section" href="/stream/sections/{{name}}">{{name}}</a>
+									<a class="article__section ng-title-link" href="/stream/sections/{{name}}" data-trackable="section">{{name}}</a>
 								{{/with}}
 							{{/with}}
 						{{/ifEquals}}

@@ -10,14 +10,14 @@
 {{/each}}
 
 {{#if stream.length}}
-	<div class="article__related--inline ng-pull-out ng-inline-element ng-main-image-bg ng-main-image-bg--light">
+	<div class="article__related--inline ng-pull-out ng-inline-element ng-main-image-bg ng-main-image-bg--light" data-trackable="related-inline">
 		<h3 class="article__related__title">See also</h3>
-		<ul class="ng-list-reset">
+		<ul class="ng-list-reset" data-trackable="articles">
 			{{#each stream}}
 				{{#with raw.item}}
-					<li>
+					<li data-trackable="{{@index}}">
 						<p class="article__related__article">
-							<a class="article__related__link ng-title-link" href="/{{id}}">{{title.title}}</a>
+							<a class="article__related__link ng-title-link" href="/{{id}}" data-trackable="title">{{title.title}}</a>
 						</p>
 						<time
 							class="o-date article__related__timestamp"
