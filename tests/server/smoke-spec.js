@@ -71,7 +71,7 @@ var mockMethode = function (n) {
 		.post('/content/search/v1?apiKey=YYY')
 		.reply(200, search)
 		.get('/site/v1/pages?apiKey=YYY')
-		.reply(200, pages)
+		.reply(200, pages);
 };
 
 var mockFastFT = function () {
@@ -156,7 +156,7 @@ describe('smoke tests for the app', function () {
 				$(body).find('.article a').each(function (index, el) {
 					var link = $(el);
 					expect(link.attr('data-trackable'), 'href="' + link.attr('href') + '"').to.not.be.undefined;
-				})
+				});
 				done();
 			}, function (err) {
 				console.log('An error has occurred', err);
