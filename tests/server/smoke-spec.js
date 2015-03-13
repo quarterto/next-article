@@ -10,6 +10,7 @@ var nock = require('nock');
 var request = require('request');
 var fastft = require('fastft-api-client');
 var fastftMocks = require('fastft-api-client/mocks');
+var $ = require('cheerio');
 
 var articleV1 = require('fs').readFileSync('tests/fixtures/capi1.json', { encoding: 'utf8' });
 var articleElastic = require('fs').readFileSync('tests/fixtures/elastic.json', { encoding: 'utf8' });
@@ -140,4 +141,26 @@ describe('smoke tests for the app', function () {
 		});
 
 	});
+
+	describe('tracking', function () {
+
+		beforeEach(function () {
+			mockMethode();
+		});
+
+		it('should add tracking to all article links', function (done) {
+			request.get(host + '/d0a14962-6e56-11e4-afe5-00144feabdc0', function(error, res, body) {
+				$(body).find('.article a').each(function (index, el) {
+					var link = $(el);
+					expect(link.attr('data-trackable'), 'href="' + link.attr('href') + '"').to.not.be.undefined;
+				})
+				done();
+			}, function (err) {
+				console.log('An error has occurred', err);
+				done(err);
+			});
+		});
+
+	});
+
 });
