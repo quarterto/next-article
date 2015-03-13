@@ -17,6 +17,7 @@ var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
 var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
 var externalImgTransform = require('../transforms/external-img');
+var removeBodyTransform = require('../transforms/remove-body');
 
 var getMentions = function(annotations) {
 	annotations = annotations || [];
@@ -74,6 +75,7 @@ module.exports = function(req, res, next) {
 					$('p').replaceWith(pHackTransform);
 					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
+					$('body').replaceWith(removeBodyTransform);
 
 					// insert test related
 					if ($('ft-paragraph').length >= 6) {
