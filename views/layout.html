@@ -7,6 +7,7 @@
 <article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}">
 	<div class="article__header ng-main-image-bg">
 		<div class="o-grid-row">
+			{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
 			{{#with articleV1.metadata.primaryTheme.term}}
 				<div data-o-grid-colspan="12 XLoffset2">
 					<p class="article__theme">
@@ -17,17 +18,21 @@
 			{{/with}}
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<h3 class="article__title">{{{article.titleHTML}}}</h3>
+				{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
+				{{! Probably something like article.summaries[0] }}
 				<h4 class="article__stand-first">{{{articleV1.editorial.standFirst}}}</h4>
 			</div>
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<div class="article__meta">
 					<p class="article__byline">
+						{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
 						{{#ifEquals articleV1.metadata.primarySection.term.name 'Columnists'}}
 							{{#with articleV1.metadata.authors.[0].term}}
 								{{>articles/follow-button this type='author'}}
 								<a class="article__author" href="/stream/authors/{{name}}">{{name}}</a>
 							{{/with}}
 						{{else}}
+							{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
 							{{#with articleV1.metadata.authors}}
 								By
 								{{#each this}}
@@ -39,6 +44,7 @@
 									<a class="article__author" href="/stream/authors/{{this.term.name}}">{{term.name}}</a>
 								{{/each}}
 							{{else}}
+								{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
 								{{#with ../articleV1.metadata.primarySection.term}}
 									{{>articles/follow-button this type='author'}}
 									<a class="article__section" href="/stream/sections/{{name}}">{{name}}</a>
