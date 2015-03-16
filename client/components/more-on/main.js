@@ -1,6 +1,5 @@
 'use strict';
 
-var articleCard = require('next-article-card-component');
 var fetchres = require('fetchres');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
@@ -39,7 +38,6 @@ module.exports.init = function(flags){
 			.then(fetchres.text)
 			.then(function(resp) {
 				el.innerHTML = resp;
-				articleCard.init(el);
 			}, function() {
 				el.parentNode.removeChild(el);
 			}));
@@ -51,7 +49,6 @@ module.exports.init = function(flags){
 			.then(fetchres.text)
 			.then(function(resp) {
 				inlineRelatedAnchor.innerHTML = resp;
-				articleCard.init(inlineRelatedAnchor);
 			}, function() {
 				inlineRelatedAnchor.parentNode.removeChild(inlineRelatedAnchor);
 			}));
@@ -62,7 +59,6 @@ module.exports.init = function(flags){
 			.then(fetchres.text)
 			.then(function(resp) {
 				el.innerHTML = resp;
-				articleCard.init(el);
 			}, function() {
 				el.parentNode.removeChild(el);
 			}));
