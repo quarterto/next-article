@@ -1,7 +1,7 @@
 'use strict';
 
 var fetchres = require('fetchres');
-var fetchCapiV2 = require('../utils/fetch-capi-v2');
+var fetchCapiV2 = require('./fetch-capi-v2');
 
 module.exports = function(opts) {
 	var query = opts.query;
