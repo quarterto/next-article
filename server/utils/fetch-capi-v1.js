@@ -1,5 +1,7 @@
 'use strict';
 
+var fetchres = require('fetchres');
+
 module.exports = function(opts) {
 	var uuid = opts.uuid;
 	var useElasticSearch = opts.useElasticSearch;
@@ -12,5 +14,6 @@ module.exports = function(opts) {
 			headers: {
 				'X-Api-Key': process.env.apikey
 			}
-		});
+		})
+			.then(fetchres.json);
 };
