@@ -125,6 +125,9 @@ $header-offset: 30px;
 	a {
 		color: $next-grey-dark;
 	}
+	.o-quote--standard a {
+		color: inherit;
+	}
 
 	video {
 		width: 100%;
