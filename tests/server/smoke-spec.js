@@ -87,8 +87,8 @@ var unmockFastFT = function () {
 
 describe('smoke tests for the app', function () {
 
-	before(function(done) {
-		app.listen.then(done);
+	before(function() {
+		return app.listen;
 	});
 
 	it('Should serve a good to go page', function (done) {
