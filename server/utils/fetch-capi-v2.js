@@ -7,7 +7,7 @@ module.exports = function(opts) {
 	return fetch(url, {
 			timeout: 3000,
 			headers: {
-				'X-Api-Key': process.env.apikey
+				'X-Api-Key': process.env.api2key
 			}
 		});
 };
