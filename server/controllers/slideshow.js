@@ -1,6 +1,5 @@
 'use strict';
 
-var fetchres = require('fetchres');
 var fetchCapiV1 = require('../utils/fetch-capi-v1');
 
 module.exports = function(req, res, next) {
@@ -10,7 +9,6 @@ module.exports = function(req, res, next) {
 		uuid: req.params[0],
 		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
-		.then(fetchres.json)
 		.then(function(data) {
 			if (data.item && data.item && data.item.assets && data.item.assets[0] && data.item.assets[0].type === 'slideshow') {
 

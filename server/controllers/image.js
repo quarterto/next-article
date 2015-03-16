@@ -5,10 +5,8 @@ var fetchCapiV2 = require('../utils/fetch-capi-v2');
 
 module.exports = function(req, res, next) {
 	fetchCapiV2({ uuid: req.params.id })
-		.then(fetchres.json)
 		.then(function(image) {
-			return fetchCapiV2({ uuid: image.members[0].id.replace('http://api.ft.com/content/', '') })
-				.then(fetchres.json);
+			return fetchCapiV2({ uuid: image.members[0].id.replace('http://api.ft.com/content/', '') });
 		})
 		.then(function(image) {
 			res.redirect(image.binaryUrl);

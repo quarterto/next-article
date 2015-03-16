@@ -50,7 +50,6 @@ module.exports = function(req, res, next) {
 	var articleV2Promise = fetchCapiV2({ uuid: req.params[0] });
 
 	Promise.all([articleV1Promise, articleV2Promise])
-		.then(fetchres.json)
 		.then(function(articles) {
 			var articleV1 = res.locals.flags.elasticSearchItemGet.isSwitchedOn ? articles[0]._source : articles[0],
 				article = articles[1];
@@ -137,13 +136,7 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				fetch('http://api.ft.com/content/items/v1/' + req.params[0] + '?feature.blogposts=on', {
-					timeout: 3000,
-					headers: {
-						'X-Api-Key': process.env.apikey
-					}
-				})
-					.then(fetchres.json)
+				fetchres(req.params[0])
 					.then(function(data) {
 						res.render('layout_404', { layout: 'wrapper', url: data.item.location.uri });
 					})
