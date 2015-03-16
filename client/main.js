@@ -5,7 +5,6 @@ var viewport = require('o-viewport');
 var setup = require('next-js-setup');
 var header = require('next-header');
 var messaging = require('next-messaging');
-require('next-article-card-component');
 
 var slideshow = require('./components/slideshow');
 var moreOn = require('./components/more-on/main');
@@ -40,8 +39,6 @@ setup.bootstrap(function (result) {
 	}
 
 	require('./components/video/main');
-
-	require('./components/capi2-related/main');
 
 	toc.init(flags);
 

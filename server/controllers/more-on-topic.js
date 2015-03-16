@@ -1,75 +1,45 @@
 'use strict';
 
-var ft = require('../utils/api').ft;
-var Stream = require('../models/stream');
+var fetchSapiV1 = require('../utils/fetch-sapi-v1');
+var fetchCapiV1 = require('../utils/fetch-capi-v1');
+var fetchres = require('fetchres');
 var cacheControl = require('../utils/cache-control');
 
-var titleMapping = {
-	'primarySection': 'section',
-	'primaryTheme': 'theme'
-};
-
 module.exports = function(req, res, next) {
-	ft.get([req.params.id])
-		.then(function(thisArticle) {
-			var topic, query, topicTitle = titleMapping[req.params.metadata];
-			if (thisArticle && thisArticle.length) {
-				thisArticle = thisArticle[0];
-			} else {
-				res.status(404).send();
-				return;
-			}
-			topic = thisArticle[req.params.metadata];
+	fetchCapiV1({
+		uuid: req.params.id,
+		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+	})
+		.then(function(article) {
+			res.set(cacheControl);
+			var topic = article.item.metadata[req.params.metadata];
 			if (!topic) {
-				res.status(404).send();
+				res.status(404).end();
 				return;
 			}
-
-			query = topic.taxonomy + ':"' + topic.name + '"';
-
-			return ft.search(query, 4)
-				.then(function (results) {
-					var articles = results ? results.articles : [];
-					if (articles[0] instanceof Object) {
-						return articles.map(function (article) {
-							return article.id;
-						});
-					}
-					return [];
-				})
-				.then(function(ids) {
-					// only try and get articles if you have ids, otherwise continue to next step
-					if(ids && ids.length){
-						return ft.get(ids);
-					}else{
-						return Promise.resolve([]);
-					}
-				})
-				.then(function (articles) {
-					var stream = new Stream();
-
-					articles = articles.filter(function (elem) {return !!elem;}); //api's currently return 'undefined' from some erroneous uuid's
-
-					articles = articles.filter(function(article) {
-						return article.id !== thisArticle.id;
+			fetchSapiV1({
+				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
+				count: 4
+			})
+				.then(function(results) {
+					results = results.map(function(article) {
+						return {
+							id: article.id.replace('http://www.ft.com/thing/', ''),
+							title: article.title,
+							publishedDate: article.publishedDate
+						};
 					});
-
-					articles.forEach(function(item) {
-						stream.push('methode', item);
+					res.render('more-on-v2', {
+						title: topic.term.name,
+						items: results
 					});
-
-					if (articles.length > 0) {
-						res.set(cacheControl);
-						res.render('more-on', {
-							mode: 'expand',
-							stream: stream.texturedItems,
-							path: '/stream/' + topic.taxonomy + '/' + encodeURIComponent(topic.name),
-							title: 'More from this ' + topicTitle + ' - ' + topic.name
-						});
-					} else {
-						res.status(404).send();
-					}
 				});
 		})
-		.catch(next);
+		.catch(function(err) {
+			if (err instanceof fetchres.BadServerResponseError) {
+				res.status(404).end();
+			} else {
+				next(err);
+			}
+		});
 };

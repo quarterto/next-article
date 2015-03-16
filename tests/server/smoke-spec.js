@@ -5,7 +5,7 @@ var PORT = process.env.PORT || 3001;
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-require('../../server/app');
+var app = require('../../server/app');
 var nock = require('nock');
 var request = require('request');
 var fastft = require('fastft-api-client');
@@ -18,7 +18,6 @@ var articleV2 = require('fs').readFileSync('tests/fixtures/capi2.json', { encodi
 var search = require('fs').readFileSync('tests/fixtures/search-for__climate-change', { encoding: 'utf8' });
 var fastftSearch = require('fs').readFileSync('tests/fixtures/fastft/index.json', { encoding: 'utf8' });
 var fastftPost = require('fs').readFileSync('tests/fixtures/fastft/post.json', { encoding: 'utf8' });
-var pages = require('fs').readFileSync('tests/fixtures/site/v1/pages.json', { encoding: 'utf8' });
 
 var host = 'http://localhost:' + PORT;
 
@@ -65,13 +64,15 @@ var mockMethode = function (n) {
 		})
 		.filteringPath(/content\/.*\?sjl=WITH_RICH_CONTENT$/, 'content/XXX?sjl=WITH_RICH_CONTENT')
 		.get('/content/XXX?sjl=WITH_RICH_CONTENT')
+		.times(5)
 		.reply(200, articleV2);
-	nock('http://api.ft.com')
-		.filteringPath(/apiKey=(.*)?$/, 'apiKey=YYY')
-		.post('/content/search/v1?apiKey=YYY')
-		.reply(200, search)
-		.get('/site/v1/pages?apiKey=YYY')
-		.reply(200, pages);
+	nock('http://api.ft.com', {
+			reqheaders: {
+				'X-Api-Key': process.env.apikey
+			}
+		})
+		.post('/content/search/v1')
+		.reply(200, search);
 };
 
 var mockFastFT = function () {
@@ -86,9 +87,8 @@ var unmockFastFT = function () {
 
 describe('smoke tests for the app', function () {
 
-	before(function(done) {
-		this.timeout(5000);
-		setTimeout(done, 3000);
+	before(function() {
+		return app.listen;
 	});
 
 	it('Should serve a good to go page', function (done) {
@@ -116,7 +116,7 @@ describe('smoke tests for the app', function () {
 		});
 	});
 
-	describe('urls', function () {
+	describe('urls', function() {
 
 		beforeEach(function () {
 			mockMethode();
@@ -135,7 +135,7 @@ describe('smoke tests for the app', function () {
 			servesGoodHTML('/fastft/237332/rocket-internet-has-12-proven-losers-1st-half', done);
 		});
 
-		it('Should serve a more-on list', function (done) {
+		it('Should serve a more-on list', function(done) {
 			servesGoodHTML('/more-on/c7d19712-6df5-11e4-8f96-00144feabdc0', done);
 		});
 
@@ -165,5 +165,4 @@ describe('smoke tests for the app', function () {
 		});
 
 	});
-
 });
