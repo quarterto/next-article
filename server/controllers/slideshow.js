@@ -1,6 +1,7 @@
 'use strict';
 
 var fetchCapiV1 = require('../utils/fetch-capi-v1');
+var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
 
@@ -25,8 +26,11 @@ module.exports = function(req, res, next) {
 			}
 		})
 		.catch(function(err) {
-			console.log(err);
-			throw err;
+			if (err instanceof fetchres.BadServerResponseError) {
+				res.status(404).end();
+			} else {
+				throw err;
+			}
 		})
 		.catch(next);
 
