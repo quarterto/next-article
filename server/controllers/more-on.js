@@ -29,7 +29,7 @@ module.exports = function(req, res, next) {
 						});
 				}))
 				.then(function(results) {
-					var mode = req.query.view === 'inline' ? 'more-on-inline' : 'more-on-v2';
+					var mode = req.query.view === 'inline' ? 'more-on-inline' : 'more-on';
 					results = results.filter(function(article) {
 						return article;
 					});
