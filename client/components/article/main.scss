@@ -103,6 +103,9 @@ $header-offset: 30px;
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 }
 
+.article__main {
+	padding-top: 15px;
+}
 
 //ARTICLE BODY ELEMENTS
 .article__body {
@@ -115,6 +118,9 @@ $header-offset: 30px;
 		line-height: 24px;
 		display: block;
 	}
+	> .article__main-image:first-child + ft-paragraph {
+		margin-top: 0;
+	}
 
 	a {
 		color: $next-grey-dark;
@@ -126,14 +132,14 @@ $header-offset: 30px;
 	> {
 		.article__video:first-child,
 		.article__gallery:first-child {
-			margin-top: -$header-offset;
+			margin-top: -$header-offset - 15;
 		}
 	}
 }
 
 .article__main-image {
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 0;
 }
 .article__mpu {
 	text-align: center;
@@ -176,10 +182,6 @@ $header-offset: 30px;
 	@include oGridRespondTo(L) {
 		@include oQuoteStandardBig;
 	}
-}
-
-.article__rail-advert {
-	margin-top: 17px;
 }
 
 //++++++++++++++++++++++++++
