@@ -6,7 +6,10 @@ var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
-	fetchCapiV1({ uuid: req.params.id })
+	fetchCapiV1({
+		uuid: req.params.id,
+		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+	})
 		.then(function(article) {
 			res.set(cacheControl);
 			if (!article || !article.item || !article.item.package || article.item.package.length === 0) {

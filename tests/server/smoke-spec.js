@@ -65,6 +65,7 @@ var mockMethode = function (n) {
 		})
 		.filteringPath(/content\/.*\?sjl=WITH_RICH_CONTENT$/, 'content/XXX?sjl=WITH_RICH_CONTENT')
 		.get('/content/XXX?sjl=WITH_RICH_CONTENT')
+		.times(5)
 		.reply(200, articleV2);
 	nock('http://api.ft.com')
 		.filteringPath(/apiKey=(.*)?$/, 'apiKey=YYY')
@@ -87,7 +88,6 @@ var unmockFastFT = function () {
 describe('smoke tests for the app', function () {
 
 	before(function(done) {
-		this.timeout(5000);
 		setTimeout(done, 3000);
 	});
 
@@ -116,7 +116,8 @@ describe('smoke tests for the app', function () {
 		});
 	});
 
-	describe('urls', function () {
+	describe('urls', function() {
+		this.timeout(10000);
 
 		beforeEach(function () {
 			mockMethode();
@@ -135,7 +136,7 @@ describe('smoke tests for the app', function () {
 			servesGoodHTML('/fastft/237332/rocket-internet-has-12-proven-losers-1st-half', done);
 		});
 
-		it('Should serve a more-on list', function (done) {
+		it('Should serve a more-on list', function(done) {
 			servesGoodHTML('/more-on/c7d19712-6df5-11e4-8f96-00144feabdc0', done);
 		});
 
@@ -165,5 +166,4 @@ describe('smoke tests for the app', function () {
 		});
 
 	});
-
 });

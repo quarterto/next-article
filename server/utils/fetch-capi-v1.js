@@ -15,5 +15,8 @@ module.exports = function(opts) {
 				'X-Api-Key': process.env.apikey
 			}
 		})
-			.then(fetchres.json);
+			.then(fetchres.json)
+			.then(function(data) {
+				return useElasticSearch ? data._source : data;
+			});
 };
