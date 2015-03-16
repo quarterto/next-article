@@ -1,6 +1,7 @@
 'use strict';
 
 var fetchCapiV1 = require('../utils/fetch-capi-v1');
+var fetchCapiV2 = require('../utils/fetch-capi-v2');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 var cheerio = require('cheerio');
@@ -46,12 +47,7 @@ module.exports = function(req, res, next) {
 			uuid: req.params[0],
 			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 		});
-	var articleV2Promise = fetch('http://api.ft.com/content/' + req.params[0] + '?sjl=WITH_RICH_CONTENT', {
-			timeout: 3000,
-			headers: {
-				'X-Api-Key': process.env.api2key
-			}
-		});
+	var articleV2Promise = fetchCapiV2({ uuid: req.params[0] });
 
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(fetchres.json)
