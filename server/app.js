@@ -28,6 +28,6 @@ app.get('/__gtg', function(req, res) {
 
 // Start the app
 var port = process.env.PORT || 3001;
-app.listen(port, function() {
+module.exports.listen = app.listen(port, function() {
 	console.log("Listening on " + port);
 });

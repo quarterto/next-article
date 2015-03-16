@@ -5,7 +5,7 @@ var PORT = process.env.PORT || 3001;
 
 var expect = require('chai').expect;
 var sinon = require('sinon');
-require('../../server/app');
+var app = require('../../server/app');
 var nock = require('nock');
 var request = require('request');
 var fastft = require('fastft-api-client');
@@ -88,7 +88,7 @@ var unmockFastFT = function () {
 describe('smoke tests for the app', function () {
 
 	before(function(done) {
-		setTimeout(done, 3000);
+		app.listen.then(done);
 	});
 
 	it('Should serve a good to go page', function (done) {
@@ -117,7 +117,6 @@ describe('smoke tests for the app', function () {
 	});
 
 	describe('urls', function() {
-		this.timeout(10000);
 
 		beforeEach(function () {
 			mockMethode();
