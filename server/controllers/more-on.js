@@ -1,6 +1,5 @@
 'use strict';
 
-var ft = require('../utils/api').ft;
 var fetchCapiV1 = require('../utils/fetch-capi-v1');
 var fetchCapiV2 = require('../utils/fetch-capi-v2');
 var cacheControl = require('../utils/cache-control');
