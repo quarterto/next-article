@@ -1,42 +1,59 @@
 'use strict';
 
 var ft = require('../utils/api').ft;
-var Stream = require('../models/stream');
+var fetchCapiV1 = require('../utils/fetch-capi-v1');
+var fetchCapiV2 = require('../utils/fetch-capi-v2');
 var cacheControl = require('../utils/cache-control');
+var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
-	ft
-		.get([req.params.id])
+	fetchCapiV1({ uuid: req.params.id })
 		.then(function(article) {
-			if (article[0] && article[0].packages && article[0].packages.length > 0) {
-				article = article[0];
-			} else {
+			res.set(cacheControl);
+			if (!article || !article.item || !article.item.package || article.item.package.length === 0) {
 				res.status(404).send();
 				return;
 			}
+			var moreOns = article.item.package;
 
-			return ft
-				.get(article.packages)
-				.then(function(articles) {
-					if (articles.length > 0) {
-						var stream = new Stream();
-						articles
-							// some articles may be undefined
-							.filter(function (a) { return !!a; })
-							.slice(0, req.query.count || undefined)
-							.forEach(function(item) {
-								stream.push('methode', item);
-							});
-						res.set(cacheControl);
-						res.render('more-on' + (req.query.view ? '-' + req.query.view : ''), {
-							mode: 'expand',
-							stream: stream.texturedItems,
-							title: 'See also'
+			return Promise.all(moreOns.map(function(moreOn) {
+					return fetchCapiV2({ uuid: moreOn.id })
+						.catch(function(err) {
+							if (err instanceof fetchres.BadServerResponseError) {
+								return undefined;
+							} else {
+								throw err;
+							}
 						});
-					} else {
-						res.status(404).send();
+				}))
+				.then(function(results) {
+					var mode = req.query.view === 'inline' ? 'more-on-inline' : 'more-on-v2';
+					results = results.filter(function(article) {
+						return article;
+					});
+					if (req.query.count) {
+						results.splice(req.query.count);
 					}
+					results = results
+						.map(function(article) {
+							return {
+								id: article.id.replace('http://www.ft.com/thing/', ''),
+								title: article.title,
+								publishedDate: article.publishedDate
+							};
+						});
+
+					res.render(mode, {
+						title: 'See also',
+						items: results
+					});
 				});
 		})
-		.catch(next);
+		.catch(function(err) {
+			if (err instanceof fetchres.BadServerResponseError) {
+				res.status(404).end();
+			} else {
+				next(err);
+			}
+		});
 };
