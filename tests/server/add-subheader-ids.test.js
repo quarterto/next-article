@@ -5,20 +5,8 @@ var cheerio = require('cheerio');
 var expect = require('chai').expect;
 var addSubheaderIds = require('../../server/transforms/add-subheader-ids');
 
-it('should convert the element\'s text to an id', function() {
-	var $ = cheerio.load('<h3 class="ft-subhead">Anxiety over the rally<h3>');
+it('should create incremented subhead id', function() {
+	var $ = cheerio.load('<h3 class="ft-subhead">Anxiety over the rally</h3><h3 class="ft-subhead">What are the perks?</h3>');
 	$('.ft-subhead').attr('id', addSubheaderIds);
-	expect($('.ft-subhead').attr('id')).to.equal('anxiety-over-the-rally');
-});
-
-it('should remove non-alphanumeric characters', function() {
-	var $ = cheerio.load('<h3 class="ft-subhead">Anxiety over the rally\'s health<h3>');
-	$('.ft-subhead').attr('id', addSubheaderIds);
-	expect($('.ft-subhead').attr('id')).to.equal('anxiety-over-the-rallys-health');
-});
-
-it('should leading/trailing spaces', function() {
-	var $ = cheerio.load('<h3 class="ft-subhead"> Anxiety over the rally <h3>');
-	$('.ft-subhead').attr('id', addSubheaderIds);
-	expect($('.ft-subhead').attr('id')).to.equal('anxiety-over-the-rally');
+	expect($.html()).to.equal('<h3 class="ft-subhead" id="subhead-1">Anxiety over the rally</h3><h3 class="ft-subhead" id="subhead-2">What are the perks?</h3>');
 });
