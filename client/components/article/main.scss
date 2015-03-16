@@ -177,42 +177,6 @@ $header-offset: 30px;
 		@include oQuoteStandardBig;
 	}
 }
-.article__related--inline {
-	@include oColorsFor(ng-brand, background);
-	color: #ffffff;
-	position: relative;
-	padding: 10px 20px;
-}
-.article__related__title,
-.article__related__article {
-	position: relative;
-	margin: 0;
-}
-.article__related__title {
-	font-size: 16px;
-	line-height: 1em;
-	text-transform: uppercase;
-}
-.article__related__article {
-	margin-top: 5px;
-	font-size: 25px;
-	line-height: 1em;
-
-	@include oGridRespondTo(M) {
-		font-size: 32px;
-	}
-	.article__related__link {
-		color: inherit;
-	}
-}
-.article__related__timestamp {
-	display: block;
-	margin-top: 10px;
-	text-transform: uppercase;
-	font-size: 15px;
-	line-height: 1em;
-}
-
 
 .article__rail-advert {
 	margin-top: 17px;
