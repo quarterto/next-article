@@ -98,16 +98,16 @@
 					</span>
 				</p>
 				{{/if}}
-				{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
-				<div class="o-grid-row">
-					<div class='more-on js-more-on' data-article-id='{{article.id}}' data-o-grid-colspan="12 L4"></div>
-					<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}" data-trackable="more-on-theme" data-o-grid-colspan="12 L4"></div>
-					<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}" data-trackable="more-on-section" data-o-grid-colspan="12 L4"></div>
-				</div>
-				{{/if}}
 			</div>
 		</div>
 		<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3">
 		</div>
 	</div>
+	{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
+	<div class="o-grid-row">
+		<div class='more-on js-more-on' data-article-id='{{article.id}}' data-o-grid-colspan="12 L4"></div>
+		<div class="on-this-topic js-on-this-topic" data-metadata-field="primaryTheme" data-article-id="{{article.id}}" data-trackable="more-on-theme" data-o-grid-colspan="12 L4"></div>
+		<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}" data-trackable="more-on-section" data-o-grid-colspan="12 L4"></div>
+	</div>
+	{{/if}}
 </article>
