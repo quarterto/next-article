@@ -5,17 +5,13 @@ var fetchCapiV1 = require('../utils/fetch-capi-v1');
 var fetchres = require('fetchres');
 var cacheControl = require('../utils/cache-control');
 
-var titleMapping = {
-	'primarySection': 'section',
-	'primaryTheme': 'theme'
-};
-
 module.exports = function(req, res, next) {
 	fetchCapiV1({
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
 		.then(function(article) {
+			res.set(cacheControl);
 			var topic = article.item.metadata[req.params.metadata];
 			if (!topic) {
 				res.status(404).end();
