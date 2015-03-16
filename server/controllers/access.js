@@ -11,7 +11,11 @@ module.exports = function(req, res, next) {
 			.then(function(article) {
 				var results = /cms\/s\/([0-3])\//i.exec(article.item.location.uri);
 				var classification = 'unconditional';
-				if (results.length > 1) {
+
+				// “if the match fails, the exec() method returns null” — MDN
+				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec
+				// We often don't get matches for, say, blog articles.
+				if (results) {
 					switch (results[1]) {
 						case '0' :
 						case '1' :
