@@ -20,6 +20,10 @@ var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
 var externalImgTransform = require('../transforms/external-img');
 var removeBodyTransform = require('../transforms/remove-body');
 
+function getUuid(id) {
+	return id.replace('http://www.ft.com/thing/', '');
+}
+
 module.exports = function(req, res, next) {
 	var articleV1Promise = fetchCapiV1({
 			uuid: req.params[0],
@@ -50,6 +54,7 @@ module.exports = function(req, res, next) {
 					body = replaceEllipses(body);
 					body = replaceHrs(body);
 					body = pStrongsToH3s(body);
+					body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 					var $ = cheerio.load(body);
 
 					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
@@ -80,31 +85,49 @@ module.exports = function(req, res, next) {
 						.attr('id', addSubheaderIds)
 						.replaceWith(subheadersTransform);
 
-					body = $.html();
+					// get the image sets
+					var imageSetPromises = $('.article__image-wrapper[data-capi-id]')
+						.map(function (index, el) {
+							return fetchCapiV2({ uuid: $(el).data('capi-id') });
+						})
+						.get();
 
-					body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
+					Promise.all(imageSetPromises)
+						.then(function (imageSets) {
+							// add the image captions
+							imageSets.forEach(function (imageSet) {
+								if (imageSet.title) {
+									var id = getUuid(imageSet.id);
+									var $figcaption = $('<ficaption></figcaption>')
+										.addClass('article__image-caption')
+										.text(imageSet.title);
 
-					res.render('layout', {
-						article: article,
-						articleV1: articleV1 && articleV1.item,
-						id: article.id.replace('http://www.ft.com/thing/', ''),
-						// HACK - Force the last word in the title never to be an ‘orphan’
-						title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
-						body: body,
-						subheaders: $subheaders.map(function() {
-							var $subhead = $(this);
-							return {
-								text: $subhead.find('.article__subhead__title').text(),
-								id: $subhead.attr('id')
-							};
-						}).get(),
-						showTOC: res.locals.flags.articleTOC.isSwitchedOn && $subheaders.length > 2,
-						// if there's a video or sideshow first, we overlap them on the header
-						headerOverlap:
-							$('> a:first-child').attr('data-asset-type') === 'video' ||
-							$('> ft-paragraph:first-child > ft-slideshow:first-child').length,
-						layout: 'wrapper'
-					});
+									$('.article__image-wrapper[data-capi-id="' + id + '"]').append($figcaption);
+								}
+							});
+
+							res.render('layout', {
+								article: article,
+								articleV1: articleV1 && articleV1.item,
+								id: getUuid(article.id),
+								// HACK - Force the last word in the title never to be an ‘orphan’
+								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
+								body: $.html(),
+								subheaders: $subheaders.map(function() {
+									var $subhead = $(this);
+									return {
+										text: $subhead.find('.article__subhead__title').text(),
+										id: $subhead.attr('id')
+									};
+								}).get(),
+								showTOC: res.locals.flags.articleTOC.isSwitchedOn && $subheaders.length > 2,
+								// if there's a video or sideshow first, we overlap them on the header
+								headerOverlap:
+									$('> a:first-child').attr('data-asset-type') === 'video' ||
+									$('> ft-paragraph:first-child > ft-slideshow:first-child').length,
+								layout: 'wrapper'
+							});
+						})
 					break;
 
 				case 'json':

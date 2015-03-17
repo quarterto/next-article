@@ -60,10 +60,17 @@ $header-offset: 30px;
 	text-align: right;
 }
 .article__timestamp,
-.article__actions__action {
+.article__actions__action,
+.article__image-caption {
+	display: block;
 	font-weight: 400;
 	font-size: 12px;
+	line-height: 1em;
 	text-transform: uppercase;
+}
+.article__timestamp,
+.article__actions__action {
+	margin-top: 5px;
 }
 .article__actions__action {
 	color: inherit;
