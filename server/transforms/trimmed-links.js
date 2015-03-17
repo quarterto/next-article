@@ -6,14 +6,16 @@ module.exports = function(index, el) {
 	var matches;
 	var contents = el.html()
 		.replace("\n", " ")
+		.replace('&#x2018;', '‘')
+		.replace('&#x2019;', '’')
 		.replace('&#x201C;', '“')
 		.replace('&#x201D;', '”');
 
-	var quoteReg = /^“ ?(.*) ?”$/;
+	var quoteReg = /^([“‘]) ?(.*) ?([”’])$/;
 	matches = quoteReg.exec(contents);
 	if (matches) {
-		el.html(matches[1]);
-		return '“' + $.html(el) + '”';
+		el.html(matches[2]);
+		return matches[1] + $.html(el) + matches[3];
 	}
 
 	var trailingReg = /([ ,.;:]\s*)$/m;
