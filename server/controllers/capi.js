@@ -46,7 +46,17 @@ module.exports = function(req, res, next) {
 	var articleV1Promise = fetchCapiV1({
 			uuid: req.params[0],
 			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
-		});
+		})
+
+			// Some things aren't in CAPI v1 (e.g. FastFT)
+			.catch(function(err) {
+				if (err instanceof fetchres.BadServerResponseError) {
+					return;
+				} else {
+					throw err;
+				}
+			});
+
 	var articleV2Promise = fetchCapiV2({ uuid: req.params[0] });
 
 	Promise.all([articleV1Promise, articleV2Promise])
@@ -106,7 +116,7 @@ module.exports = function(req, res, next) {
 
 					res.render('layout', {
 						article: article,
-						articleV1: articleV1.item,
+						articleV1: articleV1 && articleV1.item,
 						title: article.title,
 						mainImage: article.mainImage,
 						subheaders: subheaders.map(function() {
