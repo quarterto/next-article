@@ -15,7 +15,8 @@
     "next-messaging": "https://github.com/Financial-Times/next-messaging.git#^1.0.0",
     "o-gallery": "^1.6.1",
     "next-buttons": "Financial-Times/next-buttons#~1.0.0-beta.7",
-    "o-forms": "^1.0.0-beta.8"
+    "o-forms": "^1.0.0-beta.8",
+    "o-date": "~1.1.1"
   },
   "resolutions": {
     "o-forms": "^1.0.0-beta.8",
