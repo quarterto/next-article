@@ -21,6 +21,7 @@
   "resolutions": {
     "o-forms": "^1.0.0-beta.8",
     "o-colors": "~2.4.7",
-    "o-ft-icons": "next"
+    "o-ft-icons": "next",
+    "next-user-model-component": "e-tag:f42da266a"
   }
 }

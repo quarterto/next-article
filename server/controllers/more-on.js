@@ -46,7 +46,7 @@ module.exports = function(req, res, next) {
 						});
 
 					res.render(mode, {
-						title: 'See also',
+						title: mode === 'inline' ? 'See also' : article.item.metadata.primaryTheme.term.name,
 						items: results
 					});
 				});
