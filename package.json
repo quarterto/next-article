@@ -4,7 +4,7 @@
   "description": "Render a Next FT Article",
   "main": "app.js",
   "scripts": {
-    "test": "make test build-production smoke-test"
+    "test": "make test"
   },
   "dependencies": {
     "cheerio": "^0.18.0",

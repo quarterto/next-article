@@ -20,7 +20,7 @@ ifeq ($(OBT),)
 endif
 	origami-build-tools install --verbose
 
-test:
+test: build-production smoke-test
 	next-build-tools verify
 	# Run all tests except for smoke tests
 	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; mocha --reporter spec -i -g 'smoke tests' tests/server/
@@ -75,8 +75,7 @@ build:
 	export ENVIRONMENT=development; gulp build-dev;
 
 build-production:
-	@bower install
-	@gulp build-prod
+	gulp build-prod
 
 watch:
 	export ENVIRONMENT=development; gulp watch
