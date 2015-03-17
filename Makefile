@@ -98,4 +98,4 @@ provision:
 	make smoke
 
 smoke:
-	export TEST_URL=${TEST_URL}; nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox,chrome
+	export TEST_URL=${TEST_URL}; nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox36,chrome41
