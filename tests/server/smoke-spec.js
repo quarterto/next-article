@@ -1,23 +1,18 @@
-/*global it, describe, before, beforeEach, afterEach*/
+/*global it, describe, before, beforeEach*/
 'use strict';
 
 var PORT = process.env.PORT || 3001;
 
 var expect = require('chai').expect;
-var sinon = require('sinon');
 var app = require('../../server/app');
 var nock = require('nock');
 var request = require('request');
-var fastft = require('fastft-api-client');
-var fastftMocks = require('fastft-api-client/mocks');
 var $ = require('cheerio');
 
 var articleV1 = require('fs').readFileSync('tests/fixtures/capi1.json', { encoding: 'utf8' });
 var articleElastic = require('fs').readFileSync('tests/fixtures/elastic.json', { encoding: 'utf8' });
 var articleV2 = require('fs').readFileSync('tests/fixtures/capi2.json', { encoding: 'utf8' });
 var search = require('fs').readFileSync('tests/fixtures/search-for__climate-change', { encoding: 'utf8' });
-var fastftSearch = require('fs').readFileSync('tests/fixtures/fastft/index.json', { encoding: 'utf8' });
-var fastftPost = require('fs').readFileSync('tests/fixtures/fastft/post.json', { encoding: 'utf8' });
 
 var host = 'http://localhost:' + PORT;
 
@@ -75,16 +70,6 @@ var mockMethode = function (n) {
 		.reply(200, search);
 };
 
-var mockFastFT = function () {
-	sinon.stub(fastft, 'search', fastftMocks.search(fastftSearch));
-	sinon.stub(fastft, 'getPost', fastftMocks.getPost(fastftPost));
-};
-
-var unmockFastFT = function () {
-	fastft.search.restore();
-	fastft.getPost.restore();
-};
-
 describe('smoke tests for the app', function () {
 
 	before(function() {
@@ -120,11 +105,6 @@ describe('smoke tests for the app', function () {
 
 		beforeEach(function () {
 			mockMethode();
-			mockFastFT();
-		});
-
-		afterEach(function () {
-			unmockFastFT();
 		});
 
 		it('Should serve a methode article', function (done) {
