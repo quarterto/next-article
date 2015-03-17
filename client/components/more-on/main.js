@@ -51,7 +51,7 @@ module.exports.init = function(flags){
 			.then(fetchres.text)
 			.then(function(resp) {
 				inlineRelatedAnchor.innerHTML = resp;
-				oDate.init(el);
+				oDate.init(inlineRelatedAnchor);
 			}, function() {
 				inlineRelatedAnchor.parentNode.removeChild(inlineRelatedAnchor);
 			}));
