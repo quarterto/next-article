@@ -60,10 +60,6 @@ module.exports = function(req, res, next) {
 					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
 					$('body').replaceWith(removeBodyTransform);
-					// $('img').replaceWith(function (index, el) {
-					// 	return $('<figure></figure>')
-					// 		.append($(el).clone());
-					// });
 
 					// insert test related
 					if ($('ft-paragraph').length >= 6) {

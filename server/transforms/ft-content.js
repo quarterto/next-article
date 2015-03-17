@@ -21,7 +21,7 @@ module.exports = function(index, originEl) {
 			if (isMain) {
 				$figure.addClass('article__main-image')
 			} else {
-				figure.addClass('article__inline-image')
+				$figure.addClass('article__inline-image')
 			}
 			return $figure.append('<img class="article__image" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x"/>');
 		case 'http://www.ft.com/ontology/content/Article':

@@ -113,6 +113,7 @@ $header-offset: 30px;
 	font-weight: 400;
 	font-size: 18px;
 	color: $next-grey-dark;
+
 	> ft-paragraph {
 		margin: 0.3em 0 0.4em;
 		line-height: 24px;
@@ -121,14 +122,12 @@ $header-offset: 30px;
 	> .article__main-image:first-child + ft-paragraph {
 		margin-top: 0;
 	}
-
 	a {
 		color: $next-grey-dark;
 	}
 	.o-quote--standard a {
 		color: inherit;
 	}
-
 	video {
 		width: 100%;
 	}
@@ -143,15 +142,11 @@ $header-offset: 30px;
 .article__main-image {
 	margin-top: 0;
 }
-.article__image {
-	width: 100%;
-}
-.article__mpu {
-	text-align: center;
-	padding: 10px 0;
-}
 .article__gallery {
 	line-height: initial;
+}
+.article__image {
+	max-width: 100%;
 }
 .article__subhead {
 	padding-right: 40px;
@@ -198,6 +193,7 @@ $header-offset: 30px;
 	}
 	.article__body {
 		font-size: 21px;
+
 		> ft-paragraph {
 			line-height: 28px;
 		}
@@ -213,6 +209,7 @@ $header-offset: 30px;
 	.article__body {
 		font-size: 24px;
 		font-weight: 100;
+
 		> ft-paragraph {
 			line-height: 35px;
 		}
@@ -221,8 +218,5 @@ $header-offset: 30px;
 @include oGridRespondTo(L) {
 	.article__title {
 		margin-top: 20px;
-	}
-	.article__mpu {
-		padding-top: 0;
 	}
 }
