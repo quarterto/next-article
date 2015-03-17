@@ -12,7 +12,7 @@ module.exports = function($body) {
 			return fetchCapiV2({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', '') })
 				.catch(function (error) {
 					return {};
-				})
+				});
 		})
 		.get();
 
@@ -35,7 +35,7 @@ module.exports = function($body) {
 				if (!imageSet) {
 					return '';
 				}
-				var isMain = image.parentNode.tagName === 'root' && $(image.parentNode).children().first().html() === $image.html()
+				var isMain = image.parentNode.tagName === 'root' && $(image.parentNode).children().first().html() === $image.html();
 				var width = 470;
 				var binaryId = imageSet.members[0].id.replace('http://api.ft.com/content/', '');
 				var resizedUrl1x = resize({ width: width, url: 'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId });
@@ -54,6 +54,6 @@ module.exports = function($body) {
 				return $figure.prepend('<img class="article__image" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x"/>');
 			});
 
-			return $body
+			return $body;
 		});
 };

@@ -110,7 +110,7 @@ module.exports = function(req, res, next) {
 									$body('> ft-paragraph:first-child > ft-slideshow:first-child').length,
 								layout: 'wrapper'
 							});
-						})
+						});
 					break;
 
 				case 'json':

@@ -1,6 +1,5 @@
 "use strict";
 
-var resize = require('../utils/resize');
 var $ = require('cheerio');
 
 module.exports = function(index, el) {
