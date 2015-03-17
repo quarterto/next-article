@@ -1,7 +1,7 @@
 "use strict";
 
-var resize = require('../utils/resize');
 var $ = require('cheerio');
+var resize = require('../utils/resize');
 var fetchCapiV2 = require('../utils/fetch-capi-v2');
 
 module.exports = function($body) {
@@ -35,8 +35,8 @@ module.exports = function($body) {
 				if (!imageSet) {
 					return '';
 				}
-				var isMain = image.parentNode.tagName === 'body' && $(image.parentNode).children().first().html() === $image.html()
-				var width = isMain ? 470 : 300;
+				var isMain = image.parentNode.tagName === 'root' && $(image.parentNode).children().first().html() === $image.html()
+				var width = 470;
 				var binaryId = imageSet.members[0].id.replace('http://api.ft.com/content/', '');
 				var resizedUrl1x = resize({ width: width, url: 'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId });
 				var resizedUrl2x = resize({ width: width * 2, url: 'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId });

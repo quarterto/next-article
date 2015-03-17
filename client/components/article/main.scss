@@ -154,7 +154,9 @@ $header-offset: 30px;
 	line-height: initial;
 }
 .article__image {
+	display: block;
 	max-width: 100%;
+	margin: 0 auto;
 }
 .article__subhead {
 	padding-right: 40px;
