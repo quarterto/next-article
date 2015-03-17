@@ -1,4 +1,4 @@
-<article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{article.id}}" data-trackable="article">
+<article class="article article--default{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{id}}" data-trackable="article">
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
 		<div class="o-grid-row">
 			{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
@@ -11,7 +11,7 @@
 				</div>
 			{{/with}}
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
-				<h3 class="article__title">{{{article.titleHTML}}}</h3>
+				<h3 class="article__title">{{{title}}}</h3>
 				{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
 				{{! Probably something like article.summaries[0] }}
 				{{#if articleV1.editorial.standFirst}}
@@ -57,8 +57,8 @@
 						<div class="article__actions" data-o-grid-colspan="4">
 							<button
 								class="article__actions__action article__actions__action--save"
-								data-content-id="{{article.id}}"
-								data-headline="{{headline}}"
+								data-content-id="{{id}}"
+								data-headline="{{title}}"
 								data-user-prefs-button="saveForLater"
 								data-trackable="save-for-later"
 								data-alternate-text="Saved">
@@ -84,23 +84,23 @@
 	<div class="article__main o-grid-row">
 		<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 			<div class="article__body">
-				{{{article.bodyXML}}}
+				{{{body}}}
 			</div>
-			<div>
-				{{#if @root.flags.recommend.isSwitchedOn}}
-				<p>
-					<span
-					class="recommend js-recommend"
-					data-capi="{{article.id}}"
-					data-headline="{{article.title}}"
-					data-toggle-text="You recommended this"
-					aria-label="Recommend this article to you colleagues"
-					title="Recommend this article to your colleagues">
-						Recommend this article to your colleagues
-					</span>
-				</p>
-				{{/if}}
-			</div>
+			{{#if @root.flags.recommend.isSwitchedOn}}
+				<div>
+					<p>
+						<span
+						class="recommend js-recommend"
+						data-capi="{{id}}"
+						data-headline="{{title}}"
+						data-toggle-text="You recommended this"
+						aria-label="Recommend this article to you colleagues"
+						title="Recommend this article to your colleagues">
+							Recommend this article to your colleagues
+						</span>
+					</p>
+				</div>
+			{{/if}}
 		</div>
 		<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3">
 		</div>
@@ -109,8 +109,8 @@
 {{#if @root.flags.articleRelatedContent.isSwitchedOn}}
 <div class="article__related">
 	<div class="o-grid-row">
-		<div class='more-on js-more-on' data-article-id='{{article.id}}' data-o-grid-colspan="12 L6"></div>
-		<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{article.id}}" data-trackable="more-on-section" data-o-grid-colspan="12 L6"></div>
+		<div class='more-on js-more-on' data-article-id='{{id}}' data-o-grid-colspan="12 L6"></div>
+		<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{id}}" data-trackable="more-on-section" data-o-grid-colspan="12 L6"></div>
 	</div>
 </div>
 {{/if}}

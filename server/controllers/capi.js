@@ -20,28 +20,6 @@ var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
 var externalImgTransform = require('../transforms/external-img');
 var removeBodyTransform = require('../transforms/remove-body');
 
-var getMentions = function(annotations) {
-	annotations = annotations || [];
-	return annotations.filter(function(an) {
-		return an.predicate.indexOf('mentions') > -1;
-	}).map(function(an) {
-
-		//TODO : this should go in next-express topicUrl helper
-		try {
-			var pluralisedType = an.type === 'PERSON' ? 'people' : an.type.toLowerCase() + 's';
-			return {
-				url: '/stream/' + pluralisedType + '/' + an.uri.split('/').pop(),
-				name: an.label
-			};
-		} catch (e) {
-			return {
-				url: '#',
-				name: 'unavailable'
-			};
-		}
-	});
-};
-
 module.exports = function(req, res, next) {
 	var articleV1Promise = fetchCapiV1({
 			uuid: req.params[0],
@@ -68,10 +46,11 @@ module.exports = function(req, res, next) {
 			res.set(cacheControl);
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
-					article.bodyXML = replaceEllipses(article.bodyXML);
-					article.bodyXML = replaceHrs(article.bodyXML);
-					article.bodyXML = pStrongsToH3s(article.bodyXML);
-					var $ = cheerio.load(article.bodyXML);
+					var body = article.bodyXML;
+					body = replaceEllipses(body);
+					body = replaceHrs(body);
+					body = pStrongsToH3s(body);
+					var $ = cheerio.load(body);
 
 					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
 					$('big-number').replaceWith(bigNumberTransform);
@@ -81,6 +60,10 @@ module.exports = function(req, res, next) {
 					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
 					$('body').replaceWith(removeBodyTransform);
+					// $('img').replaceWith(function (index, el) {
+					// 	return $('<figure></figure>')
+					// 		.append($(el).clone());
+					// });
 
 					// insert test related
 					if ($('ft-paragraph').length >= 6) {
@@ -97,37 +80,29 @@ module.exports = function(req, res, next) {
 					$('a').replaceWith(trimmedLinksTransform);
 					$('a').attr('data-trackable', 'link');
 
-					var subheaders = $('.ft-subhead')
+					var $subheaders = $('.ft-subhead')
 						.attr('id', addSubheaderIds)
 						.replaceWith(subheadersTransform);
 
-					article.bodyXML = $.html();
+					body = $.html();
 
-					article.bodyXML = article.bodyXML.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
-					article.mentions = getMentions(article.annotations);
-					article.id = article.id.replace('http://www.ft.com/thing/', '');
-
-					// HACK - Force the last word in the title never to be an ‘orphan’
-					article.titleHTML = article.title.replace(/(.*)(\s)/, '$1&nbsp;');
-
-					if (article.mainImage) {
-						article.mainImage = article.mainImage.id.replace(/^http:\/\/api\.ft\.com\/content\//, '');
-					}
+					body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 
 					res.render('layout', {
 						article: article,
 						articleV1: articleV1 && articleV1.item,
-						title: article.title,
-						mainImage: article.mainImage,
-						subheaders: subheaders.map(function() {
+						id: article.id.replace('http://www.ft.com/thing/', ''),
+						// HACK - Force the last word in the title never to be an ‘orphan’
+						title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
+						body: body,
+						subheaders: $subheaders.map(function() {
 							var $subhead = $(this);
-
 							return {
 								text: $subhead.find('.article__subhead__title').text(),
 								id: $subhead.attr('id')
 							};
 						}).get(),
-						showTOC: res.locals.flags.articleTOC.isSwitchedOn && subheaders.length > 2,
+						showTOC: res.locals.flags.articleTOC.isSwitchedOn && $subheaders.length > 2,
 						// if there's a video or sideshow first, we overlap them on the header
 						headerOverlap:
 							$('> a:first-child').attr('data-asset-type') === 'video' ||
