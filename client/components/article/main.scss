@@ -56,11 +56,8 @@ $header-offset: 30px;
 .article__section {
 	color: inherit;
 }
-.article__actions {
-	text-align: right;
-}
 .article__timestamp,
-.article__actions__action,
+.article__actions,
 .article__image-caption {
 	display: block;
 	font-weight: 400;
@@ -69,8 +66,11 @@ $header-offset: 30px;
 	text-transform: uppercase;
 }
 .article__timestamp,
-.article__actions__action {
+.article__actions {
 	margin-top: 5px;
+}
+.article__actions {
+	text-align: right;
 }
 .article__actions__action {
 	color: inherit;
@@ -88,8 +88,9 @@ $header-offset: 30px;
 	border: 0;
 	padding: 0;
 	font-weight: inherit;
-	font-size: 12px;
+	font-size: 1em;
 	font-family: inherit;
+	text-transform: inherit;
 
 	&:hover {
 		text-decoration: underline;
