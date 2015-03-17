@@ -22,7 +22,6 @@ endif
 
 test: build-production smoke-test
 	next-build-tools verify
-	# Run all tests except for smoke tests
 	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; mocha --reporter spec -i -g 'smoke tests' tests/server/
 
 smoke-test:
