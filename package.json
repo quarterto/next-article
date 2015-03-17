@@ -30,7 +30,7 @@
     "gulp-uglify": "^1.0.2",
     "gulp-watch": "^1.0.7",
     "mocha": "^1.21.4",
-    "next-build-tools": "Financial-Times/next-build-tools#wait-on-__gtg",
+    "next-build-tools": "^v1.11.0",
     "next-gulp-tasks": "Financial-Times/next-gulp-tasks.git#v1",
     "nightwatch": "^0.5.36",
     "nock": "^0.50.0",
