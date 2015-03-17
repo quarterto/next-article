@@ -113,7 +113,7 @@ module.exports = function(req, res, next) {
 							var $subhead = $(this);
 
 							return {
-								text: $subhead.find('.ft-subhead__title').text(),
+								text: $subhead.find('.article__subhead__title').text(),
 								id: $subhead.attr('id')
 							};
 						}).get(),
