@@ -1,6 +1,7 @@
 'use strict';
 
 var fetchres = require('fetchres');
+var oDate = require('o-date');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
 function allSettled(promises) {
@@ -38,6 +39,7 @@ module.exports.init = function(flags){
 			.then(fetchres.text)
 			.then(function(resp) {
 				el.innerHTML = resp;
+				oDate.init(el);
 			}, function() {
 				el.parentNode.removeChild(el);
 			}));
@@ -49,6 +51,7 @@ module.exports.init = function(flags){
 			.then(fetchres.text)
 			.then(function(resp) {
 				inlineRelatedAnchor.innerHTML = resp;
+				oDate.init(el);
 			}, function() {
 				inlineRelatedAnchor.parentNode.removeChild(inlineRelatedAnchor);
 			}));
@@ -59,6 +62,7 @@ module.exports.init = function(flags){
 			.then(fetchres.text)
 			.then(function(resp) {
 				el.innerHTML = resp;
+				oDate.init(el);
 			}, function() {
 				el.parentNode.removeChild(el);
 			}));
