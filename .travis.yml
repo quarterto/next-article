@@ -1,8 +1,6 @@
 sudo: false
 script:
-- make install
-- make test
-- make provision
+- make install && make test && make provision
 language: node_js
 node_js:
 - '0.12'
