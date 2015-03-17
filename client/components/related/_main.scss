@@ -12,6 +12,10 @@
 	position: relative;
 	margin: 0;
 }
+.article__related__title,
+.article__related__timestamp {
+	opacity: 0.7;
+}
 .article__related__title {
 	font-size: 16px;
 	line-height: 1em;
