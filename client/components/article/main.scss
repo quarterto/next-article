@@ -156,13 +156,29 @@ $header-offset: 30px;
 	line-height: initial;
 }
 // Use next's icons
+.o-gallery__control {
+	line-height: 0;
+}
+.o-gallery__control:before {
+	position: relative;
+	top: 50%;
+	margin-top: -30px;
+}
 .o-gallery__control--prev:before {
+	left: -5px;
 	content: '';
 	@include nextIcon(arrow-left, #ffffff, 60);
 }
+.o-gallery__control--prev:hover:before {
+	@include nextIcon(arrow-left, #b0b0b0, 60);
+}
 .o-gallery__control--next:before {
+	left: -3px;
 	content: '';
 	@include nextIcon(arrow-right, #ffffff, 60);
+}
+.o-gallery__control--next:hover:before {
+	@include nextIcon(arrow-right, #b0b0b0, 60);
 }
 .article__image {
 	display: block;
