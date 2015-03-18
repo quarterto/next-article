@@ -1,5 +1,8 @@
 <h4 class='article__related__title'>See more from</h4>
-<h3 class='article__related__title--big'>{{title}}</h3>
+{{#ifAll title.taxonomy title.name}}
+<a class="article__related__title--big" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}</a>
+{{/ifAll}}
+</h3>
 	<ul class='ng-list-reset'>
 	{{#each items}}
 		<li class='article__related__article'>

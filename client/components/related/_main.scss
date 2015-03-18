@@ -28,6 +28,12 @@
 	margin-top: 5px;
 	margin-bottom: 15px;
 	font-weight: normal;
+	color: #ffffff;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .article__related__article {

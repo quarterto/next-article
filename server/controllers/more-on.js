@@ -46,7 +46,13 @@ module.exports = function(req, res, next) {
 						});
 
 					res.render(mode, {
-						title: mode === 'inline' ? 'See also' : article.item.metadata.primaryTheme.term.name,
+						title: mode === 'inline'
+							? { label: 'See also' }
+							: {
+								label: article.item.metadata.primaryTheme.term.name,
+								taxonomy: article.item.metadata.primaryTheme.term.taxonomy,
+								name: article.item.metadata.primaryTheme.term.name
+							},
 						items: results
 					});
 				});
