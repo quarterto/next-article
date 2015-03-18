@@ -20,6 +20,7 @@ var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
 var externalImgTransform = require('../transforms/external-img');
 var removeBodyTransform = require('../transforms/remove-body');
 var images = require('../transforms/images');
+var byline = require('../transforms/byline');
 
 function getUuid(id) {
 	return id.replace('http://www.ft.com/thing/', '');
@@ -95,6 +96,7 @@ module.exports = function(req, res, next) {
 								id: getUuid(article.id),
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
+								byline: byline(article.byline, articleV1),
 								body: $body.html(),
 								subheaders: $subheaders.map(function() {
 									var $subhead = $body(this);
