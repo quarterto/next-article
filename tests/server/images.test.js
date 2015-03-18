@@ -1,8 +1,8 @@
-/*global should, it, beforeEach*/
+/*global describe, it, beforeEach*/
 'use strict';
 
 var $ = require('cheerio');
-var should = require('chai').should();
+require('chai').should();
 var nock = require('nock');
 
 var images = require('../../server/transforms/images');
@@ -25,13 +25,13 @@ describe('Images', function () {
 			.reply('404');
 	});
 
-	it('should convert an ft-content to an image', function (done) {
-		var $content = $.load('')
+	it('should convert an ft-content to an image', function () {
+		var $content = $.load('');
 		$content.root().append(
 			'<ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/f14a7e9e-cc08-11e4-30d3-978e959e1c97"></ft-content>'
 		);
 
-		images($content)
+		return images($content)
 			.then(function ($content) {
 				$content.html().should.equal(
 					'<figure class="article__image-wrapper ng-pull-out ng-inline-element article__main-image">' +
@@ -39,19 +39,17 @@ describe('Images', function () {
 						'<figcaption class="article__image-caption">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
 					'</figure>'
 				);
-				done();
-			})
-			.catch(done);
+			});
 	});
 
-	it('should convert multiple ft-content to images', function (done) {
-		var $content = $.load('')
+	it('should convert multiple ft-content to images', function () {
+		var $content = $.load('');
 		$content.root().append(
 			'<ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/f14a7e9e-cc08-11e4-30d3-978e959e1c97"></ft-content>' +
 			'<ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/2ad940b2-cc01-11e4-30d3-978e959e1c97"></ft-content>'
 		);
 
-		images($content)
+		return images($content)
 			.then(function ($content) {
 				$content.html().should.equal(
 					'<figure class="article__image-wrapper ng-pull-out ng-inline-element article__main-image">' +
@@ -62,19 +60,17 @@ describe('Images', function () {
 						'<img class="article__image" src="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F2ad940b2-cc01-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down" srcset="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F2ad940b2-cc01-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down 1x, //image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F2ad940b2-cc01-11e4-aeb5-00144feab7de?width=940&amp;source=next&amp;fit=scale-down 2x">' +
 					'</figure>'
 				);
-				done();
-			})
-			.catch(done);
+			});
 	});
 
-	it('should remove ft-content if image request fails', function (done) {
-		var $content = $.load('')
+	it('should remove ft-content if image request fails', function () {
+		var $content = $.load('');
 		$content.root().append(
 			'<ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/f14a7e9e-cc08-11e4-30d3-978e959e1c97"></ft-content>' +
 			'<ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/7a68fee4-cc22-11e4-20ac-978e959e1c97"></ft-content>'
 		);
 
-		images($content)
+		return images($content)
 			.then(function ($content) {
 				$content.html().should.equal(
 					'<figure class="article__image-wrapper ng-pull-out ng-inline-element article__main-image">' +
@@ -82,9 +78,7 @@ describe('Images', function () {
 						'<figcaption class="article__image-caption">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
 					'</figure>'
 				);
-				done();
-			})
-			.catch(done);
+			});
 	});
 
 });
