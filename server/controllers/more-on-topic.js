@@ -30,7 +30,11 @@ module.exports = function(req, res, next) {
 						};
 					});
 					res.render('more-on', {
-						title: topic.term.name,
+						title: {
+							label: topic.term.name,
+							name: topic.term.name,
+							taxonomy: topic.term.taxonomy
+						},
 						items: results
 					});
 				});
