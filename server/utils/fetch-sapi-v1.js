@@ -1,3 +1,4 @@
+/*global console*/
 'use strict';
 
 var fetchres = require('fetchres');
@@ -31,6 +32,12 @@ module.exports = function(opts) {
 				'X-Api-Key': process.env.apikey
 			}
 		})
+			.then(function(response) {
+				if (!response.ok) {
+					console.log("Got " + response.status + " for sapi v1 query " + query);
+				}
+				return response;
+			})
 			.then(fetchres.json)
 			.then(function(result) {
 				result = Promise.all(result.results[0].results.map(function(article) {

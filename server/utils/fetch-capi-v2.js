@@ -1,3 +1,4 @@
+/*global console*/
 'use strict';
 
 var fetchres = require('fetchres');
@@ -12,5 +13,11 @@ module.exports = function(opts) {
 				'X-Api-Key': process.env.api2key
 			}
 		})
+			.then(function(response) {
+				if (!response.ok) {
+					console.log("Got " + response.status + " for capi v2 uuid " + uuid);
+				}
+				return response;
+			})
 			.then(fetchres.json);
 };
