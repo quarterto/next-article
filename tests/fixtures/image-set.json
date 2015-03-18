@@ -1,0 +1,19 @@
+{
+  "id": "http:\/\/www.ft.com\/thing\/f14a7e9e-cc08-11e4-30d3-978e959e1c97",
+  "type": "http:\/\/www.ft.com\/ontology\/content\/ImageSet",
+  "title": "American staples old and new: from top, Campbell\u2019s Soup, hot dogs and kale. Below, Annie\u2019s Homegrown co-founder Annie Withey",
+  "description": "",
+  "publishedDate": "2015-03-17T10:29:00.000Z",
+  "identifiers": [
+    {
+      "authority": "http:\/\/api.ft.com\/system\/FTCOM-METHODE",
+      "identifierValue": "f14a7e9e-cc08-11e4-30d3-978e959e1c97"
+    }
+  ],
+  "members": [
+    {
+      "id": "http:\/\/api.ft.com\/content\/f14a7e9e-cc08-11e4-aeb5-00144feab7de"
+    }
+  ],
+  "requestUrl": "http:\/\/api.ft.com\/content\/f14a7e9e-cc08-11e4-30d3-978e959e1c97"
+}

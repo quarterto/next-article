@@ -56,14 +56,20 @@ $header-offset: 30px;
 .article__section {
 	color: inherit;
 }
-.article__actions {
-	text-align: right;
+.article__timestamp,
+.article__actions,
+.article__image-caption {
+	display: block;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 1em;
 }
 .article__timestamp,
-.article__actions__action {
-	font-weight: 400;
-	font-size: 12px;
-	text-transform: uppercase;
+.article__actions {
+	margin-top: 5px;
+}
+.article__actions {
+	text-align: right;
 }
 .article__actions__action {
 	color: inherit;
@@ -81,8 +87,9 @@ $header-offset: 30px;
 	border: 0;
 	padding: 0;
 	font-weight: inherit;
-	font-size: 12px;
+	font-size: 1em;
 	font-family: inherit;
+	text-transform: inherit;
 
 	&:hover {
 		text-decoration: underline;
@@ -113,22 +120,24 @@ $header-offset: 30px;
 	font-weight: 400;
 	font-size: 18px;
 	color: $next-grey-dark;
+
 	> ft-paragraph {
 		margin: 0.3em 0 0.4em;
 		line-height: 24px;
 		display: block;
 	}
-	> .article__main-image:first-child + ft-paragraph {
-		margin-top: 0;
+	> {
+		*:first-child,
+		.article__main-image:first-child + ft-paragraph {
+			margin-top: 0;
+		}
 	}
-
 	a {
 		color: $next-grey-dark;
 	}
 	.o-quote--standard a {
 		color: inherit;
 	}
-
 	video {
 		width: 100%;
 	}
@@ -141,15 +150,18 @@ $header-offset: 30px;
 }
 
 .article__main-image {
-	width: 100%;
 	margin-top: 0;
-}
-.article__mpu {
-	text-align: center;
-	padding: 10px 0;
 }
 .article__gallery {
 	line-height: initial;
+}
+.article__image {
+	display: block;
+	max-width: 100%;
+	margin: 0 auto;
+}
+.article__image-caption {
+	margin-top: 5px;
 }
 .article__subhead {
 	padding-right: 40px;
@@ -196,6 +208,7 @@ $header-offset: 30px;
 	}
 	.article__body {
 		font-size: 21px;
+
 		> ft-paragraph {
 			line-height: 28px;
 		}
@@ -211,6 +224,7 @@ $header-offset: 30px;
 	.article__body {
 		font-size: 24px;
 		font-weight: 100;
+
 		> ft-paragraph {
 			line-height: 35px;
 		}
@@ -219,8 +233,5 @@ $header-offset: 30px;
 @include oGridRespondTo(L) {
 	.article__title {
 		margin-top: 20px;
-	}
-	.article__mpu {
-		padding-top: 0;
 	}
 }
