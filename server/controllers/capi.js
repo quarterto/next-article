@@ -96,7 +96,7 @@ module.exports = function(req, res, next) {
 								id: getUuid(article.id),
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
-								byline: bylineTransform(article.byline, articleV1),,
+								byline: bylineTransform(article.byline, articleV1),
 								body: $body.html(),
 								subheaders: $subheaders.map(function() {
 									var $subhead = $body(this);
