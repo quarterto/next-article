@@ -34,7 +34,7 @@ module.exports = function(opts) {
 		})
 			.then(function(response) {
 				if (!response.ok) {
-					concole.log("Got " + response.status + " for sapi v1 query " + query);
+					console.log("Got " + response.status + " for sapi v1 query " + query);
 				}
 				return response;
 			})
