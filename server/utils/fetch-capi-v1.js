@@ -15,6 +15,12 @@ module.exports = function(opts) {
 				'X-Api-Key': process.env.apikey
 			}
 		})
+			.then(function(response) {
+				if (!response.ok) {
+					console.log("Got " + response.status + " for capi v1 uuid " + uuid);
+				}
+				return response;
+			})
 			.then(fetchres.json)
 			.then(function(data) {
 				return useElasticSearch ? data._source : data;

@@ -146,7 +146,7 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				fetchres(req.params[0])
+				fetchCapiV1(req.params[0])
 					.then(function(data) {
 						res.render('layout_404', { layout: 'wrapper', url: data.item.location.uri });
 					})
