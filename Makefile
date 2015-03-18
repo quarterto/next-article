@@ -90,9 +90,10 @@ clean-deploy: clean install deploy
 
 provision:
 	next-build-tools provision ${TEST_HOST}
-	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*,EXPIRY=${TEN_MINS_FROM_NOW},APP_NAME=${TEST_HOST},HEROKU_AUTH_TOKEN=${HEROKU_AUTH_TOKEN}"
+	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
 	next-build-tools deploy ${TEST_HOST}
 	make smoke
+	next-build-tools destroy ${TEST_HOST}
 
 smoke:
 	export TEST_URL=${TEST_URL}; nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox36,chrome41
