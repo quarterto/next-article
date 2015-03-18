@@ -1,9 +1,6 @@
 'use strict';
 
 var express = require('ft-next-express');
-
-require('heroku-seppuku')();
-
 var app = module.exports = express({
 	metrics: true
 });
