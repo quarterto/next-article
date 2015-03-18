@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var $ = require('cheerio');
 var resize = require('../utils/resize');
@@ -45,7 +45,7 @@ module.exports = function($body) {
 
 				$figure.addClass(isMain ? 'article__main-image' : 'article__inline-image');
 				if (imageSet.title) {
-					var $figcaption = $('<ficaption></figcaption>')
+					var $figcaption = $('<figcaption></figcaption>')
 						.addClass('article__image-caption')
 						.text(imageSet.title);
 

@@ -22,7 +22,7 @@ endif
 
 test: build-production smoke-test
 	next-build-tools verify
-	export HOSTEDGRAPHITE_APIKEY=123; export ENVIRONMENT=production; mocha --reporter spec -i -g 'smoke tests' tests/server/
+	export ELASTIC_SEARCH_URL='http://elastic'; export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export api2key=67890; export ENVIRONMENT=production; mocha --reporter spec -i -g 'smoke tests' tests/server/
 
 smoke-test:
 	export ELASTIC_SEARCH_URL='http://elastic'; export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export api2key=67890; export ENVIRONMENT=production; mocha --reporter spec -g 'smoke tests' tests/server/
@@ -85,7 +85,7 @@ clean:
 deploy:
 	next-build-tools configure
 	next-build-tools deploy
-	
+
 clean-deploy: clean install deploy
 
 provision:

@@ -1,0 +1,19 @@
+{
+   "id":"http://www.ft.com/thing/2ad940b2-cc01-11e4-30d3-978e959e1c97",
+   "type":"http://www.ft.com/ontology/content/ImageSet",
+   "title":"",
+   "description":"HAMPTON, CT - JANUARY 10: Ann Withey on her farm in Connecticut with plate of her Annie's Homegrown Shells and Cheddar. (Photo by Tom Herde/The Boston Globe via Getty Images)",
+   "publishedDate":"2015-03-16T19:01:00.000Z",
+   "identifiers":[
+      {
+         "authority":"http://api.ft.com/system/FTCOM-METHODE",
+         "identifierValue":"2ad940b2-cc01-11e4-30d3-978e959e1c97"
+      }
+   ],
+   "members":[
+      {
+         "id":"http://api.ft.com/content/2ad940b2-cc01-11e4-aeb5-00144feab7de"
+      }
+   ],
+   "requestUrl":"http://api.ft.com/content/2ad940b2-cc01-11e4-30d3-978e959e1c97"
+}
