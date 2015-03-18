@@ -96,4 +96,4 @@ provision:
 	next-build-tools destroy ${TEST_HOST}
 
 smoke:
-	export TEST_URL=${TEST_URL}; nightwatch --test tests/browser/tests/jssuccesstest.js --config ./tests/browser/nightwatch.json -e ie10,firefox36,chrome41
+	export TEST_URL=${TEST_URL}; next-build-tools nightwatch
