@@ -21,32 +21,7 @@
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<div class="article__meta">
 					<p class="article__byline">
-						{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
-						{{#ifEquals articleV1.metadata.primarySection.term.name 'Columnists'}}
-							{{#with articleV1.metadata.authors.[0].term}}
-								{{>articles/follow-button this type='author'}}
-								<a class="article__author ng-title-link" href="/stream/authors/{{name}}" data-trackable="author">{{name}}</a>
-							{{/with}}
-						{{else}}
-							{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
-							{{#with articleV1.metadata.authors}}
-								By
-								{{#each this}}
-									{{#ifAll @first @last}}{{else}}
-										{{#if @first}}{{else}}
-											{{#if @last}} and {{else}}, {{/if}}
-										{{/if}}
-									{{/ifAll}}
-									<a class="article__author ng-title-link" href="/stream/authors/{{this.term.name}}" data-trackable="authors">{{term.name}}</a>
-								{{/each}}
-							{{else}}
-								{{! TODO: Switch to CAPI v2 when metadata is available ~ scheduled for Q2 }}
-								{{#with ../articleV1.metadata.primarySection.term}}
-									{{>articles/follow-button this type='author'}}
-									<a class="article__section ng-title-link" href="/stream/sections/{{name}}" data-trackable="section">{{name}}</a>
-								{{/with}}
-							{{/with}}
-						{{/ifEquals}}
+						{{{byline}}}
 					</p>
 					<div class="o-grid-row">
 						<div data-o-grid-colspan="8">
