@@ -96,4 +96,4 @@ provision:
 	next-build-tools destroy ${TEST_HOST}
 
 smoke:
-	export TEST_URL=${TEST_URL}; next-build-tools nightwatch
+	export TEST_URL=${TEST_URL}; next-build-tools nightwatch tests/browser/tests/*
