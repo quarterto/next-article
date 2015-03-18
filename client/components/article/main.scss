@@ -143,7 +143,7 @@ $header-offset: 30px;
 	}
 	> {
 		.article__video:first-child,
-		.article__gallery:first-child {
+		ft-paragraph:first-child .article__gallery:first-child {
 			margin-top: -$header-offset - 15;
 		}
 	}
