@@ -61,9 +61,8 @@ $header-offset: 30px;
 .article__image-caption {
 	display: block;
 	font-weight: 400;
-	font-size: 12px;
+	font-size: 15px;
 	line-height: 1em;
-	text-transform: uppercase;
 }
 .article__timestamp,
 .article__actions {
@@ -127,8 +126,11 @@ $header-offset: 30px;
 		line-height: 24px;
 		display: block;
 	}
-	> .article__main-image:first-child + ft-paragraph {
-		margin-top: 0;
+	> {
+		*:first-child,
+		.article__main-image:first-child + ft-paragraph {
+			margin-top: 0;
+		}
 	}
 	a {
 		color: $next-grey-dark;
@@ -157,6 +159,9 @@ $header-offset: 30px;
 	display: block;
 	max-width: 100%;
 	margin: 0 auto;
+}
+.article__image-caption {
+	margin-top: 5px;
 }
 .article__subhead {
 	padding-right: 40px;
