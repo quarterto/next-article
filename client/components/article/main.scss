@@ -247,12 +247,7 @@ $header-offset: 30px;
 		font-size: 24px;
 	}
 	.article__body {
-		font-size: 24px;
 		font-weight: 100;
-
-		> ft-paragraph {
-			line-height: 35px;
-		}
 	}
 }
 @include oGridRespondTo(L) {
