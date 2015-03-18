@@ -1,6 +1,7 @@
 'use strict';
 
 var viewport = require('o-viewport');
+require('o-hoverable');
 
 var setup = require('next-js-setup');
 var header = require('next-header');

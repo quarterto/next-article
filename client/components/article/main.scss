@@ -155,6 +155,15 @@ $header-offset: 30px;
 .article__gallery {
 	line-height: initial;
 }
+// Use next's icons
+.o-gallery__control--prev:before {
+	content: '';
+	@include nextIcon(arrow-left, #ffffff, 60);
+}
+.o-gallery__control--next:before {
+	content: '';
+	@include nextIcon(arrow-right, #ffffff, 60);
+}
 .article__image {
 	display: block;
 	max-width: 100%;
