@@ -46,7 +46,7 @@ module.exports = function(req, res, next) {
 						});
 
 					res.render(mode, {
-						title: mode === 'inline'
+						title: mode === 'inline' || !article.item.metadata.primaryTheme
 							? { label: 'See also' }
 							: {
 								label: article.item.metadata.primaryTheme.term.name,
