@@ -68,6 +68,7 @@ run-router:
 
 build:
 	export ENVIRONMENT=development; gulp build-dev;
+	gulp hash # experimental
 
 build-production:
 	gulp build-prod
@@ -80,6 +81,7 @@ clean:
 
 deploy:
 	next-build-tools configure
+	next-build-tools deploy-hashed-assets # experimental
 	next-build-tools deploy
 
 clean-deploy: clean install deploy
