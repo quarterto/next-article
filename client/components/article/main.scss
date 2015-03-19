@@ -57,19 +57,8 @@ $header-offset: 30px;
 	color: inherit;
 }
 .article__timestamp,
-.article__actions,
-.article__image-caption {
-	display: block;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 1em;
-}
-.article__timestamp,
 .article__actions {
 	margin-top: 5px;
-}
-.article__actions {
-	text-align: right;
 }
 .article__actions__action {
 	color: inherit;
@@ -90,11 +79,7 @@ $header-offset: 30px;
 	font-size: 1em;
 	font-family: inherit;
 	text-transform: inherit;
-
-	&:hover {
-		text-decoration: underline;
-		cursor: pointer;
-	}
+	float: right;
 }
 .article__toc {
 	max-width: 305px;

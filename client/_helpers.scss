@@ -19,6 +19,7 @@
 	text-decoration: none;
 
 	&:hover {
+		cursor: pointer;
 		text-decoration: underline;
 	}
 }
@@ -44,4 +45,11 @@
 		@include filter(blur(0));
 		opacity: 0.1;
 	}
+}
+.ng-meta {
+	display: block;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1em;
+	opacity: 0.7;
 }
