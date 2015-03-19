@@ -47,13 +47,25 @@ module.exports.init = function(flags){
 
 	var inlineRelatedAnchor = document.querySelector('.js-more-on-inline');
 	if (inlineRelatedAnchor) {
-		fetchPromises.push(fetch('/more-on/' + document.querySelector('.article').getAttribute('data-capi-id') + '?count=1&view=inline')
+		fetchPromises.push(fetch('/' + document.querySelector('.article').getAttribute('data-capi-id') + '/related?count=1&view=inline')
 			.then(fetchres.text)
 			.then(function(resp) {
 				inlineRelatedAnchor.innerHTML = resp;
 				oDate.init(inlineRelatedAnchor);
 			}, function() {
 				inlineRelatedAnchor.parentNode.removeChild(inlineRelatedAnchor);
+			}));
+	}
+
+	var relatedAnchor = document.querySelector('.js-related');
+	if (relatedAnchor) {
+		fetchPromises.push(fetch('/' + document.querySelector('.article').getAttribute('data-capi-id') + '/related?count=4')
+			.then(fetchres.text)
+			.then(function(resp) {
+				relatedAnchor.innerHTML = resp;
+				oDate.init(relatedAnchor);
+			}, function() {
+				relatedAnchor.parentNode.removeChild(relatedAnchor);
 			}));
 	}
 

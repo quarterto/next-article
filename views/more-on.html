@@ -1,15 +1,16 @@
-<h4 class='article__related__title'>See more from</h4>
-{{#ifAll title.taxonomy title.name}}
-<a class="article__related__title--big" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}</a>
-{{/ifAll}}
-</h3>
-	<ul class='ng-list-reset'>
-	{{#each items}}
-		<li class='article__related__article'>
-			<a href='/{{id}}' class='article__related__link ng-title-link' data-trackable='headline'>{{{title}}}</a>
-			<time data-o-component="o-date" class="o-date article__related__timestamp" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
-				{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-			</time>
-		</li>
-	{{/each}}
-</ul>
+<div class="related" data-trackable="related">
+	{{#ifAll title.taxonomy title.name}}
+		<h4 class="related__title">More from</h4>
+		<a class="related__section ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}</a>
+	{{/ifAll}}
+	<ul class="related__articles related__articles--light ng-list-reset">
+		{{#each items}}
+			<li class="related__article">
+				<a href='/{{id}}' class='related__article__link ng-title-link' data-trackable='headline'>{{{title}}}</a>
+				<time data-o-component="o-date" class="o-date related__article__timestamp" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+					{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+				</time>
+			</li>
+		{{/each}}
+	</ul>
+</div>

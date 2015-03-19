@@ -1,56 +1,53 @@
-.article__related {
-	background: $next-blue;
+.related {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-weight: 100;
 	color: #ffffff;
-	padding: 10px 20px;
 }
-.article__related--inline {
-	position: relative;
-}
-.article__related__title,
-.article__related__article {
-	position: relative;
-	margin: 0;
-}
-.article__related__title,
-.article__related__timestamp {
-	opacity: 0.7;
-}
-.article__related__title {
+.related__title {
 	font-size: 16px;
+	color: #000000;
 	line-height: 1em;
 	text-transform: uppercase;
+	margin: 0;
 }
-
-.article__related__title--big {
+.related__section {
+	display: block;
+	background-color: $next-blue;
 	font-size: 42px;
 	line-height: 44px;
 	margin-top: 5px;
-	margin-bottom: 15px;
+	padding: 5px;
 	font-weight: normal;
 	color: #ffffff;
-	text-decoration: none;
-
-	&:hover {
-		text-decoration: underline;
-	}
 }
-
-.article__related__article {
+.related__article {
+	background-color: $next-blue;
 	margin-top: 5px;
+	padding: 5px 10px;
 	font-size: 25px;
 	line-height: 1em;
 
 	@include oGridRespondTo(M) {
 		font-size: 32px;
 	}
-	.article__related__link {
+	.related__articles--light & {
+		background-color: #e6eef9;
+		color: $next-blue;
+		margin-top: 0;
+
+		@include oGridRespondTo(M) {
+			font-size: 24px;
+		}
+	}
+	.related__article__link {
+		display: block;
 		color: inherit;
 	}
 }
-.article__related__timestamp {
+.related__article__timestamp {
 	display: block;
 	margin-top: 10px;
-	font-size: 15px;
+	font-size: 0.5em;
 	line-height: 1em;
+	opacity: 0.7;
 }

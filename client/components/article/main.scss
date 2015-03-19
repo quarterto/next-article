@@ -112,6 +112,7 @@ $header-offset: 30px;
 
 .article__main {
 	padding-top: 15px;
+	margin-bottom: 15px;
 }
 
 //ARTICLE BODY ELEMENTS
@@ -222,6 +223,10 @@ $header-offset: 30px;
 	@include oGridRespondTo(L) {
 		@include oQuoteStandardBig;
 	}
+}
+
+.article__related {
+	margin-bottom: 15px;
 }
 
 //++++++++++++++++++++++++++
