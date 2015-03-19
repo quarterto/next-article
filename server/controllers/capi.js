@@ -53,6 +53,7 @@ module.exports = function(req, res, next) {
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
 					var body = article.bodyXML;
+					body = body.replace(/<br><\/br>/g, '<br>');
 					body = replaceEllipses(body);
 					body = replaceHrs(body);
 					body = pStrongsToH3s(body);
