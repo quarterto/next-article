@@ -1,6 +1,7 @@
 'use strict';
 
 var fetchCapiV1 = require('../utils/fetch-capi-v1');
+var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
@@ -8,9 +9,20 @@ module.exports = function(req, res, next) {
 			uuid: req.params[0],
 			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 		})
+			.catch(function(err) {
+				if (err instanceof fetchres.BadServerResponseError) {
+					return;
+				} else {
+					next(err);
+				}
+			})
 			.then(function(article) {
-				var results = /cms\/s\/([0-3])\//i.exec(article.item.location.uri);
 				var classification = 'unconditional';
+				var results;
+
+				if (article) {
+					results = /cms\/s\/([0-3])\//i.exec(article.item.location.uri);
+				}
 
 				// “if the match fails, the exec() method returns null” — MDN
 				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec
@@ -31,7 +43,7 @@ module.exports = function(req, res, next) {
 
 				res.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
 				res.vary('X-FT-UID');
-				res.set('X-FT-UID', article.item.id);
+				res.set('X-FT-UID', req.params[0]);
 				res.set('X-FT-Content-Classification', classification);
 				res.status(200).end();
 			}).catch(next);
