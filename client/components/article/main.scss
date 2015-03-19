@@ -122,7 +122,7 @@ $header-offset: 30px;
 	color: $next-grey-dark;
 
 	> ft-paragraph {
-		margin: 0.3em 0 0.4em;
+		margin: 0.3em 0 0.8em;
 		line-height: 24px;
 		display: block;
 	}
@@ -232,10 +232,11 @@ $header-offset: 30px;
 		font-size: 45px;
 	}
 	.article__body {
-		font-size: 21px;
+		font-size: 20px;
+		font-weight: 100;
 
 		> ft-paragraph {
-			line-height: 28px;
+			line-height: 26px;
 		}
 	}
 }
@@ -245,14 +246,6 @@ $header-offset: 30px;
 	}
 	.article__stand-first {
 		font-size: 24px;
-	}
-	.article__body {
-		font-size: 24px;
-		font-weight: 100;
-
-		> ft-paragraph {
-			line-height: 35px;
-		}
 	}
 }
 @include oGridRespondTo(L) {
