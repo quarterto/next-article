@@ -94,4 +94,4 @@ provision:
 	make smoke
 
 smoke:
-	export TEST_URL=${TEST_URL}; next-build-tools nightwatch tests/browser/tests/* -e ie10,firefox36,chrome41,iphone7
+	export TEST_URL=${TEST_URL}; next-build-tools nightwatch tests/browser/tests/*
