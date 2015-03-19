@@ -6,7 +6,7 @@ var https = require('https');
 module.exports = {
 
 	"Js-success Test" : function (browser) {
-		console.log('Testing host: ', browser.launch_url);
+	console.log('Testing host: ', browser.launch_url);
         var cookieValue = "grumman:" + browser.launch_url.substring(browser.launch_url.indexOf("http://")+7,browser.launch_url.indexOf("herokuapp.com")+13);
         browser
             .setCookie({
@@ -14,8 +14,7 @@ module.exports = {
                 value:cookieValue
             })
 			.url(browser.launch_url)
-			.waitForElementVisible('html[data-next-app]', 30000)
-			.assert.cssClassPresent(".js", "js-success")
+			.waitForElementPresent("html.js.js-success", 3000)
 			.end();
 	},
 
