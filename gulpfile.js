@@ -39,11 +39,11 @@ gulp.task('minify-js',['build-js'], function(){
 
 // TODO: Move into next-gulp-tasks
 gulp.task('hash', function() {
-	gulp.src('./public/*.*')
+	gulp.src('./public/*.@(js|css|map)')
 		.pipe(hash()) // Add hashes to the files' names
 		.pipe(gulp.dest('hashed-assets/')) // Write the now-renamed files
 		.pipe(hash.manifest('asset-hashes.json')) // Change the stream to the manifest file
-		.pipe(gulp.dest('public')); // Write the manifest file
+		.pipe(gulp.dest('public/')); // Write the manifest file
 });
 
 gulp.task('watch', function() {
