@@ -14,7 +14,7 @@ module.exports = {
                 value:cookieValue
             })
 			.url(browser.launch_url)
-			.waitForElementPresent("html.js.js-success", 3000)
+			.waitForElementPresent("html.js.js-success", 30000)
 			.end();
 	},
 
