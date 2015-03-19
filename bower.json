@@ -5,13 +5,13 @@
     "next-feature-flags-client": "^v5.1.0",
     "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^4.0.0",
     "next-barrier-component": "https://github.com/Financial-Times/next-barrier-component.git#^1.0.0",
-    "next-header": "^6.0.0",
+    "next-header": "^7.0.0",
     "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^2.2.2",
     "next-sass-setup": "https://github.com/Financial-Times/next-sass-setup.git#^5.0.0",
     "next-js-setup": "https://github.com/Financial-Times/next-js-setup.git#^1.5.1",
     "o-quote": "https://github.com/Financial-Times/o-quote.git#bogdis-design",
     "o-big-number": "Financial-Times/o-big-number#~1.1.0",
-    "next-footer": "Financial-Times/next-footer#^1.3.3",
+    "next-footer": "Financial-Times/next-footer#^1.7.2",
     "next-messaging": "https://github.com/Financial-Times/next-messaging.git#^1.0.0",
     "o-gallery": "^1.6.1",
     "next-buttons": "Financial-Times/next-buttons#~1.0.0-beta.7",
@@ -21,9 +21,7 @@
     "o-hoverable": "~1.1.0"
   },
   "resolutions": {
-    "o-colors": "~2.4.7",
     "o-ft-icons": "next",
-    "next-user-model-component": "e-tag:f42da266a",
-    "o-hoverable": "~1.1.0"
+    "o-hoverable": ">=0.1.1 <2.0.0"
   }
 }
