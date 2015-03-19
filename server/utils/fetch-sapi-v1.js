@@ -3,6 +3,7 @@
 
 var fetchres = require('fetchres');
 var fetchCapiV2 = require('./fetch-capi-v2');
+var catchNetworkErrors = require('./catch-network-errors');
 
 module.exports = function(opts) {
 	var query = opts.query;
@@ -32,6 +33,7 @@ module.exports = function(opts) {
 				'X-Api-Key': process.env.apikey
 			}
 		})
+			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
 					console.log("Got " + response.status + " for sapi v1 query " + query);
