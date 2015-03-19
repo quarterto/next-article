@@ -14,7 +14,7 @@ module.exports = {
                 value:cookieValue
             })
 			.url(browser.launch_url)
-			.waitForElementVisible('body', 5000)
+			.waitForElementVisible('html[data-next-app]', 30000)
 			.assert.cssClassPresent(".js", "js-success")
 			.end();
 	},
