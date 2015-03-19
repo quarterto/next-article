@@ -1,4 +1,4 @@
-/*global it, describe, before, beforeEach*/
+/*global it, describe, before*/
 'use strict';
 
 var PORT = process.env.PORT || 3001;

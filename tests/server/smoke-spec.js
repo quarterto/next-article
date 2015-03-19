@@ -25,15 +25,6 @@ var servesGoodHTML = function (url, done) {
 	});
 };
 
-var uniqueIdArticle = (function () {
-	var count = 999;
-	var articleObject = JSON.parse(articleV1);
-	return function () {
-		articleObject.item.id = (count--) + articleObject.item.id.substr(3);
-		return JSON.stringify(articleObject);
-	};
-}());
-
 var mockMethode = function (n) {
 	nock('http://api.ft.com')
 		.filteringPath(/v1\/.*$/, 'v1/XXX')
