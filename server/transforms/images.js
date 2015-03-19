@@ -10,7 +10,8 @@ module.exports = function($body) {
 	var imageSetPromises = $body(imageSetSelector)
 		.map(function (index, el) {
 			return fetchCapiV2({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', '') })
-				.catch(function (error) {
+				.catch(function(error) {
+					console.warn(error);
 					return {};
 				});
 		})
