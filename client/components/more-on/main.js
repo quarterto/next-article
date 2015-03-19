@@ -14,7 +14,6 @@ function allSettled(promises) {
 	};
 	return Promise.all(promises.map(resolveWhenSettled));
 }
-
 var initAds = function(flags) {
 	var called = false;
 	return function() {
@@ -25,46 +24,34 @@ var initAds = function(flags) {
 		}
 	};
 };
-
 var $ = function(selector) {
 	return [].slice.call(document.querySelectorAll(selector));
 };
-
+var createPromise = function (el, url) {
+	return fetch(url)
+		.then(fetchres.text)
+		.then(function(resp) {
+			el.innerHTML = resp;
+			oDate.init(el);
+		}, function() {
+			el.parentNode.removeChild(el);
+		});
+};
 
 module.exports.init = function(flags){
 	var fetchPromises = [];
+	var articleId = document.querySelector('.article').getAttribute('data-capi-id');
 
 	$('.js-more-on-inline').forEach(function(el) {
-		fetchPromises.push(fetch('/more-on/' + document.querySelector('.article').getAttribute('data-capi-id') + '?count=1&view=inline')
-			.then(fetchres.text)
-			.then(function(resp) {
-				el.innerHTML = resp;
-				oDate.init(el);
-			}, function() {
-				el.parentNode.removeChild(el);
-			}));
+		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=1&view=inline'));
 	});
 
 	$('.js-more-on').forEach(function(el) {
-		fetchPromises.push(fetch('/more-on/' + document.querySelector('.article').getAttribute('data-capi-id') + '?count=4')
-			.then(fetchres.text)
-			.then(function(resp) {
-				el.innerHTML = resp;
-				oDate.init(relatedAnchor);
-			}, function() {
-				el.parentNode.removeChild(el);
-			}));
+		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=4'));
 	});
 
 	$('.js-more-on-topic').forEach(function(el) {
-		fetchPromises.push(fetch('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))
-			.then(fetchres.text)
-			.then(function(resp) {
-				el.innerHTML = resp;
-				oDate.init(el);
-			}, function() {
-				el.parentNode.removeChild(el);
-			}));
+		fetchPromises.push(createPromise(el, '/more-on/' + el.getAttribute('data-metadata-field') + '/' + articleId));
 	});
 
 	return allSettled(fetchPromises)

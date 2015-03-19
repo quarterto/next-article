@@ -1,17 +1,17 @@
-<div class="related" data-trackable="related">
+<div class="more-on">
 	{{#ifAll title.taxonomy title.name}}
-		<h4 class="related__title">More from</h4>
-		<a class="related__topic ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}<span class="related__section__icon"></span></a>
+		<h4 class="more-on__title">More from</h4>
+		<a class="more-on__topic ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}<span class="more-on__section__icon"></span></a>
 	{{/ifAll}}
-	<ul class="related__articles related__articles--light ng-list-reset">
+	<ul class="more-on__articles more-on__articles--light ng-list-reset">
 		{{#each items}}
-			<li class="related__article">
-				<a href='/{{id}}' class='related__article__link ng-title-link' data-trackable='headline'>{{{title}}}</a>
-				<time class="related__article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+			<li class="more-on__article">
+				<a href='/{{id}}' class='more-on__article__link ng-title-link' data-trackable='headline'>{{{title}}}</a>
+				<time class="more-on__article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
 					{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
 				</time>
 			</li>
 		{{/each}}
 	</ul>
-	<a class="related__all-link ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="see all">See all<span class="related__all-link__icon"></span></a>
+	<a class="more-on__all-link ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="see all">See all<span class="more-on__all-link__icon"></span></a>
 </div>

@@ -1,4 +1,4 @@
-.related {
+.more-on {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
 	color: #ffffff;
@@ -11,14 +11,14 @@
 		margin-top: 0;
 	}
 }
-.related__title {
+.more-on__title {
 	font-size: 16px;
 	color: #000000;
 	line-height: 1em;
 	text-transform: uppercase;
 	margin: 0;
 }
-.related__topic {
+.more-on__topic {
 	position: relative;
 	display: block;
 	background-color: $next-blue;
@@ -29,21 +29,21 @@
 	font-weight: 500;
 	color: #ffffff;
 }
-.related__section__icon {
+.more-on__section__icon {
 	@include nextIcon(arrow-right, #ffffff, 20);
 	position: absolute;
 	right: 5px;
 	top: 50%;
 	margin-top: -10px;
 }
-.related__articles {
+.more-on__articles {
 	margin-top: 5px;
 
-	.related__topic + & {
+	.more-on__topic + & {
 		margin-top: 0;
 	}
 }
-.related__article {
+.more-on__article {
 	background-color: $next-blue;
 	margin-top: 5px;
 	padding: 5px 10px;
@@ -56,7 +56,7 @@
 	&:first-child {
 		margin-top: 0;
 	}
-	.related__articles--light & {
+	.more-on__articles--light & {
 		background-color: transparent;
 		font-size: 17px;
 		color: $next-blue;
@@ -65,19 +65,19 @@
 			font-size: 20px;
 		}
 	}
-	.related__article__link {
+	.more-on__article__link {
 		display: block;
 		color: inherit;
 	}
 }
-.related__articles--light {
+.more-on__articles--light {
 	background-color: #e6eef9;
 	padding: 5px 0;
 }
-.related__article__timestamp {
+.more-on__article__timestamp {
 	margin-top: 5px;
 }
-.related__all-link {
+.more-on__all-link {
 	position: relative;
 	display: block;
 	background-color: #e6eef9;
@@ -86,7 +86,7 @@
 	color: $next-blue;
 	padding: 10px;
 }
-.related__all-link__icon {
+.more-on__all-link__icon {
 	position: absolute;
 	top: 50%;
 	margin-top: -8px;
