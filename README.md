@@ -1,4 +1,4 @@
-# Next Grumman [![Codeship Status for Financial-Times/next-grumman](https://codeship.com/projects/87d2cbb0-674c-0132-5ae3-3692c894dee4/status)](https://codeship.com/projects/53047)
+# Next Grumman [![Build Status](https://travis-ci.org/Financial-Times/next-grumman.svg?branch=sentry-56122933)](https://travis-ci.org/Financial-Times/next-grumman)
 
 ## Installation
 
