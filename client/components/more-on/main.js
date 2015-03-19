@@ -45,15 +45,21 @@ module.exports.init = function(flags){
 	$('.js-more-on-inline').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=1&view=inline'));
 	});
-
 	$('.js-more-on').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=4'));
 	});
-
 	$('.js-more-on-topic').forEach(function(el) {
-		fetchPromises.push(createPromise(el, '/more-on/' + el.getAttribute('data-metadata-field') + '/' + articleId));
+		fetchPromises.push(createPromise(el, '/more-on/' + el.getAttribute('data-metadata-field') + '/' + articleId + '?count=4'));
 	});
 
 	return allSettled(fetchPromises)
+		.then(function (foo) {
+			// update grid
+			var moreOns = $('.js-more-on, .js-more-on-topic');
+			var gridSize = 12 / moreOns.length;
+			moreOns.forEach(function (moreOn) {
+				moreOn.setAttribute('data-o-grid-colspan', '12 L' + gridSize);
+			});
+		})
 		.then(initAds(flags));
 };
