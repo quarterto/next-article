@@ -1,5 +1,5 @@
 .article__related {
-	@include oColorsFor(ng-brand, background);
+	background: $next-blue;
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	color: #ffffff;
 	padding: 10px 20px;

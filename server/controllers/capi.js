@@ -90,6 +90,20 @@ module.exports = function(req, res, next) {
 						.attr('id', addSubheaderIds)
 						.replaceWith(subheadersTransform);
 
+					var primarySection = (function () {
+						try {
+							return {
+								title: articleV1.item.metadata.primarySection.term.name,
+								url: '/stream/' + articleV1.item.metadata.primarySection.term.taxonomy + '/' + encodeURIComponent(articleV1.item.metadata.primarySection.term.name)
+							};
+						} catch (e) {
+							return {
+								title: '',
+								url: '/'
+							};
+						}
+					})();
+
 					// update the images (resize, add image captions, etc)
 					images($body)
 						.then(function ($body) {
@@ -113,7 +127,11 @@ module.exports = function(req, res, next) {
 								headerOverlap:
 									$body('> a:first-child').attr('data-asset-type') === 'video' ||
 									$body('> ft-paragraph:first-child > ft-slideshow:first-child').length,
-								layout: 'wrapper'
+								layout: 'wrapper',
+								headerData: {
+									isStream: false,
+									section: primarySection
+								}
 							});
 						});
 					break;
