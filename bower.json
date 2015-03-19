@@ -22,6 +22,7 @@
   },
   "resolutions": {
     "o-ft-icons": "next",
-    "o-hoverable": ">=0.1.1 <2.0.0"
+    "o-hoverable": ">=0.1.1 <2.0.0",
+    "next-user-model-component": "^v1.0.0"
   }
 }

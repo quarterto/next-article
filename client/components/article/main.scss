@@ -3,7 +3,7 @@ $header-offset: 30px;
 
 //ARTICLE HEADER
 .article__header {
-	@include oColorsFor(ng-brand, background);
+	background: $next-blue;
 	position: relative;
 	padding-bottom: 20px;
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);

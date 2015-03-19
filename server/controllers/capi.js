@@ -92,12 +92,12 @@ module.exports = function(req, res, next) {
 							return {
 								title: articleV1.item.metadata.primarySection.term.name,
 								url: '/stream/' + articleV1.item.metadata.primarySection.term.taxonomy + '/' + encodeURIComponent(articleV1.item.metadata.primarySection.term.name)
-							}
+							};
 						} catch (e) {
 							return {
 								title: '',
 								url: '/'
-							}
+							};
 						}
 					})();
 
