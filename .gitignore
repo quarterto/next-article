@@ -5,9 +5,7 @@
 /.node-version
 .DS_Store
 npm-debug.log
-/public/*.css
-/public/*.js
-/public/*.map
+public/*.*
 !/public/polyfill.min.js
 /node-v*
 /tmp/
@@ -15,9 +13,7 @@ npm-debug.log
 .idea/
 /templates/components/bower/
 .editorconfig
-public/main.css-asset-hash.json
-public/main.js-asset-hash.json
-public/main.js.map
 /tests/browser/reports
 /tests/browser/screenshots
 /npm-debug.log.*
+/hashed-assets/
