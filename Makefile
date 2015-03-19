@@ -84,12 +84,14 @@ deploy:
 
 clean-deploy: clean install deploy
 
+tidy:
+	next-build-tools destroy ${TEST_HOST}
+
 provision:
 	next-build-tools provision ${TEST_HOST}
 	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
 	next-build-tools deploy ${TEST_HOST}
 	make smoke
-	next-build-tools destroy ${TEST_HOST}
 
 smoke:
 	export TEST_URL=${TEST_URL}; next-build-tools nightwatch tests/browser/tests/* -e ie10,firefox36,chrome41,iphone7
