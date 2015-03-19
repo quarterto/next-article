@@ -18,7 +18,7 @@
 	text-transform: uppercase;
 	margin: 0;
 }
-.related__section {
+.related__topic {
 	position: relative;
 	display: block;
 	background-color: $next-blue;
@@ -39,7 +39,7 @@
 .related__articles {
 	margin-top: 5px;
 
-	.related__section + & {
+	.related__topic + & {
 		margin-top: 0;
 	}
 }

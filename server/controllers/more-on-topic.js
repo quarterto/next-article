@@ -29,7 +29,7 @@ module.exports = function(req, res, next) {
 							publishedDate: article.publishedDate
 						};
 					});
-					res.render('more-on', {
+					res.render('more-on-topic', {
 						title: {
 							label: topic.term.name,
 							name: topic.term.name,

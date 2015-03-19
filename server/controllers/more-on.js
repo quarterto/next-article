@@ -16,44 +16,40 @@ module.exports = function(req, res, next) {
 				res.status(404).send();
 				return;
 			}
-			var moreOns = article.item.package;
 
-			return Promise.all(moreOns.map(function(moreOn) {
-					return fetchCapiV2({ uuid: moreOn.id })
-						.catch(function(err) {
-							if (err instanceof fetchres.BadServerResponseError) {
-								return undefined;
-							} else {
-								throw err;
-							}
-						});
-				}))
+			var packagePromises = article.item.package.map(function(item) {
+				return fetchCapiV2({ uuid: item.id })
+					.catch(function(err) {
+						if (err instanceof fetchres.BadServerResponseError) {
+							return undefined;
+						} else {
+							throw err;
+						}
+					});
+			});
+
+			return Promise.all(packagePromises)
 				.then(function(results) {
-					var mode = req.query.view === 'inline' ? 'more-on-inline' : 'more-on';
-					results = results.filter(function(article) {
+					var articles = results.filter(function(article) {
 						return article;
 					});
-					if (req.query.count) {
-						results.splice(req.query.count);
+					if (articles.length === 0) {
+						res.status(404).send();
+						return;
 					}
-					results = results
-						.map(function(article) {
-							return {
-								id: article.id.replace('http://www.ft.com/thing/', ''),
-								title: article.title,
-								publishedDate: article.publishedDate
-							};
-						});
-
-					res.render(mode, {
-						title: mode === 'inline' || !article.item.metadata.primaryTheme
-							? { label: 'See also' }
-							: {
-								label: article.item.metadata.primaryTheme.term.name,
-								taxonomy: article.item.metadata.primaryTheme.term.taxonomy,
-								name: article.item.metadata.primaryTheme.term.name
-							},
-						items: results
+					if (req.query.count) {
+						articles.splice(req.query.count);
+					}
+					articles = articles.map(function(article) {
+						return {
+							id: article.id.replace('http://www.ft.com/thing/', ''),
+							title: article.title,
+							publishedDate: article.publishedDate
+						};
+					});
+					res.render('more-on', {
+						articles: articles,
+						isInline: req.query.view === 'inline'
 					});
 				});
 		})

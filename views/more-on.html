@@ -1,17 +1,17 @@
-<div class="related" data-trackable="related">
-	{{#ifAll title.taxonomy title.name}}
-		<h4 class="related__title">More from</h4>
-		<a class="related__section ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}<span class="related__section__icon"></span></a>
-	{{/ifAll}}
-	<ul class="related__articles related__articles--light ng-list-reset">
-		{{#each items}}
+<div class="related{{#if isInline}} ng-pull-out ng-inline-element{{/if}}" data-trackable="related{{#if isInline}}-inline{{/if}}">
+	<h3 class="related__title">Related {{#ifEquals articles.length 1}}story{{else}}stories{{/ifEquals}}</h3>
+	<ul class="related__articles ng-list-reset" data-trackable="articles">
+		{{#each articles}}
 			<li class="related__article">
-				<a href='/{{id}}' class='related__article__link ng-title-link' data-trackable='headline'>{{{title}}}</a>
-				<time class="related__article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
-					{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+				<a class="related__article__link ng-title-link" href="/{{id}}" data-trackable="title">{{{title}}}</a>
+				<time
+					class="related__article__timestamp ng-meta o-date"
+					data-o-component="o-date"
+					datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}"
+					data-o-date-js>
+					{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
 				</time>
 			</li>
 		{{/each}}
 	</ul>
-	<a class="related__all-link ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="see all">See all<span class="related__all-link__icon"></span></a>
 </div>
