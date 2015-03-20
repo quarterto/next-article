@@ -27,7 +27,7 @@ $header-offset: 30px;
 	}
 }
 .article__title {
-	margin: 20px 0 0;
+	margin: 0;
 	font-size: 36px;
 	font-weight: inherit;
 	line-height: 1em;
@@ -236,10 +236,5 @@ $header-offset: 30px;
 	}
 	.article__stand-first {
 		font-size: 24px;
-	}
-}
-@include oGridRespondTo(L) {
-	.article__title {
-		margin-top: 20px;
 	}
 }
