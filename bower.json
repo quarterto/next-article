@@ -6,7 +6,7 @@
     "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#^4.0.0",
     "next-barrier-component": "https://github.com/Financial-Times/next-barrier-component.git#^1.0.0",
     "next-header": "^7.0.0",
-    "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^2.2.2",
+    "next-mustard": "https://github.com/Financial-Times/next-mustard.git#^3.0.0",
     "next-sass-setup": "https://github.com/Financial-Times/next-sass-setup.git#^5.0.0",
     "next-js-setup": "https://github.com/Financial-Times/next-js-setup.git#^1.5.1",
     "o-quote": "https://github.com/Financial-Times/o-quote.git#bogdis-design",
