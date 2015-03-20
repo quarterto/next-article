@@ -203,6 +203,7 @@ $header-offset: 30px;
 	width: 100%;
 	margin-top: 1.5em;
 	margin-bottom: 1.5em;
+	clear: left;
 }
 .article__pull-quote {
 	@include oGridRespondTo(L) {
