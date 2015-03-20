@@ -13,6 +13,9 @@ $o-gallery-is-silent: false;
 @import "next-sass-setup/main";
 @import "next-buttons/main";
 @import "next-header/main";
+.next-header {
+	margin-bottom: 0;
+}
 @import "next-footer/main";
 @import "next-user-preferences/main";
 @import "next-ads-component/main";
