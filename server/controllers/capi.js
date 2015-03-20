@@ -93,9 +93,9 @@ module.exports = function(req, res, next) {
 					var primarySection = (function () {
 						try {
 							return {
-								title: articleV1.item.metadata.primarySection.term.name,
-								url: '/stream/' + articleV1.item.metadata.primarySection.term.taxonomy + '/' + encodeURIComponent(articleV1.item.metadata.primarySection.term.name),
-								conceptId: articleV1.item.metadata.primarySection.term.taxonomy + ':&quot;' + encodeURIComponent(articleV1.item.metadata.primarySection.term.name) + '&quot;'
+								title: articleV1.item.metadata.primaryTheme.term.name,
+								url: '/stream/' + articleV1.item.metadata.primaryTheme.term.taxonomy + '/' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name),
+								conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + ':&quot;' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '&quot;'
 							};
 						} catch (e) {
 							return {
