@@ -23,7 +23,7 @@ function emit(name, data) {
 	document.dispatchEvent(event);
 }
 
-setup.bootstrap(function (result) {
+setup.bootstrap(function(result) {
 	var flags = result.flags;
 	header.init(flags);
 	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
