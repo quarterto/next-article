@@ -74,7 +74,7 @@ module.exports = function(req, res, next) {
 					// insert test related
 					if ($body('ft-paragraph').length >= 6) {
 						var paraHook = $body('ft-paragraph').get(4);
-						$body(paraHook).prepend('<div class="js-more-on-inline"></div>');
+						$body(paraHook).prepend('<div class="js-more-on-inline" data-trackable="more-on-inline"></div>');
 					}
 
 					// HACK - Fix for paragraphs in blockquotes
@@ -123,6 +123,7 @@ module.exports = function(req, res, next) {
 									};
 								}).get(),
 								showTOC: res.locals.flags.articleTOC.isSwitchedOn && $subheaders.length > 2,
+								isColumnist: primarySection.title === 'Columnists',
 								// if there's a video or sideshow first, we overlap them on the header
 								headerOverlap:
 									$body('> a:first-child').attr('data-asset-type') === 'video' ||

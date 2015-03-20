@@ -14,7 +14,6 @@ function allSettled(promises) {
 	};
 	return Promise.all(promises.map(resolveWhenSettled));
 }
-
 var initAds = function(flags) {
 	var called = false;
 	return function() {
@@ -25,49 +24,42 @@ var initAds = function(flags) {
 		}
 	};
 };
-
 var $ = function(selector) {
 	return [].slice.call(document.querySelectorAll(selector));
 };
-
+var createPromise = function (el, url) {
+	return fetch(url)
+		.then(fetchres.text)
+		.then(function(resp) {
+			el.innerHTML = resp;
+			oDate.init(el);
+		}, function() {
+			el.parentNode.removeChild(el);
+		});
+};
 
 module.exports.init = function(flags){
 	var fetchPromises = [];
+	var articleId = document.querySelector('.article').getAttribute('data-capi-id');
 
-	$('.js-more-on').forEach(function(el) {
-		fetchPromises.push(fetch('/more-on/' + el.getAttribute('data-article-id'))
-			.then(fetchres.text)
-			.then(function(resp) {
-				el.innerHTML = resp;
-				oDate.init(el);
-			}, function() {
-				el.parentNode.removeChild(el);
-			}));
+	$('.js-more-on-inline').forEach(function(el) {
+		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=1&view=inline'));
 	});
-
-	var inlineRelatedAnchor = document.querySelector('.js-more-on-inline');
-	if (inlineRelatedAnchor) {
-		fetchPromises.push(fetch('/more-on/' + document.querySelector('.article').getAttribute('data-capi-id') + '?count=1&view=inline')
-			.then(fetchres.text)
-			.then(function(resp) {
-				inlineRelatedAnchor.innerHTML = resp;
-				oDate.init(inlineRelatedAnchor);
-			}, function() {
-				inlineRelatedAnchor.parentNode.removeChild(inlineRelatedAnchor);
-			}));
-	}
-
-	$('.js-on-this-topic').forEach(function(el) {
-		fetchPromises.push(fetch('/more-on/' + el.getAttribute('data-metadata-field') + '/' + el.getAttribute('data-article-id'))
-			.then(fetchres.text)
-			.then(function(resp) {
-				el.innerHTML = resp;
-				oDate.init(el);
-			}, function() {
-				el.parentNode.removeChild(el);
-			}));
+	$('.js-more-on').forEach(function(el) {
+		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=4'));
+	});
+	$('.js-more-on-topic').forEach(function(el) {
+		fetchPromises.push(createPromise(el, '/more-on/' + el.getAttribute('data-metadata-field') + '/' + articleId + '?count=4'));
 	});
 
 	return allSettled(fetchPromises)
+		.then(function (foo) {
+			// update grid
+			var moreOns = $('.js-more-on, .js-more-on-topic');
+			var gridSize = 12 / moreOns.length;
+			moreOns.forEach(function (moreOn) {
+				moreOn.setAttribute('data-o-grid-colspan', '12 L' + gridSize);
+			});
+		})
 		.then(initAds(flags));
 };

@@ -13,13 +13,17 @@ module.exports = function(req, res, next) {
 		.then(function(article) {
 			res.set(cacheControl);
 			var topic = article.item.metadata[req.params.metadata];
+			// if it's an array, use the first
+			if (Array.isArray(topic)) {
+				topic = topic.shift();
+			}
 			if (!topic) {
 				res.status(404).end();
 				return;
 			}
 			fetchSapiV1({
 				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
-				count: 4
+				count: req.query.count || 4
 			})
 				.then(function(results) {
 					results = results.map(function(article) {
@@ -29,7 +33,7 @@ module.exports = function(req, res, next) {
 							publishedDate: article.publishedDate
 						};
 					});
-					res.render('more-on', {
+					res.render('more-on-topic', {
 						title: {
 							label: topic.term.name,
 							name: topic.term.name,

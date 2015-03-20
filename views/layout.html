@@ -16,13 +16,13 @@
 					</p>
 					<div class="o-grid-row">
 						<div data-o-grid-colspan="8">
-							<time data-o-component="o-date" class="o-date article__timestamp" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+							<time class="article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
 								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
 							</time>
 						</div>
 						<div class="article__actions" data-o-grid-colspan="4">
 							<button
-								class="article__actions__action article__actions__action--save"
+								class="article__actions__action article__actions__action--save ng-meta ng-title-link"
 								data-content-id="{{id}}"
 								data-headline="{{title}}"
 								data-user-prefs-button="saveForLater"
@@ -73,10 +73,11 @@
 	</div>
 </article>
 {{#if @root.flags.articleRelatedContent.isSwitchedOn}}
-<div class="article__related">
+<div class="article__more-on" data-trackable="more-on">
 	<div class="o-grid-row">
-		<div class='more-on js-more-on' data-article-id='{{id}}' data-o-grid-colspan="12 L6"></div>
-		<div class="on-this-topic js-on-this-topic" data-metadata-field="primarySection" data-article-id="{{id}}" data-trackable="more-on-section" data-o-grid-colspan="12 L6"></div>
+		<div class="js-more-on" data-o-grid-colspan="12 L4"></div>
+		<div class='js-more-on-topic' data-metadata-field="primaryTheme" data-o-grid-colspan="12 L4"></div>
+		<div class="js-more-on-topic" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}" data-o-grid-colspan="12 L4"></div>
 	</div>
 </div>
 {{/if}}

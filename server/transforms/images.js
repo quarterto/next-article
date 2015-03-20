@@ -47,7 +47,7 @@ module.exports = function($body) {
 				$figure.addClass(isMain ? 'article__main-image' : 'article__inline-image');
 				if (imageSet.title) {
 					var $figcaption = $('<figcaption></figcaption>')
-						.addClass('article__image-caption')
+						.addClass('article__image-caption ng-meta')
 						.text(imageSet.title);
 
 					$figure.append($figcaption);

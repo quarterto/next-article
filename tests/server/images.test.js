@@ -35,7 +35,7 @@ describe('Images', function() {
 				$content.html().should.equal(
 					'<figure class="article__image-wrapper ng-pull-out ng-inline-element article__main-image">' +
 						'<img class="article__image" src="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down" srcset="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down 1x, //image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=940&amp;source=next&amp;fit=scale-down 2x">' +
-						'<figcaption class="article__image-caption">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
+						'<figcaption class="article__image-caption ng-meta">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
 					'</figure>'
 				);
 			});
@@ -53,7 +53,7 @@ describe('Images', function() {
 				$content.html().should.equal(
 					'<figure class="article__image-wrapper ng-pull-out ng-inline-element article__main-image">' +
 						'<img class="article__image" src="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down" srcset="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down 1x, //image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=940&amp;source=next&amp;fit=scale-down 2x">' +
-						'<figcaption class="article__image-caption">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
+						'<figcaption class="article__image-caption ng-meta">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
 					'</figure>' +
 					'<figure class="article__image-wrapper ng-pull-out ng-inline-element article__inline-image">' +
 						'<img class="article__image" src="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F2ad940b2-cc01-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down" srcset="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F2ad940b2-cc01-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down 1x, //image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F2ad940b2-cc01-11e4-aeb5-00144feab7de?width=940&amp;source=next&amp;fit=scale-down 2x">' +
@@ -74,7 +74,7 @@ describe('Images', function() {
 				$content.html().should.equal(
 					'<figure class="article__image-wrapper ng-pull-out ng-inline-element article__main-image">' +
 						'<img class="article__image" src="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down" srcset="//image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=470&amp;source=next&amp;fit=scale-down 1x, //image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff14a7e9e-cc08-11e4-aeb5-00144feab7de?width=940&amp;source=next&amp;fit=scale-down 2x">' +
-						'<figcaption class="article__image-caption">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
+						'<figcaption class="article__image-caption ng-meta">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
 					'</figure>'
 				);
 			});

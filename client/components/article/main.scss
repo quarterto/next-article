@@ -27,7 +27,7 @@ $header-offset: 30px;
 	}
 }
 .article__title {
-	margin: 20px 0 0;
+	margin: 0;
 	font-size: 36px;
 	font-weight: inherit;
 	line-height: 1em;
@@ -57,19 +57,8 @@ $header-offset: 30px;
 	color: inherit;
 }
 .article__timestamp,
-.article__actions,
-.article__image-caption {
-	display: block;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 1em;
-}
-.article__timestamp,
 .article__actions {
 	margin-top: 5px;
-}
-.article__actions {
-	text-align: right;
 }
 .article__actions__action {
 	color: inherit;
@@ -90,11 +79,7 @@ $header-offset: 30px;
 	font-size: 1em;
 	font-family: inherit;
 	text-transform: inherit;
-
-	&:hover {
-		text-decoration: underline;
-		cursor: pointer;
-	}
+	float: right;
 }
 .article__toc {
 	max-width: 305px;
@@ -112,6 +97,7 @@ $header-offset: 30px;
 
 .article__main {
 	padding-top: 15px;
+	margin-bottom: 15px;
 }
 
 //ARTICLE BODY ELEMENTS
@@ -224,6 +210,10 @@ $header-offset: 30px;
 	}
 }
 
+.article__more-on {
+	margin-bottom: 15px;
+}
+
 //++++++++++++++++++++++++++
 //+ Breakpoints
 //++++++++++++++++++++++++++
@@ -246,10 +236,5 @@ $header-offset: 30px;
 	}
 	.article__stand-first {
 		font-size: 24px;
-	}
-}
-@include oGridRespondTo(L) {
-	.article__title {
-		margin-top: 20px;
 	}
 }

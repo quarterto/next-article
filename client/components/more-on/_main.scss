@@ -1,0 +1,95 @@
+.more-on {
+	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-weight: 100;
+	color: #ffffff;
+	margin-top: 15px;
+
+	*:first-child > & {
+		margin-top: 0;
+	}
+	@include oGridRespondTo(L) {
+		margin-top: 0;
+	}
+}
+.more-on__title {
+	font-size: 16px;
+	color: #000000;
+	line-height: 1em;
+	text-transform: uppercase;
+	margin: 0;
+}
+.more-on__topic {
+	position: relative;
+	display: block;
+	background-color: $next-blue;
+	font-size: 24px;
+	line-height: 40px;
+	margin-top: 5px;
+	padding: 5px 30px 5px 10px;
+	font-weight: 500;
+	color: #ffffff;
+}
+.more-on__section__icon {
+	@include nextIcon(arrow-right, #ffffff, 20);
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	margin-top: -10px;
+}
+.more-on__articles {
+	margin-top: 5px;
+
+	.more-on__topic + & {
+		margin-top: 0;
+	}
+}
+.more-on__article {
+	background-color: $next-blue;
+	margin-top: 5px;
+	padding: 5px 10px;
+	font-size: 25px;
+	line-height: 1em;
+
+	@include oGridRespondTo(S) {
+		font-size: 32px;
+	}
+	&:first-child {
+		margin-top: 0;
+	}
+	.more-on__articles--light & {
+		background-color: transparent;
+		font-size: 17px;
+		color: $next-blue;
+
+		@include oGridRespondTo(S) {
+			font-size: 20px;
+		}
+	}
+	.more-on__article__link {
+		display: block;
+		color: inherit;
+	}
+}
+.more-on__articles--light {
+	background-color: #e6eef9;
+	padding: 5px 0;
+}
+.more-on__article__timestamp {
+	margin-top: 5px;
+}
+.more-on__all-link {
+	position: relative;
+	display: block;
+	background-color: #e6eef9;
+	font-weight: 400;
+	font-size: 22px;
+	color: $next-blue;
+	padding: 10px;
+}
+.more-on__all-link__icon {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	margin-left: 5px;
+	@include nextIcon(arrow-right, $next-blue, 16);
+}
