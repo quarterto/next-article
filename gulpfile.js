@@ -3,7 +3,6 @@
 var gulp = require('gulp');
 require('gulp-watch');
 var notify = require("gulp-notify");
-var hash = require('gulp-hash');
 
 var obt = require('origami-build-tools');
 var extractSourceMap = require('next-gulp-tasks').extractSourceMap;
@@ -35,15 +34,6 @@ gulp.task('minify-js',['build-js'], function(){
 			.pipe(minify({sourceMapIn:sourceMapFile,sourceMapOut:'/grumman/main.js.map'}))
 			.pipe(gulp.dest('./public/'));
 	}
-});
-
-// TODO: Move into next-gulp-tasks
-gulp.task('hash', function() {
-	gulp.src('./public/*.@(js|css|map)')
-		.pipe(hash()) // Add hashes to the files' names
-		.pipe(gulp.dest('hashed-assets/')) // Write the now-renamed files
-		.pipe(hash.manifest('asset-hashes.json')) // Change the stream to the manifest file
-		.pipe(gulp.dest('public/')); // Write the manifest file
 });
 
 gulp.task('watch', function() {
