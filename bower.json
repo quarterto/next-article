@@ -14,7 +14,7 @@
     "next-footer": "Financial-Times/next-footer#^1.7.2",
     "next-messaging": "https://github.com/Financial-Times/next-messaging.git#^1.0.0",
     "o-gallery": "^1.6.1",
-    "next-buttons": "Financial-Times/next-buttons#~1.0.0-beta.7",
+    "next-buttons": "Financial-Times/next-buttons#^1.0.3",
     "o-forms": "^1.0.0-beta.8",
     "o-date": "~1.1.1",
     "next-welcome": "Financial-Times/next-welcome#^1.0.4",

@@ -61,23 +61,12 @@ $header-offset: 30px;
 }
 .article__actions__action {
 	color: inherit;
-
-	&:before {
-		content: '|';
-		margin-right: 5px;
-	}
-	&:first-child:before {
-		display: none;
-	}
 }
 .article__actions__action--save {
-	background-color: transparent;
-	border: 0;
 	padding: 0;
 	font-weight: inherit;
-	font-size: 1em;
-	font-family: inherit;
-	text-transform: inherit;
+	// for now, needed to override next-buttons
+	font-size: 1em !important;
 	float: right;
 }
 .article__toc {
