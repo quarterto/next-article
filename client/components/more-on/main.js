@@ -38,7 +38,7 @@ var createPromise = function (el, url) {
 		});
 };
 
-module.exports.init = function(flags){
+module.exports.init = function(flags) {
 	var fetchPromises = [];
 	var articleId = document.querySelector('.article').getAttribute('data-capi-id');
 
@@ -53,7 +53,7 @@ module.exports.init = function(flags){
 	});
 
 	return allSettled(fetchPromises)
-		.then(function (foo) {
+		.then(function() {
 			// update grid
 			var moreOns = $('.js-more-on, .js-more-on-topic');
 			var gridSize = 12 / moreOns.length;
