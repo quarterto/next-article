@@ -1,6 +1,7 @@
 'use strict';
 
-var viewport = require('o-viewport');
+var oViewport = require('o-viewport');
+var oDate = require('o-date');
 require('o-hoverable');
 
 var setup = require('next-js-setup');
@@ -11,7 +12,7 @@ var slideshow = require('./components/slideshow');
 var moreOn = require('./components/more-on/main');
 var toc = require('./components/article/toc');
 
-viewport.listenTo('resize');
+oViewport.listenTo('resize');
 
 function emit(name, data) {
 	var event = document.createEvent('Event');
@@ -42,6 +43,5 @@ setup.bootstrap(function (result) {
 	require('./components/video/main');
 
 	toc.init(flags);
-
-	document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+	oDate.init(document.querySelector('.article'));
 });
