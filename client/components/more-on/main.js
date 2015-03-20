@@ -56,9 +56,9 @@ module.exports.init = function(flags) {
 		.then(function() {
 			// update grid
 			var moreOns = $('.js-more-on, .js-more-on-topic');
-			var gridSize = 12 / moreOns.length;
 			moreOns.forEach(function (moreOn) {
-				moreOn.setAttribute('data-o-grid-colspan', '12 L' + gridSize);
+				var gridLayout = moreOns.length === 1 ? 'L8 XL7 XLoffset2' : 'L' + 12 / moreOns.length;
+				moreOn.setAttribute('data-o-grid-colspan', '12 ' + gridLayout);
 			});
 		})
 		.then(initAds(flags));
