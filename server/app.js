@@ -1,9 +1,7 @@
 'use strict';
 
 var express = require('ft-next-express');
-var app = module.exports = express({
-	metrics: true
-});
+var app = module.exports = express();
 
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
