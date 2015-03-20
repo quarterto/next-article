@@ -80,7 +80,6 @@ clean:
 
 deploy:
 	next-build-tools configure
-	gulp hash # experimental
 	next-build-tools deploy-hashed-assets # experimental
 	next-build-tools deploy
 
