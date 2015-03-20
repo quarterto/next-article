@@ -45,15 +45,14 @@ $header-offset: 30px;
 .article__byline {
 	margin: 0;
 	padding: 0;
-	font-weight: 400;
+	font-weight: normal;
 	font-size: 16px;
 
 	@include oGridRespondTo(L) {
 		font-size: 18px;
 	}
 }
-.article__author,
-.article__section {
+.article__author {
 	color: inherit;
 }
 .article__timestamp,
@@ -103,7 +102,7 @@ $header-offset: 30px;
 //ARTICLE BODY ELEMENTS
 .article__body {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-	font-weight: 400;
+	font-weight: normal;
 	font-size: 18px;
 	color: $next-grey-dark;
 
@@ -223,7 +222,7 @@ $header-offset: 30px;
 	}
 	.article__body {
 		font-size: 20px;
-		font-weight: 100;
+		font-weight: 200;
 
 		> ft-paragraph {
 			line-height: 26px;

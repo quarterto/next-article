@@ -7,6 +7,8 @@ $o-big-number-is-silent: false;
 $o-gallery-is-silent: false;
 @import "o-gallery/main";
 @import "o-colors/main";
+@import "o-fonts/main";
+@include oFontsInclude(MetricWeb, thin);
 
 @import "next-sass-setup/main";
 @import "next-buttons/main";
