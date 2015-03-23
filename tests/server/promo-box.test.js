@@ -16,7 +16,7 @@ describe('Promo Box', function () {
 			'</promo-box>'
 		);
 
-		$('promo-box').replaceWith(promoBoxTransform)
+		$('promo-box').replaceWith(promoBoxTransform);
 		$.html().should.equal(
 			'<div class="article__promobox ng-pull-out ng-inline-element">' +
 				'<h3 class="article__promobox__title">Tatomer Riesling 2012</h3>' +
@@ -26,4 +26,4 @@ describe('Promo Box', function () {
 		);
 	});
 
-})
+});
