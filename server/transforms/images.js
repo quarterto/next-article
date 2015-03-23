@@ -4,7 +4,7 @@ var $ = require('cheerio');
 var resize = require('../utils/resize');
 var fetchCapiV2 = require('../utils/fetch-capi-v2');
 
-module.exports = function($body) {
+module.exports = function($body, flags) {
 
 	var imageSetSelector = 'ft-content[type$="ImageSet"]';
 	var imageSetPromises = $body(imageSetSelector)
@@ -36,13 +36,21 @@ module.exports = function($body) {
 				if (!imageSet) {
 					return '';
 				}
-				var isMain = image.parentNode.tagName === 'root' && $(image.parentNode).children().first().html() === $image.html();
-				var width = 470;
+				var isMain =
+					flags && flags.fullWidthMainImages && flags.fullWidthMainImages.isSwitchedOn &&
+					image.parentNode.tagName === 'root' &&
+					$(image.parentNode).children().first().html() === $image.html();
+				var width = isMain ? 690 : 470;
 				var binaryId = imageSet.members[0].id.replace('http://api.ft.com/content/', '');
-				var resizedUrl1x = resize({ width: width, url: 'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId });
-				var resizedUrl2x = resize({ width: width * 2, url: 'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId });
+				var imageUrl = 'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId;
+				var resizedUrl1x = resize(imageUrl, { width: width });
+				var resizedUrl2x = resize(imageUrl, { width: width, dpr: 2 });
 				var $figure = $('<figure></figure>')
-					.addClass('article__image-wrapper ng-pull-out ng-inline-element');
+					.addClass('article__image-wrapper');
+
+				if (!isMain) {
+					$figure.addClass('ng-pull-out ng-inline-element');
+				}
 
 				$figure.addClass(isMain ? 'article__main-image' : 'article__inline-image');
 				if (imageSet.title) {
