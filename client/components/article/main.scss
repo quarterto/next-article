@@ -179,11 +179,7 @@ $header-offset: 30px;
 		left: -9999px;
 	}
 	.back-top-top__icon {
-		display: block;
-		background: url('/grumman/assets/img/back-to-top.svg') no-repeat;
-		background-size: contain;
-		width: 24px;
-		height: 20px;
+		@include nextIcon(back-to-top, $next-blue, 20);
 	}
 }
 .article__big-number,
