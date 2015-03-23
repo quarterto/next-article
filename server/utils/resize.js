@@ -1,6 +1,15 @@
 // TODO: Combine with the equivalent in ft-next-express
 'use strict';
 
-module.exports = function(options) {
-	return '//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(options.url) + '?width=' + options.width + '&source=next&fit=scale-down';
+var merge = require('merge');
+var querystring = require('querystring');
+
+module.exports = function(url, options) {
+	var defaultOptions = {
+		source: 'next',
+		fit: 'scale-down'
+	};
+	var query = querystring.stringify(merge(defaultOptions, options));
+
+	return '//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(url) + '?' + query;
 };

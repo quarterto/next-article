@@ -106,7 +106,7 @@ module.exports = function(req, res, next) {
 					})();
 
 					// update the images (resize, add image captions, etc)
-					images($body)
+					images($body, res.locals.flags)
 						.then(function ($body) {
 							res.render('layout', {
 								article: article,
@@ -127,6 +127,7 @@ module.exports = function(req, res, next) {
 								isColumnist: primarySection.title === 'Columnists',
 								// if there's a video or sideshow first, we overlap them on the header
 								headerOverlap:
+									$body('> .article__main-image').length ||
 									$body('> a:first-child').attr('data-asset-type') === 'video' ||
 									$body('> ft-paragraph:first-child > ft-slideshow:first-child').length,
 								layout: 'wrapper',

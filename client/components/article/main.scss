@@ -100,11 +100,8 @@ $header-offset: 30px;
 		line-height: 24px;
 		display: block;
 	}
-	> {
-		*:first-child,
-		.article__main-image:first-child + ft-paragraph {
-			margin-top: 0;
-		}
+	> *:first-child {
+		margin-top: 0;
 	}
 	a {
 		color: $next-grey-dark;
@@ -116,6 +113,7 @@ $header-offset: 30px;
 		width: 100%;
 	}
 	> {
+		.article__main-image,
 		.article__video:first-child,
 		ft-paragraph:first-child .article__gallery:first-child {
 			margin-top: -$header-offset - 15;
@@ -124,7 +122,7 @@ $header-offset: 30px;
 }
 
 .article__main-image {
-	margin-top: 0;
+	margin: 0;
 }
 .article__gallery {
 	line-height: initial;
