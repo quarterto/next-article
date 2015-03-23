@@ -1,3 +1,5 @@
+$ng-light-blue: #e6eef9;
+
 .more-on {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
@@ -59,7 +61,7 @@
 	.more-on__articles--light & {
 		background-color: transparent;
 		font-size: 17px;
-		color: $next-blue;
+		color: black;
 
 		@include oGridRespondTo(S) {
 			font-size: 20px;
@@ -71,7 +73,7 @@
 	}
 }
 .more-on__articles--light {
-	background-color: #e6eef9;
+	background-color: $ng-light-blue;
 	padding: 5px 0;
 }
 .more-on__article__timestamp {
@@ -80,7 +82,7 @@
 .more-on__all-link {
 	position: relative;
 	display: block;
-	background-color: #e6eef9;
+	background-color: $ng-light-blue;
 	font-weight: normal;
 	font-size: 22px;
 	color: $next-blue;
