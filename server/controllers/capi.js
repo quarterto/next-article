@@ -95,7 +95,7 @@ module.exports = function(req, res, next) {
 							return {
 								title: articleV1.item.metadata.primaryTheme.term.name,
 								url: '/stream/' + articleV1.item.metadata.primaryTheme.term.taxonomy + '/' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name),
-								conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + '"' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '"'
+								conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + ':"' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '"'
 							};
 						} catch (e) {
 							return {
