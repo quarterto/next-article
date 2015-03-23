@@ -182,14 +182,18 @@ $header-offset: 30px;
 		@include nextIcon(back-to-top, $next-blue, 20);
 	}
 }
+.article__pull-quote,
+.article__block-quote,
+.article__big-number {
+	color: $next-blue;
+	border-left-color: $next-blue;
+}
 .article__big-number,
 .article__pull-quote {
 	width: 100%;
 	margin-top: 1.5em;
 	margin-bottom: 1.5em;
 	clear: left;
-	color: $next-blue;
-	border-left-color: $next-blue;
 }
 .article__pull-quote {
 	@include oGridRespondTo(L) {
