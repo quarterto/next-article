@@ -21,7 +21,7 @@ var externalImgTransform = require('../transforms/external-img');
 var removeBodyTransform = require('../transforms/remove-body');
 var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
-var promoBoxTransform = require('../transforms/promoBox');
+var promoBoxTransform = require('../transforms/promo-box');
 
 function getUuid(id) {
 	return id.replace('http://www.ft.com/thing/', '');
