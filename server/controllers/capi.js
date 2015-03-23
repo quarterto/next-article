@@ -21,6 +21,7 @@ var externalImgTransform = require('../transforms/external-img');
 var removeBodyTransform = require('../transforms/remove-body');
 var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
+var promoBoxTransform = require('../transforms/promo-box');
 
 function getUuid(id) {
 	return id.replace('http://www.ft.com/thing/', '');
@@ -70,6 +71,7 @@ module.exports = function(req, res, next) {
 					$body('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$body('pull-quote').replaceWith(pullQuotesTransform);
 					$body('body').replaceWith(removeBodyTransform);
+					$body('promo-box').replaceWith(promoBoxTransform);
 
 					// insert test related
 					if ($body('ft-paragraph').length >= 6) {

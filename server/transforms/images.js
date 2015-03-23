@@ -46,13 +46,18 @@ module.exports = function($body, flags) {
 				var resizedUrl1x = resize(imageUrl, { width: width });
 				var resizedUrl2x = resize(imageUrl, { width: width, dpr: 2 });
 				var $figure = $('<figure></figure>')
-					.addClass('article__image-wrapper');
+					.addClass('article__image-wrapper ng-figure-reset');
 
-				if (!isMain) {
-					$figure.addClass('ng-pull-out ng-inline-element');
+				if (!$image.parent().hasClass('article__promobox')) {
+					if (!isMain) {
+						$figure.addClass('article__inline-image ng-pull-out ng-inline-element');
+					} else {
+						$figure.addClass('article__main-image');
+					}
+				} else {
+					$figure.addClass('article__promobox__image');
 				}
 
-				$figure.addClass(isMain ? 'article__main-image' : 'article__inline-image');
 				if (imageSet.title) {
 					var $figcaption = $('<figcaption></figcaption>')
 						.addClass('article__image-caption ng-meta')
