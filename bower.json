@@ -19,7 +19,7 @@
     "o-date": "~1.1.1",
     "next-welcome": "Financial-Times/next-welcome#^1.0.4",
     "o-hoverable": "~1.1.0",
-    "next-video": "Financial-Times/next-video"
+    "next-video": "Financial-Times/next-video#^1.0.0"
   },
   "resolutions": {
     "o-ft-icons": "next",

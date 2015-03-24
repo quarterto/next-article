@@ -41,11 +41,13 @@ setup.bootstrap(function(result) {
 	if (flags.get('contentApiCalls').isSwitchedOn) {
 		moreOn.init(flags);
 	}
-	// if (flags.get('brightcoveAPI').isSwitchedOn) {
-		require('./components/video/main');
-		// so far next-video only adds analytics
-		video.init();
-	// };
+
+	require('./components/video/main').init()
+		.then(function () {
+			// so far next-video only adds analytics
+			// eventually most of the brightcove bit of video component will go in here
+			video.init();
+		})
 
 	toc.init(flags);
 	oDate.init(document.querySelector('.article'));

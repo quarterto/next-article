@@ -7,24 +7,13 @@ var video = [
 	'player.vimeo.com'
 ];
 
-var videoTags = [].slice.call(document.querySelectorAll('a'));
 
-videoTags.filter(function(el) {
-		return el.innerText === '';
-	})
-	.forEach(function(el) {
-		video.forEach(function(key) {
-			if (el.getAttribute('href').indexOf(key) > -1) {
-				embedVideo(key, el);
-			}
-		});
-	});
 
 function brightcoveInit(el) {
 	var url = el.getAttribute('href');
 	var videoId = url.slice((url.lastIndexOf('/')+1));
 
-	brightcove(videoId).then(function(data) {
+	return brightcove(videoId).then(function(data) {
 		var videoEl = document.createElement('video');
 		videoEl.setAttribute('src', data.src);
 		videoEl.setAttribute('data-content-id', videoId);
@@ -78,7 +67,7 @@ function makeIframe(attrs) {
 function embedVideo (type, el) {
 	switch (type) {
 		case 'video.ft.com':
-			brightcoveInit(el);
+			return brightcoveInit(el);
 		break;
 		case 'youtube.com':
 			youtubeInit(el);
@@ -87,4 +76,20 @@ function embedVideo (type, el) {
 			vimeoInit(el);
 		break;
 	}
+	return Promise.resolve(null);
+}
+
+module.exports.init = function () {
+	var videoTags = [].slice.call(document.querySelectorAll('a'));
+
+	return Promise.all(videoTags.filter(function(el) {
+			return el.innerText === '';
+		})
+		.map(function(el) {
+			var type = video.filter(function(key) {
+				return el.getAttribute('href').indexOf(key) > -1;
+			})[0];
+
+			return type ? embedVideo(type, el) : Promise.resolve(null);
+		}));
 }
