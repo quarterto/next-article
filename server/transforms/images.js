@@ -65,7 +65,7 @@ module.exports = function($body, flags) {
 
 					$figure.append($figcaption);
 				}
-				return $figure.prepend('<img class="article__image" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x"/>');
+				return $figure.prepend('<img class="article__image" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x" alt=""/>');
 			});
 
 			return $body;
