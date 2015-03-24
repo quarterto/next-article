@@ -13,14 +13,14 @@ module.exports = function(index, el) {
 		.html();
 	var content = $el.find('promo-intro').html();
 
-	$promoBox.append($title)
+	$promoBox.append($title);
 
 	if ($el.find('promo-headline').length) {
 		var $headline = $('<h4></h4>')
 			.addClass('article__promo-box__headline')
 			.html($el.find('promo-headline p').html().trim());
 
-		$promoBox.append($headline)
+		$promoBox.append($headline);
 	}
 
 	return $promoBox
