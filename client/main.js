@@ -47,7 +47,7 @@ setup.bootstrap(function(result) {
 			// so far next-video only adds analytics
 			// eventually most of the brightcove bit of video component will go in here
 			video.init();
-		})
+		});
 
 	toc.init(flags);
 	oDate.init(document.querySelector('.article'));

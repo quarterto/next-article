@@ -68,7 +68,6 @@ function embedVideo (type, el) {
 	switch (type) {
 		case 'video.ft.com':
 			return brightcoveInit(el);
-		break;
 		case 'youtube.com':
 			youtubeInit(el);
 		break;
@@ -92,4 +91,4 @@ module.exports.init = function () {
 
 			return type ? embedVideo(type, el) : Promise.resolve(null);
 		}));
-}
+};
