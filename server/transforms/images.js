@@ -48,14 +48,14 @@ module.exports = function($body, flags) {
 				var $figure = $('<figure></figure>')
 					.addClass('article__image-wrapper ng-figure-reset');
 
-				if (!$image.parent().hasClass('article__promobox')) {
+				if (!$image.parent().hasClass('article__promo-box')) {
 					if (!isMain) {
 						$figure.addClass('article__inline-image ng-pull-out ng-inline-element');
 					} else {
 						$figure.addClass('article__main-image');
 					}
 				} else {
-					$figure.addClass('article__promobox__image');
+					$figure.addClass('article__promo-box__image');
 				}
 
 				if (imageSet.title) {

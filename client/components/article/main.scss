@@ -201,15 +201,18 @@ $header-offset: 30px;
 .article__big-number p {
 	margin: 0;
 }
-.article__promobox {
+.article__promo-box {
 	p {
 		margin: 10px 0 0;
 	}
 }
-.article__promobox__title {
+.article__promo-box__title {
 	margin: 0;
 }
-.article__promobox__image {
+.article__promo-box__headline {
+	margin: 10px 0 0;
+}
+.article__promo-box__image {
 	margin-top: 10px;
 }
 
