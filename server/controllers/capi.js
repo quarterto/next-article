@@ -54,6 +54,7 @@ module.exports = function(req, res, next) {
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
 					var body = article.bodyXML;
+
 					// HACK around a bug in the content api by replacing <br></br> with <br>
 					// See: http://api.ft.com/content/e80e2706-c7ec-11e4-8210-00144feab7de
 					body = body.replace(/<br><\/br>/g, '<br>');
