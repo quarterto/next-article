@@ -11,19 +11,21 @@ module.exports = function(index, el) {
 		.text($el.find('promo-title').text());
 	var image = $el.find('promo-image')
 		.html();
-	var content = $el.find('promo-intro').html();
+	var $content = $('<div></div')
+		.addClass('article__promo-box__content')
+		.html($el.find('promo-intro').html());
 
 	$promoBox.append($title);
 
 	if ($el.find('promo-headline').length) {
 		var $headline = $('<h4></h4>')
 			.addClass('article__promo-box__headline')
-			.html($el.find('promo-headline p').html().trim());
+			.html($el.find('promo-headline p').html());
 
 		$promoBox.append($headline);
 	}
 
 	return $promoBox
 		.append(image)
-		.append(content);
+		.append($content);
 };
