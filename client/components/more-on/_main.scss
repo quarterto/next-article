@@ -1,9 +1,7 @@
-$ng-light-blue: #e6eef9;
-
 .more-on {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
-	color: #ffffff;
+	color: #000000;
 	margin-top: 15px;
 
 	*:first-child > & {
@@ -15,12 +13,11 @@ $ng-light-blue: #e6eef9;
 }
 .more-on__title {
 	font-size: 16px;
-	color: #000000;
 	line-height: 1em;
 	text-transform: uppercase;
 	margin: 0;
 }
-.more-on__topic {
+.more-on__topic-name {
 	position: relative;
 	display: block;
 	background-color: $next-blue;
@@ -31,7 +28,7 @@ $ng-light-blue: #e6eef9;
 	font-weight: 500;
 	color: #ffffff;
 }
-.more-on__section__icon {
+.more-on__topic-name__icon {
 	@include nextIcon(arrow-right, #ffffff, 20);
 	position: absolute;
 	right: 5px;
@@ -41,12 +38,16 @@ $ng-light-blue: #e6eef9;
 .more-on__articles {
 	margin-top: 5px;
 
-	.more-on__topic + & {
+	.more-on--topic & {
+		background-color: #f6e9d8;
+		padding: 5px 0;
+	}
+	.more-on__topic-name + & {
 		margin-top: 0;
 	}
 }
 .more-on__article {
-	background-color: $next-blue;
+	background-color: #f6e9d8;
 	margin-top: 5px;
 	padding: 5px 10px;
 	font-size: 25px;
@@ -58,10 +59,9 @@ $ng-light-blue: #e6eef9;
 	&:first-child {
 		margin-top: 0;
 	}
-	.more-on__articles--light & {
-		background-color: transparent;
+	.more-on--topic & {
 		font-size: 17px;
-		color: black;
+		font-weight: 200;
 
 		@include oGridRespondTo(S) {
 			font-size: 20px;
@@ -72,26 +72,22 @@ $ng-light-blue: #e6eef9;
 		color: inherit;
 	}
 }
-.more-on__articles--light {
-	background-color: $ng-light-blue;
-	padding: 5px 0;
-}
 .more-on__article__timestamp {
 	margin-top: 5px;
 }
 .more-on__all-link {
 	position: relative;
 	display: block;
-	background-color: $ng-light-blue;
+	background-color: #f6e9d8;
 	font-weight: normal;
-	font-size: 22px;
+	font-size: 20px;
 	color: $next-blue;
 	padding: 10px;
 }
 .more-on__all-link__icon {
 	position: absolute;
 	top: 50%;
-	margin-top: -8px;
+	margin-top: -5px;
 	margin-left: 5px;
-	@include nextIcon(arrow-right, $next-blue, 16);
+	@include nextIcon(arrow-right, $next-blue, 10);
 }
