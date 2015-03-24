@@ -23,6 +23,7 @@ $o-gallery-is-silent: false;
 @import "next-messaging/src/main";
 @import "next-welcome/main";
 
+@import "variables";
 @import "mixins";
 @import "helpers";
 @import "components/article/main";

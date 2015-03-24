@@ -215,12 +215,15 @@ $header-offset: 30px;
 .article__promo-box__headline {
 	margin: 0;
 	padding: 5px 10px;
-	background-color: $next-blue;
-	font-size: 24px;
-	line-height: 40px;
-	font-weight: 500;
-	color: #ffffff;
+	background-color: $box-colour;
+	font-size: 25px;
+	line-height: 1em;
+	font-weight: 100;
+	color: #000000;
 
+	@include oGridRespondTo(S) {
+		font-size: 32px;
+	}
 	a {
 		display: block;
 		position: relative;
@@ -231,19 +234,11 @@ $header-offset: 30px;
 		&:hover {
 			text-decoration: underline;
 		}
-		&:after {
-			@include nextIcon(arrow-right, #ffffff, 20);
-			content: '';
-			position: absolute;
-			right: -5px;
-			top: 50%;
-			margin-top: -10px;
-		}
 	}
 }
 .article__promo-box__image,
 .article__promo-box__content {
-	background-color: #f6e9d8;
+	background-color: $box-colour;
 }
 .article__promo-box__image {
 	padding: 10px 10px 0;
@@ -253,6 +248,9 @@ $header-offset: 30px;
 
 	p {
 		margin: 0;
+		font-size: 18px;
+		line-height: 24px;
+		font-weight: normal;
 	}
 }
 
