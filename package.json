@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "cheerio": "^0.18.0",
+    "express-errors-handler": "^1.2.0",
     "fetchres": "^1.0.4",
     "forever": "^0.11.1",
     "ft-next-express": "^7.0.0",

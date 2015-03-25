@@ -32,7 +32,6 @@ module.exports = function(req, res, next) {
 			uuid: req.params[0],
 			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 		})
-
 			// Some things aren't in CAPI v1 (e.g. FastFT)
 			.catch(function(err) {
 				if (err instanceof fetchres.BadServerResponseError) {
@@ -152,17 +151,20 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				fetchCapiV1(req.params[0])
-					.then(function(data) {
-						res.render('layout_404', { layout: 'wrapper', url: data.item.location.uri });
+				fetchCapiV1({
+						uuid: req.params[0],
+						useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 					})
-					.catch(function(err) {
-						if (err instanceof fetchres.BadServerResponseError) {
-							res.status(404).end();
-						} else {
-							next(err);
-						}
-					});
+						.then(function(data) {
+							res.render('layout_404', { layout: 'wrapper', url: data.item.location.uri });
+						})
+						.catch(function(err) {
+							if (err instanceof fetchres.BadServerResponseError) {
+								res.status(404).end();
+							} else {
+								next(err);
+							}
+						});
 			} else {
 				next(err);
 			}

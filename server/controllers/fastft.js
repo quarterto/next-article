@@ -1,7 +1,8 @@
 'use strict';
 
-var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
+var errorsHandler = require('express-errors-handler');
+var cacheControl = require('../utils/cache-control');
 
 module.exports = function(req, res, next) {
 	var id = req.params[0];
@@ -15,7 +16,12 @@ module.exports = function(req, res, next) {
 				res.set(cacheControl);
 				res.redirect('/' + response[0].data.uuidv3);
 			} else {
-				console.error('FastFT: failed getting "%s" with message "%s"', id, response[0].title);
+				errorsHandler.captureMessage('Failed getting "' + id + '" with message "' + response[0].title + '"', {
+					tags: {
+						service: 'fastft',
+						status: response.status
+					}
+				});
 				res.status(404).end();
 			}
 		})

@@ -1,7 +1,7 @@
-/*global console*/
 'use strict';
 
 var fetchres = require('fetchres');
+var errorsHandler = require('express-errors-handler');
 var catchNetworkErrors = require('./catch-network-errors');
 
 module.exports = function(opts) {
@@ -17,7 +17,12 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					console.log("Got " + response.status + " for capi v2 uuid " + uuid);
+					errorsHandler.captureMessage('Failed getting "' + uuid + '"', {
+						tags: {
+							service: 'capiv2',
+							status: response.status
+						}
+					});
 				}
 				return response;
 			})

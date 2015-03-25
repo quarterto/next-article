@@ -1,7 +1,7 @@
-/*global console*/
 'use strict';
 
 var fetchres = require('fetchres');
+var errorsHandler = require('express-errors-handler');
 var catchNetworkErrors = require('./catch-network-errors');
 
 module.exports = function(opts) {
@@ -10,11 +10,11 @@ module.exports = function(opts) {
 
 	if (useElasticSearch && !process.env.ELASTIC_SEARCH_URL) {
 		useElasticSearch = false;
-		if (process.env.NODE_ENV === 'production') {
-			throw new Error("Cannot use elastic search without an ELASTIC_SEARCH_URL");
-		} else {
-			console.warn("Cannot use elastic search without an ELASTIC_SEARCH_URL");
-		}
+		errorsHandler.captureMessage('Cannot use elastic search without an ELASTIC_SEARCH_URL', {
+			tags: {
+				service: 'capiv1'
+			}
+		});
 	}
 
 	var url = useElasticSearch
@@ -30,7 +30,12 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					console.log("Got " + response.status + " for capi v1 uuid " + uuid);
+					errorsHandler.captureMessage('Failed getting "' + uuid + '"', {
+						tags: {
+							service: 'capiv1',
+							status: response.status
+						}
+					});
 				}
 				return response;
 			})

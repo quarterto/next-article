@@ -11,7 +11,6 @@ module.exports = function($body, flags) {
 		.map(function (index, el) {
 			return fetchCapiV2({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', '') })
 				.catch(function(error) {
-					console.warn(error);
 					return {};
 				});
 		})
