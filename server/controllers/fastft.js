@@ -21,7 +21,7 @@ module.exports = function(req, res, next) {
 						service: 'fastft',
 						status: response.status
 					}
-				})
+				});
 				res.status(404).end();
 			}
 		})

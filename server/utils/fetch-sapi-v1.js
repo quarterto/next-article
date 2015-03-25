@@ -41,7 +41,7 @@ module.exports = function(opts) {
 							service: 'sapiv1',
 							status: response.status
 						}
-					})
+					});
 				}
 				return response;
 			})

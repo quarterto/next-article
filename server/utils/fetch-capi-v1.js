@@ -14,7 +14,7 @@ module.exports = function(opts) {
 			tags: {
 				service: 'capiv1'
 			}
-		})
+		});
 	}
 
 	var url = useElasticSearch
@@ -35,7 +35,7 @@ module.exports = function(opts) {
 							service: 'capiv1',
 							status: response.status
 						}
-					})
+					});
 				}
 				return response;
 			})
