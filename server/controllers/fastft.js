@@ -15,7 +15,7 @@ module.exports = function(req, res, next) {
 				res.set(cacheControl);
 				res.redirect('/' + response[0].data.uuidv3);
 			} else {
-				console.error('FastFT: failed getting "%s" with message "%s"', id, response[0].title)
+				console.error('FastFT: failed getting "%s" with message "%s"', id, response[0].title);
 				res.status(404).end();
 			}
 		})
