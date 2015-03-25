@@ -1,1 +1,6 @@
-[{"status":"error","title":"Wrong number or type of arguments"}]
+[
+  {
+    "status": "error",
+    "title": "Record not found"
+  }
+]
