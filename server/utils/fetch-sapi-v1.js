@@ -1,7 +1,7 @@
-/*global console*/
 'use strict';
 
 var fetchres = require('fetchres');
+var errorsHandler = require('express-errors-handler');
 var fetchCapiV2 = require('./fetch-capi-v2');
 var catchNetworkErrors = require('./catch-network-errors');
 
@@ -36,7 +36,12 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					console.log("Got " + response.status + " for sapi v1 query " + query);
+					errorsHandler.captureMessage('Failed with query "' + query + '"', {
+						tags: {
+							service: 'sapiv1',
+							status: response.status
+						}
+					})
 				}
 				return response;
 			})
@@ -44,20 +49,20 @@ module.exports = function(opts) {
 			.then(function(result) {
 				result = Promise.all(result.results[0].results.map(function(article) {
 					return fetchCapiV2({
-						uuid: article.id
-					})
-						.catch(function(err) {
-							if (err instanceof fetchres.BadServerResponseError) {
-								return undefined;
-							} else {
-								throw err;
-							}
-						});
-				}))
+							uuid: article.id
+						})
+							.catch(function(err) {
+								if (err instanceof fetchres.BadServerResponseError) {
+									return undefined;
+								} else {
+									throw err;
+								}
+							});
+					}))
 					.then(function(articles) {
 						return articles.filter(function(article) {
-								return article;
-							});
+							return article;
+						});
 					});
 				return result;
 			});
