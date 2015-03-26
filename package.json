@@ -11,7 +11,7 @@
     "express-errors-handler": "^1.2.0",
     "fetchres": "^1.0.4",
     "forever": "^0.11.1",
-    "ft-next-express": "7.0.2",
+    "ft-next-express": "^7.1.1",
     "merge": "^1.2.0",
     "winston": "^0.9.0"
   },
