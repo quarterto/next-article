@@ -6,26 +6,37 @@ module.exports = function(index, el) {
 	var $el = $(el);
 	var $promoBox = $('<div></div')
 		.addClass('article__promo-box ng-pull-out ng-inline-element');
-	var $title = $('<h3></h3>')
-		.addClass('article__promo-box__title')
-		.text($el.find('promo-title').text());
-	var image = $el.find('promo-image')
-		.html();
-	var $content = $('<div></div')
-		.addClass('article__promo-box__content')
-		.html($el.find('promo-intro').html());
+	var $promoBoxTitle = $el.find('promo-title');
+	var $promoBoxHeadline = $el.find('promo-headline');
+	var $promoBoxImage = $el.find('promo-image');
+	var $promoBoxIntro = $el.find('promo-intro');
 
-	$promoBox.append($title);
-
-	if ($el.find('promo-headline').length) {
-		var $headline = $('<h4></h4>')
-			.addClass('article__promo-box__headline')
-			.html($el.find('promo-headline').html());
-
-		$promoBox.append($headline);
+	if ($promoBoxTitle.length) {
+		$promoBox.append(
+			$('<h3></h3>')
+				.addClass('article__promo-box__title')
+				.text($promoBoxTitle.text())
+		);
+	}
+	if ($promoBoxHeadline.length) {
+		$promoBox.append(
+			$('<h4></h4>')
+				.addClass('article__promo-box__headline')
+				.html($promoBoxHeadline.html())
+		);
+	}
+	if ($promoBoxImage.length) {
+		$promoBox.append(
+			$promoBoxImage.html()
+		);
+	}
+	if ($promoBoxIntro.length) {
+		$promoBox.append(
+			$('<div></div')
+				.addClass('article__promo-box__content')
+				.html($promoBoxIntro.html())
+		);
 	}
 
-	return $promoBox
-		.append(image)
-		.append($content);
+	return $promoBox;
 };
