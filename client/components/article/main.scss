@@ -258,6 +258,34 @@ $header-offset: 30px;
 	margin-bottom: 15px;
 }
 
+.data-table {
+	margin-top: 20px;
+	border-spacing: 0;
+
+	caption,
+	thead {
+		text-align: left;
+	}
+	caption {
+		font-weight: 500;
+		text-transform: uppercase;
+	}
+	thead,
+	tbody {
+		display: table;
+		margin-top: 10px;
+	}
+	thead th {
+		font-weight: 500;
+	}
+	tbody tr:nth-child(2n+1) {
+		background-color: $box-colour;
+	}
+	td {
+		padding: 5px 10px;
+	}
+}
+
 //++++++++++++++++++++++++++
 //+ Breakpoints
 //++++++++++++++++++++++++++
