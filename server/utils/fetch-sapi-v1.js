@@ -49,7 +49,8 @@ module.exports = function(opts) {
 			.then(function(result) {
 				result = Promise.all(result.results[0].results.map(function(article) {
 					return fetchCapiV2({
-							uuid: article.id
+							uuid: article.id,
+							type: 'Article'
 						})
 							.catch(function(err) {
 								if (err instanceof fetchres.BadServerResponseError) {
