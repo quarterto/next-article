@@ -2,7 +2,7 @@
 
 var fetchres = require('fetchres');
 var cacheControl = require('../utils/cache-control');
-var logger = require('./utils/logger');
+var logger = require('../utils/logger');
 
 module.exports = function(req, res, next) {
 	var id = req.params[0];
