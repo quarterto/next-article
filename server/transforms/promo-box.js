@@ -17,13 +17,13 @@ module.exports = function(index, el) {
 
 	$promoBox.append($title);
 
-	/*if ($el.find('promo-headline').length) {
+	if ($el.find('promo-headline').length) {
 		var $headline = $('<h4></h4>')
 			.addClass('article__promo-box__headline')
-			.html($el.find('promo-headline p').html());
+			.html($el.find('promo-headline').html());
 
 		$promoBox.append($headline);
-	}*/
+	}
 
 	return $promoBox
 		.append(image)
