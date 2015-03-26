@@ -36,9 +36,9 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					errorsHandler.captureMessage('Failed with query "' + query + '"', {
+					errorsHandler.captureMessage('Failed getting SAPIv1 content', {
 						tags: {
-							service: 'sapiv1',
+							query: query,
 							status: response.status
 						}
 					});

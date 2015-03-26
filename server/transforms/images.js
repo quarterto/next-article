@@ -9,7 +9,7 @@ module.exports = function($body, flags) {
 	var imageSetSelector = 'ft-content[type$="ImageSet"]';
 	var imageSetPromises = $body(imageSetSelector)
 		.map(function (index, el) {
-			return fetchCapiV2({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', '') })
+			return fetchCapiV2({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', ''), type: 'ImageSet' })
 				.catch(function(error) {
 					return {};
 				});

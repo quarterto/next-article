@@ -30,9 +30,9 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					errorsHandler.captureMessage('Failed getting "' + uuid + '"', {
+					errorsHandler.captureMessage('Failed getting CAPIv1 content', {
 						tags: {
-							service: 'capiv1',
+							uuid: uuid,
 							status: response.status
 						}
 					});
