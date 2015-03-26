@@ -1,9 +1,9 @@
 'use strict';
 
 var fetchres = require('fetchres');
-var errorsHandler = require('express-errors-handler');
 var fetchCapiV2 = require('./fetch-capi-v2');
 var catchNetworkErrors = require('./catch-network-errors');
+var logger = require('./logger');
 
 module.exports = function(opts) {
 	var query = opts.query;
@@ -36,12 +36,11 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					errorsHandler.captureMessage('Failed getting SAPIv1 content', {
-						tags: {
-							query: query,
-							status: response.status
-						}
+					logger.warn('Failed getting SAPIv1 content', {
+						query: query,
+						status: response.status
 					});
+
 				}
 				return response;
 			})

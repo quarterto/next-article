@@ -1,8 +1,8 @@
 'use strict';
 
 var fetchres = require('fetchres');
-var errorsHandler = require('express-errors-handler');
 var catchNetworkErrors = require('./catch-network-errors');
+var logger = require('./logger');
 
 module.exports = function(opts) {
 	var uuid = opts.uuid;
@@ -18,12 +18,10 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					errorsHandler.captureMessage('Failed getting CAPIv2 content', {
-						tags: {
-							uuid: uuid,
-							type: type,
-							status: response.status
-						}
+					logger.warn('Failed getting CAPIv2 content', {
+						uuid: uuid,
+						type: type,
+						status: response.status
 					});
 				}
 				return response;
