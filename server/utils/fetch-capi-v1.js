@@ -1,8 +1,8 @@
 'use strict';
 
 var fetchres = require('fetchres');
-var errorsHandler = require('express-errors-handler');
 var catchNetworkErrors = require('./catch-network-errors');
+var logger = require('./logger');
 
 module.exports = function(opts) {
 	var uuid = opts.uuid;
@@ -10,11 +10,7 @@ module.exports = function(opts) {
 
 	if (useElasticSearch && !process.env.ELASTIC_SEARCH_URL) {
 		useElasticSearch = false;
-		errorsHandler.captureMessage('Cannot use elastic search without an ELASTIC_SEARCH_URL', {
-			tags: {
-				service: 'capiv1'
-			}
-		});
+		logger.warn('Cannot use elastic search without an ELASTIC_SEARCH_URL');
 	}
 
 	var url = useElasticSearch
@@ -30,11 +26,9 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					errorsHandler.captureMessage('Failed getting CAPIv1 content', {
-						tags: {
-							uuid: uuid,
-							status: response.status
-						}
+					logger.warn('Failed getting CAPIv1 content', {
+						uuid: uuid,
+						status: response.status
 					});
 				}
 				return response;
