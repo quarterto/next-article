@@ -6,6 +6,7 @@ var catchNetworkErrors = require('./catch-network-errors');
 
 module.exports = function(opts) {
 	var uuid = opts.uuid;
+	var type = opts.type || 'unknown';
 	var url = 'http://api.ft.com/content/' + uuid + '?sjl=WITH_RICH_CONTENT';
 
 	return fetch(url, {
@@ -17,9 +18,10 @@ module.exports = function(opts) {
 			.catch(catchNetworkErrors)
 			.then(function(response) {
 				if (!response.ok) {
-					errorsHandler.captureMessage('Failed getting "' + uuid + '"', {
+					errorsHandler.captureMessage('Failed getting CAPIv2 content', {
 						tags: {
-							service: 'capiv2',
+							uuid: uuid,
+							type: type,
 							status: response.status
 						}
 					});
