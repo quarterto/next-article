@@ -70,12 +70,11 @@ module.exports = function(req, res, next) {
 					$body('p').replaceWith(pHackTransform);
 					$body('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$body('pull-quote').replaceWith(pullQuotesTransform);
-					$body('body').replaceWith(removeBodyTransform);
 					$body('promo-box').replaceWith(promoBoxTransform);
 
-					// insert test related
-					if ($body('ft-paragraph').length >= 6) {
-						var paraHook = $body('ft-paragraph').get(4);
+					// insert inline related
+					if ($body('body > ft-paragraph').length >= 6) {
+						var paraHook = $body('body > ft-paragraph').get(4);
 						$body(paraHook).prepend('<div class="js-more-on-inline" data-trackable="more-on-inline"></div>');
 					}
 
@@ -84,6 +83,7 @@ module.exports = function(req, res, next) {
 						var $el = $body(el);
 						return '<p>' + $el.html() + '</p>';
 					});
+					$body('body').replaceWith(removeBodyTransform);
 					$body('a').replaceWith(relativeLinksTransform);
 					$body('a').replaceWith(trimmedLinksTransform);
 					$body('a').attr('data-trackable', 'link');
