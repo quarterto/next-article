@@ -11,7 +11,7 @@ var video = [
 
 function brightcoveInit(el) {
 	var url = el.getAttribute('href');
-	var videoId = url.slice((url.lastIndexOf('/')+1));
+	var videoId = url.slice((url.lastIndexOf('/')+1)).trim();
 
 	return brightcove(videoId).then(function(data) {
 		var videoEl = document.createElement('video');
