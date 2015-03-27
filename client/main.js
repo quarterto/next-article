@@ -8,9 +8,9 @@ var setup = require('next-js-setup');
 var header = require('next-header');
 var messaging = require('next-messaging');
 
-var slideshow = require('./components/slideshow');
+var slideshow = require('./components/slideshow/main');
 var moreOn = require('./components/more-on/main');
-var toc = require('./components/article/toc');
+var toc = require('./components/toc/main');
 var video = require('next-video');
 
 oViewport.listenTo('resize');
