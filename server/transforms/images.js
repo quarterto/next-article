@@ -41,9 +41,7 @@ module.exports = function($body, flags) {
 					$(image.parentNode).children().first().html() === $image.html();
 				var width = isMain ? 690 : 600;
 				var binaryId = imageSet.members[0].id.replace('http://api.ft.com/content/', '');
-				var imageUrl = 'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId;
-				var resizedUrl1x = resize(imageUrl, { width: width });
-				var resizedUrl2x = resize(imageUrl, { width: width, dpr: 2 });
+				var imageUrl = resize('http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId, { width: width });
 				var $figure = $('<figure></figure>')
 					.addClass('article__image-wrapper ng-figure-reset');
 
@@ -64,7 +62,7 @@ module.exports = function($body, flags) {
 
 					$figure.append($figcaption);
 				}
-				return $figure.prepend('<img class="article__image" src="' + resizedUrl1x + '" srcset="' + resizedUrl1x + ' 1x, ' + resizedUrl2x + ' 2x" alt=""/>');
+				return $figure.prepend('<img class="article__image" src="' + imageUrl + '" alt=""/>');
 			});
 
 			return $body;
