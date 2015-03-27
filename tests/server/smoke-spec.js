@@ -3,7 +3,6 @@
 
 var PORT = process.env.PORT || 3001;
 var expect = require('chai').expect;
-var app = require('../../server/app');
 var nock = require('nock');
 var request = require('request');
 var $ = require('cheerio');
@@ -13,6 +12,7 @@ var articleV2 = require('fs').readFileSync('tests/fixtures/capi2.json', { encodi
 var fastFtBody = require('fs').readFileSync('tests/fixtures/fastft/rocket.json', { encoding: 'utf8' });
 var fastFtErrorBody = require('fs').readFileSync('tests/fixtures/fastft/notfound.json', { encoding: 'utf8' });
 var search = require('fs').readFileSync('tests/fixtures/search-for__climate-change', { encoding: 'utf8' });
+var flags = require('fs').readFileSync('tests/fixtures/flags.json', { encoding: 'utf8' });
 
 var host = 'http://localhost:' + PORT;
 
@@ -34,21 +34,33 @@ var mockMethode = function () {
 
 describe('Smoke Tests: ', function () {
 
-	before(function() {
-		return app.listen;
+	before(function (done) {
+		nock('http://ft-next-api-feature-flags.herokuapp.com')
+			.get('/production')
+			.reply(200, flags);
+		require('../../server/app').listen;
+		// wait for app to come up
+		var timerId = setInterval(function () {
+			request(host + '/__gtg', function(error, res, body) {
+				if (!error) {
+					clearInterval(timerId)
+					done();
+				}
+			});
+		}, 50);
 	});
 
 	describe('Assets', function() {
 
 		it('should serve a good to go page', function (done) {
-			request('http://localhost:' +  PORT + '/__gtg', function(error, res, body) {
+			request(host + '/__gtg', function(error, res, body) {
 				expect(res.statusCode).to.equal(200);
 				done();
 			});
 		});
 
 		it('should serve a main.js file', function (done) {
-			request('http://localhost:' +  PORT + '/grumman/main.js', function (error, res, body) {
+			request(host + '/grumman/main.js', function (error, res, body) {
 				expect(res.headers['content-type']).to.match(/application\/javascript/);
 				expect(res.statusCode).to.equal(200);
 				done();
@@ -56,7 +68,7 @@ describe('Smoke Tests: ', function () {
 		});
 
 		it('should serve a main.css file', function (done) {
-			request('http://localhost:' +  PORT + '/grumman/main.css', function (error, res, body) {
+			request(host + '/grumman/main.css', function (error, res, body) {
 				expect(res.headers['content-type']).to.match(/text\/css/);
 				expect(res.statusCode).to.equal(200);
 				done();
@@ -146,6 +158,27 @@ describe('Smoke Tests: ', function () {
 				});
 				done();
 			});
+		});
+
+	});
+
+	describe('More On', function () {
+
+		it('should behave gracefully if there is no primaryTheme', function() {
+			nock('http://api.ft.com')
+				.filteringPath(/content\/items\/v1\/.*\?feature.blogposts=on$/, 'content/items/v1/XXX?feature.blogposts=on')
+				.get('/content/items/v1/XXX?feature.blogposts=on')
+				.reply(200, require('../fixtures/capiv1-article-no-primary-theme.json'));
+			nock('http://api.ft.com')
+				.filteringPath(/content\/.*\?sjl=WITH_RICH_CONTENT$/, 'content/XXX?sjl=WITH_RICH_CONTENT')
+				.get('/content/XXX?sjl=WITH_RICH_CONTENT')
+				.times(5)
+				.reply(200, require('../fixtures/capiv2-article.json'));
+
+			return fetch(host + '/more-on/f2b13800-c70c-11e4-8e1f-00144feab7de')
+				.then(function(response) {
+					expect(response.ok).to.be.true;
+				});
 		});
 
 	});

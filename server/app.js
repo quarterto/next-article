@@ -2,6 +2,7 @@
 
 var express = require('ft-next-express');
 var app = module.exports = express();
+var logger = require('./utils/logger');
 
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
@@ -16,12 +17,12 @@ app.get('/more-on/:id', require('./controllers/more-on'));
 app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
 app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow'));
 app.get('/__gtg', function(req, res) {
-	console.log('gtg requested');
+	logger.info('gtg requested');
 	res.status(200).end();
 });
 
 // Start the app
 var port = process.env.PORT || 3001;
 module.exports.listen = app.listen(port, function() {
-	console.log("Listening on " + port);
+	logger.info("Listening on " + port);
 });
