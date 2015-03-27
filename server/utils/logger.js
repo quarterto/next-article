@@ -10,5 +10,5 @@ module.exports = (function () {
 	}
 	return new (winston.Logger)({
 	    transports: transports
-	})
+	});
 })();

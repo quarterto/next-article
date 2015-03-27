@@ -43,7 +43,7 @@ describe('Smoke Tests: ', function () {
 		var timerId = setInterval(function () {
 			request(host + '/__gtg', function(error, res, body) {
 				if (!error) {
-					clearInterval(timerId)
+					clearInterval(timerId);
 					done();
 				}
 			});
