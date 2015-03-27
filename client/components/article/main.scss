@@ -152,12 +152,25 @@ $header-offset: 30px;
 .o-gallery__control--next:hover:before {
 	@include nextIcon(arrow-right, #b0b0b0, 60);
 }
+.article__image-wrapper {
+	display: table;
+	width: 100%;
+
+	@include oGridRespondTo(S) {
+		width: auto;
+	}
+}
+.article__inline-image {
+	max-width: 600px;
+}
 .article__image {
 	display: block;
 	max-width: 100%;
 	margin: 0 auto;
 }
 .article__image-caption {
+	display: table-caption;
+	caption-side: bottom;
 	margin-top: 5px;
 }
 .article__subhead {
@@ -241,6 +254,8 @@ $header-offset: 30px;
 	background-color: $box-colour;
 }
 .article__promo-box__image {
+	width: 100%;
+	box-sizing: border-box;
 	padding: 10px 10px 0;
 }
 .article__promo-box__content {
