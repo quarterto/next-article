@@ -20,6 +20,7 @@ endif
 	origami-build-tools install --verbose
 
 test: build-production
+	next-build-tools verify-layout-deps
 	next-build-tools verify
 	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export api2key=67890; export NODE_ENV=test; mocha tests/server/
 
