@@ -21,7 +21,7 @@ endif
 
 test: build-production
 	next-build-tools verify
-	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export api2key=67890; mocha tests/server/
+	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export api2key=67890; export NODE_ENV=test; mocha tests/server/
 
 test-debug:
 	@mocha --debug-brk --reporter spec -i tests/server/

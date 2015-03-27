@@ -2,8 +2,13 @@
 
 var winston = require('winston');
 
-module.exports = new (winston.Logger)({
-    transports: [
-        new (winston.transports.Console)(),
-    ]
-});
+module.exports = (function () {
+	var transports = [];
+
+	if (process.env.NODE_ENV !== 'test') {
+		transports.push(new (winston.transports.Console)());
+	}
+	return new (winston.Logger)({
+	    transports: transports
+	});
+})();
