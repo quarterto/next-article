@@ -3,7 +3,7 @@
 var fetchres = require('fetchres');
 var fetchCapiV2 = require('./fetch-capi-v2');
 var catchNetworkErrors = require('./catch-network-errors');
-var logger = require('./logger');
+var logger = require('ft-next-logger');
 
 module.exports = function(opts) {
 	var query = opts.query;
