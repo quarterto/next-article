@@ -72,8 +72,8 @@ module.exports = function(req, res, next) {
 
 					// insert inline related
 					if ($body('body > p').length >= 6) {
-						var paraHook = $body('body > p').get(4);
-						$body(paraHook).prepend('<div class="js-more-on-inline" data-trackable="more-on-inline"></div>');
+						var paraHook = $body('body > p').get(3);
+						$body(paraHook).after('<div class="js-more-on-inline" data-trackable="more-on-inline"></div>');
 					}
 
 					// HACK - Fix for paragraphs in blockquotes
