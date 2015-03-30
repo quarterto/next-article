@@ -28,7 +28,7 @@ var mockMethode = function () {
 	nock('http://api.ft.com')
 		.get('/content/items/v1/d0a14962-6e56-11e4-afe5-00144feabdc0?feature.blogposts=on')
 		.reply(200, articleV1)
-		.get('/content/d0a14962-6e56-11e4-afe5-00144feabdc0?sjl=WITH_RICH_CONTENT')
+		.get('/enrichedcontent/d0a14962-6e56-11e4-afe5-00144feabdc0?sjl=WITH_RICH_CONTENT')
 		.reply(200, articleV2);
 };
 

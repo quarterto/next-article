@@ -292,17 +292,6 @@
     ]
   },
   {
-    "name": "homePageThemes",
-    "description": "on: adds a new themes section to the foot of te home page, off: removes it",
-    "safeState": false,
-    "expiry": "2015-03-02T00:00:00.000Z",
-    "state": false,
-    "tags": [
-      "apps:engels",
-      "discovery"
-    ]
-  },
-  {
     "name": "homePageMyPageFeed",
     "description": "on: adds a section for a my page feed on homepage, off: removes it",
     "safeState": false,
