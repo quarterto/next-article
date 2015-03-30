@@ -79,6 +79,22 @@
 .more-on__article__timestamp {
 	margin-top: 5px;
 }
+.more-on__person,
+.more-on__organisation {
+	background-color: $box-colour;
+	margin-top: 5px;
+	padding: 5px 10px;
+}
+.more-on__person__name,
+.more-on__organisation__name {
+	margin: 0;
+}
+.more-on__person__link,
+.more-on__organisation__link {
+	font-weight: 200;
+	color: black;
+	font-size: 22px;
+}
 .more-on__all-link {
 	position: relative;
 	display: block;

@@ -27,11 +27,11 @@ module.exports = function(req, res, next) {
 						return item;
 					}).map(function (item) {
 						return {
-							name: item.labels[0],
+							name: item.prefLabel,
 							profile: item.profile.replace(/\\n\\n/g, '</p><p>')
 						};
 					});
-					res.render('related-' + taxonomy, {
+					res.render('related/' + taxonomy, {
 						items: items
 					});
 				});
