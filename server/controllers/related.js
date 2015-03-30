@@ -2,6 +2,7 @@
 
 var fetchCapiV1 = require('../utils/fetch-capi-v1');
 var fetchMapping = require('../utils/fetch-mapping');
+var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
 	var taxonomy = req.params.taxonomy;
@@ -28,12 +29,12 @@ module.exports = function(req, res, next) {
 						return {
 							name: item.labels[0],
 							profile: item.profile.replace(/\\n\\n/g, '</p><p>')
-						}
+						};
 					});
 					res.render('related-' + taxonomy, {
 						items: items
 					});
-				})
+				});
 
 		})
 		.catch(function (err) {
