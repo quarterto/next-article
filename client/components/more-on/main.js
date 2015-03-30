@@ -51,14 +51,20 @@ module.exports.init = function(flags) {
 	$('.js-more-on-topic').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/more-on/' + el.getAttribute('data-metadata-field') + '/' + articleId + '?count=4'));
 	});
+	$('.js-related-people').forEach(function(el) {
+		fetchPromises.push(createPromise(el, '/' + articleId + '/people'));
+	});
+	$('.js-related-organisations').forEach(function(el) {
+		fetchPromises.push(createPromise(el, '/' + articleId + '/organisations'));
+	});
 
 	return allSettled(fetchPromises)
 		.then(function() {
 			// update grid
 			var moreOns = $('.js-more-on, .js-more-on-topic, .js-mentions');
 			moreOns.forEach(function (moreOn) {
-				var gridLayout = moreOns.length === 1 ? 'L8 XL7 XLoffset2' : 'L' + 12 / moreOns.length;
-				moreOn.setAttribute('data-o-grid-colspan', '12 ' + gridLayout);
+				// var gridLayout = moreOns.length === 1 ? 'L8 XL7 XLoffset2' : 'L' + 12 / moreOns.length;
+				// moreOn.setAttribute('data-o-grid-colspan', '12 ' + gridLayout);
 			});
 		})
 		.then(initAds(flags));

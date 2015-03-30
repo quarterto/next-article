@@ -73,8 +73,11 @@
 {{#if @root.flags.articleRelatedContent.isSwitchedOn}}
 <div class="article__more-on" data-trackable="more-on">
 	<div class="o-grid-row">
-		<div class="js-more-on" data-o-grid-colspan="12 L4"></div>
-		<div class='js-more-on-topic' data-metadata-field="primaryTheme" data-o-grid-colspan="12 L4"></div>
+		<div class="js-more-on more-on-wrapper" data-o-grid-colspan="12 L4"></div>
+		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="primaryTheme" data-o-grid-colspan="12 L4"></div>
+		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}" data-o-grid-colspan="12 L4"></div>
+		<div class="js-related-people more-on-wrapper" data-o-grid-colspan="12 L4"></div>
+		<div class="js-related-organisations more-on-wrapper" data-o-grid-colspan="12 L4"></div>
 		{{#if @root.flags.mentionsV2.isSwitchedOn}}
 		<div class="js-mentions" data-o-grid-colspan="12 L4">
 			<div class="more-on">
@@ -86,8 +89,6 @@
 				{{/each}}
 			</div>
 		</div>
-		{{else}}
-		<div class="js-more-on-topic" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}" data-o-grid-colspan="12 L4"></div>
 		{{/if}}
 	</div>
 </div>

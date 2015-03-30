@@ -24,6 +24,11 @@ module.exports = function(req, res, next) {
 						return result.enriched_goodness;
 					}).filter(function (item) {
 						return item;
+					}).map(function (item) {
+						return {
+							name: item.labels[0],
+							profile: item.profile.replace(/\\n\\n/g, '</p><p>')
+						}
 					});
 					res.render('related-' + taxonomy, {
 						items: items

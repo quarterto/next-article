@@ -1,9 +1,10 @@
-<div class="people">
-	<ul class="ng-list-reset">
+<div class="more-on more-on--topic">
+	<h4 class="more-on__title">Related organisations</h4>
+	<ul class="more-on__articles ng-list-reset">
 		{{#each items}}
-			<li class="">
-				<h3>{{prefLabel}}</h3>
-				<p>{{profile}}
+			<li class="more-on__article">
+				<h3>{{name}}</h3>
+				<p>{{{profile}}}</p>
 			</li>
 		{{/each}}
 	</ul>

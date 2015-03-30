@@ -1,15 +1,14 @@
+.more-on-wrapper {
+	margin-top: 15px;
+
+	&:nth-child(3n+1) {
+		clear: left;
+	}
+}
 .more-on {
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
 	color: #000000;
-	margin-top: 15px;
-
-	*:first-child > & {
-		margin-top: 0;
-	}
-	@include oGridRespondTo(L) {
-		margin-top: 0;
-	}
 }
 .more-on--inline {
 	@include oGridRespondTo(S) {
