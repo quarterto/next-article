@@ -6,8 +6,7 @@ var logger = require('./logger');
 
 module.exports = function(opts) {
 	var uuid = opts.uuid;
-	var type = opts.type || 'unknown';
-	var url = 'http://api.ft.com/content/' + uuid + '?sjl=WITH_RICH_CONTENT';
+	var url = 'http://api.ft.com/' + (opts.metadata ? 'enriched' : '') + 'content/' + uuid + '?sjl=WITH_RICH_CONTENT';
 
 	return fetch(url, {
 			timeout: 3000,
@@ -20,7 +19,7 @@ module.exports = function(opts) {
 				if (!response.ok) {
 					logger.warn('Failed getting CAPIv2 content', {
 						uuid: uuid,
-						type: type,
+						type: 'Article',
 						status: response.status
 					});
 				}

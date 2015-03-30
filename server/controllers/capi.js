@@ -40,7 +40,7 @@ module.exports = function(req, res, next) {
 				}
 			});
 
-	var articleV2Promise = fetchCapiV2({ uuid: req.params[0], type: 'Article' });
+	var articleV2Promise = fetchCapiV2({ uuid: req.params[0], metadata: true });
 
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function(articles) {

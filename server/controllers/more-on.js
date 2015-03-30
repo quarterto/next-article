@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
 			}
 
 			var packagePromises = article.item.package.map(function(item) {
-				return fetchCapiV2({ uuid: item.id, type: 'Article' })
+				return fetchCapiV2({ uuid: item.id })
 					.catch(function(err) {
 						if (err instanceof fetchres.BadServerResponseError) {
 							return undefined;
