@@ -154,11 +154,8 @@ $header-offset: 30px;
 }
 .article__image-wrapper {
 	display: table;
+	table-layout: fixed;
 	width: 100%;
-
-	@include oGridRespondTo(S) {
-		width: auto;
-	}
 }
 .article__inline-image {
 	max-width: 600px;
@@ -254,7 +251,6 @@ $header-offset: 30px;
 	background-color: $box-colour;
 }
 .article__promo-box__image {
-	width: 100%;
 	box-sizing: border-box;
 	padding: 10px 10px 0;
 }
