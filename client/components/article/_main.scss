@@ -95,7 +95,7 @@ $header-offset: 30px;
 	font-size: 18px;
 	color: $next-grey-dark;
 
-	> ft-paragraph {
+	> p {
 		margin: 0.3em 0 0.8em;
 		line-height: 24px;
 		display: block;
@@ -115,7 +115,7 @@ $header-offset: 30px;
 	> {
 		.article__main-image,
 		.article__video:first-child,
-		ft-paragraph:first-child .article__gallery:first-child {
+		p:first-child .article__gallery:first-child {
 			margin-top: -$header-offset - 15;
 		}
 	}
@@ -312,7 +312,7 @@ $header-offset: 30px;
 		font-size: 20px;
 		font-weight: 200;
 
-		> ft-paragraph {
+		> p {
 			line-height: 26px;
 		}
 	}

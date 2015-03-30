@@ -11,7 +11,6 @@ var ftContentTransform = require('../transforms/ft-content');
 var relativeLinksTransform = require('../transforms/relative-links');
 var slideshowTransform = require('../transforms/slideshow');
 var trimmedLinksTransform = require('../transforms/trimmed-links');
-var pHackTransform = require('../transforms/p-hack');
 var subheadersTransform = require('../transforms/subheaders');
 var addSubheaderIds = require('../transforms/add-subheader-ids');
 var replaceHrs = require('../transforms/replace-hrs');
@@ -67,19 +66,18 @@ module.exports = function(req, res, next) {
 					$body('big-number').replaceWith(bigNumberTransform);
 					$body('img').replaceWith(externalImgTransform);
 					$body('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
-					$body('p').replaceWith(pHackTransform);
 					$body('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$body('pull-quote').replaceWith(pullQuotesTransform);
 					$body('promo-box').replaceWith(promoBoxTransform);
 
 					// insert inline related
-					if ($body('body > ft-paragraph').length >= 6) {
-						var paraHook = $body('body > ft-paragraph').get(4);
+					if ($body('body > p').length >= 6) {
+						var paraHook = $body('body > p').get(4);
 						$body(paraHook).prepend('<div class="js-more-on-inline" data-trackable="more-on-inline"></div>');
 					}
 
 					// HACK - Fix for paragraphs in blockquotes
-					$body('blockquote > ft-paragraph').replaceWith(function(index, el) {
+					$body('blockquote > p').replaceWith(function(index, el) {
 						var $el = $body(el);
 						return '<p>' + $el.html() + '</p>';
 					});
@@ -131,7 +129,7 @@ module.exports = function(req, res, next) {
 								headerOverlap:
 									$body('> .article__main-image').length ||
 									$body('> a:first-child').attr('data-asset-type') === 'video' ||
-									$body('> ft-paragraph:first-child > ft-slideshow:first-child').length,
+									$body('> p:first-child > ft-slideshow:first-child').length,
 								layout: 'wrapper',
 								headerData: {
 									isStream: false,
