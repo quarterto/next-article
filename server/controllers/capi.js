@@ -1,7 +1,6 @@
 'use strict';
 
-var fetchCapiV1 = require('../utils/fetch-capi-v1');
-var fetchCapiV2 = require('../utils/fetch-capi-v2');
+var api = require('next-ft-api-client');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 var cheerio = require('cheerio');
@@ -27,7 +26,7 @@ function getUuid(id) {
 }
 
 module.exports = function(req, res, next) {
-	var articleV1Promise = fetchCapiV1({
+	var articleV1Promise = api.contentLegacy({
 			uuid: req.params[0],
 			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 		})
@@ -40,7 +39,7 @@ module.exports = function(req, res, next) {
 				}
 			});
 
-	var articleV2Promise = fetchCapiV2({
+	var articleV2Promise = api.content({
 		uuid: req.params[0],
 		type: 'Article',
 		metadata: true
@@ -116,7 +115,7 @@ module.exports = function(req, res, next) {
 						});
 
 					// Update the images (resize, add image captions, etc)
-					images($, res.locals.flags)
+					return images($, res.locals.flags)
 						.then(function () {
 							res.render('layout', {
 								article: article,
@@ -148,7 +147,6 @@ module.exports = function(req, res, next) {
 								mentions: mentions
 							});
 						});
-					break;
 
 				case 'json':
 					res.set(cacheControl);
@@ -160,7 +158,7 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				fetchCapiV1({
+				api.contentLegacy({
 						uuid: req.params[0],
 						useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 					})

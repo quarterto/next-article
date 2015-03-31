@@ -1,12 +1,11 @@
 'use strict';
 
-var fetchCapiV1 = require('../utils/fetch-capi-v1');
-var fetchCapiV2 = require('../utils/fetch-capi-v2');
+var api = require('next-ft-api-client');
 var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
-	fetchCapiV1({
+	api.contentLegacy({
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
@@ -18,7 +17,7 @@ module.exports = function(req, res, next) {
 			}
 
 			var packagePromises = article.item.package.map(function(item) {
-				return fetchCapiV2({ uuid: item.id, type: 'Article' })
+				return api.content({ uuid: item.id, type: 'Article' })
 					.catch(function(err) {
 						if (err instanceof fetchres.BadServerResponseError) {
 							return undefined;

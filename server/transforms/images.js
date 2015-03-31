@@ -2,14 +2,14 @@
 
 var $ = require('cheerio');
 var resize = require('../utils/resize');
-var fetchCapiV2 = require('../utils/fetch-capi-v2');
+var api = require('next-ft-api-client');
 
 module.exports = function($body, flags) {
 
 	var imageSetSelector = 'ft-content[type$="ImageSet"]';
 	var imageSetPromises = $body(imageSetSelector)
 		.map(function (index, el) {
-			return fetchCapiV2({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', ''), type: 'ImageSet' })
+			return api.content({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', ''), type: 'ImageSet' })
 				.catch(function(error) {
 					return {};
 				});

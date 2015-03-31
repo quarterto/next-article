@@ -1,12 +1,12 @@
 'use strict';
 
-var fetchCapiV1 = require('../utils/fetch-capi-v1');
+var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
 
 	// E.g. 4eb77dd4-9b35-11e4-be20-002128161462
-	fetchCapiV1({
+	api.contentLegacy({
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
