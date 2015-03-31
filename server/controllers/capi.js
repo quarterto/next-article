@@ -62,30 +62,35 @@ module.exports = function(req, res, next) {
 					body = body.replace(/<br><\/br>/g, '<br>');
 					body = replaceEllipses(body);
 					body = replaceHrs(body);
+					body = pStrongsToH3s(body);
 					body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
-					var $ = cheerio.load(body);
+					var $body = cheerio.load(body);
 
-					$('body > p').replaceWith(pStrongsToH3s);
-					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
-					$('big-number').replaceWith(bigNumberTransform);
-					$('img').replaceWith(externalImgTransform);
-					$('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
-					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
-					$('pull-quote').replaceWith(pullQuotesTransform);
-					$('promo-box').replaceWith(promoBoxTransform);
+					$body('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
+					$body('big-number').replaceWith(bigNumberTransform);
+					$body('img').replaceWith(externalImgTransform);
+					$body('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
+					$body('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
+					$body('pull-quote').replaceWith(pullQuotesTransform);
+					$body('promo-box').replaceWith(promoBoxTransform);
 
 					// insert inline related
-					if ($('body > p').length >= 6) {
-						var paraHook = $('body > p').get(3);
-						$(paraHook).after('<div class="js-more-on-inline" data-trackable="more-on-inline"></div>');
+					if ($body('body > p').length >= 6) {
+						var paraHook = $body('body > p').get(3);
+						$body(paraHook).after('<div class="js-more-on-inline" data-trackable="more-on-inline"></div>');
 					}
 
-					$('body').replaceWith(removeBodyTransform);
-					$('a').replaceWith(relativeLinksTransform);
-					$('a').replaceWith(trimmedLinksTransform);
-					$('a').attr('data-trackable', 'link');
+					// HACK - Fix for paragraphs in blockquotes
+					$body('blockquote > p').replaceWith(function(index, el) {
+						var $el = $body(el);
+						return '<p>' + $el.html() + '</p>';
+					});
+					$body('body').replaceWith(removeBodyTransform);
+					$body('a').replaceWith(relativeLinksTransform);
+					$body('a').replaceWith(trimmedLinksTransform);
+					$body('a').attr('data-trackable', 'link');
 
-					var $subheaders = $('.ft-subhead')
+					var $subheaders = $body('.ft-subhead')
 						.attr('id', addSubheaderIds)
 						.replaceWith(subheadersTransform);
 
@@ -116,8 +121,8 @@ module.exports = function(req, res, next) {
 						});
 
 					// Update the images (resize, add image captions, etc)
-					images($, res.locals.flags)
-						.then(function () {
+					images($body, res.locals.flags)
+						.then(function ($body) {
 							res.render('layout', {
 								article: article,
 								articleV1: articleV1 && articleV1.item,
@@ -125,9 +130,9 @@ module.exports = function(req, res, next) {
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
-								body: $.html(),
+								body: $body.html(),
 								subheaders: $subheaders.map(function() {
-									var $subhead = $(this);
+									var $subhead = $body(this);
 									return {
 										text: $subhead.find('.article__subhead__title').text(),
 										id: $subhead.attr('id')
@@ -137,9 +142,9 @@ module.exports = function(req, res, next) {
 								isColumnist: primarySection.title === 'Columnists',
 								// if there's a video or sideshow first, we overlap them on the header
 								headerOverlap:
-									$('> .article__main-image').length ||
-									$('> a:first-child').attr('data-asset-type') === 'video' ||
-									$('> p:first-child > ft-slideshow:first-child').length,
+									$body('> .article__main-image').length ||
+									$body('> a:first-child').attr('data-asset-type') === 'video' ||
+									$body('> p:first-child > ft-slideshow:first-child').length,
 								layout: 'wrapper',
 								headerData: {
 									isStream: false,
