@@ -121,7 +121,7 @@ module.exports = function(req, res, next) {
 						});
 
 					// Update the images (resize, add image captions, etc)
-					images($body, res.locals.flags)
+					return images($body, res.locals.flags)
 						.then(function ($body) {
 							res.render('layout', {
 								article: article,
