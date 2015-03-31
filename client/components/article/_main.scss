@@ -216,7 +216,7 @@ $header-offset: 30px;
 	padding: 10px;
 
 	> * {
-		margin: 5px 0 0;
+		margin: 10px 0 0;
 	}
 	> *:first-child {
 		margin-top: 0;
@@ -240,11 +240,7 @@ $header-offset: 30px;
 		margin: 0;
 	}
 	a {
-		display: block;
-		position: relative;
 		text-decoration: none;
-		color: inherit;
-		padding-right: 25px;
 
 		&:hover {
 			text-decoration: underline;
