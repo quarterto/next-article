@@ -153,7 +153,6 @@ module.exports = function(req, res, next) {
 								mentions: mentions
 							});
 						});
-					break;
 
 				case 'json':
 					res.set(cacheControl);
