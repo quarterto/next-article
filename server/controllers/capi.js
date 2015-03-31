@@ -108,7 +108,7 @@ module.exports = function(req, res, next) {
 							};
 						}
 					})();
-					var mentions = article.annotations
+					var mentions = (article.annotations || [])
 						.filter(function(annotation) {
 							return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions';
 						})
