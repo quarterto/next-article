@@ -108,8 +108,19 @@ module.exports = function(req, res, next) {
 							};
 						}
 					})();
+					var mentions = (article.annotations || [])
+						.filter(function(annotation) {
+							return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions';
+						})
+						.map(function(annotation) {
+							return {
+								label: annotation.label,
+								type: annotation.type.toLowerCase(),
+								id: annotation.uri.replace(/^http:\/\/api\.ft\.com\/things\//, '')
+							};
+						});
 
-					// update the images (resize, add image captions, etc)
+					// Update the images (resize, add image captions, etc)
 					images($body, res.locals.flags)
 						.then(function ($body) {
 							res.render('layout', {
@@ -138,7 +149,8 @@ module.exports = function(req, res, next) {
 								headerData: {
 									isStream: false,
 									section: primarySection
-								}
+								},
+								mentions: mentions
 							});
 						});
 					break;
