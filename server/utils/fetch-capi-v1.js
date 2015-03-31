@@ -2,7 +2,7 @@
 
 var fetchres = require('fetchres');
 var catchNetworkErrors = require('./catch-network-errors');
-var logger = require('./logger');
+var logger = require('ft-next-logger');
 
 module.exports = function(opts) {
 	var uuid = opts.uuid;

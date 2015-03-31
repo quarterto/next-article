@@ -2,7 +2,7 @@
 
 var express = require('ft-next-express');
 var app = module.exports = express();
-var logger = require('./utils/logger');
+var logger = require('ft-next-logger');
 
 app.get('/', function(req, res) {
 	res.redirect('/search?q=page:Front%20page');
