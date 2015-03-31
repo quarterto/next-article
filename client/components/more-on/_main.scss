@@ -11,6 +11,11 @@
 		margin-top: 0;
 	}
 }
+.more-on--inline {
+	@include oGridRespondTo(S) {
+		width: 300px;
+	}
+}
 .more-on__title {
 	font-size: 16px;
 	line-height: 1em;

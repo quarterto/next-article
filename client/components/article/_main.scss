@@ -156,6 +156,10 @@ $header-offset: 30px;
 	display: table;
 	table-layout: fixed;
 	width: 100%;
+
+	@include oGridRespondTo(S) {
+		width: auto;
+	}
 }
 .article__inline-image {
 	max-width: 600px;
