@@ -28,6 +28,10 @@ setup.bootstrap(function(result) {
 	var flags = result.flags;
 	header.init(flags);
 
+	if (document.querySelector('*[data-article-status="error"]')) {
+		return;
+	}
+
 	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
 	function clearNotification() {
 		emit('notifications:remove', { uuid: uuid });
