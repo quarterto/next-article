@@ -1,12 +1,11 @@
 'use strict';
 
-var fetchSapiV1 = require('../utils/fetch-sapi-v1');
-var fetchCapiV1 = require('../utils/fetch-capi-v1');
+var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var cacheControl = require('../utils/cache-control');
 
 module.exports = function(req, res, next) {
-	fetchCapiV1({
+	api.contentLegacy({
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
@@ -21,7 +20,7 @@ module.exports = function(req, res, next) {
 				res.status(404).end();
 				return;
 			}
-			fetchSapiV1({
+			api.searchLegacy({
 				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
 				count: req.query.count || 4
 			})
