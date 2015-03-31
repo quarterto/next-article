@@ -1,11 +1,11 @@
 'use strict';
 
-var fetchCapiV1 = require('../utils/fetch-capi-v1');
+var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
-		fetchCapiV1({
+		api.contentLegacy({
 			uuid: req.params[0],
 			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 		})
