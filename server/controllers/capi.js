@@ -127,7 +127,7 @@ module.exports = function(req, res, next) {
 								byline: bylineTransform(article.byline, articleV1),
 								body: $.html(),
 								subheaders: $subheaders.map(function() {
-									var $subhead = (this);
+									var $subhead = $(this);
 									return {
 										text: $subhead.find('.article__subhead__title').text(),
 										id: $subhead.attr('id')
@@ -137,9 +137,9 @@ module.exports = function(req, res, next) {
 								isColumnist: primarySection.title === 'Columnists',
 								// if there's a video or sideshow first, we overlap them on the header
 								headerOverlap:
-									('> .article__main-image').length ||
-									('> a:first-child').attr('data-asset-type') === 'video' ||
-									('> p:first-child > ft-slideshow:first-child').length,
+									$('> .article__main-image').length ||
+									$('> a:first-child').attr('data-asset-type') === 'video' ||
+									$('> p:first-child > ft-slideshow:first-child').length,
 								layout: 'wrapper',
 								headerData: {
 									isStream: false,
