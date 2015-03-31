@@ -75,7 +75,20 @@
 	<div class="o-grid-row">
 		<div class="js-more-on" data-o-grid-colspan="12 L4"></div>
 		<div class='js-more-on-topic' data-metadata-field="primaryTheme" data-o-grid-colspan="12 L4"></div>
+		{{#if @root.flags.mentionsV2.isSwitchedOn}}
+		<div class="js-mentions" data-o-grid-colspan="12 L4">
+			<div class="more-on">
+				<h4 class="more-on__title">Mentions</h4>
+				{{#each mentions}}
+					<li class="more-on__article">
+						<a href='/stream/{{type}}/{{id}}' class='more-on__article__link ng-title-link' data-trackable='section-link'>{{label}}</a>
+					</li>
+				{{/each}}
+			</div>
+		</div>
+		{{else}}
 		<div class="js-more-on-topic" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}" data-o-grid-colspan="12 L4"></div>
+		{{/if}}
 	</div>
 </div>
 {{/if}}
