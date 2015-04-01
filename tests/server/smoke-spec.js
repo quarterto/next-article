@@ -90,7 +90,7 @@ describe('Smoke Tests: ', function() {
 		it('should serve more on an article', function(done) {
 			// set up 'more on' responses (gets story package's articles)
 			nock('http://api.ft.com')
-				.filteringPath(/^\/content\/.*$/, '/content/XXX')
+				.filteringPath(/^\/content\/[^\/]*$/, '/content/XXX')
 				.get('/content/XXX')
 				.times(5)
 				.reply(200, articleV2);
@@ -102,7 +102,7 @@ describe('Smoke Tests: ', function() {
 			nock('http://api.ft.com')
 				.post('/content/search/v1')
 				.reply(200, search)
-				.filteringPath(/^\/content\/.*$/, '/content/XXX')
+				.filteringPath(/^\/content\/[^\/]*$/, '/content/XXX')
 				.get('/content/XXX')
 				.times(3)
 				.reply(200, articleV2);
@@ -166,11 +166,11 @@ describe('Smoke Tests: ', function() {
 
 		it('should behave gracefully if there is no primaryTheme', function() {
 			nock('http://api.ft.com')
-				.filteringPath(/content\/items\/v1\/.*\?feature.blogposts=on$/, 'content/items/v1/XXX?feature.blogposts=on')
+				.filteringPath(/content\/items\/v1\/[^\/]*\?feature.blogposts=on$/, 'content/items/v1/XXX?feature.blogposts=on')
 				.get('/content/items/v1/XXX?feature.blogposts=on')
 				.reply(200, require('../fixtures/capiv1-article-no-primary-theme.json'));
 			nock('http://api.ft.com')
-				.filteringPath(/content\/.*$/, 'content/XXX')
+				.filteringPath(/content\/[^\/]*$/, 'content/XXX')
 				.get('/content/XXX')
 				.times(5)
 				.reply(200, require('../fixtures/capiv2-article.json'));
