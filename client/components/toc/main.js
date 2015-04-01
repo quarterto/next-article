@@ -18,15 +18,15 @@ module.exports.init = function(flags) {
 			var scrollFrom = document.body.scrollTop;
 			var scrollDist = document.querySelector(event.target.getAttribute('href')).getBoundingClientRect().top;
 			var startTime = new Date();
-			var interval = window.setInterval(function () {
+			var interval = window.setInterval(function() {
 					var elapsed = new Date() - startTime;
 					document.body.scrollTop = scrollFrom + (easeFunction(elapsed / duration) * scrollDist);
 				}, 15);
 
 			window.setTimeout(function() {
-				window.clearInterval(interval);
-				window.location.hash = event.target.getAttribute('href');
-			}, duration);
+					window.clearInterval(interval);
+					window.location.hash = event.target.getAttribute('href');
+				}, duration);
 		});
 	}
 };
