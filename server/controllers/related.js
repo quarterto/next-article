@@ -14,31 +14,32 @@ module.exports = function(req, res, next) {
 		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
 		.then(function (article) {
-			var promises = article.item.metadata[taxonomy].map(function (item) {
-				return api.mapping(item.term.id, taxonomy)
-					.catch(function(err) {
-						if (err.message === 'Mapping doesn‘t exist') {
-							return null;
-						} else if (err instanceof fetchres.BadServerResponseError) {
-							throw new Error('404');
-						} else {
-							next(err);
-						}
-					});
-			});
-			if (!promises.length) {
+			var relations = article.item.metadata[taxonomy];
+			if (!relations.length) {
 				throw new Error('No related');
 			}
+			var promises = relations.map(function (item) {
+				return api.mapping(item.term.id, taxonomy)
+					.catch(function(err) {
+						return null;
+					});
+			});
 			return Promise.all(promises)
 				.then(function (results) {
-					var items = results.filter(function (item) {
-						return item;
-					}).map(function (item) {
-						return {
-							name: item.prefLabel || item.labels[0],
-							profile: item.profile ? item.profile.replace(/\\n\\n/g, '</p><p>') : ''
-						};
-					});
+					// awkwardly need to get the v1 name of the relation for linking to
+					var items = results.map(function (item, index) {
+							if (!item) {
+								return {};
+							}
+							return {
+								name: item.prefLabel || item.labels[0],
+								v1Name: relations[index].term.name,
+								profile: item.profile ? item.profile.replace(/\\n\\n/g, '</p><p>') : ''
+							};
+						})
+						.filter(function (item) {
+							return item;
+						});
 					if (!items.length) {
 						throw new Error('No related');
 					}
