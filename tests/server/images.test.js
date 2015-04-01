@@ -22,11 +22,11 @@ describe('Images', function() {
 
 	beforeEach(function() {
 		nock('http://api.ft.com')
-			.get('/content/f14a7e9e-cc08-11e4-30d3-978e959e1c97?sjl=WITH_RICH_CONTENT')
+			.get('/content/f14a7e9e-cc08-11e4-30d3-978e959e1c97')
 			.reply(200, imageSet)
-			.get('/content/2ad940b2-cc01-11e4-30d3-978e959e1c97?sjl=WITH_RICH_CONTENT')
+			.get('/content/2ad940b2-cc01-11e4-30d3-978e959e1c97')
 			.reply(200, imageSet2)
-			.get('/content/7a68fee4-cc22-11e4-20ac-978e959e1c97?sjl=WITH_RICH_CONTENT')
+			.get('/content/7a68fee4-cc22-11e4-20ac-978e959e1c97')
 			.reply('404');
 	});
 
