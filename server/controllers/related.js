@@ -27,7 +27,7 @@ module.exports = function(req, res, next) {
 					});
 			});
 			if (!promises.length) {
-				throw new Error('No related')
+				throw new Error('No related');
 			}
 			return Promise.all(promises)
 				.then(function (results) {
@@ -40,7 +40,7 @@ module.exports = function(req, res, next) {
 						};
 					});
 					if (!items.length) {
-						throw new Error('No related')
+						throw new Error('No related');
 					}
 					res.render('related/' + taxonomy, {
 						items: items
