@@ -1,7 +1,7 @@
 <div class="more-on more-on--topic">
 	{{#ifAll title.taxonomy title.name}}
 		<h4 class="more-on__title">More {{#ifEquals title.taxonomy 'authors'}}from{{else}}on{{/ifEquals}}</h4>
-		<a class="more-on__topic-name ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}<span class="more-on__topic-name__icon"></span></a>
+		<a class="more-on__topic-name ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}</a>
 	{{/ifAll}}
 	<ul class="more-on__articles ng-list-reset">
 		{{#each items}}
@@ -13,5 +13,5 @@
 			</li>
 		{{/each}}
 	</ul>
-	<a class="more-on__all-link ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="see all">See all<span class="more-on__all-link__icon"></span></a>
+	<a class="more-on__all-link ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="see all">See all</a>
 </div>

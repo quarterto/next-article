@@ -71,13 +71,15 @@
 	</div>
 </article>
 {{#if @root.flags.articleRelatedContent.isSwitchedOn}}
-<div class="article__more-on" data-trackable="more-on">
-	<div class="o-grid-row">
-		<div class="js-more-on more-on-wrapper" data-o-grid-colspan="12 L4"></div>
-		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="primaryTheme" data-o-grid-colspan="12 L4"></div>
-		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}" data-o-grid-colspan="12 L4"></div>
-		<div class="js-related more-on-wrapper" data-taxonomy="people" data-o-grid-colspan="12 L4"></div>
-		<div class="js-related more-on-wrapper" data-taxonomy="organisations" data-o-grid-colspan="12 L4"></div>
+<div class="o-grid-row">
+	<div class="article__more-on" data-trackable="more-on" data-o-grid-colspan="12 L8 XL7 XLoffset2">
+		<div class="js-more-on more-on-wrapper"></div>
+		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="primaryTheme"></div>
+		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}"></div>
+		<div class="o-grid-row">
+			<div class="js-related more-on-wrapper" data-taxonomy="organisations" data-o-grid-colspan="12 M6"></div>
+			<div class="js-related more-on-wrapper" data-taxonomy="people" data-o-grid-colspan="12 M6"></div>
+		</div>
 		{{#if @root.flags.mentionsV2.isSwitchedOn}}
 		<div class="js-mentions" data-o-grid-colspan="12 L4">
 			<div class="more-on">

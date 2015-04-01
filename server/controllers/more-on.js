@@ -1,8 +1,13 @@
 'use strict';
 
+var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../utils/cache-control');
-var fetchres = require('fetchres');
+var resize = require('../utils/resize');
+
+var extractUuid = function (uri) {
+	return uri.replace(/http:\/\/(?:api|www).ft.com\/[^\/]+\/(.*)/, '$1');
+};
 
 module.exports = function(req, res, next) {
 	api.contentLegacy({
@@ -39,13 +44,34 @@ module.exports = function(req, res, next) {
 					if (req.query.count) {
 						articles.splice(req.query.count);
 					}
-					articles = articles.map(function(article) {
-						return {
-							id: article.id.replace('http://www.ft.com/thing/', ''),
+					var imagePromises = articles.map(function(article) {
+						var articleModel = {
+							id: extractUuid(article.id),
 							title: article.title,
 							publishedDate: article.publishedDate
 						};
+						if (!article.mainImage) {
+							return Promise.resolve(article.mainImage);
+						}
+						// get the main image
+						return api.content({
+								uuid: extractUuid(article.mainImage.id),
+								type: 'ImageSet'
+							})
+							.then(function (imageSet) {
+								articleModel.image = resize(
+									'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + extractUuid(imageSet.members[0].id),
+									{ width: 100 }
+								);
+								return articleModel;
+							})
+							.catch(function (err) {
+								return articleModel;
+							});
 					});
+					return Promise.all(imagePromises);
+				})
+				.then(function (articles) {
 					res.render('more-on', {
 						articles: articles,
 						isInline: req.query.view === 'inline'

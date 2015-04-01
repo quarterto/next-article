@@ -1,8 +1,8 @@
 .more-on-wrapper {
 	margin-top: 15px;
 
-	&:nth-child(3n+1) {
-		clear: left;
+	.article__more-on > &:first-child {
+		margin-top: 0;
 	}
 }
 .more-on {
@@ -31,50 +31,52 @@
 	padding: 5px 30px 5px 10px;
 	font-weight: 500;
 	color: #ffffff;
-}
-.more-on__topic-name__icon {
-	@include nextIcon(arrow-right, #ffffff, 20);
-	position: absolute;
-	right: 5px;
-	top: 50%;
-	margin-top: -10px;
+
+	&:after {
+		@include nextIcon(arrow-right, #ffffff, 20);
+		content: '';
+		position: absolute;
+		top: 50%;
+		margin-top: -10px;
+		margin-left: 10px;
+	}
 }
 .more-on__articles {
 	margin-top: 5px;
 
 	.more-on--topic & {
-		background-color: $box-colour;
-		padding: 5px 0;
-	}
-	.more-on__topic-name + & {
-		margin-top: 0;
+		border-left: 1px solid $box-colour;
+		border-right: 1px solid $box-colour;
 	}
 }
 .more-on__article {
-	background-color: $box-colour;
+	position: relative;
 	margin-top: 5px;
 	padding: 5px 10px;
-	font-size: 25px;
+	font-size: 17px;
+	font-weight: 200;
 	line-height: 1em;
+	box-sizing: border-box;
 
 	@include oGridRespondTo(S) {
-		font-size: 32px;
+		font-size: 20px;
 	}
 	&:first-child {
 		margin-top: 0;
 	}
-	.more-on--topic & {
-		font-size: 17px;
-		font-weight: 200;
-
-		@include oGridRespondTo(S) {
-			font-size: 20px;
-		}
+	.more-on--story & {
+		min-height: 56px;
+		border: 1px solid $box-colour;
 	}
 	.more-on__article__link {
 		display: block;
 		color: inherit;
 	}
+}
+.more-on__article__image {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 .more-on__article__timestamp {
 	margin-top: 5px;
@@ -98,16 +100,20 @@
 .more-on__all-link {
 	position: relative;
 	display: block;
-	background-color: $box-colour;
 	font-weight: normal;
 	font-size: 20px;
 	color: $next-blue;
 	padding: 10px;
-}
-.more-on__all-link__icon {
-	position: absolute;
-	top: 50%;
-	margin-top: -5px;
-	margin-left: 5px;
-	@include nextIcon(arrow-right, $next-blue, 10);
+	border: 1px solid $box-colour;
+	border-top: 0;
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		margin-top: -5px;
+		margin-left: 5px;
+		@include nextIcon(arrow-right, $next-blue, 10);
+
+	}
 }

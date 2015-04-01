@@ -3,7 +3,12 @@
 	<ul class="more-on__articles ng-list-reset" data-trackable="articles">
 		{{#each articles}}
 			<li class="more-on__article">
-				<a class="more-on__article__link ng-title-link" href="/{{id}}" data-trackable="title">{{{title}}}</a>
+				<a class="more-on__article__link ng-title-link" href="/{{id}}" data-trackable="title">
+					{{{title}}}
+					{{#if image}}
+						<img class="more-on__article__image" src="{{image}}" />
+					{{/if}}
+				</a>
 				<time
 					class="more-on__article__timestamp ng-meta o-date"
 					data-o-component="o-date"
