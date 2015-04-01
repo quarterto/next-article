@@ -22,7 +22,7 @@ endif
 test: build-production
 	next-build-tools verify-layout-deps
 	next-build-tools verify
-	export HOSTEDGRAPHITE_APIKEY=123; export PORT=${PORT}; export apikey=12345; export api2key=67890; export NODE_ENV=test; mocha tests/server/
+	export PORT=${PORT}; export apikey=12345; export api2key=67890; export NODE_ENV=test; mocha tests/server/
 
 test-debug:
 	@mocha --debug-brk --reporter spec -i tests/server/
@@ -54,12 +54,12 @@ _run: run-local run-router
 _run-debug: run-local-debug run-router run-local-debug-inspector
 
 run-local:
-	export ELASTIC_SEARCH_URL=${ELASTIC_SEARCH_URL}; export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nodemon server/app.js --watch server
+	export ELASTIC_SEARCH_URL=${ELASTIC_SEARCH_URL}; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nodemon server/app.js --watch server
 
 run-local-debug:
-	export ELASTIC_SEARCH_URL=${ELASTIC_SEARCH_URL}; export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon --debug server/app.js
+	export ELASTIC_SEARCH_URL=${ELASTIC_SEARCH_URL}; export apikey=${API_KEY} ; export PORT=${PORT}; nodemon --debug server/app.js
 	# for all output from ft-api-client then switch to using this line for debug mode
-	# export HOSTEDGRAPHITE_APIKEY=123; export apikey=${API_KEY} ; export DEBUG=ft-api-client*; export PORT=${PORT}; nodemon --debug server/app.js
+	# export apikey=${API_KEY} ; export DEBUG=ft-api-client*; export PORT=${PORT}; nodemon --debug server/app.js
 
 run-local-debug-inspector:
 	node-inspector;
