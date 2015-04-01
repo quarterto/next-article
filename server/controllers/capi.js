@@ -109,8 +109,7 @@ module.exports = function(req, res, next) {
 						.map(function(annotation) {
 							return {
 								label: annotation.label,
-								type: annotation.type.toLowerCase(),
-								id: annotation.uri.replace(/^http:\/\/api\.ft\.com\/things\//, '')
+								url: annotation.apiUrl.replace(/^http:\/\/api\.ft\.com\//, '')
 							};
 						});
 
