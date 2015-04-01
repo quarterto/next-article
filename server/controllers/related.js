@@ -14,13 +14,18 @@ module.exports = function(req, res, next) {
 			var promises = article.item.metadata[taxonomy].map(function (item) {
 				return api.mapping(item.term.id, taxonomy)
 					.catch(function(err) {
-						if (err instanceof fetchres.BadServerResponseError) {
-							res.status(404).end();
+						if (err.message === 'Mapping doesn‘t exist') {
+							return null;
+						} else if (err instanceof fetchres.BadServerResponseError) {
+							throw new Error('404');
 						} else {
 							next(err);
 						}
 					});
 			});
+			if (!promises.length) {
+				throw new Error('No related')
+			}
 			return Promise.all(promises)
 				.then(function (results) {
 					var items = results.filter(function (item) {
@@ -31,6 +36,9 @@ module.exports = function(req, res, next) {
 							profile: item.profile ? item.profile.replace(/\\n\\n/g, '</p><p>') : ''
 						};
 					});
+					if (!items.length) {
+						throw new Error('No related')
+					}
 					res.render('related/' + taxonomy, {
 						items: items
 					});
@@ -38,6 +46,10 @@ module.exports = function(req, res, next) {
 
 		})
 		.catch(function (err) {
-			next(err);
+			if (err.message === 'No related') {
+				res.status(404).end();
+			} else {
+				next(err);
+			}
 		});
 };
