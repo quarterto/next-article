@@ -1,6 +1,5 @@
 'use strict';
 
-var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 
 module.exports = function(req, res, next) {
