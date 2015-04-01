@@ -69,20 +69,6 @@ $header-offset: 30px;
 	font-size: 1em !important;
 	float: right;
 }
-.article__toc {
-	max-width: 305px;
-	margin: 20px 0 0;
-	padding: 0;
-	display: none;
-
-	.js & {
-		display: block;
-	}
-}
-.article__toc__items {
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
-}
-
 .article__main {
 	padding-top: 15px;
 	margin-bottom: 15px;

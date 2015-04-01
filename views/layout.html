@@ -11,6 +11,16 @@
 			</div>
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset2">
 				<div class="article__meta">
+					{{#if showTOC}}
+					<div class="toc">
+						<div class="toc__title">Article quick links:</div>
+						<ul class="toc__list">
+						{{#each subheaders}}
+							<li class="toc__item"><a class="toc__link" data-trackable="toc" href="#{{id}}">{{text}}</a></li>
+						{{/each}}
+						</ul>
+					</div>
+					{{/if}}
 					<p class="article__byline">
 						{{{byline}}}
 					</p>
@@ -31,16 +41,6 @@
 							<!-- <a class="article__actions__action" href="">Share</a> -->
 						</div>
 					</div>
-					{{#if showTOC}}
-						<div class="article__toc o-forms-group">
-							<select class="article__toc__items o-forms-select" data-trackable="toc">
-								<option disabled selected>Table of contents</option>
-								{{#each subheaders}}
-									<option value="{{this.id}}">{{this.text}}</option>
-								{{/each}}
-							</select>
-						</div>
-					{{/if}}
 				</div>
 			</div>
 		</div>
