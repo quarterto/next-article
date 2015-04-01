@@ -10,7 +10,6 @@ var messaging = require('next-messaging');
 
 var slideshow = require('./components/slideshow/main');
 var moreOn = require('./components/more-on/main');
-var toc = require('./components/toc/main');
 var video = require('next-video');
 
 oViewport.listenTo('resize');
@@ -53,6 +52,5 @@ setup.bootstrap(function(result) {
 			video.init();
 		});
 
-	toc.init(flags);
 	oDate.init(document.querySelector('.article'));
 });
