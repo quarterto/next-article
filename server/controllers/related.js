@@ -4,6 +4,9 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 
 module.exports = function(req, res, next) {
+	if (!res.locals.flags.articleRelated || res.locals.flags.articleRelated.isSwitchedOff) {
+		return res.status(404).end();
+	}
 	var taxonomy = req.params.taxonomy;
 
 	api.contentLegacy({

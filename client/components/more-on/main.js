@@ -60,8 +60,8 @@ module.exports.init = function(flags) {
 			// update grid
 			var moreOns = $('.js-more-on, .js-more-on-topic, .js-mentions');
 			moreOns.forEach(function (moreOn) {
-				// var gridLayout = moreOns.length === 1 ? 'L8 XL7 XLoffset2' : 'L' + 12 / moreOns.length;
-				// moreOn.setAttribute('data-o-grid-colspan', '12 ' + gridLayout);
+				var gridLayout = moreOns.length === 1 ? 'L8 XL7 XLoffset2' : 'L' + 12 / moreOns.length;
+				moreOn.setAttribute('data-o-grid-colspan', '12 ' + gridLayout);
 			});
 		})
 		.then(initAds(flags));
