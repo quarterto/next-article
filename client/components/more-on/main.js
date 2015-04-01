@@ -51,11 +51,8 @@ module.exports.init = function(flags) {
 	$('.js-more-on-topic').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/more-on/' + el.getAttribute('data-metadata-field') + '/' + articleId + '?count=4'));
 	});
-	$('.js-related-people').forEach(function(el) {
-		fetchPromises.push(createPromise(el, '/' + articleId + '/people'));
-	});
-	$('.js-related-organisations').forEach(function(el) {
-		fetchPromises.push(createPromise(el, '/' + articleId + '/organisations'));
+	$('.js-related').forEach(function(el) {
+		fetchPromises.push(createPromise(el, '/' + articleId + '/' + el.getAttribute('data-taxonomy')));
 	});
 
 	return allSettled(fetchPromises)
