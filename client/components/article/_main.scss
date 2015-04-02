@@ -139,12 +139,15 @@ $header-offset: 30px;
 	@include nextIcon(arrow-right, #b0b0b0, 60);
 }
 .article__image-wrapper {
-	display: table;
-	table-layout: fixed;
 	width: 100%;
 
-	@include oGridRespondTo(S) {
-		width: auto;
+	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
+	.article__inline-image & {
+		display: table;
+		table-layout: fixed;
+		@include oGridRespondTo(S) {
+			width: auto;
+		}
 	}
 }
 .article__inline-image {
@@ -156,9 +159,13 @@ $header-offset: 30px;
 	margin: 0 auto;
 }
 .article__image-caption {
-	display: table-caption;
-	caption-side: bottom;
 	margin-top: 5px;
+
+	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
+	.article__inline-image & {
+		display: table-caption;
+		caption-side: bottom;
+	}
 }
 .article__subhead {
 	padding-right: 40px;
