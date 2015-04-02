@@ -26,15 +26,16 @@
 	display: block;
 	background-color: $next-blue;
 	font-size: 24px;
-	line-height: 40px;
+	line-height: 1em;
 	margin-top: 5px;
-	padding: 5px 30px 30px 10px;
+	padding: 10px 30px 30px 10px;
 	font-weight: 500;
 	color: #ffffff;
+	text-transform: none;
 
 	@include oGridRespondTo(S) {
 		padding-right: 220px;
-		padding-bottom: 5px;
+		padding-bottom: 10px;
 	}
 	&:after {
 		@include nextIcon(arrow-right, #ffffff, 20);
@@ -109,10 +110,11 @@
 .more-on__organisation {
 	background-color: $next-blue;
 	margin-top: 5px;
-	padding: 5px 10px;
+	padding: 10px;
 }
 .more-on__person {
 	margin-top: 15px;
+
 }
 .more-on__organisation__link {
 	display: block;
@@ -130,9 +132,18 @@
 	}
 }
 .more-on__person__link {
+	position: relative;
 	display: block;
 	color: #000000;
+	min-height: 50px;
 	font-weight: 400;
+	padding-left: 60px;
+}
+.more-on__person__image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 25px;
 }
 .more-on__person__role {
 	display: block;
@@ -142,9 +153,11 @@
 .more-on__all-link {
 	position: relative;
 	display: block;
-	font-weight: normal;
-	font-size: 20px;
+	font-weight: 500;
+	font-size: 14px;
 	color: $next-blue;
+	text-transform: uppercase;
+	text-align: right;
 	padding: 10px;
 	border: 1px solid $box-colour;
 	border-top: 0;

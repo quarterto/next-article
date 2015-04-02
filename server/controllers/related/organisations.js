@@ -45,6 +45,16 @@ module.exports = function(req, res, next) {
 						})
 						.filter(function (organisation) {
 							return organisation;
+						})
+						// put orgs that can display stock data first
+						.sort(function (org1, org2) {
+							if (org1.tickerSymbol && !org1.tickerSymbol) {
+								return -1;
+							} else if (!org1.tickerSymbol && org2.tickerSymbol) {
+								return 1;
+							} else {
+								return 0;
+							}
 						});
 					if (!organisations.length) {
 						throw new Error('No related');
