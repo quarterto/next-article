@@ -62,7 +62,13 @@ module.exports = function($body, flags) {
 
 					$figure.append($figcaption);
 				}
-				return $figure.prepend('<img class="article__image" src="' + imageUrl + '" alt=""/>');
+				$figure.prepend('<img class="article__image" src="' + imageUrl + '" alt=""/>');
+				if ($image.parent('p').length) {
+					$image.parent('p').before($figure);
+					return '';
+				} else {
+					return $figure;
+				}
 			});
 
 			return $body;
