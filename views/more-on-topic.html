@@ -4,11 +4,16 @@
 		<a class="more-on__topic-name ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}</a>
 	{{/ifAll}}
 	<ul class="more-on__articles ng-list-reset">
-		{{#each items}}
+		{{#each articles}}
 			<li class="more-on__article">
-				<a href='/{{id}}' class='more-on__article__link ng-title-link' data-trackable='headline'>{{{title}}}</a>
+				<a href='/{{id}}' class='more-on__article__link ng-title-link' data-trackable='headline'>
+					{{#if image}}
+						<img class="more-on__article__image" src="{{image}}" />
+					{{/if}}
+					{{{title}}}
+				</a>
 				<time class="more-on__article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
-					{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+					{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
 				</time>
 			</li>
 		{{/each}}

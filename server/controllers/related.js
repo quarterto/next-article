@@ -26,15 +26,25 @@ module.exports = function(req, res, next) {
 			return Promise.all(promises)
 				.then(function (results) {
 					// awkwardly need to get the v1 name of the relation for linking to
-					var items = results.map(function (item, index) {
-							if (!item) {
-								return {};
+					var items = results.map(function (result, index) {
+							if (!result) {
+								return null;
 							}
-							return {
-								name: item.prefLabel || item.labels[0],
-								v1Name: relations[index].term.name,
-								profile: item.profile ? item.profile.replace(/\\n\\n/g, '</p><p>') : ''
+							console.log(result);
+							var itemModel = {
+								name: result.prefLabel || result.labels[0],
+								v1Name: relations[index].term.name
 							};
+							if (result.memberships) {
+								var latestMembership = result.memberships[0];
+								if (latestMembership.organisation && (!latestMembership.changeEvents || !latestMembership.changeEvents[1])) {
+									itemModel.role = {
+										title: latestMembership.title,
+										organisation: latestMembership.organisation.prefLabel
+									};
+								}
+							}
+							return itemModel;
 						})
 						.filter(function (item) {
 							return item;
