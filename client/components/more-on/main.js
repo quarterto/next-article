@@ -2,6 +2,7 @@
 
 var fetchres = require('fetchres');
 var oDate = require('o-date');
+var marketData = require('./market-data');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
 function allSettled(promises) {
@@ -56,5 +57,6 @@ module.exports.init = function(flags) {
 	});
 
 	return allSettled(fetchPromises)
+		.then(marketData)
 		.then(initAds(flags));
 };
