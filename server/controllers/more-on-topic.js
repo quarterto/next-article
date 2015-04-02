@@ -11,6 +11,7 @@ var extractUuid = function (uri) {
 
 module.exports = function (req, res, next) {
 	var topic;
+	var metadata = req.params.metadata;
 
 	api.contentLegacy({
 		uuid: req.params.id,
@@ -18,7 +19,7 @@ module.exports = function (req, res, next) {
 	})
 		.then(function (article) {
 			res.set(cacheControl);
-			topic = article.item.metadata[req.params.metadata];
+			topic = article.item.metadata[metadata];
 			// if it's an array, use the first
 			if (Array.isArray(topic)) {
 				topic = topic.shift();
@@ -42,8 +43,8 @@ module.exports = function (req, res, next) {
 					publishedDate: result.publishedDate
 				};
 			});
-			// get the first article's main image, if it exists
-			if (!results[0].mainImage) {
+			// get the first article's main image, if it exists (and not author's stories)
+			if (!results[0].mainImage || metadata === 'authors') {
 				return Promise.resolve(articleModels);
 			}
 			return api.content({

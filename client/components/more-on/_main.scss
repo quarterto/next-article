@@ -8,6 +8,7 @@
 	}
 }
 .more-on {
+	position: relative;
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
 	color: #000000;
@@ -38,11 +39,13 @@
 	@include oGridRespondTo(S) {
 		padding-bottom: 10px;
 
-		.more-on--with-image & {
+		.more-on--with-image &,
+		.more-on--authors & {
 			padding-right: 220px;
 		}
 	}
-	.more-on--with-image & {
+	.more-on--with-image &,
+	.more-on--authors & {
 		padding-bottom: 30px;
 	}
 	&:after {
@@ -53,13 +56,25 @@
 		left: 10px;
 	}
 }
+.more-on__content {
+	border: 1px solid $box-colour;
+}
+.more-on__author-image {
+	position: relative;
+	display: block;
+	left: 10px;
+	margin-top: -20px;
+	border-radius: 50px;
+	background-color: #ffffff;
+
+	@include oGridRespondTo(S) {
+		position: absolute;
+		margin-top: -40px;
+		right: 10px;
+	}
+}
 .more-on__articles {
 	margin-top: 5px;
-
-	.more-on--topic & {
-		border-left: 1px solid $box-colour;
-		border-right: 1px solid $box-colour;
-	}
 }
 .more-on__article {
 	position: relative;
@@ -83,7 +98,8 @@
 	&.more-on__article--with-image {
 		padding-right: 110px;
 	}
-	.more-on--with-image & {
+	.more-on--with-image &,
+	.more-on--authors & {
 		@include oGridRespondTo(S) {
 			padding-right: 220px;
 		}
@@ -154,6 +170,7 @@
 	top: 0;
 	left: 0;
 	border-radius: 25px;
+	background-color: #ffffff;
 }
 .more-on__person__role {
 	display: block;
@@ -169,7 +186,6 @@
 	text-transform: uppercase;
 	text-align: right;
 	padding: 10px;
-	border: 1px solid $box-colour;
 	border-top: 0;
 
 	&:after {
