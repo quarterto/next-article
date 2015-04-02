@@ -23,11 +23,7 @@ module.exports = function (req, res, next) {
 			var packagePromises = article.item.package.map(function (item) {
 				return api.content({ uuid: item.id, type: 'Article' })
 					.catch(function (err) {
-						if (err instanceof fetchres.BadServerResponseError) {
-							return undefined;
-						} else {
-							throw err;
-						}
+						return null;
 					});
 			});
 			return Promise.all(packagePromises);
@@ -36,9 +32,8 @@ module.exports = function (req, res, next) {
 			var articles = results.filter(function (article) {
 				return article;
 			});
-			if (articles.length === 0) {
-				res.status(404).send();
-				return;
+			if (!articles.length) {
+				throw new fetchres.BadServerResponseError();
 			}
 			if (req.query.count) {
 				articles.splice(req.query.count);
@@ -50,7 +45,7 @@ module.exports = function (req, res, next) {
 					publishedDate: article.publishedDate
 				};
 				if (!article.mainImage) {
-					return Promise.resolve(article.mainImage);
+					return Promise.resolve(article);
 				}
 				// get the main image
 				return api.content({
@@ -64,6 +59,7 @@ module.exports = function (req, res, next) {
 						);
 						return articleModel;
 					})
+					// don't fail if can't get image
 					.catch(function (err) {
 						return articleModel;
 					});

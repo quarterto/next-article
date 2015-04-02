@@ -30,14 +30,20 @@
 	font-size: 24px;
 	line-height: 1em;
 	margin-top: 5px;
-	padding: 10px 30px 30px 10px;
+	padding: 10px;
 	font-weight: 500;
 	color: #ffffff;
 	text-transform: none;
 
 	@include oGridRespondTo(S) {
-		padding-right: 220px;
 		padding-bottom: 10px;
+
+		.more-on--with-image & {
+			padding-right: 220px;
+		}
+	}
+	.more-on--with-image & {
+		padding-bottom: 30px;
 	}
 	&:after {
 		@include nextIcon(arrow-right, #ffffff, 20);
@@ -72,10 +78,12 @@
 	}
 	.more-on--story & {
 		min-height: 56px;
-		padding-right: 110px;
 		border: 1px solid $box-colour;
 	}
-	.more-on--topic & {
+	&.more-on__article--with-image {
+		padding-right: 110px;
+	}
+	.more-on--with-image & {
 		@include oGridRespondTo(S) {
 			padding-right: 220px;
 		}

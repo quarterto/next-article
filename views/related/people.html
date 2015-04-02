@@ -7,7 +7,7 @@
 					<img class="more-on__person__image" src="http://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fnext.ft.com%2Fassets%2Ficons%2Fprofile.svg?format=svg&tint=%23000000,%23000000&source=next.ft.com" width="50" height="50" />
 					{{v1Name}}
 					{{#if role}}
-						<span class="more-on__person__role">{{role.title}}, {{role.organisation}}</span>
+						<span class="more-on__person__role">{{role.title}}{{#if role.organisation}}, {{role.organisation}}{{/if}}</span>
 					{{/if}}
 				</a>
 			</li>

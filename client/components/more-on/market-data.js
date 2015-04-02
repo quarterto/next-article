@@ -14,7 +14,6 @@ module.exports = function () {
 			.then(fetchres.json)
 			.then(function (response) {
 				var data = response.data.items[0];
-				console.log(data);
 				var change = Math.round(data.quote.change1DayPercent * 100) / 100;
 				if (change > 0) {
 					change = '+' + change;

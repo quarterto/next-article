@@ -1,4 +1,4 @@
-<div class="more-on more-on--topic">
+<div class="more-on more-on--topic{{#if articles.[0].image}} more-on--with-image{{/if}}">
 	{{#ifAll title.taxonomy title.name}}
 		<h2 class="more-on__title">More {{#ifEquals title.taxonomy 'authors'}}from{{else}}on{{/ifEquals}}
 			<a class="more-on__topic-name ng-title-link" href="/stream/{{encode title.taxonomy mode='uriComponent'}}/{{encode title.name mode='uriComponent'}}" data-trackable="theme">{{title.label}}</a>

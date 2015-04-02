@@ -24,8 +24,7 @@ module.exports = function (req, res, next) {
 				topic = topic.shift();
 			}
 			if (!topic) {
-				res.status(404).end();
-				return;
+				throw new fetchres.BadServerResponseError();
 			}
 			return api.searchLegacy({
 				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
@@ -33,6 +32,9 @@ module.exports = function (req, res, next) {
 			})
 		})
 		.then(function (results) {
+			if (!results.length) {
+				throw new fetchres.BadServerResponseError();
+			}
 			var articleModels = results.map(function (result) {
 				return {
 					id: extractUuid(result.id),
@@ -55,6 +57,7 @@ module.exports = function (req, res, next) {
 					);
 					return articleModels;
 				})
+				// don't fail if can't get image
 				.catch(function (err) {
 					return articleModels;
 				});

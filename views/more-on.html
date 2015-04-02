@@ -2,7 +2,7 @@
 	<h3 class="more-on__title">Related {{#ifEquals articles.length 1}}story{{else}}stories{{/ifEquals}}</h3>
 	<ul class="more-on__articles ng-list-reset" data-trackable="articles">
 		{{#each articles}}
-			<li class="more-on__article">
+			<li class="more-on__article{{#if image}} more-on__article--with-image{{/if}}">
 				<a class="more-on__article__link ng-title-link" href="/{{id}}" data-trackable="title">
 					{{{title}}}
 					{{#if image}}
