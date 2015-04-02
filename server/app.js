@@ -15,7 +15,8 @@ app.use(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)$/, require('
 app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/fastft'));
 app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)$/, require('./controllers/capi'));
 
-app.get('/:id(' + articleUuidRegex + ')/:taxonomy', require('./controllers/related'));
+app.get('/:id(' + articleUuidRegex + ')/people', require('./controllers/related/people'));
+app.get('/:id(' + articleUuidRegex + ')/organisations', require('./controllers/related/organisations'));
 
 app.get('/more-on/:id', require('./controllers/more-on'));
 app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));

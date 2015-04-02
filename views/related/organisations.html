@@ -1,8 +1,8 @@
 <div class="more-on more-on--organisations">
 	<h2 class="more-on__title">Related organisations</h2>
 	<ul class="more-on__organisations ng-list-reset">
-		{{#each items}}
-			<li class="more-on__organisation">
+		{{#each organisations}}
+			<li class="more-on__organisation"{{#if tickerSymbol}} data-ticker-symbol="{{tickerSymbol}}"{{/if}}>
 				<a class="more-on__organisation__link ng-title-link" href="/stream/organisations/{{v1Name}}">{{v1Name}}</a>
 			</li>
 		{{/each}}

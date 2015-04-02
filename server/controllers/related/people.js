@@ -6,19 +6,18 @@ module.exports = function(req, res, next) {
 	if (!res.locals.flags.articleRelated || res.locals.flags.articleRelated.isSwitchedOff) {
 		return res.status(404).end();
 	}
-	var taxonomy = req.params.taxonomy;
 
 	api.contentLegacy({
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	})
 		.then(function (article) {
-			var relations = article.item.metadata[taxonomy];
+			var relations = article.item.metadata.people;
 			if (!relations.length) {
 				throw new Error('No related');
 			}
 			var promises = relations.map(function (item) {
-				return api.mapping(item.term.id, taxonomy)
+				return api.mapping(item.term.id, 'people')
 					.catch(function(err) {
 						return null;
 					});
@@ -26,34 +25,33 @@ module.exports = function(req, res, next) {
 			return Promise.all(promises)
 				.then(function (results) {
 					// awkwardly need to get the v1 name of the relation for linking to
-					var items = results.map(function (result, index) {
+					var people = results.map(function (result, index) {
 							if (!result) {
 								return null;
 							}
-							console.log(result);
-							var itemModel = {
+							var personModel = {
 								name: result.prefLabel || result.labels[0],
 								v1Name: relations[index].term.name
 							};
 							if (result.memberships) {
 								var latestMembership = result.memberships[0];
-								if (latestMembership.organisation && (!latestMembership.changeEvents || !latestMembership.changeEvents[1])) {
-									itemModel.role = {
+								if (!latestMembership.changeEvents || !latestMembership.changeEvents[1]) {
+									personModel.role = {
 										title: latestMembership.title,
 										organisation: latestMembership.organisation.prefLabel
 									};
 								}
 							}
-							return itemModel;
+							return personModel;
 						})
-						.filter(function (item) {
-							return item;
+						.filter(function (person) {
+							return person;
 						});
-					if (!items.length) {
+					if (!people.length) {
 						throw new Error('No related');
 					}
-					res.render('related/' + taxonomy, {
-						items: items
+					res.render('related/people', {
+						people: people
 					});
 				});
 

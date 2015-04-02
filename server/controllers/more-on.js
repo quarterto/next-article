@@ -17,8 +17,7 @@ module.exports = function (req, res, next) {
 		.then(function (article) {
 			res.set(cacheControl);
 			if (!article || !article.item || !article.item.package || article.item.package.length === 0) {
-				res.status(404).send();
-				return;
+				throw new fetchres.BadServerResponseError();
 			}
 
 			var packagePromises = article.item.package.map(function (item) {
@@ -31,7 +30,6 @@ module.exports = function (req, res, next) {
 						}
 					});
 			});
-
 			return Promise.all(packagePromises);
 		})
 		.then(function (results) {
