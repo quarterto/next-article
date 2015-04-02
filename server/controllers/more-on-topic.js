@@ -29,7 +29,7 @@ module.exports = function (req, res, next) {
 			return api.searchLegacy({
 				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
 				count: req.query.count || 4
-			})
+			});
 		})
 		.then(function (results) {
 			if (!results.length) {

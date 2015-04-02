@@ -20,7 +20,7 @@ module.exports = function () {
 				} else if (change < 0) {
 					change = '-' + change;
 				}
-				var stockEl = document.createElement('div')
+				var stockEl = document.createElement('div');
 				stockEl.className = 'market-data';
 				stockEl.innerHTML =
 					'<p class="market-data__title"><span class="market-data__symbol">' + data.basic.symbol + '</span> Today‘s change</p>' +

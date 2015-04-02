@@ -36,7 +36,8 @@ module.exports = function(req, res, next) {
 							// get the stock id
 							relation.attributes.some(function (attribute) {
 								if (attribute.key === 'wsod_key') {
-									return organisationModel.tickerSymbol = attribute.value;
+									organisationModel.tickerSymbol = attribute.value;
+									return true;
 								}
 								return false;
 							});
