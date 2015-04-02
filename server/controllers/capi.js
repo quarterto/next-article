@@ -65,7 +65,7 @@ module.exports = function(req, res, next) {
 					var $ = cheerio.load(body);
 
 					$('body > p').replaceWith(pStrongsToH3s);
-					$('a[href*=\'#slide0\']').replaceWith(slideshowTransform);
+					$('a[href$="#slide0"]').replaceWith(slideshowTransform);
 					$('big-number').replaceWith(bigNumberTransform);
 					$('img').replaceWith(externalImgTransform);
 					$('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
@@ -137,7 +137,7 @@ module.exports = function(req, res, next) {
 								headerOverlap:
 									$('> .article__main-image').length ||
 									$('> a:first-child').attr('data-asset-type') === 'video' ||
-									$('> p:first-child > ft-slideshow:first-child').length,
+									$('> ft-slideshow:first-child').length,
 								layout: 'wrapper',
 								headerData: {
 									isStream: false,

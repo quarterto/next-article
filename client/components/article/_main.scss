@@ -101,7 +101,7 @@ $header-offset: 30px;
 	> {
 		.article__main-image,
 		.article__video:first-child,
-		p:first-child .article__gallery:first-child {
+		.article__gallery:first-child {
 			margin-top: -$header-offset - 15;
 		}
 	}
