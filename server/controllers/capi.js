@@ -116,7 +116,7 @@ module.exports = function(req, res, next) {
 					// Update the images (resize, add image captions, etc)
 					return images($, res.locals.flags)
 						.then(function ($) {
-							res.render('layout', {
+							return res.render('layout', {
 								article: article,
 								articleV1: articleV1 && articleV1.item,
 								id: getUuid(article.id),

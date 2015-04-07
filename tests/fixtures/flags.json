@@ -1,4 +1,3 @@
-
 [
   {
     "name": "brightcoveAPI",
@@ -39,7 +38,7 @@
     "name": "articleRelatedContent",
     "description": "on = shows the related content component in an article, off = hides it from the user",
     "safeState": false,
-    "expiry": "2015-04-10T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:grumman",
@@ -62,7 +61,7 @@
     "name": "ads",
     "description": "on = shows the ads component, off = hides it from the user",
     "safeState": true,
-    "expiry": "2015-04-01T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:next",
@@ -132,7 +131,7 @@
     "name": "recommend",
     "description": "ability to recommend articles to groups",
     "safeState": false,
-    "expiry": "2015-03-31T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": false,
     "tags": [
       "apps:ilyushin",
@@ -158,7 +157,7 @@
     "name": "globalNavigation",
     "description": "on = global navigation is in the header, off = no global navigation present",
     "safeState": false,
-    "expiry": "2015-04-01T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:next",
@@ -211,22 +210,10 @@
     ]
   },
   {
-    "name": "fastft",
-    "description": "on: fastft content included in streams and pages, off: no fastft content in next",
-    "safeState": false,
-    "expiry": "2015-03-04T00:00:00.000Z",
-    "state": false,
-    "tags": [
-      "apps:dobi",
-      "content"
-    ],
-    "incubating": true
-  },
-  {
     "name": "moreOnImages",
     "description": "on=display images in the more-on streams on an article",
     "safeState": false,
-    "expiry": "2015-04-11T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:grumman",
@@ -249,7 +236,7 @@
     "name": "mediaInStream",
     "description": "on = images\/video display on cards in streams",
     "safeState": false,
-    "expiry": "2015-04-10T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:dobi",
@@ -296,7 +283,7 @@
     "name": "homePageMyPageFeed",
     "description": "on: adds a section for a my page feed on homepage, off: removes it",
     "safeState": false,
-    "expiry": "2015-04-02T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:engels",
@@ -308,7 +295,7 @@
     "name": "homePageLoadMore",
     "description": "on=allows loading of second row of articles on homepage",
     "safeState": false,
-    "expiry": "2015-04-01T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:engels",
@@ -320,7 +307,7 @@
     "description": "on = an enabled application will use the mget (elasticSearch powered) method to fetch items",
     "safeState": false,
     "expiry": "2030-01-01T00:00:00.000Z",
-    "state": false,
+    "state": true,
     "tags": [
       "apps:next",
       "tech",
@@ -354,7 +341,7 @@
     "name": "barriers",
     "description": "on = Users who do have access, or are not logged in will see something telling them what to do to access content, off = They will be redirected to ft.com",
     "safeState": false,
-    "expiry": "2015-04-03T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": false,
     "tags": [
       "apps:next",
@@ -365,7 +352,7 @@
     "name": "optInOut",
     "description": "on = Enables users to opt in\/out of using Next and shows an opt-out button on Next footer, off = Disables feature, hides button on Next",
     "safeState": false,
-    "expiry": "2015-04-09T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:next",
@@ -376,7 +363,7 @@
     "name": "relatedVideoInStream",
     "description": "Shows videos in right hand column of swell streams",
     "safeState": false,
-    "expiry": "2015-04-01T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:dobi",
@@ -444,7 +431,7 @@
     "name": "articleTOC",
     "description": "Show a table of contents on articles with > 1 subheader.",
     "safeState": false,
-    "expiry": "2015-04-04T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:grumman",
@@ -466,7 +453,7 @@
     "name": "authGate",
     "description": "For Testing Only!!",
     "safeState": true,
-    "expiry": "2015-04-04T00:00:00.000Z",
+    "expiry": "2015-04-14T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:next",
@@ -533,13 +520,57 @@
     ]
   },
   {
+    "name": "mentionsV2",
+    "description": "Start showing mentions (on articles) from CAPI v2",
+    "safeState": false,
+    "expiry": "2015-07-01T00:00:00.000Z",
+    "state": false,
+    "tags": [
+      "apps:grumman",
+      "content"
+    ]
+  },
+  {
+    "name": "articleRelated",
+    "description": "Show the related people, organisations, etc components on articles",
+    "safeState": false,
+    "expiry": "2015-06-01T00:00:00.000Z",
+    "state": true,
+    "tags": [
+      "apps:grumman",
+      "content"
+    ]
+  },
+  {
+    "name": "semanticStreams",
+    "description": "Streams generated from semantic metadata",
+    "safeState": false,
+    "expiry": "2015-07-01T00:00:00.000Z",
+    "state": false,
+    "tags": [
+      "apps:letov",
+      "content"
+    ]
+  },
+  {
     "name": "nextBlogpost",
     "description": "Show a link to the FT prototype blogpost on the welcome panel",
     "safeState": false,
-    "expiry": "2015-03-30T00:00:00.000Z",
+    "expiry": "2015-07-01T00:00:00.000Z",
     "state": true,
     "tags": [
       "apps:next"
+    ]
+  },
+  {
+    "name": "s3",
+    "description": "Use hashed assets from S3",
+    "safeState": false,
+    "expiry": "2030-01-01T00:00:00.000Z",
+    "state": true,
+    "tags": [
+      "apps:next",
+      "tech"
     ]
   },
   {
