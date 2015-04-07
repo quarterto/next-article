@@ -98,3 +98,6 @@ provision:
 
 smoke:
 	export TEST_URL=${TEST_URL}; next-build-tools nightwatch tests/browser/tests/*
+
+update-flags:
+	 curl http://next.ft.com/__flags.json > tests/fixtures/flags.json

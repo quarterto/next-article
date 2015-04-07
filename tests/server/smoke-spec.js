@@ -8,8 +8,8 @@ var nock = require('nock');
 var request = require('request');
 var $ = require('cheerio');
 
-var articleV1Elastic = require('../fixtures/capi-v1-elastic-search.json')
-var articleV2 = require('fs').readFileSync('tests/fixtures/capi-v2.json', { encoding: 'utf8' });
+var articleV1Elastic = require('../fixtures/capi-v1-elastic-search.json');
+var articleV2 = require('../fixtures/capi-v2.json');
 
 var host = 'http://localhost:' + PORT;
 
