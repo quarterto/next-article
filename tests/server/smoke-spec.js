@@ -1,9 +1,9 @@
-/*global it, describe, before, beforeEach*/
+/*global it, describe, before, beforeEach, afterEach*/
 'use strict';
 
 var PORT = process.env.PORT || 3001;
 var expect = require('chai').expect;
-var should = require('chai').should();
+require('chai').should();
 var nock = require('nock');
 var request = require('request');
 var $ = require('cheerio');
