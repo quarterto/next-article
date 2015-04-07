@@ -13,6 +13,7 @@ var articleV2 = require('fs').readFileSync('tests/fixtures/capi2.json', { encodi
 var fastFtBody = require('fs').readFileSync('tests/fixtures/fastft/rocket.json', { encoding: 'utf8' });
 var fastFtErrorBody = require('fs').readFileSync('tests/fixtures/fastft/notfound.json', { encoding: 'utf8' });
 var search = require('fs').readFileSync('tests/fixtures/search-for__climate-change', { encoding: 'utf8' });
+var flags = require('fs').readFileSync('tests/fixtures/flags.json', { encoding: 'utf8' });
 
 var host = 'http://localhost:' + PORT;
 
@@ -35,6 +36,9 @@ var mockMethode = function() {
 describe('Smoke Tests: ', function() {
 
 	before(function() {
+		nock('http://ft-next-api-feature-flags.herokuapp.com')
+			.get('/production')
+			.reply(200, flags);
 		return require('../../server/app').listen;
 	});
 
