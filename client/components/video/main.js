@@ -11,23 +11,23 @@ var video = [
 
 function brightcoveInit(el) {
 	var url = el.getAttribute('href');
-	var videoId = url.slice((url.lastIndexOf('/')+1)).trim();
 
-	return brightcove(videoId).then(function(data) {
-		var videoEl = document.createElement('video');
-		videoEl.setAttribute('src', data.src);
-		videoEl.setAttribute('data-content-id', videoId);
-		videoEl.setAttribute(
-			'poster',
-			'//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(data.poster) + '?width=690&source=grumman&fit=scale-down'
-		);
-		videoEl.setAttribute('controls', 'true');
-		videoEl.className = 'article__video';
-		el.parentNode.replaceChild(videoEl, el);
-	}).catch(function(e){
-		el.parentNode.removeChild(el);
-		setTimeout(function() { throw e; });
-	});
+	return brightcove(url)
+		.then(function (data) {
+			var videoEl = document.createElement('video');
+			videoEl.setAttribute('src', data.src);
+			videoEl.setAttribute('data-content-id', data.id);
+			videoEl.setAttribute(
+				'poster',
+				'//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(data.poster) + '?width=690&source=grumman&fit=scale-down'
+			);
+			videoEl.setAttribute('controls', 'true');
+			videoEl.className = 'article__video';
+			el.parentNode.replaceChild(videoEl, el);
+		}).catch(function(e){
+			el.parentNode.removeChild(el);
+			setTimeout(function() { throw e; });
+		});
 }
 
 function youtubeInit(el) {
