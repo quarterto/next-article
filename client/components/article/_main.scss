@@ -142,7 +142,7 @@ $header-offset: 30px;
 	width: 100%;
 
 	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
-	.article__inline-image & {
+	&.article__inline-image {
 		display: table;
 		table-layout: fixed;
 		@include oGridRespondTo(S) {
