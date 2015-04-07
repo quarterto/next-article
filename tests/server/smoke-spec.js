@@ -3,6 +3,7 @@
 
 var PORT = process.env.PORT || 3001;
 var expect = require('chai').expect;
+var should = require('chai').should();
 var nock = require('nock');
 var request = require('request');
 var $ = require('cheerio');
@@ -35,6 +36,10 @@ describe('Smoke Tests: ', function() {
 
 	before(function() {
 		return require('../../server/app').listen;
+	});
+
+	afterEach(function () {
+		nock.cleanAll();
 	});
 
 	describe('Assets', function() {
@@ -121,9 +126,7 @@ describe('Smoke Tests: ', function() {
 				.get('/api?request=%5B%7B%22action%22:%22getPost%22,%22arguments%22:%7B%22id%22:237332%7D%7D%5D')
 				.reply(200, fastFtErrorBody);
 
-			request({
-				url: host + '/fastft/237332/rocket-internet-has-12-proven-losers-1st-half'
-			}, function(error, response, body) {
+			request(host + '/fastft/237332/rocket-internet-has-12-proven-losers-1st-half', function(error, response, body) {
 				expect(response.statusCode).to.equal(404);
 				done();
 			});
@@ -151,7 +154,7 @@ describe('Smoke Tests: ', function() {
 
 	describe('More On', function() {
 
-		it('should behave gracefully if there is no primaryTheme', function() {
+		it('should behave gracefully if there is no primaryTheme', function (done) {
 			nock('http://api.ft.com')
 				.filteringPath(/content\/items\/v1\/[^\/]*\?feature.blogposts=on$/, 'content/items/v1/XXX?feature.blogposts=on')
 				.get('/content/items/v1/XXX?feature.blogposts=on')
@@ -162,11 +165,33 @@ describe('Smoke Tests: ', function() {
 				.times(5)
 				.reply(200, require('../fixtures/capiv2-article.json'));
 
-			return fetch(host + '/more-on/f2b13800-c70c-11e4-8e1f-00144feab7de')
-				.then(function(response) {
-					expect(response.ok).to.be.true;
-				});
+			request(host + '/more-on/f2b13800-c70c-11e4-8e1f-00144feab7de', function (error, response, body) {
+				response.statusCode.should.equal(200);
+				done();
+			});
 		});
 
 	});
+
+	describe('Elastic Search', function() {
+
+		it('should work using elastic search', function (done) {
+			nock('https://ft-elastic-search.com')
+				.get('/v1_api_v2/item/d0a14962-6e56-11e4-afe5-00144feabdc0')
+				.reply(200, require('../fixtures/capiv1-article-elastic-search.json'));
+			nock('http://api.ft.com')
+				.get('/enrichedcontent/d0a14962-6e56-11e4-afe5-00144feabdc0')
+				.reply(200, articleV2);
+
+			request({
+				url: host + '/d0a14962-6e56-11e4-afe5-00144feabdc0',
+				headers: { Cookie: 'next-flags=elasticSearchItemGet:on' }
+			}, function (error, response, body) {
+				response.statusCode.should.equal(200);
+				done();
+			});
+		});
+
+	});
+
 });

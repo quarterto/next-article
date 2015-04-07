@@ -1,0 +1,560 @@
+{
+  "_index": "v1_api_v2",
+  "_type": "item",
+  "_id": "d0a14962-6e56-11e4-afe5-00144feabdc0",
+  "_version": 1,
+  "found": true,
+  "_source": {
+    "requestUrl": "http:\/\/api.ft.com\/content\/items\/v1\/d0a14962-6e56-11e4-afe5-00144feabdc0",
+    "item": {
+      "aspectSet": "article",
+      "aspects": [
+        "assets",
+        "body",
+        "editorial",
+        "images",
+        "lifecycle",
+        "location",
+        "master",
+        "mediaAssets",
+        "metadata",
+        "package",
+        "packaging",
+        "provenance",
+        "summary",
+        "title"
+      ],
+      "modelVersion": "1",
+      "id": "d0a14962-6e56-11e4-afe5-00144feabdc0",
+      "apiUrl": "http:\/\/api.ft.com\/content\/items\/v1\/d0a14962-6e56-11e4-afe5-00144feabdc0",
+      "title": {
+        "title": "Halliburton offers concessions to secure $38bn Baker Hughes deal"
+      },
+      "body": {
+        "mediaType": "text\/html",
+        "body": "<p>Halliburton disclosed on Monday it was prepared to make large disposals to try to overcome regulators\u2019 expected objections to its agreed $38bn takeover of rival oil services company Baker Hughes.<\/p>\n<p><a title=\"Halliburton: Desperate measures - Lex - FT.com\" href=\"http:\/\/www.ft.com\/cms\/s\/3\/88b94ec8-6e6b-11e4-bffb-00144feabdc0.html\">Investor concerns<\/a> that regulators could decide the takeover would damage competition in the industry, and the promise of a $3.5bn break fee to Baker Hughes should the deal be blocked, contributed to a fall of more than 10 per cent in Halliburton\u2019s shares by the close in New York. Baker Hughes shares rose nearly 9 per cent.<\/p>\n<p>The agreement on the stock and cash takeover follows a month of <a title=\"Baker Hughes rejects Halliburton takeover approach - FT.com\" href=\"http:\/\/www.ft.com\/cms\/s\/0\/8b8526aa-6ce9-11e4-ad7c-00144feabdc0.html?siteedition=uk\">fractious talks<\/a> between the two companies\u2019 leaders, in which <a title=\"Baker Hughes news headlines - FT.com\" href=\"http:\/\/www.ft.com\/topics\/organisations\/Baker_Hughes_Inc\">Baker Hughes<\/a> complained it was being pressed into agreeing a deal too quickly, and <a title=\"Halliburton news headlines - FT.com\" href=\"http:\/\/www.ft.com\/topics\/organisations\/Halliburton_Co\">Halliburton<\/a> moved to prepare for a hostile bid.<\/p>\n<p>The two companies\u2019 chief executives met in Texas on Saturday and agreed a price that offers a premium of about 40 per cent to Baker Hughes\u2019 share price before Halliburton made its initial takeover proposal on October 13.<\/p>\n<p>Halliburton is the world\u2019s second-largest oil services company and Baker Hughes the third largest, and their combined global market shares for some products and services would exceed 40 per cent.<\/p>\n<p>The two companies said they were confident that they could meet any requirements that competition regulators might impose, and were prepared to sell businesses with up to $7.5bn in revenues \u2013 about a third of Baker Hughes\u2019 sales \u2013 if necessary. The break fee is a sign of Halliburton\u2019s confidence that it can win over regulators.<\/p>\n<p>Dave Lesar, Halliburton\u2019s chief executive, told the Financial Times: \u201cWe are prepared to have some divestitures to get antitrust approval. My email inbox has lit up this morning with people wanting to buy pieces of this business. We are confident there will be buyers.\u201d<\/p>\n<p>A combined Halliburton and Baker Hughes would have global market shares of 37 per cent for hydraulic fracturing, 41 per cent for drill bits and 49 per cent for well cementing services, according to Spears &amp; Associates, a research firm.<\/p>\n<aside data-asset-type=\"promoBox\" data-asset-name=\"asset1\"><\/aside><p>Rob Desai, an analyst at Edward Jones, said the deal would still make sense for Halliburton even if it had to sell some significant businesses, but added that there was uncertainty about approvals from regulators.<\/p>\n<p>\u201cThe issue really comes down to the [US] Department of Justice \u2013 how will it identify assets, and what will Halliburton end up having to divest,\u201d he said.<\/p>\n<p>Share prices on Monday suggested scepticism that the deal would be able to go ahead as planned.<\/p>\n<p>The offer is worth 1.12 Halliburton shares plus $19 in cash for each Baker Hughes share. It meant the offer was worth $74.94 per Baker Hughes share on Monday, compared with the company\u2019s stock price of $65.23 by the close.<\/p>\n<p>Halliburton shares were down 10.62 per cent at $49.23.<\/p>\n<p>Mr Lesar said one attraction of the deal was Baker Hughes\u2019 capability in areas where Halliburton was relatively weak, including production chemicals and pumps used to increase oil recovery from wells. Those operations have become increasingly important in the US shale oil boom, which has led to a surge in production as crude and other liquids are extracted from previously inaccessible reserves.<\/p>\n<p>Halliburton has for many years been looking for a deal to bring it closer to the size of Schlumberger, the world\u2019s largest oil services group, and had previously talked with Baker Hughes about a possible deal in 2005. Schlumberger\u2019s market capitalisation is about $122bn, compared with $46bn for Halliburton.<\/p>\n<p>Mr Lesar said being larger would help Halliburton compete in markets outside the US, where it has lagged behind Schlumberger. \u201cYou can spread your fixed costs and offer more product lines and services, so you have a more compelling offering for customers,\u201d he said.<\/p>\n<p>The two companies have justified the large takeover premium by saying they can achieve $2bn a year of savings by cutting costs, including applying Halliburton\u2019s efficiency programmes to Baker Hughes\u2019 operations in North America, which have been making much lower profit margins, and reducing duplication in areas such as central administration, property, and research and development.<\/p>\n<p>Mr Lesar denied suggestions that the timing of the approach from Halliburton was related to the decline in <a title=\"Living with cheaper oil - FT.com\" href=\"http:\/\/www.ft.com\/indepth\/living-with-cheaper-oil\">oil prices<\/a>, which have dropped about 30 per cent since June.<\/p>\n<p>There are already signs of oil and gas companies paring back their spending as a result, implying pressure on activity and profit margins for oil services companies.<\/p>\n<p>However, Mr Lesar said: \u201cWe would have done this transaction even if oil prices were going up.\u201d<\/p>\n<p>The deal would be the largest corporate takeover by equity value in the global oil and gas industry since 2000, according to Dealogic.<\/p>\n<p>In nominal terms 2014 has been a record year for mergers and acquisitions in the US energy sector, with a total of $274bn worth of deals announced, according to S&amp;P Capital IQ.<\/p>\n<p>Credit Suisse served as lead financial adviser to Halliburton, while Goldman Sachs advised Baker Hughes on the deal.<\/p>\n\n\n\n\n\n\n"
+      },
+      "lifecycle": {
+        "initialPublishDateTime": "2014-11-17T12:52:08Z",
+        "lastPublishDateTime": "2014-11-17T16:35:51Z"
+      },
+      "location": {
+        "uri": "http:\/\/www.ft.com\/cms\/s\/0\/d0a14962-6e56-11e4-afe5-00144feabdc0.html"
+      },
+      "summary": {
+        "excerpt": "Combined US oil services groups would have fracking market share of 37%"
+      },
+      "packaging": {
+        "spHeadline": "Halliburton $38bn deal follows tough talks"
+      },
+      "master": {
+        "masterSource": "Methode",
+        "masterEntityId": "d0a14962-6e56-11e4-afe5-00144feabdc0"
+      },
+      "editorial": {
+        "subheading": "Combined US oil services groups would have fracking market share of 37%",
+        "standFirst": "Combined US oil services groups would have fracking market share of 37%",
+        "byline": "Ed Crooks and Ed Hammond in New York"
+      },
+      "provenance": {
+        "originatingParty": "FT"
+      },
+      "metadata": {
+        "primarySection": {
+          "term": {
+            "name": "Oil & Gas",
+            "id": "MzI=-U2VjdGlvbnM=",
+            "attributes": [
+
+            ],
+            "taxonomy": "sections"
+          }
+        },
+        "primaryTheme": {
+          "term": {
+            "name": "Halliburton Co",
+            "id": "T05fbnlzZS1leHRyYV9mZXYtMjAwOF83MDVfTVNM-T04=",
+            "attributes": [
+              {
+                "key": "wsod_key",
+                "value": "us:HAL"
+              },
+              {
+                "key": "is_company",
+                "value": "true"
+              }
+            ],
+            "taxonomy": "organisations"
+          }
+        },
+        "tags": [
+          {
+            "term": {
+              "name": "Oil & Gas",
+              "id": "MzI=-U2VjdGlvbnM=",
+              "attributes": [
+
+              ],
+              "taxonomy": "sections"
+            }
+          },
+          {
+            "term": {
+              "name": "Halliburton Co",
+              "id": "T05fbnlzZS1leHRyYV9mZXYtMjAwOF83MDVfTVNM-T04=",
+              "attributes": [
+                {
+                  "key": "wsod_key",
+                  "value": "us:HAL"
+                },
+                {
+                  "key": "is_company",
+                  "value": "true"
+                }
+              ],
+              "taxonomy": "organisations"
+            }
+          },
+          {
+            "term": {
+              "name": "News",
+              "id": "Nw==-R2VucmVz",
+              "attributes": [
+
+              ],
+              "taxonomy": "genre"
+            }
+          },
+          {
+            "term": {
+              "name": "Text",
+              "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+              "attributes": [
+
+              ],
+              "taxonomy": "mediaType"
+            }
+          },
+          {
+            "term": {
+              "name": "Goldman Sachs Group Inc",
+              "attributes": [
+                {
+                  "key": "FTSymbol",
+                  "value": "us:GS"
+                }
+              ]
+            }
+          },
+          {
+            "term": {
+              "name": "Halliburton Co",
+              "attributes": [
+                {
+                  "key": "FTSymbol",
+                  "value": "us:HAL"
+                }
+              ]
+            }
+          },
+          {
+            "term": {
+              "name": "Credit Suisse Group AG",
+              "attributes": [
+                {
+                  "key": "FTSymbol",
+                  "value": "ch:CSGN"
+                }
+              ]
+            }
+          },
+          {
+            "term": {
+              "name": "Schlumberger NV",
+              "attributes": [
+                {
+                  "key": "FTSymbol",
+                  "value": "us:SLB"
+                }
+              ]
+            }
+          },
+          {
+            "term": {
+              "name": "Baker Hughes Inc",
+              "attributes": [
+                {
+                  "key": "FTSymbol",
+                  "value": "us:BHI"
+                }
+              ]
+            }
+          }
+        ],
+        "authors": [
+          {
+            "term": {
+              "name": "Ed Hammond",
+              "id": "Q0ItMDAwMDc2Nw==-QXV0aG9ycw==",
+              "attributes": [
+
+              ],
+              "taxonomy": "authors"
+            }
+          },
+          {
+            "term": {
+              "name": "Ed Crooks",
+              "id": "Q0ItMDAwMDcwNQ==-QXV0aG9ycw==",
+              "attributes": [
+
+              ],
+              "taxonomy": "authors"
+            }
+          }
+        ],
+        "brand": [
+
+        ],
+        "genre": [
+          {
+            "term": {
+              "name": "News",
+              "id": "Nw==-R2VucmVz",
+              "attributes": [
+
+              ],
+              "taxonomy": "genre"
+            }
+          }
+        ],
+        "icb": [
+          {
+            "term": {
+              "name": "0500 Oil & Gas",
+              "id": "Mg==-SUNC",
+              "attributes": [
+
+              ],
+              "taxonomy": "icb"
+            }
+          },
+          {
+            "term": {
+              "name": "0530 Oil & Gas Producers",
+              "id": "Mw==-SUNC",
+              "attributes": [
+
+              ],
+              "taxonomy": "icb"
+            }
+          },
+          {
+            "term": {
+              "name": "0533 Exploration & Production",
+              "id": "NA==-SUNC",
+              "attributes": [
+
+              ],
+              "taxonomy": "icb"
+            }
+          },
+          {
+            "term": {
+              "name": "0573 Oil Equipment & Services",
+              "id": "Nw==-SUNC",
+              "attributes": [
+
+              ],
+              "taxonomy": "icb"
+            }
+          }
+        ],
+        "iptc": [
+          {
+            "term": {
+              "name": "04008017 - prices",
+              "id": "MDQwMDgwMTc=-SVBUQw==",
+              "attributes": [
+
+              ],
+              "taxonomy": "iptc"
+            }
+          },
+          {
+            "term": {
+              "name": "04008026 - stocks",
+              "id": "MDQwMDgwMjY=-SVBUQw==",
+              "attributes": [
+
+              ],
+              "taxonomy": "iptc"
+            }
+          },
+          {
+            "term": {
+              "name": "04009001 - energy",
+              "id": "MDQwMDkwMDE=-SVBUQw==",
+              "attributes": [
+
+              ],
+              "taxonomy": "iptc"
+            }
+          },
+          {
+            "term": {
+              "name": "04016005 - merger, acquisition and takeover",
+              "id": "MDQwMTYwMDU=-SVBUQw==",
+              "attributes": [
+
+              ],
+              "taxonomy": "iptc"
+            }
+          }
+        ],
+        "mediaType": [
+          {
+            "term": {
+              "name": "Text",
+              "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+              "attributes": [
+
+              ],
+              "taxonomy": "mediaType"
+            }
+          }
+        ],
+        "organisations": [
+          {
+            "term": {
+              "name": "Halliburton Co",
+              "id": "T05fbnlzZS1leHRyYV9mZXYtMjAwOF83MDVfTVNM-T04=",
+              "attributes": [
+                {
+                  "key": "wsod_key",
+                  "value": "us:HAL"
+                },
+                {
+                  "key": "is_company",
+                  "value": "true"
+                }
+              ],
+              "taxonomy": "organisations"
+            }
+          },
+          {
+            "term": {
+              "name": "Baker Hughes Inc",
+              "id": "TnN0ZWluX09OX0FGVE1fT05fODM3-T04=",
+              "attributes": [
+                {
+                  "key": "wsod_key",
+                  "value": "us:BHI"
+                },
+                {
+                  "key": "is_company",
+                  "value": "true"
+                }
+              ],
+              "taxonomy": "organisations"
+            }
+          }
+        ],
+        "people": [
+          {
+            "term": {
+              "name": "Dave Lesar",
+              "id": "ZDEwNjQ0MTEtNjZkYi00ZWFmLWI3MWItNzIxYTM4MTMwZmQx-UE4=",
+              "attributes": [
+
+              ],
+              "taxonomy": "people"
+            }
+          }
+        ],
+        "regions": [
+          {
+            "term": {
+              "name": "United States of America",
+              "id": "TnN0ZWluX0dMX1VT-R0w=",
+              "attributes": [
+
+              ],
+              "taxonomy": "regions"
+            }
+          },
+          {
+            "term": {
+              "name": "Texas",
+              "id": "TnN0ZWluX0dMX1VTX1RleGFz-R0w=",
+              "attributes": [
+
+              ],
+              "taxonomy": "regions"
+            }
+          }
+        ],
+        "sections": [
+          {
+            "term": {
+              "name": "Companies",
+              "id": "Mjk=-U2VjdGlvbnM=",
+              "attributes": [
+
+              ],
+              "taxonomy": "sections"
+            }
+          },
+          {
+            "term": {
+              "name": "Energy",
+              "id": "MzA=-U2VjdGlvbnM=",
+              "attributes": [
+
+              ],
+              "taxonomy": "sections"
+            }
+          },
+          {
+            "term": {
+              "name": "Oil & Gas",
+              "id": "MzI=-U2VjdGlvbnM=",
+              "attributes": [
+
+              ],
+              "taxonomy": "sections"
+            }
+          },
+          {
+            "term": {
+              "name": "US & Canadian Companies",
+              "id": "NjU=-U2VjdGlvbnM=",
+              "attributes": [
+
+              ],
+              "taxonomy": "sections"
+            }
+          }
+        ],
+        "specialReports": [
+
+        ],
+        "subjects": [
+          {
+            "term": {
+              "name": "Natural Resources",
+              "id": "MTMw-U3ViamVjdHM=",
+              "attributes": [
+
+              ],
+              "taxonomy": "subjects"
+            }
+          },
+          {
+            "term": {
+              "name": "Mergers & Acquisitions",
+              "id": "Mjc=-U3ViamVjdHM=",
+              "attributes": [
+
+              ],
+              "taxonomy": "subjects"
+            }
+          }
+        ],
+        "topics": [
+          {
+            "term": {
+              "name": "Mergers & Acquisitions",
+              "id": "Mjk=-VG9waWNz",
+              "attributes": [
+
+              ],
+              "taxonomy": "topics"
+            }
+          }
+        ]
+      },
+      "images": [
+        {
+          "url": "http:\/\/im.ft-static.com\/content\/images\/4b23d339-b86a-462c-8597-1e5890089a2f.img",
+          "type": "primary",
+          "source": "Bloomberg",
+          "caption": "A Halliburton worker at an oil fracking site in Colorado",
+          "height": 153,
+          "width": 272,
+          "mediaType": "image\/jpeg"
+        },
+        {
+          "url": "http:\/\/im.ft-static.com\/content\/images\/26231bc6-a596-4a6c-a436-c6bec406cd63.img",
+          "type": "secondary",
+          "source": "Bloomberg",
+          "caption": "A Halliburton worker at an oil fracking site in Colorado",
+          "height": 94,
+          "width": 167,
+          "mediaType": "image\/jpeg"
+        },
+        {
+          "url": "http:\/\/im.ft-static.com\/content\/images\/7c17ce0a-bddd-40f8-9dec-35c8f2648401.img",
+          "type": "article",
+          "source": "Bloomberg",
+          "caption": "A Halliburton worker at an oil fracking site in Colorado",
+          "height": 338,
+          "width": 600,
+          "mediaType": "image\/jpeg"
+        },
+        {
+          "url": "http:\/\/im.ft-static.com\/content\/images\/7256122a-3879-47bd-ae74-318f30b3240a.img",
+          "type": "leader",
+          "source": "Bloomberg",
+          "caption": "A Halliburton worker at an oil fracking site in Colorado",
+          "height": 233,
+          "width": 414,
+          "mediaType": "image\/jpeg"
+        },
+        {
+          "url": "http:\/\/im.ft-static.com\/content\/images\/0b877dbc-9e5f-477b-a158-5e252c6740de.img",
+          "type": "wide-format",
+          "source": "Bloomberg",
+          "caption": "A Halliburton worker at an oil fracking site in Colorado",
+          "height": 547,
+          "width": 972,
+          "mediaType": "image\/jpeg"
+        },
+        {
+          "url": "http:\/\/im.ft-static.com\/content\/images\/77e5c048-0752-11df-a9b7-00144feabdc0.img",
+          "type": "promo",
+          "source": "Financial Times",
+          "alt": "Lex",
+          "height": 96,
+          "width": 167,
+          "mediaType": "image\/jpeg"
+        }
+      ],
+      "package": [
+
+      ],
+      "assets": [
+        {
+          "type": "promoBox",
+          "name": "asset1",
+          "fields": {
+            "headline": "<p>Halliburton: Desperate measures<\/p>",
+            "intro": "<p>A mostly stock deal with a big premium makes little sense<\/p>\n<p><a title=\"Halliburton: desperate measures - FT.com\" href=\"http:\/\/www.ft.com\/cms\/s\/3\/88b94ec8-6e6b-11e4-bffb-00144feabdc0.html\">Continue reading<\/a>\n<\/p>",
+            "image": {
+              "url": "http:\/\/im.ft-static.com\/content\/images\/77e5c048-0752-11df-a9b7-00144feabdc0.img",
+              "type": "promo",
+              "source": "Financial Times",
+              "alt": "Lex",
+              "height": 96,
+              "width": 167,
+              "mediaType": "image\/jpeg"
+            }
+          }
+        }
+      ],
+      "mediaAssets": [
+
+      ]
+    }
+  }
+}
