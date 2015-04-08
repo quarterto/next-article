@@ -1,11 +1,10 @@
 /*global describe, it*/
 'use strict';
 
-var PORT = process.env.PORT || 3001;
 require('chai').should();
 var nock = require('nock');
 
-var host = 'http://localhost:' + PORT;
+var helpers = require('../../helpers');
 
 module.exports = function () {
 
@@ -20,7 +19,7 @@ module.exports = function () {
 				.get('/concordance_mapping_v1tov2/people/XXX')
 				.reply(200, require('../../../fixtures/mapping.json'));
 
-			return fetch(host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
+			return fetch(helpers.host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
 				.then(function (response) {
 					response.status.should.equal(200);
 					return response.text().then(function (text) {
@@ -34,7 +33,7 @@ module.exports = function () {
 				.get('/v1_api_v2/item/f2b13800-c70c-11e4-8e1f-00144feab7de')
 				.reply(404);
 
-			return fetch(host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
+			return fetch(helpers.host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
 				.then(function (response) {
 					response.status.should.equal(404);
 				});
@@ -45,7 +44,7 @@ module.exports = function () {
 				.get('/v1_api_v2/item/f2b13800-c70c-11e4-8e1f-00144feab7de')
 				.reply(200, require('../../../fixtures/capi-v1-elastic-search-no-people.json'));
 
-			return fetch(host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
+			return fetch(helpers.host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
 				.then(function (response) {
 					response.status.should.equal(200);
 					return response.text().then(function (text) {

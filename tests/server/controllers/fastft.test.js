@@ -1,12 +1,11 @@
 /*global  describe, it*/
 'use strict';
 
-var PORT = process.env.PORT || 3001;
 var expect = require('chai').expect;
 var nock = require('nock');
 var request = require('request');
 
-var host = 'http://localhost:' + PORT;
+var helpers = require('../helpers');
 
 module.exports = function () {
 
@@ -18,7 +17,7 @@ module.exports = function () {
 				.reply(200, require('../../fixtures/fastft/rocket.json'));
 
 			request({
-				url: host + '/fastft/237332/rocket-internet-has-12-proven-losers-1st-half',
+				url: helpers.host + '/fastft/237332/rocket-internet-has-12-proven-losers-1st-half',
 				followRedirect: false
 			}, function(error, response, body) {
 				expect(response.statusCode).to.equal(302);
@@ -32,7 +31,7 @@ module.exports = function () {
 				.get('/api?request=%5B%7B%22action%22:%22getPost%22,%22arguments%22:%7B%22id%22:237332%7D%7D%5D')
 				.reply(200, require('../../fixtures/fastft/not-found.json'));
 
-			request(host + '/fastft/237332/rocket-internet-has-12-proven-losers-1st-half', function(error, response, body) {
+			request(helpers.host + '/fastft/237332/rocket-internet-has-12-proven-losers-1st-half', function(error, response, body) {
 				expect(response.statusCode).to.equal(404);
 				done();
 			});
