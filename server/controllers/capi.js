@@ -14,7 +14,6 @@ var subheadersTransform = require('../transforms/subheaders');
 var addSubheaderIds = require('../transforms/add-subheader-ids');
 var replaceHrs = require('../transforms/replace-hrs');
 var replaceEllipses = require('../transforms/replace-ellipses');
-var pStrongsToH3s = require('../transforms/p-strongs-to-h3s');
 var externalImgTransform = require('../transforms/external-img');
 var removeBodyTransform = require('../transforms/remove-body');
 var images = require('../transforms/images');
@@ -64,7 +63,6 @@ module.exports = function(req, res, next) {
 					body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 					var $ = cheerio.load(body);
 
-					$('body > p').replaceWith(pStrongsToH3s);
 					$('a[href$="#slide0"]').replaceWith(slideshowTransform);
 					$('big-number').replaceWith(bigNumberTransform);
 					$('img').replaceWith(externalImgTransform);
