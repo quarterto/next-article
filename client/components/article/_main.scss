@@ -139,8 +139,6 @@ $header-offset: 30px;
 	@include nextIcon(arrow-right, #b0b0b0, 60);
 }
 .article__image-wrapper {
-	width: 100%;
-
 	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
 	&.article__inline-image {
 		display: table;
@@ -152,6 +150,10 @@ $header-offset: 30px;
 }
 .article__inline-image {
 	max-width: 600px;
+
+	@include oGridRespondTo($until: S) {
+		margin: 0 auto;
+	}
 }
 .article__image {
 	display: block;
