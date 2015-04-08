@@ -36,17 +36,24 @@
 	color: #ffffff;
 	text-transform: none;
 
-	@include oGridRespondTo(S) {
-		padding-bottom: 10px;
-
-		.more-on--with-image &,
-		.more-on--authors & {
-			padding-right: 220px;
-		}
-	}
 	.more-on--with-image &,
 	.more-on--authors & {
-		padding-bottom: 30px;
+		@include oGridRespondTo($until: S) {
+			padding-bottom: 30px;
+		}
+	}
+	.more-on--with-image & {
+		@include oGridRespondTo(S) {
+			padding-right: 220px;
+		}
+		@include oGridRespondTo(M) {
+			padding-right: 320px;
+		}
+	}
+	.more-on--authors & {
+		@include oGridRespondTo(S) {
+			padding-right: 120px;
+		}
 	}
 	&:after {
 		@include nextIcon(arrow-right, #ffffff, 20);
@@ -71,6 +78,7 @@
 		position: absolute;
 		margin-top: -40px;
 		right: 10px;
+		left: auto;
 	}
 }
 .more-on__articles {
@@ -98,10 +106,17 @@
 	&.more-on__article--with-image {
 		padding-right: 110px;
 	}
-	.more-on--with-image &,
-	.more-on--authors & {
+	.more-on--with-image & {
 		@include oGridRespondTo(S) {
 			padding-right: 220px;
+		}
+		@include oGridRespondTo(M) {
+			padding-right: 320px;
+		}
+	}
+	.more-on--authors & {
+		@include oGridRespondTo(S) {
+			padding-right: 120px;
 		}
 	}
 	.more-on__article__link {
@@ -127,6 +142,9 @@
 			margin-top: 0;
 			top: -40px;
 			right: 10px;
+		}
+		@include oGridRespondTo(M) {
+			width: 300px;
 		}
 	}
 }

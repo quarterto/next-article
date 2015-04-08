@@ -17,8 +17,6 @@ module.exports = function () {
 				var change = Math.round(data.quote.change1DayPercent * 100) / 100;
 				if (change > 0) {
 					change = '+' + change;
-				} else if (change < 0) {
-					change = '-' + change;
 				}
 				var stockEl = document.createElement('div');
 				stockEl.className = 'market-data';
