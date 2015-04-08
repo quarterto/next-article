@@ -92,7 +92,7 @@ tidy:
 provision:
 	next-build-tools provision ${TEST_HOST}
 	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
-	next-build-tools deploy-hashed-assets # experimental
+	next-build-tools deploy-hashed-assets
 	next-build-tools deploy ${TEST_HOST}
 	make smoke
 
