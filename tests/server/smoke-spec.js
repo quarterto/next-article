@@ -192,4 +192,55 @@ describe('Smoke Tests: ', function() {
 
 	});
 
+	describe('Related', function () {
+
+		describe('People', function () {
+
+			it('should be successful ', function () {
+				nock('http://api.ft.com')
+					.get('/content/items/v1/f2b13800-c70c-11e4-8e1f-00144feab7de?feature.blogposts=on')
+					.reply(200, require('../fixtures/capi1.json'));
+				nock('https://next-v1tov2-mapping-dev.herokuapp.com')
+					.filteringPath(/^\/concordance_mapping_v1tov2\/people\/.*$/, '/concordance_mapping_v1tov2/people/XXX')
+					.get('/concordance_mapping_v1tov2/people/XXX')
+					.reply(200, require('../fixtures/mapping.json'));
+
+				return fetch(host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
+					.then(function (response) {
+						response.status.should.equal(200);
+						return response.text().then(function (text) {
+							text.should.not.be.empty;
+						});
+					});
+			});
+
+			it('should return 404 if article doesn‘t exist', function () {
+				nock('http://api.ft.com')
+					.get('/content/items/v1/f2b13800-c70c-11e4-8e1f-00144feab7de?feature.blogposts=on')
+					.reply(404);
+
+				return fetch(host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
+					.then(function (response) {
+						response.status.should.equal(404);
+					});
+			});
+
+			it('should return 200 and empty response if no related people', function () {
+				nock('http://api.ft.com')
+					.get('/content/items/v1/f2b13800-c70c-11e4-8e1f-00144feab7de?feature.blogposts=on')
+					.reply(200, require('../fixtures/article-no-people.json'));
+
+				return fetch(host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
+					.then(function (response) {
+						response.status.should.equal(200);
+						return response.text().then(function (text) {
+							text.should.be.empty;
+						});
+					});
+			});
+
+		});
+
+	});
+
 });
