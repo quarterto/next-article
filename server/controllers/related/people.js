@@ -1,5 +1,6 @@
 'use strict';
 
+var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 
 module.exports = function(req, res, next) {
@@ -58,6 +59,8 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function (err) {
 			if (err.message === 'No related') {
+				res.status(200).end();
+			} else if (err instanceof fetchres.BadServerResponseError) {
 				res.status(404).end();
 			} else {
 				next(err);

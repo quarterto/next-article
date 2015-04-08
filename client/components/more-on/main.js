@@ -32,9 +32,13 @@ var createPromise = function (el, url) {
 	return fetch(url)
 		.then(fetchres.text)
 		.then(function(resp) {
+			if (!resp) {
+				throw new Error('No response');
+			}
 			el.innerHTML = resp;
 			oDate.init(el);
-		}, function() {
+		})
+		.catch(function() {
 			el.parentNode.removeChild(el);
 		});
 };
