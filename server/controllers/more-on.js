@@ -17,7 +17,7 @@ module.exports = function (req, res, next) {
 		.then(function (article) {
 			res.set(cacheControl);
 			if (!article || !article.item || !article.item.package || article.item.package.length === 0) {
-				throw new fetchres.BadServerResponseError();
+				throw new Error('No related');
 			}
 
 			var packagePromises = article.item.package.map(function (item) {
@@ -33,7 +33,7 @@ module.exports = function (req, res, next) {
 				return article;
 			});
 			if (!articles.length) {
-				throw new fetchres.BadServerResponseError();
+				throw new Error('No related');
 			}
 			if (req.query.count) {
 				articles.splice(req.query.count);
@@ -73,7 +73,9 @@ module.exports = function (req, res, next) {
 			});
 		})
 		.catch(function (err) {
-			if (err instanceof fetchres.BadServerResponseError) {
+			if (err.message === 'No related') {
+				res.status(200).end();
+			} else if (err instanceof fetchres.BadServerResponseError) {
 				res.status(404).end();
 			} else {
 				next(err);

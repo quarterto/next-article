@@ -25,7 +25,7 @@ module.exports = function (req, res, next) {
 				topic = topic.shift();
 			}
 			if (!topic) {
-				throw new fetchres.BadServerResponseError();
+				throw new Error('No related');
 			}
 			return api.searchLegacy({
 				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
@@ -34,7 +34,7 @@ module.exports = function (req, res, next) {
 		})
 		.then(function (results) {
 			if (!results.length) {
-				throw new fetchres.BadServerResponseError();
+				throw new Error('No related');
 			}
 			var articleModels = results.map(function (result) {
 				return {
@@ -74,7 +74,9 @@ module.exports = function (req, res, next) {
 			});
 		})
 		.catch(function (err) {
-			if (err instanceof fetchres.BadServerResponseError) {
+			if (err.message === 'No related') {
+				res.status(200).end();
+			} else if (err instanceof fetchres.BadServerResponseError) {
 				res.status(404).end();
 			} else {
 				next(err);
