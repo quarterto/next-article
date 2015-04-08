@@ -2,6 +2,7 @@
 
 var fetchres = require('fetchres');
 var oDate = require('o-date');
+var marketData = require('./market-data');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
 function allSettled(promises) {
@@ -31,9 +32,13 @@ var createPromise = function (el, url) {
 	return fetch(url)
 		.then(fetchres.text)
 		.then(function(resp) {
+			if (!resp) {
+				throw new Error('No response');
+			}
 			el.innerHTML = resp;
 			oDate.init(el);
-		}, function() {
+		})
+		.catch(function() {
 			el.parentNode.removeChild(el);
 		});
 };
@@ -51,15 +56,11 @@ module.exports.init = function(flags) {
 	$('.js-more-on-topic').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/more-on/' + el.getAttribute('data-metadata-field') + '/' + articleId + '?count=4'));
 	});
+	$('.js-related').forEach(function(el) {
+		fetchPromises.push(createPromise(el, '/' + articleId + '/' + el.getAttribute('data-taxonomy')));
+	});
 
 	return allSettled(fetchPromises)
-		.then(function() {
-			// update grid
-			var moreOns = $('.js-more-on, .js-more-on-topic, .js-mentions');
-			moreOns.forEach(function (moreOn) {
-				var gridLayout = moreOns.length === 1 ? 'L8 XL7 XLoffset2' : 'L' + 12 / moreOns.length;
-				moreOn.setAttribute('data-o-grid-colspan', '12 ' + gridLayout);
-			});
-		})
+		.then(marketData)
 		.then(initAds(flags));
 };

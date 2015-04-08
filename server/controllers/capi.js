@@ -86,7 +86,7 @@ module.exports = function(req, res, next) {
 						.attr('id', addSubheaderIds)
 						.replaceWith(subheadersTransform);
 
-					var primarySection = (function () {
+					var primaryTheme = (function () {
 						try {
 							return {
 								title: articleV1.item.metadata.primaryTheme.term.name,
@@ -130,7 +130,7 @@ module.exports = function(req, res, next) {
 									};
 								}).get(),
 								showTOC: res.locals.flags.articleTOC.isSwitchedOn && $subheaders.length > 2,
-								isColumnist: primarySection.title === 'Columnists',
+								isColumnist: articleV1.item.metadata.primarySection.term.name === 'Columnists',
 								// if there's a video or sideshow first, we overlap them on the header
 								headerOverlap:
 									$('> .article__main-image').length ||
@@ -139,7 +139,7 @@ module.exports = function(req, res, next) {
 								layout: 'wrapper',
 								headerData: {
 									isStream: false,
-									section: primarySection
+									section: primaryTheme
 								},
 								mentions: mentions
 							});

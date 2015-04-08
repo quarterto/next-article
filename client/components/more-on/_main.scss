@@ -1,15 +1,17 @@
+@import 'market-data';
+
+.more-on-wrapper {
+	margin-top: 15px;
+
+	.article__more-on > &:first-child {
+		margin-top: 0;
+	}
+}
 .more-on {
+	position: relative;
 	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
 	color: #000000;
-	margin-top: 15px;
-
-	*:first-child > & {
-		margin-top: 0;
-	}
-	@include oGridRespondTo(L) {
-		margin-top: 0;
-	}
 }
 .more-on--inline {
 	@include oGridRespondTo(S) {
@@ -27,49 +29,94 @@
 	display: block;
 	background-color: $next-blue;
 	font-size: 24px;
-	line-height: 40px;
+	line-height: 1em;
 	margin-top: 5px;
-	padding: 5px 30px 5px 10px;
+	padding: 10px;
 	font-weight: 500;
 	color: #ffffff;
+	text-transform: none;
+
+	.more-on--with-image &,
+	.more-on--authors & {
+		@include oGridRespondTo($until: S) {
+			padding-bottom: 30px;
+		}
+	}
+	.more-on--with-image & {
+		@include oGridRespondTo(S) {
+			padding-right: 220px;
+		}
+		@include oGridRespondTo(M) {
+			padding-right: 320px;
+		}
+	}
+	.more-on--authors & {
+		@include oGridRespondTo(S) {
+			padding-right: 120px;
+		}
+	}
+	&:after {
+		@include nextIcon(arrow-right, #ffffff, 20);
+		content: '';
+		position: relative;
+		top: 3px;
+		left: 10px;
+	}
 }
-.more-on__topic-name__icon {
-	@include nextIcon(arrow-right, #ffffff, 20);
-	position: absolute;
-	right: 5px;
-	top: 50%;
-	margin-top: -10px;
+.more-on__content {
+	border: 1px solid $box-colour;
+}
+.more-on__author-image {
+	position: relative;
+	display: block;
+	left: 10px;
+	margin-top: -20px;
+	border-radius: 50px;
+	background-color: #ffffff;
+
+	@include oGridRespondTo(S) {
+		position: absolute;
+		margin-top: -40px;
+		right: 10px;
+		left: auto;
+	}
 }
 .more-on__articles {
 	margin-top: 5px;
-
-	.more-on--topic & {
-		background-color: $box-colour;
-		padding: 5px 0;
-	}
-	.more-on__topic-name + & {
-		margin-top: 0;
-	}
 }
 .more-on__article {
-	background-color: $box-colour;
+	position: relative;
 	margin-top: 5px;
 	padding: 5px 10px;
-	font-size: 25px;
+	font-size: 17px;
+	font-weight: 200;
 	line-height: 1em;
+	box-sizing: border-box;
 
 	@include oGridRespondTo(S) {
-		font-size: 32px;
+		font-size: 20px;
 	}
 	&:first-child {
 		margin-top: 0;
 	}
-	.more-on--topic & {
-		font-size: 17px;
-		font-weight: 200;
-
+	.more-on--story & {
+		min-height: 56px;
+		border: 1px solid $box-colour;
+	}
+	&.more-on__article--with-image {
+		padding-right: 110px;
+	}
+	.more-on--with-image & {
 		@include oGridRespondTo(S) {
-			font-size: 20px;
+			padding-right: 220px;
+		}
+		@include oGridRespondTo(M) {
+			padding-right: 320px;
+		}
+	}
+	.more-on--authors & {
+		@include oGridRespondTo(S) {
+			padding-right: 120px;
 		}
 	}
 	.more-on__article__link {
@@ -77,22 +124,94 @@
 		color: inherit;
 	}
 }
+.more-on__article__image {
+	display: block;
+
+	.more-on--story & {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.more-on--topic & {
+		width: 100%;
+		margin: -30px 0 5px;
+
+		@include oGridRespondTo(S) {
+			position: absolute;
+			width: 200px;
+			margin-top: 0;
+			top: -40px;
+			right: 10px;
+		}
+		@include oGridRespondTo(M) {
+			width: 300px;
+		}
+	}
+}
 .more-on__article__timestamp {
 	margin-top: 5px;
+}
+.more-on__organisation {
+	background-color: $next-blue;
+	margin-top: 5px;
+	padding: 10px;
+}
+.more-on__person {
+	margin-top: 15px;
+
+}
+.more-on__organisation__link {
+	display: block;
+	position: relative;
+	color: #ffffff;
+	font-weight: 500;
+	font-size: 24px;
+
+	&:after {
+		@include nextIcon(arrow-right, #ffffff, 20);
+		content: '';
+		position: relative;
+		top: 3px;
+		left: 10px;
+	}
+}
+.more-on__person__link {
+	position: relative;
+	display: block;
+	color: #000000;
+	min-height: 50px;
+	font-weight: 400;
+	padding-left: 60px;
+}
+.more-on__person__image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 25px;
+	background-color: #ffffff;
+}
+.more-on__person__role {
+	display: block;
+	font-weight: 100;
+	margin: 5px 0 0;
 }
 .more-on__all-link {
 	position: relative;
 	display: block;
-	background-color: $box-colour;
-	font-weight: normal;
-	font-size: 20px;
+	font-weight: 500;
+	font-size: 14px;
 	color: $next-blue;
+	text-transform: uppercase;
+	text-align: right;
 	padding: 10px;
-}
-.more-on__all-link__icon {
-	position: absolute;
-	top: 50%;
-	margin-top: -5px;
-	margin-left: 5px;
-	@include nextIcon(arrow-right, $next-blue, 10);
+	border-top: 0;
+
+	&:after {
+		@include nextIcon(arrow-right, $next-blue, 10);
+		content: '';
+		position: relative;
+		top: -1px;
+		left: 5px;
+
+	}
 }
