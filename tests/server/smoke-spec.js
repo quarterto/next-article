@@ -197,9 +197,9 @@ describe('Smoke Tests: ', function() {
 		describe('People', function () {
 
 			it('should be successful ', function () {
-				nock('http://api.ft.com')
-					.get('/content/items/v1/f2b13800-c70c-11e4-8e1f-00144feab7de?feature.blogposts=on')
-					.reply(200, require('../fixtures/capi1.json'));
+				nock('https://ft-elastic-search.com')
+					.get('/v1_api_v2/item/f2b13800-c70c-11e4-8e1f-00144feab7de')
+					.reply(200, require('../fixtures/capi-v1-elastic-search.json'));
 				nock('https://next-v1tov2-mapping-dev.herokuapp.com')
 					.filteringPath(/^\/concordance_mapping_v1tov2\/people\/.*$/, '/concordance_mapping_v1tov2/people/XXX')
 					.get('/concordance_mapping_v1tov2/people/XXX')
@@ -215,8 +215,8 @@ describe('Smoke Tests: ', function() {
 			});
 
 			it('should return 404 if article doesn‘t exist', function () {
-				nock('http://api.ft.com')
-					.get('/content/items/v1/f2b13800-c70c-11e4-8e1f-00144feab7de?feature.blogposts=on')
+				nock('https://ft-elastic-search.com')
+					.get('/v1_api_v2/item/f2b13800-c70c-11e4-8e1f-00144feab7de')
 					.reply(404);
 
 				return fetch(host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
@@ -226,9 +226,9 @@ describe('Smoke Tests: ', function() {
 			});
 
 			it('should return 200 and empty response if no related people', function () {
-				nock('http://api.ft.com')
-					.get('/content/items/v1/f2b13800-c70c-11e4-8e1f-00144feab7de?feature.blogposts=on')
-					.reply(200, require('../fixtures/article-no-people.json'));
+				nock('https://ft-elastic-search.com')
+					.get('/v1_api_v2/item/f2b13800-c70c-11e4-8e1f-00144feab7de')
+					.reply(200, require('../fixtures/capi-v1-elastic-search-no-people.json'));
 
 				return fetch(host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
 					.then(function (response) {
