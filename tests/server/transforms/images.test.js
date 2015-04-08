@@ -8,7 +8,7 @@ var $ = require('cheerio');
 require('chai').should();
 var nock = require('nock');
 
-var images = require('../../server/transforms/images');
+var images = require('../../../server/transforms/images');
 var imageSet = require('fs').readFileSync('tests/fixtures/image-set.json', { encoding: 'utf8' });
 var imageSet2 = require('fs').readFileSync('tests/fixtures/image-set-2.json', { encoding: 'utf8' });
 

@@ -2,7 +2,7 @@
 "use strict";
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
-var pullQuotesTransform = require('../../server/transforms/pull-quotes');
+var pullQuotesTransform = require('../../../server/transforms/pull-quotes');
 
 describe('Pull Quote', function () {
 

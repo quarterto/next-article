@@ -22,7 +22,7 @@ endif
 test: build-production
 	next-build-tools verify-layout-deps
 	next-build-tools verify
-	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_URL=https://ft-elastic-search.com/v1_api_v2/item; export NODE_ENV=test; mocha tests/server/
+	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_URL=https://ft-elastic-search.com/v1_api_v2/item; export NODE_ENV=test; mocha tests/server/ --recursive
 
 test-debug:
 	@mocha --debug-brk --reporter spec -i tests/server/

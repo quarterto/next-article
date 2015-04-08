@@ -3,7 +3,7 @@
 
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
-var subheadersTransform = require('../../server/transforms/subheaders');
+var subheadersTransform = require('../../../server/transforms/subheaders');
 
 describe('Subheaders', function () {
 

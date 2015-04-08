@@ -2,7 +2,7 @@
 "use strict";
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
-var bigNumberTransform = require('../../server/transforms/big-number');
+var bigNumberTransform = require('../../../server/transforms/big-number');
 
 describe('Big Number', function () {
 

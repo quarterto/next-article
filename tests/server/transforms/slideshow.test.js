@@ -2,7 +2,7 @@
 "use strict";
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
-var slideshowTransform = require('../../server/transforms/slideshow');
+var slideshowTransform = require('../../../server/transforms/slideshow');
 
 describe('Slideshow', function () {
 

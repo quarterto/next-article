@@ -2,7 +2,7 @@
 'use strict';
 
 require('chai').should();
-var bylineTransform = require('../../server/transforms/byline');
+var bylineTransform = require('../../../server/transforms/byline');
 
 describe('Byline', function () {
 
