@@ -81,7 +81,7 @@ clean:
 
 deploy:
 	next-build-tools configure
-	next-build-tools deploy-hashed-assets # experimental
+	next-build-tools deploy-hashed-assets
 	next-build-tools deploy
 
 clean-deploy: clean install deploy
