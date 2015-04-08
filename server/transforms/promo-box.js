@@ -12,17 +12,21 @@ module.exports = function(index, el) {
 	var $promoBoxIntro = $el.find('promo-intro');
 
 	if ($promoBoxTitle.length) {
+		// get inner html (without wrapped p)
+		var $promoBoxTitleChild = $promoBoxTitle.children('p');
 		$promoBox.append(
 			$('<h3></h3>')
 				.addClass('article__promo-box__title')
-				.text($promoBoxTitle.text())
+				.html($promoBoxTitleChild.length ? $promoBoxTitleChild.html() : $promoBoxTitle.html())
 		);
 	}
 	if ($promoBoxHeadline.length) {
+		// get inner html (without wrapped p)
+		var $promoBoxHeadlineChild = $promoBoxHeadline.children('p');
 		$promoBox.append(
 			$('<h4></h4>')
 				.addClass('article__promo-box__headline')
-				.html($promoBoxHeadline.html())
+				.html($promoBoxHeadlineChild.length ? $promoBoxHeadlineChild.html() : $promoBoxHeadline.html())
 		);
 	}
 	if ($promoBoxImage.length) {
