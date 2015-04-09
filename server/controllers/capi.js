@@ -151,6 +151,17 @@ module.exports = function(req, res, next) {
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
+								tags: articleV1 && articleV1.item.metadata.tags
+									.filter(function (tag) {
+										return ['sections', 'regions', 'genre'].indexOf(tag.term.taxonomy) > -1;
+									})
+									.map(function (tag) {
+										return {
+											id: tag.term.id,
+											taxonomy: tag.term.taxonomy,
+											name: tag.term.name,
+										};
+									}),
 								body: $.html(),
 								subheaders: $subheaders.map(function() {
 									var $subhead = $(this);

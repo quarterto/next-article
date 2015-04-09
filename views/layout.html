@@ -41,6 +41,15 @@
 							<!-- <a class="article__actions__action" href="">Share</a> -->
 						</div>
 					</div>
+					{{#if tags}}
+						<ul class="article__tags ng-list-reset">
+							{{#each tags}}
+								<li class="article__tag">
+									<a class="article__tag__link ng-title-link" href="/stream/{{taxonomy}}/{{name}}">{{name}}</a>
+								</li>
+							{{/each}}
+						</ul>
+					{{/if}}
 				</div>
 			</div>
 		</div>
