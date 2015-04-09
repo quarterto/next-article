@@ -27,7 +27,7 @@ module.exports = function(req, res, next) {
 				.then(function (results) {
 					var people = results.map(function (result, index) {
 							var personModel = {
-								name: result && (result.prefLabel || result.labels[0]),
+								name: result && (result.prefLabel || (result.labels && result.labels[0])),
 								v1Name: relations[index].term.name
 							};
 							if (result && result.memberships) {
