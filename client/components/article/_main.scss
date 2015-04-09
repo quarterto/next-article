@@ -31,6 +31,13 @@ $header-offset: 30px;
 	font-size: 36px;
 	font-weight: inherit;
 	line-height: 1em;
+
+	@include oGridRespondTo(S) {
+		font-size: 45px;
+	}
+	@include oGridRespondTo(M) {
+		font-size: 50px;
+	}
 }
 .article__stand-first {
 	margin: 20px 0 0;
@@ -38,6 +45,10 @@ $header-offset: 30px;
 	border-left: 1px solid #ffffff;
 	font-size: 21px;
 	font-weight: inherit;
+
+	@include oGridRespondTo(M) {
+		font-size: 24px;
+	}
 }
 .article__meta {
 	margin: 20px 0 0;
@@ -102,10 +113,18 @@ $header-offset: 30px;
 	font-size: 18px;
 	color: $next-grey-dark;
 
+	@include oGridRespondTo(S) {
+		font-size: 20px;
+		font-weight: 200;
+	}
 	> p {
 		margin: 0.3em 0 0.8em;
 		line-height: 24px;
 		display: block;
+
+		@include oGridRespondTo(S) {
+			line-height: 26px;
+		}
 	}
 	> *:first-child {
 		margin-top: 0;
@@ -308,28 +327,7 @@ $header-offset: 30px;
 		padding: 5px 10px;
 	}
 }
-
-//++++++++++++++++++++++++++
-//+ Breakpoints
-//++++++++++++++++++++++++++
-@include oGridRespondTo(S) {
-	.article__title {
-		font-size: 45px;
-	}
-	.article__body {
-		font-size: 20px;
-		font-weight: 200;
-
-		> p {
-			line-height: 26px;
-		}
-	}
-}
-@include oGridRespondTo(M) {
-	.article__title {
-		font-size: 50px;
-	}
-	.article__stand-first {
-		font-size: 24px;
-	}
+// comments styling
+.fyre .fyre-comment p {
+	word-break: normal;
 }
