@@ -19,6 +19,11 @@ module.exports = function () {
 			helpers.servesGoodHTML('/02cad03a-844f-11e4-bae9-00144feabdc0', done);
 		});
 
+		it('should serve a fastft article', function(done) {
+			helpers.mockMethode();
+			helpers.servesGoodHTML('/b002e5ee-3096-3f51-9925-32b157740c98', done);
+		});
+
 		it('should add tracking to all article links', function(done) {
 			helpers.mockMethode();
 			request(helpers.host + '/02cad03a-844f-11e4-bae9-00144feabdc0', function(error, response, body) {
