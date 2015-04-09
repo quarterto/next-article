@@ -27,7 +27,6 @@ module.exports = function(req, res, next) {
 				.then(function (results) {
 					var organisations = results.map(function (result, index) {
 							var relation = relations[index].term;
-							console.log(result);
 							var organisationModel = {
 								name: result && (result.prefLabel || (result.labels && result.labels[0])),
 								v1Name: relation.name
