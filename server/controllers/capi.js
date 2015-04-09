@@ -111,12 +111,13 @@ module.exports = function(req, res, next) {
 							};
 						});
 
-					// TODO: Replace with something in CAPI v2
 					var isColumnist;
-					if (articleV1 && articleV1.item && articleV1.item.metadata
-							&& articleV1.item.metadata.primaryTheme && articleV1.item.metadata.primaryTheme.term
-							&& articleV1.item.metadata.primarySection.term.name === 'Columnists') {
-						isColumnist = true;
+
+					// Some posts (e.g. FastFT are only available in CAPI v2)
+					if (articleV1) {
+
+						// TODO: Replace with something in CAPI v2
+						isColumnist = articleV1.item.metadata.primarySection.term.name === 'Columnists';
 					}
 
 					// Update the images (resize, add image captions, etc)
