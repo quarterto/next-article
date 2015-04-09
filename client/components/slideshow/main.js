@@ -17,6 +17,7 @@ module.exports = function(els) {
 					return container;
 				})
 				.then(function(el) {
+					el.style.width = el.clientWidth + 'px';
 					return Gallery.init(el);
 				})
 				.catch(function(err) {
