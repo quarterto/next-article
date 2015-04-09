@@ -25,16 +25,12 @@ module.exports = function(req, res, next) {
 			});
 			return Promise.all(promises)
 				.then(function (results) {
-					// awkwardly need to get the v1 name of the relation for linking to
 					var people = results.map(function (result, index) {
-							if (!result) {
-								return null;
-							}
 							var personModel = {
-								name: result.prefLabel || result.labels[0],
+								name: result && (result.prefLabel || result.labels[0]),
 								v1Name: relations[index].term.name
 							};
-							if (result.memberships) {
+							if (result && result.memberships) {
 								var latestMembership = result.memberships[0];
 								if (!latestMembership.changeEvents || !latestMembership.changeEvents[1]) {
 									personModel.role = {

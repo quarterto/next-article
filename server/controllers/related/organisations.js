@@ -26,12 +26,9 @@ module.exports = function(req, res, next) {
 			return Promise.all(promises)
 				.then(function (results) {
 					var organisations = results.map(function (result, index) {
-							if (!result) {
-								return null;
-							}
 							var relation = relations[index].term;
 							var organisationModel = {
-								name: result.prefLabel || result.labels[0],
+								name: result && (result.prefLabel || result.labels[0]),
 								v1Name: relation.name
 							};
 							// get the stock id
