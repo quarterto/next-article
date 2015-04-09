@@ -111,6 +111,14 @@ module.exports = function(req, res, next) {
 							};
 						});
 
+					// TODO: Replace with something in CAPI v2
+					var isColumnist;
+					if (articleV1 && articleV1.item && articleV1.item.metadata
+							&& articleV1.item.metadata.primaryTheme && articleV1.item.metadata.primaryTheme.term
+							&& articleV1.item.metadata.primarySection.term.name === 'Columnists') {
+						isColumnist = true;
+					}
+
 					// Update the images (resize, add image captions, etc)
 					return images($, res.locals.flags)
 						.then(function ($) {
@@ -130,7 +138,7 @@ module.exports = function(req, res, next) {
 									};
 								}).get(),
 								showTOC: res.locals.flags.articleTOC.isSwitchedOn && $subheaders.length > 2,
-								isColumnist: articleV1.item.metadata.primarySection.term.name === 'Columnists',
+								isColumnist: isColumnist,
 								// if there's a video or sideshow first, we overlap them on the header
 								headerOverlap:
 									$('> .article__main-image').length ||
