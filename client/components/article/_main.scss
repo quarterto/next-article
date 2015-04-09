@@ -68,10 +68,10 @@ $header-offset: 30px;
 	display: inline-block;
 	color: inherit;
 
-	&:nth-child(n+2):before {
-		content: '|';
-		margin: 0 5px;
-		opacity: 0.7;
+	&:nth-child(n+2) {
+		border-left: 1px solid #ffffff;
+		margin-left: 4px;
+		padding-left: 10px;
 	}
 }
 .article__actions__action--save {
@@ -79,6 +79,16 @@ $header-offset: 30px;
 	// for now, needed to override next-buttons
 	font-size: 15px !important;
 	line-height: 1em !important;
+}
+.next-buttons--save:before {
+	top: 2px !important;
+}
+.article__actions__action--comments:before {
+	@include nextIcon(comment, #ffffff, 12);
+	position: relative;
+	content: '';
+	margin-right: 4px;
+	top: 2px;
 }
 .article__main {
 	padding-top: 15px;

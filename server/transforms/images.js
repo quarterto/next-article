@@ -39,7 +39,7 @@ module.exports = function($body, flags) {
 					flags && flags.fullWidthMainImages && flags.fullWidthMainImages.isSwitchedOn &&
 					image.parentNode.tagName === 'root' &&
 					$(image.parentNode).children().first().html() === $image.html();
-				var width = isMain ? 690 : 600;
+				var width = isMain ? 710 : 600;
 				var binaryId = imageSet.members[0].id.replace('http://api.ft.com/content/', '');
 				var imageUrl = resize('http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId, { width: width });
 				var $figure = $('<figure></figure>')
