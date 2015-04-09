@@ -2,7 +2,7 @@
 "use strict";
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
-var relativeLinksTransform = require('../../server/transforms/relative-links');
+var relativeLinksTransform = require('../../../server/transforms/relative-links');
 
 describe('Relative Links', function () {
 

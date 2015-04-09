@@ -3,7 +3,7 @@
 
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
-var removeBody = require('../../server/transforms/remove-body');
+var removeBody = require('../../../server/transforms/remove-body');
 
 describe('Remove Body', function () {
 

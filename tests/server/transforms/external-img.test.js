@@ -2,7 +2,7 @@
 "use strict";
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
-var externalImgTransform = require('../../server/transforms/external-img');
+var externalImgTransform = require('../../../server/transforms/external-img');
 
 describe('External Img', function () {
 

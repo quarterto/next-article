@@ -2,7 +2,7 @@
 "use strict";
 var cheerio = require('cheerio');
 var expect = require('chai').expect;
-var ftContentTransform = require('../../server/transforms/ft-content');
+var ftContentTransform = require('../../../server/transforms/ft-content');
 
 describe('FT Content', function () {
 

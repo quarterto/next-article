@@ -3,7 +3,7 @@
 
 var cheerio = require('cheerio');
 require('chai').should();
-var promoBoxTransform = require('../../server/transforms/promo-box');
+var promoBoxTransform = require('../../../server/transforms/promo-box');
 
 describe('Promo Box', function () {
 
