@@ -42,10 +42,10 @@
 						</div>
 					</div>
 					{{#if tags}}
-						<ul class="article__tags ng-list-reset">
+						<ul class="article__tags ng-list-reset" data-trackable="tags">
 							{{#each tags}}
 								<li class="article__tag">
-									<a class="article__tag__link ng-title-link" href="/stream/{{taxonomy}}/{{name}}">{{name}}</a>
+									<a class="article__tag__link ng-title-link" href="/stream/{{taxonomy}}/{{name}}" data-trackable="tag">{{name}}</a>
 								</li>
 							{{/each}}
 						</ul>
