@@ -1,6 +1,6 @@
 {
   "name": "o-comment-ui",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": [
     "main.js",
     "main.scss"
@@ -17,13 +17,17 @@
   "ignore": [
     "node_modules",
     "tests",
-    "Gruntfile.js"
+    "gulpfile.js",
+    "docs",
+    ".editorconfig",
+    ".jshintrc",
+    "package.json"
   ],
-  "_release": "1.0.5",
+  "_release": "1.0.6",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.5",
-    "commit": "01e66a15a6ea730d776a3a86f38c139b17dd1e1e"
+    "tag": "v1.0.6",
+    "commit": "094370ecf90cca92c7649c606a4d5b6457137470"
   },
   "_source": "http://git.svc.ft.com/scm/strat_p/o-comment-ui.git",
   "_target": "^1.0.0",

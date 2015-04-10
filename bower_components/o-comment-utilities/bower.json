@@ -7,6 +7,10 @@
 	"ignore": [
 		"node_modules",
 		"tests",
-		"Gruntfile.js"
+		"gulpfile.js",
+		"docs",
+		".editorconfig",
+		".jshintrc",
+		"package.json"
 	]
 }
