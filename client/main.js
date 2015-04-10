@@ -68,15 +68,15 @@ setup.bootstrap(function(result) {
 			document.querySelector('.article__actions').appendChild(commentLink);
 		});
 		var oCommentComponent = new oComments.Widget({
-		    elId: 'comments',
-		    title: document.title,
-		    url: document.location.href,
-		    articleId: uuid,
-		    initExtension: {
-		        initialNumVisible: 10,
-		        disableIE8Shim: true,
-		        disableThirdPartyAnalytics: true
-		    }
+			elId: 'comments',
+			title: document.title,
+			url: document.location.href,
+			articleId: uuid,
+			initExtension: {
+				initialNumVisible: 10,
+				disableIE8Shim: true,
+				disableThirdPartyAnalytics: true
+			}
 		});
 		oCommentComponent.load();
 	}
