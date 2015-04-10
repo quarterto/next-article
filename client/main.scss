@@ -8,6 +8,8 @@ $o-gallery-is-silent: false;
 @import "o-colors/main";
 @import "o-fonts/main";
 @include oFontsInclude(MetricWeb, thin);
+$o-comments-is-silent: false;
+@import 'o-comments/main';
 
 @import "next-sass-setup/main";
 @import "next-buttons/main";

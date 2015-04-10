@@ -1,0 +1,37 @@
+{
+  "name": "o-comments",
+  "version": "1.0.9",
+  "main": [
+    "main.js",
+    "main.scss"
+  ],
+  "dependencies": {
+    "o-comment-api": "^1.0.0",
+    "o-comment-ui": "^1.0.0",
+    "o-comment-utilities": "^1.0.0",
+    "o-ft-typography": "^1.12.2",
+    "o-colors": "^2.3.17",
+    "o-assets": "^0.4.2",
+    "o-fonts": "^1.4.1",
+    "hogan": "git+https://github.com/twitter/hogan.js.git#3.0.0"
+  },
+  "ignore": [
+    "node_modules",
+    "tests",
+    "gulpfile.js",
+    "demos",
+    "docs",
+    "package.json",
+    ".editorconfig",
+    ".jshintrc"
+  ],
+  "_release": "1.0.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.9",
+    "commit": "dbd6e3d0dbaa44111461010863942efe5f9e0b18"
+  },
+  "_source": "http://git.svc.ft.com/scm/strat_p/o-comments.git",
+  "_target": "~1.0.8",
+  "_originalSource": "o-comments"
+}

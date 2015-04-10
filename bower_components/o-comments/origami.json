@@ -1,0 +1,18 @@
+{
+	"description": "Commenting for FT content. Integrated with FT authentication and user data services.",
+	"origamiType": "module",
+	"origamiVersion": 1,
+	"support": "hyperion@ft.com",
+	"supportStatus": "active",
+	"ci": {},
+	"browserFeatures": {
+		"required": ["createevent", "customevents"]
+	},
+	"demos": [
+		{
+			"path": "/demos/main.html",
+			"expanded": true,
+			"description": ""
+		}
+	]
+}

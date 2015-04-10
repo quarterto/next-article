@@ -25,12 +25,12 @@
 						{{{byline}}}
 					</p>
 					<div class="o-grid-row">
-						<div data-o-grid-colspan="8">
+						<div data-o-grid-colspan="12 S6">
 							<time class="article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
 								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
 							</time>
 						</div>
-						<div class="article__actions" data-o-grid-colspan="4">
+						<div class="article__actions" data-o-grid-colspan="12 S6">
 							<button
 								class="article__actions__action article__actions__action--save ng-meta ng-title-link next-buttons--save next-buttons--light"
 								data-content-id="{{id}}"
@@ -96,5 +96,6 @@
 			<div class="js-related more-on-wrapper" data-taxonomy="people" data-o-grid-colspan="12 M6"></div>
 		</div>
 	</div>
+	<div class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset2"></div>
 </div>
 {{/if}}
