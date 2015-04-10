@@ -140,11 +140,13 @@ module.exports = function(req, res, next) {
 								}).get(),
 								showTOC: res.locals.flags.articleTOC.isSwitchedOn && $subheaders.length > 2,
 								isColumnist: isColumnist,
-								// if there's a video or sideshow first, we overlap them on the header
+								// if there's a main image, or slideshow or video, we overlap them on the header
 								headerOverlap:
-									$('> .article__main-image').length ||
-									$('> a:first-child').attr('data-asset-type') === 'video' ||
-									$('> ft-slideshow:first-child').length,
+									$(
+										'> .article__main-image,' +
+										'> ft-slideshow:first-child,' +
+										'> a:first-child[data-asset-type="video"], > a:first-child[href^="http://video.ft.com/"]'
+									).length,
 								layout: 'wrapper',
 								headerData: {
 									isStream: false,
