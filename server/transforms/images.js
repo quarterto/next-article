@@ -62,14 +62,14 @@ module.exports = function($body, flags) {
 
 					$figure.append($figcaption);
 				}
-				var $image = $('<img></img')
+				var $newImage = $('<img></img')
 					.addClass('article__image')
 					.attr('src', imageUrl)
 					.attr('alt', '');
 				if (isMain) {
-					$image.addClass('ng-media');
+					$newImage.addClass('ng-media');
 				}
-				$figure.prepend($image);
+				$figure.prepend($newImage);
 				if ($image.parent('p').length) {
 					$image.parent('p').before($figure);
 					return '';
