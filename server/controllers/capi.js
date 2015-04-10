@@ -142,9 +142,11 @@ module.exports = function(req, res, next) {
 								isColumnist: isColumnist,
 								// if there's a video or sideshow first, we overlap them on the header
 								headerOverlap:
-									$('> .article__main-image').length ||
-									$('> a:first-child').attr('data-asset-type') === 'video' ||
-									$('> ft-slideshow:first-child').length,
+									$(
+										'> .article__main-image,' +
+										'> ft-slideshow:first-child,' +
+										'> a:first-child[data-asset-type="video"], > a:first-child[href^="http://video.ft.com/"]'
+									).length,
 								layout: 'wrapper',
 								headerData: {
 									isStream: false,
