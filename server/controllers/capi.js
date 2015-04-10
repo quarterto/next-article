@@ -107,7 +107,8 @@ module.exports = function(req, res, next) {
 						.map(function(annotation) {
 							return {
 								label: annotation.label,
-								url: annotation.apiUrl.replace(/^http:\/\/api\.ft\.com\//, '')
+								url: annotation.apiUrl.replace(/^http:\/\/api\.ft\.com\//, ''),
+								type: annotation.type
 							};
 						});
 
@@ -152,7 +153,8 @@ module.exports = function(req, res, next) {
 									isStream: false,
 									section: primaryTheme
 								},
-								mentions: mentions
+								organisations: mentions.filter(function(mention) { return mention.type === 'ORGANISATION' }),
+								people: mentions.filter(function(mention) { return mention.type === 'PERSON' })
 							});
 						});
 
