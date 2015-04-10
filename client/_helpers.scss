@@ -56,3 +56,12 @@
 	line-height: 1em;
 	opacity: 0.7;
 }
+.ng-media-wrapper {
+	width: 100%;
+	position: relative;
+	padding: 56.25% 0 0 0;
+}
+.ng-media {
+	position: absolute;
+	top: 0;
+}

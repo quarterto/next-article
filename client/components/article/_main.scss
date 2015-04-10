@@ -80,7 +80,7 @@ $header-offset: 30px;
 	color: inherit;
 
 	&:nth-child(n+2) {
-		border-left: 1px solid #ffffff;
+		border-left: 1px solid rgba(255, 255, 255, 0.7);
 		margin-left: 4px;
 		padding-left: 10px;
 	}
@@ -135,9 +135,6 @@ $header-offset: 30px;
 	.o-quote--standard a {
 		color: inherit;
 	}
-	video {
-		width: 100%;
-	}
 	> {
 		.article__main-image,
 		.article__video:first-child,
@@ -147,6 +144,10 @@ $header-offset: 30px;
 	}
 }
 
+
+.article__video {
+	width: 100%;
+}
 .article__gallery {
 	line-height: initial;
 }
@@ -185,11 +186,6 @@ $header-offset: 30px;
 		}
 	}
 }
-.article__main-image {
-	position: relative;
-	margin: 0;
-	padding: 56.25% 0 0 0;
-}
 .article__inline-image {
 	max-width: 600px;
 
@@ -201,11 +197,6 @@ $header-offset: 30px;
 	display: block;
 	max-width: 100%;
 	margin: 0 auto;
-
-	.article__main-image & {
-		position: absolute;
-		top: 0;
-	}
 }
 .article__image-caption {
 	margin-top: 5px;

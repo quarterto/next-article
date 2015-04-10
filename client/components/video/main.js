@@ -19,7 +19,7 @@ function brightcoveInit(el) {
 			videoEl.setAttribute('data-content-id', data.id);
 			videoEl.setAttribute(
 				'poster',
-				'//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(data.poster) + '?width=690&source=grumman&fit=scale-down'
+				'//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(data.poster) + '?width=710&source=grumman&fit=scale-down'
 			);
 			videoEl.setAttribute('controls', 'true');
 			videoEl.className = 'article__video';
