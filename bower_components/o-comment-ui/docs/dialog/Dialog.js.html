@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>comment-ui</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/docs.css">
+    <style>
+      body > .navbar .brand {
+        float:left;
+        text-shadow: rgba(255, 255, 255, 0.0980392) 0px 1px 0px, rgba(255, 255, 255, 0.4) 0px 0px 30px;
+        color: white;
+        margin-left:0px;
+        font-weight:normal;
+      }
+      
+      .bs-docs-sidenav.affix {
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+      
+      .bs-docs-sidenav i{
+        width: 8px;
+        height: 8px;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+        margin-right:0.5em;
+      }
+      
+      .bs-docs-sidenav > li > a {
+          word-wrap: break-word;
+      }
+      
+      .bs-docs-sidenav > li:first-child > a {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+      }
+      
+      code[class*="language-"],pre[class*="language-"]{color:black;text-shadow:0 1px white;font-family:Consolas,Monaco,'Andale Mono',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*="language-"]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*="language-"],pre[class*="language-"]{background:#f5f2f0}:not(pre)>code[class*="language-"]{padding:.1em;border-radius:.3em}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:slategray}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number{color:#905}.token.selector,.token.attr-name,.token.string{color:#690}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.regex,.token.important{color:#e90}.token.important{font-weight:bold}.token.entity{cursor:help}
+      div.description {margin: 14px 0; padding-top: 14px; border-bottom:1px solid #eee; }
+      .tags {}
+      .ctx-type {
+        display:inline-block;
+        margin-right:0.5em;
+        //- float:right; margin-top:8px
+      }
+      
+      footer iframe{vertical-align:middle;}
+      
+    </style>
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Doxx</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header id="overview" class="jumbotron subhead">
+      <div class="container">
+        <h1>comment-ui</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a href="index.html">Main</a></li>
+            <li class="active"><a href="dialog\Dialog.js.html">dialog\Dialog.js</a></li>
+            <li><a href="dialog\modal.js.html">dialog\modal.js</a></li>
+            <li><a href="form_builder\Form.js.html">form_builder\Form.js</a></li>
+            <li><a href="form_builder\formFragments.js.html">form_builder\formFragments.js</a></li>
+            <li><a href="i18n.js.html">i18n.js</a></li>
+            <li><a href="main.js.html">main.js</a></li>
+            <li><a href="userDialogs.js.html">userDialogs.js</a></li>
+            <li><a href="utils.js.html">utils.js</a></li>
+            <li><a href="Widget.js.html">Widget.js</a></li>
+            <li><a href="WidgetUi.js.html">WidgetUi.js</a></li>
+          </ul>
+          <div class="scrollspy">
+            <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#Dialog"><i class="alert alert-info"></i><span>Dialog</span></a>
+              </li>
+              <li><a href="#id"><i class="alert alert-success"></i><span>id</span></a>
+              </li>
+              <li><a href="#html"><i class="alert alert-success"></i><span>html</span></a>
+              </li>
+              <li><a href="#defaultOptions"><i class="alert alert-success"></i><span>defaultOptions</span></a>
+              </li>
+              <li><a href="#options"><i class="alert alert-success"></i><span>options</span></a>
+              </li>
+              <li><a href="#bodyEl"><i class="alert alert-success"></i><span>bodyEl</span></a>
+              </li>
+              <li><a href="#events"><i class="alert alert-success"></i><span>events</span></a>
+              </li>
+              <li><a href="#init"><i class="alert alert-info"></i><span>init</span></a>
+              </li>
+              <li><a href="#repositionToCenter"><i class="alert alert-info"></i><span>repositionToCenter</span></a>
+              </li>
+              <li><a href="#onKeyUp"><i class="alert alert-info"></i><span>onKeyUp</span></a>
+              </li>
+              <li><a href="#closeIt"><i class="alert alert-info"></i><span>closeIt</span></a>
+              </li>
+              <li><a href="#enableResizeMonitoring"><i class="alert alert-info"></i><span>enableResizeMonitoring</span></a>
+              </li>
+              <li><a href="#disableResizeMonitoring"><i class="alert alert-info"></i><span>disableResizeMonitoring</span></a>
+              </li>
+              <li><a href="#on"><i class="alert alert-info"></i><span>on</span></a>
+              </li>
+              <li><a href="#off"><i class="alert alert-info"></i><span>off</span></a>
+              </li>
+              <li><a href="#getContainer"><i class="alert alert-info"></i><span>getContainer</span></a>
+              </li>
+              <li><a href="#open"><i class="alert alert-info"></i><span>open</span></a>
+              </li>
+              <li><a href="#close"><i class="alert alert-info"></i><span>close</span></a>
+              </li>
+              <li><a href="#show"><i class="alert alert-info"></i><span>show</span></a>
+              </li>
+              <li><a href="#hide"><i class="alert alert-info"></i><span>hide</span></a>
+              </li>
+              <li><a href="#disableAllButtons"><i class="alert alert-info"></i><span>disableAllButtons</span></a>
+              </li>
+              <li><a href="#disableButtons"><i class="alert alert-info"></i><span>disableButtons</span></a>
+              </li>
+              <li><a href="#enableAllButtons"><i class="alert alert-info"></i><span>enableAllButtons</span></a>
+              </li>
+              <li><a href="#enableButtons"><i class="alert alert-info"></i><span>enableButtons</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <section id="Dialog">
+            <h1>Dialog</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>Dialog()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>htmlOrForm</td>
+                <td>String,Form</td>
+                <td>Content of the dialog. Plain HTML in string or instance of a Form.js</td>
+              </tr>
+              <tr>
+                <td>userOptions</td>
+                <td>Object</td>
+                <td>User defined options. Possible fields: modal (default is true), title (title of the dialog).</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Dialog built within the DOM with custom content. Can be opened either with modal background or without it.</p> </div>
+          <pre><code class="language-javascript">function Dialog (htmlOrForm, userOptions) {
+    &quot;use strict&quot;;
+
+    var myself = this;</code></pre>
+          <section id="id">
+            <h1>id</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>id</span>
+            </p>
+          </section>
+          <div class="description"><p>Unique identifier of the dialog's DOM object.</p> </div>
+          <pre><code class="language-javascript">var id = &quot;dialog&quot; + (Math.random() + 1).toString(36).substring(7);</code></pre>
+          <section id="html">
+            <h1>html</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>html</span>
+            </p>
+          </section>
+          <div class="description"><p>HTML wrapper code of the FT comments dialog.</p> </div>
+          <pre><code class="language-javascript">var html = containerTemplate.render({
+        id: id
+    });</code></pre>
+          <section id="defaultOptions">
+            <h1>defaultOptions</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>defaultOptions</span>
+            </p>
+          </section>
+          <div class="description"><p>Default options: modal is enabled by default.</p> </div>
+          <pre><code class="language-javascript">var defaultOptions = {
+        modal: true
+    };</code></pre>
+          <section id="options">
+            <h1>options</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>options</span>
+            </p>
+          </section>
+          <div class="description"><p>User specified options.</p> </div>
+          <pre><code class="language-javascript">var options = {};</code></pre>
+          <div class="description"><p>The global container of the elements.</p> </div>
+          <pre><code class="language-javascript">var container;</code></pre>
+          <div class="description"><p>The container of the actual content of the dialog.</p> </div>
+          <pre><code class="language-javascript">var contentContainer;</code></pre>
+          <section id="bodyEl">
+            <h1>bodyEl</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>bodyEl</span>
+            </p>
+          </section>
+          <div class="description"><p>The body DOM object.</p> </div>
+          <pre><code class="language-javascript">var bodyEl = document.body || document.getElementsByTagName('body')[0];</code></pre>
+          <section id="events">
+            <h1>events</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>events</span>
+            </p>
+          </section>
+          <div class="description"><p>Event object on which events can be triggered and handlers can be attached.</p> </div>
+          <pre><code class="language-javascript">var events = new commentUtilities.Events();</code></pre>
+          <section id="init">
+            <h1>init</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>init()</span>
+            </p>
+          </section>
+          <div class="description"><p>Initializes the options.</p> </div>
+          <pre><code class="language-javascript">function init() {
+        commentUtilities.merge(options, defaultOptions, (userOptions &amp;&amp; typeof userOptions === 'object' ? userOptions : {}));
+    }
+    init.call(this);</code></pre>
+          <section id="repositionToCenter">
+            <h1>repositionToCenter</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>repositionToCenter()</span>
+            </p>
+          </section>
+          <div class="description"><p>Handles a page resize event and recalculates the center position of the dialog.</p> </div>
+          <pre><code class="language-javascript">var repositionToCenter = function() {
+        if (container) {
+            var containerWidthCalculated = utils.getComputedStyle(container).getPropertyValue('width');
+            var containerHeightCalculated = utils.getComputedStyle(container).getPropertyValue('height');
+
+            var containerWidthValueMatch = containerWidthCalculated.match(/([0-9.]+)px/);
+            var containerHeightValueMatch = containerHeightCalculated.match(/([0-9.]+)px/);
+
+            if (containerWidthValueMatch &amp;&amp; containerWidthValueMatch[1]) {
+                var containerWidthValue = parseFloat(containerWidthValueMatch[1]);
+
+                container.style.left = (utils.windowSize().width - containerWidthValue) / 2 + &quot;px&quot;;
+            } else if (containerWidthCalculated === 'auto') {
+                container.style.left = (utils.windowSize().width - 500) / 2 + &quot;px&quot;;
+            }
+
+            if (containerHeightValueMatch &amp;&amp; containerHeightValueMatch[1]) {
+                var containerHeightValue = parseFloat(containerHeightValueMatch[1]);
+
+                container.style.top = (utils.windowSize().height - containerHeightValue) / 2 + &quot;px&quot;;
+            } else if (containerHeightCalculated === 'auto') {
+                container.style.top = 50 + &quot;px&quot;;
+            }
+        }
+    };</code></pre>
+          <section id="onKeyUp">
+            <h1>onKeyUp</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>onKeyUp()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>e</td>
+                <td>Object</td>
+                <td>Event object</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Handles the ESC button and closes the dialog.</p> </div>
+          <pre><code class="language-javascript">var onKeyUp = function(e) {
+        if (e.keyCode === 27) {
+            myself.close();
+        }
+    };</code></pre>
+          <section id="closeIt">
+            <h1>closeIt</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>closeIt()</span>
+            </p>
+          </section>
+          <div class="description"><p>Close action is initiated within another context (this would be not this instance).</p> </div>
+          <pre><code class="language-javascript">var closeIt = function () {
+        myself.close.call(myself);
+    };</code></pre>
+          <section id="enableResizeMonitoring">
+            <h1>enableResizeMonitoring</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>enableResizeMonitoring()</span>
+            </p>
+          </section>
+          <div class="description"><p>Handles page resize. When page resize occurs, recalculates the<br />center of the viewport, adjusts the dialog to the center and<br />adjusts the modal background.</p> </div>
+          <pre><code class="language-javascript">function enableResizeMonitoring() {
+        utils.addEventListener('resize', window, repositionToCenter);
+    }</code></pre>
+          <section id="disableResizeMonitoring">
+            <h1>disableResizeMonitoring</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>disableResizeMonitoring()</span> -><span>[type]</span>
+            </p>
+          </section>
+          <div class="description"><p>Stops listening for window resize.</p> </div>
+          <pre><code class="language-javascript">function disableResizeMonitoring() {
+        utils.removeEventListener('resize', window, repositionToCenter);
+    }</code></pre>
+          <section id="on">
+            <h1>on</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.on()</span>
+            </p>
+          </section>
+          <div class="description"><p>Listen to events.</p> </div>
+          <pre><code class="language-javascript">this.on = function() {
+        events.on.apply(events, arguments);
+    };</code></pre>
+          <section id="off">
+            <h1>off</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.off()</span>
+            </p>
+          </section>
+          <div class="description"><p>Remove listeners.</p> </div>
+          <pre><code class="language-javascript">this.off = function() {
+        events.off.apply(events, arguments);
+    };</code></pre>
+          <section id="getContainer">
+            <h1>getContainer</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.getContainer()</span> -><span>DOMObject</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns the current dialog container instance.</p> </div>
+          <pre><code class="language-javascript">this.getContainer = function() {
+        return container;
+    };</code></pre>
+          <section id="open">
+            <h1>open</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.open()</span>
+            </p>
+          </section>
+          <div class="description"><p>Opens the dialog by adding the dialog container into the DOM and populating the container<br />with the HTML or Form content.<br />It also adds some event handlers for closing on a user action.</p> </div>
+          <pre><code class="language-javascript">this.open = function() {
+        if (!container) {
+            bodyEl.appendChild(utils.toDOM(html));
+            container = document.getElementById(id);
+
+            contentContainer = sizzle('.comment-dialog-container', container)[0];
+            bodyEl.appendChild(container);
+
+            if (typeof(options.title) !== 'undefined') {
+                contentContainer.appendChild(utils.toDOM(titleTemplate.render({
+                    title: options.title
+                })));
+            }
+        } else {
+            return false;
+        }
+
+        if (htmlOrForm instanceof Form) {
+            // form
+
+            htmlOrForm.on('cancel', function() {
+                myself.close(false);
+            });
+
+            contentContainer.appendChild(htmlOrForm.render());
+        } else {
+            // plain html
+
+            contentContainer.appendChild(utils.toDOM(htmlOrForm));
+        }
+
+        if (options.modal === true) {
+            modal.open();
+
+            modal.on('click', closeIt);
+        }
+
+
+        var closeButtons = sizzle('.comment-closeButton', container);
+        for (var i = 0; i &lt; closeButtons.length; i++) {
+            utils.addEventListener('click', closeButtons[i], closeIt);
+        }
+
+        utils.addEventListener('keyup', document, onKeyUp);
+
+        repositionToCenter();
+        enableResizeMonitoring();
+    };</code></pre>
+          <section id="close">
+            <h1>close</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.close()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>fireEvent</td>
+                <td>Boolean</td>
+                <td>Flag to fire events or not. By default it's true.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Closes the current dialog instance.</p> </div>
+          <pre><code class="language-javascript">this.close = function(fireEvent) {
+        disableResizeMonitoring();
+
+        if (container) {
+            if (fireEvent !== false) {
+                events.trigger('close');
+            }
+
+            container.parentNode.removeChild(container);
+
+            if (options.modal) {
+                modal.close();
+            }
+
+            container = undefined;
+            contentContainer = undefined;
+        }
+    };</code></pre>
+          <section id="show">
+            <h1>show</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.show()</span>
+            </p>
+          </section>
+          <div class="description"><p>Shows the dialog visually (opposite to the hide action).</p> </div>
+          <pre><code class="language-javascript">this.show = function() {
+        if (container) {
+            container.style.display = 'block';
+
+            if (modal) {
+                modal.open();
+            }
+        }
+    };</code></pre>
+          <section id="hide">
+            <h1>hide</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.hide()</span>
+            </p>
+          </section>
+          <div class="description"><p>Hides the dialog visually, but keeps the instance in life.</p> </div>
+          <pre><code class="language-javascript">this.hide = function() {
+        if (container) {
+            container.style.display = 'none';
+
+            if (modal) {
+                modal.close();
+            }
+        }
+    };</code></pre>
+          <section id="disableAllButtons">
+            <h1>disableAllButtons</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>disableAllButtons()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>buttons</td>
+                <td>Array</td>
+                <td>Array of buttons (DOM objects).</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Disable all buttons of a button collection.</p> </div>
+          <pre><code class="language-javascript">var disableAllButtons = function (buttons) {
+        for (var i = 0; i &lt; buttons.length; i++) {
+            buttons[i].setAttribute('disabled', 'disabled');
+        }
+    };</code></pre>
+          <section id="disableButtons">
+            <h1>disableButtons</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.disableButtons()</span>
+            </p>
+          </section>
+          <div class="description"><p>Disables the buttons (useful when an action is already in progress).</p> </div>
+          <pre><code class="language-javascript">this.disableButtons = function() {
+        var buttons = sizzle('button', container);
+        var buttonInputs = sizzle('input[type=button]', container);
+        var submitInputs = sizzle('input[type=submit]', container);
+
+        disableAllButtons(buttons);
+        disableAllButtons(buttonInputs);
+        disableAllButtons(submitInputs);
+    };</code></pre>
+          <section id="enableAllButtons">
+            <h1>enableAllButtons</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>enableAllButtons()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>buttons</td>
+                <td>Array</td>
+                <td>Array of buttons (DOM objects).</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Enable all buttons of a button collection.</p> </div>
+          <pre><code class="language-javascript">var enableAllButtons = function (buttons) {
+        for (var i = 0; i &lt; buttons.length; i++) {
+            buttons[i].removeAttribute('disabled');
+        }
+    };</code></pre>
+          <section id="enableButtons">
+            <h1>enableButtons</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>this.enableButtons()</span>
+            </p>
+          </section>
+          <div class="description"><p>Enables the buttons (useful when the buttons were disabled while an action was in progress<br />and the user is given back the control).</p> </div>
+          <pre><code class="language-javascript">this.enableButtons = function() {
+        var buttons = sizzle('button', container);
+        var buttonInputs = sizzle('input[type=button]', container);
+        var submitInputs = sizzle('input[type=submit]', container);
+
+        enableAllButtons(buttons);
+        enableAllButtons(buttonInputs);
+        enableAllButtons(submitInputs);
+    };
+}
+module.exports = Dialog;</code></pre>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with<a href="https://github.com/FGRibreau/doxx">Doxx</a>created by<a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau</a></p>
+        <p>Doxx is sponsored by<a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr</a>and<a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://leaverou.github.com/prefixfree/prefixfree.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-affix.js"></script>
+    <script>
+      /**
+       * Prism: Lightweight, robust, elegant syntax highlighting
+       * MIT license http://www.opensource.org/licenses/mit-license.php/
+       * @author Lea Verou http://lea.verou.me
+       */(function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var r={};for(var i in e)e.hasOwnProperty(i)&&(r[i]=t.util.clone(e[i]));return r;case"Array":return e.slice()}return e}},languages:{extend:function(e,n){var r=t.util.clone(t.languages[e]);for(var i in n)r[i]=n[i];return r},insertBefore:function(e,n,r,i){i=i||t.languages;var s=i[e],o={};for(var u in s)if(s.hasOwnProperty(u)){if(u==n)for(var a in r)r.hasOwnProperty(a)&&(o[a]=r[a]);o[u]=s[u]}return i[e]=o},DFS:function(e,n){for(var r in e){n.call(e,r,e[r]);t.util.type(e)==="Object"&&t.languages.DFS(e[r],n)}}},highlightAll:function(e,n){var r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');for(var i=0,s;s=r[i++];)t.highlightElement(s,e===!0,n)},highlightElement:function(r,i,s){var o,u,a=r;while(a&&!e.test(a.className))a=a.parentNode;if(a){o=(a.className.match(e)||[,""])[1];u=t.languages[o]}if(!u)return;r.className=r.className.replace(e,"").replace(/\s+/g," ")+" language-"+o;a=r.parentNode;/pre/i.test(a.nodeName)&&(a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+o);var f=r.textContent;if(!f)return;f=f.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\u00a0/g," ");var l={element:r,language:o,grammar:u,code:f};t.hooks.run("before-highlight",l);if(i&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){l.highlightedCode=n.stringify(JSON.parse(e.data));l.element.innerHTML=l.highlightedCode;s&&s.call(l.element);t.hooks.run("after-highlight",l)};c.postMessage(JSON.stringify({language:l.language,code:l.code}))}else{l.highlightedCode=t.highlight(l.code,l.grammar);l.element.innerHTML=l.highlightedCode;s&&s.call(r);t.hooks.run("after-highlight",l)}},highlight:function(e,r){return n.stringify(t.tokenize(e,r))},tokenize:function(e,n){var r=t.Token,i=[e],s=n.rest;if(s){for(var o in s)n[o]=s[o];delete n.rest}e:for(var o in n){if(!n.hasOwnProperty(o)||!n[o])continue;var u=n[o],a=u.inside,f=!!u.lookbehind||0;u=u.pattern||u;for(var l=0;l<i.length;l++){var c=i[l];if(i.length>e.length)break e;if(c instanceof r)continue;u.lastIndex=0;var h=u.exec(c);if(h){f&&(f=h[1].length);var p=h.index-1+f,h=h[0].slice(f),d=h.length,v=p+d,m=c.slice(0,p+1),g=c.slice(v+1),y=[l,1];m&&y.push(m);var b=new r(o,a?t.tokenize(h,a):h);y.push(b);g&&y.push(g);Array.prototype.splice.apply(i,y)}}}return i},hooks:{all:{},add:function(e,n){var r=t.hooks.all;r[e]=r[e]||[];r[e].push(n)},run:function(e,n){var r=t.hooks.all[e];if(!r||!r.length)return;for(var i=0,s;s=r[i++];)s(n)}}},n=t.Token=function(e,t){this.type=e;this.content=t};n.stringify=function(e){if(typeof e=="string")return e;if(Object.prototype.toString.call(e)=="[object Array]"){for(var r=0;r<e.length;r++)e[r]=n.stringify(e[r]);return e.join("")}var i={type:e.type,content:n.stringify(e.content),tag:"span",classes:["token",e.type],attributes:{}};i.type=="comment"&&(i.attributes.spellcheck="true");t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"};if(!self.document){self.addEventListener("message",function(e){var n=JSON.parse(e.data),r=n.language,i=n.code;self.postMessage(JSON.stringify(t.tokenize(i,t.languages[r])));self.close()},!1);return}var r=document.getElementsByTagName("script");r=r[r.length-1];if(r){t.filename=r.src;document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)}})();;
+      Prism.languages.markup={comment:/&lt;!--[\w\W]*?--(&gt;|&gt;)/g,prolog:/&lt;\?.+?\?&gt;/,doctype:/&lt;!DOCTYPE.+?&gt;/,cdata:/&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,tag:{pattern:/&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?&gt;/gi,inside:{tag:{pattern:/^&lt;\/?[\w:-]+/i,inside:{punctuation:/^&lt;\/?/,namespace:/^[\w-]+?:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,inside:{punctuation:/=|&gt;|"/g}},punctuation:/\/?&gt;/g,"attr-name":{pattern:/[\w:-]+/g,inside:{namespace:/^[\w-]+?:/}}}},entity:/&amp;#?[\da-z]{1,8};/gi};Prism.hooks.add("wrap",function(e){e.type==="entity"&&(e.attributes.title=e.content.replace(/&amp;/,"&"))});;
+      Prism.languages.css={comment:/\/\*[\w\W]*?\*\//g,atrule:/@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,url:/url\((["']?).*?\1\)/gi,selector:/[^\{\}\s][^\{\}]*(?=\s*\{)/g,property:/(\b|\B)[a-z-]+(?=\s*:)/ig,string:/("|')(\\?.)*?\1/g,important:/\B!important\b/gi,ignore:/&(lt|gt|amp);/gi,punctuation:/[\{\};:]/g};Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{style:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.css}}});;
+      Prism.languages.clike={comment:{pattern:/(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,lookbehind:!0},string:/("|')(\\?.)*?\1/g,keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,"boolean":/\b(true|false)\b/g,number:/\b-?(0x)?\d*\.?[\da-f]+\b/g,operator:/[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,ignore:/&(lt|gt|amp);/gi,punctuation:/[{}[\];(),.:]/g};;
+      Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,number:/\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g});Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,lookbehind:!0}});Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.javascript}}});;
+      
+    </script>
+    <!-- App js-->
+    <script>
+      $(function(){
+        var $window = $(window);
+        $('.scrollspy .nav').affix({
+          offset: {
+            top: function () { return $window.width() <= 980 ? 480 : 400 }
+          , bottom: 50
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

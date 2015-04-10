@@ -1,0 +1,11 @@
+{
+	"name": "o-comment-utilities",
+	"version": "0.2.12",
+	"private": true,
+	"dependencies": {},
+	"devDependencies": {
+		"origami-build-tools": "*",
+		"gulp": "^3.8.10",
+		"gulp-watch": "^1.1.0"
+	}
+}

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>comment-utilities</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/docs.css">
+    <style>
+      body > .navbar .brand {
+        float:left;
+        text-shadow: rgba(255, 255, 255, 0.0980392) 0px 1px 0px, rgba(255, 255, 255, 0.4) 0px 0px 30px;
+        color: white;
+        margin-left:0px;
+        font-weight:normal;
+      }
+      
+      .bs-docs-sidenav.affix {
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+      
+      .bs-docs-sidenav i{
+        width: 8px;
+        height: 8px;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+        margin-right:0.5em;
+      }
+      
+      .bs-docs-sidenav > li > a {
+          word-wrap: break-word;
+      }
+      
+      .bs-docs-sidenav > li:first-child > a {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+      }
+      
+      code[class*="language-"],pre[class*="language-"]{color:black;text-shadow:0 1px white;font-family:Consolas,Monaco,'Andale Mono',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*="language-"]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*="language-"],pre[class*="language-"]{background:#f5f2f0}:not(pre)>code[class*="language-"]{padding:.1em;border-radius:.3em}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:slategray}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number{color:#905}.token.selector,.token.attr-name,.token.string{color:#690}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.regex,.token.important{color:#e90}.token.important{font-weight:bold}.token.entity{cursor:help}
+      div.description {margin: 14px 0; padding-top: 14px; border-bottom:1px solid #eee; }
+      .tags {}
+      .ctx-type {
+        display:inline-block;
+        margin-right:0.5em;
+        //- float:right; margin-top:8px
+      }
+      
+      footer iframe{vertical-align:middle;}
+      
+    </style>
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Doxx</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header id="overview" class="jumbotron subhead">
+      <div class="container">
+        <h1>comment-utilities</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li class="active"><a href="index.html">Main</a></li>
+            <li><a href="date\dateHelper.js.html">date\dateHelper.js</a></li>
+            <li><a href="documentReady\contentLoaded.js.html">documentReady\contentLoaded.js</a></li>
+            <li><a href="documentReady\documentReady.js.html">documentReady\documentReady.js</a></li>
+            <li><a href="domConstruct\domConstruct.js.html">domConstruct\domConstruct.js</a></li>
+            <li><a href="envConfig\Config.js.html">envConfig\Config.js</a></li>
+            <li><a href="events\Events.js.html">events\Events.js</a></li>
+            <li><a href="functionSync\parallel.js.html">functionSync\parallel.js</a></li>
+            <li><a href="jsonp\jsonp.js.html">jsonp\jsonp.js</a></li>
+            <li><a href="jsonp\param.js.html">jsonp\param.js</a></li>
+            <li><a href="logger\logger.js.html">logger\logger.js</a></li>
+            <li><a href="main.js.html">main.js</a></li>
+            <li><a href="merge\merge.js.html">merge\merge.js</a></li>
+            <li><a href="scriptLoader\scriptLoader.js.html">scriptLoader\scriptLoader.js</a></li>
+            <li><a href="storageWrapper\localStorage.js.html">storageWrapper\localStorage.js</a></li>
+            <li><a href="storageWrapper\sessionStorage.js.html">storageWrapper\sessionStorage.js</a></li>
+            <li><a href="storageWrapper\StorageWrapper.js.html">storageWrapper\StorageWrapper.js</a></li>
+          </ul>
+          <div class="scrollspy">
+            <ul class="nav nav-list bs-docs-sidenav affix-top">
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <section id="Main"><h1 id="comment-utilities">comment-utilities</h1>
+<hr>
+<h2 id="how-to-use-it">How to use it</h2>
+<p>There are two ways of using this module:</p>
+<h3 id="standalone">Standalone</h3>
+<p>Run <code>grunt</code>, then insert the JS found in the dist folder:</p>
+<pre><code class="lang-javascript">&lt;script src=&quot;dist/javascripts/commentUtilities.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>The module&#39;s API can be accessed using <code>commentUtilities</code> in the global scope.</p>
+<h3 id="bower-and-browserify">Bower and browserify</h3>
+<p>With bower, simply require the module:</p>
+<pre><code class="lang-javascript">var commentUtilities = require(&#39;comment-utilities&#39;);</code></pre>
+<p>The module should be built using <code>browserify</code> (with <code>debowerify</code> transform).</p>
+<hr>
+<h2 id="submodules">Submodules</h2>
+<h3 id="envconfig">envConfig</h3>
+<p>This module provides a useful way to handle application level configurations. It supports setting and reading configurations, also overriding existing values (helpful when the application should be working on different environments with partially different configuration).</p>
+<h4 id="constructor">Constructor</h4>
+<p>In order to create a configuration, you should create an instance first:</p>
+<pre><code class="lang-javascript">var config1 = new commentUtilities.EnvConfig();</code></pre>
+<p>In order to keep an isolated configuration object of your application, which is accessible within your whole application, the following method can be used:</p>
+<ul>
+<li>define a config.js file within your application</li>
+<li>create an instance of config.js and expose it within the application:</li>
+</ul>
+<pre><code class="lang-javascript">var EnvConfig = require(&#39;js-env-config&#39;);
+
+module.exports = new EnvConfig();</code></pre>
+<h4 id="methods">Methods</h4>
+<h6 id="get">get</h6>
+<p>Gets the whole configuration if without parameter, or a field if a field is given as parameter.</p>
+<p>Getting the whole configuration object:</p>
+<pre><code class="lang-javascript">config.get();</code></pre>
+<p>Getting a field of the configuration object:</p>
+<pre><code class="lang-javascript">config.get(&#39;aField&#39;);</code></pre>
+<h6 id="set">set</h6>
+<p>Sets the configuration. The current configuration is merged with this object. Existing fields that have primitive type values and the same field has value in the object given to set, are overwritten.</p>
+<p>Setting an object:</p>
+<pre><code class="lang-javascript">config.set({
+    &#39;configField&#39;: &#39;value&#39;
+});</code></pre>
+<p>Setting a key/value:</p>
+<pre><code class="lang-javascript">config.set(&#39;aField&#39;, {
+    &#39;configField&#39;: &#39;value&#39;
+});</code></pre>
+<p>This is equivalent with the following object:</p>
+<pre><code class="lang-javascript">{
+    &quot;aField&quot;: {
+        &quot;configField&quot;: &quot;value&quot;
+    }
+}</code></pre>
+<h3 id="events">Events</h3>
+<p>This module helps creating custom events, listening on custom events and triggering them. It is similar to jQuery&#39;s event system (except that it doesn&#39;t support namespacing).</p>
+<h4 id="constructor">Constructor</h4>
+<p>The constructor has no parameter.</p>
+<pre><code class="lang-javascript">var myEvent = new Events();</code></pre>
+<h4 id="methods">Methods</h4>
+<h6 id="on">on</h6>
+<p>Registers a new event handler to an event.</p>
+<pre><code class="lang-javascript">myEvent.on(event, handler)</code></pre>
+<p>Where:</p>
+<ul>
+<li>event: name of the event</li>
+<li>handler: function which is called when the event is triggered. The handler can receive parameters if the trigger was made with data to be forwarded to handlers.</li>
+</ul>
+<h6 id="one">one</h6>
+<p>Registers a new event handler to an event. Similar to &#39;on&#39;, but the handler is called only once.</p>
+<pre><code class="lang-javascript">myEvent.one(event, handler)</code></pre>
+<h6 id="off">off</h6>
+<p>Removes one or more event handlers.</p>
+<pre><code class="lang-javascript">myEvent.off(event, handler)</code></pre>
+<p>Where:</p>
+<ul>
+<li>event: name of the event from which the handler should be removed.</li>
+<li>handler: handler function that will be removed.</li>
+</ul>
+<p>If handler is omitted, all event handlers from the event specified are removed.<br>If both event and handler are omitted, all event handlers are removed.</p>
+<h6 id="trigger">trigger</h6>
+<p>Triggers an event: it causes calling all the event handlers that are listening for the event name.</p>
+<pre><code class="lang-javascript">myEvent.trigger(event, customData)</code></pre>
+<p>Where:</p>
+<ul>
+<li>event: name of the event for which the handlers should be called.</li>
+<li>customData: optional parameter, data to be passed to the event handlers.</li>
+</ul>
+<h3 id="jsonp">jsonp</h3>
+<p>This module provides a similar solution for JSONP communication as jQuery. For more information on JSONP, visit <a href="http://json-p.org/">http://json-p.org/</a> .</p>
+<p>The module is actually a single function. It should be called the following way:</p>
+<pre><code>commentUtilitis.jsonp({
+    url: &quot;URL here&quot;,
+    data: &quot;Data here&quot; //optional
+}, function (err, data) {
+    if (err) {
+        throw err;
+    }
+
+    // use the data
+});</code></pre>
+<p>Both parameters (configuration object and callback) are required. Also, the configuration should contain the &#39;url&#39; field.</p>
+<h6 id="data">data</h6>
+<p>If data should be sent, it can be part of the URL directly, or can be provided as the data field within the configuration object. The data field should be an object with key-value pairs.</p>
+<h6 id="callback">callback</h6>
+<p>The callback has a Node.js inspired form. The first parameter is the error parameter, while the second one is the data parameter received from the server as a response.</p>
+<h3 id="scriptloader">scriptLoader</h3>
+<p>This module provides a similar solution for loading a Javascript file asynchronously as jQuery&#39;s $.getScript() (<a href="http://api.jquery.com/jquery.getscript/">http://api.jquery.com/jquery.getscript/</a>).</p>
+<p>The module is actually a single function. It can be called the following ways:</p>
+<p>1.</p>
+<pre><code>commentUtilities.scriptLoader({
+    url: &quot;URL here&quot;,
+    charset: &quot;utf-8&quot; //optional
+}, function (err) {
+    if (err) {
+        throw err;
+    }
+
+    // loaded successfully
+});</code></pre>
+<p>2.</p>
+<pre><code>commentUtilities.scriptLoader(&quot;URL here&quot;, function (err) {
+    if (err) {
+        throw err;
+    }
+
+    // loaded successfully
+});</code></pre>
+<p>Both parameters (configuration object/URL and callback) are required. Also, if the configuration is an object, it should contain the &#39;url&#39; field.</p>
+<h6 id="callback">callback</h6>
+<p>The callback has a Node.js inspired form. The parameter is either &#39;null&#39; or an Error instance. If it doesn&#39;t contain an error, the loading finished with success.</p>
+<h3 id="storagewrapper">storageWrapper</h3>
+<p>Wrapper around localStorage and sessionStorage, but enhanced with automatic type conversion.</p>
+<p>Automatic type conversion means the followin: for example, if you store an object which can be serialized into a JSON string, when you read it back you will get the same Javascript object and not just a plain string.</p>
+<p>The module exposes two main fields, both having the same API:</p>
+<pre><code class="lang-javascript">commentUtilities.storageWrapper.localStorage //wrapper around native localStorage
+commentUtilities.storageWrapper.sessionStorage //wrapper around native sessionStorage</code></pre>
+<h4 id="api-of-localstorage-and-sessionstorage">API of localStorage and sessionStorage</h4>
+<p>Both submodules has the same public API. The difference is only the place the data is saved (as it is in the native API).</p>
+<p>Available methods:</p>
+<h6 id="setitem">setItem</h6>
+<p>Saves an item in the storage. It has the following form:</p>
+<pre><code class="lang-javascript">setItem(key, value);</code></pre>
+<p>The value is saved in the storage with the key. The value can be looked up using the key provided.</p>
+<p>The item is saved in the following format:</p>
+<pre><code>{type}|{value converted/serialized to string}</code></pre>
+<p>For example, a boolean &quot;true&quot; value is saved in the following way:</p>
+<pre><code>boolean|true</code></pre>
+<p>Objects that can be serialized are saved with the type &quot;json&quot;.</p>
+<h6 id="getitem">getItem</h6>
+<p>Reads the item and returns it in the original type that was saved.</p>
+<pre><code class="lang-javascript">getItem(key);</code></pre>
+<p>For example, if a boolean true was saved, it is not returned as a string, but as a boolean type.</p>
+<h6 id="hasitem">hasItem</h6>
+<p>Returns true or false and it says if there is an item with that key.</p>
+<pre><code class="lang-javascript">hasItem(key);</code></pre>
+<h6 id="removeitem">removeItem</h6>
+<p>Removes the item saved with the key provided.</p>
+<pre><code class="lang-javascript">removeItem(key);</code></pre>
+<h6 id="clear">clear</h6>
+<p>Clears all entries for the current domain.</p>
+<h6 id="native">native</h6>
+<p>Returns the native localStorage or sessionStorage object.</p>
+<h3 id="logger">logger</h3>
+<p>Logging helper which uses the native &quot;console&quot; to log. It also extends IE8 logging capabilities by stringifying complex objects.</p>
+<p>Where console is not available, the logger fails silently.</p>
+<p>The module supports the following methods:</p>
+<h4 id="logger-configuration">Logger configuration</h4>
+<p>The logger can be configured with the following: enable/disable, set the minimum level that is logged.</p>
+<p>By default is logging disabled (recommended settings for production).<br>Default level of logging is &#39;warn&#39;.</p>
+<h6 id="enable">enable</h6>
+<p>Enables the logging.</p>
+<pre><code class="lang-javascript">logger.enable();</code></pre>
+<h6 id="disable">disable</h6>
+<p>Disables the logging.</p>
+<pre><code class="lang-javascript">logger.disable();</code></pre>
+<h6 id="setlevel">setLevel</h6>
+<p>Sets the minimum level that should be logged. The levels are the following:</p>
+<ul>
+<li>debug</li>
+<li>log</li>
+<li>info</li>
+<li>warn</li>
+<li>error</li>
+</ul>
+<pre><code class="lang-javascript">logger.setLevel(level);</code></pre>
+<p>Where level can be:</p>
+<ul>
+<li>string: anything from the list above</li>
+<li>numeric: any number from the range between 0-4, where 0 means log everything (min level is debug), while 4 means log only error level logs.</li>
+</ul>
+<h4 id="logging-functions">Logging functions</h4>
+<p>Available functions:</p>
+<ul>
+<li>debug</li>
+<li>log</li>
+<li>info</li>
+<li>warn</li>
+<li>error</li>
+</ul>
+<h3 id="functionsync">functionSync</h3>
+<p>This submodule is meant to generate a callback only when all functions provided finished their execution. This is achieved by passing a callback as parameter to the functions that are executed.</p>
+<p>The submodule itself is a single function and can be called in the following way:</p>
+<pre><code class="lang-javascript">commentUtilities.functionSync({
+    func1: function (callback) {},
+    func2: function (callback) {},
+    func3: {
+        args: [&#39;param1&#39;, &#39;param2&#39;],
+        func: function (callback, param1, param2) {}
+    }
+}, function (dataAggregate) {
+    // where data aggregate is:
+    // {
+    //      func1: &#39;dataFromFunc1&#39;,
+    //      func2: &#39;dataFromFunc2&#39;,
+    //      func2: &#39;dataFromFunc2&#39;
+    // }
+}
+});</code></pre>
+<p>Functions provided within the object can be in the following forms:</p>
+<ol>
+<li>Single function. As example are func1 and func2.</li>
+<li>Object with the following fields: func is the actual function that will be called, args are the arguments that are appended after the callback parameter.</li>
+</ol>
+<p>For more information on the technical side, please visit the detailed documentation (docs/index.html).</p>
+</section>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with<a href="https://github.com/FGRibreau/doxx">Doxx</a>created by<a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau</a></p>
+        <p>Doxx is sponsored by<a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr</a>and<a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://leaverou.github.com/prefixfree/prefixfree.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-affix.js"></script>
+    <script>
+      /**
+       * Prism: Lightweight, robust, elegant syntax highlighting
+       * MIT license http://www.opensource.org/licenses/mit-license.php/
+       * @author Lea Verou http://lea.verou.me
+       */(function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var r={};for(var i in e)e.hasOwnProperty(i)&&(r[i]=t.util.clone(e[i]));return r;case"Array":return e.slice()}return e}},languages:{extend:function(e,n){var r=t.util.clone(t.languages[e]);for(var i in n)r[i]=n[i];return r},insertBefore:function(e,n,r,i){i=i||t.languages;var s=i[e],o={};for(var u in s)if(s.hasOwnProperty(u)){if(u==n)for(var a in r)r.hasOwnProperty(a)&&(o[a]=r[a]);o[u]=s[u]}return i[e]=o},DFS:function(e,n){for(var r in e){n.call(e,r,e[r]);t.util.type(e)==="Object"&&t.languages.DFS(e[r],n)}}},highlightAll:function(e,n){var r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');for(var i=0,s;s=r[i++];)t.highlightElement(s,e===!0,n)},highlightElement:function(r,i,s){var o,u,a=r;while(a&&!e.test(a.className))a=a.parentNode;if(a){o=(a.className.match(e)||[,""])[1];u=t.languages[o]}if(!u)return;r.className=r.className.replace(e,"").replace(/\s+/g," ")+" language-"+o;a=r.parentNode;/pre/i.test(a.nodeName)&&(a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+o);var f=r.textContent;if(!f)return;f=f.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\u00a0/g," ");var l={element:r,language:o,grammar:u,code:f};t.hooks.run("before-highlight",l);if(i&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){l.highlightedCode=n.stringify(JSON.parse(e.data));l.element.innerHTML=l.highlightedCode;s&&s.call(l.element);t.hooks.run("after-highlight",l)};c.postMessage(JSON.stringify({language:l.language,code:l.code}))}else{l.highlightedCode=t.highlight(l.code,l.grammar);l.element.innerHTML=l.highlightedCode;s&&s.call(r);t.hooks.run("after-highlight",l)}},highlight:function(e,r){return n.stringify(t.tokenize(e,r))},tokenize:function(e,n){var r=t.Token,i=[e],s=n.rest;if(s){for(var o in s)n[o]=s[o];delete n.rest}e:for(var o in n){if(!n.hasOwnProperty(o)||!n[o])continue;var u=n[o],a=u.inside,f=!!u.lookbehind||0;u=u.pattern||u;for(var l=0;l<i.length;l++){var c=i[l];if(i.length>e.length)break e;if(c instanceof r)continue;u.lastIndex=0;var h=u.exec(c);if(h){f&&(f=h[1].length);var p=h.index-1+f,h=h[0].slice(f),d=h.length,v=p+d,m=c.slice(0,p+1),g=c.slice(v+1),y=[l,1];m&&y.push(m);var b=new r(o,a?t.tokenize(h,a):h);y.push(b);g&&y.push(g);Array.prototype.splice.apply(i,y)}}}return i},hooks:{all:{},add:function(e,n){var r=t.hooks.all;r[e]=r[e]||[];r[e].push(n)},run:function(e,n){var r=t.hooks.all[e];if(!r||!r.length)return;for(var i=0,s;s=r[i++];)s(n)}}},n=t.Token=function(e,t){this.type=e;this.content=t};n.stringify=function(e){if(typeof e=="string")return e;if(Object.prototype.toString.call(e)=="[object Array]"){for(var r=0;r<e.length;r++)e[r]=n.stringify(e[r]);return e.join("")}var i={type:e.type,content:n.stringify(e.content),tag:"span",classes:["token",e.type],attributes:{}};i.type=="comment"&&(i.attributes.spellcheck="true");t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"};if(!self.document){self.addEventListener("message",function(e){var n=JSON.parse(e.data),r=n.language,i=n.code;self.postMessage(JSON.stringify(t.tokenize(i,t.languages[r])));self.close()},!1);return}var r=document.getElementsByTagName("script");r=r[r.length-1];if(r){t.filename=r.src;document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)}})();;
+      Prism.languages.markup={comment:/&lt;!--[\w\W]*?--(&gt;|&gt;)/g,prolog:/&lt;\?.+?\?&gt;/,doctype:/&lt;!DOCTYPE.+?&gt;/,cdata:/&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,tag:{pattern:/&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?&gt;/gi,inside:{tag:{pattern:/^&lt;\/?[\w:-]+/i,inside:{punctuation:/^&lt;\/?/,namespace:/^[\w-]+?:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,inside:{punctuation:/=|&gt;|"/g}},punctuation:/\/?&gt;/g,"attr-name":{pattern:/[\w:-]+/g,inside:{namespace:/^[\w-]+?:/}}}},entity:/&amp;#?[\da-z]{1,8};/gi};Prism.hooks.add("wrap",function(e){e.type==="entity"&&(e.attributes.title=e.content.replace(/&amp;/,"&"))});;
+      Prism.languages.css={comment:/\/\*[\w\W]*?\*\//g,atrule:/@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,url:/url\((["']?).*?\1\)/gi,selector:/[^\{\}\s][^\{\}]*(?=\s*\{)/g,property:/(\b|\B)[a-z-]+(?=\s*:)/ig,string:/("|')(\\?.)*?\1/g,important:/\B!important\b/gi,ignore:/&(lt|gt|amp);/gi,punctuation:/[\{\};:]/g};Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{style:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.css}}});;
+      Prism.languages.clike={comment:{pattern:/(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,lookbehind:!0},string:/("|')(\\?.)*?\1/g,keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,"boolean":/\b(true|false)\b/g,number:/\b-?(0x)?\d*\.?[\da-f]+\b/g,operator:/[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,ignore:/&(lt|gt|amp);/gi,punctuation:/[{}[\];(),.:]/g};;
+      Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,number:/\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g});Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,lookbehind:!0}});Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.javascript}}});;
+      
+    </script>
+    <!-- App js-->
+    <script>
+      $(function(){
+        var $window = $(window);
+        $('.scrollspy .nav').affix({
+          offset: {
+            top: function () { return $window.width() <= 980 ? 480 : 400 }
+          , bottom: 50
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

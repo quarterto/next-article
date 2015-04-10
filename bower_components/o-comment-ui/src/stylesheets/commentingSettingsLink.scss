@@ -1,0 +1,18 @@
+.o-comment-ui--settings {
+	display: inline-block;
+	margin-left: 10px;
+	color: oColorsGetPaletteColor(pink-tint3);
+
+	.o-comment-ui--settings-text {
+		padding-left: 10px;
+		color: oColorsGetPaletteColor(blue);
+		cursor: pointer;
+		display: inline-block;
+		vertical-align: bottom; // aligns the gear icon
+	}
+
+	i {
+		font-size: 14px;
+		vertical-align: bottom;
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"description": "Shared UI components used by o-comments and o-chat.",
+	"origamiType": "module",
+	"origamiVersion": 1,
+	"support": "hyperion@ft.com",
+	"supportStatus": "active",
+	"ci": {},
+	"browserFeatures": {
+		"required": ["createevent", "customevents"]
+	}
+}

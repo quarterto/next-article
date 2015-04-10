@@ -1,0 +1,12 @@
+{
+	"name": "o-comment-utilities",
+	"version": "1.0.1",
+	"main": "main.js",
+	"dependencies": {
+	},
+	"ignore": [
+		"node_modules",
+		"tests",
+		"Gruntfile.js"
+	]
+}

@@ -1,12 +1,10 @@
-/bower_components/
 /node_modules/
 /__attic/
 /.sass-cache/
 /.node-version
 .DS_Store
 npm-debug.log
-public/*.*
-!/public/polyfill.min.js
+/public/
 /node-v*
 /tmp/
 .env
@@ -16,3 +14,4 @@ public/*.*
 /tests/browser/reports
 /tests/browser/screenshots
 /npm-debug.log.*
+bower_components
