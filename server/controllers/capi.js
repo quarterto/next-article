@@ -19,6 +19,7 @@ var removeBodyTransform = require('../transforms/remove-body');
 var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
 var promoBoxTransform = require('../transforms/promo-box');
+var videoTransform = require('../transforms/video');
 
 function getUuid(id) {
 	return id.replace('http://www.ft.com/thing/', '');
@@ -70,6 +71,7 @@ module.exports = function(req, res, next) {
 					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 					$('pull-quote').replaceWith(pullQuotesTransform);
 					$('promo-box').replaceWith(promoBoxTransform);
+					$('a[href^="http://video.ft.com/"]:empty').replaceWith(videoTransform);
 
 					// insert inline related
 					if ($('body > p').length >= 6) {
@@ -142,11 +144,7 @@ module.exports = function(req, res, next) {
 								isColumnist: isColumnist,
 								// if there's a main image, or slideshow or video, we overlap them on the header
 								headerOverlap:
-									$(
-										'> .article__main-image,' +
-										'> ft-slideshow:first-child,' +
-										'> a:first-child[data-asset-type="video"], > a:first-child[href^="http://video.ft.com/"]'
-									).length,
+									$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length,
 								layout: 'wrapper',
 								headerData: {
 									isStream: false,
