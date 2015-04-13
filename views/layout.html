@@ -77,22 +77,7 @@
 		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="primaryTheme"></div>
 		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}"></div>
 		<div class="o-grid-row">
-			{{#if @root.flags.mentionsV2.isSwitchedOn}}
-			<div class="more-on-wrapper" data-o-grid-colspan="12 M6">
-				<div class="more-on more-on--organisations">
-					<h2 class="more-on__title">Related organisations</h2>
-					<ul class="more-on__organisations ng-list-reset">
-					{{#each organisations}}
-						<li class="more-on__organisation">
-							<a href='/{{url}}' class='more-on__organisation__link ng-title-link' data-trackable='section-link'>{{label}}</a>
-						</li>
-					{{/each}}
-					</ul>
-				</div>
-			</div>
-			{{else}}
 			<div class="js-related more-on-wrapper" data-taxonomy="organisations" data-o-grid-colspan="12 M6"></div>
-			{{/if}}
 			{{#if @root.flags.mentionsV2.isSwitchedOn}}
 			<div class="more-on-wrapper" data-o-grid-colspan="12 M6">
 				<div class="more-on more-on--people">
