@@ -78,22 +78,7 @@
 		<div class="js-more-on-topic more-on-wrapper" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}"></div>
 		<div class="o-grid-row">
 			<div class="js-related more-on-wrapper" data-taxonomy="organisations" data-o-grid-colspan="12 M6"></div>
-			{{#if @root.flags.mentionsV2.isSwitchedOn}}
-			<div class="more-on-wrapper" data-o-grid-colspan="12 M6">
-				<div class="more-on more-on--people">
-					<h2 class="more-on__title">Related people</h2>
-					<ul class="more-on__people ng-list-reset">
-					{{#each people}}
-						<li class="more-on__organisation">
-							<a href='/{{url}}' class='more-on__organisation__link ng-title-link' data-trackable='section-link'>{{label}}</a>
-						</li>
-					{{/each}}
-					</ul>
-				</div>
-			</div>
-			{{else}}
 			<div class="js-related more-on-wrapper" data-taxonomy="people" data-o-grid-colspan="12 M6"></div>
-			{{/if}}
 		</div>
 	</div>
 	<div class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset2"></div>

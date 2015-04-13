@@ -26,7 +26,6 @@ module.exports = function(req, res, next) {
 							annotation.type === 'ORGANISATION';
 					})
 					.map(function (organisation) {
-						console.log(extractUuid(organisation.uri));
 						return api.organisations({
 								uuid: extractUuid(organisation.uri)
 							})
@@ -84,7 +83,11 @@ module.exports = function(req, res, next) {
 				});
 				return Promise.all(promises)
 					.then(function (results) {
-						var organisations = results.map(function (result, index) {
+						var organisations = results
+							.filter(function (organisation) {
+								return organisation;
+							})
+							.map(function (organisation, index) {
 								var relation = relations[index].term;
 								var organisationModel = {
 									name: relation.name,
@@ -100,9 +103,6 @@ module.exports = function(req, res, next) {
 								});
 
 								return organisationModel;
-							})
-							.filter(function (organisation) {
-								return organisation;
 							})
 							// put orgs that can display stock data first
 							.sort(function (org1, org2) {
