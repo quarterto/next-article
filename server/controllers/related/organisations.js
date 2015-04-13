@@ -19,7 +19,6 @@ module.exports = function(req, res, next) {
 			metadata: true
 		})
 			.then(function (article) {
-				var mentions = article.mentions || [];
 				var orgPromises = article.annotations
 					.filter(function (annotation) {
 						return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions' &&
@@ -48,7 +47,7 @@ module.exports = function(req, res, next) {
 							name: organisation && (organisation.prefLabel || (organisation.labels && organisation.labels[0])),
 							url: '/organisations/' + extractUuid(organisation.id)
 						};
-					})
+					});
 				if (!organisations.length) {
 					throw new Error('No related');
 				}

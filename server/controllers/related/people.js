@@ -19,7 +19,6 @@ module.exports = function(req, res, next) {
 			metadata: true
 		})
 			.then(function (article) {
-				var mentions = article.mentions || [];
 				var personPromises = article.annotations
 					.filter(function (annotation) {
 						return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions' &&
@@ -44,7 +43,7 @@ module.exports = function(req, res, next) {
 						return person;
 					})
 					.map(function (person) {
-						return {
+						var personModel = {
 							name: person && (person.prefLabel || (person.labels && person.labels[0])),
 							url: '/people/' + extractUuid(person.id)
 						};
@@ -58,7 +57,7 @@ module.exports = function(req, res, next) {
 							}
 						}
 						return personModel;
-					})
+					});
 				if (!people.length) {
 					throw new Error('No related');
 				}
