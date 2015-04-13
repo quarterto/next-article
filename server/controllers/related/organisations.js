@@ -84,9 +84,6 @@ module.exports = function(req, res, next) {
 				return Promise.all(promises)
 					.then(function (results) {
 						var organisations = results
-							.filter(function (organisation) {
-								return organisation;
-							})
 							.map(function (organisation, index) {
 								var relation = relations[index].term;
 								var organisationModel = {

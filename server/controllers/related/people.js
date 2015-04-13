@@ -94,9 +94,6 @@ module.exports = function(req, res, next) {
 				return Promise.all(promises)
 					.then(function (results) {
 						var people = results
-							.filter(function (result) {
-								return result;
-							})
 							.map(function (person, index) {
 								var personModel = {
 									name: relations[index].term.name,
