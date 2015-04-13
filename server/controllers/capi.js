@@ -45,10 +45,36 @@ module.exports = function(req, res, next) {
 		metadata: true
 	});
 
-	Promise.all([articleV1Promise, articleV2Promise])
+	// This will be in Content API v2 in Q2
+	var commentsPromise;
+
+	if (res.locals.flags.articleCommentsHack.isSwitchedOn) {
+		commentsPromise = fetch('http://www.ft.com/cms/s/' + req.params[0] + '.html', {
+				headers: {
+					'User-Agent': 'Googlebot-News'
+				},
+				timeout: 3000
+			})
+				.then(fetchres.text)
+				.then(function(data) {
+					if (data.indexOf('<div id="ft-article-comments"></div>') > -1) {
+						return true;
+					}
+					return false;
+				})
+				.catch(function(err) {
+					// Just gracefully, silently fail…
+					return false;
+				});
+	} else {
+		commentsPromise = Promise.resolve(false);
+	}
+
+	Promise.all([articleV1Promise, articleV2Promise, commentsPromise])
 		.then(function(articles) {
 			var articleV1 = articles[0];
 			var article = articles[1];
+			article.comments = articles[2];
 
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
