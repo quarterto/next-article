@@ -83,8 +83,11 @@
 	}
 }
 .more-on__articles {
-	min-height: 128px;
 	margin-top: 5px;
+
+	.more-on--topic & {
+		min-height: 128px;
+	}
 }
 .more-on__article {
 	position: relative;

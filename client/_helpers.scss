@@ -15,7 +15,7 @@
 }
 .ng-pull-out {
 	@include oGridRespondTo(XL) {
-		margin-left: -200px;
+		margin-left: -100px;
 	}
 }
 .ng-title-link {

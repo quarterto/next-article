@@ -11,7 +11,7 @@ describe('Smoke Tests: ', function() {
 
 	before(function() {
 		nock('http://ft-next-api-feature-flags.herokuapp.com')
-			.get('/production')
+			.get('/__flags.json')
 			.reply(200, require('../fixtures/flags'));
 		return require('../../server/app').listen;
 	});
