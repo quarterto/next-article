@@ -63,7 +63,6 @@ module.exports = function(req, res, next) {
 					return false;
 				})
 				.catch(function(err) {
-					console.log(err);
 					// Just gracefully, silently fail…
 					return false;
 				});
