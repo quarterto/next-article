@@ -49,7 +49,7 @@ module.exports = function($body, flags) {
 					if (!isMain) {
 						$figure.addClass('article__inline-image ng-pull-out ng-inline-element');
 					} else {
-						$figure.addClass('article__main-image');
+						$figure.addClass('article__main-image ng-media-wrapper');
 					}
 				} else {
 					$figure.addClass('article__promo-box__image');
@@ -62,7 +62,14 @@ module.exports = function($body, flags) {
 
 					$figure.append($figcaption);
 				}
-				$figure.prepend('<img class="article__image" src="' + imageUrl + '" alt=""/>');
+				var $newImage = $('<img></img')
+					.addClass('article__image')
+					.attr('src', imageUrl)
+					.attr('alt', '');
+				if (isMain) {
+					$newImage.addClass('ng-media');
+				}
+				$figure.prepend($newImage);
 				if ($image.parent('p').length) {
 					$image.parent('p').before($figure);
 					return '';

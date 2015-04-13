@@ -80,7 +80,7 @@ $header-offset: 30px;
 	color: inherit;
 
 	&:nth-child(n+2) {
-		border-left: 1px solid #ffffff;
+		border-left: 1px solid rgba(255, 255, 255, 0.7);
 		margin-left: 4px;
 		padding-left: 10px;
 	}
@@ -135,20 +135,18 @@ $header-offset: 30px;
 	.o-quote--standard a {
 		color: inherit;
 	}
-	video {
-		width: 100%;
-	}
 	> {
 		.article__main-image,
-		.article__video:first-child,
+		.article__video-wrapper:first-child,
 		.article__gallery:first-child {
 			margin-top: -$header-offset - 15;
 		}
 	}
 }
 
-.article__main-image {
-	margin: 0;
+
+.article__video {
+	width: 100%;
 }
 .article__gallery {
 	line-height: initial;
