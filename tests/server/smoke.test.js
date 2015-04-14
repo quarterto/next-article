@@ -46,4 +46,12 @@ describe('Smoke Tests: ', function() {
 		});
 
 	});
+
+	// specific controller tests
+	require('./controllers/capi.test.js')();
+	require('./controllers/more-on.test.js')();
+	require('./controllers/more-on-topic.test.js')();
+	require('./controllers/fastft.test.js')();
+	require('./controllers/related/people.test.js')();
+
 });
