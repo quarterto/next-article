@@ -20,7 +20,7 @@ var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
 var promoBoxTransform = require('../transforms/promo-box');
 var videoTransform = require('../transforms/video');
-var relatedTags = require('../utils/tags');
+var extractTags = require('../utils/extract-tags');
 var logger = require('ft-next-logger');
 
 function getUuid(id) {
@@ -139,14 +139,9 @@ module.exports = function(req, res, next) {
 					// TODO: Replace with something in CAPI v2
 					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
-					// Get the tags and update the images (resize, add image captions, etc)
-					var imagesPromise = images($, res.locals.flags);
-					var tagPromise = relatedTags.get(articleV1, res.locals.flags);
-					return Promise.all([imagesPromise, tagPromise])
-						.then(function (results) {
-							var $ = results[0];
-							var tags = results[1];
-
+					// Update the images (resize, add image captions, etc)
+					return images($, res.locals.flags)
+						.then(function ($) {
 							return res.render('layout', {
 								article: article,
 								articleV1: articleV1 && articleV1.item,
@@ -154,7 +149,7 @@ module.exports = function(req, res, next) {
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
-								tags: tags,
+								tags: extractTags(article, articleV1, res.locals.flags),
 								body: $.html(),
 								subheaders: $subheaders.map(function() {
 									var $subhead = $(this);
