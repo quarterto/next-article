@@ -56,7 +56,7 @@ setup.bootstrap(function(result) {
 	toc.init(flags);
 	oDate.init(document.querySelector('.article'));
 
-	if (flags.get('articleComments').isSwitchedOn) {
+	if (flags.get('articleComments').isSwitchedOn && document.getElementById('comments')) {
 		oComments.on('widget.renderComplete', function (ev) {
 			var commentCount = ev.detail.widget.lfWidget.getCollection().attributes.numVisible;
 			var commentLink = document.createElement('a');
