@@ -1,8 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-var api = require('next-ft-api-client');
-var logger = require('ft-next-logger');
 
 module.exports = function (article, articleV1, flags) {
 	if (flags.mentionsV2 && flags.mentionsV2.isSwitchedOn) {
