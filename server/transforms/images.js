@@ -3,6 +3,7 @@
 var $ = require('cheerio');
 var resize = require('../utils/resize');
 var api = require('next-ft-api-client');
+var logger = require('ft-next-logger');
 
 module.exports = function($body, flags) {
 
@@ -11,6 +12,7 @@ module.exports = function($body, flags) {
 		.map(function (index, el) {
 			return api.content({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', ''), type: 'ImageSet' })
 				.catch(function(error) {
+					logger.error(error);
 					return {};
 				});
 		})
