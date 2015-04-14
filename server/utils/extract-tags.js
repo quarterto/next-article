@@ -20,7 +20,7 @@ module.exports = function (article, articleV1, flags) {
 		var articleV1Metadata = articleV1 && articleV1.item.metadata;
 		// NOTE - yoinked from
 		// https://github.com/Financial-Times/ft-api-client/blob/b95cb14b243436407fc14e1bb155e318264dfde7/lib/models/article.js#L345
-		return articleV1Metadata ? _(articleV1Metadata.primaryTheme)
+		return articleV1Metadata ? _(articleV1Metadata.primaryTheme ? [articleV1Metadata.primaryTheme] : [])
 			.concat(
 				articleV1Metadata.people,
 				articleV1Metadata.regions,
