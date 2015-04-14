@@ -20,6 +20,7 @@ var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
 var promoBoxTransform = require('../transforms/promo-box');
 var videoTransform = require('../transforms/video');
+var logger = require('ft-next-logger');
 
 function getUuid(id) {
 	return id.replace('http://www.ft.com/thing/', '');
@@ -58,15 +59,19 @@ module.exports = function(req, res, next) {
 				.then(fetchres.text)
 				.then(function(data) {
 					if (data.indexOf('<div id="ft-article-comments"></div>') > -1) {
+						logger.info("Comments switched on for " + req.params[0]);
 						return true;
 					}
+					logger.info("Comments switched off for " + req.params[0]);
 					return false;
 				})
 				.catch(function(err) {
 					// Just gracefully, silently fail…
+					logger.warn("Failed to pull whether comments is available from FT.com for " + req.params[0]);
 					return false;
 				});
 	} else {
+		logger.info("Comments hack disabled, defaulting to no comments");
 		commentsPromise = Promise.resolve(false);
 	}
 
