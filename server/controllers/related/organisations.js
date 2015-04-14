@@ -8,7 +8,7 @@ function extractUuid(id) {
 }
 
 module.exports = function(req, res, next) {
-	if (!res.locals.flags.articleRelated || res.locals.flags.articleRelated.isSwitchedOff) {
+	if (!res.locals.flags.articleRelatedContent || res.locals.flags.articleRelatedContent.isSwitchedOff) {
 		return res.status(404).end();
 	}
 
