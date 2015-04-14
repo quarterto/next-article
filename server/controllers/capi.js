@@ -134,12 +134,31 @@ module.exports = function(req, res, next) {
 						}
 					})();
 
-					var isColumnist;
 					// Some posts (e.g. FastFT are only available in CAPI v2)
-					if (articleV1) {
-						// TODO: Replace with something in CAPI v2
-						isColumnist = articleV1.item.metadata.primarySection.term.name === 'Columnists';
-					}
+					// TODO: Replace with something in CAPI v2
+					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
+
+					var articleV1Metadata = articleV1 && articleV1.item.metadata;
+					// NOTE - yoinked from
+					// https://github.com/Financial-Times/ft-api-client/blob/b95cb14b243436407fc14e1bb155e318264dfde7/lib/models/article.js#L345
+					var tags = articleV1Metadata && [articleV1Metadata.primaryTheme]
+						.concat(
+							articleV1Metadata.people,
+							articleV1Metadata.regions,
+							articleV1Metadata.organisations,
+							articleV1Metadata.topics
+						)
+						.filter(function (tag) {
+							return tag;
+						})
+						.slice(0, 5)
+						.map(function (tag) {
+							return {
+								id: tag.term.id,
+								taxonomy: tag.term.taxonomy,
+								name: tag.term.name,
+							};
+						});
 
 					// Update the images (resize, add image captions, etc)
 					return images($, res.locals.flags)
@@ -151,17 +170,7 @@ module.exports = function(req, res, next) {
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
-								tags: articleV1 && articleV1.item.metadata.tags
-									.filter(function (tag) {
-										return ['sections', 'regions'].indexOf(tag.term.taxonomy) > -1;
-									})
-									.map(function (tag) {
-										return {
-											id: tag.term.id,
-											taxonomy: tag.term.taxonomy,
-											name: tag.term.name,
-										};
-									}),
+								tags: tags,
 								body: $.html(),
 								subheaders: $subheaders.map(function() {
 									var $subhead = $(this);
