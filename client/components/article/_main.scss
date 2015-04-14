@@ -1,12 +1,15 @@
 //VARIABLES
 $header-offset: 30px;
 
+.article {
+	font-family: $fontSans;
+}
+
 //ARTICLE HEADER
 .article__header {
 	background: $next-blue;
 	position: relative;
 	padding-bottom: 20px;
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: 100;
 	color: #ffffff;
 }
@@ -121,7 +124,6 @@ $header-offset: 30px;
 
 //ARTICLE BODY ELEMENTS
 .article__body {
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
 	font-weight: normal;
 	font-size: 18px;
 	color: $next-grey-dark;

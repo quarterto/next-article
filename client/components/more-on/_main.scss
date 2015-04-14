@@ -9,7 +9,7 @@
 }
 .more-on {
 	position: relative;
-	font-family: oFontsGetFontFamilyWithFallbacks(MetricWeb);
+	font-family: $fontSans;;
 	font-weight: 100;
 	color: #000000;
 }
