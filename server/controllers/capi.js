@@ -20,6 +20,7 @@ var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
 var promoBoxTransform = require('../transforms/promo-box');
 var videoTransform = require('../transforms/video');
+var extractTags = require('../utils/extract-tags');
 var logger = require('ft-next-logger');
 
 function getUuid(id) {
@@ -134,12 +135,9 @@ module.exports = function(req, res, next) {
 						}
 					})();
 
-					var isColumnist;
 					// Some posts (e.g. FastFT are only available in CAPI v2)
-					if (articleV1) {
-						// TODO: Replace with something in CAPI v2
-						isColumnist = articleV1.item.metadata.primarySection.term.name === 'Columnists';
-					}
+					// TODO: Replace with something in CAPI v2
+					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
 					// Update the images (resize, add image captions, etc)
 					return images($, res.locals.flags)
@@ -151,6 +149,7 @@ module.exports = function(req, res, next) {
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
+								tags: extractTags(article, articleV1, res.locals.flags),
 								body: $.html(),
 								subheaders: $subheaders.map(function() {
 									var $subhead = $(this);
