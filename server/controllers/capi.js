@@ -20,6 +20,7 @@ var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
 var promoBoxTransform = require('../transforms/promo-box');
 var videoTransform = require('../transforms/video');
+var relatedTags = require('../utils/tags');
 var logger = require('ft-next-logger');
 
 function getUuid(id) {
@@ -138,31 +139,14 @@ module.exports = function(req, res, next) {
 					// TODO: Replace with something in CAPI v2
 					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
-					var articleV1Metadata = articleV1 && articleV1.item.metadata;
-					// NOTE - yoinked from
-					// https://github.com/Financial-Times/ft-api-client/blob/b95cb14b243436407fc14e1bb155e318264dfde7/lib/models/article.js#L345
-					var tags = articleV1Metadata && [articleV1Metadata.primaryTheme]
-						.concat(
-							articleV1Metadata.people,
-							articleV1Metadata.regions,
-							articleV1Metadata.organisations,
-							articleV1Metadata.topics
-						)
-						.filter(function (tag) {
-							return tag;
-						})
-						.slice(0, 5)
-						.map(function (tag) {
-							return {
-								id: tag.term.id,
-								taxonomy: tag.term.taxonomy,
-								name: tag.term.name,
-							};
-						});
+					// Get the tags and update the images (resize, add image captions, etc)
+					var imagesPromise = images($, res.locals.flags);
+					var tagPromise = relatedTags.get(articleV1, res.locals.flags);
+					return Promise.all([imagesPromise, tagPromise])
+						.then(function (results) {
+							var $ = results[0];
+							var tags = results[1];
 
-					// Update the images (resize, add image captions, etc)
-					return images($, res.locals.flags)
-						.then(function ($) {
 							return res.render('layout', {
 								article: article,
 								articleV1: articleV1 && articleV1.item,
