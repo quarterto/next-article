@@ -13,7 +13,7 @@ module.exports = function (article, articleV1, flags) {
 				return {
 					name: annotation.label,
 					url: annotation.apiUrl.replace('http://api.ft.com/', '')
-				}
+				};
 			})
 			.value();
 	} else {
