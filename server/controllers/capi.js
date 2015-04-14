@@ -43,7 +43,8 @@ module.exports = function(req, res, next) {
 	var articleV2Promise = api.content({
 		uuid: req.params[0],
 		type: 'Article',
-		metadata: true
+		metadata: true,
+		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	});
 
 	// This will be in Content API v2 in Q2
