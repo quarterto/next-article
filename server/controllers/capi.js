@@ -133,23 +133,10 @@ module.exports = function(req, res, next) {
 							};
 						}
 					})();
-					var mentions = (article.annotations || [])
-						.filter(function(annotation) {
-							return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions';
-						})
-						.map(function(annotation) {
-							return {
-								label: annotation.label,
-								url: annotation.apiUrl.replace(/^http:\/\/api\.ft\.com\//, ''),
-								type: annotation.type
-							};
-						});
 
 					var isColumnist;
-
 					// Some posts (e.g. FastFT are only available in CAPI v2)
 					if (articleV1) {
-
 						// TODO: Replace with something in CAPI v2
 						isColumnist = articleV1.item.metadata.primarySection.term.name === 'Columnists';
 					}
@@ -181,9 +168,7 @@ module.exports = function(req, res, next) {
 								headerData: {
 									isStream: false,
 									section: primaryTheme
-								},
-								organisations: mentions.filter(function(mention) { return mention.type === 'ORGANISATION' }),
-								people: mentions.filter(function(mention) { return mention.type === 'PERSON' })
+								}
 							});
 						});
 
