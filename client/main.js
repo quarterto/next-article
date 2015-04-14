@@ -2,16 +2,16 @@
 
 var oViewport = require('o-viewport');
 var oDate = require('o-date');
-var oComments = require('o-comments');
 
 var setup = require('next-js-setup');
 var header = require('next-header');
 var messaging = require('next-messaging');
+var video = require('next-video');
 
 var slideshow = require('./components/slideshow/main');
 var moreOn = require('./components/more-on/main');
 var toc = require('./components/toc/main');
-var video = require('next-video');
+var comments = require('./components/comments/main');
 
 oViewport.listenTo('resize');
 
@@ -54,29 +54,6 @@ setup.bootstrap(function(result) {
 		});
 
 	toc.init(flags);
+	comments.init(flags);
 	oDate.init(document.querySelector('.article'));
-
-	if (flags.get('articleComments').isSwitchedOn && document.getElementById('comments')) {
-		oComments.on('widget.renderComplete', function (ev) {
-			var commentCount = ev.detail.widget.lfWidget.getCollection().attributes.numVisible;
-			var commentLink = document.createElement('a');
-			commentLink.setAttribute('href', '#comments');
-			commentLink.setAttribute('data-trackable', 'view-comments');
-			commentLink.className = 'article__actions__action article__actions__action--comments ng-meta ng-title-link';
-			commentLink.textContent = 'Comments (' + commentCount + ')';
-			document.querySelector('.article__actions').appendChild(commentLink);
-		});
-		var oCommentComponent = new oComments.Widget({
-			elId: 'comments',
-			title: document.title,
-			url: document.location.href,
-			articleId: uuid,
-			initExtension: {
-				initialNumVisible: 10,
-				disableIE8Shim: true,
-				disableThirdPartyAnalytics: true
-			}
-		});
-		oCommentComponent.load();
-	}
 });
