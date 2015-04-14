@@ -3,7 +3,6 @@
 var oViewport = require('o-viewport');
 var oDate = require('o-date');
 var oComments = require('o-comments');
-require('o-hoverable');
 
 var setup = require('next-js-setup');
 var header = require('next-header');
