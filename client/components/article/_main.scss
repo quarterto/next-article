@@ -13,6 +13,9 @@ $header-offset: 30px;
 	font-weight: 100;
 	color: #ffffff;
 }
+.article__header-inner {
+	position: relative;
+}
 .article__header--overlap {
 	padding-bottom: $header-offset + 20;
 }
@@ -104,18 +107,34 @@ $header-offset: 30px;
 	margin-right: 4px;
 	top: 2px;
 }
-.article__tag {
-	float: right;
-	clear: right;
+.article__tags {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-size: 18px;
+	font-weight: normal;
 }
 .article__tags__title {
 	float: right;
 	margin: 0;
-	font-weight: normal;
+	opacity: 0.7;
+	font-weight: inherit;
+	font-size: inherit;
+}
+.article__tag {
+	float: right;
+	clear: right;
 }
 .article__tag__link {
 	color: #ffffff;
-	font-weight: normal;
+
+	&:after {
+		@include nextIcon(arrow-right, #ffffff, 10);
+		content: '';
+		position: relative;
+		top: 1px;
+		left: 3px;
+	}
 }
 .article__main {
 	padding-top: 15px;

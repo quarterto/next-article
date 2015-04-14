@@ -153,7 +153,7 @@ module.exports = function(req, res, next) {
 								byline: bylineTransform(article.byline, articleV1),
 								tags: articleV1 && articleV1.item.metadata.tags
 									.filter(function (tag) {
-										return ['sections', 'regions', 'genre'].indexOf(tag.term.taxonomy) > -1;
+										return ['sections', 'regions'].indexOf(tag.term.taxonomy) > -1;
 									})
 									.map(function (tag) {
 										return {
