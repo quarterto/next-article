@@ -4,7 +4,7 @@ var oComments = require('o-comments');
 
 module.exports = {
 
-	init: function (flags) {
+	init: function (uuid, flags) {
 
 		if (flags.get('articleComments').isSwitchedOn && document.getElementById('comments')) {
 			oComments.on('widget.renderComplete', function (ev) {

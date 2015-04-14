@@ -54,6 +54,6 @@ setup.bootstrap(function(result) {
 		});
 
 	toc.init(flags);
-	comments.init(flags);
+	comments.init(uuid, flags);
 	oDate.init(document.querySelector('.article'));
 });
