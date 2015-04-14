@@ -8,8 +8,6 @@
 				{{#if articleV1.editorial.standFirst}}
 					<h4 class="article__stand-first">{{{articleV1.editorial.standFirst}}}</h4>
 				{{/if}}
-			</div>
-			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 				<div class="article__meta">
 					{{#if showTOC}}
 					<div class="toc">
@@ -41,17 +39,20 @@
 							<!-- <a class="article__actions__action" href="">Share</a> -->
 						</div>
 					</div>
-					{{#if tags}}
-						<ul class="article__tags ng-list-reset" data-trackable="tags">
-							{{#each tags}}
-								<li class="article__tag">
-									<a class="article__tag__link ng-title-link" href="/stream/{{taxonomy}}/{{name}}" data-trackable="tag">{{name}}</a>
-								</li>
-							{{/each}}
-						</ul>
-					{{/if}}
 				</div>
 			</div>
+			{{#if tags}}
+				<div class="article__tags" data-o-grid-colspan="hide L4">
+					<h3 class="article__tags__title">Topics mentioned in this article</h3>
+					<ul class="ng-list-reset" data-trackable="tags">
+						{{#each tags}}
+							<li class="article__tag">
+								<a class="article__tag__link ng-title-link" href="/stream/{{taxonomy}}/{{name}}" data-trackable="tag">{{name}}</a>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+			{{/if}}
 		</div>
 	</div>
 	<div class="article__main o-grid-row">

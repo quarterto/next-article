@@ -102,20 +102,17 @@ $header-offset: 30px;
 	top: 2px;
 }
 .article__tag {
-	display: inline-block;
-	margin-left: 5px;
-	border-radius: 10px 0 0 10px;
-	background-color: #fff0dc;
-
-	&:first-child {
-		margin-left: 0;
-	}
+	float: right;
+	clear: right;
+}
+.article__tags__title {
+	float: right;
+	margin: 0;
+	font-weight: normal;
 }
 .article__tag__link {
-	display: block;
-	color: #000000;
+	color: #ffffff;
 	font-weight: normal;
-	padding: 5px 5px 5px 20px;
 }
 .article__main {
 	padding-top: 15px;
