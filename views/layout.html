@@ -1,6 +1,6 @@
 <article class="article{{#if showTOC}} article--toc{{/if}}" data-capi-id="{{id}}" data-trackable="article">
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
-		<div class="o-grid-row">
+		<div class="article__header-inner o-grid-row">
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 				<h3 class="article__title">{{{title}}}</h3>
 				{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
@@ -8,8 +8,6 @@
 				{{#if articleV1.editorial.standFirst}}
 					<h4 class="article__stand-first">{{{articleV1.editorial.standFirst}}}</h4>
 				{{/if}}
-			</div>
-			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 				<div class="article__meta">
 					{{#if showTOC}}
 					<div class="toc">
@@ -43,6 +41,18 @@
 					</div>
 				</div>
 			</div>
+			{{#if tags}}
+				<div class="article__tags" data-o-grid-colspan="hide L4">
+					<h3 class="article__tags__title">Topics mentioned in this article</h3>
+					<ul class="ng-list-reset" data-trackable="tags">
+						{{#each tags}}
+							<li class="article__tag">
+								<a class="article__tag__link ng-title-link" href="{{url}}" data-trackable="tag">{{name}}</a>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+			{{/if}}
 		</div>
 	</div>
 	<div class="article__main o-grid-row">
