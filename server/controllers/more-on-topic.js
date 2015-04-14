@@ -44,7 +44,7 @@ module.exports = function (req, res, next) {
 				};
 			});
 			// get the first article's main image, if it exists (and not author's stories)
-			if (!results[0].mainImage || metadata === 'authors') {
+			if (!res.locals.flags.moreOnImages || !res.locals.flags.moreOnImages.isSwitchedOn || !results[0].mainImage || metadata === 'authors') {
 				return Promise.resolve(articleModels);
 			}
 			return api.content({
