@@ -14,7 +14,7 @@
     "ft-next-express": "^7.8.4",
     "ft-next-logger": "^1.1.0",
     "merge": "^1.2.0",
-    "next-ft-api-client": "^2.0.0"
+    "next-ft-api-client": "^2.0.1"
   },
   "devDependencies": {
     "chai": "^1.9.2",
