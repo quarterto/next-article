@@ -1,10 +1,11 @@
 "use strict";
 
 var $ = require('cheerio');
+var capiMapiRegex = require('../utils/capi-mapi-regex').content;
 
 module.exports = function(index, el) {
 	var $el = $(el);
-	var id = $el.attr('url').replace('http://api.ft.com/content/', '');
+	var id = $el.attr('url').replace(capiMapiRegex, '');
 	var type = $el.attr('type');
 
 	switch (type) {
