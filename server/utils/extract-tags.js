@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var capiMapiRegex = require('./capi-mapi-regex').root;
 
 module.exports = function (article, articleV1, flags) {
 	if (flags.mentionsV2 && flags.mentionsV2.isSwitchedOn) {
@@ -12,7 +13,7 @@ module.exports = function (article, articleV1, flags) {
 			.map(function (annotation) {
 				return {
 					name: annotation.label,
-					url: annotation.apiUrl.replace('http://api.ft.com/', '')
+					url: annotation.apiUrl.replace(capiMapiRegex, '')
 				};
 			})
 			.value();
