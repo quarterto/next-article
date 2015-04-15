@@ -45,7 +45,7 @@ var createPromise = function (el, url) {
 
 module.exports.init = function(flags) {
 	var fetchPromises = [];
-	var articleId = document.querySelector('.article').getAttribute('data-capi-id');
+	var articleId = document.querySelector('.article').getAttribute('data-content-id');
 
 	$('.js-more-on-inline').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=1&view=inline'));

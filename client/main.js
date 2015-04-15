@@ -2,6 +2,7 @@
 
 var oViewport = require('o-viewport');
 var oDate = require('o-date');
+var myFtClient = require('next-myft-client');
 
 var setup = require('next-js-setup');
 var header = require('next-header');
@@ -15,15 +16,6 @@ var comments = require('./components/comments/main');
 
 oViewport.listenTo('resize');
 
-function emit(name, data) {
-	var event = document.createEvent('Event');
-	event.initEvent(name, true, true);
-	if (data) {
-		event.detail = data;
-	}
-	document.dispatchEvent(event);
-}
-
 setup.bootstrap(function(result) {
 	var flags = result.flags;
 	header.init(flags);
@@ -32,11 +24,10 @@ setup.bootstrap(function(result) {
 		return;
 	}
 
-	var uuid = document.querySelector('[data-capi-id]').getAttribute('data-capi-id');
-	function clearNotification() {
-		emit('notifications:remove', { uuid: uuid });
+	var uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
+	if (uuid) {
+		myFtClient.notifications.clear([uuid]);
 	}
-	if (uuid) clearNotification();
 
 	messaging.init();
 
