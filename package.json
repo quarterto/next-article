@@ -15,7 +15,7 @@
     "ft-next-logger": "^1.1.0",
     "lodash": "^3.6.0",
     "merge": "^1.2.0",
-    "next-ft-api-client": "^2.0.3"
+    "next-ft-api-client": "^2.0.4"
   },
   "devDependencies": {
     "chai": "^1.9.2",
