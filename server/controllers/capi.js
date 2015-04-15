@@ -69,7 +69,6 @@ module.exports = function(req, res, next) {
 				})
 				.catch(function(err) {
 					// Just gracefully, silently fail…
-					console.log(err);
 					logger.warn("Failed to pull whether comments is available from FT.com for " + req.params[0]);
 					return false;
 				});
