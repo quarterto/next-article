@@ -81,7 +81,11 @@ module.exports = function(req, res, next) {
 		.then(function(articles) {
 			var articleV1 = articles[0];
 			var article = articles[1];
-			article.comments = articles[2];
+
+			// Sometimes article is not defined (e.g. 404), only set comments flag if it's defined.
+			if (article) {
+				article.comments = articles[2];
+			}
 
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
