@@ -5,8 +5,11 @@ var request = require('request');
 var expect = require('chai').expect;
 
 var articleV1Elastic = require('../fixtures/capi-v1-elastic-search.json');
-var articleV2 = require('../fixtures/capi-v2.json');
-var fastFtArticleV2 = require('../fixtures/capi-v2-fastft.json');
+var articleV2Elastic = require('../fixtures/capi-v2-elastic.json');
+var fastFtArticleV2Elastic = require('../fixtures/capi-v2-fastft-elastic.json');
+var fs = require('fs');
+var renderBlogPost = fs.readFileSync(__dirname + '/../fixtures/render-blog.html', 'UTF-8');
+var renderFastFt = fs.readFileSync(__dirname + '/../fixtures/render-fastft.html', 'UTF-8');
 var PORT = process.env.PORT || 3001;
 var host = 'http://localhost:' + PORT;
 
@@ -26,11 +29,16 @@ module.exports = {
 		nock('https://ft-elastic-search.com')
 			.get('/v1_api_v2/item/b002e5ee-3096-3f51-9925-32b157740c98')
 			.reply(404);
-		nock('http://api.ft.com')
-			.get('/enrichedcontent/02cad03a-844f-11e4-bae9-00144feabdc0')
-			.reply(200, articleV2);
-		nock('http://api.ft.com')
-			.get('/enrichedcontent/b002e5ee-3096-3f51-9925-32b157740c98')
-			.reply(200, fastFtArticleV2);
+		nock('https://ft-elastic-search.com')
+			.post('/v2_api_v2/item/_mget', { ids: ["02cad03a-844f-11e4-bae9-00144feabdc0"] })
+			.reply(200, articleV2Elastic);
+		nock('https://ft-elastic-search.com')
+			.post('/v2_api_v2/item/_mget', { ids: ["b002e5ee-3096-3f51-9925-32b157740c98"] })
+			.reply(200, fastFtArticleV2Elastic);
+		nock('http://www.ft.com')
+			.get('/cms/s/02cad03a-844f-11e4-bae9-00144feabdc0.html')
+			.reply(404, renderBlogPost)
+			.get('/cms/s/b002e5ee-3096-3f51-9925-32b157740c98.html')
+			.reply(404, renderFastFt);
 	}
 };

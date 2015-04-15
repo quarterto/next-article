@@ -20,6 +20,7 @@ var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
 var promoBoxTransform = require('../transforms/promo-box');
 var videoTransform = require('../transforms/video');
+var extractTags = require('../utils/extract-tags');
 var logger = require('ft-next-logger');
 
 function getUuid(id) {
@@ -43,7 +44,8 @@ module.exports = function(req, res, next) {
 	var articleV2Promise = api.content({
 		uuid: req.params[0],
 		type: 'Article',
-		metadata: true
+		metadata: true,
+		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	});
 
 	// This will be in Content API v2 in Q2
@@ -79,7 +81,11 @@ module.exports = function(req, res, next) {
 		.then(function(articles) {
 			var articleV1 = articles[0];
 			var article = articles[1];
-			article.comments = articles[2];
+
+			// Sometimes article is not defined (e.g. 404), only set comments flag if it's defined.
+			if (article) {
+				article.comments = articles[2];
+			}
 
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
@@ -134,12 +140,9 @@ module.exports = function(req, res, next) {
 						}
 					})();
 
-					var isColumnist;
 					// Some posts (e.g. FastFT are only available in CAPI v2)
-					if (articleV1) {
-						// TODO: Replace with something in CAPI v2
-						isColumnist = articleV1.item.metadata.primarySection.term.name === 'Columnists';
-					}
+					// TODO: Replace with something in CAPI v2
+					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
 					// Update the images (resize, add image captions, etc)
 					return images($, res.locals.flags)
@@ -151,6 +154,7 @@ module.exports = function(req, res, next) {
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
+								tags: extractTags(article, articleV1, res.locals.flags),
 								body: $.html(),
 								subheaders: $subheaders.map(function() {
 									var $subhead = $(this);

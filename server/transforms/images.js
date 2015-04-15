@@ -3,14 +3,17 @@
 var $ = require('cheerio');
 var resize = require('../utils/resize');
 var api = require('next-ft-api-client');
+var logger = require('ft-next-logger');
+var capiMapiRegex = require('../utils/capi-mapi-regex').content;
 
 module.exports = function($body, flags) {
 
 	var imageSetSelector = 'ft-content[type$="ImageSet"]';
 	var imageSetPromises = $body(imageSetSelector)
 		.map(function (index, el) {
-			return api.content({ uuid: $(el).attr('url').replace('http://api.ft.com/content/', ''), type: 'ImageSet' })
+			return api.content({ uuid: $(el).attr('url').replace(capiMapiRegex, ''), type: 'ImageSet' })
 				.catch(function(error) {
+					logger.error(error);
 					return {};
 				});
 		})
@@ -22,7 +25,7 @@ module.exports = function($body, flags) {
 			$body(imageSetSelector).replaceWith(function (index, image) {
 				// get the image set data
 				var $image = $(image);
-				var id = $image.attr('url').replace('http://api.ft.com/content/', '');
+				var id = $image.attr('url').replace(capiMapiRegex, '');
 				var imageSet;
 				imageSets.some(function (set) {
 					if (set.id && set.id.replace('http://www.ft.com/thing/', '') === id) {
@@ -40,7 +43,7 @@ module.exports = function($body, flags) {
 					image.parentNode.tagName === 'root' &&
 					$(image.parentNode).children().first().html() === $image.html();
 				var width = isMain ? 710 : 600;
-				var binaryId = imageSet.members[0].id.replace('http://api.ft.com/content/', '');
+				var binaryId = imageSet.members[0].id.replace(capiMapiRegex, '');
 				var imageUrl = resize('http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId, { width: width });
 				var $figure = $('<figure></figure>')
 					.addClass('article__image-wrapper ng-figure-reset');

@@ -16,7 +16,8 @@ module.exports = function(req, res, next) {
 		api.content({
 			uuid: req.params.id,
 			type: 'Article',
-			metadata: true
+			metadata: true,
+			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 		})
 			.then(function (article) {
 				var orgPromises = article.annotations

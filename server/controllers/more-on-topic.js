@@ -49,7 +49,8 @@ module.exports = function (req, res, next) {
 			}
 			return api.content({
 					uuid: extractUuid(results[0].mainImage.id),
-					type: 'ImageSet'
+					type: 'ImageSet',
+					useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 				})
 				.then(function (imageSet) {
 					articleModels[0].image = resize(
