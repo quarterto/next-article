@@ -25,13 +25,6 @@ module.exports = function(els) {
 							Analytics.fire('gallery', { picture: ev.detail.itemID, totalPictures: totalItems, interacted: true });
 						}
 					});
-					el.addEventListener('oGallery.ready', function oGalleryIsReady(ev) {
-						if (ev.target.classList.contains('o-gallery--slideshow')) {
-							el.removeEventListener(ev.type, oGalleryIsReady);
-							totalItems = ev.target.querySelectorAll('.o-gallery__item').length;
-							Analytics.fire('gallery', { picture: 0, totalPictures: totalItems, interacted: false });
-						}
-					});
 					return Gallery.init(el);
 				})
 				.catch(function(err) {
