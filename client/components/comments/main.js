@@ -1,12 +1,19 @@
 'use strict';
 
 var oComments = require('o-comments');
+var fetchres = require('fetchres');
 
-module.exports = {
-
-	init: function (uuid, flags) {
-
-		if (flags.get('articleComments').isSwitchedOn && document.getElementById('comments')) {
+module.exports = {};
+module.exports.init = function(uuid, flags) {
+	if (!flags.get('articleComments').isSwitchedOn) {
+		return;
+	}
+	return fetch('/' + uuid + '/comments-hack')
+		.then(fetchres.json)
+		.then(function(flagsOn) {
+			if (!flagsOn) {
+				return;
+			}
 			oComments.on('widget.renderComplete', function (ev) {
 				var commentCount = ev.detail.widget.lfWidget.getCollection().attributes.numVisible;
 				var commentLink = document.createElement('a');
@@ -28,8 +35,5 @@ module.exports = {
 				}
 			});
 			oCommentComponent.load();
-		}
-
-	}
-
+		});
 };
