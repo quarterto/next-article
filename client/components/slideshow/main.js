@@ -18,6 +18,18 @@ module.exports = function(els) {
 				})
 				.then(function(el) {
 					el.style.width = el.clientWidth + 'px';
+					el.addEventListener('oGallery.itemSelect', function (ev) {
+						if (ev.target.classList.contains('o-gallery--slideshow')) {
+							Analytics.fire('gallery', { picture: ev.detail.itemID, totalPictures: totalItems, interacted: true });
+						}
+					});
+					el.addEventListener('oGallery.ready', function oGalleryIsReady(ev) {
+						if (ev.target.classList.contains('o-gallery--slideshow')) {
+							el.removeEventListener(ev.type, oGalleryIsReady);
+							totalItems = ev.target.querySelectorAll('.o-gallery__item').length;
+							Analytics.fire('gallery', { picture: 0, totalItems: totalPictures, interacted: false });
+						}
+					});
 					return Gallery.init(el);
 				})
 				.catch(function(err) {
