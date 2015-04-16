@@ -2,6 +2,7 @@
 
 var fetchres = require('fetchres');
 var logger = require('ft-next-logger');
+var cacheControl = require('../utils/cache-control');
 
 function commentsSwitchedOn(uuid) {
 	return fetch('http://www.ft.com/cms/s/' + uuid + '.html', {
@@ -27,6 +28,7 @@ function commentsSwitchedOn(uuid) {
 }
 
 module.exports = function(req, res, next) {
+	res.set(cacheControl);
 	if (res.locals.flags.articleCommentsHack.isSwitchedOn) {
 		commentsSwitchedOn(req.params.id)
 			.then(function(on) {
