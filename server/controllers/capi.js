@@ -53,43 +53,10 @@ module.exports = function(req, res, next) {
 		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 	});
 
-	// This will be in Content API v2 in Q2
-	var commentsPromise;
-
-	if (res.locals.flags.articleCommentsHack.isSwitchedOn) {
-		commentsPromise = fetch('http://www.ft.com/cms/s/' + req.params[0] + '.html', {
-				headers: {
-					'User-Agent': 'Googlebot-News'
-				},
-				timeout: 3000
-			})
-				.then(fetchres.text)
-				.then(function(data) {
-					if (data.indexOf('<div id="ft-article-comments"></div>') > -1) {
-						logger.info("Comments switched on for " + req.params[0]);
-						return true;
-					}
-					logger.info("Comments switched off for " + req.params[0]);
-					return false;
-				})
-				.catch(function(err) {
-					// Just gracefully, silently fail…
-					logger.warn("Failed to pull whether comments is available from FT.com for " + req.params[0]);
-					return false;
-				});
-	} else {
-		logger.info("Comments hack disabled, defaulting to no comments");
-	}
-
-	Promise.all([articleV1Promise, articleV2Promise, commentsPromise])
+	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function(articles) {
 			var articleV1 = articles[0];
 			var article = articles[1];
-
-			// Sometimes article is not defined (e.g. 404), only set comments flag if it's defined.
-			if (article) {
-				article.comments = articles[2];
-			}
 
 			res.vary(['Accept-Encoding', 'Accept']);
 			res.set(cacheControl);
