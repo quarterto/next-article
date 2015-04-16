@@ -19,13 +19,11 @@
     "next-welcome": "Financial-Times/next-welcome#^1.0.4",
     "next-video": "Financial-Times/next-video#^1.0.0",
     "o-comments": "~1.0.8",
-    "next-myft-client": "Financial-Times/next-myft-client#^1.0.0",
-    "next-beacon-component": "~1.0.0"
+    "next-myft-client": "Financial-Times/next-myft-client#^1.0.0"
   },
   "resolutions": {
     "o-ft-icons": "next",
     "o-assets": "^0.4.2",
-    "o-hoverable": "^1.1.0",
-    "next-beacon-component": "~1.0.0"
+    "o-hoverable": "^1.1.0"
   }
 }
