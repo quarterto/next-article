@@ -4,11 +4,10 @@ var oComments = require('o-comments');
 var fetchres = require('fetchres');
 
 module.exports = {};
-module.exports.init = function (uuid, flags) {
+module.exports.init = function(uuid, flags) {
 	if (!flags.get('articleComments').isSwitchedOn) {
 		return;
 	}
-	var uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
 	return fetch('/' + uuid + '/comments-hack')
 		.then(fetchres.json)
 		.then(function(flagsOn) {
