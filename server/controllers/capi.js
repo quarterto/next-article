@@ -28,18 +28,23 @@ function getUuid(id) {
 }
 
 module.exports = function(req, res, next) {
-	var articleV1Promise = api.contentLegacy({
-			uuid: req.params[0],
-			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
-		})
-			// Some things aren't in CAPI v1 (e.g. FastFT)
-			.catch(function(err) {
-				if (err instanceof fetchres.BadServerResponseError) {
-					return;
-				} else {
-					throw err;
-				}
-			});
+	var articleV1Promise;
+	if (res.locals.flags.articleCapiV1Fallback.isSwitchedOn) {
+		articleV1Promise = api.contentLegacy({
+				uuid: req.params[0],
+				useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+			})
+				// Some things aren't in CAPI v1 (e.g. FastFT)
+				.catch(function(err) {
+					if (err instanceof fetchres.BadServerResponseError) {
+						return;
+					} else {
+						throw err;
+					}
+				});
+	} else {
+		logger.info("CAPI v1 fallback disabled, defaulting to CAPI v2 only");
+	}
 
 	var articleV2Promise = api.content({
 		uuid: req.params[0],
@@ -74,7 +79,6 @@ module.exports = function(req, res, next) {
 				});
 	} else {
 		logger.info("Comments hack disabled, defaulting to no comments");
-		commentsPromise = Promise.resolve(false);
 	}
 
 	Promise.all([articleV1Promise, articleV2Promise, commentsPromise])
