@@ -18,11 +18,13 @@ module.exports = function(els) {
 					return container;
 				})
 				.then(function(el) {
-					var totalItems;
 					el.style.width = el.clientWidth + 'px';
 					el.addEventListener('oGallery.itemSelect', function (ev) {
 						if (ev.target.classList.contains('o-gallery--slideshow')) {
-							Analytics.fire('gallery', { picture: ev.detail.itemID, totalPictures: totalItems, interacted: true });
+							Analytics.fire('gallery', {
+								picture: ev.detail.itemID + 1,
+								totalPictures: ev.target.querySelectorAll('.o-gallery__item').length
+							});
 						}
 					});
 					return Gallery.init(el);
