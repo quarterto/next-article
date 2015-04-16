@@ -14,7 +14,7 @@ $header-offset: 30px;
 	color: #ffffff;
 }
 .article__header-inner {
-	position: relative;
+	display: flex;
 }
 .article__header--overlap {
 	padding-bottom: $header-offset + 20;
@@ -108,9 +108,7 @@ $header-offset: 30px;
 	top: 2px;
 }
 .article__tags {
-	position: absolute;
-	right: 0;
-	bottom: 0;
+	align-self: flex-end;
 	font-size: 18px;
 	font-weight: normal;
 }
