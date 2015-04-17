@@ -55,7 +55,6 @@ module.exports = function(req, res, next) {
 
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function(articles) {
-			throw new fetchres.BadServerResponseError('Foo');
 			var articleV1 = articles[0];
 			var article = articles[1];
 
