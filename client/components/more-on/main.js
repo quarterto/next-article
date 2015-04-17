@@ -29,7 +29,7 @@ var $ = function(selector) {
 	return [].slice.call(document.querySelectorAll(selector));
 };
 var createPromise = function (el, url) {
-	return fetch(url)
+	return fetch(url, { credentials: 'same-origin' })
 		.then(fetchres.text)
 		.then(function(resp) {
 			if (!resp) {
