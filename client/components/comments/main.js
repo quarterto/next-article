@@ -1,7 +1,8 @@
 'use strict';
 
-var oComments = require('o-comments');
 var fetchres = require('fetchres');
+var oComments = require('o-comments');
+var Analytics = require('next-beacon-component');
 
 module.exports = {};
 module.exports.init = function(uuid, flags) {
@@ -23,6 +24,33 @@ module.exports.init = function(uuid, flags) {
 				commentLink.textContent = 'Comments (' + commentCount + ')';
 				document.querySelector('.article__actions').appendChild(commentLink);
 			});
+			oComments.on('tracking.postComment', function (ev) {
+				console.log(ev);
+				Analytics.fire('comments', { type: 'posted' });
+			});
+			// testing
+			oComments.init({
+			    "livefyre": {
+			        "network": "ft-1.fyre.co",
+			        "domain": "ft-1.auth.fyre.co",
+			        "resourceDomainBase": "http://zor.livefyre.com"
+			    },
+			    dependencies: {
+			        "o-comment-api": {
+			            "suds": {
+			                "baseUrl": "http://test.session-user-data.webservices.ft.com"
+			            },
+			            "ccs": {
+			                "baseUrl": "http://test.comment-creation-service.webservices.ft.com"
+			            },
+			            "cacheConfig": {
+			                "authBaseName": "comments-test-auth-",
+			                "initBaseName": "comments-test-init-"
+			            }
+			        }
+			    }
+			});
+
 			var oCommentComponent = new oComments.Widget({
 				elId: 'comments',
 				title: document.title,
