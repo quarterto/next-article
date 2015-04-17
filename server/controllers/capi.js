@@ -55,6 +55,7 @@ module.exports = function(req, res, next) {
 
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function(articles) {
+			throw new fetchres.BadServerResponseError('Foo');
 			var articleV1 = articles[0];
 			var article = articles[1];
 
@@ -162,7 +163,16 @@ module.exports = function(req, res, next) {
 						useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 					})
 						.then(function(data) {
-							res.render('layout-404', { layout: 'wrapper', url: data.item.location.uri });
+							var article = data.item;
+							res.render('layout-v1', {
+								layout: 'wrapper',
+								id: article.id,
+								title: article.title.title,
+								standFirst: article.editorial.standFirst,
+								byline: article.editorial.byline,
+								body: article.body.body,
+								publishedDate: article.lifecycle.lastPublishDateTime
+							});
 						})
 						.catch(function(err) {
 							if (err instanceof fetchres.BadServerResponseError) {

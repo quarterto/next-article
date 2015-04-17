@@ -1,0 +1,42 @@
+<article class="article" data-content-id="{{id}}" data-trackable="article">
+	<div class="article__header" data-trackable="header">
+		<div class="article__header-inner o-grid-row">
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+				<h3 class="article__title">{{{title}}}</h3>
+				{{#if standFirst}}
+					<h4 class="article__stand-first">{{{standFirst}}}</h4>
+				{{/if}}
+				<div class="article__meta">
+					<p class="article__byline">
+						{{{byline}}}
+					</p>
+					<div class="o-grid-row">
+						<div data-o-grid-colspan="12 S6">
+							<time class="article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+								{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
+							</time>
+						</div>
+						<div class="article__actions" data-o-grid-colspan="12 S6">
+							<button
+								class="article__actions__action article__actions__action--save ng-meta ng-title-link next-buttons--save next-buttons--light"
+								data-content-id="{{id}}"
+								data-headline="{{title}}"
+								data-user-prefs-button="saveForLater"
+								data-trackable="save-for-later"
+								data-alternate-text="Saved">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="article__main o-grid-row">
+		<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+			<div class="article__body">
+				{{{body}}}
+			</div>
+		</div>
+		<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+		</div>
+	</div>
+</article>
