@@ -7,7 +7,7 @@
     "next-barrier-component": "Financial-Times/next-barrier-component#^1.0.0",
     "next-header": "^7.0.0",
     "next-mustard": "Financial-Times/next-mustard#^3.0.0",
-    "next-sass-setup": "Financial-Times/next-sass-setup#^5.0.0",
+    "next-sass-setup": "Financial-Times/next-sass-setup#^5.5.4",
     "next-js-setup": "Financial-Times/next-js-setup#^1.9.0",
     "o-quote": "Financial-Times/o-quote#bogdis-design",
     "o-big-number": "Financial-Times/o-big-number#~1.1.0",
