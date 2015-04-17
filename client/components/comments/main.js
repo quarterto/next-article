@@ -35,5 +35,10 @@ module.exports.init = function(uuid, flags) {
 				}
 			});
 			oCommentComponent.load();
+		})
+		.catch(function (err) {
+			setTimeout(function () {
+				throw err;
+			});
 		});
 };
