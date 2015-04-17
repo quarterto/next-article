@@ -5,7 +5,7 @@ var fetchres = require('fetchres');
 
 module.exports = {};
 module.exports.init = function(uuid, flags) {
-	if (!flags.get('articleComments').isSwitchedOn) {
+	if (!flags.get('articleComments').isSwitchedOn || !document.querySelector('#comments')) {
 		return;
 	}
 	return fetch('/' + uuid + '/comments-hack', { credentials: 'same-origin' })

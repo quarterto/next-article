@@ -162,7 +162,20 @@ module.exports = function(req, res, next) {
 						useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 					})
 						.then(function(data) {
-							res.render('layout-404', { layout: 'wrapper', url: data.item.location.uri });
+							if (res.locals.flags.articleCapiV1Fallback && res.locals.flags.articleCapiV1Fallback.isSwitchedOn) {
+								var article = data.item;
+								res.render('layout-v1', {
+									id: article.id,
+									title: article.title.title,
+									standFirst: article.editorial.standFirst,
+									byline: article.editorial.byline,
+									body: article.body.body,
+									publishedDate: article.lifecycle.lastPublishDateTime,
+									layout: 'wrapper'
+								});
+							} else {
+								res.render('layout-404', { layout: 'wrapper', url: data.item.location.uri });
+							}
 						})
 						.catch(function(err) {
 							if (err instanceof fetchres.BadServerResponseError) {
