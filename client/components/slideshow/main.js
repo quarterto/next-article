@@ -8,7 +8,7 @@ module.exports = function(els) {
 	[].slice.call(els).forEach(function(el) {
 		var uuid = el.getAttribute('data-uuid');
 		if (uuid) {
-			fetch('/embedded-components/slideshow/' + uuid)
+			fetch('/embedded-components/slideshow/' + uuid, { credentials: 'same-origin' })
 				.then(fetchres.text)
 				.then(function(data) {
 					var container = document.createElement('div');

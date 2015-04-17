@@ -8,7 +8,7 @@ module.exports.init = function(uuid, flags) {
 	if (!flags.get('articleComments').isSwitchedOn) {
 		return;
 	}
-	return fetch('/' + uuid + '/comments-hack')
+	return fetch('/' + uuid + '/comments-hack', { credentials: 'same-origin' })
 		.then(fetchres.json)
 		.then(function(flagsOn) {
 			if (!flagsOn) {
