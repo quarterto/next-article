@@ -97,7 +97,7 @@ module.exports = function(req, res, next) {
 								return {
 									name: relations[index].term.name,
 									url: '/stream/people/' + relations[index].term.name,
-									role: getCurrentRole(person)
+									role: person && getCurrentRole(person)
 								};
 							});
 						if (!people.length) {
