@@ -26,6 +26,7 @@
     "o-ft-icons": "next",
     "o-assets": "^0.4.2",
     "o-hoverable": "^1.1.0",
-    "next-beacon-component": "~1.0.0"
+    "next-beacon-component": "~1.0.0",
+    "next-user-model-component": "^1.0.0"
   }
 }
