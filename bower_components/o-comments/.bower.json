@@ -1,6 +1,5 @@
 {
   "name": "o-comments",
-  "version": "1.0.9",
   "main": [
     "main.js",
     "main.scss"
@@ -19,17 +18,17 @@
     "node_modules",
     "tests",
     "gulpfile.js",
-    "demos",
     "docs",
     "package.json",
     ".editorconfig",
     ".jshintrc"
   ],
-  "_release": "1.0.9",
+  "version": "1.0.10",
+  "_release": "1.0.10",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.9",
-    "commit": "dbd6e3d0dbaa44111461010863942efe5f9e0b18"
+    "tag": "v1.0.10",
+    "commit": "8de63334bea0655f62f8545e28d9ad5793d247ca"
   },
   "_source": "http://git.svc.ft.com/scm/strat_p/o-comments.git",
   "_target": "~1.0.8",
