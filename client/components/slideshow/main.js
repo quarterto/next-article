@@ -18,7 +18,6 @@ module.exports = function(els) {
 					return container;
 				})
 				.then(function(el) {
-					el.style.width = el.clientWidth + 'px';
 					el.addEventListener('oGallery.itemSelect', function (ev) {
 						if (ev.target.classList.contains('o-gallery--slideshow')) {
 							Analytics.fire('gallery', {
