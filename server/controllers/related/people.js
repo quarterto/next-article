@@ -1,10 +1,20 @@
 'use strict';
 
 var fetchres = require('fetchres');
+var _ = require('lodash');
 var api = require('next-ft-api-client');
 
 function extractUuid(id) {
 	return id.replace(/http:\/\/(api|www)\.ft\.com\/things\//, '');
+}
+function getCurrentRole(person) {
+	var currentMembership = _.find(person.memberships, function (membership) {
+		return _.pluck(membership.changeEvents, 'startedAt').shift() && !_.pluck(membership.changeEvents, 'endedAt').shift();
+	});
+	return currentMembership ? {
+		title: currentMembership.title,
+		organisation: currentMembership.organisation.prefLabel
+	} : undefined;
 }
 
 module.exports = function(req, res, next) {
@@ -40,24 +50,13 @@ module.exports = function(req, res, next) {
 			})
 			.then(function (results) {
 				var people = results
-					.filter(function (person) {
-						return person;
-					})
+					.filter(_.identity)
 					.map(function (person) {
-						var personModel = {
-							name: person && (person.prefLabel || (person.labels && person.labels[0])),
-							url: '/people/' + extractUuid(person.id)
+						return {
+							name: person.prefLabel || (person.labels && person.labels[0]),
+							url: '/people/' + extractUuid(person.id),
+							role: getCurrentRole(person)
 						};
-						if (person && person.memberships) {
-							var latestMembership = person.memberships[0];
-							if (!latestMembership.changeEvents || !latestMembership.changeEvents[1]) {
-								personModel.role = {
-									title: latestMembership.title,
-									organisation: latestMembership.organisation.prefLabel
-								};
-							}
-						}
-						return personModel;
 					});
 				if (!people.length) {
 					throw new Error('No related');
@@ -95,20 +94,11 @@ module.exports = function(req, res, next) {
 					.then(function (results) {
 						var people = results
 							.map(function (person, index) {
-								var personModel = {
+								return {
 									name: relations[index].term.name,
-									url: '/stream/people/' + relations[index].term.name
+									url: '/stream/people/' + relations[index].term.name,
+									role: person && getCurrentRole(person)
 								};
-								if (person && person.memberships) {
-									var latestMembership = person.memberships[0];
-									if (!latestMembership.changeEvents || !latestMembership.changeEvents[1]) {
-										personModel.role = {
-											title: latestMembership.title,
-											organisation: latestMembership.organisation.prefLabel
-										};
-									}
-								}
-								return personModel;
 							});
 						if (!people.length) {
 							throw new Error('No related');
