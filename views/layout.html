@@ -76,10 +76,10 @@
 				</div>
 			{{/if}}
 			{{#if @root.flags.hackDayHowUseful.isSwitchedOn}}
-			<div class='js-how-useful how-useful'>
+			<div class='js-how-useful how-useful' data-trackable='how-useful'>
 				Was this article useful to you?
-				<button class='js-how-useful__yes how-useful__yes'>Yes</button>
-				<button class='js-how-useful__no how-useful__no'>No</button>
+				<button class='js-how-useful__yes how-useful__yes' data-trackable='yes'>Yes</button>
+				<button class='js-how-useful__no how-useful__no' data-trackable='no'>No</button>
 			</div>
 			{{/if}}
 		</div>

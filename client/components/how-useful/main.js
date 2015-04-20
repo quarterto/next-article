@@ -13,7 +13,6 @@ module.exports.init = function(options) {
 
 	function processUseful(useful) {
 		fetch('/' + uuid + '/' + (useful ? 'useful/yes' : 'useful/no'), {
-			method: 'POST',
 			credentials: 'same-origin'
 		})
 			.then(fetchres.text)
