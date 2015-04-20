@@ -42,7 +42,7 @@
 				</div>
 			</div>
 			{{#if tags}}
-				<div class="article__tags" data-o-grid-colspan="hide L4">
+				<div class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags.isSwitchedOn}}12{{else}}hide{{/if}} L4">
 					<h3 class="article__tags__title">Topics mentioned in this article</h3>
 					<ul class="ng-list-reset" data-trackable="tags">
 						{{#each tags}}
