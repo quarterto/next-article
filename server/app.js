@@ -22,8 +22,8 @@ app.get('^/:id(' + articleUuidRegex + ')/comments-hack', require('./controllers/
 
 // temporary (ma)
 app.get('/more-on/useful', require('./controllers/useful'));
-//app.get('/more-on/:id', require('./controllers/more-on'));
-//app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
+app.get('/more-on/:id', require('./controllers/more-on'));
+app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
 
 app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow'));
 app.get('/__gtg', function(req, res) {

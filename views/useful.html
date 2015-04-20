@@ -1,0 +1,15 @@
+Other readers found these articles useful&hellip;
+<ul>
+	{{#each articles}}
+		<li>
+			<a href="/{{id}}" data-trackable="title">{{{title}}}</a>
+			<time
+				class="more-on__article__timestamp ng-meta o-date"
+				data-o-component="o-date"
+				datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}"
+				data-o-date-js>
+				{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
+			</time>
+		</li>
+	{{/each}}
+</ul>
