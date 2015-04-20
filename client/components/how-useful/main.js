@@ -11,7 +11,8 @@ module.exports.init = function(options) {
 
 	el.innerHTML = 'Was this article useful?'
 		+ '<button class="js-how-useful__yes how-useful__yes" data-trackable="yes">Yes</button>'
-		+ '<button class="js-how-useful__no how-useful__no" data-trackable="no">No</button>';
+		+ '<button class="js-how-useful__no how-useful__no" data-trackable="no">No</button>'
+		+ '<div class="how-useful__prompt">Answer to see what other readers value</div>';
 	el.classList.add('how-useful');
 	el.setAttribute('data-trackable', 'how-useful');
 
