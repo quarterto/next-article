@@ -4,7 +4,6 @@ var Delegate = require('dom-delegate');
 var fetchres = require('fetchres');
 
 module.exports.init = function(options) {
-	var uuid = options.uuid;
 	var el = document.querySelector('.js-how-useful');
 	if (!el) return;
 
@@ -19,7 +18,7 @@ module.exports.init = function(options) {
 	delegate.on('click', '.js-how-useful__no', processUseful.bind(this, false));
 
 	function processUseful(useful) {
-		fetch('/' + uuid + '/' + (useful ? 'useful/yes' : 'useful/no'), {
+		fetch('/more-on/useful', {
 			credentials: 'same-origin'
 		})
 			.then(fetchres.text)
