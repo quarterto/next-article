@@ -2,13 +2,14 @@
 
 var Delegate = require('dom-delegate');
 var fetchres = require('fetchres');
+var oDate = require('o-date');
 
 module.exports.init = function(options) {
-	var uuid = options.uuid;
 	var el = document.querySelector('.js-how-useful');
 	if (!el) return;
+	var usefulsPromise = fetchUsefuls();
 
-	el.innerHTML = 'Was this article useful to you?'
+	el.innerHTML = 'Was this article useful?'
 		+ '<button class="js-how-useful__yes how-useful__yes" data-trackable="yes">Yes</button>'
 		+ '<button class="js-how-useful__no how-useful__no" data-trackable="no">No</button>';
 	el.classList.add('how-useful');
@@ -19,12 +20,11 @@ module.exports.init = function(options) {
 	delegate.on('click', '.js-how-useful__no', processUseful.bind(this, false));
 
 	function processUseful(useful) {
-		fetch('/' + uuid + '/' + (useful ? 'useful/yes' : 'useful/no'), {
-			credentials: 'same-origin'
-		})
+		usefulsPromise
 			.then(fetchres.text)
 			.then(function(data) {
 				el.innerHTML = data;
+				oDate.init(el);
 			})
 			.catch(function(err) {
 				if (err instanceof fetchres.BadServerResponseError) {
@@ -37,3 +37,8 @@ module.exports.init = function(options) {
 };
 
 
+function fetchUsefuls() {
+	return fetch('/more-on/useful', {
+		credentials: 'same-origin'
+	});
+}

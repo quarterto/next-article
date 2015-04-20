@@ -19,8 +19,12 @@ app.get('^/:id(' + articleUuidRegex + ')/people', require('./controllers/related
 app.get('^/:id(' + articleUuidRegex + ')/organisations', require('./controllers/related/organisations'));
 app.get('^/:id(' + articleUuidRegex + ')/comments-hack', require('./controllers/comments-hack'));
 
+
+// temporary (ma)
+app.get('/more-on/useful', require('./controllers/useful'));
 app.get('/more-on/:id', require('./controllers/more-on'));
 app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
+
 app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow'));
 app.get('/__gtg', function(req, res) {
 	logger.info('gtg requested');
