@@ -9,7 +9,7 @@ module.exports.init = function(options) {
 	if (!el) return;
 	var usefulsPromise = fetchUsefuls();
 
-	el.innerHTML = 'Was this article useful to you?'
+	el.innerHTML = 'Was this article useful?'
 		+ '<button class="js-how-useful__yes how-useful__yes" data-trackable="yes">Yes</button>'
 		+ '<button class="js-how-useful__no how-useful__no" data-trackable="no">No</button>';
 	el.classList.add('how-useful');
@@ -40,5 +40,5 @@ module.exports.init = function(options) {
 function fetchUsefuls() {
 	return fetch('/more-on/useful', {
 		credentials: 'same-origin'
-	})
+	});
 }
