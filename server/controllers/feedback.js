@@ -26,7 +26,6 @@ function login(opts) {
 
 module.exports = function(req, res, next) {
 	res.set({ 'Cache-Control': 'private' });
-	res.sendStatus(202);
 	login({
 		email: gDocsServiceEmail,
 		key: new Buffer(gDocsPemKeyBase64, 'base64')
@@ -49,6 +48,7 @@ module.exports = function(req, res, next) {
 		})
 		.then(function() {
 			console.log("success");
+			res.sendStatus(202);
 		})
 		.catch(next);
 };
