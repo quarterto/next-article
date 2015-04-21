@@ -27,14 +27,9 @@ module.exports.init = function(options) {
 	delegate.on('submit', '.js-how-useful-why', function(event) {
 		event.preventDefault();
 		var reason = event.target.querySelector('.js-how-useful__reason');
-		fetch('/' + uuid + '/feedback', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			credentials: 'same-origin',
-			body: JSON.stringify({
-				reason: reason.value
-			})
-		}),
+
+		// hack
+		fetch('/' + uuid + '/feedback/' + encodeURIComponent(reason.value));
 		showUsefuls();
 	});
 

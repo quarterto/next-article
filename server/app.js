@@ -3,7 +3,6 @@
 var express = require('ft-next-express');
 var app = module.exports = express();
 var logger = require('ft-next-logger');
-var bodyParser = require('body-parser');
 
 var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 
@@ -23,7 +22,7 @@ app.get('^/:id(' + articleUuidRegex + ')/comments-hack', require('./controllers/
 
 // temporary (MA)
 app.get('/more-on/useful', require('./controllers/useful'));
-app.post('^/:id(' + articleUuidRegex + ')/feedback', bodyParser.json(), require('./controllers/feedback'));
+app.get('^/:id(' + articleUuidRegex + ')/feedback/:reason', require('./controllers/feedback'));
 
 app.get('/more-on/:id', require('./controllers/more-on'));
 app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
