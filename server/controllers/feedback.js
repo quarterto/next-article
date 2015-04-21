@@ -25,6 +25,7 @@ function login(opts) {
 }
 
 module.exports = function(req, res, next) {
+	res.set({ 'Cache-Control': 'private' });
 	res.sendStatus(202);
 	login({
 		email: gDocsServiceEmail,
