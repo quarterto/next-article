@@ -6,7 +6,7 @@ var fetchres = require('fetchres');
 module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
 		api.contentLegacy({
-			uuid: req.params[0],
+			uuid: req.params.id,
 			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
 		})
 			.catch(function(err) {
@@ -43,7 +43,7 @@ module.exports = function(req, res, next) {
 
 				res.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
 				res.vary('X-FT-UID');
-				res.set('X-FT-UID', req.params[0]);
+				res.set('X-FT-UID', req.params.id);
 				res.set('X-FT-Content-Classification', classification);
 				res.status(200).end();
 			}).catch(next);
