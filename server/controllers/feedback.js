@@ -40,9 +40,9 @@ module.exports = function(req, res, next) {
 			return addRow('od6', {
 				Date: now.toLocaleDateString('en-GB', timeOpts) + ' ' + now.toLocaleTimeString('en-GB', timeOpts),
 				Article: req.params.id,
-				Reason: req.params.reason,
+				Reason: decodeURIComponent(req.params.reason),
 				Contactable: false,
-				ErightsId: req.headers['X-FT-User-Id'],
+				ErightsId: req.headers['x-ft-user-id'],
 				Email: ''
 			});
 
