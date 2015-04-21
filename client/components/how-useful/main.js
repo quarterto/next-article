@@ -29,16 +29,14 @@ module.exports.init = function(options) {
 		var reason = event.target.querySelector('.js-how-useful__reason');
 
 		// hack
-		fetch('/' + uuid + '/feedback/' + encodeURIComponent(reason.value));
+		fetch('/' + uuid + '/feedback/' + encodeURIComponent(reason.value), { credentials: 'same-origin' });
 		showUsefuls();
 	});
 
 	delegate.on('click', '.js-how-useful__no', showUsefuls);
 
 	function fetchUsefuls() {
-		return fetch('/more-on/useful', {
-			credentials: 'same-origin'
-		});
+		return fetch('/more-on/useful', { credentials: 'same-origin' });
 	}
 
 	function showUsefuls() {
@@ -50,7 +48,7 @@ module.exports.init = function(options) {
 			})
 			.catch(function(err) {
 				if (err instanceof fetchres.BadServerResponseError) {
-					el.parentNode.removeChild(el);
+					el.innerHTML = 'Thank you for your feedback';
 				} else {
 					console.log(err);
 				}
