@@ -4,9 +4,7 @@
 	font-size: 20px;
 }
 
-.how-useful__yes,
-.how-useful__no {
-	margin-left: 5px;
+.how-useful__button {
 	padding: 10px;
 	font-family: MetricWeb,Arial,sans-serif;
 	display: inline-block;
@@ -16,6 +14,7 @@
 	border: 0;
 	color: #FFFFFF;
 	cursor: pointer;
+	min-width: 46px;
 }
 
 .how-useful__article-link {
@@ -31,4 +30,11 @@
 	margin-top: 4px;
 	font-size: 14px;
 	font-style: italic;
+}
+
+.how-useful__reason {
+	margin-top: 5px;
+	font-size: 18px;
+	width: 60%;
+	padding: 5px;
 }

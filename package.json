@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "cheerio": "^0.18.0",
+    "denodeify": "^1.2.1",
     "express-errors-handler": "^1.2.0",
     "fetchres": "^1.0.4",
     "forever": "^0.11.1",
