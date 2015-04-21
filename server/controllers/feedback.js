@@ -37,7 +37,7 @@ module.exports = function(req, res, next) {
 			var timeOpts = { timeZone: 'Europe/London' };
 			return addRow('od6', {
 				Date: now.toLocaleDateString('en-GB', timeOpts) + ' ' + now.toLocaleTimeString('en-GB', timeOpts),
-				Article: req.params.id,
+				Article: 'http://next.ft.com/' + req.params.id,
 				Reason: decodeURIComponent(req.params.reason),
 				Contactable: req.query.contactable === 'true',
 				ErightsId: req.headers['x-ft-user-id'],
