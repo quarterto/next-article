@@ -7,6 +7,7 @@
     "test": "make test"
   },
   "dependencies": {
+    "body-parser": "^1.12.3",
     "cheerio": "^0.18.0",
     "denodeify": "^1.2.1",
     "express-errors-handler": "^1.2.0",
