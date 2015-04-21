@@ -20,7 +20,7 @@ endif
 	origami-build-tools install --verbose
 
 test: build-production
-#	next-build-tools verify-layout-deps - disabled whilst using a branch of next-js-setup
+	next-build-tools verify-layout-deps
 	next-build-tools verify
 	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha tests/server/ --recursive
 
