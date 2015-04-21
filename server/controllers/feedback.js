@@ -15,6 +15,7 @@ function login(opts) {
 		key: opts.key
 	})
 		.then(function(token) {
+			console.log("Got token", token);
 			return { type: 'Bearer', value: token };
 		})
 		.catch(function(err) {
@@ -34,6 +35,7 @@ module.exports = function(req, res, next) {
 			var addRow = denodeify(sheet.addRow);
 			var now = new Date();
 			var timeOpts = { timeZone: 'Europe/London' };
+			console.log("About to add row");
 			return addRow('od6', {
 				Date: now.toLocaleDateString('en-GB', timeOpts) + ' ' + now.toLocaleTimeString('en-GB', timeOpts),
 				Article: req.params.id,
@@ -43,6 +45,9 @@ module.exports = function(req, res, next) {
 				Email: req.body.email
 			});
 
+		})
+		.then(function() {
+			console.log("success");
 		})
 		.catch(next);
 };
