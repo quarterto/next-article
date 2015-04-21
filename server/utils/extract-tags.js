@@ -4,7 +4,7 @@ var _ = require('lodash');
 var capiMapiRegex = require('./capi-mapi-regex').root;
 
 module.exports = function (article, articleV1, flags) {
-	if (flags.mentionsV2 && flags.mentionsV2.isSwitchedOn) {
+	if (flags.mentionsV2) {
 		return _(article.annotations)
 			.filter(function (annotation) {
 				return ['organisation', 'person'].indexOf(annotation.type.toLowerCase()) > -1;

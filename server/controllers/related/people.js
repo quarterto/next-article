@@ -18,16 +18,16 @@ function getCurrentRole(person) {
 }
 
 module.exports = function(req, res, next) {
-	if (!res.locals.flags.articleRelatedContent || res.locals.flags.articleRelatedContent.isSwitchedOff) {
+	if (!res.locals.flags.articleRelatedContent) {
 		return res.status(404).end();
 	}
 
-	if (res.locals.flags.mentionsV2 && res.locals.flags.mentionsV2.isSwitchedOn) {
+	if (res.locals.flags.mentionsV2) {
 		api.content({
 			uuid: req.params.id,
 			type: 'Article',
 			metadata: true,
-			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+			useElasticSearch: res.locals.flags.elasticSearchItemGet
 		})
 			.then(function (article) {
 				var personPromises = article.annotations
@@ -77,7 +77,7 @@ module.exports = function(req, res, next) {
 	} else {
 		api.contentLegacy({
 			uuid: req.params.id,
-			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+			useElasticSearch: res.locals.flags.elasticSearchItemGet
 		})
 			.then(function (article) {
 				var relations = article.item.metadata.people;

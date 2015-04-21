@@ -12,7 +12,7 @@
     "express-errors-handler": "^1.2.0",
     "fetchres": "^1.0.4",
     "forever": "^0.11.1",
-    "ft-next-express": "^7.9.1",
+    "ft-next-express": "^8.0.0",
     "ft-next-logger": "^1.1.0",
     "google-oauth-jwt": "^0.1.6",
     "google-spreadsheet": "^0.2.8",

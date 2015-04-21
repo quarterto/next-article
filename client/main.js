@@ -43,7 +43,7 @@ setup.bootstrap(function(result) {
 
 	slideshow(document.querySelectorAll('ft-slideshow'));
 
-	if (flags.get('contentApiCalls').isSwitchedOn) {
+	if (flags.get('contentApiCalls')) {
 		moreOn.init(flags);
 	}
 

@@ -30,7 +30,7 @@ module.exports = function(req, res, next) {
 
 			return api.content({
 				uuid: uuids,
-				useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+				useElasticSearch: res.locals.flags.elasticSearchItemGet
 			});
 		})
 		.then(function(articles) {

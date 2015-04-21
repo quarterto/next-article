@@ -15,7 +15,7 @@ module.exports = function (req, res, next) {
 
 	api.contentLegacy({
 		uuid: req.params.id,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	})
 		.then(function (article) {
 			res.set(cacheControl);
@@ -44,13 +44,13 @@ module.exports = function (req, res, next) {
 				};
 			});
 			// get the first article's main image, if it exists (and not author's stories)
-			if (!res.locals.flags.moreOnImages || !res.locals.flags.moreOnImages.isSwitchedOn || !results[0].mainImage || metadata === 'authors') {
+			if (!res.locals.flags.moreOnImages || !results[0].mainImage || metadata === 'authors') {
 				return Promise.resolve(articleModels);
 			}
 			return api.content({
 					uuid: extractUuid(results[0].mainImage.id),
 					type: 'ImageSet',
-					useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+					useElasticSearch: res.locals.flags.elasticSearchItemGet
 				})
 				.then(function (imageSet) {
 					articleModels[0].image = resize(
