@@ -30,7 +30,7 @@ module.exports.init = function(options) {
 		var reason = event.target.querySelector('.js-how-useful__reason');
 
 		// hack
-		var url = '/' + uuid + '/feedback/' + encodeURIComponent(reason.value) + '?contactable=' + (document.getElementById('contact-me').checked ? 'true' : 'false')
+		var url = '/' + uuid + '/feedback/' + encodeURIComponent(reason.value) + '?contactable=' + (document.getElementById('contact-me').checked ? 'true' : 'false');
 		fetch(url , { credentials: 'same-origin' });
 		showUsefuls();
 	});
