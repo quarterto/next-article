@@ -48,7 +48,7 @@ module.exports = function(req, res, next) {
 		})
 		.then(function() {
 			console.log("success");
-			res.sendStatus(202);
+			res.sendStatus(200);
 		})
 		.catch(next);
 };
