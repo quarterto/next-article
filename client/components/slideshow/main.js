@@ -2,7 +2,7 @@
 
 var fetchres = require('fetchres');
 var Gallery = require('o-gallery');
-var Analytics = require('next-beacon-component');
+var beacon = require('next-beacon-component');
 
 module.exports = function(els) {
 	[].slice.call(els).forEach(function(el) {
@@ -20,9 +20,12 @@ module.exports = function(els) {
 				.then(function(el) {
 					el.addEventListener('oGallery.itemSelect', function (ev) {
 						if (ev.target.classList.contains('o-gallery--slideshow')) {
-							Analytics.fire('gallery', {
-								picture: ev.detail.itemID + 1,
-								totalPictures: ev.target.querySelectorAll('.o-gallery__item').length
+							var picture = ev.detail.itemID + 1;
+							var totalPictures = ev.target.querySelectorAll('.o-gallery__item').length;
+							beacon.fire('gallery', {
+								picture: picture,
+								totalPictures: totalPictures,
+								percentageThrough: (100 / totalPictures) * picture
 							});
 						}
 					});
