@@ -20,9 +20,12 @@ module.exports = function(els) {
 				.then(function(el) {
 					el.addEventListener('oGallery.itemSelect', function (ev) {
 						if (ev.target.classList.contains('o-gallery--slideshow')) {
+							var picture = ev.detail.itemID + 1;
+							var totalPictures = ev.target.querySelectorAll('.o-gallery__item').length;
 							Analytics.fire('gallery', {
-								picture: ev.detail.itemID + 1,
-								totalPictures: ev.target.querySelectorAll('.o-gallery__item').length
+								picture: picture,
+								totalPictures: totalPictures,
+								percentageThrough: (100 / totalPictures) * picture
 							});
 						}
 					});
