@@ -15,6 +15,8 @@
     "forever": "^0.11.1",
     "ft-next-express": "^7.9.1",
     "ft-next-logger": "^1.1.0",
+    "google-oauth-jwt": "^0.1.6",
+    "google-spreadsheet": "^0.2.8",
     "lodash": "^3.6.0",
     "merge": "^1.2.0",
     "next-ft-api-client": "^2.0.4"
