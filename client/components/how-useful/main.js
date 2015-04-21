@@ -21,7 +21,8 @@ module.exports.init = function(options) {
 	delegate.on('click', '.js-how-useful__yes', function() {
 		el.innerHTML = '<form method="post" class="js-how-useful-why"><label for="reason">Please tell us why you found this article useful'
 			+ '<br /><input name="reason" class="how-useful__reason js-how-useful__reason"/></label>'
-			+ '<br /><input type="submit" value="Send feedback" class="how-useful__button"></form>';
+			+ '<br /><label class="how-useful__contact-me" for="contact-me"><input type="checkbox" id="contact-me" name="contact-me" />Tick the box if you would be happy for us to contact you to find out more</label>'
+			+ '<input type="submit" value="Send feedback" class="how-useful__button"></form>';
 	});
 
 	delegate.on('submit', '.js-how-useful-why', function(event) {
