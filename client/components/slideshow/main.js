@@ -2,7 +2,7 @@
 
 var fetchres = require('fetchres');
 var Gallery = require('o-gallery');
-var Analytics = require('next-beacon-component');
+var beacon = require('next-beacon-component');
 
 module.exports = function(els) {
 	[].slice.call(els).forEach(function(el) {
@@ -22,7 +22,7 @@ module.exports = function(els) {
 						if (ev.target.classList.contains('o-gallery--slideshow')) {
 							var picture = ev.detail.itemID + 1;
 							var totalPictures = ev.target.querySelectorAll('.o-gallery__item').length;
-							Analytics.fire('gallery', {
+							beacon.fire('gallery', {
 								picture: picture,
 								totalPictures: totalPictures,
 								percentageThrough: (100 / totalPictures) * picture
