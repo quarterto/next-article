@@ -35,12 +35,11 @@ module.exports = function(req, res, next) {
 			var addRow = denodeify(sheet.addRow);
 			var now = new Date();
 			var timeOpts = { timeZone: 'Europe/London' };
-			console.log("About to add row");
 			return addRow('od6', {
 				Date: now.toLocaleDateString('en-GB', timeOpts) + ' ' + now.toLocaleTimeString('en-GB', timeOpts),
 				Article: req.params.id,
 				Reason: decodeURIComponent(req.params.reason),
-				Contactable: false,
+				Contactable: req.query.contactable === 'true',
 				ErightsId: req.headers['x-ft-user-id'],
 				Email: ''
 			});
