@@ -25,7 +25,7 @@ module.exports.init = function(uuid, flags) {
 				document.querySelector('.article__actions').appendChild(commentLink);
 			});
 			oComments.on('tracking.postComment', function (ev) {
-				beacon.fire('posted', { interaction: 'posted' });
+				beacon.fire('comment', { interaction: 'posted' });
 			});
 			oComments.on('tracking.likeComment', function (ev) {
 				beacon.fire('comment', { interaction: 'liked', id: ev.detail.data.lfEventData.targetId });
