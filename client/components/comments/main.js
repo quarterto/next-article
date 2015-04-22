@@ -25,21 +25,13 @@ module.exports.init = function(uuid, flags) {
 				document.querySelector('.article__actions').appendChild(commentLink);
 			});
 			oComments.on('tracking.postComment', function (ev) {
-				console.log('postComment');
-				console.log(ev);
-				//beacon.fire('comments', { type: 'posted' });
+				beacon.fire('posted', { interaction: 'posted' });
 			});
 			oComments.on('tracking.likeComment', function (ev) {
-				console.log('likeComment');
-				console.log(ev);
+				beacon.fire('comment', { interaction: 'liked', id: ev.detail.data.lfEventData.targetId });
 			});
 			oComments.on('tracking.shareComment', function (ev) {
-				console.log('shareComment');
-				console.log(ev);
-			});
-			oComments.on('tracking.socialMention', function (ev) {
-				console.log('socialMention');
-				console.log(ev);
+				beacon.fire('comment', { interaction: 'shared', id: ev.detail.data.lfEventData.targetId });
 			});
 
 			var oCommentComponent = new oComments.Widget({
