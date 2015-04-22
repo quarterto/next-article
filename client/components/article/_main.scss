@@ -362,8 +362,11 @@ $header-offset: 30px;
 	}
 	thead,
 	tbody {
-		display: table;
-		margin-top: 10px;
+		&:before {
+			content: "";
+			display: block;
+			height: 10px;
+		}
 	}
 	thead th {
 		font-weight: 500;
