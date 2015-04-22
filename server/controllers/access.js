@@ -7,7 +7,7 @@ module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
 		api.contentLegacy({
 			uuid: req.params.id,
-			useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+			useElasticSearch: res.locals.flags.elasticSearchItemGet
 		})
 			.catch(function(err) {
 				if (err instanceof fetchres.BadServerResponseError) {

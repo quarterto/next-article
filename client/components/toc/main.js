@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports.init = function(flags) {
-	if (flags.get('articleTOC').isSwitchedOff) {
+	if (!flags.get('articleTOC')) {
 		return false;
 	}
 

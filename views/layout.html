@@ -42,7 +42,7 @@
 				</div>
 			</div>
 			{{#if tags}}
-				<div class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags.isSwitchedOn}}12{{else}}hide{{/if}} L4">
+				<div class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags}}12{{else}}hide{{/if}} L4">
 					<h3 class="article__tags__title">Topics mentioned in this article</h3>
 					<ul class="ng-list-reset" data-trackable="tags">
 						{{#each tags}}
@@ -60,7 +60,7 @@
 			<div class="article__body">
 				{{{body}}}
 			</div>
-			{{#if @root.flags.recommend.isSwitchedOn}}
+			{{#if @root.flags.recommend}}
 				<div>
 					<p>
 						<span
@@ -75,7 +75,7 @@
 					</p>
 				</div>
 			{{/if}}
-			{{#if @root.flags.hackDayHowUseful.isSwitchedOn}}
+			{{#if @root.flags.hackDayHowUseful}}
 			<div class='js-how-useful'></div>
 			{{/if}}
 		</div>
@@ -84,7 +84,7 @@
 	</div>
 </article>
 <div class="o-grid-row">
-	{{#if @root.flags.articleRelatedContent.isSwitchedOn}}
+	{{#if @root.flags.articleRelatedContent}}
 		<div class="article__more-on" data-trackable="more-on" data-o-grid-colspan="12 L8 XL7 XLoffset1">
 			<div class="js-more-on more-on-wrapper"></div>
 			<div class="js-more-on-topic more-on-wrapper" data-metadata-field="primaryTheme"></div>

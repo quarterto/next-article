@@ -15,9 +15,7 @@ var imageSet2 = require('fs').readFileSync('tests/fixtures/image-set-2.json', { 
 describe('Images', function() {
 
 	var flags = {
-		fullWidthMainImages: {
-			isSwitchedOn: true
-		}
+		fullWidthMainImages: true
 	};
 
 	beforeEach(function() {
@@ -92,7 +90,7 @@ describe('Images', function() {
 			'<ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/f14a7e9e-cc08-11e4-30d3-978e959e1c97"></ft-content>'
 		);
 
-		return images($content, { fullWidthMainImages: { isSwitchedOn: false } })
+		return images($content, { fullWidthMainImages: false })
 			.then(function($content) {
 				$content.html().should.equal(
 					'<figure class="article__image-wrapper ng-figure-reset article__inline-image ng-pull-out ng-inline-element">' +

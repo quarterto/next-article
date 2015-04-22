@@ -29,10 +29,10 @@ function getUuid(id) {
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
-	if (res.locals.flags.articleCapiV1Fallback.isSwitchedOn) {
+	if (res.locals.flags.articleCapiV1Fallback) {
 		articleV1Promise = api.contentLegacy({
 				uuid: req.params[0],
-				useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+				useElasticSearch: res.locals.flags.elasticSearchItemGet
 			})
 				// Some things aren't in CAPI v1 (e.g. FastFT)
 				.catch(function(err) {
@@ -50,7 +50,7 @@ module.exports = function(req, res, next) {
 		uuid: req.params[0],
 		type: 'Article',
 		metadata: true,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	});
 
 	Promise.all([articleV1Promise, articleV2Promise])
@@ -134,7 +134,7 @@ module.exports = function(req, res, next) {
 										id: $subhead.attr('id')
 									};
 								}).get(),
-								showTOC: res.locals.flags.articleTOC.isSwitchedOn && $subheaders.length > 2,
+								showTOC: res.locals.flags.articleTOC && $subheaders.length > 2,
 								isColumnist: isColumnist,
 								// if there's a main image, or slideshow or video, we overlap them on the header
 								headerOverlap:
@@ -159,10 +159,10 @@ module.exports = function(req, res, next) {
 			if (err instanceof fetchres.BadServerResponseError) {
 				api.contentLegacy({
 						uuid: req.params[0],
-						useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+						useElasticSearch: res.locals.flags.elasticSearchItemGet
 					})
 						.then(function(data) {
-							if (res.locals.flags.articleCapiV1Fallback && res.locals.flags.articleCapiV1Fallback.isSwitchedOn) {
+							if (res.locals.flags.articleCapiV1Fallback) {
 								var article = data.item;
 								res.render('layout-v1', {
 									id: article.id,

@@ -29,7 +29,9 @@ setup.bootstrap(function(result) {
 
 	var uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
 	if (uuid) {
-		myFtClient.notifications.clear([uuid]);
+		if (flags.get('userPreferencesAPI')) {
+			myFtClient.notifications.clear([uuid]);
+		}
 
 		// Temporary (MA)
 		if (flags.get('hackDayHowUseful')) {
@@ -43,7 +45,7 @@ setup.bootstrap(function(result) {
 
 	slideshow(document.querySelectorAll('ft-slideshow'));
 
-	if (flags.get('contentApiCalls').isSwitchedOn) {
+	if (flags.get('contentApiCalls')) {
 		moreOn.init(flags);
 	}
 

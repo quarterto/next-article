@@ -12,7 +12,7 @@ var extractUuid = function (uri) {
 module.exports = function (req, res, next) {
 	api.contentLegacy({
 		uuid: req.params.id,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet.isSwitchedOn
+		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	})
 		.then(function (article) {
 			res.set(cacheControl);

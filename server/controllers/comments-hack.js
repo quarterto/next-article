@@ -29,7 +29,7 @@ function commentsSwitchedOn(uuid) {
 
 module.exports = function(req, res, next) {
 	res.set(cacheControl);
-	if (res.locals.flags.articleCommentsHack.isSwitchedOn) {
+	if (res.locals.flags.articleCommentsHack) {
 		commentsSwitchedOn(req.params.id)
 			.then(function(on) {
 				res.json(on);
