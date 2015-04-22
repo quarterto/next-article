@@ -1,7 +1,8 @@
 'use strict';
 
-var oComments = require('o-comments');
 var fetchres = require('fetchres');
+var oComments = require('o-comments');
+var beacon = require('next-beacon-component');
 
 module.exports = {};
 module.exports.init = function(uuid, flags) {
@@ -23,11 +24,21 @@ module.exports.init = function(uuid, flags) {
 				commentLink.textContent = 'Comments (' + commentCount + ')';
 				document.querySelector('.article__actions').appendChild(commentLink);
 			});
+			oComments.on('tracking.postComment', function (ev) {
+				beacon.fire('comment', { interaction: 'posted' });
+			});
+			oComments.on('tracking.likeComment', function (ev) {
+				beacon.fire('comment', { interaction: 'liked', id: ev.detail.data.lfEventData.targetId });
+			});
+			oComments.on('tracking.shareComment', function (ev) {
+				beacon.fire('comment', { interaction: 'shared', id: ev.detail.data.lfEventData.targetId });
+			});
+
 			var oCommentComponent = new oComments.Widget({
 				elId: 'comments',
 				title: document.title,
 				url: document.location.href,
-				articleId: uuid,
+				articleId: uuid, // NOTE: to test, use '3a499586-b2e0-11e4-a058-00144feab7de'
 				initExtension: {
 					initialNumVisible: 10,
 					disableIE8Shim: true,
