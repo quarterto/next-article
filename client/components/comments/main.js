@@ -2,7 +2,7 @@
 
 var fetchres = require('fetchres');
 var oComments = require('o-comments');
-var Analytics = require('next-beacon-component');
+var beacon = require('next-beacon-component');
 
 module.exports = {};
 module.exports.init = function(uuid, flags) {
@@ -25,37 +25,28 @@ module.exports.init = function(uuid, flags) {
 				document.querySelector('.article__actions').appendChild(commentLink);
 			});
 			oComments.on('tracking.postComment', function (ev) {
+				console.log('postComment');
 				console.log(ev);
-				Analytics.fire('comments', { type: 'posted' });
+				//beacon.fire('comments', { type: 'posted' });
 			});
-			// testing
-			oComments.init({
-			    "livefyre": {
-			        "network": "ft-1.fyre.co",
-			        "domain": "ft-1.auth.fyre.co",
-			        "resourceDomainBase": "http://zor.livefyre.com"
-			    },
-			    dependencies: {
-			        "o-comment-api": {
-			            "suds": {
-			                "baseUrl": "http://test.session-user-data.webservices.ft.com"
-			            },
-			            "ccs": {
-			                "baseUrl": "http://test.comment-creation-service.webservices.ft.com"
-			            },
-			            "cacheConfig": {
-			                "authBaseName": "comments-test-auth-",
-			                "initBaseName": "comments-test-init-"
-			            }
-			        }
-			    }
+			oComments.on('tracking.likeComment', function (ev) {
+				console.log('likeComment');
+				console.log(ev);
+			});
+			oComments.on('tracking.shareComment', function (ev) {
+				console.log('shareComment');
+				console.log(ev);
+			});
+			oComments.on('tracking.socialMention', function (ev) {
+				console.log('socialMention');
+				console.log(ev);
 			});
 
 			var oCommentComponent = new oComments.Widget({
 				elId: 'comments',
 				title: document.title,
 				url: document.location.href,
-				articleId: uuid,
+				articleId: '3a499586-b2e0-11e4-a058-00144feab7de',
 				initExtension: {
 					initialNumVisible: 10,
 					disableIE8Shim: true,
