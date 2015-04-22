@@ -32,13 +32,6 @@ setup.bootstrap(function(result) {
 		if (flags.get('userPreferencesAPI')) {
 			myFtClient.notifications.clear([uuid]);
 		}
-
-		// Temporary (MA)
-		if (flags.get('hackDayHowUseful')) {
-			howUseful.init({
-				uuid: uuid
-			});
-		}
 	}
 
 	messaging.init();
