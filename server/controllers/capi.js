@@ -1,9 +1,9 @@
 'use strict';
 
-var api = require('next-ft-api-client');
-var cacheControl = require('../utils/cache-control');
 var fetchres = require('fetchres');
 var cheerio = require('cheerio');
+var logger = require('ft-next-logger');
+var api = require('next-ft-api-client');
 var pullQuotesTransform = require('../transforms/pull-quotes');
 var bigNumberTransform = require('../transforms/big-number');
 var ftContentTransform = require('../transforms/ft-content');
@@ -20,12 +20,9 @@ var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
 var promoBoxTransform = require('../transforms/promo-box');
 var videoTransform = require('../transforms/video');
+var cacheControl = require('../utils/cache-control');
 var extractTags = require('../utils/extract-tags');
-var logger = require('ft-next-logger');
-
-function getUuid(id) {
-	return id.replace('http://www.ft.com/thing/', '');
-}
+var extractUuid = require('../utils/extract-uuid');
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -121,7 +118,7 @@ module.exports = function(req, res, next) {
 							return res.render('layout', {
 								article: article,
 								articleV1: articleV1 && articleV1.item,
-								id: getUuid(article.id),
+								id: extractUuid(article.id),
 								// HACK - Force the last word in the title never to be an ‘orphan’
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
