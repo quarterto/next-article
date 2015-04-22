@@ -20,6 +20,7 @@
 }
 .more-on__title {
 	font-size: 16px;
+	font-weight: bold;
 	line-height: 1em;
 	text-transform: uppercase;
 	margin: 0;
@@ -131,11 +132,12 @@
 }
 .more-on__article__image {
 	display: block;
+	border: 0;
 
 	.more-on--story & {
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: -1px;
+		right: -1px;
 	}
 	.more-on--topic & {
 		width: 100%;
@@ -192,6 +194,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+	border: 0;
 	border-radius: 25px;
 	background-color: #ffffff;
 }
