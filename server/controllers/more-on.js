@@ -45,7 +45,7 @@ module.exports = function (req, res, next) {
 					publishedDate: article.publishedDate
 				};
 				if (!article.mainImage) {
-					return Promise.resolve(article);
+					return Promise.resolve(articleModel);
 				}
 				// get the main image
 				return api.content({
