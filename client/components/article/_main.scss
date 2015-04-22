@@ -192,7 +192,9 @@ $header-offset: 30px;
 	}
 }
 
-
+.article__video-wrapper {
+	clear: left;
+}
 .article__video {
 	width: 100%;
 }
