@@ -14,9 +14,6 @@ var moreOn = require('./components/more-on/main');
 var toc = require('./components/toc/main');
 var comments = require('./components/comments/main');
 
-// temporary
-var howUseful = require('./components/how-useful/main');
-
 oViewport.listenTo('resize');
 
 setup.bootstrap(function(result) {
