@@ -19,11 +19,6 @@ app.get('^/:id(' + articleUuidRegex + ')/people', require('./controllers/related
 app.get('^/:id(' + articleUuidRegex + ')/organisations', require('./controllers/related/organisations'));
 app.get('^/:id(' + articleUuidRegex + ')/comments-hack', require('./controllers/comments-hack'));
 
-
-// temporary (MA)
-app.get('/more-on/useful', require('./controllers/useful'));
-app.get('^/:id(' + articleUuidRegex + ')/feedback/:reason', access, require('./controllers/feedback'));
-
 app.get('/more-on/:id', require('./controllers/more-on'));
 app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
 
