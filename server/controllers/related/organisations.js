@@ -2,6 +2,7 @@
 
 var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
+var cacheControl = require('../../utils/cache-control');
 
 function extractUuid(id) {
 	return id.replace(/http:\/\/(api|www)\.ft\.com\/things\//, '');
@@ -20,6 +21,7 @@ module.exports = function(req, res, next) {
 			useElasticSearch: res.locals.flags.elasticSearchItemGet
 		})
 			.then(function (article) {
+				res.set(cacheControl);
 				var orgPromises = article.annotations
 					.filter(function (annotation) {
 						return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions' &&
@@ -71,6 +73,7 @@ module.exports = function(req, res, next) {
 			useElasticSearch: res.locals.flags.elasticSearchItemGet
 		})
 			.then(function (article) {
+				res.set(cacheControl);
 				var relations = article.item.metadata.organisations;
 				if (!relations.length) {
 					throw new Error('No related');
