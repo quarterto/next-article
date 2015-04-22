@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = function (uri) {
-	return uri.replace(/http:\/\/(?:api|www).ft.com\/[^\/]+\/(.*)/, '$1');
+	return uri.replace(/http:\/\/[^.]+.ft.com\/[^\/]+\/(.*)/, '$1');
 };
