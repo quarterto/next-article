@@ -361,9 +361,9 @@ $header-offset: 30px;
 	thead,
 	tbody {
 		&:before {
-		    content: "";
-		    display: block;
-		    height: 10px;
+			content: "";
+			display: block;
+			height: 10px;
 		}
 	}
 	thead th {
