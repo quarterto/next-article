@@ -29,20 +29,26 @@ module.exports = function (req, res, next) {
 			}
 			return api.searchLegacy({
 				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
-				count: req.query.count || 4
+				// get one extra, for deduping
+				count: req.query.count ? req.query.count + 1 : 5
 			});
 		})
 		.then(function (results) {
 			if (!results.length) {
 				throw new Error('No related');
 			}
-			var articleModels = results.map(function (result) {
-				return {
-					id: extractUuid(result.id),
-					title: result.title,
-					publishedDate: result.publishedDate
-				};
-			});
+			var articleModels = results
+				.filter(function (result) {
+					return extractUuid(result.id) !== req.params.id;
+				})
+				.slice(0, req.query.count)
+				.map(function (result) {
+					return {
+						id: extractUuid(result.id),
+						title: result.title,
+						publishedDate: result.publishedDate
+					};
+				});
 			// get the first article's main image, if it exists (and not author's stories)
 			if (!res.locals.flags.moreOnImages || !results[0].mainImage || metadata === 'authors') {
 				return Promise.resolve(articleModels);
