@@ -4,10 +4,7 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../utils/cache-control');
 var resize = require('../utils/resize');
-
-var extractUuid = function (uri) {
-	return uri.replace(/http:\/\/(?:api|www).ft.com\/[^\/]+\/(.*)/, '$1');
-};
+var extractUuid = require('../utils/extract-uuid');
 
 module.exports = function (req, res, next) {
 	var topic;

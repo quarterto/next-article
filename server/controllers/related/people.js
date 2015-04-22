@@ -4,10 +4,8 @@ var fetchres = require('fetchres');
 var _ = require('lodash');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
+var extractUuid = require('../../utils/extract-uuid');
 
-function extractUuid(id) {
-	return id.replace(/http:\/\/(api|www)\.ft\.com\/things\//, '');
-}
 function getCurrentRole(person) {
 	var currentMembership = _.find(person.memberships, function (membership) {
 		return _.pluck(membership.changeEvents, 'startedAt').shift() && !_.pluck(membership.changeEvents, 'endedAt').shift();
