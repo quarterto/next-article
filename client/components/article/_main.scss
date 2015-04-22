@@ -368,11 +368,15 @@ $header-offset: 30px;
 			height: 10px;
 		}
 	}
-	thead th {
-		font-weight: 500;
-	}
 	tbody tr:nth-child(2n+1) {
 		background-color: $box-colour;
+	}
+	th,
+	td {
+		vertical-align: top;
+	}
+	th {
+		font-weight: 500;
 	}
 	td {
 		padding: 5px 10px;
