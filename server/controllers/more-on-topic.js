@@ -6,8 +6,13 @@ var cacheControl = require('../utils/cache-control');
 var resize = require('../utils/resize');
 var extractUuid = require('../utils/extract-uuid');
 
+function hasSemanticStream(taxonomy) {
+	return ['people', 'organisations'].indexOf(taxonomy) > -1;
+}
+
 module.exports = function (req, res, next) {
 	var topic;
+	var topicV2Uuid;
 	var metadata = req.params.metadata;
 	var count = parseInt(req.query.count) || 5;
 
@@ -25,34 +30,47 @@ module.exports = function (req, res, next) {
 			if (!topic) {
 				throw new Error('No related');
 			}
-			return api.searchLegacy({
+			var promises = [];
+			promises.push(api.searchLegacy({
 				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
 				// get one extra, in case we dedupe
 				count: count + 1
-			});
+			}));
+			if (res.locals.flags.semanticStreams && hasSemanticStream(topic.term.taxonomy)) {
+				promises.push(
+					api.mapping(topic.term.id, topic.term.taxonomy)
+						.then(function (v2Topic) {
+							topicV2Uuid = extractUuid(v2Topic.id);
+						})
+						.catch(function (err) {})
+				);
+			}
+			return Promise.all(promises);
 		})
 		.then(function (results) {
-			if (!results.length) {
-				throw new Error('No related');
-			}
-			var articleModels = results
-				.filter(function (result) {
-					return extractUuid(result.id) !== req.params.id;
+			var articles = results[0];
+			var articleModels = articles
+				.filter(function (article) {
+					return extractUuid(article.id) !== req.params.id;
 				})
 				.slice(0, count)
-				.map(function (result) {
+				.map(function (article) {
 					return {
-						id: extractUuid(result.id),
-						title: result.title,
-						publishedDate: result.publishedDate
+						id: extractUuid(article.id),
+						title: article.title,
+						mainImage: article.mainImage && article.mainImage.id,
+						publishedDate: article.publishedDate
 					};
 				});
+			if (!articleModels.length) {
+				throw new Error('No related');
+			}
 			// get the first article's main image, if it exists (and not author's stories)
 			if (!res.locals.flags.moreOnImages || !results[0].mainImage || metadata === 'authors') {
 				return Promise.resolve(articleModels);
 			}
 			return api.content({
-					uuid: extractUuid(results[0].mainImage.id),
+					uuid: extractUuid(articleModels[0].mainImage),
 					type: 'ImageSet',
 					useElasticSearch: res.locals.flags.elasticSearchItemGet
 				})
@@ -69,13 +87,20 @@ module.exports = function (req, res, next) {
 				});
 		})
 		.then(function (articleModels) {
+			var topicModel = {
+				name: topic.term.name,
+				taxonomy: topic.term.taxonomy
+			};
+			topicModel.url = topicV2Uuid
+				? topicModel.taxonomy + '/' + topicV2Uuid
+				: '/stream/' + encodeURIComponent(topicModel.taxonomy) + '/' + encodeURIComponent(topicModel.name);
+			topicModel.isAuthor = topicModel.taxonomy === 'authors';
+			topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
+
 			res.render('more-on-topic', {
-				title: {
-					label: topic.term.name,
-					name: topic.term.name,
-					taxonomy: topic.term.taxonomy
-				},
-				articles: articleModels
+				topic: topicModel,
+				articles: articleModels,
+				hasMainImage: articleModels[0].image
 			});
 		})
 		.catch(function (err) {

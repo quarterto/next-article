@@ -4,7 +4,7 @@
 require('chai').should();
 var extractUuid = require('../../../server/utils/extract-uuid');
 
-describe.only('Extract UUID', function () {
+describe('Extract UUID', function () {
 
 	[{
 		uri: 'http://www.ft.com/thing/7f473d26-be68-11e4-8036-00144feab7de',
