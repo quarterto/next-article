@@ -12,6 +12,7 @@ var extractUuid = function (uri) {
 module.exports = function (req, res, next) {
 	var topic;
 	var metadata = req.params.metadata;
+	var count = parseInt(req.query.count) || 5;
 
 	api.contentLegacy({
 		uuid: req.params.id,
@@ -29,8 +30,8 @@ module.exports = function (req, res, next) {
 			}
 			return api.searchLegacy({
 				query: topic.term.taxonomy + ':="' + topic.term.name + '"',
-				// get one extra, for deduping
-				count: req.query.count ? req.query.count + 1 : 5
+				// get one extra, in case we dedupe
+				count: count + 1
 			});
 		})
 		.then(function (results) {
@@ -41,7 +42,7 @@ module.exports = function (req, res, next) {
 				.filter(function (result) {
 					return extractUuid(result.id) !== req.params.id;
 				})
-				.slice(0, req.query.count)
+				.slice(0, count)
 				.map(function (result) {
 					return {
 						id: extractUuid(result.id),
