@@ -7,12 +7,7 @@ module.exports = {
 
 	"Js-success Test" : function (browser) {
 	console.log('Testing host: ', browser.launch_url);
-        var cookieValue = "grumman:" + browser.launch_url.substring(browser.launch_url.indexOf("http://")+7,browser.launch_url.indexOf("herokuapp.com")+13);
         browser
-            .setCookie({
-                name:'canary',
-                value:cookieValue
-            })
 			.url(browser.launch_url)
 			.waitForElementPresent("html.js.js-success", 30000)
 			.end();
