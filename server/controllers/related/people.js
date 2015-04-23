@@ -8,7 +8,7 @@ var extractUuid = require('../../utils/extract-uuid');
 
 function getCurrentRole(person) {
 	var currentMembership = _.find(person.memberships, function (membership) {
-		return _.pluck(membership.changeEvents, 'startedAt').shift() && !_.pluck(membership.changeEvents, 'endedAt').shift();
+		return _.find(membership.changeEvents, 'startedAt') && !_.find(membership.changeEvents, 'endedAt');
 	});
 	return currentMembership ? {
 		title: currentMembership.title,
