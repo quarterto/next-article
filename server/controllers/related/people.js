@@ -1,5 +1,6 @@
 'use strict';
 
+require('array.prototype.find');
 var fetchres = require('fetchres');
 var _ = require('lodash');
 var api = require('next-ft-api-client');
@@ -7,7 +8,7 @@ var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
 
 function getCurrentRole(person) {
-	var currentMembership = _.find(person.memberships, function (membership) {
+	var currentMembership = person.memberships.find(function (membership) {
 		return _.find(membership.changeEvents, 'startedAt') && !_.find(membership.changeEvents, 'endedAt');
 	});
 	return currentMembership ? {
