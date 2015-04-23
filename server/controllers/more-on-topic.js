@@ -7,8 +7,8 @@ var resize = require('../utils/resize');
 var extractUuid = require('../utils/extract-uuid');
 
 function hasSemanticStream(taxonomy) {
-	return ['people', 'organisations'].indexOf(taxonomy) > -1
-};
+	return ['people', 'organisations'].indexOf(taxonomy) > -1;
+}
 
 module.exports = function (req, res, next) {
 	var topic;
@@ -40,7 +40,7 @@ module.exports = function (req, res, next) {
 				promises.push(
 					api.mapping(topic.term.id, topic.term.taxonomy)
 						.then(function (v2Topic) {
-							topicV2Uuid = extractUuid(v2Topic.id)
+							topicV2Uuid = extractUuid(v2Topic.id);
 						})
 						.catch(function (err) {})
 				);
@@ -48,10 +48,7 @@ module.exports = function (req, res, next) {
 			return Promise.all(promises);
 		})
 		.then(function (results) {
-			var articles = results[0]
-			if (!articles.length) {
-				throw new Error('No related');
-			}
+			var articles = results[0];
 			var articleModels = articles
 				.filter(function (article) {
 					return extractUuid(article.id) !== req.params.id;
@@ -65,6 +62,9 @@ module.exports = function (req, res, next) {
 						publishedDate: article.publishedDate
 					};
 				});
+			if (!articleModels.length) {
+				throw new Error('No related');
+			}
 			// get the first article's main image, if it exists (and not author's stories)
 			if (!res.locals.flags.moreOnImages || !results[0].mainImage || metadata === 'authors') {
 				return Promise.resolve(articleModels);

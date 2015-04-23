@@ -8,6 +8,7 @@ var request = require('request');
 var helpers = require('../helpers');
 var articleV1Elastic = require('../../fixtures/capi-v1-elastic-search.json');
 var articleV2 = require('../../fixtures/capi-v2.json');
+var anotherArticleV2 = require('../../fixtures/capi-v2-another.json');
 
 module.exports = function () {
 
@@ -25,7 +26,7 @@ module.exports = function () {
 				.filteringPath(/^\/content\/[^\/]*$/, '/content/XXX')
 				.get('/content/XXX')
 				.times(3)
-				.reply(200, articleV2);
+				.reply(200, anotherArticleV2);
 
 			request(helpers.host + '/more-on/primaryTheme/02cad03a-844f-11e4-bae9-00144feabdc0', function(error, res, body) {
 				expect(res.headers['content-type']).to.match(/text\/html/);
