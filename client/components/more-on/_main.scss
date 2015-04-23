@@ -86,7 +86,7 @@
 .more-on__articles {
 	margin-top: 5px;
 
-	.more-on--topic & {
+	.more-on--topic.more-on--with-image & {
 		min-height: 128px;
 	}
 }
