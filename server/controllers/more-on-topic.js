@@ -61,7 +61,7 @@ module.exports = function (req, res, next) {
 					return {
 						id: extractUuid(article.id),
 						title: article.title,
-						mainImage: article.mainImage.id,
+						mainImage: article.mainImage && article.mainImage.id,
 						publishedDate: article.publishedDate
 					};
 				});

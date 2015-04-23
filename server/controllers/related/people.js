@@ -94,10 +94,16 @@ module.exports = function(req, res, next) {
 				return Promise.all(promises)
 					.then(function (results) {
 						var people = results
+							.filter(function (person) {
+								// need the person data for semantic streams
+								return res.locals.flags.semanticStreams ? person : true;
+							})
 							.map(function (person, index) {
 								return {
 									name: relations[index].term.name,
-									url: '/stream/people/' + relations[index].term.name,
+									url: res.locals.flags.semanticStreams
+										? '/people/' + extractUuid(person.id)
+										: '/stream/people/' + relations[index].term.name,
 									role: person && getCurrentRole(person)
 								};
 							});
