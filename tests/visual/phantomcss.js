@@ -1,8 +1,6 @@
-/*
-James Cryer / Huddle / 2015
-https://github.com/Huddle/PhantomCSS
-http://tldr.huddle.com/blog/css-testing/
-*/
+"use strict";
+
+/*global resemble, casper*/
 
 var fs = require( 'fs' );
 
@@ -52,8 +50,6 @@ function update( options ) {
 	}
 
 	options = options || {};
-
-	casper = options.casper || casper;
 
 	_waitTimeout = options.waitTimeout || _waitTimeout;
 
@@ -557,7 +553,6 @@ function initClient() {
 				compareTo( document.getElementById( 'image-diff-two' ).files[ 0 ] ).
 				ignoreAntialiasing(). // <-- muy importante
 				onComplete( function ( data ) {
-					var diffImage;
 
 					if ( Number( data.misMatchPercentage ) > mismatchTolerance ) {
 						result = data.misMatchPercentage;
@@ -691,14 +686,20 @@ function generateRandomString() {
 
 // Custom functions for Next:
 
-function getElementShots(pagename, elements, env, width, height){
-    for (elementName in elements){
-        screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env );
+function getElementShots(pagename, elements, env, width, height) {
+    var elementName;
+    for (elementName in elements) {
+        if (elements.hasOwnProperty(elementName)) {
+            screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
+        }
     }
 }
 
 function compareEnvironments(elements){
-    for(elementName in elements){
-        compareFiles("screenshots/" + elementName + "_prod.png","screenshots/" + elementName + "_test.png");
+    var elementName;
+    for(elementName in elements) {
+        if (elements.hasOwnProperty(elementName)) {
+            compareFiles("screenshots/" + elementName + "_prod.png", "screenshots/" + elementName + "_test.png");
+        }
     }
 }

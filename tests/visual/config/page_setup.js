@@ -1,3 +1,6 @@
+
+"use strict";
+
 // define each page you want to test, which elements you want to check on each page, and
 // at which browser widths those elements should appear
 

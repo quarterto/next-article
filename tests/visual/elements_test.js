@@ -1,3 +1,6 @@
+/*global casper */
+"use strict";
+
 var fs = require('fs');
 var path = fs.absolute(fs.workingDirectory + '/tests/visual/phantomcss.js');
 var phantomcss = require(path);
@@ -35,7 +38,7 @@ casper.test.begin('Next visual regression tests', function (test) {
             return name;
         },
         onComplete: function completeCallback() {
-            console.log("Finished a test!")
+            console.log("Finished a test!");
         }
 
     });
@@ -67,7 +70,7 @@ casper.test.begin('Next visual regression tests', function (test) {
     function compareMatched(){
         var bases = [];
         for(var x = 0; x < compares.length ; x++){
-            if(compares[x].indexOf('_' + 'base') != -1){
+            if(compares[x].indexOf('_' + 'base') !== -1){
                 bases.push(compares[x]);
             }
         }
