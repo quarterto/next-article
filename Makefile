@@ -84,6 +84,9 @@ deploy:
 	next-build-tools deploy-hashed-assets
 	next-build-tools deploy
 
+visual:
+	node tests/visual/visualRunner.js
+
 clean-deploy: clean install deploy
 
 tidy:
