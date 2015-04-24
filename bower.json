@@ -18,7 +18,7 @@
     "next-welcome": "Financial-Times/next-welcome#^2.0.0",
     "next-video": "Financial-Times/next-video#^1.0.0",
     "o-comments": "~1.0.8",
-    "next-myft-client": "Financial-Times/next-myft-client#v1.0.0-beta.4",
+    "next-myft-client": "Financial-Times/next-myft-client#^1.0.0-beta",
     "next-beacon-component": "~1.0.0"
   },
   "resolutions": {
