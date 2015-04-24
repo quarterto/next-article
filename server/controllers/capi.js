@@ -116,6 +116,7 @@ module.exports = function(req, res, next) {
 					return images($, res.locals.flags)
 						.then(function ($) {
 							return res.render('layout', {
+								barrier: true,
 								article: article,
 								articleV1: articleV1 && articleV1.item,
 								id: extractUuid(article.id),

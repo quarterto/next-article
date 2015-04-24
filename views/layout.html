@@ -58,7 +58,15 @@
 	<div class="article__main o-grid-row">
 		<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 			<div class="article__body">
-				{{{body}}}
+				{{#if barrier}}
+					<div class="barrier">
+						<h2>This content is available for <span>Premimum Subscribers</span> only</h2>
+						<p>Premium features include the agenda-setting Lex column, Newsmine blog, daily FT ePaper and exclusive weekly emails designed to enhance your FT experience.</p>
+						<p>If you are already a Premium Subscriber <a href="https://registration.ft.com/registration/barrier/login?location=http://next.ft.com">sign in</a> or <a href="https://subscription.ft.com/signup/premium">upgrade to Premium</a></p>
+					</div>
+				{{else}}
+					{{{body}}}
+				{{/if}}
 			</div>
 			{{#if @root.flags.recommend}}
 				<div>
