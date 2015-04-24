@@ -349,41 +349,4 @@ $header-offset: 30px;
 	margin-bottom: 15px;
 }
 
-.data-table {
-	margin-top: 20px;
-	border-spacing: 0;
-
-	caption,
-	thead {
-		text-align: left;
-	}
-	caption {
-		font-weight: 500;
-		text-transform: uppercase;
-	}
-	thead,
-	tbody {
-		&:before {
-			content: "";
-			display: block;
-			height: 10px;
-		}
-	}
-	tbody tr:nth-child(2n+1) {
-		background-color: $box-colour;
-	}
-	th,
-	td {
-		vertical-align: top;
-	}
-	th {
-		font-weight: 500;
-	}
-	td {
-		padding: 5px 10px;
-	}
-}
-// comments styling
-.fyre .fyre-comment p {
-	word-break: normal;
-}
+@import 'table';

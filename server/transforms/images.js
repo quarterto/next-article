@@ -47,14 +47,16 @@ module.exports = function($body, flags) {
 				var $figure = $('<figure></figure>')
 					.addClass('article__image-wrapper ng-figure-reset');
 
-				if (!$image.parent().hasClass('article__promo-box')) {
+				if ($image.parent().hasClass('article__promo-box')) {
+					$figure.addClass('article__promo-box__image');
+				} else if ($image.parent().is('td')) {
+					$figure.addClass('data-table__image');
+				} else {
 					if (!isMain) {
 						$figure.addClass('article__inline-image ng-pull-out ng-inline-element');
 					} else {
 						$figure.addClass('article__main-image ng-media-wrapper');
 					}
-				} else {
-					$figure.addClass('article__promo-box__image');
 				}
 
 				if (imageSet.title) {
