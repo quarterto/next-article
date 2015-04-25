@@ -20,8 +20,8 @@ endif
 	origami-build-tools install --verbose
 
 test: build-production
-	next-build-tools verify-layout-deps
-	next-build-tools verify
+	nbt verify-layout-deps
+	nbt verify
 	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha tests/server/ --recursive
 
 test-debug:
@@ -68,36 +68,36 @@ run-router:
 	export grumman=${PORT}; export PORT=5050; export DEBUG=proxy ; next-router
 
 build:
-	export ENVIRONMENT=development; gulp build-dev;
+	nbt build --dev
 
 build-production:
-	gulp build-prod
+	nbt build
 
 watch:
-	export ENVIRONMENT=development; gulp watch
+	nbt build --dev --watch
 
 clean:
 	git clean -fxd
 
 deploy:
-	next-build-tools configure
-	next-build-tools deploy-hashed-assets
-	next-build-tools deploy
+	nbt configure
+	nbt deploy-hashed-assets
+	nbt deploy
 
 clean-deploy: clean install deploy
 
 tidy:
-	next-build-tools destroy ${TEST_HOST}
+	nbt destroy ${TEST_HOST}
 
 provision:
-	next-build-tools provision ${TEST_HOST}
-	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
-	next-build-tools deploy-hashed-assets
-	next-build-tools deploy ${TEST_HOST}
+	nbt provision ${TEST_HOST}
+	nbt configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
+	nbt deploy-hashed-assets
+	nbt deploy ${TEST_HOST}
 	make smoke
 
 smoke:
-	export TEST_URL=${TEST_URL}; next-build-tools nightwatch tests/browser/tests/*
+	export TEST_URL=${TEST_URL}; nbt nightwatch tests/browser/tests/*
 
 update-flags:
 	 curl http://next.ft.com/__flags.json > tests/fixtures/flags.json
