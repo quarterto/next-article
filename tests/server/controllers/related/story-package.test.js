@@ -3,13 +3,13 @@
 
 var nock = require('nock');
 
-var helpers = require('../helpers');
-var articleV1Elastic = require('../../fixtures/capi-v1-elastic-search.json');
-var articleV2 = require('../../fixtures/capi-v2.json');
+var helpers = require('../../helpers');
+var articleV1Elastic = require('../../../fixtures/capi-v1-elastic-search.json');
+var articleV2 = require('../../../fixtures/capi-v2.json');
 
 module.exports = function () {
 
-	describe('More On', function() {
+	describe('Story Package', function() {
 
 		beforeEach(function() {
 			helpers.mockMethode();
@@ -26,7 +26,7 @@ module.exports = function () {
 				.times(5)
 				.reply(200, articleV2);
 
-			helpers.servesGoodHTML('/more-on/02cad03a-844f-11e4-bae9-00144feabdc0', done);
+			helpers.servesGoodHTML('/02cad03a-844f-11e4-bae9-00144feabdc0/story-package', done);
 		});
 
 	});
