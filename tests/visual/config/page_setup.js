@@ -18,9 +18,9 @@ exports.testData = {
                     1400
                 ]
             },
-            "header_follow_button": {
-                "name":"header_follow_button",
-                "css":'button.next-buttons--follow',
+            "mypage_button": {
+                "name":"mypage_button",
+                "css":'.next-header__primary-tools__mypage',
                 "widths":[
                     500,
                     1000,
