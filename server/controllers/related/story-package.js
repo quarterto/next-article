@@ -2,9 +2,9 @@
 
 var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
-var cacheControl = require('../utils/cache-control');
-var resize = require('../utils/resize');
-var extractUuid = require('../utils/extract-uuid');
+var cacheControl = require('../../utils/cache-control');
+var resize = require('../../utils/resize');
+var extractUuid = require('../../utils/extract-uuid');
 
 module.exports = function (req, res, next) {
 	api.contentLegacy({
@@ -64,7 +64,7 @@ module.exports = function (req, res, next) {
 			return Promise.all(imagePromises);
 		})
 		.then(function (articles) {
-			res.render('more-on', {
+			res.render('related/story-package', {
 				articles: articles,
 				isInline: req.query.view === 'inline'
 			});
