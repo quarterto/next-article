@@ -12,7 +12,7 @@ var run;
 for (page in page_data) {
     if (page_data.hasOwnProperty(page)) {
 
-        var testURL = "http://" + process.env.TEST_HOST + ".herokuapp.com";
+        var testURL = "http://" + ${TEST_HOST} + ".herokuapp.com";
         var prodHost = prod_data.host;
         var prodSuffix = prod_data.canary;
         var page_name = page_data[page].name;
