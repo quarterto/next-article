@@ -1,6 +1,5 @@
 PORT := 3003
 app := ft-next-grumman-v002
-OBT := $(shell which origami-build-tools)
 ROUTER := $(shell which next-router)
 API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
 API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
@@ -13,10 +12,6 @@ ELASTIC_SEARCH_HOST := $(shell cat ~/.elastic_search_host 2>/dev/null)
 .PHONY: test
 
 install:
-ifeq ($(OBT),)
-	@echo "You need to install origami build tools first!  See docs here: http://origami.ft.com/docs/developer-guide/building-modules/"
-	exit 1
-endif
 	origami-build-tools install --verbose
 
 test: build-production
