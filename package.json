@@ -22,6 +22,7 @@
     "next-ft-api-client": "^2.0.4"
   },
   "devDependencies": {
+    "casperjs": "^1.1.0-beta3",
     "chai": "^1.9.2",
     "gulp": "^3.8.8",
     "gulp-notify": "^2.2.0",
