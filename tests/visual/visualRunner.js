@@ -1,6 +1,7 @@
 "use strict";
 
-var configfile = "./" + process.argv[2];
+var argv = require('minimist')(process.argv.slice(2));
+var configfile = "./" + argv.t;
 
 // assumes file lives in tests/visual/config/
 var page_data = require('./config/' + configfile).testData;
