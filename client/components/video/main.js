@@ -32,7 +32,7 @@ function brightcoveInit(el) {
 
 function youtubeInit(el) {
 	var youtubeEmbedUrl = el.getAttribute('href')
-		.replace(/https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([A-Za-z0-9])/, "https://youtube.com/embed/$1");
+		.replace(/https?:\/\/(?:www\.)?youtube\.com\/watch\?v=(.*)/, "https://youtube.com/embed/$1");
 	var attrs = [
 		['src', youtubeEmbedUrl],
 		['width', '560'],
