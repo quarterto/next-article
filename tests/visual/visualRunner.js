@@ -1,10 +1,13 @@
 "use strict";
 
-var page_data = require('./config/page_setup.js').testData;
-var prod_data = require('./config/page_setup.js').productionData;
+var configfile = "./" + process.argv[2];
 
+// assumes file lives in tests/visual/config/
+var page_data = require('./config/' + configfile).testData;
+var prod_data = require('./config/' + configfile).productionData;
 var page;
 var run;
+
 for (page in page_data) {
     if (page_data.hasOwnProperty(page)) {
 
