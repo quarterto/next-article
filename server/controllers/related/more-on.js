@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+require('array.prototype.find');
 var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
@@ -11,6 +13,7 @@ function hasSemanticStream(taxonomy) {
 }
 
 module.exports = function (req, res, next) {
+	var topics = [];
 	var metadataFields = req.query['metadata-fields'].split(',');
 	var count = parseInt(req.query.count) || 5;
 
@@ -21,12 +24,13 @@ module.exports = function (req, res, next) {
 		.then(function (article) {
 			res.set(cacheControl);
 			var moreOnPromises = metadataFields
-				.map(function (metadataField) {
+				.map(function (metadataField, index) {
 					var topic = article.item.metadata[metadataField];
 					// if it's an array, use the first
 					if (Array.isArray(topic)) {
 						topic = topic.shift();
 					}
+					topics.push(topic);
 					if (!topic) {
 						return null;
 					}
@@ -36,12 +40,11 @@ module.exports = function (req, res, next) {
 						// get one extra, in case we dedupe
 						count: count + 1
 					}));
-					promises.push(Promise.resolve(topic));
 					if (res.locals.flags.semanticStreams && hasSemanticStream(topic.term.taxonomy)) {
 						promises.push(
 							api.mapping(topic.term.id, topic.term.taxonomy)
 								.then(function (v2Topic) {
-									return extractUuid(v2Topic.id);
+									topics[index].uuid = extractUuid(v2Topic.id);
 								})
 								.catch(function (err) {})
 						);
@@ -60,9 +63,8 @@ module.exports = function (req, res, next) {
 		})
 		.then(function (results) {
 			var imagePromises = results
-				.map(function (result) {
+				.map(function (result, index) {
 					var articles = result[0];
-					var topic = result[1];
 					var articleModels = articles
 						.filter(function (article) {
 							return extractUuid(article.id) !== req.params.id;
@@ -77,11 +79,11 @@ module.exports = function (req, res, next) {
 							};
 						});
 					if (!articleModels.length) {
-						throw null;
+						return null;
 					}
 					var promises = [];
 					// get the first article's main image, if it exists (and not author's stories)
-					if (!res.locals.flags.moreOnImages || !articleModels[0].mainImage || topic.taxonomy === 'authors') {
+					if (!res.locals.flags.moreOnImages || !articleModels[0].mainImage || topics[index].taxonomy === 'authors') {
 						promises.push(Promise.resolve(articleModels));
 					} else {
 						promises.push(api.content({
@@ -102,8 +104,6 @@ module.exports = function (req, res, next) {
 							})
 						);
 					}
-					promises.push(Promise.resolve(topic));
-					promises.push(Promise.resolve(result[2]));
 					return Promise.all(promises);
 				})
 				.filter(function (promise) {
@@ -118,21 +118,29 @@ module.exports = function (req, res, next) {
 		})
 		.then(function (results) {
 			var moreOns = results
-				.map(function (result) {
+				.map(function (result, index) {
 					var articleModels = result[0];
-					var topic = result[1];
-					var topicV2Uuid = result[2];
+					var topic = topics[index];
 					var topicModel = {
 						name: topic.term.name,
 						taxonomy: topic.term.taxonomy
 					};
-					topicModel.url = topicV2Uuid ?
-						topicModel.taxonomy + '/' + topicV2Uuid :
+					topicModel.url = topic.uuid ?
+						topicModel.taxonomy + '/' + topic.uuid :
 						'/stream/' + encodeURIComponent(topicModel.taxonomy) + '/' + encodeURIComponent(topicModel.name);
 					topicModel.isAuthor = topicModel.taxonomy === 'authors';
 					topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
+					var otherArticleModels = _.flatten(results
+						.slice(0, index)
+						.map(function (result) { return result[0]; }));
+					var dedupedArticles = _.filter(articleModels, function (articleModel) {
+						return !otherArticleModels.find(function (otherArticleModel) {
+							return otherArticleModel.id === articleModel.id;
+						});
+					});
 					return {
-						articles: articleModels,
+						// dedupe
+						articles: dedupedArticles,
 						topic: topicModel,
 						hasMainImage: articleModels[0].image
 					};
