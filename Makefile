@@ -97,7 +97,7 @@ provision:
 	next-build-tools configure ft-next-grumman-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
 	next-build-tools deploy-hashed-assets
 	next-build-tools deploy ${TEST_HOST}
-	make smoke
+	make -j2 smoke visual
 
 smoke:
 	export TEST_URL=${TEST_URL}; next-build-tools nightwatch tests/browser/tests/*
