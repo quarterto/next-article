@@ -85,7 +85,7 @@ deploy:
 	next-build-tools deploy
 
 visual:
-	node tests/visual/visualRunner.js page_setup.js
+	node tests/visual/visualRunner.js -t page_setup.js
 
 clean-deploy: clean install deploy
 
