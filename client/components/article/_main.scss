@@ -93,6 +93,7 @@ $header-offset: 30px;
 		padding-left: 10px;
 	}
 }
+
 .article__actions__action--save {
 	padding: 0;
 	// for now, needed to override next-buttons
@@ -102,6 +103,7 @@ $header-offset: 30px;
 .next-buttons--save:before {
 	top: 2px !important;
 }
+
 .article__actions__action--comments:before {
 	@include nextIcon(comment, #ffffff, 12);
 	position: relative;
