@@ -127,7 +127,7 @@ module.exports = function(req, res, next) {
 								comments = null;
 								articleBody = null;
 							}
-sl
+
 							return res.render('layout', {
 								barrier: barrier,
 								comments: comments,
