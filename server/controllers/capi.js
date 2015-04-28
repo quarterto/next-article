@@ -112,10 +112,25 @@ module.exports = function(req, res, next) {
 					// TODO: Replace with something in CAPI v2
 					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
+
+
 					// Update the images (resize, add image captions, etc)
 					return images($, res.locals.flags)
 						.then(function ($) {
+
+							var barrier = res.locals.flags.barrier;
+							var articleBody = $.html();
+							var comments = {};
+
+							// when there is a barrier hide comments and article body
+							if(res.locals.flags.barrier) {
+								comments = null;
+								articleBody = null;
+							}
+
 							return res.render('layout', {
+								barrier: barrier,
+								comments: comments,
 								article: article,
 								articleV1: articleV1 && articleV1.item,
 								id: extractUuid(article.id),
@@ -123,7 +138,7 @@ module.exports = function(req, res, next) {
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
 								tags: extractTags(article, articleV1, res.locals.flags),
-								body: $.html(),
+								body: articleBody,
 								subheaders: $subheaders.map(function() {
 									var $subhead = $(this);
 									return {
