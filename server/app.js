@@ -13,14 +13,13 @@ app.get('/', function(req, res) {
 app.use('^/:id(' + articleUuidRegex + ')', access);
 
 app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/fastft'));
-app.get(/^\/([a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+)$/, require('./controllers/capi'));
 
+app.get('^/:id(' + articleUuidRegex + ')', require('./controllers/capi'));
 app.get('^/:id(' + articleUuidRegex + ')/people', require('./controllers/related/people'));
 app.get('^/:id(' + articleUuidRegex + ')/organisations', require('./controllers/related/organisations'));
+app.get('^/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
+app.get('^/:id(' + articleUuidRegex + ')/more-on', require('./controllers/related/more-on'));
 app.get('^/:id(' + articleUuidRegex + ')/comments-hack', require('./controllers/comments-hack'));
-
-app.get('/more-on/:id', require('./controllers/more-on'));
-app.get('/more-on/:metadata/:id', require('./controllers/more-on-topic'));
 
 app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow'));
 app.get('/__gtg', function(req, res) {
