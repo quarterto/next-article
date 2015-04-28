@@ -62,6 +62,9 @@
 					{{{body}}}
 				</div>
 			{{/if}}
+			{{#if barrier}}
+				{{> barrier}}
+			{{/if}}
 			{{#if @root.flags.recommend}}
 				<div>
 					<p>
@@ -84,9 +87,7 @@
 </article>
 
 <div class="o-grid-row">
-	{{#if barrier}}
-		{{> barrier}}
-	{{/if}}
+
 
 	{{#if @root.flags.articleRelatedContent}}
 		<div class="article__more-on" data-trackable="more-on" data-o-grid-colspan="12 L8 XL7 XLoffset1">
