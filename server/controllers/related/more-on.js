@@ -30,10 +30,10 @@ module.exports = function (req, res, next) {
 					if (Array.isArray(topic)) {
 						topic = topic.shift();
 					}
-					topics.push(topic);
 					if (!topic) {
 						return null;
 					}
+					topics.push(topic);
 					var promises = [];
 					promises.push(api.searchLegacy({
 						query: topic.term.taxonomy + ':="' + topic.term.name + '"',
