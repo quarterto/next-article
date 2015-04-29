@@ -3,6 +3,7 @@
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+var notifySaucelabs = require('notify-saucelabs');
 
 module.exports = {
 	"js-success test": function(browser) {
@@ -15,15 +16,9 @@ module.exports = {
 	tearDown: function(callback) {
 		console.log("Sauce Test Results at https://saucelabs.com/tests/" + this.client.sessionId);
 		console.log('Updating Saucelabs...');
-		fetch('https://saucelabs.com/rest/v1/' + this.client.options.username + '/jobs/' + this.client.sessionId, {
-			method: 'PUT',
-			headers: {
-				'Authorization': 'Basic ' + new Buffer(this.client.options.username + ':' + this.client.options.accessKey).toString('base64'),
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				passed: (this.results.failed === 0) ? true : false
-			})
+		notifySaucelabs({
+			accessKey: this.client.sessionId,
+			passed: this.results.failed === 0
 		})
 			.then(function() {
 				console.info('Finished updating Saucelabs.');
