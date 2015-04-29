@@ -18,7 +18,7 @@ $o-comments-is-silent: false;
 }
 @import "next-footer/main";
 @import "next-ads-component/main";
-@import "next-barrier-component/client/main";
+@import "next-barrier-component/main";
 @import "next-messaging/src/main";
 @import "next-welcome/main";
 
@@ -29,4 +29,3 @@ $o-comments-is-silent: false;
 @import "components/toc/main";
 @import "components/more-on/main";
 @import "components/timeline/main";
-@import "components/barrier/main";
