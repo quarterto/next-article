@@ -1,60 +1,37 @@
-/* global console */
+/*global console*/
 "use strict";
 
-var https = require('https');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 module.exports = {
-
-	"Js-success Test" : function (browser) {
-	console.log('Testing host: ', browser.launch_url);
-        browser
+	"js-success test": function(browser) {
+		console.log('Testing host: ', browser.launch_url);
+		browser
 			.url(browser.launch_url)
 			.waitForElementPresent("html.js.js-success", 30000)
 			.end();
 	},
-
-	tearDown : function(callback) {
-		var data = JSON.stringify({
-			"passed" : (this.results.failed === 0) ? true : false
-		});
-
-		var requestPath = '/rest/v1/'+ this.client.options.username +'/jobs/' + this.client.sessionId;
-
+	tearDown: function(callback) {
 		console.log("Sauce Test Results at https://saucelabs.com/tests/" + this.client.sessionId);
-
-		try {
-			console.log('Updaing Saucelabs...');
-			var req = https.request({
-				hostname: 'saucelabs.com',
-				path: requestPath,
-				method: 'PUT',
-				auth : this.client.options.username + ':' + this.client.options.accessKey,
-				headers : {
-					'Content-Type': 'application/json',
-					'Content-Length' : data.length
-				}
-			}, function(res) {
-				res.setEncoding('utf8');
-				res.on('data', function (chunk) {
-				});
-				res.on('end', function () {
-					console.info('Finished updating Saucelabs.');
-					callback();
-				});
+		console.log('Updating Saucelabs...');
+		fetch('https://saucelabs.com/rest/v1/' + this.client.options.username + '/jobs/' + this.client.sessionId, {
+			method: 'PUT',
+			headers: {
+				'Authorization': 'Basic ' + new Buffer(this.client.options.username + ':' + this.client.options.accessKey).toString('base64'),
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				passed: (this.results.failed === 0) ? true : false
+			})
+		})
+			.then(function() {
+				console.info('Finished updating Saucelabs.');
+				callback();
+			})
+			.catch(function(err) {
+				console.error('An error has occurred');
+				callback(err);
 			});
-
-			req.on('error', function(e) {
-				console.log('problem with request: ' + e.message);
-			});
-			req.write(data);
-			req.end();
-		} catch (err) {
-			console.log('Error', err);
-			callback();
-		}
-
 	}
-
-
-
 };

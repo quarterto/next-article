@@ -15,7 +15,6 @@ install:
 	origami-build-tools install --verbose
 
 test: build-production
-	nbt verify-layout-deps
 	nbt verify
 	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha tests/server/ --recursive
 
