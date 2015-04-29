@@ -118,18 +118,15 @@ module.exports = function(req, res, next) {
 					return images($, res.locals.flags)
 						.then(function ($) {
 
-							var barrier = res.locals.flags.barrier;
 							var articleBody = $.html();
 							var comments = {};
 
-							// when there is a barrier hide comments and article body
-							if(res.locals.flags.barrier) {
+							if(res.locals.barrier) {
 								comments = null;
 								articleBody = null;
 							}
 
 							return res.render('layout', {
-								barrier: barrier,
 								comments: comments,
 								article: article,
 								articleV1: articleV1 && articleV1.item,
