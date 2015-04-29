@@ -8,6 +8,25 @@ var page_data = require('./config/' + configfile).testData;
 var prod_data = require('./config/' + configfile).productionData;
 var page;
 var run;
+var commit = process.env.GIT_HASH;
+var date = new Date();
+var current_day = getDayName(date);
+var timeString = date.getUTCHours() + "h"
+    + date.getUTCMinutes() + "m"
+    + date.getUTCMilliseconds() + "ms";
+
+var aws_shot_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/screenshots/";
+var aws_fail_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/failures/";
+
+var screnshot_send_cmd = "nbt deploy-static ./tests/visual/screenshots/*.png --destination " + aws_shot_dest + " --strip 3";
+var failure_send_cmd = "nbt deploy-static ./tests/visual/failure/*.png --destination " + aws_fail_dest + " --strip 3";
+
+
+//console.log("Folder: " + "/" + current_day + "/" + timeString + "__" + commit + "/");
+console.log("Screenshot destination: " + aws_shot_dest);
+console.log("Failures destination: " + aws_fail_dest);
+console.log("Screenshot send command: " + screnshot_send_cmd);
+console.log("Failure send command: " + failure_send_cmd);
 
 for (page in page_data) {
     if (page_data.hasOwnProperty(page)) {
@@ -37,6 +56,13 @@ for (page in page_data) {
         }
     }
 }
+
+// send the screenshots to AWS
+
+
+// let github know
+
+
 
 function startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix) {
     var spawn = require('child_process').spawn;
@@ -101,4 +127,16 @@ function collectWidths(json) {
         }
     }
     return compiledWidths;
+}
+
+function getDayName(date) {
+    var weekday = new Array(7);
+    weekday[0]=  "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+    return weekday[date.getDay()].toLowerCase();
 }
