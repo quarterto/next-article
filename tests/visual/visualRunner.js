@@ -21,8 +21,6 @@ var aws_fail_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/
 var screnshot_send_cmd = "nbt deploy-static ./tests/visual/screenshots/*.png --destination " + aws_shot_dest + " --strip 3";
 var failure_send_cmd = "nbt deploy-static ./tests/visual/failure/*.png --destination " + aws_fail_dest + " --strip 3";
 
-
-//console.log("Folder: " + "/" + current_day + "/" + timeString + "__" + commit + "/");
 console.log("Screenshot destination: " + aws_shot_dest);
 console.log("Failures destination: " + aws_fail_dest);
 console.log("Screenshot send command: " + screnshot_send_cmd);
@@ -80,15 +78,14 @@ function startTestProcess(width, page_name, page_path, elements, testURL, prodHo
         ]);
 
     run.stdout.on('data', function (data) {
-        output += data;
+        console.log("" + data);
     });
 
     run.stderr.on('data', function (data) {
-        output += data;
+        console.log("" + data);
     });
 
     run.on('close', function (code) {
-            console.log(output);
             console.log('executed with code: ' + code);
 
             //TODO: output result data to Github (and make sure 'failures' don't stop the build)
