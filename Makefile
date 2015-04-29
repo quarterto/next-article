@@ -84,7 +84,7 @@ deploy:
 	next-build-tools deploy
 
 visual:
-	export TEST_HOST="${TEST_HOST}"; node tests/visual/visualRunner.js -t page_setup.js
+	export TEST_HOST="${TEST_HOST}"; export GIT_HASH="${GIT_HASH}"; node tests/visual/visualRunner.js -t page_setup.js
 
 clean-deploy: clean install deploy
 
