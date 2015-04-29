@@ -1,4 +1,4 @@
-/* global console */
+/*global console*/
 "use strict";
 
 require('es6-promise').polyfill();
