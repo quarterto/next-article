@@ -14,7 +14,7 @@ function hasSemanticStream(taxonomy) {
 
 module.exports = function (req, res, next) {
 	var topics = [];
-	var metadataFields = req.query['metadata-fields'].split(',');
+	var metadataFields = (req.query['metadata-fields'] || '').split(',');
 	var count = parseInt(req.query.count) || 5;
 
 	api.contentLegacy({
