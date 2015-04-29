@@ -36,7 +36,6 @@ for (page in page_data) {
         var page_path = page_data[page].path;
         var widths = collectWidths(page_data[page]);
         for (var x = 0; x < widths.length; x++) {
-            var output = "";
             var width = widths[x];
             var elements = getAllElementsOnWidth(page_data[page], width);
 
