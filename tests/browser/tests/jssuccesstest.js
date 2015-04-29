@@ -14,7 +14,7 @@ module.exports = {
 	},
 	tearDown: function(callback) {
 		console.log("Sauce Test Results at https://saucelabs.com/tests/" + this.client.sessionId);
-		console.log('Updaing Saucelabs...');
+		console.log('Updating Saucelabs...');
 		fetch('https://saucelabs.com/rest/v1/' + this.client.options.username + '/jobs/' + this.client.sessionId, {
 			method: 'PUT',
 			headers: {
