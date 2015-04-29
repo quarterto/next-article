@@ -49,6 +49,7 @@ exports.testData = {
 // Define where this application's production code is going to live
 // TODO: stop using canary and log in properly.
 exports.productionData = {
+    "app_name":"grumman",
     "host":"http://next.ft.com",
     "canary":"?canary=grumman:ft-next-grumman-v002.herokuapp.com"
 };
