@@ -1,4 +1,3 @@
-app := ft-next-grumman-v002
 API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
 API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
 GIT_HASH := $(shell git rev-parse --short HEAD)
