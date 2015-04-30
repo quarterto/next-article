@@ -49,8 +49,6 @@ deploy:
 	nbt deploy-hashed-assets
 	nbt deploy
 
-clean-deploy: clean install deploy
-
 tidy:
 	nbt destroy ${TEST_HOST}
 
