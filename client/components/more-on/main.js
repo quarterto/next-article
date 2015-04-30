@@ -48,13 +48,13 @@ module.exports.init = function(flags) {
 	var articleId = document.querySelector('.article').getAttribute('data-content-id');
 
 	$('.js-more-on-inline').forEach(function(el) {
-		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=1&view=inline'));
+		fetchPromises.push(createPromise(el, '/' + articleId + '/story-package?count=1&view=inline'));
 	});
 	$('.js-more-on').forEach(function(el) {
-		fetchPromises.push(createPromise(el, '/more-on/' + articleId + '?count=4'));
+		fetchPromises.push(createPromise(el, '/' + articleId + '/story-package?count=4'));
 	});
 	$('.js-more-on-topic').forEach(function(el) {
-		fetchPromises.push(createPromise(el, '/more-on/' + el.getAttribute('data-metadata-field') + '/' + articleId + '?count=4'));
+		fetchPromises.push(createPromise(el, '/' + articleId + '/more-on?metadata-fields=' + el.getAttribute('data-metadata-fields').replace(' ', ',') + '&count=4'));
 	});
 	$('.js-related').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/' + articleId + '/' + el.getAttribute('data-taxonomy')));

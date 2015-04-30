@@ -57,9 +57,14 @@
 	</div>
 	<div class="article__main o-grid-row">
 		<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-			<div class="article__body">
-				{{{body}}}
-			</div>
+			{{#if body}}
+				<div class="article__body">
+					{{{body}}}
+				</div>
+			{{/if}}
+
+			{{barrier @root}}
+
 			{{#if @root.flags.recommend}}
 				<div>
 					<p>
@@ -80,17 +85,20 @@
 		</div>
 	</div>
 </article>
+
 <div class="o-grid-row">
+
 	{{#if @root.flags.articleRelatedContent}}
 		<div class="article__more-on" data-trackable="more-on" data-o-grid-colspan="12 L8 XL7 XLoffset1">
 			<div class="js-more-on more-on-wrapper"></div>
-			<div class="js-more-on-topic more-on-wrapper" data-metadata-field="primaryTheme"></div>
-			<div class="js-more-on-topic more-on-wrapper" data-metadata-field="{{#if isColumnist}}authors{{else}}primarySection{{/if}}"></div>
+			<div class="js-more-on-topic more-on-wrapper" data-metadata-fields="primaryTheme {{#if isColumnist}}authors{{else}}primarySection{{/if}}"></div>
 			<div class="o-grid-row">
 				<div class="js-related more-on-wrapper" data-taxonomy="organisations" data-o-grid-colspan="12 M6"></div>
 				<div class="js-related more-on-wrapper" data-taxonomy="people" data-o-grid-colspan="12 M6"></div>
 			</div>
 		</div>
 	{{/if}}
-	<div class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset1"></div>
+	{{#if comments}}
+		<div class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset1"></div>
+	{{/if}}
 </div>

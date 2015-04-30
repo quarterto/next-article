@@ -93,6 +93,7 @@ $header-offset: 30px;
 		padding-left: 10px;
 	}
 }
+
 .article__actions__action--save {
 	padding: 0;
 	// for now, needed to override next-buttons
@@ -102,6 +103,7 @@ $header-offset: 30px;
 .next-buttons--save:before {
 	top: 2px !important;
 }
+
 .article__actions__action--comments:before {
 	@include nextIcon(comment, #ffffff, 12);
 	position: relative;
@@ -136,6 +138,7 @@ $header-offset: 30px;
 		margin-top: 0;
 		float: right;
 		clear: right;
+		text-align: right;
 	}
 }
 .article__tag__link {
@@ -349,41 +352,4 @@ $header-offset: 30px;
 	margin-bottom: 15px;
 }
 
-.data-table {
-	margin-top: 20px;
-	border-spacing: 0;
-
-	caption,
-	thead {
-		text-align: left;
-	}
-	caption {
-		font-weight: 500;
-		text-transform: uppercase;
-	}
-	thead,
-	tbody {
-		&:before {
-			content: "";
-			display: block;
-			height: 10px;
-		}
-	}
-	tbody tr:nth-child(2n+1) {
-		background-color: $box-colour;
-	}
-	th,
-	td {
-		vertical-align: top;
-	}
-	th {
-		font-weight: 500;
-	}
-	td {
-		padding: 5px 10px;
-	}
-}
-// comments styling
-.fyre .fyre-comment p {
-	word-break: normal;
-}
+@import 'table';

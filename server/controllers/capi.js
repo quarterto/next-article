@@ -28,7 +28,7 @@ module.exports = function(req, res, next) {
 	var articleV1Promise;
 	if (res.locals.flags.articleCapiV1Fallback) {
 		articleV1Promise = api.contentLegacy({
-				uuid: req.params[0],
+				uuid: req.params.id,
 				useElasticSearch: res.locals.flags.elasticSearchItemGet
 			})
 				// Some things aren't in CAPI v1 (e.g. FastFT)
@@ -44,7 +44,7 @@ module.exports = function(req, res, next) {
 	}
 
 	var articleV2Promise = api.content({
-		uuid: req.params[0],
+		uuid: req.params.id,
 		type: 'Article',
 		metadata: true,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
@@ -112,10 +112,22 @@ module.exports = function(req, res, next) {
 					// TODO: Replace with something in CAPI v2
 					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
+
+
 					// Update the images (resize, add image captions, etc)
 					return images($, res.locals.flags)
 						.then(function ($) {
+
+							var articleBody = $.html();
+							var comments = {};
+
+							if(res.locals.barrier) {
+								comments = null;
+								articleBody = null;
+							}
+
 							return res.render('layout', {
+								comments: comments,
 								article: article,
 								articleV1: articleV1 && articleV1.item,
 								id: extractUuid(article.id),
@@ -123,7 +135,7 @@ module.exports = function(req, res, next) {
 								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 								byline: bylineTransform(article.byline, articleV1),
 								tags: extractTags(article, articleV1, res.locals.flags),
-								body: $.html(),
+								body: articleBody,
 								subheaders: $subheaders.map(function() {
 									var $subhead = $(this);
 									return {
@@ -155,7 +167,7 @@ module.exports = function(req, res, next) {
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
 				api.contentLegacy({
-						uuid: req.params[0],
+						uuid: req.params.id,
 						useElasticSearch: res.locals.flags.elasticSearchItemGet
 					})
 						.then(function(data) {
