@@ -1,13 +1,7 @@
 @import 'market-data';
 
-.more-on-wrapper {
-	margin-top: 15px;
-
-	.article__more-on > &:first-child {
-		margin-top: 0;
-	}
-}
 .more-on {
+	margin-top: 15px;
 	position: relative;
 	font-family: $fontSans;
 	font-weight: 100;
