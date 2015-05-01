@@ -79,10 +79,11 @@ function embedVideo (type, el) {
 }
 
 module.exports.init = function () {
-	var videoTags = [].slice.call(document.querySelectorAll('a'));
+	var videoTags = [].slice.call(document.querySelectorAll('.article a'));
 
 	return Promise.all(videoTags.filter(function(el) {
-			return el.innerText === '';
+			// don't use innerText - there's a weird chrome bug which means it's sometimes incorrectly empty
+			return el.innerHTML === '';
 		})
 		.map(function(el) {
 			var type = video.filter(function(key) {

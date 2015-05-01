@@ -33,7 +33,7 @@ setup.bootstrap(function(result) {
 
 	messaging.init();
 
-	slideshow(document.querySelectorAll('ft-slideshow'));
+	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
 	if (flags.get('contentApiCalls')) {
 		moreOn.init(flags);
