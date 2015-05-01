@@ -15,11 +15,7 @@ install:
 	origami-build-tools install --verbose
 
 test: build-production
-<<<<<<< HEAD
-	next-build-tools verify
-=======
 	nbt verify
->>>>>>> origin/master
 	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha tests/server/ --recursive
 
 test-debug:
@@ -101,4 +97,4 @@ smoke:
 	export TEST_URL=${TEST_URL}; nbt nightwatch tests/browser/tests/*
 
 update-flags:
-	 curl http://next.ft.com/__flags.json > tests/fixtures/flags.json
+	curl http://next.ft.com/__flags.json > tests/fixtures/flags.json

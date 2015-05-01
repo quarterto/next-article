@@ -1,13 +1,20 @@
 "use strict";
 
+var fs = require('fs');
+var denodeify = require('denodeify');
+var exec = denodeify(require('child_process').exec, function(err, stdout, stderr) { return [err, stdout]; });
 var argv = require('minimist')(process.argv.slice(2));
 var configfile = "./" + argv.t;
+require('es6-promise').polyfill();
+var deployStatic = require('next-build-tools').deployStatic;
 
 // assumes file lives in tests/visual/config/
 var page_data = require('./config/' + configfile).testData;
 var prod_data = require('./config/' + configfile).productionData;
 var page;
 var run;
+var screenshots;
+var failures;
 var commit = process.env.GIT_HASH;
 var date = new Date();
 var current_day = getDayName(date);
@@ -26,35 +33,103 @@ console.log("Failures destination: " + aws_fail_dest);
 console.log("Screenshot send command: " + screnshot_send_cmd);
 console.log("Failure send command: " + failure_send_cmd);
 
-for (page in page_data) {
-    if (page_data.hasOwnProperty(page)) {
+console.log("image diffs section running");
 
-        var testURL = "http://" + process.env.TEST_HOST + ".herokuapp.com";
-        var prodHost = prod_data.host;
-        var prodSuffix = prod_data.canary;
-        var page_name = page_data[page].name;
-        var page_path = page_data[page].path;
-        var widths = collectWidths(page_data[page]);
-        for (var x = 0; x < widths.length; x++) {
-            var width = widths[x];
-            var elements = getAllElementsOnWidth(page_data[page], width);
 
-            console.log("\n\nStarting test for.." +
-            "\nPage name  : " + page_name +
-            "\npath       : " + page_path +
-            "\nwidth      : " + width +
-            "\nheight     : 1000" +
-            "\ntestURL    : " + testURL +
-            "\nprodhost   : " + prodHost +
-            "\nprodsuffix : " + prodSuffix +
-            "\nelements " + JSON.stringify(elements));
+startImageDiffs()
+    .then(function (result) {
+        console.log("Finished startImageDiffs");
+        console.log("Result: " + result);
+        console.log("Starting uploadImages");
 
-            startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix);
+
+        if (fs.existsSync("tests/visual/screenshots")) {
+
+            screenshots = fs.readdirSync("tests/visual/screenshots");
+            for (var x = 0; x < screenshots.length; x++) {
+                screenshots[x] = "tests/visual/screenshots/" + screenshots[x];
+            }
+            console.log(screenshots);
+
+            deployStatic({
+                files: screenshots,
+                destination: aws_shot_dest,
+                region: 'eu-west-1',
+                bucket: 'ft-next-qa',
+                strip: 3
+            });
+        } else {
+            console.log("No screenshots here");
+        }
+
+
+        if (fs.existsSync("tests/visual/failures")) {
+            failures = fs.readdirSync("tests/visual/failures");
+            for (var x = 0; x < failures.length; x++) {
+                failures[x] = "tests/visual/failures/" + failures[x];
+            }
+
+            console.log(failures);
+
+            deployStatic({
+                files: failures,
+                destination: aws_fail_dest,
+                region: 'eu-west-1',
+                bucket: 'ft-next-qa',
+                strip: 3
+            });
+        } else {
+            console.log("No failures found");
+        }
+
+
+    })
+    .catch(function (err) {
+        console.log("there was an error");
+        console.log(err.stack);
+    });
+
+
+
+
+function startImageDiffs() {
+    var imageDiffPromises = [];
+
+    for (page in page_data) {
+        if (page_data.hasOwnProperty(page)) {
+
+            var testURL = "http://" + process.env.TEST_HOST + ".herokuapp.com";
+            var prodHost = prod_data.host;
+            var prodSuffix = prod_data.canary;
+            var page_name = page_data[page].name;
+            var page_path = page_data[page].path;
+            var widths = collectWidths(page_data[page]);
+            for (var x = 0; x < widths.length; x++) {
+                var width = widths[x];
+                var elements = getAllElementsOnWidth(page_data[page], width);
+
+
+                var test = "\nPage name  : " + page_name +
+                    "\npath       : " + page_path +
+                    "\nwidth      : " + width +
+                    "\nheight     : 1000" +
+                    "\ntestURL    : " + testURL +
+                    "\nprodhost   : " + prodHost +
+                    "\nprodsuffix : " + prodSuffix +
+                    "\nelements " + JSON.stringify(elements);
+
+                console.log("Starting test for " + test);
+                imageDiffPromises.push(
+                    startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix)
+                        .then(function() {
+                            console.log("Finished test for " + test);
+                        })
+                );
+            }
         }
     }
+    return Promise.all(imageDiffPromises);
 }
-
-// send the screenshots to AWS
 
 
 // let github know
@@ -62,34 +137,19 @@ for (page in page_data) {
 
 
 function startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix) {
-    var spawn = require('child_process').spawn;
-    run = spawn("casperjs",
-        [
-            "--width=" + width,
-            "--height=1000",
-            "--pagename=" + page_name,
-            "--path=" + page_path,
-            "--elements=" + JSON.stringify(elements),
-            "--testurl=" + testURL,
-            "--prodhost=" + prodHost,
-            "--prodsuffix=" + prodSuffix,
-            "test", "tests/visual/elements_test.js"
-        ]);
-
-    run.stdout.on('data', function (data) {
-        console.log("" + data);
-    });
-
-    run.stderr.on('data', function (data) {
-        console.log("" + data);
-    });
-
-    run.on('close', function (code) {
-            console.log('executed with code: ' + code);
-
-            //TODO: output result data to Github (and make sure 'failures' don't stop the build)
-        }
-    );
+    var args = [
+        "--width='" + width + "'",
+        "--height=1000",
+        "--pagename='" + page_name + "'",
+        "--path='" + page_path + "'",
+        "--elements='" + JSON.stringify(elements) + "'",
+        "--testurl='" + testURL + "'",
+        "--prodhost='" + prodHost + "'",
+        "--prodsuffix='" + prodSuffix + "'",
+        "test",
+        "tests/visual/elements_test.js"
+    ].join(' ');
+    return exec("casperjs " + args);
 }
 
 
