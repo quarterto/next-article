@@ -12,7 +12,6 @@ var deployStatic = require('next-build-tools').deployStatic;
 var page_data = require('./config/' + configfile).testData;
 var prod_data = require('./config/' + configfile).productionData;
 var page;
-var run;
 var screenshots;
 var failures;
 var commit = process.env.GIT_HASH;
@@ -65,8 +64,8 @@ startImageDiffs()
 
         if (fs.existsSync("tests/visual/failures")) {
             failures = fs.readdirSync("tests/visual/failures");
-            for (var x = 0; x < failures.length; x++) {
-                failures[x] = "tests/visual/failures/" + failures[x];
+            for (var y = 0; y < failures.length; y++) {
+                failures[y] = "tests/visual/failures/" + failures[y];
             }
 
             console.log(failures);
@@ -108,7 +107,6 @@ function startImageDiffs() {
                 var width = widths[x];
                 var elements = getAllElementsOnWidth(page_data[page], width);
 
-
                 var test = "\nPage name  : " + page_name +
                     "\npath       : " + page_path +
                     "\nwidth      : " + width +
@@ -121,9 +119,6 @@ function startImageDiffs() {
                 console.log("Starting test for " + test);
                 imageDiffPromises.push(
                     startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix)
-                        .then(function() {
-                            console.log("Finished test for " + test);
-                        })
                 );
             }
         }
@@ -133,8 +128,6 @@ function startImageDiffs() {
 
 
 // let github know
-
-
 
 function startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix) {
     var args = [
