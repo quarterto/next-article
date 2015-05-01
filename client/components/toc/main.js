@@ -9,7 +9,7 @@ module.exports.init = function(flags) {
 	// https://gist.github.com/gre/1650294
 	var easeFunction = function (t) { return 1-(--t)*t*t*t };
 
-	var toc = document.querySelector('.toc');
+	var toc = document.querySelector('.article .toc');
 	if (toc) {
 		toc.addEventListener('click', function(event) {
 			event.preventDefault();
