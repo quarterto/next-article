@@ -25,6 +25,7 @@
     "casperjs": "^1.1.0-beta3",
     "chai": "^1.9.2",
     "es6-promise": "^2.1.1",
+    "github":"^0.2.4",
     "isomorphic-fetch": "^2.0.2",
     "mocha": "^1.21.4",
     "minimist": "^1.1.1",

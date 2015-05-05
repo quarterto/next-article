@@ -7,6 +7,12 @@ var argv = require('minimist')(process.argv.slice(2));
 var configfile = "./" + argv.t;
 require('es6-promise').polyfill();
 var deployStatic = require('next-build-tools').deployStatic;
+var GitHubApi = require('github');
+var github = new GitHubApi({
+	version:"3.0.0",
+	debug:"true"
+});
+
 
 // assumes file lives in tests/visual/config/
 var page_data = require('./config/' + configfile).testData;
@@ -14,12 +20,16 @@ var prod_data = require('./config/' + configfile).productionData;
 var page;
 var screenshots;
 var failures;
+var pr = process.env.TRAVIS_PULL_REQUEST;
 var commit = process.env.GIT_HASH;
+var commitLong = process.env.GIT_LONG_HASH;
+var gitHubOauth = process.env.GITHUB_OAUTH;
 var date = new Date();
 var current_day = getDayName(date);
 var timeString = date.getUTCHours() + "h"
     + date.getUTCMinutes() + "m"
     + date.getUTCMilliseconds() + "ms";
+
 
 var aws_shot_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/screenshots/";
 var aws_fail_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/failures/";
@@ -36,57 +46,84 @@ console.log("image diffs section running");
 
 
 startImageDiffs()
-    .then(function (result) {
-        console.log("Finished startImageDiffs");
-        console.log("Result: " + result);
-        console.log("Starting uploadImages");
+	.then(function (result) {
+		console.log("Finished startImageDiffs");
+		console.log("Result: " + result);
+		console.log("Starting uploadImages");
 
 
-        if (fs.existsSync("tests/visual/screenshots")) {
+		if (fs.existsSync("tests/visual/screenshots")) {
 
-            screenshots = fs.readdirSync("tests/visual/screenshots");
-            for (var x = 0; x < screenshots.length; x++) {
-                screenshots[x] = "tests/visual/screenshots/" + screenshots[x];
-            }
-            console.log(screenshots);
+			screenshots = fs.readdirSync("tests/visual/screenshots");
+			for (var x = 0; x < screenshots.length; x++) {
+				screenshots[x] = "tests/visual/screenshots/" + screenshots[x];
+			}
+			console.log(screenshots);
 
-            deployStatic({
-                files: screenshots,
-                destination: aws_shot_dest,
-                region: 'eu-west-1',
-                bucket: 'ft-next-qa',
-                strip: 3
-            });
-        } else {
-            console.log("No screenshots here");
-        }
-
-
-        if (fs.existsSync("tests/visual/failures")) {
-            failures = fs.readdirSync("tests/visual/failures");
-            for (var y = 0; y < failures.length; y++) {
-                failures[y] = "tests/visual/failures/" + failures[y];
-            }
-
-            console.log(failures);
-
-            deployStatic({
-                files: failures,
-                destination: aws_fail_dest,
-                region: 'eu-west-1',
-                bucket: 'ft-next-qa',
-                strip: 3
-            });
-        } else {
-            console.log("No failures found");
-        }
+			deployStatic({
+				files: screenshots,
+				destination: aws_shot_dest,
+				region: 'eu-west-1',
+				bucket: 'ft-next-qa',
+				strip: 3
+			});
+		} else {
+			console.log("No screenshots here");
+		}
 
 
-    })
-    .catch(function (err) {
-        console.log("there was an error");
-        console.log(err.stack);
-    });
+		if (fs.existsSync("tests/visual/failures")) {
+			failures = fs.readdirSync("tests/visual/failures");
+			for (var y = 0; y < failures.length; y++) {
+				failures[y] = "tests/visual/failures/" + failures[y];
+			}
+
+			console.log(failures);
+
+			deployStatic({
+				files: failures,
+				destination: aws_fail_dest,
+				region: 'eu-west-1',
+				bucket: 'ft-next-qa',
+				strip: 3
+			});
+		} else {
+			console.log("No failures found");
+		}
+
+
+	})
+	.then(function (result) {
+
+		console.log("Updating github");
+		console.log("AWS shot dest: " + aws_shot_dest);
+		console.log("AWS fail dest: " + aws_fail_dest);
+
+		// Make a comment if we have failures on a PR
+		if (pr && failures.length > 0) {
+
+			github.authenticate({
+				type: "oauth",
+				token: gitHubOauth
+			});
+
+			github.pullRequests.createComment({
+				user: "Financial-Times",
+				repo: "grumman",
+				number: pr,
+				body: "Image diffs found between branch and production" +
+				"\nSee" +
+				"\n\nhttps://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_fail_dest + "index.html",
+				commit_id:commitLong
+			});
+		}
+
+
+	})
+	.catch(function (err) {
+		console.log("there was an error");
+		console.log(err.stack);
+	});
 
 
 
