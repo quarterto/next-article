@@ -30,35 +30,26 @@ var timeString = date.getUTCHours() + "h"
     + date.getUTCMinutes() + "m"
     + date.getUTCMilliseconds() + "ms";
 
-
 var aws_shot_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/screenshots/";
 var aws_fail_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/failures/";
 
-var screnshot_send_cmd = "nbt deploy-static ./tests/visual/screenshots/*.png --destination " + aws_shot_dest + " --strip 3";
-var failure_send_cmd = "nbt deploy-static ./tests/visual/failure/*.png --destination " + aws_fail_dest + " --strip 3";
-
-console.log("Screenshot destination: " + aws_shot_dest);
-console.log("Failures destination: " + aws_fail_dest);
-console.log("Screenshot send command: " + screnshot_send_cmd);
-console.log("Failure send command: " + failure_send_cmd);
-
-console.log("image diffs section running");
-
+console.log("Running image diff tests");
 
 startImageDiffs()
 	.then(function (result) {
-		console.log("Finished startImageDiffs");
-		console.log("Result: " + result);
-		console.log("Starting uploadImages");
-
 
 		if (fs.existsSync("tests/visual/screenshots")) {
 
+			// find all screenshots and build an html page to display them
 			screenshots = fs.readdirSync("tests/visual/screenshots");
+
+			var screenshotspage = buildIndexPage(screenshots);
+			fs.writeFile("tests/visual/screenshots/index.html",screenshotspage);
+
+			// add path to screenshots
 			for (var x = 0; x < screenshots.length; x++) {
 				screenshots[x] = "tests/visual/screenshots/" + screenshots[x];
 			}
-			console.log(screenshots);
 
 			deployStatic({
 				files: screenshots,
@@ -67,18 +58,31 @@ startImageDiffs()
 				bucket: 'ft-next-qa',
 				strip: 3
 			});
+
+			deployStatic({
+				files:["tests/visual/screenshots/index.html"],
+				destination: aws_shot_dest,
+				region: 'eu-west-1',
+				bucket: 'ft-next-qa',
+				strip: 3
+			});
+
 		} else {
 			console.log("No screenshots here");
 		}
 
 
 		if (fs.existsSync("tests/visual/failures")) {
+
 			failures = fs.readdirSync("tests/visual/failures");
+
+			var failurespage = buildIndexPage(failures);
+			fs.writeFile("tests/visual/failures/index.html",failurespage);
+
+			// add path to failures
 			for (var y = 0; y < failures.length; y++) {
 				failures[y] = "tests/visual/failures/" + failures[y];
 			}
-
-			console.log(failures);
 
 			deployStatic({
 				files: failures,
@@ -87,6 +91,15 @@ startImageDiffs()
 				bucket: 'ft-next-qa',
 				strip: 3
 			});
+
+			deployStatic({
+				files:["tests/visual/failures/index.html"],
+				destination: aws_fail_dest,
+				region: 'eu-west-1',
+				bucket: 'ft-next-qa',
+				strip: 3
+			});
+
 		} else {
 			console.log("No failures found");
 		}
@@ -96,8 +109,6 @@ startImageDiffs()
 	.then(function (result) {
 
 		console.log("Updating github");
-		console.log("AWS shot dest: " + aws_shot_dest);
-		console.log("AWS fail dest: " + aws_fail_dest);
 
 		// Make a comment if we have failures on a PR
 		if (pr && failures.length > 0) {
@@ -117,14 +128,11 @@ startImageDiffs()
 				commit_id:commitLong
 			});
 		}
-
-
 	})
 	.catch(function (err) {
 		console.log("there was an error");
 		console.log(err.stack);
 	});
-
 
 
 
@@ -164,8 +172,6 @@ function startImageDiffs() {
 }
 
 
-// let github know
-
 function startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix) {
     var args = [
         "--width='" + width + "'",
@@ -181,7 +187,6 @@ function startTestProcess(width, page_name, page_path, elements, testURL, prodHo
     ].join(' ');
     return exec("casperjs " + args);
 }
-
 
 function getAllElementsOnWidth(json, width) {
     var elementObject = {};
@@ -225,4 +230,19 @@ function getDayName(date) {
     weekday[5] = "Friday";
     weekday[6] = "Saturday";
     return weekday[date.getDay()].toLowerCase();
+}
+
+function buildIndexPage(screenshots) {
+	var html = "<html><body>";
+	for(var j = 0 ; j < screenshots.length ; j++){
+		if(screenshots[j].indexOf("base.png") !== -1){
+			var matchingshot = screenshots[j].replace("base.png","test.png");
+			html += "<p>" + screenshots[j] + "</p>" +
+				'<p><p></p></p><img src="' + screenshots[j] + '">' + "</p>";
+			html += "<p>" + matchingshot + "</p>" +
+				'<p><p></p><img src="' + matchingshot + '">' + "</p>";
+		}
+	}
+	html += "</body></html>";
+	return html;
 }
