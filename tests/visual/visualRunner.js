@@ -32,6 +32,8 @@ var timeString = date.getUTCHours() + "h"
 
 var aws_shot_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/screenshots/";
 var aws_fail_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/failures/";
+var aws_shots_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_shot_dest + "index.html";
+var aws_fails_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_fail_dest + "index.html";
 
 console.log("Running image diff tests");
 
@@ -67,6 +69,8 @@ startImageDiffs()
 				strip: 3
 			});
 
+			console.log("Screenshots located at " + aws_shots_index);
+
 		} else {
 			console.log("No screenshots here");
 		}
@@ -100,6 +104,8 @@ startImageDiffs()
 				strip: 3
 			});
 
+			console.log("Failure screenshots located at " + aws_fails_index);
+
 		} else {
 			console.log("No failures found");
 		}
@@ -111,7 +117,7 @@ startImageDiffs()
 		console.log("Updating github");
 
 		// Make a comment if we have failures on a PR
-		if (pr && failures.length > 0) {
+		if (pr && failures !== undefined) {
 
 			github.authenticate({
 				type: "oauth",
@@ -124,7 +130,7 @@ startImageDiffs()
 				number: pr,
 				body: "Image diffs found between branch and production" +
 				"\nSee" +
-				"\n\nhttps://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_fail_dest + "index.html",
+				"\n\n" + aws_fails_index,
 				commit_id:commitLong
 			});
 		}
