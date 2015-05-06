@@ -5,7 +5,7 @@
     "next-feature-flags-client": "^v6.0.1",
     "next-ads-component": "Financial-Times/next-ads-component#^5.0.0",
     "next-barrier-component": "Financial-Times/next-barrier-component#^3.0.0",
-    "next-header": "^8.0.0",
+    "next-header": "^9.0.0",
     "next-sass-setup": "Financial-Times/next-sass-setup#^5.5.4",
     "next-js-setup": "Financial-Times/next-js-setup#^2.0.1",
     "o-quote": "Financial-Times/o-quote#bogdis-design",
