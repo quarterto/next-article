@@ -31,6 +31,7 @@
 					</div>
 					<div class="o-grid-row">
 						<div data-o-grid-colspan="12 S6" class="article__primary-theme">
+						{{#if primaryTheme}}
 							<a href="{{primaryTheme.url}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTheme.title}}</a>
 							{{#if primaryTheme.conceptId}}
 								<button
@@ -44,6 +45,7 @@
 								title="Add to My FT"
 								>Add to My FT</button>
 							{{/if}}
+						{{/if}}
 						</div>
 						<div class="article__actions" data-o-grid-colspan="12 S6">
 							<button
