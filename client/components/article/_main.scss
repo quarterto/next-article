@@ -118,6 +118,7 @@ $header-offset: 30px;
 	font-weight: normal;
 
 	@include oGridRespondTo(L) {
+		font-size: 18px;
 		align-self: flex-end;
 	}
 }
@@ -135,7 +136,6 @@ $header-offset: 30px;
 	margin-top: 5px;
 
 	@include oGridRespondTo(L) {
-		font-size: 18px;
 		margin-top: 0;
 		float: right;
 		clear: right;
