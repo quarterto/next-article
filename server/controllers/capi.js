@@ -101,10 +101,7 @@ module.exports = function(req, res, next) {
 								conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + ':"' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '"'
 							};
 						} catch (e) {
-							return {
-								title: '',
-								url: '/'
-							};
+							return undefined;
 						}
 					})();
 
