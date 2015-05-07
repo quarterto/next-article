@@ -109,8 +109,11 @@ startImageDiffs()
 		return Promise.all(promises);
 	})
 	.then(function (result) {
+
+
 		console.log("AWS Deploy Result: " + result);
 		console.log("Updating github");
+
 
 		// Make a comment if we have failures on a PR
 		if (pr && failures !== undefined) {
