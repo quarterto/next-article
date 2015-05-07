@@ -57,9 +57,14 @@
 	opacity: 0.7;
 }
 .ng-media-wrapper {
-	width: 100%;
 	position: relative;
-	padding: 56.25% 0 0;
+
+	&:before {
+		display: block;
+		content: '';
+		width: 100%;
+		padding: 56.25% 0 0;
+	}
 }
 .ng-media {
 	position: absolute;
