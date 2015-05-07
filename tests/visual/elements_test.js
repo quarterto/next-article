@@ -62,8 +62,9 @@ casper.test.begin('Next visual regression tests', function (test) {
 
     casper.run(function () {
         console.log('\nFinished testing');
-        phantomcss.getExitStatus();
-        casper.test.done();
+		casper.exit();
+        //phantomcss.getExitStatus();
+        //casper.test.done(0);
     });
 
 

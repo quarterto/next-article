@@ -11,12 +11,15 @@ var exec = denodeify(require('child_process').exec, function (err, stdout, stder
 	}
 	return [err, stdout];
 });
+var writeFile = denodeify(fs.writeFile);
 var deployStatic = require('next-build-tools').deployStatic;
 var GitHubApi = require('github');
 var github = new GitHubApi({
 	version: "3.0.0",
 	debug: "true"
 });
+
+
 
 // env variables
 var pr = process.env.TRAVIS_PULL_REQUEST;
@@ -49,99 +52,86 @@ console.log("Running image diff tests");
 
 startImageDiffs()
 	.then(function (result) {
+		var promises = [];
+		console.log("\n\nCasperJS output: \n\n" + result);
 
-		return new Promise(function (resolve, reject) {
+		if (fs.existsSync("tests/visual/screenshots")) {
 
-			console.log("\n\nCasperJS output: \n\n" + result);
+			// find all screenshots and build an html page to display them
+			screenshots = fs.readdirSync("tests/visual/screenshots");
 
-			if (fs.existsSync("tests/visual/screenshots")) {
+			var screenshotspage = buildIndexPage(screenshots);
+			promises.push(writeFile("tests/visual/screenshots/index.html", screenshotspage));
 
-				// find all screenshots and build an html page to display them
-				screenshots = fs.readdirSync("tests/visual/screenshots");
+			// add path to screenshots
+			for (var x = 0; x < screenshots.length; x++) {
+				screenshots[x] = "tests/visual/screenshots/" + screenshots[x];
+			}
+			console.log("Screenshots located at " + aws_shots_index);
 
-				var screenshotspage = buildIndexPage(screenshots);
-				fs.writeFile("tests/visual/screenshots/index.html", screenshotspage);
+		} else {
+			console.log("No screenshots here");
+		}
 
-				// add path to screenshots
-				for (var x = 0; x < screenshots.length; x++) {
-					screenshots[x] = "tests/visual/screenshots/" + screenshots[x];
-				}
-				console.log("Screenshots located at " + aws_shots_index);
+		if (fs.existsSync("tests/visual/failures")) {
 
-			} else {
-				console.log("No screenshots here");
+			failures = fs.readdirSync("tests/visual/failures");
+
+			var failurespage = buildIndexPage(failures);
+			promises.push(writeFile("tests/visual/failures/index.html", failurespage));
+
+			// add path to failures
+			for (var y = 0; y < failures.length; y++) {
+				failures[y] = "tests/visual/failures/" + failures[y];
 			}
 
-			if (fs.existsSync("tests/visual/failures")) {
+			console.log("Failure screenshots located at " + aws_fails_index);
 
-				failures = fs.readdirSync("tests/visual/failures");
+		} else {
+			console.log("No failures found");
+		}
 
-				var failurespage = buildIndexPage(failures);
-				fs.writeFile("tests/visual/failures/index.html", failurespage);
-
-				// add path to failures
-				for (var y = 0; y < failures.length; y++) {
-					failures[y] = "tests/visual/failures/" + failures[y];
-				}
-
-				console.log("Failure screenshots located at " + aws_fails_index);
-
-			} else {
-				console.log("No failures found");
-			}
-			resolve("Success");
-		});
-
+		return Promise.all(promises);
 	})
 	.then(function (result) {
+		var promises = [];
 
-		return new Promise(function (resolve, reject) {
-			console.log("Screenshot result: " + result);
+		console.log("Screenshot result: " + result);
 
-			deployToAWS(screenshots, aws_shot_dest);
-			deployToAWS(["tests/visual/screenshots/index.html"], aws_shot_dest);
+		promises.push(deployToAWS(screenshots, aws_shot_dest));
+		promises.push(deployToAWS(["tests/visual/screenshots/index.html"], aws_shot_dest));
 
-			if(fs.existsSync("tests/visual/failures")) {
+		if(fs.existsSync("tests/visual/failures")) {
+			promises.push(deployToAWS(failures, aws_fail_dest));
+			promises.push(deployToAWS(["tests/visual/failures/index.html"], aws_fail_dest));
+		}
 
-				deployToAWS(failures, aws_fail_dest);
-				deployToAWS(["tests/visual/failures/index.html"], aws_fail_dest);
-
-			}
-
-			resolve("Success");
-
-		});
+		return Promise.all(promises);
 	})
 	.then(function (result) {
+		console.log("AWS Deploy Result: " + result);
+		console.log("Updating github");
 
-		return new Promise(function (resolve, reject) {
-			console.log("AWS Deploy Result: " + result);
-			console.log("Updating github");
+		// Make a comment if we have failures on a PR
+		if (pr && failures !== undefined) {
 
-			// Make a comment if we have failures on a PR
-			if (pr && failures !== undefined) {
+			github.authenticate({
+				type: "oauth",
+				token: gitHubOauth
+			});
 
-				github.authenticate({
-					type: "oauth",
-					token: gitHubOauth
-				});
-
-				github.pullRequests.createComment({
-					user: "Financial-Times",
-					repo: "grumman",
-					number: pr,
-					body: "Image diffs found between branch and production" +
-					"\nSee" +
-					"\n\n" + aws_fails_index,
-					commit_id: commitLong
-				});
-			} else {
-				console.log("No comments to make to Pull Request");
-			}
-
-			resolve("Success");
-
-		});
+			github.pullRequests.createComment({
+				user: "Financial-Times",
+				repo: "grumman",
+				number: pr,
+				body: "Image diffs found between branch and production" +
+				"\nSee" +
+				"\n\n" + aws_fails_index,
+				commit_id: commitLong
+			});
+		} else {
+			console.log("No comments to make to Pull Request");
+		}
 
 	})
 
@@ -269,7 +259,7 @@ function buildIndexPage(screenshots) {
 }
 
 function deployToAWS(files, destination) {
-	deployStatic({
+	return deployStatic({
 		files: files,
 		destination: destination,
 		region: 'eu-west-1',
