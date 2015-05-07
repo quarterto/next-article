@@ -1,9 +1,30 @@
 'use strict';
 
+var testEl = document.createElement( "video" );
+var supportedFormats = {};
+if ( testEl.canPlayType ) {
+    // Check for MPEG-4 support
+    supportedFormats.MPEG4 = "" !== testEl.canPlayType( 'video/mp4; codecs="mp4v.20.8"' );
+
+    // Check for h264 support
+    supportedFormats.H264 = "" !== ( testEl.canPlayType( 'video/mp4; codecs="avc1.42E01E"' )
+        || testEl.canPlayType( 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"' ) );
+
+    // Check for Ogg support
+    supportedFormats.OGG = "" !== testEl.canPlayType( 'video/ogg; codecs="theora"' );
+
+    // Check for Webm support
+    supportedFormats.WEBM = "" !== testEl.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
+}
+
 // get the rendition closest to the supplied width
 function getAppropriateRendition(renditions, width) {
 	var appropriateRendition;
-	renditions.sort(function (renditionOne, renditionTwo) {
+	renditions
+		.filter(function (rendition, index) {
+			return supportedFormats[rendition.videoCodec];
+		})
+		.sort(function (renditionOne, renditionTwo) {
 			return renditionTwo.frameWidth - renditionOne.frameWidth;
 		})
 		.some(function (rendition, index) {
@@ -32,9 +53,13 @@ function brightcove(url) {
 			return response.json();
 		})
 		.then(function (data) {
+			var rendition = getAppropriateRendition(data.renditions, 710);
+			if (!rendition) {
+				throw new Error('Video format not supported');
+			}
 			return {
 				id: videoId,
-				src: getAppropriateRendition(data.renditions, 710).url,
+				src: rendition.url,
 				poster: data.videoStillURL
 			};
 		});
