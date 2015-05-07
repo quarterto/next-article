@@ -96,11 +96,6 @@ startImageDiffs()
 			deployToAWS(screenshots, aws_shot_dest);
 			deployToAWS(["tests/visual/screenshots/index.html"], aws_shot_dest);
 
-			if (pr && failures !== undefined) {
-				deployToAWS(failures, aws_fail_dest);
-				deployToAWS(["tests/visual/failures/index.html"], aws_fail_dest);
-			}
-
 			resolve("Success");
 
 		});
@@ -176,7 +171,9 @@ function startImageDiffs() {
 			}
 		}
 	}
+
 	return Promise.all(imageDiffPromises);
+
 }
 
 function startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix) {
@@ -249,6 +246,10 @@ function buildIndexPage(screenshots) {
 			'<p><p></p></p><img src="' + screenshots[j] + '">' + "</p>";
 			html += "<p>" + matchingshot + "</p>" +
 			'<p><p></p><img src="' + matchingshot + '">' + "</p>";
+		}
+		if (screenshots[j].indexOf("fail.png") !== -1){
+			html += "<p>" + screenshots[j] + "</p>" +
+			'<p><p></p></p><img src="' + screenshots[j] + '">' + "</p>";
 		}
 	}
 	html += "</body></html>";
