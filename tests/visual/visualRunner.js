@@ -4,6 +4,11 @@ require('es6-promise').polyfill();
 var fs = require('fs');
 var denodeify = require('denodeify');
 var exec = denodeify(require('child_process').exec, function (err, stdout, stderr) {
+	if (err) {
+		console.log(err);
+		console.log(stdout);
+		console.log(stderr);
+	}
 	return [err, stdout];
 });
 var deployStatic = require('next-build-tools').deployStatic;
@@ -96,6 +101,13 @@ startImageDiffs()
 			deployToAWS(screenshots, aws_shot_dest);
 			deployToAWS(["tests/visual/screenshots/index.html"], aws_shot_dest);
 
+			if(fs.existsSync("tests/visual/failures")) {
+
+				deployToAWS(failures, aws_fail_dest);
+				deployToAWS(["tests/visual/failures/index.html"], aws_fail_dest);
+
+			}
+
 			resolve("Success");
 
 		});
@@ -165,9 +177,9 @@ function startImageDiffs() {
 					"\nelements " + JSON.stringify(elements);
 
 				console.log("Starting test for " + test);
-				imageDiffPromises.push(
-					startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix)
-				);
+
+				var promise = startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix);
+				imageDiffPromises.push(promise);
 			}
 		}
 	}
