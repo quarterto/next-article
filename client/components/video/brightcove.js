@@ -20,19 +20,21 @@ if ( testEl.canPlayType ) {
 // get the rendition closest to the supplied width
 function getAppropriateRendition(renditions, width) {
 	var appropriateRendition;
-	renditions.sort(function (renditionOne, renditionTwo) {
+	renditions
+		.filter(function (rendition, index) {
+			return supportedFormats[rendition.videoCodec];
+		})
+		.sort(function (renditionOne, renditionTwo) {
 			return renditionTwo.frameWidth - renditionOne.frameWidth;
 		})
 		.some(function (rendition, index) {
-			if (supportedFormats[rendition.videoCodec] && rendition.frameWidth < width) {
+			if (rendition.frameWidth < width) {
 				appropriateRendition = (index === 0) ? rendition : renditions[index - 1];
 				return true;
 			}
 			return false;
 		});
-	return appropriateRendition || renditions.filter(function (rendition, index) {
-			return supportedFormats[rendition.videoCodec];
-	})[0];
+	return appropriateRendition || renditions.pop();
 }
 function brightcove(url) {
 	var videoIdMatch = url.match(/http:\/\/video.ft.com\/(\d+)/);
