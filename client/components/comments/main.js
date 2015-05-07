@@ -34,7 +34,7 @@ module.exports.init = function(uuid, flags) {
 				beacon.fire('comment', { interaction: 'shared', id: ev.detail.data.lfEventData.targetId });
 			});
 
-			var oCommentComponent = new oComments(document.querySelector('#comments'), {
+			new oComments(document.querySelector('#comments'), {
 			    title: document.title,
 			    url: document.location.href,
 			    articleId: uuid, // NOTE: to test, use '3a499586-b2e0-11e4-a058-00144feab7de'

@@ -5,7 +5,7 @@ body .fyre-modal .fyre-modal-title-close {
 		content: '';
 		@include nextIcon(cross, #ffffff, 10);
 		position: relative;
-  	top: 1px;
+		top: 1px;
 	}
 }
 
@@ -22,5 +22,3 @@ body .fyre-modal .fyre-modal-twitter-icon {
 		@include nextIcon(social-twitter, #2e6e9e, 20);
 	}
 }
-
-
