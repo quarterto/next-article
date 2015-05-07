@@ -15,6 +15,41 @@ var dismissTemplate = hogan.compile(requireText('../../templates/form/dismiss.ms
 var clearTemplate = templates.clearLine;
 
 /**
+ * Helper to serialize form values into JavaScript Object (key-value pairs).
+ * @param  {DOMObject} form DOM Object of the form element.
+ * @return {Object}     Serialized key-value pairs of the form.
+ */
+var serializeForm = function (form) {
+	var field,
+		assocArray = {},
+		i,
+		j;
+
+	if (typeof form === 'object' && form.nodeName === "FORM"){
+		for (i = form.elements.length-1; i >= 0; i--){
+			field = form.elements[i];
+			if (field.name && field.type !== 'file' && field.type !== 'reset' && !field.hasAttribute('disabled')) {
+				if (field.type === 'select-multiple'){
+					for (j = form.elements[i].options.length-1; j >= 0; j--) {
+						if (field.options[j].selected) {
+							assocArray[field.name] = field.options[j].value;
+						}
+					}
+				} else {
+					if ((field.type !== 'submit' && field.type !== 'button')) {
+						if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
+							assocArray[field.name] = field.value;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return assocArray;
+};
+
+/**
  * Form is a helper for creating a form. It handles constructing the form element, generating buttons, forwarding submit and cancel events.
  * @param {Object} config Configuration object which specifies the elements of the form (form fragments, buttons).
  */
@@ -67,7 +102,7 @@ function OverlayFormContent (config) {
 
 				switch(button.type) {
 					case 'button':
-						if (typeof button.label !== "undefined") {
+						if (typeof button.label !== "undefined" && button.label) {
 							buttonContainer.appendChild(utils.toDOM(buttonTemplate.render({
 								type: 'button',
 								label: button.label
@@ -86,9 +121,11 @@ function OverlayFormContent (config) {
 						})));
 						break;
 					case 'dismiss':
-						buttonContainer.appendChild(utils.toDOM(dismissTemplate.render({
-							label: button.label
-						})));
+						if (typeof button.label !== "undefined" && button.label) {
+							buttonContainer.appendChild(utils.toDOM(dismissTemplate.render({
+								label: button.label
+							})));
+						}
 				}
 			}
 
@@ -116,42 +153,6 @@ function OverlayFormContent (config) {
 
 	this.getFormDomElement = function () {
 		return formObject;
-	};
-
-
-	/**
-	 * Helper to serialize form values into JavaScript Object (key-value pairs).
-	 * @param  {DOMObject} form DOM Object of the form element.
-	 * @return {Object}     Serialized key-value pairs of the form.
-	 */
-	var serializeForm = function (form) {
-		var field,
-			assocArray = {},
-			i,
-			j;
-
-		if (typeof form === 'object' && form.nodeName === "FORM"){
-			for (i = form.elements.length-1; i >= 0; i--){
-				field = form.elements[i];
-				if (field.name && field.type !== 'file' && field.type !== 'reset' && !field.hasAttribute('disabled')) {
-					if (field.type === 'select-multiple'){
-						for (j = form.elements[i].options.length-1; j >= 0; j--) {
-							if (field.options[j].selected) {
-								assocArray[field.name] = field.options[j].value;
-							}
-						}
-					} else {
-						if ((field.type !== 'submit' && field.type !== 'button')) {
-							if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
-								assocArray[field.name] = field.value;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return assocArray;
 	};
 
 	/**

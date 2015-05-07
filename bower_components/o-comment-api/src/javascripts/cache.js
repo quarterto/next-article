@@ -118,7 +118,7 @@ exports.clearAuth = function () {
 	}
 };
 
-exports.clearInit = function () {
+exports.clearLivefyreInit = function () {
 	if (oCommentUtilities.storageWrapper.sessionStorage.native) {
 		for (var key in oCommentUtilities.storageWrapper.sessionStorage.native) {
 			if (oCommentUtilities.storageWrapper.sessionStorage.hasItem(key)) {

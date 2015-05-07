@@ -9,15 +9,10 @@ var oCommentUtilities = require('o-comment-utilities');
 exports.Widget = require('./src/javascripts/Widget.js');
 exports.WidgetUi = require('./src/javascripts/WidgetUi.js');
 exports.userDialogs = require('./src/javascripts/userDialogs.js');
+exports.utils = require('./src/javascripts/utils.js');
 
 exports.i18n = require('./src/javascripts/i18n.js');
 exports.templates = require('./src/javascripts/templates.js');
-exports.utils = require('./src/javascripts/utils.js');
-
-exports.overlayContentBuilder = {
-	OverlayFormContent: require('./src/javascripts/overlay_content_builder/OverlayFormContent.js'),
-	formFragments: require('./src/javascripts/overlay_content_builder/formFragments.js')
-};
 
 /**
  * Enables logging.

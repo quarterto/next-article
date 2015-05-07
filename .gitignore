@@ -9,9 +9,13 @@ npm-debug.log
 /tmp/
 .env
 .idea/
-/templates/components/bower/
 .editorconfig
 /tests/browser/reports
 /tests/browser/screenshots
 /npm-debug.log.*
-bower_components
+/bower_components/*
+!/bower_components/o-comments/
+!/bower_components/o-comment-api/
+!/bower_components/o-comment-ui/
+!/bower_components/o-comment-utilities/
+

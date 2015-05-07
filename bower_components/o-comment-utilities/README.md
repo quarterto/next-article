@@ -1,34 +1,25 @@
-# o-comment-utilities
+# Introduction
 A collection of helper functions used by o-comments and o-chat.
 
----
+## Contents
 
-## How to use it
-There are two ways of using this module:
+ * <a href="#api">API</a>
+     * <a href="#envConfig">envConfig</a>
+     * <a href="#events">Events</a>
+     * <a href="#envConfig">envConfig</a>
+     * <a href="#jsonp">jsonp</a>
+     * <a href="#scriptLoader">scriptLoader</a>
+     * <a href="#storageWrapper">storageWrapper</a>
+     * <a href="#logger">logger</a>
+     * <a href="#functionSync">functionSync</a>
+     * <a href="#domConstruct">domConstruct</a>
+     * <a href="#cookie">cookie</a>
+     * <a href="#ftUser">ftUser</a>
 
-### Standalone
-Run `grunt`, then insert the JS found in the dist folder:
 
-```javascript
-<script src="dist/javascripts/oCommentUtilities.min.js"></script>
-```
+## <div id="api"></div> API
 
-The module's API can be accessed using `oCommentUtilities` in the global scope.
-
-### Bower and browserify
-With bower, simply require the module:
-
-```javascript
-var oCommentUtilities = require('o-comment-utilities');
-```
-
-The module should be built using `browserify` (with `debowerify` transform).
-
----
-
-## Submodules
-
-### envConfig
+### <div id="envConfig"></div> envConfig
 This module provides a useful way to handle application level configurations. It supports setting and reading configurations, also overriding existing values (helpful when the application should be working on different environments with partially different configuration).
 
 #### Constructor
@@ -98,7 +89,7 @@ This is equivalent with the following object:
 ```
 
 
-### Events
+### <div id="events"></div> Events
 This module helps creating custom events, listening on custom events and triggering them. It is similar to jQuery's event system (except that it doesn't support namespacing).
 
 #### Constructor
@@ -156,7 +147,7 @@ Where:
  - customData: optional parameter, data to be passed to the event handlers.
 
 
-### jsonp
+### <div id="jsonp"></div> jsonp
 This module provides a similar solution for JSONP communication as jQuery. For more information on JSONP, visit http://json-p.org/ .
 
 The module is actually a single function. It should be called the following way:
@@ -183,7 +174,7 @@ If data should be sent, it can be part of the URL directly, or can be provided a
 The callback has a Node.js inspired form. The first parameter is the error parameter, while the second one is the data parameter received from the server as a response.
 
 
-### scriptLoader
+### <div id="scriptLoader"></div> scriptLoader
 This module provides a similar solution for loading a Javascript file asynchronously as jQuery's $.getScript() (http://api.jquery.com/jquery.getscript/).
 
 The module is actually a single function. It can be called the following ways:
@@ -221,7 +212,7 @@ Both parameters (configuration object/URL and callback) are required. Also, if t
 The callback has a Node.js inspired form. The parameter is either 'null' or an Error instance. If it doesn't contain an error, the loading finished with success.
 
 
-### storageWrapper
+### <div id="storageWrapper"></div> storageWrapper
 Wrapper around localStorage and sessionStorage, but enhanced with automatic type conversion.
 
 Automatic type conversion means the followin: for example, if you store an object which can be serialized into a JSON string, when you read it back you will get the same Javascript object and not just a plain string.
@@ -292,7 +283,7 @@ Returns the native localStorage or sessionStorage object.
 
 
 
-### logger
+### <div id="logger"></div> logger
 Logging helper which uses the native "console" to log. It also extends IE8 logging capabilities by stringifying complex objects.
 
 Where console is not available, the logger fails silently.
@@ -346,13 +337,14 @@ Available functions:
  - error
 
 
-### functionSync
+### <div id="functionSync"></div> functionSync
+#### Parallel
 This submodule is meant to generate a callback only when all functions provided finished their execution. This is achieved by passing a callback as parameter to the functions that are executed.
 
 The submodule itself is a single function and can be called in the following way:
 
 ```javascript
-oCommentUtilities.functionSync({
+oCommentUtilities.functionSync.parallel({
     func1: function (callback) {},
     func2: function (callback) {},
     func3: {
@@ -380,49 +372,48 @@ Functions provided within the object can be in the following forms:
 
 For more information on the technical side, please visit the detailed documentation (docs/index.html).
 
-### domConstruct
+### <div id="domConstruct"></div> domConstruct
 This module is able to instantiate classes extended from o-comment-ui/Widget.js using markup in the DOM.
 
 #### How to use it
 This feature reads the DOM for certain types of elements. An example element:
 
 ```html
-<div class="o-chat" id="commentWidget" data-o-chat-config-title="o-chat-test-closed3" data-o-chat-config-url="http://ftalphaville.ft.com/marketslive-test.html" data-o-chat-config-articleId="marketslive-test" data-o-chat-config-order="inverted"></div>
+<div data-o-component="o-chat" id="commentWidget" data-o-chat-config-title="o-chat-test-closed3" data-o-chat-config-url="http://ftalphaville.ft.com/marketslive-test.html" data-o-chat-config-articleId="marketslive-test" data-o-chat-config-order="inverted"></div>
 ```
 
 Key parts of the DOM element:
 
- - class: defines the type of Widget element, in this example `o-chat`.
+ - `data-o-component`: defines the type of Widget element, in this example `o-chat`.
  - id: optional, if it's not present it will be generated
- - data attributes: configuration options that are passed to the Widget constructor
+ - data attributes in the format `data-o-{modulename}-config-{key}`: configuration options that are passed to the Widget constructor. `{key}` has the following rule: `--` means new object level, `-` means camel case. Example: `data-o-comments-config-livefyre--data-format--absolute="value"` is transformed to: ```{"livefyre": {"dataFormat": {"absolute": "value"}}}```.
 
 In order to start the DOM construction, the `oCommentUtilities.initDomConstruct` function should be called with a configuration object, which has the following fields:
 
- - baseClass: type of the Widget element, in the example above it would be a string `'o-chat'`. It is used as class and also as part of the data attributes.
- - namespace: according to the origami spec, all events generated should be namespaced with the module's name, without dashes, but with camel case. In the example above namespace would be a string `'oChat'`.
- - Widget: reference to a Widget element which will be instantiated (e.g. new Widget). In the example above this would be the object `oChat.Widget`.
+ - context: an HTML element or selector. In this element will be performed the search for elements which has `data-o-component="{modulename}"`. If none is specified, it falls back to `document.body`.
+ - classNamespace: type of the Widget element, in the example above it would be a string `'o-chat'`. It is used as class and also as part of the data attributes.
+ - eventNamespace: according to the origami spec, all events generated should be namespaced with the module's name, without dashes, but with camel case. In the example above namespace would be a string `'oChat'`.
  - module: reference to the global scope of the module. In the example above this would be the object `oChat`.
- - auto: if set to true, only the widgets with `data-{namespace}-autoconstruct="true"` (e.g. data-o-chat-autoconstruct="true") will be considered. This is useful when there are two phases of construction: one on DOMContentLoaded and one on demand. On DOMContentLoaded there will be loaded only the widgets with this attribute, while the others only on explicit call.
-
+ - auto: if set to true, only the widgets which don't have `data-{namespace}-auto-init="false"` (e.g. data-o-chat-init="false") will be considered. This is useful when there are two phases of initialization: one on `o.DOMContentLoaded` and one on demand (lazy load). On `o.DOMContentLoaded` there will be loaded only the widgets which don't have this attribute, while the others only on explicit call.
 
 Example: 
 
 ```javascript
 var initDomConstructOnDemand = function () {
     oCommentUtilities.initDomConstruct({
-        baseClass: 'o-chat',
-        namespace: 'oChat',
-        module: oChat,
-        namespace: oChat.Widget
+        classNamespace: 'o-chat',
+        eventNamespace: 'oChat',
+        moduleRef: oChat,
+        classRef: oChat.Widget
     });
 }
 
 document.addEventListener('o.DOMContentLoaded', function () {
     oCommentUtilities.initDomConstruct({
-        baseClass: 'o-chat',
-        namespace: 'oChat',
-        module: oChat,
-        namespace: oChat.Widget,
+        classNamespace: 'o-chat',
+        eventNamespace: 'oChat',
+        moduleRef: oChat,
+        classRef: oChat.Widget,
         auto: true
     });
 });
@@ -438,38 +429,41 @@ Example: (from o-chat/main.js)
 ```javascript
 var Widget = require('./src/javascripts/Widget.js');
 
-exports.initDomConstruct = function () {
-    oCommentUtilities.initDomConstruct({
-        baseClass: 'o-chat',
-        namespace: 'oChat',
-        module: this,
-        namespace: Widget
+exports.init = function (el) {
+    return oCommentUtilities.initDomConstruct({
+        context: el,
+        classNamespace: 'o-chat',
+        eventNamespace: 'oChat',
+        moduleRef: this,
+        classRef: Widget
     });
 };
 ```
 
 This way all the configurations are abstracted, the product should not care about setting them.
 
-If you want to obtain a reference of the created Widget instances, you should listen on the body to the event `{namespace}.domConstruct`, which will have the following details:
+If you want to obtain a reference of the created *Class* instances, you should listen on the body to the event `{namespace}.ready` (e.g. oChat.ready), which will have the following details:
 
- - id: ID of the widget, which is basically the ID attribute of the DOM element
- - instance: the instance of the Widget
+ - id: ID of the widget, which is basically the ID attribute of the owned DOM element
+ - instance: the instance of the *Class*
 
 Example:
 
 ```javascript
-document.body.addEventListener('oChat.domConstruct', function (evt) {
-    //evt.detail.id and evt.detail.instance contains the above
+document.body.addEventListener('oChat.ready', function (evt) {
+    //evt.detail.id and evt.detail.instance are available
 });
 ```
 
 
+The instance that is already created will have a flag that says that it shouldn't be created again, even if initDomConstruct is called again. The flag that is set is `data-{namespace}-built="true"` (e.g. data-o-chat-built="true"). **If you are creating instances in another way (programatically), the container element should have this flag set.**
 
-The widget that is already created will have a flag that says that it shouldn't be created again, even if initDomConstruct is called again. The flag that is set is `data-{namespace}-built="true"` (e.g. data-o-chat-built="true"). **If you are creating instances in another way (programatically), once you create a container it should have this flag set.**
+#### Return value
+The return value is an array with all the instances of `Class` (e.g. oChat.Widget) created.
 
 
 
-### cookie
+### <div id="cookie"></div> cookie
 Helpers for working with cookies.
 
 #### get
@@ -494,7 +488,7 @@ oCommentUtilities.cookie.remove('name');
 ```
 
 
-### ftUser
+### <div id="ftUser"></div> ftUser
 ftUser is a helper for obtaining information about the FT user, information like logged in status, user ID, email address, session ID.
 
 Methods exposed that can be used:
@@ -502,3 +496,4 @@ Methods exposed that can be used:
  - getEmail: returns the user's email address
  - getUserId: returns the user's ID
  - getSession: returns the FT session ID
+

@@ -16,7 +16,7 @@ module.exports.init = function(uuid, flags) {
 				return;
 			}
 			oComments.on('widget.renderComplete', function (ev) {
-				var commentCount = ev.detail.widget.lfWidget.getCollection().attributes.numVisible;
+				var commentCount = ev.detail.instance.lfWidget.getCollection().attributes.numVisible;
 				var commentLink = document.createElement('a');
 				commentLink.setAttribute('href', '#comments');
 				commentLink.setAttribute('data-trackable', 'view-comments');
@@ -34,18 +34,18 @@ module.exports.init = function(uuid, flags) {
 				beacon.fire('comment', { interaction: 'shared', id: ev.detail.data.lfEventData.targetId });
 			});
 
-			var oCommentComponent = new oComments.Widget({
-				elId: 'comments',
-				title: document.title,
-				url: document.location.href,
-				articleId: uuid, // NOTE: to test, use '3a499586-b2e0-11e4-a058-00144feab7de'
-				initExtension: {
-					initialNumVisible: 10,
-					disableIE8Shim: true,
-					disableThirdPartyAnalytics: true
-				}
+			new oComments(document.querySelector('#comments'), {
+			    title: document.title,
+			    url: document.location.href,
+			    articleId: uuid, // NOTE: to test, use '3a499586-b2e0-11e4-a058-00144feab7de'
+			    livefyre: {
+						initialNumVisible: 10,
+						disableIE8Shim: true,
+						disableThirdPartyAnalytics: true
+			    }
 			});
-			oCommentComponent.load();
+
+			// oCommentComponent.load();
 		})
 		.catch(function (err) {
 			setTimeout(function () {

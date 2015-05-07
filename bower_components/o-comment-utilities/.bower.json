@@ -11,14 +11,14 @@
     ".jshintrc",
     "package.json"
   ],
-  "version": "1.0.3",
-  "_release": "1.0.3",
+  "version": "2.0.0",
+  "_release": "2.0.0",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.3",
-    "commit": "8100d470e11583c8b7b730e1345387fcdbc8de98"
+    "tag": "v2.0.0",
+    "commit": "b2bda3b046e5783199e833c067a525b9c01db74f"
   },
   "_source": "http://git.svc.ft.com/scm/strat_p/o-comment-utilities.git",
-  "_target": "^1.0.0",
+  "_target": "^2.0.0",
   "_originalSource": "o-comment-utilities"
 }

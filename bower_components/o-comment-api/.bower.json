@@ -1,9 +1,9 @@
 {
   "name": "o-comment-api",
-  "version": "1.1.6",
+  "version": "2.0.1",
   "main": "main.js",
   "dependencies": {
-    "o-comment-utilities": "^1.0.0"
+    "o-comment-utilities": "^2.0.0"
   },
   "ignore": [
     "node_modules",
@@ -14,13 +14,13 @@
     ".jshintrc",
     "package.json"
   ],
-  "_release": "1.1.6",
+  "_release": "2.0.1",
   "_resolution": {
     "type": "version",
-    "tag": "v1.1.6",
-    "commit": "6461cb287691b8f07a07ee1c9f2714db408490bc"
+    "tag": "v2.0.1",
+    "commit": "be0b1acb3d9082afc374a75457a4a05136be6f66"
   },
   "_source": "http://git.svc.ft.com/scm/strat_p/o-comment-api.git",
-  "_target": "^1.0.0",
+  "_target": "^2.0.0",
   "_originalSource": "o-comment-api"
 }

@@ -251,6 +251,16 @@ function Stream (collectionId, config) {
 		}
 	};
 
+	this.removeCallback = function (callback) {
+		if (callback && typeof callback === 'function' && callbacks.indexOf(callback) !== -1) {
+			callbacks.splice(callbacks.indexOf(callback), 1);
+		}
+
+		if (callbacks.length === 0) {
+			this.destroy();
+		}
+	};
+
 	this.setLastEventId = function (eventId) {
 		lastEventId = eventId;
 	};
@@ -270,6 +280,10 @@ function Stream (collectionId, config) {
 		callbacks = null;
 		lastEventId = null;
 
+		if (streamsForCollectionId.indexOf(collectionId) !== -1) {
+			streamsForCollectionId.splice(streamsForCollectionId.indexOf(collectionId), 1);
+		}
+
 		destroyed = true;
 	};
 }
@@ -280,6 +294,10 @@ var streamsForCollectionId = {};
 function create (collectionId, configOrCallback) {
 	var callback;
 	var lastEventId = 0;
+
+	if (!collectionId) {
+		return;
+	}
 
 	if (typeof configOrCallback === 'function') {
 		callback = configOrCallback;
@@ -314,6 +332,31 @@ function create (collectionId, configOrCallback) {
 	}
 }
 
+function destroy (collectionId, configOrCallback) {
+	var callback;
+
+	if (!collectionId) {
+		return;
+	}
+
+	if (typeof configOrCallback === 'function') {
+		callback = configOrCallback;
+	} else {
+		if (typeof configOrCallback.callback === 'function') {
+			callback = configOrCallback.callback;
+		}
+	}
+
+	if (streamsForCollectionId[collectionId]) {
+		if (callback) {
+			streamsForCollectionId[collectionId].removeCallback(callback);
+		} else {
+			streamsForCollectionId[collectionId].destroy();
+		}
+	}
+}
+
 module.exports = {
-	create: create
+	create: create,
+	destroy: destroy
 };
