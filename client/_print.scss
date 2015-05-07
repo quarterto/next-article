@@ -1,0 +1,37 @@
+@media print {
+	.ad-placeholder,
+	.article__primary-theme,
+	.article__actions,
+	.article__tags,
+	.more-on,
+	.article__video-wrapper,
+	.article__comments {
+		display: none !important;
+	}
+	.article__header {
+		color: #000000;
+		padding-bottom: 0 !important;
+	}
+	.article__stand-first {
+		border-color: #000000;
+	}
+	.article__timestamp {
+		text-indent: -9999px;
+
+		&:after {
+			content: attr(title);
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			text-indent: 0;
+		}
+	}
+	.article__body a:after {
+		content: ' (' attr(href) ')';
+	}
+	.article__main-image {
+		width: 300px;
+		float: left;
+		margin: 0 20px 20px 0 !important;
+	}
+}
