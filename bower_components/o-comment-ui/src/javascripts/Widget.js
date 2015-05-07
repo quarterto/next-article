@@ -11,7 +11,6 @@ var oCommentUtilities = require('o-comment-utilities'),
  * #### Configuration
  * ###### Mandatory fields:
  *
- * - elId: ID of the HTML element in which the widget should be loaded
  * - articleId: ID of the article, any string
  * - url: canonical URL of the page
  * - title: Title of the page
@@ -22,74 +21,53 @@ var oCommentUtilities = require('o-comment-utilities'),
  *
  * @param {Object} config Configuration object, as described in the class description.
  */
-function Widget (config) {
+function Widget (rootEl, config) {
 	var widgetEl, self;
 
 	self = this;
+
+	if (!rootEl) {
+		rootEl = document.body;
+	} else if (!(rootEl instanceof HTMLElement)) {
+		rootEl = document.querySelector(rootEl);
+	}
+
+	rootEl.setAttribute('data-'+ self.classNamespace +'-js', '');
+
+	widgetEl = rootEl;
+
+	if (!widgetEl.id) {
+		widgetEl.id = self.eventNamespace + '-' + oCommentUtilities.generateId();
+	}
+	config.elId = widgetEl.id;
+
 
 	/**
 	 * Validation of the initial configuration object.
 	 */
 	if (!config) {
-		throw "Config not specified.";
+		return;
 	}
 
 	if (!config.articleId) {
 		if (!config.articleid) {
-			throw "Article ID is not specified.";
+			return;
 		} else {
 			config.articleId = config.articleid;
 		}
 	}
 
 	if (!config.url) {
-		throw "URL is not speficied.";
+		return;
 	}
 
 	if (!config.title) {
-		throw "Title is not specified.";
-	}
-
-	try {
-		if (!config.container) {
-			if (!config.elId) {
-				if (!config.elid) {
-					throw "Container element is not specified.";
-				} else {
-					config.elId = config.elid;
-				}
-			}
-
-			widgetEl = document.getElementById(config.elId);
-		} else {
-			if (typeof config.container === "string") {
-				var widgetElSelected = document.querySelectorAll(config.container);
-				if (widgetElSelected.length) {
-					widgetEl = widgetElSelected[0];
-				} else {
-					throw "Selector not valid or does not exists.";
-				}
-			} else if ((window.HTMLElement && config.container instanceof window.HTMLElement) || (window.Element && config.container instanceof window.Element)) {
-				widgetEl = config.container;
-			}
-		}
-	} catch (e) {
-		widgetEl = config.container;
-	}
-
-	if (!widgetEl.id) {
-		widgetEl.id = self.eventNamespace + '-' + oCommentUtilities.generateId();
-		config.elId = widgetEl.id;
+		return;
 	}
 
 
 
 	config.timeout = config.timeout || 15;
-
-
-	if (!widgetEl) {
-		throw "Container does not exist.";
-	}
 
 
 	this.config = config;
@@ -136,7 +114,7 @@ function Widget (config) {
 	this.trigger = function (eventName, data) {
 		var payload = {
 			data: data,
-			widget: this,
+			instance: self,
 			id: config.elId
 		};
 
@@ -152,15 +130,9 @@ function Widget (config) {
 	 * save it in the constructor in a variable (var self = this)
 	 * and use that variable.
 	 */
-	this.loadResources = undefined;
-
-	/**
-	 * ! 'this' could not have the value of the instance.
-	 * To be sure you use the correct instance value, you should
-	 * save it in the constructor in a variable (var self = this)
-	 * and use that variable.
-	 */
-	this.init = undefined;
+	this.loadInitData = function (callback) {
+		callback(new Error("Not implemented"));
+	};
 
 
 	this.onTimeout = function () {
@@ -185,13 +157,17 @@ function Widget (config) {
 	};
 }
 
-Widget.prototype.loadCalled = false;
+Widget.prototype.initCalled = false;
 
-Widget.prototype.load = function () {
+Widget.prototype.init = function () {
 	var self = this;
 
-	if (!this.loadCalled) {
-		this.loadCalled = true;
+	if (!this.config) {
+		return;
+	}
+
+	if (!this.initCalled) {
+		this.initCalled = true;
 
 		var timeout;
 		if (this.config.timeout > 0) {
@@ -202,32 +178,24 @@ Widget.prototype.load = function () {
 			}, this.config.timeout * 1000);
 		}
 
-		oCommentUtilities.functionSync.parallel({
-			loadResources: this.loadResources,
-			init: this.init
-		}, function (err, data) {
+		self.loadInitData(function (err, data) {
 			if (err) {
-				if (err.key === 'loadResources') {
-					self.trigger('error.resources', err.error);
-				}
-
-				if (err.key === 'init') {
-					self.trigger('error.init', err.error);
-				}
-
+				self.trigger('error.init', err.error);
 				self.trigger('error.widget', err.error);
+
 				self.onError(err);
 
 				clearTimeout(timeout);
 				return;
 			}
 
-			if (data.init) {
-				self.trigger('data.init', data.init);
+			if (data) {
+				self.trigger('data.init', data);
 
-				self.render(data.init, function (err) {
+				self.render(data, function (err) {
 					if (err) {
 						self.trigger('error.widget', err);
+
 						self.onError(err);
 
 						clearTimeout(timeout);
@@ -242,8 +210,9 @@ Widget.prototype.load = function () {
 	}
 };
 Widget.prototype.eventNamespace = 'oCommentUi';
+Widget.prototype.classNamespace = 'o-comment-ui';
 
-Widget.__extend = function(child, eventNamespace) {
+Widget.__extend = function(child, eventNamespace, classNamespace) {
 	if (typeof Object.create === 'function') {
 		child.prototype = Object.create(Widget.prototype);
 	} else {
@@ -255,6 +224,7 @@ Widget.__extend = function(child, eventNamespace) {
 
 	if (eventNamespace) {
 		child.prototype.eventNamespace = eventNamespace;
+		child.prototype.classNamespace = classNamespace;
 	}
 };
 

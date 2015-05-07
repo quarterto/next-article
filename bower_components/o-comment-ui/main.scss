@@ -1,6 +1,5 @@
 @import 'o-colors/main';
 @import 'o-assets/main';
-@import "o-fonts/main";
 
 $o-overlay-is-silent: false;
 @import "o-overlay/main";
@@ -8,8 +7,7 @@ $o-overlay-is-silent: false;
 $o-ft-icons-is-silent: false;
 @import "o-ft-icons/main";
 
-@include oFontsInclude(BentonSans, normal);
-@include oFontsInclude(BentonSans, bold);
+@import './src/stylesheets/variables';
 
 @import './src/stylesheets/buttons';
 @import './src/stylesheets/icons';

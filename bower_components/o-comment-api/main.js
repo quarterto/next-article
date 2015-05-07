@@ -24,7 +24,10 @@ exports.api = {
 	postComment: ccs.postComment,
 	deleteComment: ccs.deleteComment,
 
-	createStream: stream.create
+	stream: {
+		create: stream.create,
+		destroy: stream.destroy
+	}
 };
 
 /**
@@ -34,7 +37,7 @@ exports.api = {
 exports.cache = {
 	clear: cache.clear,
 	clearAuth: cache.clearAuth,
-	clearInit: cache.clearInit
+	clearLivefyreInit: cache.clearLivefyreInit
 };
 
 /**
@@ -62,8 +65,25 @@ exports.setLoggingLevel = function () {
 };
 
 /**
- * Init method sets additional or overrides current configuration options.
+ * This method sets additional or overrides current configuration options.
+ *
+ * @param  {string|object} keyOrObject Key or actually an object with key-value pairs.
+ * @param  {anything} value Optional. Should be specified only if keyOrObject is actually a key (string).
  */
-exports.init = function () {
+exports.setConfig = function () {
 	config.set.apply(this, arguments);
 };
+
+
+document.addEventListener('o.DOMContentLoaded', function () {
+	try {
+		var configInDomEl = document.querySelector('script[type="application/json"][data-o-comment-api-config]');
+		if (configInDomEl) {
+			var configInDom = JSON.parse(configInDomEl.innerHTML);
+
+			exports.setConfig(configInDom);
+		}
+	} catch (e) {
+		oCommentUtilities.logger.log('Invalid config in the DOM.', e);
+	}
+});

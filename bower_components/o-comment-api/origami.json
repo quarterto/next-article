@@ -2,7 +2,7 @@
 	"description": "An abstraction of FT's commenting APIs, used by o-comments and o-chat",
 	"origamiType": "module",
 	"origamiVersion": 1,
-	"support": "hyperion@ft.com",
+	"support": "https://jira.ft.com/secure/RapidBoard.jspa?rapidView=57&view=detail",
 	"supportStatus": "active",
 	"ci": {},
 	"browserFeatures": {
