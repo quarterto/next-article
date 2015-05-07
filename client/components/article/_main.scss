@@ -12,6 +12,11 @@ $header-offset: 30px;
 	padding-bottom: 20px;
 	font-weight: 100;
 	color: #ffffff;
+
+	@include print {
+		color: #000000;
+		padding-bottom: 0 !important;
+	}
 }
 .article__header-inner {
 	@include oGridRespondTo(L) {
@@ -57,6 +62,9 @@ $header-offset: 30px;
 	@include oGridRespondTo(M) {
 		font-size: 24px;
 	}
+	@include print {
+		border-color: #000000;
+	}
 }
 .article__meta {
 	margin: 20px 0 0;
@@ -79,9 +87,30 @@ $header-offset: 30px;
 .article__actions {
 	margin-top: 5px;
 }
+.article__timestamp {
+	@include print {
+		text-indent: -9999px;
+
+		&:after {
+			content: attr(title);
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			text-indent: 0;
+		}
+	}
+}
+.article__primary-theme {
+	@include print {
+		display: none;
+	}
+}
 .article__actions {
 	@include oGridRespondTo(S) {
 		text-align: right;
+	}
+	@include print {
+		display: none;
 	}
 }
 .article__actions__action {
@@ -120,6 +149,9 @@ $header-offset: 30px;
 	@include oGridRespondTo(L) {
 		font-size: 18px;
 		align-self: flex-end;
+	}
+	@include print {
+		display: none;
 	}
 }
 .article__tags__title {
@@ -197,6 +229,18 @@ $header-offset: 30px;
 	}
 	a {
 		color: $next-grey-dark;
+
+		@include print {
+			&:after {
+				text-decoration: none;
+			}
+			&[href^='/']:after {
+				content: ' (http://next.ft.com' attr(href) ')';
+			}
+			&:not([href^='/']):after {
+				content: ' (' attr(href) ')';
+			}
+		}
 	}
 	.o-quote--standard a {
 		color: inherit;
@@ -209,9 +253,19 @@ $header-offset: 30px;
 		}
 	}
 }
-
+.article__main-image {
+	@include print {
+		width: 300px;
+		float: left;
+		margin: 0 20px 20px 0 !important;
+	}
+}
 .article__video-wrapper {
 	clear: left;
+
+	@include print {
+		display: none;
+	}
 }
 .article__video {
 	width: 100%;
@@ -362,8 +416,13 @@ $header-offset: 30px;
 	line-height: 24px;
 	font-weight: normal;
 }
-.article__comments > * {
-	margin-top: 15px !important;
+.article__comments {
+	@include print {
+		display: none;
+	}
+	> * {
+		margin-top: 15px !important;
+	}
 }
 
 @import 'table';
