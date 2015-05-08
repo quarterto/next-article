@@ -30,7 +30,7 @@ describe('Smoke Tests: ', function() {
 		});
 
 		it('should serve a main.js file', function(done) {
-			request(helpers.host + '/article/main.js', function(error, res, body) {
+			request(helpers.host + '/grumman/main.js', function(error, res, body) {
 				expect(res.headers['content-type']).to.match(/application\/javascript/);
 				expect(res.statusCode).to.equal(200);
 				done();
@@ -38,7 +38,7 @@ describe('Smoke Tests: ', function() {
 		});
 
 		it('should serve a main.css file', function(done) {
-			request(helpers.host + '/article/main.css', function(error, res, body) {
+			request(helpers.host + '/grumman/main.css', function(error, res, body) {
 				expect(res.headers['content-type']).to.match(/text\/css/);
 				expect(res.statusCode).to.equal(200);
 				done();
