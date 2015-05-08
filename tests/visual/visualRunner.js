@@ -114,9 +114,8 @@ startImageDiffs()
 		console.log("AWS Deploy Result: " + result);
 		console.log("Updating github");
 
-
 		// Make a comment if we have failures on a PR
-		if (pr && failures !== undefined) {
+		if ((pr !== "false") && (failures !== undefined)) {
 
 			github.authenticate({
 				type: "oauth",
