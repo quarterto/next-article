@@ -1,10 +1,10 @@
-# Next Grumman [![Build Status](https://travis-ci.org/Financial-Times/next-grumman.svg?branch=master)](https://travis-ci.org/Financial-Times/next-grumman)
+# Next Article [![Build Status](https://travis-ci.org/Financial-Times/next-article.svg?branch=master)](https://travis-ci.org/Financial-Times/next-article)
 
 ## Installation
 
 ```
-git clone https://github.com/Financial-Times/next-grumman.git
-cd next-grumman
+git clone https://github.com/Financial-Times/next-article.git
+cd next-article
 make install
 make build
 ```
@@ -15,13 +15,13 @@ Please install [`next-router`](http://git.svc.ft.com/projects/NEXT/repos/router/
 
 ## Run
 
-Just run grumman on its own (localhost:3003):
+Just run article on its own (localhost:3003):
 
 ```
 make run-local
 ```
 
-Run grumman through the router (localhost:5050):
+Run article through the router (localhost:5050):
 
 ```
 make run
