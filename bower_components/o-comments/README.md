@@ -4,18 +4,23 @@ A fully featured commenting client integrated with FT's membership systems. If y
 
 ## Contents
 
-* <a href="#prereq">Prerequisites</a>
-* <a href="#product">Adding comments to your product</a>
- * <a href="#decl">Declaratively</a>
- * <a href="#imper">Imperatvely</a>
-* <a href="#login">Login integration</a>
-* <a href="#events">Events</a>
-* <a href="#api">API</a>
-    * <a href="#logging">Logging</a>
-    * <a href="#messages">UI Messages</a>
-* <a href="#messages">Browser support</a>
-* <a href="#core">Core/enhanced experience</a>
-* <a href="#moderation">Moderation</a>
+ * <a href="#prereq">Prerequisites</a>
+ * <a href="#product">Adding comments to your product</a>
+     * <a href="#decl">Declaratively</a>
+     * <a href="#imper">Imperatively</a>
+ * <a href="#login">Login integration</a>
+ * <a href="#events">Events</a>
+ * <a href="#configuration">Global configuration</a>
+     * <a href="#confdecl">Declaratively</a>
+     * <a href="#confimper">Imperatively</a>
+ * <a href="#jsapi">JavaScript API</a>
+     * <a href="#logging">Logging</a>
+     * <a href="#messages">UI Messages</a>
+ * <a href="#sassapi">Sass API</a>
+     * <a href="#fontfamily">Font family</a>
+ * <a href="#browser">Browser support</a>
+ * <a href="#core">Core/enhanced experience</a>
+ * <a href="#moderation">Moderation</a>
 
 ## <div id="prereq"></div> Prerequisites
 
@@ -23,54 +28,51 @@ A fully featured commenting client integrated with FT's membership systems. If y
 * You must be on an FT.com domain or sub-domain for authentication to work
 
 ## <div id="product"></div> Adding comments to your product 
-
-Javascript:
-
-```javascript
-var oComments = require('o-comments');
-```
-
-SCSS:
-
-```css
-@import 'o-comments/main';
-```
-
 ### <div id="decl"></div> Declaratively 
 Use the following markup to enable comments:
 
 ```html
-<div class="o-comments" 
-    id="{oCommentsInstance}" 
-    data-o-comments-autoconstruct="true|false" 
+<div data-o-component="o-comments"
+    id="{idOfTheElement}" 
+    data-o-comments-auto-init="true|false" 
     data-o-comments-config-title="{article-title}" 
     data-o-comments-config-url="{page-url}" 
     data-o-comments-config-articleId="{article-id}">
+
+        <div class="o--if-no-js">To participate in this chat, you need to upgrade to a newer web browser. <a href="http://help.ft.com/tools-services/browser-compatibility/">Learn more.</a></div>
 </div>
 ```
 
-1. `{article-title}` the title of your article/post/thing
-2. `data-o-comments-autoconstruct="true"` automatically construct the component when `o.DOMContentLoaded` fires. A `false` value (or omitting this attribute) allows you to defer component initialisation
-3. `data-o-comments-config-articleId` a unique id for your content, ideally a UUID for FT content
-4. `{page-url}` The canonical URL for your article/page/thing
-5. `id` preferable to be set, but if missing it will be generated
+ 
+ * `data-o-comments-config-title` the title of your article/post/thing
+ * `data-o-comments-config-articleId` a unique id for your content, ideally a UUID for FT content
+ * `data-o-comments-config-url` The canonical URL for your article/page/thing
+ * `data-o-comments-config-livefyre--{key}` for Livefyre specific `Conv` configuration mentioned here: http://answers.livefyre.com/developers/app-integrations/comments/#convConfigObject.
+ *Note that due to the fact that data attributes are case-insensitive, it would be impossible to set a property like 'disableAvatars'. There livefyre configuration objects with camelCase should be set in the following way: e.g. data-o-comments-config-livefyre--disable-avatars. This is automatically transformed to the right format.*
+ * `data-o-comments-config-{key}` for any other configuration. `{key}` has the following rule: `--` means new object level, `-` means camel case. Example: `data-o-comments-config-livefyre--data-format--absolute="value"` is transformed to: ```{"livefyre": {"dataFormat": {"absolute": "value"}}}```
+ * `data-o-comments-auto-init="false"` a module which has this attribute with a `false` value will not be initialized on the `o.DOMContentLoaded` event. This allows you to defer component initialisation.
+ * `id` preferable to be set, but if missing it will be generated
 
-If you defer initialising oComments by  using `data-o-comments-autoconstruct="false"` then you can initialise the component by calling
+
+Those elements which don't have the `data-o-comments-auto-init="false"` attribute will be automatically initialized on the `o.DOMContentReady` event.
+
+If you defer initialising oComments by using `data-o-comments-auto-init="false"` then you can initialise the component whenever you want by calling
 
 ```javascript
-oComments.initDomConstruct();
+oComments.init();
 ```
+
+The init function may take an optional parameter: a context (this could be DOM element or a valid selector). The search would be performed only inside of this context element. If none is specified, it defaults to document.body.
 
 ### <div id="imper"></div> Imperatively 
 Create an instance of the component with the parameters that are available:
 
 ```javascript
-var oCommentComponent = new oComments.Widget({
-    elId: 'container-id',
+var oCommentComponent = new oComments(document.querySelector('.comments'), {
     title: document.title,
     url: document.location.href,
     articleId: 'article-id',
-    initExtension: {
+    livefyre: {
         datetimeFormat: {
             minutesUntilAbsoluteTime: -1,
             absoluteFormat: 'MMM dd hh:mm a'
@@ -79,32 +81,34 @@ var oCommentComponent = new oComments.Widget({
 });
 ```
 
-Load the component:
+*The widget is automatically initialized, unless you specify in the configuration `autoInit: false`. In this case you can initialize this particular object at a later time by calling the following:*
 
 ```javascript
-oComments.load();
+oCommentsComponent.init();
 ```
 
-#### More about the constructor of Widget
+#### More about the constructor config object
 The configuration object which is passed to the contructor can/should have the following fields:
 
 ###### Mandatory fields:
- - elId: ID of the HTML element in which the widget should be loaded
+
  - articleId: ID of the article, any string
  - url: canonical URL of the page
  - title: Title of the page
     
 ###### Optional fields:
+
  - stream_type: livecomments, livechat, liveblog
- - initExtension: object which contains key-value pairs which will be added to the Livefyre init object. For more information visit http://docs.livefyre.com/developers/app-integrations/comments/#convConfigObject
+ - livefyre: object which contains key-value pairs which will be added to the Livefyre init object. For more information visit http://docs.livefyre.com/developers/app-integrations/comments/#convConfigObject
  - stringOverrides: key-value pairs which override default LF strings. For more information visit http://docs.livefyre.com/developers/reference/customization/string-customizations/
- - authPageReload: if authentication needs a page reload. By default it's false.
- - tags: Tags which will be added to the collection in Livefyre
+ - authPageReload: if authentication needs a page reload. By default this is false.
+ - tags: Tags which will be added to the collection (term used by Livefyre to articles) in Livefyre
+ - autoInit: if this is set to false, the object will be created, but it will not be initialized automatically (the DOM will not be populated, call to backend services will not be made). In this case you should call the `init` method on the instance when you want to initialize it.
 
 ## <div id="login"></div> Login integration 
 Users need to have a valid FT session in order to post comments. The default behavior for a user without a valid session is to redirect to the FT's login page (https://registration.ft.com). However you may wish to integrate with your product's authentication process for a slicker UX in which case you can override the default behaviour.
 
-1. Override the `auth.loginRequiredDefaultBehavior` function
+ 1. Override the `auth.loginRequiredDefaultBehavior` function
 
 ```javascript
 oComments.auth.loginRequiredDefaultBehavior = function (evt) {
@@ -120,7 +124,7 @@ oComments.auth.loginRequiredDefaultBehavior = function (evt) {
 
 **Important: if the log in needs a page reload, don't call the callback at all (there's no success/failure, it's still pending)!**
 
-2. Add an event handler and stop executing other handlers
+ 2. Add an event handler and stop executing other handlers
 
 Example:
 
@@ -143,15 +147,16 @@ oComments.on('auth.loginRequired', function (evt) {
 
 **Important: if the log in needs a page reload, don't call the failure function!**
 
-## <div id="events"></div> Events 
-
-All events have a payload of data to identify the originating component and any event specific data:
+## <div id="events"></div> Events
+### Local events
+These events are triggered on the instance's DOM element. 
+All events have a payload of data which helps getting the ID of the instance and the instance object itself:
 
 ```javascript
 {
     detail: {
         id: "idOfTheComponent",
-        widget: componentInstance,
+        instance: componentInstance,
         data: {...} //data specific to the event
     }
 }
@@ -159,10 +164,6 @@ All events have a payload of data to identify the originating component and any 
 
 ##### oComments.widget.timeout
 Triggered when loading the widget exceeded a given time.
-
-##### oComments.error.resources
-Triggered when the necessary resource files (e.g. Livefyre's core JS library) couldn't be loaded.
-Event detail data: error object/message.
 
 ##### oComments.error.init
 Error while loading the initialization data and the comments.
@@ -275,8 +276,8 @@ Event detail data: (evt.detail.data)
 ```
 
 
-#### Shared events
-These events are triggered on the `body` element and are relevant to all oComments components on a page. They have the same format as the component level events: `oComments.nameOfTheEvent`, where `nameOfTheEvent` is one of the following below.
+### Global events
+These events are triggered on the `body` element and are relevant to all oComments components on a page. They have the same format as the component level events: `oComments.nameOfTheEvent`.
 
 The payload data consists only of event specific data:
 
@@ -312,52 +313,82 @@ oComments.on('auth.loginRequired', function (evt) {
 });
 ```
 
-## <div id="api"></div> API 
+##### oComments.error.livefyreJs
+Triggered when the core Livefyre resource file (e.g. Livefyre's core JS library) couldn't be loaded.
+Event detail data: error object/message.
 
-##### oComments.init(config)
-This method is responsible for changing the default configuration used by oComments. Calling this method with an object will merge the default configuration with the object specified (deep merge, primitive type values of the same key will be overwritten).
+## <div id="configuration"></div> Global configuration
+This module uses global configuration. These are related configurations for Livefyre.
 
-##### Default configuration - PROD
+The default configuration is the production one:
 
-```javascript
+```json
 {
     "livefyre": {
         "network": "ft.fyre.co",
         "domain": "ft.auth.fyre.co",
-        "resourceDomainBase": "http://zor.livefyre.com"
-    },
-    "resourceUrls": {
-        "livefyreJs": "/wjs/v3.0/javascripts/livefyre.js"
+        "resourceDomainBase": "http://zor.livefyre.com",
+        "resourceUrls": {
+            "livefyreJs": "/wjs/v3.0/javascripts/livefyre.js"
+        }
     }
 }
 ```
 
-##### Using the TEST environment
-In order to change to the TEST environment, use the following code:
+In order to change to the settings of the TEST environment, then this configuration should be used:
 
-```javascript
-oComments.init({
+```json
+{
     "livefyre": {
         "network": "ft-1.fyre.co",
-        "domain": "ft-1.auth.fyre.co",
-        "resourceDomainBase": "http://zor.livefyre.com"
-    },
-    dependencies: {
-        "o-comment-data": {
-            "suds": {
-                "baseUrl": "http://test.session-user-data.webservices.ft.com"
-            },
-            "ccs": {
-                "baseUrl": "http://test.comment-creation-service.webservices.ft.com"
-            },
-            "cacheConfig": {
-                "authBaseName": "comments-test-auth-",
-                "initBaseName": "comments-test-init-"
-            }
+        "domain": "ft-1.auth.fyre.co"
+    }
+}
+```
+
+
+There are two ways for changing the environment:
+
+### <div id="confdecl"></div> Declaratively
+In order to change the configuration, you can add a script tag in your page source with the format in the example below:
+
+```javascript
+<script data-o-comments-config type="application/json">
+    {
+        "livefyre": {
+            "network": "ft-1.fyre.co",
+            "domain": "ft-1.auth.fyre.co"
         }
+    }
+</script>
+```
+
+This configuration will be loaded on the `o.DOMContentLoaded` event.
+
+**Also, don't forget to also add the configuration for `o-comment-api` (http://registry.origami.ft.com/components/o-comment-api#configuration).**
+
+
+
+### <div id="confimper"></div> Imperatively
+##### oComments.setConfig(config)
+The configuration can be changed be using the `setConfig` static method. Calling this method with an object will merge the current configuration with the object specified (deep merge, primitive type values of the same key will be overwritten).
+
+Example:
+
+```javascript
+oComments.setConfig({
+    "livefyre": {
+        "network": "ft-1.fyre.co",
+        "domain": "ft-1.auth.fyre.co"
     }
 });
 ```
+
+*As on the event `o.DOMContentLoaded` the widgets declared in the DOM are automatically initialized, it is preferred to call this function **before** the `o.DOMContentLoaded` event is triggered.*
+
+
+**Also, don't forget to also add the configuration for `o-comment-api` (http://registry.origami.ft.com/components/o-comment-api#configuration).**
+The API of o-comment-api is available by using `oComments.dataService`.
 
 ### <div id="messages"></div> UI messages
 You can override the messages shown to a user in various parts of the UI:
@@ -386,7 +417,8 @@ An object with the following messages:
     topCommentsContentNotFoundMsg: "There aren't any recommendations yet."
     unlikeButton: "Unrecommend"
 
-### Logging
+## <div id="jsapi"></div> JavaScript API
+### <div id="logging"></div> Logging
 Logging can be enabled for debugging purposes. It logs using the global 'console' if available (if not, nothing happens and it degrades gracefully).
 By default logging is disabled.
 
@@ -400,6 +432,17 @@ This method disables logging of the module.
 This method sets the logging level. This could be a number from 0 to 4 (where 0 is debug, 4 is error), or a string from the available methods of 'console' (debug, log, info, warn, error).
 Default is 3 (warn).
 
+## <div id="sassapi"></div> Sass API
+### <div id="fontfamily"></div> Font-family
+There is a default font-family set for o-comments: `BentonSans, sans-serif`
+*Please note that the font itself is not loaded by this module, this should be done by the product.*
+
+In order to override the default font, set a value for the following variable:
+
+```scss
+$o-comments-font-family: font1, font2;
+```
+
 ## <div id="browser"></div> Browser support 
 Works in accordance with our [support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit)
 
@@ -407,7 +450,7 @@ Works in accordance with our [support policy](https://docs.google.com/a/ft.com/d
 Only the enhanced experience offers any kind of commenting functionality. Core functionality will be added in due course.
 
 ## <div id="moderation"></div> Moderation
-All comments made on FT products are moderated. Moderation is important but expensive: So all comments are categorised so that different moderation teams can effectively manage the comments they have responsibility for.
+Moderators review certain comments posted by users on FT platforms. Moderation is important but expensive: so various comments are categorised so that different moderation teams can effectively manage the comments they have responsibility for.
 
 This does add some complexity though, and it places some constraints on where comments can be used. There are 2 ways in which the categorisation happens: Using the URL of the page where the comments appear (used for blogs) or by looking up the Content API using the passed in UUID and using the returned metatdata. 
 

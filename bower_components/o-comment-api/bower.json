@@ -3,7 +3,7 @@
   "version": "1.1.5",
   "main": "main.js",
   "dependencies": {
-    "o-comment-utilities": "^1.0.0"
+    "o-comment-utilities": "^2.0.0"
   },
   "ignore": [
     "node_modules",

@@ -8,7 +8,7 @@ var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
 
 function getCurrentRole(person) {
-	var currentMembership = person.memberships.find(function (membership) {
+	var currentMembership = (person.memberships || []).find(function (membership) {
 		return _.find(membership.changeEvents, 'startedAt') && !_.find(membership.changeEvents, 'endedAt');
 	});
 	return currentMembership ? {

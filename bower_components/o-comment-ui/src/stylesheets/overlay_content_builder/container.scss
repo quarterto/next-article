@@ -1,6 +1,6 @@
 .o-comment-ui--overlay-content {
 	background: rgba(211, 210, 203, 0.2);
-	font-family: oFontsGetFontFamilyWithFallbacks(BentonSans);
+	font-family: $o-comment-ui-font-family;
 	color: oColorsGetPaletteColor(grey-tint4);
 	font-size: 13px;
 	text-align: left;

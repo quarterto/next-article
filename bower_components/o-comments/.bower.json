@@ -5,13 +5,12 @@
     "main.scss"
   ],
   "dependencies": {
-    "o-comment-api": "^1.0.0",
-    "o-comment-ui": "^1.0.0",
-    "o-comment-utilities": "^1.0.0",
-    "o-ft-typography": "^1.12.2",
-    "o-colors": "^2.3.17",
-    "o-assets": "^0.4.2",
-    "o-fonts": "^1.4.1",
+    "o-comment-api": "^2.0.0",
+    "o-comment-ui": "^2.0.0",
+    "o-comment-utilities": "^2.0.0",
+    "o-typography": "^1.16.2",
+    "o-colors": ">=2.4.7 <4",
+    "o-assets": "^2.0.0",
     "hogan": "git+https://github.com/twitter/hogan.js.git#3.0.0"
   },
   "ignore": [
@@ -23,14 +22,14 @@
     ".editorconfig",
     ".jshintrc"
   ],
-  "version": "1.0.10",
-  "_release": "1.0.10",
+  "version": "2.0.0",
+  "_release": "2.0.0",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.10",
-    "commit": "8de63334bea0655f62f8545e28d9ad5793d247ca"
+    "tag": "v2.0.0",
+    "commit": "2b5d30bba34991fe4b020564f72f65f8114a34ea"
   },
   "_source": "http://git.svc.ft.com/scm/strat_p/o-comments.git",
-  "_target": "~1.0.8",
+  "_target": "^2.0.0",
   "_originalSource": "o-comments"
 }

@@ -101,10 +101,7 @@ module.exports = function(req, res, next) {
 								conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + ':"' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '"'
 							};
 						} catch (e) {
-							return {
-								title: '',
-								url: '/'
-							};
+							return undefined;
 						}
 					})();
 
@@ -121,7 +118,7 @@ module.exports = function(req, res, next) {
 							var articleBody = $.html();
 							var comments = {};
 
-							if(res.locals.barrier) {
+							if (res.locals.barrier) {
 								comments = null;
 								articleBody = null;
 							}
@@ -149,10 +146,7 @@ module.exports = function(req, res, next) {
 								headerOverlap:
 									$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length,
 								layout: 'wrapper',
-								headerData: {
-									isStream: false,
-									section: primaryTheme
-								}
+								primaryTheme: primaryTheme
 							});
 						});
 

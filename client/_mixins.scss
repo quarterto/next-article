@@ -4,3 +4,8 @@
 @mixin box-sizing($value) {
 	box-sizing: $value;
 }
+@mixin print {
+	@media print {
+		@content;
+	}
+}

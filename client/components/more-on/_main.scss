@@ -6,6 +6,10 @@
 	font-family: $fontSans;
 	font-weight: 100;
 	color: #000000;
+
+	@include print {
+		display: none;
+	}
 }
 .more-on--inline {
 	@include oGridRespondTo(S) {

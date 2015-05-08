@@ -7,8 +7,6 @@ var video = [
 	'player.vimeo.com'
 ];
 
-
-
 function brightcoveInit(el) {
 	var url = el.getAttribute('href');
 
@@ -25,8 +23,17 @@ function brightcoveInit(el) {
 			videoEl.className = 'article__video ng-media';
 			el.parentNode.replaceChild(videoEl, el);
 		}).catch(function(e){
-			el.parentNode.removeChild(el);
-			setTimeout(function() { throw e; });
+			var parent = el.parentNode;
+
+			if (parent.matches('.article__video-wrapper')) {
+				parent.parentNode.removeChild(parent);
+			} else {
+				parent.removeChild(el);
+			}
+
+			if (e.message !== 'Video format not supported') {
+				setTimeout(function() { throw e; });
+			}
 		});
 }
 
@@ -47,7 +54,7 @@ function vimeoInit(el) {
 		['width', '500'],
 		['height', '281'],
 	];
-  	el.parentNode.replaceChild(makeIframe(attrs), el);
+  el.parentNode.replaceChild(makeIframe(attrs), el);
 }
 
 function makeIframe(attrs) {

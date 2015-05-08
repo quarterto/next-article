@@ -2,45 +2,36 @@
 
 A JavaScript API that provides a simple abstraction of the FT's commenting APIs.
 
-This modules uses:
+This modules communicates with backend services:
 
-- Session User Data Service (SUDS) - Provides the authentication and metadata required to create and use Livefyre comment collections. Also allows a user's preferences to be modified
+- Session User Data Service (SUDS) - Provides the authentication and metadata required to use the Livefyre comment widget. Also allows a user's preferences to be modified
 - Comment Creation Service (CCS) - Allows the creation and retrieval of comments for FT content
 
----
+## Contents
 
-## How to use it
-There are two ways of using this module:
+ * <a href="#prereq">Prerequisites</a>
+ * <a href="#configuration">Global configuration</a>
+     * <a href="#confdecl">Declaratively</a>
+     * <a href="#confimper">Imperatively</a>
+ * <a href="#api">API</a>
+     * <a href="#data">Data</a>
+     * <a href="#caching">Caching</a>
+     * <a href="#logging">Logging</a>
+ * <a href="#browser">Browser support</a>
+ * <a href="#core">Core/enhanced experience</a>
 
-### Standalone
-Run `gulp`, then insert the JS found in the build folder:
+## <div id="prereq"></div> Prerequisites
 
-```javascript
-<script src="build/javascripts/main.js"></script>
-```
+* Your content must either be available in the Content API or available on a blogs URL in order for commenting to work. (See Moderation for why) 
+* You must be on an FT.com domain or sub-domain for authentication to work
 
-The module's API can be accessed using `oCommentApi` in the global scope.
 
-### Bower and browserify
-With bower, simply require the module:
+## <div id="configuration"></div> Global configuration
+This module uses global configuration. These are related to Livefyre and the connection details to the backend services.
 
-```javascript
-var oCommentApi = require('o-comment-api');
-```
+The default configuration is the production one:
 
-The module should be built using `browserify` (with `debowerify` transform).
-
----
-
-## Configuration
-<strong>The methods which are meant to configure the module are the following:</strong>
-
-### init
-This method is responsible for changing the default configuration used by this module. Calling this method with an object will merge the default configuration with the object specified (deep merge, primitive type values of the same key will be overwritten).
-
-##### Default configuration
-
-```javascript
+```json
 {
     "suds": {
         "baseUrl": "http://session-user-data.webservices.ft.com",
@@ -64,16 +55,17 @@ This method is responsible for changing the default configuration used by this m
     "cacheConfig": {
         "authBaseName": "comments-prod-auth-",
         "initBaseName": "comments-prod-init-"
+    },
+    "livefyre": {
+        "networkName": "ft"
     }
 }
 ```
 
+In order to change to the settings of the TEST environment, then this configuration should be used:
 
-##### Change the environment
-In order to change to the TEST environment, use the following code:
-
-```javascript
-oCommentApi.init({
+```json
+{
     "suds": {
         "baseUrl": "http://test.session-user-data.webservices.ft.com"
     },
@@ -83,68 +75,72 @@ oCommentApi.init({
     "cacheConfig": {
         "authBaseName": "comments-test-auth-",
         "initBaseName": "comments-test-init-"
+    },
+    "livefyre": {
+        "networkName": "ft-1"
     }
-});
+}
 ```
 
----
 
-## Caching
+There are two ways for changing the environment:
 
-### Enable caching
-In order to enable caching within the module, you should set some module level configuration:
+### <div id="confdecl"></div> Declaratively
+In order to change the configuration, you can add a script tag in your page source with the format in the example below:
+
+```javascript
+<script data-o-comment-api-config type="application/json">
+    {
+        "suds": {
+            "baseUrl": "http://test.session-user-data.webservices.ft.com"
+        },
+        "ccs": {
+            "baseUrl": "http://test.comment-creation-service.webservices.ft.com"
+        },
+        "cacheConfig": {
+            "authBaseName": "comments-test-auth-",
+            "initBaseName": "comments-test-init-"
+        },
+        "livefyre": {
+            "networkName": "ft-1"
+        }
+    }
+</script>
+```
+
+This configuration will be loaded on the `o.DOMContentLoaded` event.
+
+### <div id="confimper"></div> Imperatively
+##### oCommentApi.setConfig(config)
+The configuration can be changed be using the `setConfig` static method. Calling this method with an object will merge the current configuration with the object specified (deep merge, primitive type values of the same key will be overwritten).
 
 Example:
 
 ```javascript
-oCommentApi.init({
-    "cache": true,
-    "sessionId": 15231
+oCommentApi.setConfig({
+    "suds": {
+        "baseUrl": "http://test.session-user-data.webservices.ft.com"
+    },
+    "ccs": {
+        "baseUrl": "http://test.comment-creation-service.webservices.ft.com"
+    },
+    "cacheConfig": {
+        "authBaseName": "comments-test-auth-",
+        "initBaseName": "comments-test-init-"
+    },
+    "livefyre": {
+        "networkName": "ft-1"
+    }
 });
 ```
 
-Where `sessionId` is a unique identifier of the current user's session (e.g. FTSession for FT Membership).
+*As on the event `o.DOMContentLoaded` the widgets declared in the DOM are automatically initialized, it is preferred to call this function **before** the `o.DOMContentLoaded` event is triggered.*
 
-### Clear the cache
-The cache layer uses sessionStorage API to store data. While this is cleared automatically each time the browser is closed, there could be some situations the cache should be cleared explicity.
 
-The cache layer provides a public clear method which will delete all o-comments-data related cache entries from the sessionStorage.
+## <div id="api"></div> API
+### <div id="data"></div> Data APIs
+#### oCommentApi.api.getLivefyreInitConfig
 
-```javascript
-oCommentApi.cache.clear();
-```
-
-There's a possibility to clear just the auth or init cache:
-
-```javascript
-oCommentApi.cache.clearAuth();
-```
-
-```javascript
-oCommentApi.cache.clearInit();
-```
-
----
-
-## Logging
-Logging can be enabled for debugging purposes. It logs using the global 'console' if available (if not, nothing happens and it degrades gracefully).
-By default logging is disabled.
-
-### enableLogging
-This method enables logging of the module.
-
-### disableLogging
-This method disables logging of the module.
-
-### setLoggingLevel
-This method sets the logging level. This could be a number from 0 to 4 (where 0 is debug, 4 is error), or a string from the available methods of 'console' (debug, log, info, warn, error).
-Default is 3 (warn).
-
----
-
-## API
-
-### api.getLivefyreInitConfig
 This method communicates directly with the 'livefyre/init' endpoint of SUDS. It accepts a configuration object and a callback as paramaters. A Livefyre object is passed into the callback (both init and auth fields).
 
 ##### Configuration
@@ -158,7 +154,7 @@ This method communicates directly with the 'livefyre/init' endpoint of SUDS. It 
 ###### Optional fields:
 
 - stream_type: livecomments, livechat, liveblog
-- force: has effect in combination with cache enabled. If force set to true, the data won't be readed from the cache even if a valid entry exists, but it will force the call to the webservice to happen.
+- force: has effect in combination with cache enabled. If set to true, the data won't be readed from the cache even if a valid entry exists, but it will force the call to the backend services.
 - section: Override the default mapping based on URL or CAPI with an explicit mapping. Section parameter should be a valid FT metadata term (Primary section)
 - tags: Tags which will be added to the collection in Livefyre
 
@@ -166,7 +162,7 @@ This method communicates directly with the 'livefyre/init' endpoint of SUDS. It 
 ##### Example
 
 ```javascript
-oCommentApi.api.init({
+oCommentApi.api.getLivefyreInitConfig({
     elId: 'dom-id',
     articleId: 'art15123',
     url: 'http://example.com/article/art15123',
@@ -210,7 +206,7 @@ Successful request:
 ```
 
 
-The article based on the articleId and the article's metadata cannot be classified into an internal site (section) of Livefyre:
+If the article based on the articleId and the article's metadata cannot be classified to an internal section of Livefyre:
 
 ```javascript
 {
@@ -222,7 +218,7 @@ The article based on the articleId and the article's metadata cannot be classifi
 
 
 
-<strong>For examples of the auth object please see the `getUserData` method.</strong>
+**For examples of the auth object please see the `getUserData` method.**
 
 
 For more information on the possible init fields of Livefyre, please visit: http://docs.livefyre.com/developers/reference/livefyre-js/#conv-config-object
@@ -233,7 +229,7 @@ For more information on user settings, please visit: http://docs.livefyre.com/pr
 
 
 
-### api.getUserData
+#### api.getUserData
 This method gets the authentication data and user settings. This data is needed for actions that require the user to be authenticated.
 
 ##### Configuration
@@ -247,7 +243,7 @@ This method gets the authentication data and user settings. This data is needed 
 Normal access, without forcing:
 
 ```javascript
-oCommentApi.api.getAuth(function (err, data) {
+oCommentApi.api.getUserData(function (err, data) {
     if (err) {
         throw err;
     }
@@ -260,7 +256,7 @@ oCommentApi.api.getAuth(function (err, data) {
 With force set to true:
 
 ```javascript
-oCommentApi.api.getAuth({
+oCommentApi.api.getUserData({
     force: true
 },
 function (err, data) {
@@ -316,7 +312,7 @@ The authentication service that SUDS is using is down:
 }
 ```
 
-### api.updateUser
+#### api.updateUser
 Updates the user's details in both Livefyre and FT Membership systems (DAM).
 
 ##### Data needed
@@ -368,7 +364,7 @@ Response with an error:
 }
 ```
 
-### api.getComments
+#### api.getComments
 Gets the comments of an article together with collection ID, max event ID (used in Livefyre's system when streaming new data) and authentication data.
 
 ##### Configuration
@@ -440,7 +436,7 @@ The response will be in the following form:
 **For more information about the `streaming object` mentioned above, see the `Streaming` section**
 
 
-### api.postComment
+#### api.postComment
 This is a method with which a comment can be posted to an article's collection.
 
 ##### Configuration
@@ -496,7 +492,7 @@ Response with an error:
 ```
 
 
-### api.deleteComment
+#### api.deleteComment
 
 This is a method with which a comment can be posted to an article's collection.
 
@@ -508,7 +504,7 @@ This is a method with which a comment can be posted to an article's collection.
 
 
 ```javascript
-oCommentApi.api.postComment({
+oCommentApi.api.deleteComment({
     collectionId: 1525234,
     commentId: 16482
 }, function (err, data) {
@@ -543,13 +539,13 @@ Response with an error:
 ```
 
 
-### api.createStream
+#### api.stream.create
 If you want to get any changes in real-time, you can create a streaming channel.
 
 In order to do that, you should call the following function:
 
 ```javascript
-api.createStream(collectionId, {
+api.stream.create(collectionId, {
     callback: function (data) {},
     lastEventId: 5132356345234
 });
@@ -560,10 +556,32 @@ Configuration options:
  - callback: this will be called each time something happens (e.g. new comment, a comment is deleted, etc.)
  - lastEventId: the last event ID from which to fetch new events. This can be obtained by using api.getComments
 
+*Note: For optimization purposes, if a stream already exists for a given collectionId, that stream will be reused, and the provided callback will be added to the callback list of that stream.*
 
-#### Sample responses
+*Limitation: lastEventId is not considered if a stream already exists for a given collectionId.*
 
-##### New comment
+#### api.stream.destroy
+If a stream is not needed anymore, it can be destroyed.
+
+```javascript
+api.stream.destroy(collectionId);
+
+api.stream.destroy(collectionId, {
+    callback: existingCallbackReference
+});
+
+api.stream.destroy(collectionId, existingCallbackReference);
+```
+
+The only mandatory parameter is collectionId.
+There are two possibilities:
+ - a callback is specified: the callback is removed from the existing stream. If there are no more callbacks attached to the stream, the stream is terminated.
+ - a callback is not specified: the stream is terminated with all the callbacks attached to it.
+
+
+##### Sample responses
+
+###### New comment
 
 ```javascript
 {
@@ -582,7 +600,7 @@ Configuration options:
 }
 ```
 
-##### Comment updated
+###### Comment updated
 
 ```javascript
 {
@@ -594,7 +612,7 @@ Configuration options:
 }
 ```
 
-##### Comment deleted
+###### Comment deleted
 
 ```javascript
 {
@@ -605,7 +623,7 @@ Configuration options:
 }
 ```
 
-##### Posting new comments enabled/disabled
+###### Posting new comments enabled/disabled
 
 ```javascript
 {
@@ -614,3 +632,60 @@ Configuration options:
     }
 }
 ```
+
+
+### <div id="caching"></div> Caching
+An optional cache is available to store information in the browser, data like article metadata (information which is needed for Livefyre), user authentication details, Livefyre tokens. If the cache is not enabled, these information will be fetched from the backend services on each request.
+
+#### Enable caching
+In order to enable caching, you should set some module level configuration (any approach mentioned in the 'Global configuration' chapter works):
+
+Example:
+
+```javascript
+oCommentApi.setConfig({
+    "cache": true,
+    "sessionId": 15231
+});
+```
+
+Where `sessionId` is a unique identifier of the current user's session (e.g. FTSession for FT Membership).
+
+#### Clear the cache
+The cache layer uses sessionStorage API to store data. While this is cleared automatically each time the browser is closed, there could be some situations the cache should be cleared explicity.
+
+The cache layer provides a public clear method which will delete all o-comments-api related cache entries from the sessionStorage.
+
+```javascript
+oCommentApi.cache.clear();
+```
+
+There's a possibility to clear just the auth or Livefyre init cache:
+
+```javascript
+oCommentApi.cache.clearAuth();
+```
+
+```javascript
+oCommentApi.cache.clearLivefyreInit();
+```
+
+### <div id="logging"></div> Logging
+Logging can be enabled for debugging purposes. It logs using the global 'console' if available (if not, nothing happens and it degrades gracefully).
+By default logging is disabled.
+
+##### oChat.enableLogging()
+This method enables logging of the module.
+
+##### oChat.disableLogging()
+This method disables logging of the module.
+
+##### oChat.setLoggingLevel(level)
+This method sets the logging level. This could be a number from 0 to 4 (where 0 is debug, 4 is error), or a string from the available methods of 'console' (debug, log, info, warn, error).
+Default is 3 (warn).
+
+## <div id="browser"></div> Browser support 
+Works in accordance with our [support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit)
+
+## <div id="core"></div> Core/Enhanced Experience
+Works only in enhanced experience, or with the polyfill service on older browsers.

@@ -1,65 +1,35 @@
-# comment-ui
+# Introduction
 
 JavaScript module which incorporates common UI elements of the FT commenting system like dialogs, forms, common parts of a commenting widget with DOM manipulation and a unified way to load it.
 
----
+## Contents
 
-## How to use it
-There are two ways of using this module:
+ * <a href="#jsapi">JavaScript API</a>
+     * <a href="#widget">Widget</a>
+     * <a href="#widgetui">Widget UI</a>
+     * <a href="#dialogs">Dialogs</a>
+     * <a href="#templates">Templates</a>
+     * <a href="#i18n">Internationalization</a>
+     * <a href="#logging">Logging</a>
+ * <a href="#sassapi">Sass API</a>
+     * <a href="#fontfamily">Font family</a>
+ * <a href="#browser">Browser support</a>
+ * <a href="#core">Core/enhanced experience</a>
 
-### Standalone
-Run `grunt`, then insert the JS found in the dist folder:
-
-```javascript
-<script src="dist/javascripts/commentUi.min.js"></script>
-```
-
-The module's API can be accessed using `commentUi` in the global scope.
-
-### Bower and browserify
-With bower, simply require the module:
-
-```javascript
-var commentUi = require('comment-ui');
-```
-
-The module should be built using `browserify` (with `debowerify` and `textrequireify` transforms).
-
----
-
-## Logging
-Logging can be enabled for debugging purposes. It logs using the global 'console' if available (if not, nothing happens and it degrades gracefully).
-By default logging is disabled.
-
-###### enableLogging
-This method enables logging of the module.
-
-###### disableLogging
-This method disables logging of the module.
-
-###### setLoggingLevel
-This method sets the logging level. This could be a number from 0 to 4 (where 0 is debug, 4 is error), or a string from the available methods of 'console' (debug, log, info, warn, error).
-Default is 3 (warn).
-
----
-
-## Integrated submodules
-The submodules that are exposed are the following:
-
-### Widget
-Widget is responsible to coordinate getting initialization data, loading resources and initializing the Ui. While this class implements some of the basic functionality (handling errors, loading timeout), it should be extended by providing an implementation for getting the initialization data and loading the resources.
+## <div id="jsapi"></div> JavaScript API
+### <div id="widget"></div> Widget
+Widget is responsible to coordinate getting initialization data, initializing the Ui. While this class implements some of the basic functionality (handling errors, loading timeout), it should be extended by providing an implementation for getting the initialization data.
 
 #### Constructor
 
 ```javascript
-new commentUi.Widget(config);
+new oCommentUi.Widget(config);
 ```
 
 To create an instance, you need to provide a configuration object. This should have the following structure:
 
 ##### Mandatory fields:
 
-- elId: ID of the HTML element in which the widget should be loaded
 - articleId: ID of the article, any string
 - url: canonical URL of the page
 - title: Title of the page
@@ -71,8 +41,7 @@ To create an instance, you need to provide a configuration object. This should h
 #### Example
 
 ```javascript
-new commentUi.Widget({
-    elId: 'container_id',
+new oCommentUi.Widget(el, {
     articleId: 'e113c91c-10d9-11e4-812b-00144feabdc0',
     url: 'http://www.ft.com/cms/s/0/e113c91c-10d9-11e4-812b-00144feabdc0.html',
     title: 'Rolls-Royce seeks to catch-up with rivals on margins - FT.com'
@@ -80,25 +49,22 @@ new commentUi.Widget({
 ```
 
 #### Final methods
-###### load
-This method will initiate the process of loading the resources that are needed to render the widget and the rendering of the UI. This method uses hook methods which are not implemented in this module, but should be implemented in the module that extends it.
-Load will handle errors of the process of loading the widget, also timeout if an error is not clearly available.
+###### init
+This method will initiate the process of loading the initialization data that are needed to render the widget and the rendering of the UI. This method uses hook methods which are not implemented in this module, but should be implemented in the module that extends it.
+`init` will handle errors of the process of loading the widget, also timeout if an error is not available.
 
-This method can be called once (calling it multiple types will have no effect).
+This method can be called once on an instance (calling it multiple types will have no effect).
 
 #### Abstract methods (not implemented in this module)
-###### init
+###### loadInitData
 This method is responsible for gathering data that is needed to initialize the widget (e.g. metadata, site ID, comments, etc.).
 
-###### loadResources
-This method is responsible for loading resources like JavaScript libraries, stylesheets.
-
 ###### render
-This method is responsible for rendering the UI of the widget on the page. Render is called when the initialization process is done and all resources are loaded.
+This method is responsible for rendering the UI of the widget on the page. Render is called when the initialization process is done.
 This method is called using the data gathered during the init process:
 
 ```javascript
-render(initData);
+this.render(initData);
 ```
 
 
@@ -107,7 +73,7 @@ render(initData);
 This method is responsible to handle any error that appears during the initialization.
 
 ```javascript
-onError(errorObject);
+this.onError(errorObject);
 ```
 
 The default implementation clears out the container of the widget and shows the unavailable message template (available using the template object).
@@ -119,24 +85,32 @@ The default implementation clears out the container of the widget and shows the 
 
 
 #### Extend
-Extending of Widget can be done in the following way:
+Extending of the `Widget` can be done in the following way:
 
 ```javascript
 var WidgetExtend = function () {
-    commentUi.Widget.apply(this, arguments);
+    oCommentUi.Widget.apply(this, arguments);
 }
-commentUi.Widget.extend(WidgetExtend);
+oCommentUi.Widget.__extend(WidgetExtend, {eventNamespace}, {classNamespace});
 ```
 
----
+Example from `o-comments`:
 
-### WidgetUi
+```javascript
+var Widget = function () {
+    oCommentUi.Widget.apply(this, arguments);
+}
+oCommentUi.Widget.__extend(Widget, 'oComments', 'o-comments');
+```
+
+
+### <div id="widgetui"></div> Widget UI
 This class is responsible to handle the UI part of a commenting widget. An instance of this is created within an instance of the `Widget`.
 While this implementation has predefined methods, it can be extended with particular UI methods.
 
 #### Constructor
 ```javascript
-new commentUi.WidgetUi(widgetContainer);
+new oCommentUi.WidgetUi(widgetContainer);
 ```
 
 Where `widgetContainer` should be a DOM element in which the widget is loaded.
@@ -156,22 +130,28 @@ Extending of Widget can be done in the following way:
 
 ```javascript
 var WidgetUiExtend = function () {
-    commentUi.WidgetUi.apply(this, arguments);
+    oCommentUi.WidgetUi.apply(this, arguments);
 }
-commentUi.WidgetUi.extend(WidgetUiExtend);
+oCommentUi.WidgetUi.extend(WidgetUiExtend);
 ```
 
----
 
-### userDialogs
-Generic Ui functionality which is common across all istances of the comments. These are mostly dialogs which show on the page and are unrelated of the Widget's container or widget instance.
+
+### <div id="dialogs"></div> Dialogs
+Generic Ui functionality which is common across all istances of the comments. These are mostly dialogs which show on the page and are unrelated to the Widget's container or widget instance.
+
+The features are available on the following object:
+
+```javascript
+oCommentUi.userDialogs
+```
 
 #### Methods
 ###### showSetPseudonymDialog
 Shows a dialog for setting the initial pseudonym (shown when the user doesn't have a pseudonym set).
 
 ```javascript
-commentUi.userDialogs.showSetPseudonymDialog({
+oCommentUi.userDialogs.showSetPseudonymDialog({
     submit: function (formData, callback) {
         // called when the form is submitted
     },
@@ -185,7 +165,7 @@ commentUi.userDialogs.showSetPseudonymDialog({
 Settings dialog where the user can change its pseudonym or email preferences.
 
 ```javascript
-commentUi.userDialogs.showSettingsDialog({
+oCommentUi.userDialogs.showSettingsDialog({
         displayName: 'currentPseudonym',
         settings: {
             emaillikes: 'never'
@@ -229,8 +209,8 @@ commentUi.userDialogs.showInactivityMessage({
 });
 ```
 
-### Parameters
-All functions has the same callback parameter structure, which should be an object with the following fields:
+#### Parameters
+All functions of `userDialogs` has the same callback parameter structure, which should be an object with the following fields:
 
 ###### submit
 <strong>Required.</strong> Function that is called when the form is submitted. As parameters the form data is provided (serialized into an object of key-value pairs), and a callback which should be called with either an error message (if an error occurred) or without parameters if submission is successful.
@@ -252,158 +232,15 @@ callbacks.submit({
 ###### close
 Optional. Function that is called when the dialog is closed.
 
----
 
-### dialog.Dialog
-Dialog built within the DOM with custom content. Can be opened either with modal background or without it.
-
-#### Constructor
-```javascript
-new commentUi.dialog.Dialog(htmlOrForm, userOptions)
-```
-
-Where:
- 
- - htmlOrForm: plain HTML that is embedded within the dialog, or an instance of `form.Form`.
- - userOptions: object with the following optional fields:
-
-     + modal: whether a modal overlay should be displayed or not. Default is true.
-     + title: Title of the dialog
-
-#### Methods
-
-###### on
-Listen to events. The only available event within the module is 'close'.
-
-###### off
-Removes the event listeners.
-
-###### open
-Opens the dialog. This will render the HTML and will embed at the end of the `<body>` element.
-
-###### close
-Closes the dialog and removes any HTML created and insterted in the `<body>` element.
-
-###### show
-Shows the dialog if it was already opened but is in a hidden state.
-
-###### hide
-Hides an already opened dialog without removing the HTML from the `<body>` element.
-
-###### enableButtons
-Enables the buttons by removing the disable attributes.
-
-###### disableButtons
-Disables the buttons by adding disable attributes.
-
-###### getContainer
-Returns the container HTML element.
-
-
----
-
-### dialog.modal
-Creates a modal overlay background which masks the whole page.
-
-#### Methods
-###### open
-Creates the HTML needed and inserts as the last element in the <body>.
-
-###### close
-Closes the modal and removes the HTML created.
-
-###### on
-Listen to events. The only available event is 'click'.
-
-###### off
-Remove the listeners.
-
-
----
-
-### formBuilder.Form
-Form is a helper for creating a form. It handles constructing the form element, generating buttons, forwarding submit and cancel events.
-
-#### Constructor
-
-```javascript
-new Form(config);
-```
-
-Where config should have the following structure:
-
-```javascript
-{
-    name: 'name of the form element',
-    method: 'method of the form element',
-    action: 'action of the form element',
-    items: [
-        'any html string',
-        {
-            type: 'a type of an existing form fragment',
-            config1: 'any config properties which are used by the form fragment'
-        }
-    ],
-    buttons: [
-        {
-            type: 'button|submitButton|cancelButton|dismiss',
-            label: 'label of the button/dismiss checkbox'
-        }
-    ]
-}
-```
-
-#### Methods
-###### on
-Listen on submit/cancel events.
-
-###### off
-Remove listeners.
-
-###### render
-Returns an HTML fragment of the form built using the initialization parameters.
-The response of this method can be used in the native `appendChild` function.
-
-###### serialize
-Returns the data of the form in a JSON format.
-
-###### showError
-Shows an error within the form.
-
-###### clearError
-Clears the error messages.
-
-
-### formBuild.formFragments
-This helper module contains predefined form fragments that can be used within a Form instance.
-
-#### Methods
-###### initialPseudonym
-Form fragment for setting the initial pseudonym.
-
-###### changePseudonym
-Form fragment for changing an existing pseudonym.
-
-###### emailSettings
-Form fragment for changing the email preferences.
-
-###### emailSettingsStandalone
-Form fragment for the email alert dialog where email settings is the only fragment that is shown.
-
-###### followExplanation
-Explanation of the Follow functionality with images.
-
-###### commentingSettingsExplanation
-Explanation of changing the settings with images.
-
-###### sessionExpired
-Session expired fragment with sign in link.
-
-
----
-
-### templates
+### <div id="templates"></div> Templates
 This contains common Mustache templates which are compiled and can be rendered with custom data.
+
+The templates are available on the following object:
+
+```javascript
+oCommentUi.templates
+```
 
 Templates that are available:
 
@@ -430,12 +267,17 @@ Clearfix. Separates rows horizontally that have float.
 
 These templates can be overriden on a global level.
 
----
 
-### i18n
-i18n is responsible to provide common messages/texts that are used within the commenting application.
+### <div id="i18n"></div> Internationalization
+Internationalization is responsible to provide common messages/texts that are used within the commenting application.
 
-It exposes the following objects:
+The strings are available on the following object:
+
+```javascript
+oCommentUi.i18n
+```
+
+It exposes the following:
 ###### texts
 Contains generic messages:
 
@@ -446,3 +288,34 @@ Contains generic messages:
 
 ###### serviceMessageOverrides
 Some error messages that come from the web services are not very user friendly. These messages are mapped to more user friendly versions that can be shown to the user.
+
+### <div id="logging"></div> Logging
+Logging can be enabled for debugging purposes. It logs using the global 'console' if available (if not, nothing happens and it degrades gracefully).
+By default logging is disabled.
+
+##### oChat.enableLogging()
+This method enables logging of the module.
+
+##### oChat.disableLogging()
+This method disables logging of the module.
+
+##### oChat.setLoggingLevel(level)
+This method sets the logging level. This could be a number from 0 to 4 (where 0 is debug, 4 is error), or a string from the available methods of 'console' (debug, log, info, warn, error).
+Default is 3 (warn).
+
+## <div id="sassapi"></div> Sass API
+### <div id="fontfamily"></div> Font-family
+There is a default font-family set for o-comment-ui: `BentonSans, sans-serif`
+*Please note that the font itself is not loaded by this module, this should be done by the product.*
+
+In order to override the default font, set a value for the following variable:
+
+```scss
+$o-comment-ui-font-family: font1, font2;
+```
+
+## <div id="browser"></div> Browser support 
+Works in accordance with our [support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit)
+
+## <div id="core"></div> Core/Enhanced Experience
+Only the enhanced experience offers any kind of commenting functionality. Core functionality will be added in due course.
