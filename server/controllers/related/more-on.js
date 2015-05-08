@@ -51,9 +51,7 @@ module.exports = function (req, res, next) {
 					}
 					return Promise.all(promises);
 				})
-				.filter(function (promise) {
-					return promise;
-				});
+				.filter(_.identity);
 
 			if (!moreOnPromises.length) {
 				throw new Error('No related');
@@ -88,8 +86,7 @@ module.exports = function (req, res, next) {
 					} else {
 						promises.push(api.content({
 								uuid: extractUuid(articleModels[0].mainImage),
-								type: 'ImageSet',
-								useElasticSearch: res.locals.flags.elasticSearchItemGet
+								type: 'ImageSet'
 							})
 							.then(function (imageSet) {
 								articleModels[0].image = resize(
@@ -106,9 +103,7 @@ module.exports = function (req, res, next) {
 					}
 					return Promise.all(promises);
 				})
-				.filter(function (promise) {
-					return promise;
-				});
+				.filter(_.identity);
 
 			if (!imagePromises.length) {
 				throw new Error('No related');
@@ -133,18 +128,19 @@ module.exports = function (req, res, next) {
 					var otherArticleModels = _.flatten(results
 						.slice(0, index)
 						.map(function (result) { return result[0]; }));
+					// dedupe
 					var dedupedArticles = _.filter(articleModels, function (articleModel) {
 						return !otherArticleModels.find(function (otherArticleModel) {
 							return otherArticleModel.id === articleModel.id;
 						});
 					});
-					return {
-						// dedupe
+					return dedupedArticles.length ? {
 						articles: dedupedArticles,
 						topic: topicModel,
 						hasMainImage: articleModels[0].image
-					};
-				});
+					} : null;
+				})
+				.filter(_.identity);
 
 			res.render('related/more-on', {
 				moreOns: moreOns
