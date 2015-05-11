@@ -28,9 +28,20 @@ exports.testData = {
 					1400
                 ]
             },
-			"article_header": {
-				"name":"article_header",
-				"css":'.article__header-inner',
+			"stand-first": {
+				"name":"stand-first",
+				"css":'.article__stand-first',
+				"widths":[
+					350,
+					600,
+					900,
+					1000,
+					1400
+				]
+			},
+			"metadata": {
+				"name":"metadata",
+				"css":'.article__meta',
 				"widths":[
 					350,
 					600,
