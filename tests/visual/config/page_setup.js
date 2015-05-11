@@ -11,7 +11,7 @@ exports.testData = {
         "elements":{
             "header_logo": {
                 "name":"header_logo",
-                "css":'a[data-trackable=logo]',
+                "css":'.next-header__logo--ft',
                 "widths":[
                     500,
                     1000,
@@ -35,7 +35,7 @@ exports.testData = {
         "elements":{
             "header_logo": {
                 "name":"header_logo",
-                "css":'a[data-trackable=logo]',
+                "css":'.next-header__logo--ft',
                 "widths":[
                     500,
                     1000,
