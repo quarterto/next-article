@@ -162,7 +162,8 @@ module.exports = function(req, res, next) {
 			if (err instanceof fetchres.BadServerResponseError) {
 				api.contentLegacy({
 						uuid: req.params.id,
-						useElasticSearch: res.locals.flags.elasticSearchItemGet
+						useElasticSearch: false, // TODO: reinstate res.locals.flags.elasticSearchItemGet after talking to @richard-still-ft about plain versions…
+						bodyFormat: 'plain'
 					})
 						.then(function(data) {
 							if (res.locals.flags.articleCapiV1Fallback) {
