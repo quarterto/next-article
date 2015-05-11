@@ -1,7 +1,9 @@
 "use strict";
 
-// define each page you want to test, which elements you want to check on each page, and
+// Define each page you want to test, which elements you want to check on each page, and
 // at which browser widths those elements should appear
+// One process is started per page/width combination, so if you can pick a width that's already
+// in play, it will save resources.
 
 exports.testData = {
     "article_with_image":{
@@ -36,17 +38,6 @@ exports.testData = {
 					1000,
 					1400
 				]
-			},
-			"article_main_image": {
-				"name":"article_main_image",
-				"css":'.article__image.ng-media',
-				"widths":[
-					350,
-					500,
-					900,
-					1000,
-					1400
-				]
 			}
         }
     },
@@ -54,17 +45,14 @@ exports.testData = {
         "name": "article_with_video",
         "path":"05faa536-d3ab-11e4-a9d3-00144feab7de",
         "elements":{
-            "article_video": {
-                "name":"article_video",
-                "css":'.article__video-wrapper',
-                "widths":[
-					350,
+			"header_logo": {
+				"name":"header_logo",
+				"css":'.next-header__logo--ft',
+				"widths":[
 					500,
-					900,
-					1000,
 					1400
-                ]
-            }
+				]
+			}
         }
     }
 };
