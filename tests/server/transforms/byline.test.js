@@ -12,13 +12,13 @@ describe('Byline', function () {
 			item: {
 				metadata: {
 					authors: [{
-						term: { name: "George Parker" }
+						 term: { id: "ABCD-efhsdf", name: "George Parker" }
 					}]
 				}
 			}
 		};
 
-		bylineTransform(byline, article).should.equal('<a class="article__author ng-title-link" href="/stream/authors/George Parker" data-trackable="author">George Parker</a>');
+		bylineTransform(byline, article).should.equal('<a class="article__author ng-title-link" href="/stream/authors/ABCD-efhsdf" data-trackable="author">George Parker</a>');
 	});
 
 	it('should wrap multiple authors in links', function() {
@@ -28,10 +28,10 @@ describe('Byline', function () {
 				metadata: {
 					authors: [
 						{
-							term: { name: "George Parker" }
+							term: { id: "ABCD-efhsdf", name: "George Parker" }
 						},
 						{
-							term: { name: "Chris Giles" }
+							term: { id: "OBCD-efhsdf", name: "Chris Giles" }
 						}
 					]
 				}
@@ -39,9 +39,9 @@ describe('Byline', function () {
 		};
 
 		bylineTransform(byline, article).should.equal(
-			'<a class="article__author ng-title-link" href="/stream/authors/George Parker" data-trackable="author">George Parker</a>' +
+			'<a class="article__author ng-title-link" href="/stream/authors/ABCD-efhsdf" data-trackable="author">George Parker</a>' +
 			' and ' +
-			'<a class="article__author ng-title-link" href="/stream/authors/Chris Giles" data-trackable="author">Chris Giles</a>'
+			'<a class="article__author ng-title-link" href="/stream/authors/OBCD-efhsdf" data-trackable="author">Chris Giles</a>'
 		);
 	});
 

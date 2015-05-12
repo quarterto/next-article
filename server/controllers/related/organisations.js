@@ -94,7 +94,7 @@ module.exports = function(req, res, next) {
 									name: relation.name,
 									url: res.locals.flags.semanticStreams
 										? '/organisations/' + extractUuid(organisation.id)
-										: '/stream/organisations/' + relation.name
+										: '/stream/organisationsId/' + relation.id
 								};
 								// get the stock id
 								relation.attributes.some(function (attribute) {
