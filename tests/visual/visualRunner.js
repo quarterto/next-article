@@ -24,7 +24,6 @@ var github = new GitHubApi({
 // env variables
 var pr = process.env.TRAVIS_PULL_REQUEST;
 var commit = process.env.GIT_HASH;
-var commitLong = process.env.GIT_LONG_HASH;
 var gitHubOauth = process.env.GITHUB_OAUTH;
 
 // parameters and config data -- assumes file lives in tests/visual/config/
