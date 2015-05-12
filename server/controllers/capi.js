@@ -97,7 +97,7 @@ module.exports = function(req, res, next) {
 						try {
 							return {
 								title: articleV1.item.metadata.primaryTheme.term.name,
-								url: '/stream/' + articleV1.item.metadata.primaryTheme.term.taxonomy + '/' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name),
+								url: '/stream/' + articleV1.item.metadata.primaryTheme.term.taxonomy + 'Id/' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.id),
 								conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + ':"' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '"'
 							};
 						} catch (e) {

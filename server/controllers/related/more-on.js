@@ -117,12 +117,13 @@ module.exports = function (req, res, next) {
 					var articleModels = result[0];
 					var topic = topics[index];
 					var topicModel = {
+						id: topic.term.id,
 						name: topic.term.name,
 						taxonomy: topic.term.taxonomy
 					};
 					topicModel.url = topic.uuid ?
 						topicModel.taxonomy + '/' + topic.uuid :
-						'/stream/' + encodeURIComponent(topicModel.taxonomy) + '/' + encodeURIComponent(topicModel.name);
+						'/stream/' + encodeURIComponent(topicModel.taxonomy) + 'Id/' + encodeURIComponent(topicModel.id);
 					topicModel.isAuthor = topicModel.taxonomy === 'authors';
 					topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
 					var otherArticleModels = _.flatten(results
