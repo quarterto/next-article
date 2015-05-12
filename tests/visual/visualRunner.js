@@ -124,7 +124,7 @@ startImageDiffs()
 
 			github.issues.createComment({
 				user: "Financial-Times",
-				repo: "grumman",
+				repo: "next-grumman",
 				number: pr,
 				body: "Image diffs found between branch and production" +
 				"\nSee" +
