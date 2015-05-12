@@ -117,6 +117,7 @@ module.exports = function (req, res, next) {
 					var articleModels = result[0];
 					var topic = topics[index];
 					var topicModel = {
+						id: topic.term.id,
 						name: topic.term.name,
 						taxonomy: topic.term.taxonomy
 					};
