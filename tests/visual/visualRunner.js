@@ -122,14 +122,19 @@ startImageDiffs()
 				token: gitHubOauth
 			});
 
-			github.pullRequests.createComment({
+			github.issues.createComment({
 				user: "Financial-Times",
 				repo: "grumman",
 				number: pr,
 				body: "Image diffs found between branch and production" +
 				"\nSee" +
-				"\n\n" + aws_fails_index,
-				commit_id: commitLong
+				"\n\n" + aws_fails_index
+			},function(err,data){
+				if(err){
+					console.log("Github posting error: " + err);
+				}else{
+					console.log(data);
+				}
 			});
 		} else {
 			console.log("No comments to make to Pull Request");
