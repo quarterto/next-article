@@ -36,7 +36,7 @@ module.exports = function (article, articleV1, flags) {
 			.map(function (tag) {
 				return {
 					name: tag.term.name,
-					url: '/stream/' + tag.term.taxonomy + '/' + tag.term.id
+					url: '/stream/' + tag.term.taxonomy + 'Id/' + tag.term.id
 				};
 			})
 			.value() : [];
