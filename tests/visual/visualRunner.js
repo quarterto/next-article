@@ -37,13 +37,14 @@ var page;
 var screenshots;
 var failures;
 var date = new Date();
-var current_day = getDayName(date);
-var timeString = date.getUTCHours() + "h"
-	+ date.getUTCMinutes() + "m"
-	+ date.getUTCMilliseconds() + "ms";
+var dateString = date.getUTCFullYear() + "y"
+	+ date.getUTCMonth() + "m"
+	+ date.getUTCDate() + "d"
+	+ date.getUTCHours() + "h"
+	+ date.getUTCMinutes() + "m";
 
-var aws_shot_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/screenshots/";
-var aws_fail_dest = "image_diffs/" + prod_data.app_name + "/" + current_day + "/" + timeString + "__" + commit + "/failures/";
+var aws_shot_dest = "image_diffs/" + prod_data.app_name + "/" + dateString + "__" + commit + "/screenshots/";
+var aws_fail_dest = "image_diffs/" + prod_data.app_name + "/" + dateString + "__" + commit + "/failures/";
 var aws_shots_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_shot_dest + "index.html";
 var aws_fails_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_fail_dest + "index.html";
 
@@ -232,18 +233,6 @@ function collectWidths(json) {
 		}
 	}
 	return compiledWidths;
-}
-
-function getDayName(date) {
-	var weekday = new Array(7);
-	weekday[0] = "Sunday";
-	weekday[1] = "Monday";
-	weekday[2] = "Tuesday";
-	weekday[3] = "Wednesday";
-	weekday[4] = "Thursday";
-	weekday[5] = "Friday";
-	weekday[6] = "Saturday";
-	return weekday[date.getDay()].toLowerCase();
 }
 
 function buildIndexPage(screenshots) {
