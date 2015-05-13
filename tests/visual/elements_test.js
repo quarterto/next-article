@@ -8,6 +8,7 @@ var compares = [];
 var elements = JSON.parse(casper.cli.get('elements'));
 var pageName = casper.cli.get('pagename');
 var path = casper.cli.get('path');
+var wait_for = casper.cli.get('waitfor');
 var width = casper.cli.get('width') || 800;
 var height = casper.cli.get('height') || 1000;
 var testURL = casper.cli.get('testurl') + "/" + path;
@@ -58,7 +59,8 @@ casper.test.begin('Next visual regression tests', function (test) {
 
 	casper.then(function(){
 		console.log(baseURL);
-		waitForJStoLoad;
+		waitForJStoLoad();
+		waitUntilLastElementVisible();
 	});
 
     phantomcss.getElementShots(pageName,elements,'base',width,height);
@@ -69,10 +71,11 @@ casper.test.begin('Next visual regression tests', function (test) {
 
 	casper.then(function(){
 		console.log(testURL);
-		waitForJStoLoad;
+		waitForJStoLoad();
+		waitUntilLastElementVisible();
 	});
 
-    phantomcss.getElementShots(pageName,elements,'test',width,height);
+	phantomcss.getElementShots(pageName,elements,'test',width,height);
 
 
     // make comparisons
@@ -108,6 +111,14 @@ casper.test.begin('Next visual regression tests', function (test) {
 		},function onTimeout(){
 			console.log("Timed Out loading js: was there a js failure?");
 		},5000);
+	}
+
+	function waitUntilLastElementVisible(){
+		casper.waitUntilVisible(wait_for, function(){
+		},function(){
+			console.log("Timed out finding: " + wait_for);
+		},20000);
+
 	}
 
 });
