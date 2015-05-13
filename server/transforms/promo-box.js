@@ -5,6 +5,7 @@ var $ = require('cheerio');
 module.exports = function(index, el) {
 	var $el = $(el);
 	var $promoBox = $('<div></div')
+		.attr('data-trackable', 'promobox')
 		.addClass('article__promo-box ng-pull-out ng-inline-element');
 	var $promoBoxTitle = $el.find('promo-title');
 	var $promoBoxHeadline = $el.find('promo-headline');
