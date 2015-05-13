@@ -56,7 +56,10 @@ casper.test.begin('Next visual regression tests', function (test) {
 
     casper.viewport(width,height);
 
-	casper.then(waitForJStoLoad);
+	casper.then(function(){
+		console.log(baseURL);
+		waitForJStoLoad;
+	});
 
     phantomcss.getElementShots(pageName,elements,'base',width,height);
 
@@ -64,7 +67,10 @@ casper.test.begin('Next visual regression tests', function (test) {
     // open second url
     casper.thenOpen(testURL);
 
-	casper.then(waitForJStoLoad);
+	casper.then(function(){
+		console.log(testURL);
+		waitForJStoLoad;
+	});
 
     phantomcss.getElementShots(pageName,elements,'test',width,height);
 
