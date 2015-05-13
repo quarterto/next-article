@@ -43,16 +43,28 @@ casper.test.begin('Next visual regression tests', function (test) {
 
     });
 
+	// set up casper a bit
+	casper.on("page.error", function(msg, trace) {
+		this.echo("Error: " + msg, "ERROR");
+	});
+
+	casper.options.pageSettings.javascriptEnabled = true;
+
+
     // open first url
     casper.start(baseURL);
 
     casper.viewport(width,height);
+
+	casper.then(waitForJStoLoad);
 
     phantomcss.getElementShots(pageName,elements,'base',width,height);
 
 
     // open second url
     casper.thenOpen(testURL);
+
+	casper.then(waitForJStoLoad);
 
     phantomcss.getElementShots(pageName,elements,'test',width,height);
 
@@ -63,8 +75,6 @@ casper.test.begin('Next visual regression tests', function (test) {
     casper.run(function () {
         console.log('\nFinished testing');
 		casper.exit();
-        //phantomcss.getExitStatus();
-        //casper.test.done(0);
     });
 
 
@@ -82,5 +92,16 @@ casper.test.begin('Next visual regression tests', function (test) {
         }
     }
 
+	function waitForJStoLoad(){
+		casper.waitFor(function(){
+			var js = (casper.evaluate(function(){
+				return document.querySelector('html').className;
+			}));
+			return js.indexOf('success') !== -1;
+		},function then(){
+		},function onTimeout(){
+			console.log("Timed Out loading js: was there a js failure?");
+		},5000);
+	}
 
 });
