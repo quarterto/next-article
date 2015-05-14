@@ -104,7 +104,7 @@ module.exports = function(req, res, next) {
 									name: relations[index].term.name,
 									url: res.locals.flags.semanticStreams
 										? '/people/' + extractUuid(person.id)
-										: '/stream/people/' + relations[index].term.name,
+										: '/stream/peopleId/' + relations[index].term.id,
 									role: person && getCurrentRole(person)
 								};
 							});
