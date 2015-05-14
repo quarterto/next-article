@@ -82,7 +82,10 @@
 				</div>
 			{{/if}}
 
-			{{> anonymous_barrier}}
+			{{#if @root.barrier.type}}
+				{{> anonymous_barrier}}
+			{{/if}}
+		
 
 			{{#if @root.flags.recommend}}
 				<div>
