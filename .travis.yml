@@ -7,4 +7,3 @@ node_js:
 - '0.12.2'
 after_success:
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && make deploy
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "next-article" && make deploy
