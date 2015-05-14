@@ -134,6 +134,10 @@ $header-offset: 30px;
 	top: 2px !important;
 }
 
+.myft-ui--follow .myft-ui__button {
+	@include nextButtonsFollowLight();
+}
+
 .article__actions__action--comments:before {
 	@include nextIcon(comment, #ffffff, 12);
 	position: relative;
