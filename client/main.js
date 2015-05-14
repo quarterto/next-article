@@ -6,7 +6,6 @@ var myFtClient = require('next-myft-client');
 
 var setup = require('next-js-setup');
 var header = require('next-header');
-var messaging = require('next-messaging');
 var video = require('next-video');
 
 var slideshow = require('./components/slideshow/main');
@@ -30,8 +29,6 @@ setup.bootstrap(function(result) {
 			myFtClient.notifications.clear([uuid]);
 		}
 	}
-
-	messaging.init();
 
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
