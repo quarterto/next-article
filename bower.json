@@ -2,7 +2,7 @@
   "name": "next-grumman",
   "dependencies": {
     "o-fonts": "^1.6.4",
-    "next-feature-flags-client": "^v6.0.0",
+    "next-feature-flags-client": "^v7.0.1",
     "next-ads-component": "Financial-Times/next-ads-component#^5.0.0",
     "next-barrier-component": "Financial-Times/next-barrier-component#^3.0.0",
     "next-header": "^9.0.0",
@@ -26,6 +26,5 @@
     "o-hoverable": "^1.1.0",
     "next-user-model-component": "^1.0.0",
     "next-welcome": "^2.0.0",
-    "next-feature-flags-client": "^v6.0.0"
   }
 }
