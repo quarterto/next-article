@@ -58,7 +58,7 @@ casper.test.begin('Next visual regression tests', function (test) {
 			headers: {
 				'Cookie': 'next-flags=javascript:off'
 			}
-		})
+		});
 	});
 
     casper.viewport(width,height);
@@ -74,7 +74,7 @@ casper.test.begin('Next visual regression tests', function (test) {
     casper.thenOpen(testURL,{
 		method: 'get',
 		headers: {
-			'X-flags':'javascript:off'
+			'X-flags': 'javascript' + ':'.toLowerCase() + 'off'
 		}
 	});
 
