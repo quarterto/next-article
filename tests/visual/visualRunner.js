@@ -159,7 +159,6 @@ function startImageDiffs() {
 			var prodSuffix = prod_data.canary;
 			var page_name = page_data[page].name;
 			var page_path = page_data[page].path;
-			var wait_for = prod_data.wait_for_element;
 			var widths = collectWidths(page_data[page]);
 			for (var x = 0; x < widths.length; x++) {
 				var width = widths[x];
@@ -172,12 +171,11 @@ function startImageDiffs() {
 					"\ntestURL    : " + testURL +
 					"\nprodhost   : " + prodHost +
 					"\nprodsuffix : " + prodSuffix +
-					"\nwaitfor    : " + wait_for +
 					"\nelements " + JSON.stringify(elements);
 
 				console.log("\nStarting test for " + test);
 
-				var promise = startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix, wait_for);
+				var promise = startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix);
 				imageDiffPromises.push(promise);
 			}
 		}
@@ -187,7 +185,7 @@ function startImageDiffs() {
 
 }
 
-function startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix, wait_for) {
+function startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix) {
 	var args = [
 		"--width='" + width + "'",
 		"--height=1000",
@@ -197,7 +195,6 @@ function startTestProcess(width, page_name, page_path, elements, testURL, prodHo
 		"--testurl='" + testURL + "'",
 		"--prodhost='" + prodHost + "'",
 		"--prodsuffix='" + prodSuffix + "'",
-		"--waitfor='" + wait_for + "'",
 		"test",
 		"tests/visual/elements_test.js"
 	].join(' ');
