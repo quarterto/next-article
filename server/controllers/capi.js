@@ -41,78 +41,66 @@ module.exports = function(req, res, next) {
 
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function(articles) {
+			res.set(cacheControl);
+
 			var articleV1 = articles[0];
 			var article = articles[1];
+			var $ = bodyTransform(article.bodyXML);
+			var $subheaders = $('.ft-subhead')
+				.attr('id', addSubheaderIds)
+				.replaceWith(subheadersTransform);
+			var primaryTheme = (function() {
+				try {
+					return {
+						title: articleV1.item.metadata.primaryTheme.term.name,
+						url: '/stream/' + articleV1.item.metadata.primaryTheme.term.taxonomy + 'Id/' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.id),
+						conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + ':"' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '"'
+					};
+				} catch (e) {
+					return undefined;
+				}
+			})();
 
-			res.vary(['Accept-Encoding', 'Accept']);
-			res.set(cacheControl);
-			switch(req.accepts(['html', 'json'])) {
-				case 'html':
-					var $ = bodyTransform(article.bodyXML);
-					var $subheaders = $('.ft-subhead')
-						.attr('id', addSubheaderIds)
-						.replaceWith(subheadersTransform);
+			// Some posts (e.g. FastFT are only available in CAPI v2)
+			// TODO: Replace with something in CAPI v2
+			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
-					var primaryTheme = (function() {
-						try {
+			// Update the images (resize, add image captions, etc)
+			return images($, res.locals.flags)
+				.then(function($) {
+					var articleBody = $.html();
+					var comments = {};
+					if (res.locals.barrier) {
+						comments = null;
+						articleBody = null;
+					}
+
+					return res.render('layout', {
+						comments: comments,
+						article: article,
+						articleV1: articleV1 && articleV1.item,
+						id: extractUuid(article.id),
+						// HACK - Force the last word in the title never to be an ‘orphan’
+						title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
+						byline: bylineTransform(article.byline, articleV1),
+						tags: extractTags(article, articleV1, res.locals.flags),
+						body: articleBody,
+						subheaders: $subheaders.map(function() {
+							var $subhead = $(this);
 							return {
-								title: articleV1.item.metadata.primaryTheme.term.name,
-								url: '/stream/' + articleV1.item.metadata.primaryTheme.term.taxonomy + 'Id/' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.id),
-								conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + ':"' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '"'
+								text: $subhead.find('.article__subhead__title').text(),
+								id: $subhead.attr('id')
 							};
-						} catch (e) {
-							return undefined;
-						}
-					})();
-
-					// Some posts (e.g. FastFT are only available in CAPI v2)
-					// TODO: Replace with something in CAPI v2
-					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
-
-					// Update the images (resize, add image captions, etc)
-					return images($, res.locals.flags)
-						.then(function($) {
-							var articleBody = $.html();
-							var comments = {};
-							if (res.locals.barrier) {
-								comments = null;
-								articleBody = null;
-							}
-
-							return res.render('layout', {
-								comments: comments,
-								article: article,
-								articleV1: articleV1 && articleV1.item,
-								id: extractUuid(article.id),
-								// HACK - Force the last word in the title never to be an ‘orphan’
-								title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
-								byline: bylineTransform(article.byline, articleV1),
-								tags: extractTags(article, articleV1, res.locals.flags),
-								body: articleBody,
-								subheaders: $subheaders.map(function() {
-									var $subhead = $(this);
-									return {
-										text: $subhead.find('.article__subhead__title').text(),
-										id: $subhead.attr('id')
-									};
-								}).get(),
-								showTOC: res.locals.flags.articleTOC && $subheaders.length > 2,
-								isColumnist: isColumnist,
-								// if there's a main image, or slideshow or video, we overlap them on the header
-								headerOverlap:
-									$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length,
-								layout: 'wrapper',
-								primaryTheme: primaryTheme
-							});
-						});
-
-				case 'json':
-					res.set(cacheControl);
-					res.set('Content-Type: application/json');
-					res.send(JSON.stringify(article, undefined, 2));
-					res.end();
-					break;
-			}
+						}).get(),
+						showTOC: res.locals.flags.articleTOC && $subheaders.length > 2,
+						isColumnist: isColumnist,
+						// if there's a main image, or slideshow or video, we overlap them on the header
+						headerOverlap:
+							$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length,
+						layout: 'wrapper',
+						primaryTheme: primaryTheme
+					});
+				});
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
