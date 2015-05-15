@@ -55,7 +55,7 @@ tidy:
 
 provision:
 	nbt provision ${TEST_HOST}
-	nbt configure ft-next-article-v002 ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
+	nbt configure ft-next-article ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_HOST}
 	make smoke
