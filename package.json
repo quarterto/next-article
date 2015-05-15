@@ -4,7 +4,7 @@
   "description": "Render a Next FT Article",
   "main": "app.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test -j 3"
   },
   "dependencies": {
     "array.prototype.find": "^1.0.0",
