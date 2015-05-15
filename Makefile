@@ -48,6 +48,7 @@ deploy:
 	nbt configure
 	nbt deploy-hashed-assets
 	nbt deploy
+	nbt scale
 
 tidy:
 	nbt destroy ${TEST_HOST}
