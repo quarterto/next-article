@@ -1,8 +1,7 @@
-/*global it, describe, before, afterEach*/
+/*global it, describe, before*/
 'use strict';
 
 var expect = require('chai').expect;
-var nock = require('nock');
 var request = require('request');
 
 var helpers = require('./helpers');
@@ -10,14 +9,7 @@ var helpers = require('./helpers');
 describe('Smoke Tests: ', function() {
 
 	before(function() {
-		nock('http://ft-next-api-feature-flags.herokuapp.com')
-			.get('/__flags.json')
-			.reply(200, require('../fixtures/flags'));
 		return require('../../server/app').listen;
-	});
-
-	afterEach(function () {
-		nock.cleanAll();
 	});
 
 	describe('Assets', function() {

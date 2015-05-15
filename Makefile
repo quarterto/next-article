@@ -10,8 +10,12 @@ ELASTIC_SEARCH_HOST := $(shell cat ~/.elastic_search_host 2>/dev/null)
 install:
 	origami-build-tools install --verbose
 
-test: build-production
+test: build-production unit-test verify
+
+verify:
 	nbt verify
+
+unit-test:
 	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha tests/server/ --recursive
 
 test-debug:
@@ -62,6 +66,3 @@ provision:
 
 smoke:
 	export TEST_URL=${TEST_URL}; nbt nightwatch tests/browser/tests/*
-
-update-flags:
-	 curl http://next.ft.com/__flags.json > tests/fixtures/flags.json
