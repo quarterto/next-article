@@ -24,6 +24,7 @@
     "o-assets": "^0.4.2",
     "o-hoverable": "^1.1.0",
     "next-user-model-component": "^1.0.0",
-    "next-welcome": "^2.0.0"
+    "next-welcome": "^2.0.0",
+    "o-fonts": "^2.0.0"
   }
 }
