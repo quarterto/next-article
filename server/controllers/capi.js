@@ -1,28 +1,17 @@
 'use strict';
 
 var fetchres = require('fetchres');
-var cheerio = require('cheerio');
 var logger = require('ft-next-logger');
 var api = require('next-ft-api-client');
-var pullQuotesTransform = require('../transforms/pull-quotes');
-var bigNumberTransform = require('../transforms/big-number');
-var ftContentTransform = require('../transforms/ft-content');
-var relativeLinksTransform = require('../transforms/relative-links');
-var slideshowTransform = require('../transforms/slideshow');
-var trimmedLinksTransform = require('../transforms/trimmed-links');
 var subheadersTransform = require('../transforms/subheaders');
 var addSubheaderIds = require('../transforms/add-subheader-ids');
-var replaceHrs = require('../transforms/replace-hrs');
-var replaceEllipses = require('../transforms/replace-ellipses');
-var externalImgTransform = require('../transforms/external-img');
-var removeBodyTransform = require('../transforms/remove-body');
-var images = require('../transforms/images');
 var bylineTransform = require('../transforms/byline');
-var promoBoxTransform = require('../transforms/promo-box');
-var videoTransform = require('../transforms/video');
 var cacheControl = require('../utils/cache-control');
 var extractTags = require('../utils/extract-tags');
 var extractUuid = require('../utils/extract-uuid');
+var images = require('../transforms/images');
+
+var bodyTransform = require('../transforms/body');
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -59,41 +48,12 @@ module.exports = function(req, res, next) {
 			res.set(cacheControl);
 			switch(req.accepts(['html', 'json'])) {
 				case 'html':
-					var body = article.bodyXML;
-
-					// HACK around a bug in the content api by replacing <br></br> with <br>
-					// See: http://api.ft.com/content/e80e2706-c7ec-11e4-8210-00144feab7de
-					body = body.replace(/<br><\/br>/g, '<br>');
-					body = replaceEllipses(body);
-					body = replaceHrs(body);
-					body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
-					var $ = cheerio.load(body);
-
-					$('a[href$="#slide0"]').replaceWith(slideshowTransform);
-					$('big-number').replaceWith(bigNumberTransform);
-					$('img').replaceWith(externalImgTransform);
-					$('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
-					$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
-					$('pull-quote').replaceWith(pullQuotesTransform);
-					$('promo-box').replaceWith(promoBoxTransform);
-					$('a[href^="http://video.ft.com/"]:empty').replaceWith(videoTransform);
-
-					// insert inline related
-					if ($('body > p').length >= 6) {
-						var paraHook = $('body > p').get(3);
-						$(paraHook).after('<div class="js-more-on-inline" data-trackable="more-on-inline"></div>');
-					}
-
-					$('body').replaceWith(removeBodyTransform);
-					$('a').replaceWith(relativeLinksTransform);
-					$('a').replaceWith(trimmedLinksTransform);
-					$('a').attr('data-trackable', 'link');
-
+					var $ = bodyTransform(article.bodyXML);
 					var $subheaders = $('.ft-subhead')
 						.attr('id', addSubheaderIds)
 						.replaceWith(subheadersTransform);
 
-					var primaryTheme = (function () {
+					var primaryTheme = (function() {
 						try {
 							return {
 								title: articleV1.item.metadata.primaryTheme.term.name,
@@ -109,15 +69,11 @@ module.exports = function(req, res, next) {
 					// TODO: Replace with something in CAPI v2
 					var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
-
-
 					// Update the images (resize, add image captions, etc)
 					return images($, res.locals.flags)
-						.then(function ($) {
-
+						.then(function($) {
 							var articleBody = $.html();
 							var comments = {};
-
 							if (res.locals.barrier) {
 								comments = null;
 								articleBody = null;
@@ -160,7 +116,7 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				api.contentLegacy({
+				return api.contentLegacy({
 						uuid: req.params.id,
 						useElasticSearch: false, // TODO: reinstate res.locals.flags.elasticSearchItemGet after talking to @richard-still-ft about plain versions…
 						bodyFormat: 'plain'
@@ -188,8 +144,7 @@ module.exports = function(req, res, next) {
 								next(err);
 							}
 						});
-			} else {
-				next(err);
 			}
+			next(err);
 		});
 };
