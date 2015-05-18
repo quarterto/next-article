@@ -34,16 +34,9 @@
 						{{#if primaryTheme}}
 							<a href="{{primaryTheme.url}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTheme.title}}</a>
 							{{#if primaryTheme.conceptId}}
-								<button
-								class="next-buttons--follow next-buttons--light"
-								data-concept-id="{{primaryTheme.conceptId}}"
-								data-trackable="follow"
-								data-user-prefs-button="follow"
-								data-alternate-label="Added to My FT"
-								data-alternate-text="Added to My FT"
-								aria-label="Add to My FT"
-								title="Add to My FT"
-								>Add to My FT</button>
+								{{#with primaryTheme}}
+									{{>next-myft-ui/templates/follow light=true}}
+								{{/with}}
 							{{/if}}
 						{{/if}}
 						</div>

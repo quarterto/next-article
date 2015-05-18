@@ -21,10 +21,10 @@ module.exports = function (req, res, next) {
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	})
-		.then(function (article) {
+		.then(function(article) {
 			res.set(cacheControl);
 			var moreOnPromises = metadataFields
-				.map(function (metadataField, index) {
+				.map(function(metadataField, index) {
 					var topic = article.item.metadata[metadataField];
 					// if it's an array, use the first
 					if (Array.isArray(topic)) {
