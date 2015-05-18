@@ -2,28 +2,31 @@
   "name": "next-article",
   "dependencies": {
     "o-fonts": "^1.6.4",
-    "next-feature-flags-client": "^v7.0.1",
-    "next-ads-component": "Financial-Times/next-ads-component#^5.0.0",
-    "next-barrier-component": "Financial-Times/next-barrier-component#^3.0.0",
+    "next-feature-flags-client": "^7.0.1",
+    "next-ads-component": "^5.0.0",
+    "next-barrier-component": "^3.0.0",
     "next-header": "^9.0.0",
-    "next-sass-setup": "Financial-Times/next-sass-setup#^5.5.4",
-    "next-js-setup": "Financial-Times/next-js-setup#^2.0.1",
-    "o-quote": "Financial-Times/o-quote#bogdis-design",
-    "o-big-number": "Financial-Times/o-big-number#~1.1.0",
-    "next-footer": "Financial-Times/next-footer#^1.7.2",
+    "next-sass-setup": "^6.0.0",
+    "next-js-setup": "^2.0.1",
+    "o-quote": "bogdis-design",
+    "o-big-number": "^1.1.0",
+    "next-footer": "^1.7.2",
     "o-gallery": "^1.6.1",
-    "next-buttons": "Financial-Times/next-buttons#^1.0.3",
-    "o-date": "~1.1.1",
-    "next-welcome": "Financial-Times/next-welcome#^2.0.0",
-    "next-video": "Financial-Times/next-video#^1.0.0",
+    "next-buttons": "^1.0.3",
+    "o-date": "^1.1.1",
+    "next-welcome": "^2.0.0",
+    "next-video": "^1.0.0",
     "o-comments": "^2.0.0",
-    "next-myft-client": "Financial-Times/next-myft-client#^1.0.0-beta"
+    "next-myft-client": "^1.0.0-beta"
   },
   "resolutions": {
     "o-ft-icons": "next",
     "o-assets": "^0.4.2",
     "o-hoverable": "^1.1.0",
     "next-user-model-component": "^1.0.0",
-    "next-welcome": "^2.0.0"
+    "next-welcome": "^2.0.0",
+    "o-fonts": "^2.0.0",
+    "next-sass-setup": "^6.0.0",
+    "o-colors": "^3.0.0"
   }
 }
