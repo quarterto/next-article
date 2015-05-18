@@ -10,6 +10,7 @@ var cacheControl = require('../utils/cache-control');
 var extractTags = require('../utils/extract-tags');
 var extractUuid = require('../utils/extract-uuid');
 var images = require('../transforms/images');
+var articlePrimaryTag = require('ft-next-article-primary-tag');
 
 var bodyTransform = require('../transforms/body');
 
@@ -49,17 +50,10 @@ module.exports = function(req, res, next) {
 			var $subheaders = $('.ft-subhead')
 				.attr('id', addSubheaderIds)
 				.replaceWith(subheadersTransform);
-			var primaryTheme = (function() {
-				try {
-					return {
-						title: articleV1.item.metadata.primaryTheme.term.name,
-						url: '/stream/' + articleV1.item.metadata.primaryTheme.term.taxonomy + 'Id/' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.id),
-						conceptId: articleV1.item.metadata.primaryTheme.term.taxonomy + ':"' + encodeURIComponent(articleV1.item.metadata.primaryTheme.term.name) + '"'
-					};
-				} catch (e) {
-					return undefined;
-				}
-			})();
+			var primaryTag = articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
+			if (primaryTag) {
+				primaryTag.conceptId = primaryTag.taxonomy + ':"' + encodeURIComponent(primaryTag.name) + '"'
+			}
 
 			// Some posts (e.g. FastFT are only available in CAPI v2)
 			// TODO: Replace with something in CAPI v2
@@ -98,7 +92,7 @@ module.exports = function(req, res, next) {
 						headerOverlap:
 							$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length,
 						layout: 'wrapper',
-						primaryTheme: primaryTheme
+						primaryTag: primaryTag
 					});
 				});
 		})
