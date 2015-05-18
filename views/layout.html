@@ -75,10 +75,13 @@
 				</div>
 			{{/if}}
 
-			{{#if @root.barrier.type}}
-				{{> anonymous_barrier}}
+			{{#if @root.barriers.anonymousBarrier}}
+				{{> next-barrier-component/templates/anonymous_barrier}}
 			{{/if}}
 
+			{{#if @root.barriers.premiumBarrier}}
+				{{> next-barrier-component/templates/premium_barrier}}
+			{{/if}}
 
 			{{#if @root.flags.recommend}}
 				<div>
