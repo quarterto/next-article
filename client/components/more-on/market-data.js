@@ -10,7 +10,7 @@ module.exports = function () {
 	var stockPromises = $('.js-markets-data').map(function (el) {
 		var tickerSymbol = el.getAttribute('data-ticker-symbol');
 
-		return fetch('http://ft-next-markets-proxy-api.herokuapp.com/securities/v1/quotes?symbols=' + tickerSymbol)
+		return fetch('https://ft-next-markets-proxy-api.herokuapp.com/securities/v1/quotes?symbols=' + tickerSymbol)
 			.then(fetchres.json)
 			.then(function (response) {
 				var data = response.data.items[0];
