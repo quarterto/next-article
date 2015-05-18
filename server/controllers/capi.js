@@ -50,7 +50,7 @@ module.exports = function(req, res, next) {
 			var $subheaders = $('.ft-subhead')
 				.attr('id', addSubheaderIds)
 				.replaceWith(subheadersTransform);
-			var primaryTag = articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
+			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = primaryTag.taxonomy + ':"' + encodeURIComponent(primaryTag.name) + '"'
 			}
