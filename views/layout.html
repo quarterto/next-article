@@ -31,10 +31,10 @@
 					</div>
 					<div class="o-grid-row">
 						<div data-o-grid-colspan="12 S6" class="article__primary-theme">
-						{{#if primaryTheme}}
-							<a href="{{primaryTheme.url}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTheme.title}}</a>
-							{{#if primaryTheme.conceptId}}
-								{{#with primaryTheme}}
+						{{#if primaryTag}}
+						<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTag.name}}</a>
+							{{#if primaryTag.conceptId}}
+								{{#with primaryTag}}
 									{{>next-myft-ui/templates/follow light=true}}
 								{{/with}}
 							{{/if}}
@@ -78,10 +78,10 @@
 			{{#if @root.barriers.anonymousBarrier}}
 				{{> next-barrier-component/templates/anonymous_barrier}}
 			{{/if}}
+
 			{{#if @root.barriers.premiumBarrier}}
 				{{> next-barrier-component/templates/premium_barrier}}
 			{{/if}}
-
 
 			{{#if @root.flags.recommend}}
 				<div>
