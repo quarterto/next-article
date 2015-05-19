@@ -46,7 +46,7 @@ module.exports = function(req, res, next) {
 
 			var articleV1 = articles[0];
 			var article = articles[1];
-			var $ = bodyTransform(article.bodyXML);
+			var $ = bodyTransform(article.bodyXML, { fullWidthMainImages: res.locals.flags.fullWidthMainImages });
 			var $subheaders = $('.ft-subhead')
 				.attr('id', addSubheaderIds)
 				.replaceWith(subheadersTransform);
@@ -60,7 +60,7 @@ module.exports = function(req, res, next) {
 			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
-			return images($, res.locals.flags)
+			return images($, { fullWidthMainImages: res.locals.flags.fullWidthMainImages })
 				.then(function($) {
 					var articleBody = $.html();
 					var comments = {};
@@ -90,7 +90,8 @@ module.exports = function(req, res, next) {
 						isColumnist: isColumnist,
 						// if there's a main image, or slideshow or video, we overlap them on the header
 						headerOverlap:
-							$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length,
+							$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length
+							|| $.root().first().children('.article__main-image'),
 						layout: 'wrapper',
 						primaryTag: primaryTag
 					});

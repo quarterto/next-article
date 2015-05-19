@@ -247,6 +247,7 @@ $header-offset: 30px;
 	}
 	> {
 		.article__main-image,
+		a > .article__main-image,
 		.article__video-wrapper:first-child,
 		.article__gallery:first-child {
 			margin-top: -$header-offset - 15;

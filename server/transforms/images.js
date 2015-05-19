@@ -6,7 +6,8 @@ var api = require('next-ft-api-client');
 var logger = require('ft-next-logger');
 var capiMapiRegex = require('../utils/capi-mapi-regex').content;
 
-module.exports = function($body, flags) {
+module.exports = function($body, opts) {
+	var fullWidthMainImages = opts && opts.fullWidthMainImages;
 
 	var imageSetSelector = 'ft-content[type$="ImageSet"]';
 	var imageSetPromises = $body(imageSetSelector)
@@ -39,7 +40,7 @@ module.exports = function($body, flags) {
 					return '';
 				}
 				var isMain =
-					flags && flags.fullWidthMainImages && image.parentNode.tagName === 'root' &&
+					fullWidthMainImages && image.parentNode.tagName === 'root' &&
 					$(image.parentNode).children().first().html() === $image.html();
 				var width = isMain ? 710 : 600;
 				var binaryId = imageSet.members[0].id.replace(capiMapiRegex, '');

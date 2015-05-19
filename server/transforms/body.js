@@ -15,7 +15,8 @@ var removeBodyTransform = require('./remove-body');
 var promoBoxTransform = require('./promo-box');
 var videoTransform = require('./video');
 
-module.exports = function(body) {
+module.exports = function(body, opts) {
+	var fullWidthMainImages = opts.fullWidthMainImages;
 
 	// HACK around a bug in the content api by replacing <br></br> with <br>
 	// See: http://api.ft.com/content/e80e2706-c7ec-11e4-8210-00144feab7de
@@ -27,7 +28,7 @@ module.exports = function(body) {
 	var $ = cheerio.load(body);
 	$('a[href$="#slide0"]').replaceWith(slideshowTransform);
 	$('big-number').replaceWith(bigNumberTransform);
-	$('img').replaceWith(externalImgTransform);
+	$('img').replaceWith(externalImgTransform({ fullWidthMainImages: fullWidthMainImages }));
 	$('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
 	$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 	$('pull-quote').replaceWith(pullQuotesTransform);
