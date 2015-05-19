@@ -17,7 +17,7 @@ function brightcoveInit(el) {
 			videoEl.setAttribute('data-content-id', data.id);
 			videoEl.setAttribute(
 				'poster',
-				'//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(data.poster) + '?width=710&source=article&fit=scale-down'
+				'https://next-geebee.ft.com/image/v1/images/raw/' + encodeURIComponent(data.poster) + '?width=710&source=article&fit=scale-down'
 			);
 			videoEl.setAttribute('controls', 'true');
 			videoEl.className = 'article__video ng-media';
