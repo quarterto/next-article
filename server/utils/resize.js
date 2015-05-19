@@ -11,5 +11,5 @@ module.exports = function(url, options) {
 	};
 	var query = querystring.stringify(merge(defaultOptions, options));
 
-	return '//image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(url) + '?' + query;
+	return 'https://image.webservices.ft.com/v1/images/raw/' + encodeURIComponent(url) + '?' + query;
 };
