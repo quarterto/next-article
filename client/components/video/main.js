@@ -86,17 +86,9 @@ function embedVideo (type, el) {
 }
 
 module.exports.init = function () {
-	var videoTags = [].slice.call(document.querySelectorAll('.article a'));
+	var videoTags = [].slice.call(document.querySelectorAll('.article .article__video-wrapper a'));
 
-	return Promise.all(videoTags.filter(function(el) {
-			// don't use innerText - there's a weird chrome bug which means it's sometimes incorrectly empty
-			return el.innerHTML === '';
-		})
-		.map(function(el) {
-			var type = video.filter(function(key) {
-				return el.getAttribute('href').indexOf(key) > -1;
-			})[0];
-
-			return type ? embedVideo(type, el) : Promise.resolve(null);
+	return Promise.all(videoTags.map(function(el) {
+			return embedVideo(type, el);
 		}));
 };
