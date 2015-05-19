@@ -31,10 +31,10 @@
 					</div>
 					<div class="o-grid-row">
 						<div data-o-grid-colspan="12 S6" class="article__primary-theme">
-						{{#if primaryTheme}}
-							<a href="{{primaryTheme.url}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTheme.title}}</a>
-							{{#if primaryTheme.conceptId}}
-								{{#with primaryTheme}}
+						{{#if primaryTag}}
+						<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTag.name}}</a>
+							{{#if primaryTag.conceptId}}
+								{{#with primaryTag}}
 									{{>next-myft-ui/templates/follow light=true}}
 								{{/with}}
 							{{/if}}
@@ -75,25 +75,12 @@
 				</div>
 			{{/if}}
 
-			{{#if @root.barrier.type}}
-				{{> anonymous_barrier}}
+			{{#if @root.barriers.anonymousBarrier}}
+				{{> next-barrier-component/templates/anonymous_barrier}}
 			{{/if}}
-		
 
-			{{#if @root.flags.recommend}}
-				<div>
-					<p>
-						<span
-						class="recommend js-recommend"
-						data-capi="{{id}}"
-						data-headline="{{title}}"
-						data-toggle-text="You recommended this"
-						aria-label="Recommend this article to you colleagues"
-						title="Recommend this article to your colleagues">
-							Recommend this article to your colleagues
-						</span>
-					</p>
-				</div>
+			{{#if @root.barriers.premiumBarrier}}
+				{{> next-barrier-component/templates/premium_barrier}}
 			{{/if}}
 		</div>
 		<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
