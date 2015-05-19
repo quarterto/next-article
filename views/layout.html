@@ -82,22 +82,6 @@
 			{{#if @root.barriers.premiumBarrier}}
 				{{> next-barrier-component/templates/premium_barrier}}
 			{{/if}}
-
-			{{#if @root.flags.recommend}}
-				<div>
-					<p>
-						<span
-						class="recommend js-recommend"
-						data-capi="{{id}}"
-						data-headline="{{title}}"
-						data-toggle-text="You recommended this"
-						aria-label="Recommend this article to you colleagues"
-						title="Recommend this article to your colleagues">
-							Recommend this article to your colleagues
-						</span>
-					</p>
-				</div>
-			{{/if}}
 		</div>
 		<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
 		</div>
