@@ -89,6 +89,9 @@ module.exports.init = function () {
 	var videoTags = [].slice.call(document.querySelectorAll('.article .article__video-wrapper a'));
 
 	return Promise.all(videoTags.map(function(el) {
+			var type = video.filter(function(key) {
+				return el.getAttribute('href').indexOf(key) > -1;
+			})[0];
 			return embedVideo(type, el);
 		}));
 };
