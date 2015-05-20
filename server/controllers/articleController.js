@@ -75,7 +75,7 @@ module.exports = function(req, res, next) {
 						firstClickFree = {};
 					}
 
-					return res.render('layout', {
+					return res.render('article', {
 						firstClickFree: firstClickFree,
 						comments: comments,
 						article: article,

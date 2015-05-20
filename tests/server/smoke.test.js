@@ -40,7 +40,7 @@ describe('Smoke Tests: ', function() {
 	});
 
 	// specific controller tests
-	require('./controllers/capi.test.js')();
+	require('./controllers/articleController.test.js')();
 	require('./controllers/fastft.test.js')();
 	require('./controllers/related/people.test.js')();
 	require('./controllers/related/story-package.test.js')();

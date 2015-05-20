@@ -14,7 +14,7 @@ app.use('^/:id(' + articleUuidRegex + ')', access);
 
 app.get(/^\/fastft\/([0-9]+)(\/[\w\-])?/, require('./controllers/fastft'));
 
-app.get('^/:id(' + articleUuidRegex + ')', require('./controllers/capi'));
+app.get('^/:id(' + articleUuidRegex + ')', require('./controllers/articleController'));
 app.get('^/:id(' + articleUuidRegex + ')/people', require('./controllers/related/people'));
 app.get('^/:id(' + articleUuidRegex + ')/organisations', require('./controllers/related/organisations'));
 app.get('^/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
