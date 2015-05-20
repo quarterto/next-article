@@ -62,22 +62,9 @@ module.exports = function(req, res, next) {
 			// Update the images (resize, add image captions, etc)
 			return images($, { fullWidthMainImages: res.locals.flags.fullWidthMainImages })
 				.then(function($) {
-					var articleBody = $.html();
-					var comments = {};
-					var firstClickFree = null;
-
-					if (res.locals.barrier) {
-						comments = null;
-						articleBody = null;
-					}
-
-					if (res.locals.flags.firstClickFree) {
-						firstClickFree = {};
-					}
-
-					return res.render('article', {
-						firstClickFree: firstClickFree,
-						comments: comments,
+					var viewModel = {
+						firstClickFree: null,
+						comments: {},
 						article: article,
 						articleV1: articleV1 && articleV1.item,
 						id: extractUuid(article.id),
@@ -85,7 +72,7 @@ module.exports = function(req, res, next) {
 						title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 						byline: bylineTransform(article.byline, articleV1),
 						tags: extractTags(article, articleV1, res.locals.flags),
-						body: articleBody,
+						body: $.html(),
 						subheaders: $subheaders.map(function() {
 							var $subhead = $(this);
 							return {
@@ -97,11 +84,21 @@ module.exports = function(req, res, next) {
 						isColumnist: isColumnist,
 						// if there's a main image, or slideshow or video, we overlap them on the header
 						headerOverlap:
-							$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length
-							|| $.root().first().children('.article__main-image'),
+							$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length || $.root().first().children('.article__main-image'),
 						layout: 'wrapper',
 						primaryTag: primaryTag
-					});
+					};
+
+					if (res.locals.barrier) {
+						viewModel.comments = null;
+						viewModel.body = null;
+					}
+
+					if (res.locals.flags.firstClickFree) {
+						viewModel.firstClickFree = {};
+					}
+
+					return res.render('article', viewModel);
 				});
 		})
 		.catch(function(err) {
