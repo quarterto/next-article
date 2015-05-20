@@ -417,12 +417,12 @@ $header-offset: 30px;
 	line-height: 24px;
 	font-weight: normal;
 }
+.article__more-on {
+	padding-bottom: 15px;
+}
 .article__comments {
 	@include print {
 		display: none;
-	}
-	> * {
-		margin-top: 15px !important;
 	}
 }
 
