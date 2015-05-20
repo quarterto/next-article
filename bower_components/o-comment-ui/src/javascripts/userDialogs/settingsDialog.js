@@ -115,7 +115,6 @@ exports.show = function (currentData, callbacks) {
 
 			if (overlayInstance) {
 				overlayInstance.wrapper.removeEventListener('oOverlay.destroy', onCloseInternalHandler);
-				overlayInstance.destroy();
 				overlayInstance = null;
 			}
 

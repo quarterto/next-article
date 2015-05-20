@@ -88,7 +88,6 @@ exports.show = function (callbacks) {
 
 					ignoreCloseEvent = true;
 					overlayInstance.close();
-					overlayInstance.destroy();
 				});
 			}
 
@@ -114,7 +113,6 @@ exports.show = function (callbacks) {
 
 			if (overlayInstance) {
 				overlayInstance.wrapper.removeEventListener('oOverlay.destroy', onCloseInternalHandler);
-				overlayInstance.destroy();
 				overlayInstance = null;
 			}
 
