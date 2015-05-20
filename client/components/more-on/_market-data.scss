@@ -9,7 +9,13 @@
 	text-transform: uppercase;
 }
 .market-data__symbol {
+	color: #000000;
+	text-decoration: none;
 	font-weight: 400;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 .market-data__price,
 .market-data__change {
