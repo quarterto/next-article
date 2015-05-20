@@ -18,16 +18,18 @@ module.exports = function () {
 				if (change > 0) {
 					change = '+' + change;
 				}
+				var price = Math.round(data.quote.lastPrice * 100) / 100;
 				var stockEl = document.createElement('div');
 				stockEl.className = 'market-data';
-				stockEl.innerHTML =
-					'<p class="market-data__title"><span class="market-data__symbol">' + data.basic.symbol + '</span> Today‘s change</p>' +
-					'<p class="market-data__price">' + (Math.round(data.quote.lastPrice * 100) / 100) + '</p>' +
-					'<p class="market-data__change">' + change + '%</p>';
+				stockEl.innerHTML = `
+					<p class="market-data__title"><a href="https://markets.ft.com/data/equities/tearsheet/summary?s=${data.basic.symbol}" class="market-data__symbol" data-trackable="markets-link">${data.basic.symbol}</a> Today's change</p>
+					<p class="market-data__price">${price}</p>
+					<p class="market-data__change">${change}%</p>
+				`;
 				el.appendChild(stockEl);
 				return response;
 			})
-			.catch(function (err) {
+			.catch(function(err) {
 				return null;
 			});
 	});
