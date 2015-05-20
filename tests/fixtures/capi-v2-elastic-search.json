@@ -1,0 +1,7 @@
+{
+	"docs":[
+		{"_id":"3031199c-3e8d-11e4-a620-00144feabdc0","found":true,"_source":{"id":"http://www.ft.com/thing/3031199c-3e8d-11e4-a620-00144feabdc0"}},
+		{"_id":"c48b2eac-3fb9-11e4-a381-00144feabdc0","found":true,"_source":{"id":"http://www.ft.com/thing/c48b2eac-3fb9-11e4-a381-00144feabdc0"}},
+		{"_id":"3c34252e-3fd0-11e4-a381-00144feabdc0","found":true,"_source":{"id":"http://www.ft.com/thing/3c34252e-3fd0-11e4-a381-00144feabdc0"}}
+	]
+}
