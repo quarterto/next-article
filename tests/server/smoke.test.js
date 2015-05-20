@@ -3,12 +3,15 @@
 
 var expect = require('chai').expect;
 var request = require('request');
-
+var nock = require('nock');
 var helpers = require('./helpers');
 
 describe('Smoke Tests: ', function() {
 
 	before(function() {
+		nock('http://api.ft.com')
+			.post('/content/search/v1')
+			.reply(200, require('../fixtures/search.json'));
 		return require('../../server/app').listen;
 	});
 
