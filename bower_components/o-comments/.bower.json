@@ -22,12 +22,12 @@
     ".editorconfig",
     ".jshintrc"
   ],
-  "version": "2.0.0",
-  "_release": "2.0.0",
+  "version": "2.0.1",
+  "_release": "2.0.1",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.0",
-    "commit": "2b5d30bba34991fe4b020564f72f65f8114a34ea"
+    "tag": "v2.0.1",
+    "commit": "7a4dc2bde663ea5e831c032fe6a662bac991004b"
   },
   "_source": "http://git.svc.ft.com/scm/strat_p/o-comments.git",
   "_target": "^2.0.0",
