@@ -5,7 +5,6 @@ $o-big-number-is-silent: false;
 @import "o-big-number/main";
 $o-gallery-is-silent: false;
 @import "o-gallery/main";
-@import "o-colors/main";
 @import "o-fonts/main";
 @include oFontsInclude(MetricWeb, thin);
 $o-comments-is-silent: false;
