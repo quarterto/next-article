@@ -24,10 +24,10 @@ module.exports = {
 	},
 	mockMethode: function() {
 		nock('https://ft-elastic-search.com')
-			.get('/v1_api_v2/item/02cad03a-844f-11e4-bae9-00144feabdc0')
+			.post('/v1_api_v2/item/_mget', { ids: ["02cad03a-844f-11e4-bae9-00144feabdc0"] })
 			.reply(200, articleV1Elastic);
 		nock('https://ft-elastic-search.com')
-			.get('/v1_api_v2/item/b002e5ee-3096-3f51-9925-32b157740c98')
+			.post('/v1_api_v2/item/_mget', { ids: ["b002e5ee-3096-3f51-9925-32b157740c98"] })
 			.reply(404);
 		nock('https://ft-elastic-search.com')
 			.post('/v2_api_v2/item/_mget', { ids: ["02cad03a-844f-11e4-bae9-00144feabdc0"] })

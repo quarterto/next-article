@@ -36,10 +36,17 @@ module.exports = function (req, res, next) {
 					topics.push(topic);
 					var promises = [];
 					promises.push(api.searchLegacy({
-						query: topic.term.taxonomy + ':="' + topic.term.name + '"',
+						query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
 						// get one extra, in case we dedupe
-						count: count + 1
-					}));
+						count: count + 1,
+						useElasticSearch: res.locals.flags.elasticSearchItemGet
+						}).then(function(ids) {
+							return api.content({
+								uuid: ids,
+								useElasticSearch: res.locals.flags.elasticSearchItemGet,
+								type: 'Article'
+							});
+						}));
 					if (res.locals.flags.semanticStreams && hasSemanticStream(topic.term.taxonomy)) {
 						promises.push(
 							api.mapping(topic.term.id, topic.term.taxonomy)
@@ -59,16 +66,16 @@ module.exports = function (req, res, next) {
 
 			return Promise.all(moreOnPromises);
 		})
-		.then(function (results) {
+		.then(function(results) {
 			var imagePromises = results
-				.map(function (result, index) {
+				.map(function(result, index) {
 					var articles = result[0];
 					var articleModels = articles
-						.filter(function (article) {
+						.filter(function(article) {
 							return extractUuid(article.id) !== req.params.id;
 						})
 						.slice(0, count)
-						.map(function (article) {
+						.map(function(article) {
 							return {
 								id: extractUuid(article.id),
 								title: article.title,
