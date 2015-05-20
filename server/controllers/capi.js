@@ -64,12 +64,19 @@ module.exports = function(req, res, next) {
 				.then(function($) {
 					var articleBody = $.html();
 					var comments = {};
+					var firstClickFree = null;
+
 					if (res.locals.barrier) {
 						comments = null;
 						articleBody = null;
 					}
 
+					if (res.locals.flags.firstClickFree) {
+						firstClickFree = {};
+					}
+
 					return res.render('layout', {
+						firstClickFree: firstClickFree,
 						comments: comments,
 						article: article,
 						articleV1: articleV1 && articleV1.item,

@@ -1,3 +1,4 @@
+@import "next-sass-setup/main";
 $o-quote-is-silent: false;
 @import "o-quote/main";
 $o-big-number-is-silent: false;
@@ -10,7 +11,6 @@ $o-gallery-is-silent: false;
 $o-comments-is-silent: false;
 @import 'o-comments/main';
 
-@import "next-sass-setup/main";
 @import "next-buttons/main";
 @import "next-header/main";
 .next-header {
