@@ -43,7 +43,7 @@ function brightcove(url) {
 	}
 	var videoId = videoIdMatch[1];
 
-	return fetch('https://ft-next-brightcove-proxy.global.ssl.fastly.net/' + videoId)
+	return fetch('http://next-brightcove-proxy.ft.com.global.prod.fastly.net/' + videoId)
 		.then(function(response) {
 			if (response.status === 404) {
 				throw new Error('Video ' + videoId + ' not found or not available in compatible format');
