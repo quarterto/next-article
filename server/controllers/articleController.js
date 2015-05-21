@@ -94,8 +94,9 @@ module.exports = function(req, res, next) {
 						viewModel.body = null;
 					}
 
-					if (res.locals.flags.firstClickFree) {
-						viewModel.firstClickFree = {};
+					if (res.locals.firstClickFreeModel) {
+						console.log(res.locals.firstClickFreeModel);
+						viewModel.firstClickFree = res.locals.firstClickFreeModel;
 					}
 
 					return res.render('article', viewModel);
