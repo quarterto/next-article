@@ -8,6 +8,7 @@ ELASTIC_SEARCH_HOST := $(shell cat ~/.elastic_search_host 2>/dev/null)
 .PHONY: test
 
 install:
+	npm install origami-build-tools@3.0.0-beta.3
 	obt install --verbose
 
 test: build-production unit-test verify
