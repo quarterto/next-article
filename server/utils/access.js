@@ -2,6 +2,7 @@
 
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
+var errorsHandler = require('express-errors-handler');
 
 module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
@@ -13,7 +14,7 @@ module.exports = function(req, res, next) {
 				if (err instanceof fetchres.BadServerResponseError) {
 					return;
 				} else {
-					next(err);
+					errorsHandler.middleware(err);
 				}
 			})
 			.then(function(article) {
@@ -23,7 +24,6 @@ module.exports = function(req, res, next) {
 				if (article) {
 					results = /cms\/s\/([0-3])\//i.exec(article.item.location.uri);
 				}
-
 				// “if the match fails, the exec() method returns null” — MDN
 				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec
 				// We often don't get matches for, say, blog articles.
@@ -46,7 +46,8 @@ module.exports = function(req, res, next) {
 				res.set('X-FT-UID', req.params.id);
 				res.set('X-FT-Content-Classification', classification);
 				res.status(200).end();
-			}).catch(next);
+			})
+			.catch(errorsHandler.middleware);
 	} else {
 		next();
 	}

@@ -10,6 +10,7 @@
     "array.prototype.find": "^1.0.0",
     "cheerio": "^0.18.0",
     "denodeify": "^1.2.1",
+    "express-errors-handler": "^1.2.5",
     "fetchres": "^1.0.4",
     "forever": "^0.11.1",
     "ft-next-article-primary-tag": "^1.0.0",
