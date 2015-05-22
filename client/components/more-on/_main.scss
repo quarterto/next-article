@@ -56,6 +56,7 @@
 	display: block;
 	color: oColorsGetPaletteColor('white');
 	padding: 10px;
+	text-transform: none;
 
 }
 .more-on__content {
@@ -79,16 +80,14 @@
 	}
 }
 .more-on__articles {
-	margin-top: 5px;
-
 	.more-on--topic.more-on--with-image & {
 		min-height: 128px;
 	}
 }
 .more-on__article {
 	position: relative;
-	margin-top: 5px;
-	padding: 5px 10px;
+	margin: 0 5px;
+	padding: 5px;
 	font-size: 17px;
 	font-weight: 200;
 	line-height: 1em;
@@ -151,8 +150,14 @@
 	}
 }
 .more-on__article__timestamp {
+	@include nTypeTextSans(5);
 	margin-top: 5px;
+	color: oColorsGetPaletteColor('cold-1');
+	display: block;
+	margin: 10px 0;
+	text-transform: uppercase;
 }
+
 .more-on__organisation {
 	background-color: oColorsGetPaletteColor('cold-1');
 	margin-top: 5px;

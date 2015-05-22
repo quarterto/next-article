@@ -68,5 +68,5 @@ module.exports.init = function(flags) {
 			if(myFtClient.loaded['followed']) {
 				myFtClient.emit('followed.load', myFtClient.loaded['followed']);
 			}
-		})
+		});
 };
