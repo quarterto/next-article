@@ -23,6 +23,7 @@
     "o-ft-icons": "next",
     "o-fonts": "^2.0.0",
     "next-sass-setup": "^6.0.0",
-    "o-colors": "^3.0.0"
+    "o-colors": "^3.0.0",
+    "next-buttons": "^2.0.0"
   }
 }

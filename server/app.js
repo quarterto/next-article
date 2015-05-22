@@ -2,7 +2,7 @@
 
 var express = require('ft-next-express');
 var app = module.exports = express();
-var access = require('./controllers/access');
+var access = require('./utils/access');
 var logger = require('ft-next-logger');
 
 var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
