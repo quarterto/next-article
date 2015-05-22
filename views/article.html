@@ -87,7 +87,16 @@
 	{{#if @root.flags.articleRelatedContent}}
 		<div class="article__more-on" data-trackable="more-on" data-o-grid-colspan="12 L8 XL7 XLoffset1">
 			<div class="js-more-on"></div>
-			<div class="js-more-on-topic" data-metadata-fields="primaryTheme {{#if isColumnist}}authors{{else}}primarySection{{/if}}"></div>
+			<div class="js-more-on-topic" data-metadata-fields="primaryTheme {{#if isColumnist}}authors{{else}}primarySection{{/if}}">
+
+				{{#if primaryTag}}
+					<div class="more-on__topic-bar">
+						<a class="more-on__topic-name ng-title-link" href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" data-trackable="theme">{{primaryTag.name}}</a>
+								{{>next-myft-ui/templates/follow conceptId=primaryTag.conceptId}}
+					</div>
+				{{/if}}
+		</h2>
+			</div>
 			<div class="o-grid-row">
 				<div class="js-related" data-taxonomy="organisations" data-o-grid-colspan="12 M6"></div>
 				<div class="js-related" data-taxonomy="people" data-o-grid-colspan="12 M6"></div>

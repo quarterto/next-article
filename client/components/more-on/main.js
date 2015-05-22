@@ -3,6 +3,7 @@
 var fetchres = require('fetchres');
 var oDate = require('o-date');
 var marketData = require('./market-data');
+var myFtClient = require('next-myft-client');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
 function allSettled(promises) {
@@ -62,5 +63,10 @@ module.exports.init = function(flags) {
 
 	return allSettled(fetchPromises)
 		.then(marketData)
-		.then(initAds(flags));
+		.then(initAds(flags))
+		.then(function() {
+			if(myFtClient.loaded['followed']) {
+				myFtClient.emit('followed.load', myFtClient.loaded['followed']);
+			}
+		})
 };
