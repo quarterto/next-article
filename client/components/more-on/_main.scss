@@ -17,22 +17,32 @@
 	}
 }
 .more-on__title {
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 1em;
+	@include nTypeHeading(4);
 	text-transform: uppercase;
 	margin: 0;
+}
+
+.more-on__topic-bar {
+	background-color: oColorsGetPaletteColor('cold-1');
+	overflow: hidden;
+	margin-top: 5px;
+	.more-on__topic-name {
+		@include oGridColumn((default: 12, XS: 10));
+	}
+	.myft-ui--follow {
+		@include oGridColumn((default: 12, XS: 2));
+		@include oGridRemoveGutters();
+		.myft-ui__button {
+			width: 100%;
+		}
+	}
 }
 .more-on__topic-name {
 	position: relative;
 	display: block;
-	background-color: $next-blue;
-	font-size: 24px;
-	line-height: 1em;
-	margin-top: 5px;
-	padding: 10px;
-	font-weight: 500;
-	color: #ffffff;
+	@include nTypeHeading(4);
+	padding: 4px 10px;
+	color: oColorsGetPaletteColor('white');
 	text-transform: none;
 
 	.more-on--with-image &,
@@ -53,13 +63,6 @@
 		@include oGridRespondTo(S) {
 			padding-right: 120px;
 		}
-	}
-	&:after {
-		@include nextIcon(arrow-right, #ffffff, 20);
-		content: '';
-		position: relative;
-		top: 3px;
-		left: 10px;
 	}
 }
 .more-on__content {
@@ -82,7 +85,7 @@
 	}
 }
 .more-on__articles {
-	margin-top: 5px;
+	padding-top: 5px;
 
 	.more-on--topic.more-on--with-image & {
 		min-height: 128px;
@@ -139,13 +142,13 @@
 	}
 	.more-on--topic & {
 		width: 100%;
-		margin: -30px 0 5px;
+		margin: 0 0 5px;
 
 		@include oGridRespondTo(S) {
 			position: absolute;
 			width: 200px;
 			margin-top: 0;
-			top: -38px;
+			top: 0;
 			right: 9px;
 		}
 		@include oGridRespondTo(M) {
@@ -157,7 +160,7 @@
 	margin-top: 5px;
 }
 .more-on__organisation {
-	background-color: $next-blue;
+	background-color: oColorsGetPaletteColor('cold-1');
 	margin-top: 5px;
 	padding: 10px;
 }

@@ -33,21 +33,11 @@
 						<div data-o-grid-colspan="12 S6" class="article__primary-theme">
 						{{#if primaryTag}}
 						<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTag.name}}</a>
-							{{#if primaryTag.conceptId}}
-								{{#with primaryTag}}
-									{{>next-myft-ui/templates/follow light=true}}
-								{{/with}}
-							{{/if}}
 						{{/if}}
 						</div>
 						<div class="article__actions" data-o-grid-colspan="12 S6">
-							<button
-								class="article__actions__action article__actions__action--save ng-meta ng-title-link next-buttons--save next-buttons--light"
-								data-content-id="{{id}}"
-								data-headline="{{title}}"
-								data-user-prefs-button="saveForLater"
-								data-trackable="save-for-later"
-								data-alternate-text="Saved">Save</button>
+								{{>next-myft-ui/templates/save-for-later contentId=id}}
+
 							<!-- <a class="article__actions__action" href="">Share</a> -->
 						</div>
 					</div>
