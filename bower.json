@@ -12,12 +12,12 @@
     "o-big-number": "^1.1.0",
     "next-footer": "^2.0.0",
     "o-gallery": "^1.6.1",
-    "next-buttons": "^1.0.3",
     "o-date": "^1.1.1",
     "next-welcome": "^2.0.0",
     "next-video": "^1.0.0",
     "o-comments": "^2.0.0",
-    "next-myft-client": "^1.0.0-beta"
+    "next-myft-client": "^1.0.0",
+    "next-myft-ui": "^2.0.0"
   },
   "resolutions": {
     "o-ft-icons": "next",

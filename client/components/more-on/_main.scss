@@ -17,24 +17,15 @@
 	}
 }
 .more-on__title {
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 1em;
+	@include nTypeHeading(4);
 	text-transform: uppercase;
 	margin: 0;
 }
-.more-on__topic-name {
-	position: relative;
-	display: block;
-	background-color: $next-blue;
-	font-size: 24px;
-	line-height: 1em;
-	margin-top: 5px;
-	padding: 10px;
-	font-weight: 500;
-	color: #ffffff;
-	text-transform: none;
 
+.more-on__topic-bar {
+	background-color: oColorsGetPaletteColor('cold-1');
+	overflow: hidden;
+	padding: 10px;
 	.more-on--with-image &,
 	.more-on--authors & {
 		@include oGridRespondTo($until: S) {
@@ -42,29 +33,36 @@
 		}
 	}
 	.more-on--with-image & {
-		@include oGridRespondTo(S) {
-			padding-right: 220px;
+			@include oGridRespondTo(S) {
+				padding-right: 220px;
+			}
+			@include oGridRespondTo(M) {
+				padding-right: 320px;
+			}
 		}
-		@include oGridRespondTo(M) {
-			padding-right: 320px;
+		.more-on--authors & {
+			@include oGridRespondTo(S) {
+				padding-right: 120px;
+			}
 		}
-	}
-	.more-on--authors & {
-		@include oGridRespondTo(S) {
-			padding-right: 120px;
-		}
-	}
-	&:after {
-		@include nextIcon(arrow-right, #ffffff, 20);
-		content: '';
+	.myft-ui {
 		position: relative;
-		top: 3px;
-		left: 10px;
+		top: -4px;
+		padding: 10px;
 	}
+}
+.more-on__topic-name {
+	@include nTypeHeading(2);
+	display: block;
+	color: oColorsGetPaletteColor('white');
+	padding: 10px;
+	text-transform: none;
+
 }
 .more-on__content {
 	border: 1px solid $box-colour;
 	border-top: 0;
+	padding: 0 10px;
 }
 .more-on__author-image {
 	position: relative;
@@ -82,16 +80,14 @@
 	}
 }
 .more-on__articles {
-	margin-top: 5px;
-
 	.more-on--topic.more-on--with-image & {
 		min-height: 128px;
 	}
 }
 .more-on__article {
 	position: relative;
-	margin-top: 5px;
-	padding: 5px 10px;
+	margin: 0 5px;
+	padding: 5px;
 	font-size: 17px;
 	font-weight: 200;
 	line-height: 1em;
@@ -145,8 +141,8 @@
 			position: absolute;
 			width: 200px;
 			margin-top: 0;
-			top: -38px;
-			right: 9px;
+			top: -68px;
+			right: 10px;
 		}
 		@include oGridRespondTo(M) {
 			width: 300px;
@@ -154,10 +150,16 @@
 	}
 }
 .more-on__article__timestamp {
+	@include nTypeTextSans(5);
 	margin-top: 5px;
+	color: oColorsGetPaletteColor('cold-1');
+	display: block;
+	margin: 10px 0;
+	text-transform: uppercase;
 }
+
 .more-on__organisation {
-	background-color: $next-blue;
+	background-color: oColorsGetPaletteColor('cold-1');
 	margin-top: 5px;
 	padding: 10px;
 }

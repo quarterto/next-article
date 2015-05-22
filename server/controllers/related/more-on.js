@@ -133,6 +133,7 @@ module.exports = function (req, res, next) {
 						'/stream/' + encodeURIComponent(topicModel.taxonomy) + 'Id/' + encodeURIComponent(topicModel.id);
 					topicModel.isAuthor = topicModel.taxonomy === 'authors';
 					topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
+					topicModel.conceptId = topicModel.taxonomy + ':"' + encodeURIComponent(topicModel.name) + '"';
 					var otherArticleModels = _.flatten(results
 						.slice(0, index)
 						.map(function (result) { return result[0]; }));

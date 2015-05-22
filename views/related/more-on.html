@@ -1,7 +1,12 @@
 {{#each moreOns}}
 	<div class="more-on more-on--topic more-on--{{topic.taxonomy}}{{#if hasMainImage}} more-on--with-image{{/if}}">
 		<h2 class="more-on__title">{{topic.title}}
-			<a class="more-on__topic-name ng-title-link" href="{{topic.url}}" data-trackable="theme">{{topic.name}}</a>
+			<div class="more-on__topic-bar">
+				<a class="more-on__topic-name ng-title-link" href="{{topic.url}}" data-trackable="theme">{{topic.name}}</a>
+				{{#if topic.conceptId}}
+						{{>next-myft-ui/templates/follow conceptId=topic.conceptId}}
+				{{/if}}
+			</div>
 		</h2>
 		<div class="more-on__content">
 			{{#if topic.isAuthor}}
@@ -10,15 +15,16 @@
 			<ul class="more-on__articles ng-list-reset">
 				{{#each articles}}
 					<li class="more-on__article">
+						<time class="more-on__article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+							{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
+						</time>
 						<a href='/{{id}}' class='more-on__article__link ng-title-link' data-trackable='headline'>
 							{{#if image}}
 								<img class="more-on__article__image" src="{{image}}" />
 							{{/if}}
 							{{{title}}}
 						</a>
-						<time class="more-on__article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
-							{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
-						</time>
+
 					</li>
 				{{/each}}
 			</ul>
