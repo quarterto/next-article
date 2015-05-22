@@ -9,3 +9,20 @@
 		@content;
 	}
 }
+
+@mixin barrier-button() {
+	color: $next-white;
+	background-color: $next-primary-transparent;
+	width: 150px;
+	text-align: center;
+	text-decoration: none;
+	padding: 10px;
+	display: block;
+	border-radius: 5px;
+	font-size: 20px;
+	@include nTypeTextSans(3);
+
+	&:hover {
+		background-color: $next-primary-color;
+	}
+}

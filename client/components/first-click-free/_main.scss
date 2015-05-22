@@ -1,0 +1,29 @@
+.first-click-free {
+	padding: 10px;
+	background-color: oColorsGetPaletteColor(warm-2);
+	margin-bottom: 35px;
+
+	h2 {
+		@include nTypeHeading(1);
+		margin-top: 10px;
+	}
+}
+
+.first-click-free__already-registered {
+	@include nTypeTextSans(3);
+}
+
+.first-click-free__already-registered a {
+	color: $next-blue;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.first-click-free__description {
+	@include nTypeTextSans(3);
+}
+
+.first-click-free__subscribe-now a {
+	@include barrier-button();
+}
