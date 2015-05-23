@@ -11,7 +11,7 @@ var extractTags = require('../utils/extract-tags');
 var extractUuid = require('../utils/extract-uuid');
 var images = require('../transforms/images');
 var articlePrimaryTag = require('ft-next-article-primary-tag');
-
+var htmlToText = require('html-to-text');
 var bodyTransform = require('../transforms/body');
 
 module.exports = function(req, res, next) {
@@ -103,20 +103,17 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				return api.contentLegacy({
-						uuid: req.params.id,
-						useElasticSearch: false, // TODO: reinstate res.locals.flags.elasticSearchItemGet after talking to @richard-still-ft about plain versions…
-						bodyFormat: 'plain'
-					})
+				return api.contentLegacy({ uuid: req.params.id })
 						.then(function(data) {
 							if (res.locals.flags.articleCapiV1Fallback) {
 								var article = data.item;
+								console.log('<p>' + htmlToText.fromString(article.body.body, { wordwrap: false }).replace("\n", "</p><p>") + '</p>');
 								res.render('layout-v1', {
 									id: article.id,
 									title: article.title.title,
 									standFirst: article.editorial.standFirst,
 									byline: article.editorial.byline,
-									body: article.body.body,
+									body: '<p>' + htmlToText.fromString(article.body.body, { wordwrap: false }).replace(/\n/g, "</p>\n<p>") + '</p>',
 									publishedDate: article.lifecycle.lastPublishDateTime,
 									layout: 'wrapper'
 								});
