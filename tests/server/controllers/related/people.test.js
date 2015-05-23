@@ -31,6 +31,7 @@ module.exports = function() {
 		it('should return 404 if article doesn‘t exist', function () {
 			nock('https://ft-elastic-search.com')
 				.post('/v1_api_v2/item/_mget')
+				.times(4)
 				.reply(404);
 
 			return fetch(helpers.host + '/f2b13800-c70c-11e4-8e1f-00144feab7de/people')

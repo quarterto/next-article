@@ -28,7 +28,7 @@ module.exports = {
 			.reply(200, articleV1Elastic);
 		nock('https://ft-elastic-search.com')
 			.post('/v1_api_v2/item/_mget', { ids: ["b002e5ee-3096-3f51-9925-32b157740c98"] })
-			.times(2)
+			.times(4)
 			.reply(404);
 		nock('https://ft-elastic-search.com')
 			.post('/v2_api_v2/item/_mget', { ids: ["02cad03a-844f-11e4-bae9-00144feabdc0"] })
