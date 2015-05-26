@@ -10,7 +10,7 @@ module.exports = function () {
 	var stockPromises = $('.js-markets-data').map(function (el) {
 		var tickerSymbol = el.getAttribute('data-ticker-symbol');
 
-		return fetch('http://next-markets-proxy.ft.com.global.prod.fastly.net/securities/v1/quotes?symbols=' + tickerSymbol)
+		return fetch('//next-markets-proxy.ft.com/securities/v1/quotes?symbols=' + tickerSymbol)
 			.then(fetchres.json)
 			.then(function (response) {
 				var data = response.data.items[0];
