@@ -98,6 +98,12 @@
 	}
 	&:first-child {
 		margin-top: 0;
+		.more-on__article__timestamp {
+			float: left;
+		}
+		.more-on__article__link {
+			clear: left;
+		}
 	}
 	.more-on--story & {
 		min-height: 56px;
