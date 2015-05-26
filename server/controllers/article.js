@@ -112,7 +112,11 @@ module.exports = function(req, res, next) {
 									title: article.title.title,
 									standFirst: article.editorial.standFirst,
 									byline: article.editorial.byline,
-									body: '<p>' + htmlToText.fromString(article.body.body, { wordwrap: false, ignoreHref: true }).replace(/\n/g, "</p>\n<p>") + '</p>',
+									body: '<p>' + htmlToText.fromString(article.body.body, {
+											wordwrap: false,
+											ignoreHref: true,
+											ignoreImage: true
+										}).replace(/\n/g, "</p>\n<p>") + '</p>',
 									publishedDate: article.lifecycle.lastPublishDateTime,
 									layout: 'wrapper'
 								});
