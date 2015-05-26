@@ -175,6 +175,7 @@ $header-offset: 30px;
 }
 .article__tag__link {
 	color: #ffffff;
+	white-space: nowrap;
 
 	&:after {
 		@include nextIcon(arrow-right, #ffffff, 10);
