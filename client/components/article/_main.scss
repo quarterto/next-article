@@ -427,4 +427,13 @@ $header-offset: 30px;
 	}
 }
 
+.article__warning {
+	background-color: oColorsGetPaletteColor('red-2');
+	padding: 14px;
+	display: block;
+	margin: 0.3em 0 0.8em;
+	line-height: 26px;
+	text-decoration: none;
+}
+
 @import 'table';
