@@ -98,7 +98,7 @@ module.exports = function(req, res, next) {
 						viewModel.firstClickFree = res.locals.firstClickFreeModel;
 					}
 
-					return res.render('article', viewModel);
+					return res.render('article-v2', viewModel);
 				});
 		})
 		.catch(function(err) {
@@ -107,7 +107,7 @@ module.exports = function(req, res, next) {
 						.then(function(data) {
 							if (res.locals.flags.articleCapiV1Fallback) {
 								var article = data.item;
-								res.render('layout-v1', {
+								res.render('article-v1', {
 									id: article.id,
 									title: article.title.title,
 									standFirst: article.editorial.standFirst,
