@@ -108,6 +108,7 @@ module.exports = function(req, res, next) {
 							if (res.locals.flags.articleCapiV1Fallback) {
 								var article = data.item;
 								res.render('article-v1', {
+									falconUrl: data.item.location.uri,
 									id: article.id,
 									title: article.title.title,
 									standFirst: article.editorial.standFirst,
