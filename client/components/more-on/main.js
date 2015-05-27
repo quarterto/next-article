@@ -29,14 +29,18 @@ var initAds = function(flags) {
 var $ = function(selector) {
 	return [].slice.call(document.querySelectorAll(selector));
 };
-var createPromise = function (el, url) {
+var createPromise = function (el, url, renderer) {
 	return fetch(url, { credentials: 'same-origin' })
 		.then(fetchres.text)
 		.then(function(resp) {
 			if (!resp) {
 				throw new Error('No response');
 			}
-			el.innerHTML = resp;
+			if (renderer) {
+				renderer(el, resp);
+			} else {
+				el.innerHTML = resp;
+			}
 			oDate.init(el);
 		})
 		.catch(function() {
@@ -55,7 +59,14 @@ module.exports.init = function(flags) {
 		fetchPromises.push(createPromise(el, '/' + articleId + '/story-package?count=4'));
 	});
 	$('.js-more-on-topic').forEach(function(el) {
-		fetchPromises.push(createPromise(el, '/' + articleId + '/more-on?metadata-fields=' + el.getAttribute('data-metadata-fields').replace(' ', ',') + '&count=4'));
+		fetchPromises.push(createPromise(el, '/' + articleId + '/more-on?metadata-fields=' + el.getAttribute('data-metadata-fields').replace(' ', ',') + '&count=4', function (el, resp) {
+			var brandEl = el.querySelector('.more-on__topic-bar--taxonomy-brand');
+			if (brandEl) {
+				brandEl.insertAdjacentHTML('afterend', resp);
+			} else {
+				el.innerHTML = resp;
+			}
+		}));
 	});
 	$('.js-related').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/' + articleId + '/' + el.getAttribute('data-taxonomy')));
