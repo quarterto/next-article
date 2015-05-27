@@ -14,7 +14,7 @@
 }
 
 .first-click-free__already-registered a {
-	color: $next-blue;
+	color: oColorsGetPaletteColor('link-1');
 	&:hover {
 		text-decoration: none;
 	}
@@ -25,5 +25,7 @@
 }
 
 .first-click-free__subscribe-now a {
-	@include barrier-button();
+	@include nextLinkButton(
+		$background: oColorsGetPaletteColor('link-1')
+	);
 }
