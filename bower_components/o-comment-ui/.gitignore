@@ -1,9 +1,0 @@
-/bower_components
-/dist
-/build
-/node_modules
-/tmp
-.bowerrc
-.jshintrc
-.editorconfig
-.sass-cache
