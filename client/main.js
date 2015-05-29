@@ -5,7 +5,7 @@ var oDate = require('o-date');
 var myFtClient = require('next-myft-client');
 
 var setup = require('next-js-setup');
-var header = require('next-header');
+var headerFooter = require('n-header-footer');
 var nVideo = require('n-video');
 
 var slideshow = require('./components/slideshow/main');
@@ -17,7 +17,7 @@ oViewport.listenTo('resize');
 
 setup.bootstrap(function(result) {
 	var flags = result.flags;
-	header.init(flags);
+	headerFooter.init(flags);
 
 	if (document.querySelector('*[data-article-status="error"]')) {
 		return;
