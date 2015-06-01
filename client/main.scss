@@ -10,11 +10,11 @@ $o-gallery-is-silent: false;
 $o-comments-is-silent: false;
 @import 'o-comments/main';
 
-@import "next-header/main";
+@import "n-header-footer/main";
 .next-header {
 	margin-bottom: 0;
 }
-@import "next-footer/main";
+
 @import "next-ads-component/main";
 @import "next-barrier-component/main";
 @import "next-welcome/main";
