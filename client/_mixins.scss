@@ -20,7 +20,7 @@
 	display: block;
 	border-radius: 5px;
 	font-size: 20px;
-	@include nTypeTextSans(3);
+	@include nTypeAlpha(3);
 
 	&:hover {
 		background-color: $next-primary-color;

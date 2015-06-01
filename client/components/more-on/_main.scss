@@ -17,7 +17,7 @@
 	}
 }
 .more-on__title {
-	@include nTypeHeading(4);
+	@include nTypeBeta(4);
 	text-transform: uppercase;
 	margin: 0;
 }
@@ -52,7 +52,7 @@
 	}
 }
 .more-on__topic-name {
-	@include nTypeHeading(2);
+	@include nTypeBeta(2);
 	display: block;
 	color: oColorsGetPaletteColor('white');
 	padding: 10px;
@@ -156,7 +156,7 @@
 	}
 }
 .more-on__article__timestamp {
-	@include nTypeTextSans(5);
+	@include nTypeAlpha(5);
 	margin-top: 5px;
 	color: oColorsGetPaletteColor('cold-1');
 	display: block;
