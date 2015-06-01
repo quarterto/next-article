@@ -36,7 +36,7 @@ setup.bootstrap(function(result) {
 		moreOn.init(flags);
 	}
 
-	nVideo.init()
+	nVideo.init({ optimumWidth: 710 })
 		.then(function(videos) {
 			videos.forEach(function (video) {
 				video.el.className = 'article__video ng-media';
