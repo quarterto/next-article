@@ -7,6 +7,13 @@ $o-gallery-is-silent: false;
 @import "o-gallery/main";
 @import "o-fonts/main";
 @include oFontsInclude(MetricWeb, thin);
+
+// Fix o-comments at 2.0.3 so we can use the build service for images
+@import "o-assets/main";
+@include oAssetsSetModulePaths((
+	o-comments: '//build.origami.ft.com/files/o-comments@^2.0.0',
+	o-comment-ui: '//build.origami.ft.com/files/o-comment-ui@^2.0.0'
+));
 $o-comments-is-silent: false;
 @import 'o-comments/main';
 
