@@ -7,7 +7,7 @@ $header-offset: 30px;
 
 //ARTICLE HEADER
 .article__header {
-	background: $next-blue;
+	background: oColorsGetPaletteColor(cold-2);
 	position: relative;
 	padding-bottom: 20px;
 	font-weight: 100;
