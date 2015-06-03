@@ -11,7 +11,7 @@ module.exports = function(req, res, next) {
 	}
 
 	if (res.locals.flags.mentionsV2) {
-		// topics not supportd in v2 yet
+		// regions not supportd in v2 yet
 		res.status(200).end();
 	} else {
 		api.contentLegacy({
@@ -20,20 +20,20 @@ module.exports = function(req, res, next) {
 		})
 			.then(function (article) {
 				res.set(cacheControl);
-				var topics = article.item.metadata.topics.filter(excludePrimaryTheme(article));
+				var regions = article.item.metadata.regions.filter(excludePrimaryTheme(article));
 
-				if (!topics.length) {
+				if (!regions.length) {
 					throw new Error('No related');
 				}
 
-				res.render('related/topics', {
-					topics: topics.map(function (topic, index) {
-						topic = topic.term;
+				res.render('related/regions', {
+					regions: regions.map(function (region, index) {
+						region = region.term;
 						var model = {
-							name: topic.name,
-							url: '/stream/topicsId/' + topic.id,
-							conceptId: 'topics:' + ['"', encodeURIComponent(topic.name), '"'].join(''),
-							taxonomy: 'topics'
+							name: region.name,
+							url: '/stream/regionsId/' + region.id,
+							conceptId: 'regions:' + ['"', encodeURIComponent(region.name), '"'].join(''),
+							taxonomy: 'regions'
 						};
 
 						return model;

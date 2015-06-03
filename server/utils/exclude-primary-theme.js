@@ -6,5 +6,6 @@ module.exports = function (article) {
 
 	return function (topic) {
 		return topic.term.id !== exclude;
-	}
+	};
+
 };

@@ -19,9 +19,60 @@
 }
 
 .more-on__title {
-	@include nTypeBeta(4);
-	text-transform: uppercase;
+	@include nTypeBeta(3);
+	text-transform: none;
 	margin: 0;
+	padding: 5px 0;
+	color: oColorsGetPaletteColor(cold-3);
+
+	&:before {
+		content: '';
+		margin-right: 5px;
+		position: relative;
+		top: 5px;
+	}
+
+	@include oGridRespondTo(S) {
+		@include nTypeBeta(2);
+		padding: 10px 0;
+		&:before {
+			top: 6px;
+		}
+	}
+}
+
+.more-on--organisations .more-on__title:before {
+	@include nextIcon(section-companies, oColorsGetPaletteColor(cold-3), 25);
+}
+
+.more-on--people .more-on__title:before {
+	@include nextIcon(profile, oColorsGetPaletteColor(cold-3), 25);
+}
+
+.more-on--regions .more-on__title:before {
+	@include nextIcon(section-world, oColorsGetPaletteColor(cold-3), 25);
+}
+
+.more-on--topics .more-on__title:before {
+	@include nextIcon(section-special-report, oColorsGetPaletteColor(cold-3), 25);
+}
+
+@include oGridRespondTo(S) {
+	.more-on--organisations .more-on__title:before {
+		@include nextIcon(section-companies, oColorsGetPaletteColor(cold-3), 30);
+	}
+
+	.more-on--people .more-on__title:before {
+		@include nextIcon(profile, oColorsGetPaletteColor(cold-3), 30);
+	}
+
+	.more-on--regions .more-on__title:before {
+		@include nextIcon(section-world, oColorsGetPaletteColor(cold-3), 30);
+	}
+
+	.more-on--topics .more-on__title:before {
+		@include nextIcon(section-special-report, oColorsGetPaletteColor(cold-3), 30);
+	}
 }
 
 .more-on__content {
@@ -44,7 +95,7 @@
 	@include nTypeAlpha(4);
 	box-sizing: border-box;
 
-	a {
+	.more-on__article__link {
 		border-top: 1px solid oColorsGetPaletteColor(warm-3);
 		padding-top: 10px;
 	}
@@ -54,10 +105,9 @@
 
 	&:first-child {
 		margin-top: 0;
-		a {
-			border-top: 0;
-		}
+
 		.more-on__article__link {
+			border-top: 0;
 			clear: left;
 		}
 	}
@@ -99,8 +149,8 @@
 			margin-top: 0;
 			float: right;
 			position: relative;
-  		z-index: 1;
-  		padding-left: 20px;
+			z-index: 1;
+			padding-left: 20px;
 		}
 		@include oGridRespondTo(M) {
 			width: 300px;
