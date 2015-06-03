@@ -4,6 +4,7 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
+var excludePrimaryTheme = require('../../utils/exclude-primary-theme');
 
 module.exports = function(req, res, next) {
 	if (!res.locals.flags.articleRelatedContent) {
@@ -20,17 +21,14 @@ module.exports = function(req, res, next) {
 		})
 			.then(function (article) {
 				res.set(cacheControl);
-				var relations = article.item.metadata.topics;
+				var topics = article.item.metadata.topics.filter(excludePrimaryTheme(article));
 
-				if (!relations.length) {
+				if (!topics.length) {
 					throw new Error('No related');
 				}
 
-				var topics = relations.filter(function (topic) {
-					// exclude primary theme and section
-						return true;
-					})
-					.map(function (topic, index) {
+				res.render('related/topics', {
+					topics: topics.map(function (topic, index) {
 						topic = topic.term;
 						var model = {
 							name: topic.name,
@@ -40,13 +38,7 @@ module.exports = function(req, res, next) {
 						};
 
 						return model;
-					});
-					console.log(topics);
-					if (!topics.length) {
-						throw new Error('No related');
-					}
-					res.render('related/topics', {
-						topics: topics
+					})
 					});
 			})
 			.catch(function (err) {

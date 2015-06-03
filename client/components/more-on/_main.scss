@@ -1,5 +1,3 @@
-@import 'market-data';
-
 .more-on {
 	margin-top: 15px;
 	position: relative;
@@ -11,6 +9,11 @@
 		display: none;
 	}
 }
+
+.more-on > ul > li {
+	margin-bottom: 10px;
+}
+
 .more-on--inline {
 	@include oGridRespondTo(S) {
 		width: 300px;

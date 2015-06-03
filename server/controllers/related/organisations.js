@@ -4,6 +4,7 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
+var excludePrimaryTheme = require('../../utils/exclude-primary-theme');
 
 module.exports = function(req, res, next) {
 	if (!res.locals.flags.articleRelatedContent) {
@@ -71,7 +72,7 @@ module.exports = function(req, res, next) {
 		})
 			.then(function (article) {
 				res.set(cacheControl);
-				var relations = article.item.metadata.organisations;
+				var relations = article.item.metadata.organisations.filter(excludePrimaryTheme(article));
 				if (!relations.length) {
 					throw new Error('No related');
 				}
