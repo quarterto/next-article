@@ -134,6 +134,18 @@ module.exports = function (req, res, next) {
 					topicModel.isAuthor = topicModel.taxonomy === 'authors';
 					topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
 					topicModel.conceptId = topicModel.taxonomy + ':"' + encodeURIComponent(topicModel.name) + '"';
+
+					if (topicModel.taxonomy === 'organisations') {
+						// get the stock id
+							topic.term.attributes.some(function (attribute) {
+								if (attribute.key === 'wsod_key') {
+									topicModel.tickerSymbol = attribute.value;
+									return true;
+								}
+								return false;
+							});
+					}
+
 					var otherArticleModels = _.flatten(results
 						.slice(0, index)
 						.map(function (result) { return result[0]; }));
