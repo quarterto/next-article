@@ -7,8 +7,9 @@ var beacon = require('next-beacon-component');
 module.exports = function(els) {
 	[].slice.call(els).forEach(function(el) {
 		var uuid = el.getAttribute('data-uuid');
+		var syncid = el.getAttribute('data-syncid');
 		if (uuid) {
-			fetch('/embedded-components/slideshow/' + uuid, { credentials: 'same-origin' })
+			fetch('/embedded-components/slideshow/' + uuid + '?syncid=' + syncid, { credentials: 'same-origin' })
 				.then(fetchres.text)
 				.then(function(data) {
 					var container = document.createElement('div');

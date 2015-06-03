@@ -1,5 +1,7 @@
-<div class="o-gallery o-gallery--slideshow" data-o-component="o-gallery" data-o-gallery-syncid="declarative-slideshow-with-thumbnails" data-o-gallery-captionminheight="30" data-o-gallery-captionmaxheight="50">
+<div class="o-gallery o-gallery--slideshow" data-o-component="o-gallery" data-o-gallery-syncid="{{syncid}}" data-o-gallery-captionminheight="30" data-o-gallery-captionmaxheight="50">
+	{{#if title}}
 	<h1 class="o-gallery__title">{{title}}</h1>
+	{{/if}}
 	<ol class="o-gallery__items">
 		{{#each slides}}
 		<li class="o-gallery__item"{{#if @first}} aria-selected="true"{{/if}}>
@@ -9,7 +11,7 @@
 		{{/each}}
 	</ol>
 </div>
-<div class="o-gallery o-gallery--thumbnails" data-o-component="o-gallery" data-o-gallery-syncid="declarative-slideshow-with-thumbnails" data-o-gallery-multipleitemsperpage="true">
+<div class="o-gallery o-gallery--thumbnails" data-o-component="o-gallery" data-o-gallery-syncid="{{syncid}}" data-o-gallery-multipleitemsperpage="true">
 	<ol class="o-gallery__items">
 		{{#each slides}}
 		<li class="o-gallery__item"{{#if @first}} aria-selected="true"{{/if}}>
