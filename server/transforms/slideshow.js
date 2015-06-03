@@ -10,7 +10,7 @@ module.exports = function(index, el) {
 	}
 
 	var uuid = $el.attr('href').replace(/.*([a-zA-Z0-9-]{36}).*/, '$1');
-	var slideshow = '<ft-slideshow data-uuid="' + uuid + '"></ft-slideshow>';
+	var slideshow = '<ft-slideshow data-uuid="' + uuid + '" data-syncid="' + (index + 1) + '"></ft-slideshow>';
 
 	// NOTE - can be removed once the slideshow is moved out of p's upstream
 	if ($el.parent('p').length) {
