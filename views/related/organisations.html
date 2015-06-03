@@ -2,9 +2,7 @@
 	<h2 class="more-on__title">Related organisations</h2>
 	<ul class="more-on__organisations ng-list-reset">
 		{{#each organisations}}
-			<li class="more-on__organisation{{#if tickerSymbol}} js-markets-data" data-ticker-symbol="{{tickerSymbol}}{{/if}}">
-				<a class="more-on__organisation__link ng-title-link" href="{{url}}" data-trackable="section-link">{{name}}</a>
-			</li>
+			{{>n-topic/templates/bar htmlTag="li"}}
 		{{/each}}
 	</ul>
 </div>

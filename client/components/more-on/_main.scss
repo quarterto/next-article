@@ -22,43 +22,6 @@
 	margin: 0;
 }
 
-.more-on__topic-bar {
-	background-color: oColorsGetPaletteColor('cold-1');
-	overflow: hidden;
-	padding: 10px;
-	.more-on--with-image &,
-	.more-on--authors & {
-		@include oGridRespondTo($until: S) {
-			padding-bottom: 30px;
-		}
-	}
-	.more-on--with-image & {
-			@include oGridRespondTo(S) {
-				padding-right: 220px;
-			}
-			@include oGridRespondTo(M) {
-				padding-right: 320px;
-			}
-		}
-		.more-on--authors & {
-			@include oGridRespondTo(S) {
-				padding-right: 120px;
-			}
-		}
-	.myft-ui {
-		position: relative;
-		top: -4px;
-		padding: 10px;
-	}
-}
-.more-on__topic-name {
-	@include nTypeBeta(2);
-	display: block;
-	color: oColorsGetPaletteColor('white');
-	padding: 10px;
-	text-transform: none;
-
-}
 .more-on__content {
 	border: 1px solid $box-colour;
 	border-top: 0;
@@ -162,70 +125,4 @@
 	display: block;
 	margin: 10px 0;
 	text-transform: uppercase;
-}
-
-.more-on__organisation {
-	background-color: oColorsGetPaletteColor('cold-1');
-	margin-top: 5px;
-	padding: 10px;
-}
-.more-on__person {
-	margin-top: 15px;
-
-}
-.more-on__organisation__link {
-	display: block;
-	position: relative;
-	color: #ffffff;
-	font-weight: 500;
-	font-size: 24px;
-
-	&:after {
-		@include nextIcon(arrow-right, #ffffff, 20);
-		content: '';
-		position: relative;
-		top: 3px;
-		left: 10px;
-	}
-}
-.more-on__person__link {
-	position: relative;
-	display: block;
-	color: #000000;
-	min-height: 50px;
-	font-weight: 400;
-	padding-left: 60px;
-}
-.more-on__person__image {
-	position: absolute;
-	top: 0;
-	left: 0;
-	border: 0;
-	border-radius: 25px;
-	background-color: #ffffff;
-}
-.more-on__person__role {
-	display: block;
-	font-weight: 100;
-	margin: 5px 0 0;
-}
-.more-on__all-link {
-	position: relative;
-	display: block;
-	font-weight: 500;
-	font-size: 14px;
-	color: $next-blue;
-	text-transform: uppercase;
-	text-align: right;
-	padding: 10px;
-	border-top: 0;
-
-	&:after {
-		@include nextIcon(arrow-right, $next-blue, 10);
-		content: '';
-		position: relative;
-		top: -1px;
-		left: 5px;
-
-	}
 }

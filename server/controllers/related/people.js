@@ -95,17 +95,14 @@ module.exports = function(req, res, next) {
 				return Promise.all(promises)
 					.then(function (results) {
 						var people = results
-							.filter(function (person) {
-								// need the person data for semantic streams
-								return res.locals.flags.semanticStreams ? person : true;
-							})
 							.map(function (person, index) {
+								var relation = relations[index].term;
 								return {
-									name: relations[index].term.name,
-									url: res.locals.flags.semanticStreams
-										? '/people/' + extractUuid(person.id)
-										: '/stream/peopleId/' + relations[index].term.id,
-									role: person && getCurrentRole(person)
+									name: relation.name,
+									url: '/stream/peopleId/' + relation.id,
+									role: person && getCurrentRole(person),
+									conceptId: 'people:' + ['"', encodeURIComponent(relation.name), '"'].join(''),
+									taxonomy: 'people'
 								};
 							});
 						if (!people.length) {

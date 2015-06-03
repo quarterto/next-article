@@ -1,13 +1,12 @@
 {{#each moreOns}}
 	<div class="more-on more-on--topic more-on--{{topic.taxonomy}}{{#if hasMainImage}} more-on--with-image{{/if}}">
-		<h2 class="more-on__title">{{topic.title}}
-			<div class="more-on__topic-bar">
-				<a class="more-on__topic-name ng-title-link" href="{{topic.url}}" data-trackable="theme">{{topic.name}}</a>
-				{{#if topic.conceptId}}
-						{{>next-myft-ui/templates/follow conceptId=topic.conceptId}}
-				{{/if}}
-			</div>
-		</h2>
+		{{#topic}}
+			{{#if ../hasMainImage}}
+				{{>n-topic/templates/bar headingLevel="h2" variant="left"}}
+			{{else}}
+				{{>n-topic/templates/bar headingLevel="h2"}}
+			{{/if}}
+		{{/topic}}
 		<div class="more-on__content">
 			{{#if topic.isAuthor}}
 				<img class="more-on__author-image" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fnext.ft.com%2Fassets%2Ficons%2Fprofile.svg?format=svg&tint=%23000000,%23000000&source=next.ft.com" width="100" height="100" />

@@ -10,6 +10,7 @@ app.use('^/:id(' + articleUuidRegex + ')$', require('./utils/access'));
 app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
 app.get('^/:id(' + articleUuidRegex + ')/people', require('./controllers/related/people'));
 app.get('^/:id(' + articleUuidRegex + ')/organisations', require('./controllers/related/organisations'));
+app.get('^/:id(' + articleUuidRegex + ')/topics', require('./controllers/related/topics'));
 app.get('^/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
 app.get('^/:id(' + articleUuidRegex + ')/more-on', require('./controllers/related/more-on'));
 app.get('^/:id(' + articleUuidRegex + ')/comments-hack', require('./controllers/comments-hack'));

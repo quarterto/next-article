@@ -84,17 +84,13 @@ module.exports = function(req, res, next) {
 				return Promise.all(promises)
 					.then(function (results) {
 						var organisations = results
-							.filter(function (organisation) {
-								// need the org data for semantic streams
-								return res.locals.flags.semanticStreams ? organisation : true;
-							})
 							.map(function (organisation, index) {
 								var relation = relations[index].term;
 								var organisationModel = {
 									name: relation.name,
-									url: res.locals.flags.semanticStreams
-										? '/organisations/' + extractUuid(organisation.id)
-										: '/stream/organisationsId/' + relation.id
+									url: '/stream/organisationsId/' + relation.id,
+									conceptId: 'organisations:' + ['"', encodeURIComponent(relation.name), '"'].join(''),
+									taxonomy: 'organisations'
 								};
 								// get the stock id
 								relation.attributes.some(function (attribute) {
