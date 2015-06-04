@@ -14,7 +14,8 @@
     "o-comments": "2.0.3",
     "o-comment-ui": "2.0.2",
     "next-myft-client": "^1.0.0",
-    "next-myft-ui": "^2.0.0"
+    "next-myft-ui": "^2.0.0",
+    "n-topic": "Financial-Times/n-topic#^1.0.0-beta.1"
   },
   "resolutions": {
     "o-ft-icons": "next",

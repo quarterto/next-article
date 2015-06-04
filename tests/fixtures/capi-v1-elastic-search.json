@@ -226,6 +226,22 @@
                      ],
                      "taxonomy":"people"
                   }
+               },
+               {
+                  "term": {
+                     "name": "Jean-Claude Juncker",
+                     "id": "TnN0ZWluX1BOX0FGVE1fUE5fMTQ3MDM4-UE4=",
+                     "attributes": [],
+                     "taxonomy": "people"
+                  }
+               },
+               {
+                  "term": {
+                     "name": "Alexis Tsipras",
+                     "id": "TnN0ZWluX1BOX1BvbGl0aWNpYW5zXzIwMDlfMTBfMl81NTEzNA==-UE4=",
+                     "attributes": [],
+                     "taxonomy": "people"
+                  }
                }
             ],
             "regions":[

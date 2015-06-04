@@ -4,6 +4,7 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
+var excludePrimaryTheme = require('../../utils/exclude-primary-theme');
 
 module.exports = function(req, res, next) {
 	if (!res.locals.flags.articleRelatedContent) {
@@ -71,7 +72,7 @@ module.exports = function(req, res, next) {
 		})
 			.then(function (article) {
 				res.set(cacheControl);
-				var relations = article.item.metadata.organisations;
+				var relations = article.item.metadata.organisations.filter(excludePrimaryTheme(article));
 				if (!relations.length) {
 					throw new Error('No related');
 				}
@@ -84,17 +85,13 @@ module.exports = function(req, res, next) {
 				return Promise.all(promises)
 					.then(function (results) {
 						var organisations = results
-							.filter(function (organisation) {
-								// need the org data for semantic streams
-								return res.locals.flags.semanticStreams ? organisation : true;
-							})
 							.map(function (organisation, index) {
 								var relation = relations[index].term;
 								var organisationModel = {
 									name: relation.name,
-									url: res.locals.flags.semanticStreams
-										? '/organisations/' + extractUuid(organisation.id)
-										: '/stream/organisationsId/' + relation.id
+									url: '/stream/organisationsId/' + relation.id,
+									conceptId: 'organisations:' + ['"', encodeURIComponent(relation.name), '"'].join(''),
+									taxonomy: 'organisations'
 								};
 								// get the stock id
 								relation.attributes.some(function (attribute) {

@@ -2,8 +2,8 @@
 
 var fetchres = require('fetchres');
 var oDate = require('o-date');
-var marketData = require('./market-data');
-var myFtClient = require('next-myft-client');
+var nTopic = require('n-topic');
+var myFtUi = require('next-myft-ui');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
 function allSettled(promises) {
@@ -73,11 +73,11 @@ module.exports.init = function(flags) {
 	});
 
 	return allSettled(fetchPromises)
-		.then(marketData)
-		.then(initAds(flags))
 		.then(function() {
-			if(myFtClient.loaded['followed']) {
-				myFtClient.emit('followed.load', myFtClient.loaded['followed']);
-			}
-		});
+			var moreOnContainer = document.querySelector('.article__more-on');
+			nTopic.init(moreOnContainer);
+			myFtUi.updateUi(moreOnContainer);
+		})
+		.then(initAds(flags));
+
 };

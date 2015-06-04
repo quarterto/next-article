@@ -201,34 +201,9 @@
                   }
                }
             ],
-            "organisations":[
-               {
-                  "term":{
-                     "name":"UK Independence Party",
-                     "id":"Mzc1ZDFkYWYtYjZhNS00YzljLWExOTctYzRmYTViMDg1NjZj-T04=",
-                     "attributes":[
-                        {
-                           "key":"is_company",
-                           "value":"false"
-                        }
-                     ],
-                     "taxonomy":"organisations"
-                  }
-               }
-            ],
+            "organisations":[],
             "people":[],
-            "regions":[
-               {
-                  "term":{
-                     "name":"City of London",
-                     "id":"TnN0ZWluX0dMX0dCX0VOR19IX0xvbmRvbg==-R0w=",
-                     "attributes":[
-
-                     ],
-                     "taxonomy":"regions"
-                  }
-               }
-            ],
+            "regions":[],
             "sections":[
                {
                   "term":{
@@ -286,28 +261,7 @@
                   }
                }
             ],
-            "topics":[
-               {
-                  "term":{
-                     "name":"UK Election: The Ukip surge",
-                     "id":"NGRkY2RlYTctYWNhOC00N2IzLTg5MzUtOTdmYTk0NTY0NDUy-VG9waWNz",
-                     "attributes":[
-
-                     ],
-                     "taxonomy":"topics"
-                  }
-               },
-               {
-                  "term":{
-                     "name":"UK general election",
-                     "id":"OTAzZjM5YTgtZGU1Ny00MjU5LTgxMmEtZGIzMGY4YTg5NDJi-VG9waWNz",
-                     "attributes":[
-
-                     ],
-                     "taxonomy":"topics"
-                  }
-               }
-            ]
+            "topics":[]
          },
          "images":[
             {

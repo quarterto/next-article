@@ -6,6 +6,7 @@ var _ = require('lodash');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
+var excludePrimaryTheme = require('../../utils/exclude-primary-theme');
 
 function getCurrentRole(person) {
 	var currentMembership = (person.memberships || []).find(function (membership) {
@@ -82,7 +83,7 @@ module.exports = function(req, res, next) {
 		})
 			.then(function (article) {
 				res.set(cacheControl);
-				var relations = article.item.metadata.people;
+				var relations = article.item.metadata.people.filter(excludePrimaryTheme(article));
 				if (!relations.length) {
 					throw new Error('No related');
 				}
@@ -95,17 +96,14 @@ module.exports = function(req, res, next) {
 				return Promise.all(promises)
 					.then(function (results) {
 						var people = results
-							.filter(function (person) {
-								// need the person data for semantic streams
-								return res.locals.flags.semanticStreams ? person : true;
-							})
 							.map(function (person, index) {
+								var relation = relations[index].term;
 								return {
-									name: relations[index].term.name,
-									url: res.locals.flags.semanticStreams
-										? '/people/' + extractUuid(person.id)
-										: '/stream/peopleId/' + relations[index].term.id,
-									role: person && getCurrentRole(person)
+									name: relation.name,
+									url: '/stream/peopleId/' + relation.id,
+									role: person && getCurrentRole(person),
+									conceptId: 'people:' + ['"', encodeURIComponent(relation.name), '"'].join(''),
+									taxonomy: 'people'
 								};
 							});
 						if (!people.length) {
