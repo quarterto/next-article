@@ -87,23 +87,7 @@
 		</div>
 	</div>
 {{/if}}
-<div class="article__more-on">
-	<div class="o-grid-row">
-		{{#if @root.flags.articleRelatedContent}}
-			<div data-trackable="more-on" data-o-grid-colspan="12 L8 XL7 XLoffset1">
-				<div class="js-more-on-topic" data-metadata-fields="primaryTheme {{#if isColumnist}}authors{{else}}primarySection{{/if}}">
-					{{#primaryTag}}
-						{{>n-topic/templates/bar headingLevel="h2"}}
-					{{/primaryTag}}
-				</div>
-				<div class="js-related" data-taxonomy="organisations"></div>
-				<div class="js-related" data-taxonomy="people"></div>
-				<div class="js-related" data-taxonomy="regions"></div>
-				<div class="js-related" data-taxonomy="topics"></div>
-			</div>
-		{{/if}}
-	</div>
-</div>
+{{>more-ons}}
 {{#if comments}}
 <div class="o-grid-row">
 		<div class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset1"></div>
