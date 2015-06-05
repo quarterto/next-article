@@ -36,12 +36,10 @@ setup.bootstrap(function(result) {
 		moreOn.init(flags);
 	}
 
-	nVideo.init({ optimumWidth: 710 })
-		.then(function(videos) {
-			videos.forEach(function (video) {
-				video.el.className = 'article__video ng-media';
-			});
-		});
+	nVideo.init({
+		optimumWidth: 710,
+		classes: ['article__video', 'ng-media']
+	});
 	toc.init(flags);
 	comments.init(uuid, flags);
 	oDate.init(document.querySelector('.article'));
