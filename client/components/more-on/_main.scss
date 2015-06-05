@@ -53,10 +53,6 @@
 	@include nextIcon(section-world, oColorsGetPaletteColor(cold-3), 25);
 }
 
-.more-on--topics .more-on__title:before {
-	@include nextIcon(section-special-report, oColorsGetPaletteColor(cold-3), 25);
-}
-
 @include oGridRespondTo(S) {
 	.more-on--organisations .more-on__title:before {
 		@include nextIcon(section-companies, oColorsGetPaletteColor(cold-3), 30);
@@ -70,9 +66,6 @@
 		@include nextIcon(section-world, oColorsGetPaletteColor(cold-3), 30);
 	}
 
-	.more-on--topics .more-on__title:before {
-		@include nextIcon(section-special-report, oColorsGetPaletteColor(cold-3), 30);
-	}
 }
 
 .more-on__content {
