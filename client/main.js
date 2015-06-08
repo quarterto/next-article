@@ -12,6 +12,7 @@ var slideshow = require('./components/slideshow/main');
 var moreOn = require('./components/more-on/main');
 var toc = require('./components/toc/main');
 var comments = require('./components/comments/main');
+var readingList = require('./components/reading-list/main');
 
 oViewport.listenTo('resize');
 
@@ -31,6 +32,8 @@ setup.bootstrap(function(result) {
 					myFtClient.notifications.clear([uuid], true); //force articles to mark as read
 				}
 			});
+
+			readingList.init();
 		}
 	}
 
@@ -39,6 +42,8 @@ setup.bootstrap(function(result) {
 	if (flags.get('contentApiCalls')) {
 		moreOn.init(flags);
 	}
+
+
 
 	nVideo.init({
 		optimumWidth: 710,
