@@ -26,7 +26,7 @@ setup.bootstrap(function(result) {
 	var uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
 	if (uuid) {
 		if (flags.get('userPreferencesAPI')) {
-			myFtClient.notifications.clear([uuid]);
+			myFtClient.notifications.clear([uuid], true); //force articles to mark as read
 		}
 	}
 
