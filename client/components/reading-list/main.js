@@ -11,7 +11,7 @@ module.exports.init = function() {
 		return;
 	}
 
-	fetch('/mypage/feed?limit=40',{
+	fetch('/mypage/feed?limit=40&headingLevel=4&source=email-reading-list',{
 		credentials: 'same-origin'
 	})
 	.then(fetchres.text)
