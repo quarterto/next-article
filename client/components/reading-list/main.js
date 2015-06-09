@@ -1,31 +1,55 @@
 'use strict';
 
 var fetchres = require('fetchres');
-var oDate = require('o-date');
+var oExpander = require('o-expander');
 
 module.exports.init = function() {
 
-	var isEmail = document.location.hash.indexOf('myft') > 0;
+	var isFromMyFT = document.location.hash.indexOf('myft') > 0;
+	var isFromEmail = isFromMyFT && document.location.hash.indexOf('email') > 0;
+
 	var hasSession = document.cookie.match(/FTSession=/);
-	if(!isEmail || !hasSession) {
+
+	if(!isFromEmail || !hasSession) {
 		return;
 	}
 
-	fetch('/mypage/feed?limit=40&headingLevel=4&source=email-reading-list',{
+	fetch('/myft/my-news?fragment=true&source=email-reading-list&limit=40',{
 		credentials: 'same-origin'
 	})
 	.then(fetchres.text)
 	.then(function(html) {
 		if(html && html.length) {
-			var container = document.createElement('div');
-			container.classList.add('n-reading-list');
-			container.insertAdjacentHTML('afterbegin', '<button class="n-reading-list__trigger"><abbr class="myft-ui__icon" title="myFT reading list"></abbr></button>')
-			container.insertAdjacentHTML('beforeend', html);
-			document.body.appendChild(container);
-			oDate.init(container);
+			var container = document.querySelector('.js-myft-reading-list');
+			container.querySelector('.more-on__content').insertAdjacentHTML('afterbegin', html);
 
-			container.querySelector('.n-reading-list__trigger').addEventListener('click', function () {
-				this.parentElement.classList.toggle('n-reading-list--open');
+			var feed = container.querySelector('.myft-feed');
+			feed.classList.add('o-expander__content');
+
+			var allLinks = [].slice.call(feed.querySelectorAll('.myft-feed__item__headline a'));
+			var matchingHref = allLinks.filter(function(el, index) {
+				return el.getAttribute('href').indexOf(document.querySelector('.article').getAttribute('data-content-id')) >= 0;
+			});
+
+			if(matchingHref.length) {
+				var index = allLinks.indexOf(matchingHref[0]);
+				matchingHref[0].classList.add('myft-reading-list__current-page');
+			}
+			var nextArticle = allLinks[index+1];
+
+			if(nextArticle) {
+				var nextArticleCTA = document.querySelector('.myft-reading-list__title')
+				nextArticleCTA.href = nextArticle.href;
+				nextArticleCTA.insertAdjacentHTML('beforeend', '<span class="myft-reading-list__next-headline">' + nextArticle.textContent + '</span>');
+			}
+
+
+			container.classList.add('myft-reading-list__loaded');
+
+			oExpander.init(container, {
+				shrinkTo: 0,
+				collapsedToggleText: 'Show full list',
+				expandedToggleText: 'Show less'
 			});
 
 		}

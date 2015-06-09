@@ -1,26 +1,70 @@
-.n-reading-list {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  z-index: 10;
-  margin-top: -80px;
-  transition: right 0.2s ease-in-out;
+.myft-reading-list {
+	display: none;
+
+	&.myft-reading-list__loaded {
+		display: block;
+	}
+
+	.myft-reading-list__title {
+
+		background: oColorsGetPaletteColor('red-1');
+		padding: 10px;
+		display: block;
+		margin: 0;
+		&,
+		a {
+			display: block;
+			color: oColorsGetPaletteColor('white');
+			text-transform: none;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+	}
+	.myft-reading-list__title-text {
+		@include nTypeBeta(4);
+		display: block;
+		padding: 0 0 6px 0;
+		&:before {
+			content: '';
+			@include nextIcon(email, oColorsGetPaletteColor('white'), 20);
+			margin: -5px 0 0 -3px;
+		 	position: relative;
+  		top: 5px;
+		}
+	}
+	.myft-reading-list__next-headline {
+		@include nTypeAlpha(3);
+	}
+
+
+	.more-on__content {
+		overflow: hidden;
+	}
+
+	.more-on__all-link {
+		float: right;
+		&:after {
+			display: none;
+		}
+	}
 
 	.myft-feed {
-		list-style: none;
-	  background-color: oColorsGetPaletteColor('warm-2');
-	  padding: 10px;
+	  padding: 0;
 	  box-sizing: border-box;
 	  margin: 0;
-	  position: absolute;
-	  top: 0;
-	  left: 50px;
-	  width: 250px;
-	  border: 1px solid oColorsGetPaletteColor('warm-3');
 	}
+
+	time {
+		display: none;
+	}
+
 	.myft-feed__item__tags {
 		display: none;
 	}
+
 	.myft-feed__item__headline {
 		@include nTypeAlpha(4);
 		> a {
@@ -30,26 +74,43 @@
 				text-decoration: underline;
 			}
 		}
+		@include oGridRespondTo(S) {
+			@include nTypeAlpha(3);
+		}
+		margin: 0;
 	}
+
+	.myft-reading-list__current-page:before {
+		content: 'Currently reading';
+		@include nTypeBeta(5);
+		text-transform: uppercase;
+		display: block;
+	}
+
 	.myft-feed__item {
-		padding: 4px 0;
+		list-style: none;
+		padding: 10px 0;
+		&:last-child {
+			border-bottom-width: 0;
+		}
+	}
+
+	.o-expander__collapsible-item {
+		position: static;
+		left: auto;
+	}
+
+	[aria-expanded="true"] .myft-feed__item  {
+		display: list-item;
+		list-style: decimal;
+		margin-left: 1.5em;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-3');
 	}
 }
 
-.n-reading-list__trigger {
-	background-color: oColorsGetPaletteColor('red-1');
-  border: 0;
-  padding: 20px 0;
-  border-radius: 30px 0 0 30px;
-  box-shadow: 1px 3px 3px 0px oColorsGetPaletteColor('cold-1');
-  float: left;
-  cursor: pointer;
-  &:hover {
-  	background-color: darken(oColorsGetPaletteColor('red-1'), 20%);
-  }
-}
 
-.n-reading-list--open {
-	right: 250px;
+.myft-reading-list__red-icon {
+	@include nextIcon(myft-bolder, oColorsGetPaletteColor('red-1'), 16);
+	width: 34px;
+	margin: 0 8px -12px;
 }

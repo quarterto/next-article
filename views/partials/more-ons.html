@@ -1,5 +1,19 @@
 <div class="article__more-on">
 	<div class="o-grid-row">
+
+		<div class="myft-reading-list js-myft-reading-list" data-trackable="myft-reading-list" data-o-grid-colspan="12 L8 XL7 XLoffset1" data-o-component="o-expander">
+			<a class="myft-reading-list__title" href="/mypage">
+				<span class="myft-reading-list__title-text">Continue reading your daily digest</span>
+			</a>
+			<div class="more-on__content">
+
+				<div class="myft-reading-list__footer">
+					<abbr class="myft-reading-list__red-icon" title="myFT"></abbr>
+					<button class="more-on__all-link o-expander__toggle o--if-js"></button>
+				</div>
+			</div>
+		</div>
+
 		{{#if @root.flags.articleRelatedContent}}
 			<div data-trackable="more-on" data-o-grid-colspan="12 L8 XL7 XLoffset1">
 				<div class="js-more-on-topic" data-metadata-fields="primaryTheme {{#if isColumnist}}authors{{else}}primarySection{{/if}}">
