@@ -127,7 +127,11 @@ module.exports = function(req, res, next) {
 						})
 						.catch(function(err) {
 							if (err instanceof fetchres.BadServerResponseError) {
-								res.status(404).end();
+								res.render('article-v1', {
+									title: 'Article not available in the new version of FT.com',
+									layout: 'wrapper',
+									falconUrl: 'http://www.ft.com/cms/s/' + req.params.id + '.html'
+								});
 							} else {
 								next(err);
 							}
