@@ -55,31 +55,37 @@
 			{{/if}}
 		</div>
 	</div>
-	<div class="article__main o-grid-row">
-		<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-			{{#if body}}
+	{{#if body}}
+		<div class="article__main o-grid-row">
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+
 				<div class="article__body">
 					{{{body}}}
 				</div>
-			{{/if}}
 
-			{{#if @root.barriers.anonymousBarrier}}
-				{{> next-barrier-component/templates/anonymous_barrier}}
-			{{/if}}
+				{{#if firstClickFree}}
+					{{> first-click-free}}
+				{{/if}}
 
-			{{#if @root.barriers.premiumBarrier}}
-				{{> next-barrier-component/templates/premium_barrier}}
-			{{/if}}
-
-			{{#if firstClickFree}}
-				{{> first-click-free}}
-			{{/if}}
-
+			</div>
+			<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+			</div>
 		</div>
-		<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
-		</div>
-	</div>
+	{{/if}}
 </article>
+
+<div class="o-grid-row">
+	<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+		{{#if @root.barriers.anonymousBarrier}}
+			{{> next-barrier-component/templates/anonymous_barrier}}
+		{{/if}}
+
+		{{#if @root.barriers.premiumBarrier}}
+			{{> next-barrier-component/templates/premium_barrier}}
+		{{/if}}
+	</div>
+</div>
+
 {{#if @root.flags.articleRelatedContent}}
 	<div class="o-grid-row">
 		<div data-trackable="story-package" data-o-grid-colspan="12 L8 XL7 XLoffset1">
