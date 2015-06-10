@@ -1,5 +1,10 @@
 <div class="article__more-on">
 	<div class="o-grid-row">
+
+		{{#if @root.flags.myFTReadingListOnArticle}}
+			{{>reading-list}}
+		{{/if}}
+
 		{{#if @root.flags.articleRelatedContent}}
 			<div data-trackable="more-on" data-o-grid-colspan="12 L8 XL7 XLoffset1">
 				<div class="js-more-on-topic" data-metadata-fields="primaryTheme {{#if isColumnist}}authors{{else}}primarySection{{/if}}">

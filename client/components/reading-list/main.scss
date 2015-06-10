@@ -1,0 +1,116 @@
+.myft-reading-list {
+	display: none;
+
+	&.myft-reading-list__loaded {
+		display: block;
+	}
+
+
+	.more-on__content {
+		overflow: hidden;
+	}
+
+	.more-on__all-link {
+		float: right;
+		&:after {
+			display: none;
+		}
+	}
+
+	.myft-feed {
+		padding: 0;
+		box-sizing: border-box;
+		margin: 0;
+	}
+
+	time {
+		display: none;
+	}
+
+	.myft-feed__item__tags {
+		display: none;
+	}
+
+	.myft-feed__item__headline {
+		@include nTypeAlpha(4);
+		> a {
+			color: oColorsGetPaletteColor('cold-2');
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		@include oGridRespondTo(S) {
+			@include nTypeAlpha(3);
+		}
+		margin: 0;
+	}
+
+	.myft-feed__item {
+		list-style: none;
+		padding: 10px 0;
+		&:last-child {
+			border-bottom-width: 0;
+		}
+	}
+
+	.o-expander__collapsible-item {
+		position: static;
+		left: auto;
+	}
+
+	[aria-expanded="true"] .myft-feed__item {
+		display: list-item;
+		list-style: decimal;
+		margin-left: 1.5em;
+		border-bottom: 1px solid oColorsGetPaletteColor('warm-3');
+	}
+}
+
+.myft-reading-list__title {
+
+	background: oColorsGetPaletteColor('red-1');
+	padding: 10px;
+	display: block;
+	margin: 0;
+	&,
+	a {
+		display: block;
+		color: oColorsGetPaletteColor('white');
+		text-transform: none;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.myft-reading-list__title-text {
+	@include nTypeBeta(4);
+	display: block;
+	padding: 0 0 6px;
+	&:before {
+		content: '';
+		@include nextIcon(email, oColorsGetPaletteColor('white'), 20);
+		margin: -5px 0 0 -3px;
+		position: relative;
+		top: 5px;
+	}
+}
+.myft-reading-list__next-headline {
+	@include nTypeAlpha(3);
+}
+
+.myft-reading-list__current-page:before {
+	content: 'Currently reading';
+	@include nTypeBeta(5);
+	text-transform: uppercase;
+	display: block;
+}
+
+
+.myft-reading-list__red-icon {
+	@include nextIcon(myft-bolder, oColorsGetPaletteColor('red-1'), 16);
+	width: 34px;
+	margin: 0 8px -12px;
+}
