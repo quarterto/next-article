@@ -32,8 +32,9 @@ setup.bootstrap(function(result) {
 					myFtClient.notifications.clear([uuid], true); //force articles to mark as read
 				}
 			});
-
-			readingList.init();
+			if(flags.get('myFTReadingListOnArticle')) {
+				readingList.init();
+			}
 		}
 	}
 

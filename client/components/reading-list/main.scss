@@ -5,40 +5,6 @@
 		display: block;
 	}
 
-	.myft-reading-list__title {
-
-		background: oColorsGetPaletteColor('red-1');
-		padding: 10px;
-		display: block;
-		margin: 0;
-		&,
-		a {
-			display: block;
-			color: oColorsGetPaletteColor('white');
-			text-transform: none;
-			text-decoration: none;
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-
-	}
-	.myft-reading-list__title-text {
-		@include nTypeBeta(4);
-		display: block;
-		padding: 0 0 6px 0;
-		&:before {
-			content: '';
-			@include nextIcon(email, oColorsGetPaletteColor('white'), 20);
-			margin: -5px 0 0 -3px;
-		 	position: relative;
-  		top: 5px;
-		}
-	}
-	.myft-reading-list__next-headline {
-		@include nTypeAlpha(3);
-	}
-
 
 	.more-on__content {
 		overflow: hidden;
@@ -52,9 +18,9 @@
 	}
 
 	.myft-feed {
-	  padding: 0;
-	  box-sizing: border-box;
-	  margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		margin: 0;
 	}
 
 	time {
@@ -80,13 +46,6 @@
 		margin: 0;
 	}
 
-	.myft-reading-list__current-page:before {
-		content: 'Currently reading';
-		@include nTypeBeta(5);
-		text-transform: uppercase;
-		display: block;
-	}
-
 	.myft-feed__item {
 		list-style: none;
 		padding: 10px 0;
@@ -100,12 +59,53 @@
 		left: auto;
 	}
 
-	[aria-expanded="true"] .myft-feed__item  {
+	[aria-expanded="true"] .myft-feed__item {
 		display: list-item;
 		list-style: decimal;
 		margin-left: 1.5em;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-3');
 	}
+}
+
+.myft-reading-list__title {
+
+	background: oColorsGetPaletteColor('red-1');
+	padding: 10px;
+	display: block;
+	margin: 0;
+	&,
+	a {
+		display: block;
+		color: oColorsGetPaletteColor('white');
+		text-transform: none;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.myft-reading-list__title-text {
+	@include nTypeBeta(4);
+	display: block;
+	padding: 0 0 6px;
+	&:before {
+		content: '';
+		@include nextIcon(email, oColorsGetPaletteColor('white'), 20);
+		margin: -5px 0 0 -3px;
+		position: relative;
+		top: 5px;
+	}
+}
+.myft-reading-list__next-headline {
+	@include nTypeAlpha(3);
+}
+
+.myft-reading-list__current-page:before {
+	content: 'Currently reading';
+	@include nTypeBeta(5);
+	text-transform: uppercase;
+	display: block;
 }
 
 

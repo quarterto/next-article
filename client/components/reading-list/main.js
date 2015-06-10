@@ -14,7 +14,7 @@ module.exports.init = function() {
 		return;
 	}
 
-	fetch('/myft/my-news?fragment=true&source=email-reading-list&limit=40',{
+	fetch('/myft/my-news?fragment=true&source=email-reading-list&limit=30&since=-24h',{
 		credentials: 'same-origin'
 	})
 	.then(fetchres.text)
@@ -27,24 +27,22 @@ module.exports.init = function() {
 			feed.classList.add('o-expander__content');
 
 			var allLinks = [].slice.call(feed.querySelectorAll('.myft-feed__item__headline a'));
-			var matchingHref = allLinks.filter(function(el, index) {
+
+			var matchingHref = allLinks.filter(function(el) {
 				return el.getAttribute('href').indexOf(document.querySelector('.article').getAttribute('data-content-id')) >= 0;
 			});
 
 			if(matchingHref.length) {
 				var index = allLinks.indexOf(matchingHref[0]);
 				matchingHref[0].classList.add('myft-reading-list__current-page');
+
+				var nextArticle = allLinks[index+1];
+				if(nextArticle) {
+					var nextArticleCTA = document.querySelector('.myft-reading-list__title');
+					nextArticleCTA.href = nextArticle.href;
+					nextArticleCTA.insertAdjacentHTML('beforeend', '<span class="myft-reading-list__next-headline">' + nextArticle.textContent + '</span>');
+				}
 			}
-			var nextArticle = allLinks[index+1];
-
-			if(nextArticle) {
-				var nextArticleCTA = document.querySelector('.myft-reading-list__title')
-				nextArticleCTA.href = nextArticle.href;
-				nextArticleCTA.insertAdjacentHTML('beforeend', '<span class="myft-reading-list__next-headline">' + nextArticle.textContent + '</span>');
-			}
-
-
-			container.classList.add('myft-reading-list__loaded');
 
 			oExpander.init(container, {
 				shrinkTo: 0,
@@ -52,9 +50,7 @@ module.exports.init = function() {
 				expandedToggleText: 'Show less'
 			});
 
+			container.classList.add('myft-reading-list__loaded');
 		}
 	});
-
-
-
-}
+};
