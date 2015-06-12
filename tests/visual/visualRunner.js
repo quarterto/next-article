@@ -174,7 +174,17 @@ function startImageDiffs() {
 
 				console.log("\nStarting test for " + test);
 
-				var promise = startTestProcess(width, page_name, page_path, elements, testURL, prodHost);
+				var promise = exec("casperjs " + [
+					"--width='" + width + "'",
+					"--height=1000",
+					"--pagename='" + page_name + "'",
+					"--path='" + page_path + "'",
+					"--elements='" + JSON.stringify(elements) + "'",
+					"--testurl='" + testURL + "'",
+					"--prodhost='" + prodHost + "'",
+					"test",
+					"tests/visual/elements_test.js"
+				].join(' '));
 				imageDiffPromises.push(promise);
 			}
 		}
@@ -183,22 +193,6 @@ function startImageDiffs() {
 	return Promise.all(imageDiffPromises);
 
 }
-
-function startTestProcess(width, page_name, page_path, elements, testURL, prodHost) {
-	var args = [
-		"--width='" + width + "'",
-		"--height=1000",
-		"--pagename='" + page_name + "'",
-		"--path='" + page_path + "'",
-		"--elements='" + JSON.stringify(elements) + "'",
-		"--testurl='" + testURL + "'",
-		"--prodhost='" + prodHost + "'",
-		"test",
-		"tests/visual/elements_test.js"
-	].join(' ');
-	return exec("casperjs " + args);
-}
-
 
 function getAllElementsOnWidth(json, width) {
 	var elementObject = {};
