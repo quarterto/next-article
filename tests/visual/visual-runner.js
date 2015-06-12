@@ -80,7 +80,7 @@ Promise.all(imageDiffPromises)
 			// find all screenshots and build an html page to display them
 			screenshots = fs.readdirSync("tests/visual/screenshots");
 			var screenshotspage = buildIndexPage(screenshots);
-			promises.push(writeFile("tests/visual/screenshots/successess/index.html", screenshotspage));
+			promises.push(writeFile("tests/visual/screenshots/successes/index.html", screenshotspage));
 
 			// add path to screenshots
 			screenshots = screenshots.map(function(screenshot) {
@@ -111,7 +111,7 @@ Promise.all(imageDiffPromises)
 		var promises = [];
 
 		promises.push(deployToAWS(screenshots, aws_shot_dest));
-		promises.push(deployToAWS(["tests/visual/screenshots/successess/index.html"], aws_shot_dest));
+		promises.push(deployToAWS(["tests/visual/screenshots/successes/index.html"], aws_shot_dest));
 
 		if (fs.existsSync("tests/visual/screenshots/failures")) {
 			promises.push(deployToAWS(failures, aws_fail_dest));
