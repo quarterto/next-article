@@ -32,8 +32,8 @@ casper.test.begin('Next visual regression tests', function(test) {
 	phantomcss.init({
 		timeout: 1000,
 		libraryRoot: './node_modules/phantomcss',
-		screenshotRoot: './tests/visual/screenshots',
-		failedComparisonsRoot: './tests/visual/failures',
+		screenshotRoot: './tests/visual/screenshots/successes',
+		failedComparisonsRoot: './tests/visual/screenshots/failures',
 		addLabelToFailedImage: false,
 		fileNameGetter: function(root, filename) {
 			var name = root + '/' + filename;

@@ -75,30 +75,30 @@ Promise.all(imageDiffPromises)
 		var promises = [];
 		console.log("\n\nCasperJS output: \n\n" + result);
 
-		if (fs.existsSync("tests/visual/screenshots")) {
+		if (fs.existsSync("tests/visual/screenshots/successes")) {
 
 			// find all screenshots and build an html page to display them
 			screenshots = fs.readdirSync("tests/visual/screenshots");
 			var screenshotspage = buildIndexPage(screenshots);
-			promises.push(writeFile("tests/visual/screenshots/index.html", screenshotspage));
+			promises.push(writeFile("tests/visual/screenshots/successess/index.html", screenshotspage));
 
 			// add path to screenshots
 			screenshots = screenshots.map(function(screenshot) {
-				return "tests/visual/screenshots/" + screenshot;
+				return "tests/visual/screenshots/successes/" + screenshot;
 			});
 			console.log("Screenshots located at " + aws_shots_index);
 		} else {
 			console.log("No screenshots here");
 		}
 
-		if (fs.existsSync("tests/visual/failures")) {
-			failures = fs.readdirSync("tests/visual/failures");
+		if (fs.existsSync("tests/visual/screenshots/failures")) {
+			failures = fs.readdirSync("tests/visual/screenshots/failures");
 			var failurespage = buildIndexPage(failures);
-			promises.push(writeFile("tests/visual/failures/index.html", failurespage));
+			promises.push(writeFile("tests/visual/screenshots/failures/index.html", failurespage));
 
 			// add path to failures
 			failures = failures.map(function(failure) {
-				return "tests/visual/failures/" + failure;
+				return "tests/visual/screenshots/failures/" + failure;
 			});
 			console.log("Failure screenshots located at " + aws_fails_index);
 		} else {
@@ -111,11 +111,11 @@ Promise.all(imageDiffPromises)
 		var promises = [];
 
 		promises.push(deployToAWS(screenshots, aws_shot_dest));
-		promises.push(deployToAWS(["tests/visual/screenshots/index.html"], aws_shot_dest));
+		promises.push(deployToAWS(["tests/visual/screenshots/successess/index.html"], aws_shot_dest));
 
-		if (fs.existsSync("tests/visual/failures")) {
+		if (fs.existsSync("tests/visual/screenshots/failures")) {
 			promises.push(deployToAWS(failures, aws_fail_dest));
-			promises.push(deployToAWS(["tests/visual/failures/index.html"], aws_fail_dest));
+			promises.push(deployToAWS(["tests/visual/screenshots/failures/index.html"], aws_fail_dest));
 		}
 
 		return Promise.all(promises);
@@ -203,6 +203,6 @@ function deployToAWS(files, destination) {
 		destination: destination,
 		region: 'eu-west-1',
 		bucket: 'ft-next-qa',
-		strip: 3
+		strip: 4
 	});
 }

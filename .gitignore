@@ -14,5 +14,4 @@ npm-debug.log
 /tests/browser/reports
 /tests/browser/screenshots
 /tests/visual/screenshots
-/tests/visual/failure
 /npm-debug.log.*
