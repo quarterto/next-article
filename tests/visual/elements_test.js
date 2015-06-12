@@ -16,6 +16,7 @@ console.log("testHost: " + testHost);
 console.log("baseHost: " + baseHost);
 
 function getElementShots(pagename, elements, env, width, height) {
+	console.log('screenshotting ' + env);
 	Object.keys(elements).forEach(function(elementName) {
 		phantomcss.screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
 	});
@@ -62,33 +63,29 @@ casper.test.begin('Next visual regression tests', function(test) {
 	casper.userAgent('Mozilla/4.0(compatible; MSIE 7.0b; Windows NT 6.0)');
 
 	// open first url
-	casper
-		.start()
-		.viewport(width, height)
-		.then(function() {
-			this.open(baseHost, browserOptions);
-		})
-		.then(function() {
-			getElementShots(pageName, elements, 'base', width, height);
-		})
-		.thenOpen(testHost, browserOptions)
-		.then(function() {
-			getElementShots(pageName, elements, 'test', width, height);
-		})
-		.then(function compareMatched() {
-			var bases = [];
-			for (var x = 0; x < compares.length ; x++) {
-				if (compares[x].indexOf('_' + 'base') !== -1) {
-					bases.push(compares[x]);
-				}
+	casper.start();
+	casper.viewport(width, height);
+
+	casper.thenOpen(baseHost, browserOptions, function() {
+		getElementShots(pageName, elements, 'base', width, height);
+	});
+	casper.thenOpen(testHost, browserOptions, function() {
+		getElementShots(pageName, elements, 'test', width, height);
+	})
+	casper.then(function compareMatched() {
+		var bases = [];
+		for (var x = 0; x < compares.length ; x++) {
+			if (compares[x].indexOf('_' + 'base') !== -1) {
+				bases.push(compares[x]);
 			}
-			for (x = 0; x < bases.length ; x ++) {
-				var base = bases[x];
-				var test = base.replace('_' + 'base','_' + 'test');
-				phantomcss.compareFiles(base, test);
-			}
-		})
-		.then(function() {
-			casper.exit();
-		});
+		}
+		for (x = 0; x < bases.length ; x ++) {
+			var base = bases[x];
+			var test = base.replace('_' + 'base','_' + 'test');
+			phantomcss.compareFiles(base, test);
+		}
+	});
+	casper.run(function() {
+		casper.exit();
+	});
 });
