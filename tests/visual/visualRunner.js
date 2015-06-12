@@ -162,7 +162,6 @@ Promise.all(imageDiffPromises)
 
 function getAllElementsOnWidth(json, width) {
 	var elementObject = {};
-	var item;
 	Object.keys(json.elements).forEach(function(item) {
 		var element = json.elements[item];
 		var widths = element.widths;
@@ -175,7 +174,6 @@ function getAllElementsOnWidth(json, width) {
 
 function collectWidths(json) {
 	var compiledWidths = [];
-	var item;
 	Object.keys(json.elements).forEach(function(item) {
 		var widths = json.elements[item].widths;
 		for (var x = 0; x < widths.length; x++) {
