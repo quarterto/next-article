@@ -9,8 +9,8 @@ var pageName = casper.cli.get('pagename');
 var path = casper.cli.get('path');
 var width = casper.cli.get('width') || 800;
 var height = casper.cli.get('height') || 1000;
-var testHost = casper.cli.get('testhost') + "/" + path;
-var baseHost = casper.cli.get('prodhost') + "/" + path;
+var testHost = casper.cli.get('testhost') + path;
+var baseHost = casper.cli.get('prodhost') + path;
 
 console.log("testHost: " + testHost);
 console.log("baseHost: " + baseHost);
@@ -66,7 +66,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 		this.open(baseHost, browserOptions);
 	});
 
-	casper.viewport(width,height);
+	casper.viewport(width, height);
 
 	casper.then(function() {
 		console.log(baseHost);
@@ -77,7 +77,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 	// open second url
 	casper.thenOpen(testHost, browserOptions);
 
-	casper.then(function(){
+	casper.then(function() {
 		console.log(testHost);
 	});
 
