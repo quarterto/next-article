@@ -25,12 +25,11 @@ var github = new GitHubApi({
 var pr = process.env.TRAVIS_PULL_REQUEST;
 var commit = process.env.GIT_HASH;
 var gitHubOauth = process.env.GITHUB_OAUTH;
+var configFile = process.env.CONFIG_FILE;
 
 // parameters and config data -- assumes file lives in tests/visual/config/
-var argv = require('minimist')(process.argv.slice(2));
-var configfile = "./" + argv.t;
-var page_data = require('./config/' + configfile).testData;
-var prod_data = require('./config/' + configfile).productionData;
+var page_data = require('./config/' + configFile).testData;
+var prod_data = require('./config/' + configFile).productionData;
 
 var page;
 var screenshots;
