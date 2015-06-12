@@ -11,7 +11,7 @@ var denodeify = require('denodeify');
 var writeFile = denodeify(fs.writeFile);
 var deployStatic = require('next-build-tools').deployStatic;
 var GitHubApi = require('github');
-var github = new GitHubApi({ version: "3.0.0" });
+var github = new GitHubApi({ version: "3.0.0", debug: false });
 var createComment = denodeify(github.issues.createComment);
 
 // env variables
