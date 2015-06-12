@@ -78,7 +78,7 @@ Promise.all(imageDiffPromises)
 		if (fs.existsSync("tests/visual/screenshots/successes")) {
 
 			// find all screenshots and build an html page to display them
-			screenshots = fs.readdirSync("tests/visual/screenshots");
+			screenshots = fs.readdirSync("tests/visual/screenshots/successes");
 			var screenshotspage = buildIndexPage(screenshots);
 			promises.push(writeFile("tests/visual/screenshots/successes/index.html", screenshotspage));
 
