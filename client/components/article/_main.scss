@@ -342,20 +342,6 @@ $header-offset: 30px;
 	position: relative;
 	border-bottom: 1px solid black;
 	clear: left;
-
-	.back-top-top {
-		position: absolute;
-		top: 50%;
-		right: 0;
-		margin-top: -10px;
-	}
-	.back-top-top__text {
-		position: absolute;
-		left: -9999px;
-	}
-	.back-top-top__icon {
-		@include nextIcon(back-to-top, $next-blue, 20);
-	}
 }
 .article__pull-quote,
 .article__block-quote,
