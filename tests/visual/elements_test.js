@@ -19,25 +19,25 @@ console.log("BaseURL: " + baseURL);
 casper.test.begin('Next visual regression tests', function (test) {
 
     // phantom config
-    phantomcss.init({
-        rebase: casper.cli.get("rebase"),
-        casper: casper,
-        timeout: 1000,
-        libraryRoot: fs.absolute(fs.workingDirectory + ''),
-        screenshotRoot: fs.absolute(fs.workingDirectory + '/tests/visual/screenshots'),
-        failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/tests/visual/failures'),
-        addLabelToFailedImage: false,
-        fileNameGetter: function (root, filename) {
-            var name = root + '/' + filename;
-            if (fs.isFile(name +'.png')) {
-                name += '.diff.png';
-            } else {
-                name += '.png';
-            }
-            compares.push(name);
-            return name;
-        }
-    });
+	phantomcss.init({
+		rebase: casper.cli.get("rebase"),
+		casper: casper,
+		timeout: 1000,
+		libraryRoot: fs.absolute(fs.workingDirectory + ''),
+		screenshotRoot: fs.absolute(fs.workingDirectory + '/tests/visual/screenshots'),
+		failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/tests/visual/failures'),
+		addLabelToFailedImage: false,
+		fileNameGetter: function (root, filename) {
+			var name = root + '/' + filename;
+			if (fs.isFile(name +'.png')) {
+				name += '.diff.png';
+			} else {
+				name += '.png';
+			}
+			compares.push(name);
+			return name;
+		}
+	});
 
 	// set up casper a bit
 	casper.on("page.error", function(msg, trace) {
@@ -51,8 +51,8 @@ casper.test.begin('Next visual regression tests', function (test) {
 	casper.options.pageSettings.javascriptEnabled = true;
 	casper.userAgent('Mozilla/4.0(compatible; MSIE 7.0b; Windows NT 6.0)');
 
-    // open first url
-    casper.start().then(function(){
+	// open first url
+	casper.start().then(function(){
 		this.open(baseURL,{
 			method: 'get',
 			headers: {
@@ -61,17 +61,17 @@ casper.test.begin('Next visual regression tests', function (test) {
 		});
 	});
 
-    casper.viewport(width,height);
+	casper.viewport(width,height);
 
 	casper.then(function(){
 		console.log(baseURL);
 	});
 
-    phantomcss.getElementShots(pageName,elements,'base',width,height);
+	phantomcss.getElementShots(pageName,elements,'base',width,height);
 
 
-    // open second url
-    casper.thenOpen(testURL,{
+	// open second url
+	casper.thenOpen(testURL,{
 		method: 'get',
 		headers: {
 			'X-flags': 'javascript' + ':'.toLowerCase() + 'off'
@@ -85,26 +85,26 @@ casper.test.begin('Next visual regression tests', function (test) {
 	phantomcss.getElementShots(pageName,elements,'test',width,height);
 
 
-    // make comparisons
-    casper.then(compareMatched);
+	// make comparisons
+	casper.then(compareMatched);
 
-    casper.run(function () {
+	casper.run(function () {
 		casper.exit();
-    });
+	});
 
 
-    function compareMatched(){
-        var bases = [];
-        for(var x = 0; x < compares.length ; x++){
-            if(compares[x].indexOf('_' + 'base') !== -1){
-                bases.push(compares[x]);
-            }
-        }
-        for(x = 0; x < bases.length ; x ++){
-            var base = bases[x];
-            var test = base.replace('_' + 'base','_' + 'test');
-            phantomcss.compareFiles(base,test);
-        }
-    }
+	function compareMatched(){
+		var bases = [];
+		for(var x = 0; x < compares.length ; x++){
+			if(compares[x].indexOf('_' + 'base') !== -1){
+				bases.push(compares[x]);
+			}
+		}
+		for(x = 0; x < bases.length ; x ++){
+			var base = bases[x];
+			var test = base.replace('_' + 'base','_' + 'test');
+			phantomcss.compareFiles(base,test);
+		}
+	}
 
 });
