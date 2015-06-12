@@ -16,7 +16,7 @@ var createComment = denodeify(github.issues.createComment);
 
 // env variables
 var commit = process.env.GIT_HASH;
-var page_data = require('./config/page_setup');
+var page_data = require('./config');
 
 var screenshots;
 var failures;
@@ -64,7 +64,7 @@ Object.keys(page_data).forEach(function(page) {
 				"--testhost='" + testHost + "'",
 				"--basehost='" + baseHost + "'",
 				"test",
-				"tests/visual/elements_test.js"
+				"tests/visual/elements-test.js"
 			].join(' '))
 		);
 	});
