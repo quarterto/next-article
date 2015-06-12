@@ -5,7 +5,7 @@
 // One process is started per page/width combination, so if you can pick a width that's already
 // in play, it will save resources.
 
-exports.testData = {
+module.exports = {
 	"article_with_image": {
 		"name": "article_with_image",
 		"path": "ccf7af08-e904-11e4-a71a-00144feab7de",
