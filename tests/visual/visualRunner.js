@@ -22,7 +22,6 @@ var github = new GitHubApi({ version: "3.0.0" });
 // env variables
 var pr = process.env.TRAVIS_PULL_REQUEST;
 var commit = process.env.GIT_HASH;
-var gitHubOauth = process.env.GITHUB_OAUTH;
 var page_data = require('./config/page_setup');
 
 var screenshots;
@@ -135,7 +134,7 @@ Promise.all(imageDiffPromises)
 	// Make a comment if a changed has been detected and it's a PR build
 	.then(function() {
 		if ((pr !== "false") && (failures !== undefined)) {
-			github.authenticate({ type: "oauth", token: gitHubOauth });
+			github.authenticate({ type: "oauth", token: process.env.GITHUB_OAUTH });
 			github.issues.createComment({
 				user: "Financial-Times",
 				repo: "next-grumman",
