@@ -16,12 +16,9 @@ console.log("testHost: " + testHost);
 console.log("baseHost: " + baseHost);
 
 function getElementShots(pagename, elements, env, width, height) {
-	var elementName;
-	for (elementName in elements) {
-		if (elements.hasOwnProperty(elementName)) {
-			phantomcss.screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
-		}
-	}
+	Object.keys(elements).forEach(function(elementName) {
+		phantomcss.screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
+	});
 }
 
 var browserOptions = {
@@ -35,8 +32,6 @@ casper.test.begin('Next visual regression tests', function(test) {
 
 	// phantom config
 	phantomcss.init({
-		rebase: casper.cli.get("rebase"),
-		casper: casper,
 		timeout: 1000,
 		libraryRoot: './node_modules/phantomcss',
 		screenshotRoot: './tests/visual/screenshots',
@@ -73,11 +68,11 @@ casper.test.begin('Next visual regression tests', function(test) {
 
 	casper.viewport(width,height);
 
-	casper.then(function(){
+	casper.then(function() {
 		console.log(baseHost);
 	});
 
-	getElementShots(pageName,elements,'base',width,height);
+	getElementShots(pageName, elements, 'base', width, height);
 
 	// open second url
 	casper.thenOpen(testHost, browserOptions);
@@ -86,7 +81,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 		console.log(testHost);
 	});
 
-	getElementShots(pageName,elements,'test',width,height);
+	getElementShots(pageName, elements, 'test', width, height);
 
 
 	// make comparisons
@@ -99,15 +94,15 @@ casper.test.begin('Next visual regression tests', function(test) {
 
 	function compareMatched() {
 		var bases = [];
-		for(var x = 0; x < compares.length ; x++){
-			if(compares[x].indexOf('_' + 'base') !== -1){
+		for (var x = 0; x < compares.length ; x++) {
+			if(compares[x].indexOf('_' + 'base') !== -1) {
 				bases.push(compares[x]);
 			}
 		}
-		for(x = 0; x < bases.length ; x ++){
+		for (x = 0; x < bases.length ; x ++) {
 			var base = bases[x];
 			var test = base.replace('_' + 'base','_' + 'test');
-			phantomcss.compareFiles(base,test);
+			phantomcss.compareFiles(base, test);
 		}
 	}
 
