@@ -1,26 +1,35 @@
+@import "next-sass-setup/main";
 $o-quote-is-silent: false;
 @import "o-quote/main";
 $o-big-number-is-silent: false;
 @import "o-big-number/main";
 $o-gallery-is-silent: false;
 @import "o-gallery/main";
-@import "o-colors/main";
 @import "o-fonts/main";
+@import "o-expander/main";
 @include oFontsInclude(MetricWeb, thin);
+
+// Fix o-comments at 2.0.3 and o-comment-ui at 2.0.2 so we can use the build service for images
+// Note needs to match the bower.json otherwise there is a risk that images from a different version
+// of o-comments/o-comment-ui will appear on the site.
+@import "o-assets/main";
+@include oAssetsSetModulePaths((
+	o-comments: '//build.origami.ft.com/files/o-comments@2.0.3',
+	o-comment-ui: '//build.origami.ft.com/files/o-comment-ui@2.0.2'
+));
 $o-comments-is-silent: false;
 @import 'o-comments/main';
 
-@import "next-sass-setup/main";
-@import "next-buttons/main";
-@import "next-header/main";
+@import "n-header-footer/main";
 .next-header {
 	margin-bottom: 0;
 }
-@import "next-footer/main";
+
 @import "next-ads-component/main";
 @import "next-barrier-component/main";
-@import "next-messaging/src/main";
 @import "next-welcome/main";
+@import "next-myft-ui/main";
+@import "n-topic/main";
 
 @import "variables";
 @import "mixins";
@@ -28,5 +37,8 @@ $o-comments-is-silent: false;
 @import "components/article/main";
 @import "components/toc/main";
 @import "components/more-on/main";
+@import "components/story-package";
 @import "components/timeline/main";
 @import "components/comments/main";
+@import "components/first-click-free/main";
+@import "components/reading-list/main";

@@ -1,8 +1,7 @@
-/*global it, describe, before, afterEach*/
+/*global it, describe, before*/
 'use strict';
 
 var expect = require('chai').expect;
-var nock = require('nock');
 var request = require('request');
 
 var helpers = require('./helpers');
@@ -10,14 +9,7 @@ var helpers = require('./helpers');
 describe('Smoke Tests: ', function() {
 
 	before(function() {
-		nock('http://ft-next-api-feature-flags.herokuapp.com')
-			.get('/__flags.json')
-			.reply(200, require('../fixtures/flags'));
 		return require('../../server/app').listen;
-	});
-
-	afterEach(function () {
-		nock.cleanAll();
 	});
 
 	describe('Assets', function() {
@@ -30,7 +22,7 @@ describe('Smoke Tests: ', function() {
 		});
 
 		it('should serve a main.js file', function(done) {
-			request(helpers.host + '/grumman/main.js', function(error, res, body) {
+			request(helpers.host + '/article/main.js', function(error, res, body) {
 				expect(res.headers['content-type']).to.match(/application\/javascript/);
 				expect(res.statusCode).to.equal(200);
 				done();
@@ -38,7 +30,7 @@ describe('Smoke Tests: ', function() {
 		});
 
 		it('should serve a main.css file', function(done) {
-			request(helpers.host + '/grumman/main.css', function(error, res, body) {
+			request(helpers.host + '/article/main.css', function(error, res, body) {
 				expect(res.headers['content-type']).to.match(/text\/css/);
 				expect(res.statusCode).to.equal(200);
 				done();
@@ -48,9 +40,11 @@ describe('Smoke Tests: ', function() {
 	});
 
 	// specific controller tests
-	require('./controllers/capi.test.js')();
-	require('./controllers/fastft.test.js')();
+	require('./controllers/article.test.js')();
 	require('./controllers/related/people.test.js')();
+	require('./controllers/related/organisations.test.js')();
+	require('./controllers/related/regions.test.js')();
+	require('./controllers/related/topics.test.js')();
 	require('./controllers/related/story-package.test.js')();
 	require('./controllers/related/more-on.test.js')();
 

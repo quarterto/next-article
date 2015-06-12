@@ -12,7 +12,7 @@ describe('Byline', function () {
 			item: {
 				metadata: {
 					authors: [{
-						 term: { id: "ABCD-efhsdf", name: "George Parker" }
+						term: { id: "ABCD-efhsdf", name: "George Parker" }
 					}]
 				}
 			}

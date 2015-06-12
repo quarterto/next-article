@@ -21,10 +21,10 @@ module.exports = function (req, res, next) {
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	})
-		.then(function (article) {
+		.then(function(article) {
 			res.set(cacheControl);
 			var moreOnPromises = metadataFields
-				.map(function (metadataField, index) {
+				.map(function(metadataField, index) {
 					var topic = article.item.metadata[metadataField];
 					// if it's an array, use the first
 					if (Array.isArray(topic)) {
@@ -36,10 +36,17 @@ module.exports = function (req, res, next) {
 					topics.push(topic);
 					var promises = [];
 					promises.push(api.searchLegacy({
-						query: topic.term.taxonomy + ':="' + topic.term.name + '"',
+						query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
 						// get one extra, in case we dedupe
-						count: count + 1
-					}));
+						count: count + 1,
+						useElasticSearch: res.locals.flags.elasticSearchItemGet
+						}).then(function(ids) {
+							return api.content({
+								uuid: ids,
+								useElasticSearch: res.locals.flags.elasticSearchItemGet,
+								type: 'Article'
+							});
+						}));
 					if (res.locals.flags.semanticStreams && hasSemanticStream(topic.term.taxonomy)) {
 						promises.push(
 							api.mapping(topic.term.id, topic.term.taxonomy)
@@ -59,16 +66,16 @@ module.exports = function (req, res, next) {
 
 			return Promise.all(moreOnPromises);
 		})
-		.then(function (results) {
+		.then(function(results) {
 			var imagePromises = results
-				.map(function (result, index) {
+				.map(function(result, index) {
 					var articles = result[0];
 					var articleModels = articles
-						.filter(function (article) {
+						.filter(function(article) {
 							return extractUuid(article.id) !== req.params.id;
 						})
 						.slice(0, count)
-						.map(function (article) {
+						.map(function(article) {
 							return {
 								id: extractUuid(article.id),
 								title: article.title,
@@ -126,6 +133,19 @@ module.exports = function (req, res, next) {
 						'/stream/' + encodeURIComponent(topicModel.taxonomy) + 'Id/' + encodeURIComponent(topicModel.id);
 					topicModel.isAuthor = topicModel.taxonomy === 'authors';
 					topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
+					topicModel.conceptId = topicModel.taxonomy + ':"' + encodeURIComponent(topicModel.name) + '"';
+
+					if (topicModel.taxonomy === 'organisations') {
+						// get the stock id
+							topic.term.attributes.some(function (attribute) {
+								if (attribute.key === 'wsod_key') {
+									topicModel.tickerSymbol = attribute.value;
+									return true;
+								}
+								return false;
+							});
+					}
+
 					var otherArticleModels = _.flatten(results
 						.slice(0, index)
 						.map(function (result) { return result[0]; }));

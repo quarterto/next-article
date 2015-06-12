@@ -28,15 +28,16 @@ function commentsSwitchedOn(uuid) {
 }
 
 module.exports = function(req, res, next) {
-	res.set(cacheControl);
 	if (res.locals.flags.articleCommentsHack) {
 		commentsSwitchedOn(req.params.id)
 			.then(function(on) {
+				res.set(cacheControl);
 				res.json(on);
 			})
 			.catch(next);
 	} else {
 		logger.info("Comments hack disabled, defaulting to no comments");
+		res.set(cacheControl);
 		res.json(false);
 	}
 };

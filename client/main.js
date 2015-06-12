@@ -5,20 +5,20 @@ var oDate = require('o-date');
 var myFtClient = require('next-myft-client');
 
 var setup = require('next-js-setup');
-var header = require('next-header');
-var messaging = require('next-messaging');
-var video = require('next-video');
+var headerFooter = require('n-header-footer');
+var nVideo = require('n-video');
 
 var slideshow = require('./components/slideshow/main');
 var moreOn = require('./components/more-on/main');
 var toc = require('./components/toc/main');
 var comments = require('./components/comments/main');
+var readingList = require('./components/reading-list/main');
 
 oViewport.listenTo('resize');
 
 setup.bootstrap(function(result) {
 	var flags = result.flags;
-	header.init(flags);
+	headerFooter.init(flags);
 
 	if (document.querySelector('*[data-article-status="error"]')) {
 		return;
@@ -27,11 +27,16 @@ setup.bootstrap(function(result) {
 	var uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
 	if (uuid) {
 		if (flags.get('userPreferencesAPI')) {
-			myFtClient.notifications.clear([uuid]);
+			document.addEventListener('myft.followed.load', function(ev) {
+				if(ev.detail && ev.detail.Count > 0) {
+					myFtClient.notifications.clear([uuid], true); //force articles to mark as read
+				}
+			});
+			if(flags.get('myFTReadingListOnArticle')) {
+				readingList.init();
+			}
 		}
 	}
-
-	messaging.init();
 
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
@@ -39,13 +44,12 @@ setup.bootstrap(function(result) {
 		moreOn.init(flags);
 	}
 
-	require('./components/video/main').init()
-		.then(function () {
-			// so far next-video only adds analytics
-			// eventually most of the brightcove bit of video component will go in here
-			video.init();
-		});
 
+
+	nVideo.init({
+		optimumWidth: 710,
+		classes: ['article__video', 'ng-media']
+	});
 	toc.init(flags);
 	comments.init(uuid, flags);
 	oDate.init(document.querySelector('.article'));

@@ -7,7 +7,7 @@ $header-offset: 30px;
 
 //ARTICLE HEADER
 .article__header {
-	background: $next-blue;
+	background: oColorsGetPaletteColor(cold-2);
 	position: relative;
 	padding-bottom: 20px;
 	font-weight: 100;
@@ -124,14 +124,13 @@ $header-offset: 30px;
 	}
 }
 
-.article__actions__action--save {
-	padding: 0;
-	// for now, needed to override next-buttons
-	font-size: 15px !important;
-	line-height: 1em !important;
-}
-.next-buttons--save:before {
-	top: 2px !important;
+.article__actions .myft-ui--save .myft-ui__button {
+	color: oColorsGetPaletteColor('white');
+	opacity: 0.7;
+	&:hover {
+		color: oColorsGetPaletteColor('white');
+		text-decoration: underline;
+	}
 }
 
 .article__actions__action--comments:before {
@@ -176,6 +175,7 @@ $header-offset: 30px;
 }
 .article__tag__link {
 	color: #ffffff;
+	white-space: nowrap;
 
 	&:after {
 		@include nextIcon(arrow-right, #ffffff, 10);
@@ -207,13 +207,12 @@ $header-offset: 30px;
 
 //ARTICLE BODY ELEMENTS
 .article__body {
-	font-weight: normal;
-	font-size: 18px;
+	@include nTypeAlpha(4);
 	color: $next-grey-dark;
+	margin-bottom: 20px;
 
 	@include oGridRespondTo(S) {
-		font-size: 20px;
-		font-weight: 200;
+		@include nTypeAlpha(3);
 	}
 	> p {
 		margin: 0.3em 0 0.8em;
@@ -227,6 +226,14 @@ $header-offset: 30px;
 	> *:first-child {
 		margin-top: 0;
 	}
+
+	strong {
+		@include nTypeBeta(4);
+		@include oGridRespondTo(S) {
+			@include nTypeBeta(3);
+		}
+	}
+
 	a {
 		color: $next-grey-dark;
 
@@ -247,6 +254,7 @@ $header-offset: 30px;
 	}
 	> {
 		.article__main-image,
+		a > .article__main-image,
 		.article__video-wrapper:first-child,
 		.article__gallery:first-child {
 			margin-top: -$header-offset - 15;
@@ -416,13 +424,22 @@ $header-offset: 30px;
 	line-height: 24px;
 	font-weight: normal;
 }
+.article__more-on {
+	padding-bottom: 15px;
+}
 .article__comments {
 	@include print {
 		display: none;
 	}
-	> * {
-		margin-top: 15px !important;
-	}
+}
+
+.article__warning {
+	background-color: oColorsGetPaletteColor('red-2');
+	padding: 14px;
+	display: block;
+	margin: 0.3em 0 0.8em;
+	line-height: 26px;
+	text-decoration: none;
 }
 
 @import 'table';
