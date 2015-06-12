@@ -6,7 +6,7 @@ var packageJson = require('../../package.json');
 require('es6-promise').polyfill();
 var fs = require('fs');
 var denodeify = require('denodeify');
-var exec = denodeify(require('child_process').exec, function (err, stdout, stderr) {
+var exec = denodeify(require('child_process').exec, function(err, stdout, stderr) {
 	if (err) {
 		console.log(err);
 		console.log(stdout);
@@ -17,12 +17,7 @@ var exec = denodeify(require('child_process').exec, function (err, stdout, stder
 var writeFile = denodeify(fs.writeFile);
 var deployStatic = require('next-build-tools').deployStatic;
 var GitHubApi = require('github');
-var github = new GitHubApi({
-	version: "3.0.0",
-	debug: "true"
-});
-
-
+var github = new GitHubApi({ version: "3.0.0" });
 
 // env variables
 var pr = process.env.TRAVIS_PULL_REQUEST;
@@ -44,11 +39,46 @@ var aws_fail_dest = "image_diffs/" + normalizeName(packageJson.name, { version: 
 var aws_shots_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_shot_dest + "index.html";
 var aws_fails_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_fail_dest + "index.html";
 
-
 console.log("Running image diff tests");
 
-startImageDiffs()
-	.then(function (result) {
+var imageDiffPromises = [];
+
+Object.keys(page_data).forEach(function(page) {
+	var testHost = "http://" + process.env.TEST_HOST + ".herokuapp.com";
+	var prodHost = "http://next.ft.com";
+	var page_name = page_data[page].name;
+	var page_path = page_data[page].path;
+	var widths = collectWidths(page_data[page]);
+	widths.forEach(function(width) {
+		var height = 1000;
+		var elements = getAllElementsOnWidth(page_data[page], width);
+		var test = "\nPage name  : " + page_name +
+			"\npath       : " + page_path +
+			"\ndimensions : " + width + "x" + height +
+			"\ntestHost    : " + testHost +
+			"\nprodhost   : " + prodHost +
+			"\nelements " + JSON.stringify(elements);
+
+		console.log("\nStarting test for " + test);
+
+		imageDiffPromises.push(
+			exec("casperjs " + [
+			"--width=" + width,
+			"--height=" + height,
+			"--pagename='" + page_name + "'",
+			"--path='" + page_path + "'",
+			"--elements='" + JSON.stringify(elements) + "'",
+			"--testhost='" + testHost + "'",
+			"--prodhost='" + prodHost + "'",
+			"test",
+			"tests/visual/elements_test.js"
+			].join(' '))
+		);
+	});
+});
+
+Promise.all(imageDiffPromises)
+	.then(function(result) {
 		var promises = [];
 		console.log("\n\nCasperJS output: \n\n" + result);
 
@@ -56,16 +86,14 @@ startImageDiffs()
 
 			// find all screenshots and build an html page to display them
 			screenshots = fs.readdirSync("tests/visual/screenshots");
-
 			var screenshotspage = buildIndexPage(screenshots);
 			promises.push(writeFile("tests/visual/screenshots/index.html", screenshotspage));
 
 			// add path to screenshots
-			for (var x = 0; x < screenshots.length; x++) {
-				screenshots[x] = "tests/visual/screenshots/" + screenshots[x];
-			}
+			screenshots = screenshots.map(function(screenshot) {
+				return "tests/visual/screenshots/" + screenshot;
+			});
 			console.log("Screenshots located at " + aws_shots_index);
-
 		} else {
 			console.log("No screenshots here");
 		}
@@ -90,10 +118,8 @@ startImageDiffs()
 
 		return Promise.all(promises);
 	})
-	.then(function (result) {
+	.then(function() {
 		var promises = [];
-
-		console.log("Screenshot result: " + result);
 
 		promises.push(deployToAWS(screenshots, aws_shot_dest));
 		promises.push(deployToAWS(["tests/visual/screenshots/index.html"], aws_shot_dest));
@@ -105,20 +131,11 @@ startImageDiffs()
 
 		return Promise.all(promises);
 	})
-	.then(function (result) {
 
-
-		console.log("AWS Deploy Result: " + result);
-		console.log("Updating github");
-
-		// Make a comment if we have failures on a PR
+	// Make a comment if a changed has been detected and it's a PR build
+	.then(function() {
 		if ((pr !== "false") && (failures !== undefined)) {
-
-			github.authenticate({
-				type: "oauth",
-				token: gitHubOauth
-			});
-
+			github.authenticate({ type: "oauth", token: gitHubOauth });
 			github.issues.createComment({
 				user: "Financial-Times",
 				repo: "next-grumman",
@@ -126,96 +143,47 @@ startImageDiffs()
 				body: "Image diffs found between branch and production" +
 				"\nSee" +
 				"\n\n" + aws_fails_index
-			},function(err,data){
-				if(err){
+			}, function(err,data){
+				if (err) {
 					console.log("Github posting error: " + err);
-				}else{
+				} else {
 					console.log(data);
 				}
 			});
 		} else {
 			console.log("No comments to make to Pull Request");
 		}
-
 	})
-
-	.catch(function (err) {
+	.catch(function(err) {
 		console.log("there was an error");
 		console.log(err.stack);
+		process.exit(1);
 	});
-
-
-function startImageDiffs() {
-	var imageDiffPromises = [];
-
-	Object.keys(page_data).forEach(function(page) {
-		var testURL = "http://" + process.env.TEST_HOST + ".herokuapp.com";
-		var prodHost = "http://next.ft.com";
-		var page_name = page_data[page].name;
-		var page_path = page_data[page].path;
-		var widths = collectWidths(page_data[page]);
-		for (var x = 0; x < widths.length; x++) {
-			var width = widths[x];
-			var elements = getAllElementsOnWidth(page_data[page], width);
-
-			var test = "\nPage name  : " + page_name +
-				"\npath       : " + page_path +
-				"\nwidth      : " + width +
-				"\nheight     : 1000" +
-				"\ntestURL    : " + testURL +
-				"\nprodhost   : " + prodHost +
-				"\nelements " + JSON.stringify(elements);
-
-			console.log("\nStarting test for " + test);
-
-			var promise = exec("casperjs " + [
-				"--width='" + width + "'",
-				"--height=1000",
-				"--pagename='" + page_name + "'",
-				"--path='" + page_path + "'",
-				"--elements='" + JSON.stringify(elements) + "'",
-				"--testurl='" + testURL + "'",
-				"--prodhost='" + prodHost + "'",
-				"test",
-				"tests/visual/elements_test.js"
-			].join(' '));
-			imageDiffPromises.push(promise);
-		}
-	});
-
-	return Promise.all(imageDiffPromises);
-
-}
 
 function getAllElementsOnWidth(json, width) {
 	var elementObject = {};
 	var item;
-	for (item in json.elements) {
-		if (json.elements.hasOwnProperty(item)) {
-			var element = json.elements[item];
-			var widths = element.widths;
-			if (widths.indexOf(width) === -1) {
-			} else {
-				elementObject[element.name] = element.css;
-			}
+	Object.keys(json.elements).forEach(function(item) {
+		var element = json.elements[item];
+		var widths = element.widths;
+		if (widths.indexOf(width) !== -1) {
+			elementObject[element.name] = element.css;
 		}
-	}
+	});
 	return elementObject;
 }
 
 function collectWidths(json) {
 	var compiledWidths = [];
 	var item;
-	for (item in json.elements) {
-		if (json.elements.hasOwnProperty(item)) {
-			var widths = json.elements[item].widths;
-			for (var x = 0; x < widths.length; x++) {
-				if (compiledWidths.indexOf(widths[x]) === -1) {
-					compiledWidths.push(widths[x]);
-				}
+	Object.keys(json.elements).forEach(function(item) {
+		var widths = json.elements[item].widths;
+		for (var x = 0; x < widths.length; x++) {
+			if (compiledWidths.indexOf(widths[x]) === -1) {
+				compiledWidths.push(widths[x]);
 			}
 		}
-	}
+	});
 	return compiledWidths;
 }
 

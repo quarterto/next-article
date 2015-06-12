@@ -9,12 +9,11 @@ var pageName = casper.cli.get('pagename');
 var path = casper.cli.get('path');
 var width = casper.cli.get('width') || 800;
 var height = casper.cli.get('height') || 1000;
-var testURL = casper.cli.get('testurl') + "/" + path;
-var baseURL = casper.cli.get('prodhost') + "/" + path;
+var testHost = casper.cli.get('testhost') + "/" + path;
+var baseHost = casper.cli.get('prodhost') + "/" + path;
 
-console.log("TESTURL: " + testURL);
-console.log("BaseURL: " + baseURL);
-
+console.log("testHost: " + testHost);
+console.log("baseHost: " + baseHost);
 
 function getElementShots(pagename, elements, env, width, height) {
 	var elementName;
@@ -25,7 +24,7 @@ function getElementShots(pagename, elements, env, width, height) {
 	}
 }
 
-casper.test.begin('Next visual regression tests', function (test) {
+casper.test.begin('Next visual regression tests', function(test) {
 
 	// phantom config
 	phantomcss.init({
@@ -62,7 +61,7 @@ casper.test.begin('Next visual regression tests', function (test) {
 
 	// open first url
 	casper.start().then(function(){
-		this.open(baseURL,{
+		this.open(baseHost,{
 			method: 'get',
 			headers: {
 				'Cookie': 'next-flags=javascript:off'
@@ -73,14 +72,14 @@ casper.test.begin('Next visual regression tests', function (test) {
 	casper.viewport(width,height);
 
 	casper.then(function(){
-		console.log(baseURL);
+		console.log(baseHost);
 	});
 
 	getElementShots(pageName,elements,'base',width,height);
 
 
 	// open second url
-	casper.thenOpen(testURL,{
+	casper.thenOpen(testHost,{
 		method: 'get',
 		headers: {
 			'X-flags': 'javascript' + ':'.toLowerCase() + 'off'
@@ -88,7 +87,7 @@ casper.test.begin('Next visual regression tests', function (test) {
 	});
 
 	casper.then(function(){
-		console.log(testURL);
+		console.log(testHost);
 	});
 
 	getElementShots(pageName,elements,'test',width,height);
