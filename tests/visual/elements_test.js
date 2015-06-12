@@ -60,11 +60,11 @@ casper.test.begin('Next visual regression tests', function(test) {
 
 	casper.options.pageSettings.javascriptEnabled = true;
 	casper.userAgent('Mozilla/4.0(compatible; MSIE 7.0b; Windows NT 6.0)');
-	casper.viewport(width, height);
 
 	// open first url
 	casper
 		.start()
+		.viewport(width, height)
 		.then(function() {
 			this.open(baseHost, browserOptions);
 		})
