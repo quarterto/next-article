@@ -17,12 +17,12 @@ console.log("BaseURL: " + baseURL);
 
 
 function getElementShots(pagename, elements, env, width, height) {
-    var elementName;
-    for (elementName in elements) {
-        if (elements.hasOwnProperty(elementName)) {
-            phantomcss.screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
-        }
-    }
+	var elementName;
+	for (elementName in elements) {
+		if (elements.hasOwnProperty(elementName)) {
+			phantomcss.screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
+		}
+	}
 }
 
 casper.test.begin('Next visual regression tests', function (test) {
