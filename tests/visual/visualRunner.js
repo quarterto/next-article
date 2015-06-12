@@ -97,10 +97,9 @@ Promise.all(imageDiffPromises)
 			promises.push(writeFile("tests/visual/failures/index.html", failurespage));
 
 			// add path to failures
-			for (var y = 0; y < failures.length; y++) {
-				failures[y] = "tests/visual/failures/" + failures[y];
-			}
-
+			failures = failures.map(function(failure) {
+				return "tests/visual/failures/" + failure;
+			});
 			console.log("Failure screenshots located at " + aws_fails_index);
 		} else {
 			console.log("No failures found");
