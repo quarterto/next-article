@@ -38,11 +38,11 @@ casper.test.begin('Next visual regression tests', function(test) {
 		rebase: casper.cli.get("rebase"),
 		casper: casper,
 		timeout: 1000,
-		libraryRoot: fs.absolute(fs.workingDirectory + ''),
-		screenshotRoot: fs.absolute(fs.workingDirectory + '/tests/visual/screenshots'),
-		failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/tests/visual/failures'),
+		libraryRoot: './node_modules/phantomcss',
+		screenshotRoot: './tests/visual/screenshots',
+		failedComparisonsRoot: './tests/visual/failures',
 		addLabelToFailedImage: false,
-		fileNameGetter: function (root, filename) {
+		fileNameGetter: function(root, filename) {
 			var name = root + '/' + filename;
 			if (fs.isFile(name +'.png')) {
 				name += '.diff.png';
@@ -92,12 +92,12 @@ casper.test.begin('Next visual regression tests', function(test) {
 	// make comparisons
 	casper.then(compareMatched);
 
-	casper.run(function () {
+	casper.run(function() {
 		casper.exit();
 	});
 
 
-	function compareMatched(){
+	function compareMatched() {
 		var bases = [];
 		for(var x = 0; x < compares.length ; x++){
 			if(compares[x].indexOf('_' + 'base') !== -1){
