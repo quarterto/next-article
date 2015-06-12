@@ -1,23 +1,19 @@
 "use strict";
 
+require('es6-promise').polyfill();
+
 var normalizeName = require('next-build-tools/lib/normalize-name');
+var exec = require('next-build-tools/lib/exec');
 var packageJson = require('../../package.json');
 
-require('es6-promise').polyfill();
 var fs = require('fs');
 var denodeify = require('denodeify');
-var exec = denodeify(require('child_process').exec, function(err, stdout, stderr) {
-	if (err) {
-		console.log(err);
-		console.log(stdout);
-		console.log(stderr);
-	}
-	return [err, stdout];
-});
 var writeFile = denodeify(fs.writeFile);
 var deployStatic = require('next-build-tools').deployStatic;
 var GitHubApi = require('github');
 var github = new GitHubApi({ version: "3.0.0" });
+github.authenticate({ type: "oauth", token: process.env.GITHUB_OAUTH });
+var createComment = denodeify(github.issues.createComment);
 
 // env variables
 var commit = process.env.GIT_HASH;
@@ -61,15 +57,15 @@ Object.keys(page_data).forEach(function(page) {
 
 		imageDiffPromises.push(
 			exec("casperjs " + [
-			"--width=" + width,
-			"--height=" + height,
-			"--pagename='" + page_name + "'",
-			"--path='" + page_path + "'",
-			"--elements='" + JSON.stringify(elements) + "'",
-			"--testhost='" + testHost + "'",
-			"--prodhost='" + prodHost + "'",
-			"test",
-			"tests/visual/elements_test.js"
+				"--width=" + width,
+				"--height=" + height,
+				"--pagename='" + page_name + "'",
+				"--path='" + page_path + "'",
+				"--elements='" + JSON.stringify(elements) + "'",
+				"--testhost='" + testHost + "'",
+				"--prodhost='" + prodHost + "'",
+				"test",
+				"tests/visual/elements_test.js"
 			].join(' '))
 		);
 	});
@@ -97,9 +93,7 @@ Promise.all(imageDiffPromises)
 		}
 
 		if (fs.existsSync("tests/visual/failures")) {
-
 			failures = fs.readdirSync("tests/visual/failures");
-
 			var failurespage = buildIndexPage(failures);
 			promises.push(writeFile("tests/visual/failures/index.html", failurespage));
 
@@ -109,7 +103,6 @@ Promise.all(imageDiffPromises)
 			}
 
 			console.log("Failure screenshots located at " + aws_fails_index);
-
 		} else {
 			console.log("No failures found");
 		}
@@ -122,7 +115,7 @@ Promise.all(imageDiffPromises)
 		promises.push(deployToAWS(screenshots, aws_shot_dest));
 		promises.push(deployToAWS(["tests/visual/screenshots/index.html"], aws_shot_dest));
 
-		if(fs.existsSync("tests/visual/failures")) {
+		if (fs.existsSync("tests/visual/failures")) {
 			promises.push(deployToAWS(failures, aws_fail_dest));
 			promises.push(deployToAWS(["tests/visual/failures/index.html"], aws_fail_dest));
 		}
@@ -136,20 +129,16 @@ Promise.all(imageDiffPromises)
 		var repoSlug = process.env.TRAVIS_REPO_SLUG.split('/');
 
 		if ((pullRequest !== "false") && (failures !== undefined)) {
-			github.authenticate({ type: "oauth", token: process.env.GITHUB_OAUTH });
-			github.issues.createComment({
+			return createComment({
 					user: repoSlug[0],
 					repo: repoSlug[1],
 					number: pullRequest,
 					body: "Image diffs found between branch and production" +
 					"\nSee" +
 					"\n\n" + aws_fails_index
-				}, function(err, data) {
-					if (err) {
-						console.log("Github posting error: " + err);
-					} else {
-						console.log(data);
-					}
+				})
+				.then(function(data) {
+					console.log(data);
 				});
 		} else {
 			console.log("No comments to make to Pull Request");
