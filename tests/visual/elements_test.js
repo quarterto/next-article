@@ -2,7 +2,7 @@
 "use strict";
 
 var fs = require('fs');
-var phantomcss = require('./phantomcss');
+var phantomcss = require('phantomcss');
 var compares = [];
 var elements = JSON.parse(casper.cli.get('elements'));
 var pageName = casper.cli.get('pagename');
@@ -14,6 +14,16 @@ var baseURL = casper.cli.get('prodhost') + "/" + path;
 
 console.log("TESTURL: " + testURL);
 console.log("BaseURL: " + baseURL);
+
+
+function getElementShots(pagename, elements, env, width, height) {
+    var elementName;
+    for (elementName in elements) {
+        if (elements.hasOwnProperty(elementName)) {
+            phantomcss.screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
+        }
+    }
+}
 
 casper.test.begin('Next visual regression tests', function (test) {
 
@@ -66,7 +76,7 @@ casper.test.begin('Next visual regression tests', function (test) {
 		console.log(baseURL);
 	});
 
-	phantomcss.getElementShots(pageName,elements,'base',width,height);
+	getElementShots(pageName,elements,'base',width,height);
 
 
 	// open second url
@@ -81,7 +91,7 @@ casper.test.begin('Next visual regression tests', function (test) {
 		console.log(testURL);
 	});
 
-	phantomcss.getElementShots(pageName,elements,'test',width,height);
+	getElementShots(pageName,elements,'test',width,height);
 
 
 	// make comparisons
