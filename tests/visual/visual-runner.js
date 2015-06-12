@@ -111,7 +111,13 @@ Promise.all(imageDiffPromises)
 				.concat(["tests/visual/screenshots/failures/index.html"]);
 		}
 
-		return deployStatic(files);
+		return deployStatic({
+			files: files,
+			destination: AWS_DEST_PREFIX,
+			region: 'eu-west-1',
+			bucket: 'ft-next-qa',
+			strip: 3
+		});
 	})
 
 	// Make a comment if a changed has been detected and it's a PR build
