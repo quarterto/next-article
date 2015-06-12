@@ -144,6 +144,10 @@ Promise.all(imageDiffPromises)
 			console.log("No comments to make to Pull Request");
 		}
 	})
+	.then(function() {
+		console.log("finished visual regression tests");
+		process.exit(0);
+	})
 	.catch(function(err) {
 		console.log("there was an error");
 		console.log(err.stack);
