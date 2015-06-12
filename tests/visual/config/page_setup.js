@@ -7,25 +7,25 @@
 
 exports.testData = {
 	"article_with_image": {
-	"name": "article_with_image",
-	"path": "ccf7af08-e904-11e4-a71a-00144feab7de",
-	"elements": {
-		"header_logo": {
-			"name":"header_logo",
-			"css":'.next-header__logo--ft',
-			"widths":[
-				500,
-				1400
-			]
-		},
-		"mypage_button": {
-			"name":"myft_button",
-			"css":'.next-header__primary-tools__mypage',
-			"widths":[
-				600,
-				800,
-				1000,
-				1400
+		"name": "article_with_image",
+		"path": "ccf7af08-e904-11e4-a71a-00144feab7de",
+		"elements": {
+			"header_logo": {
+				"name":"header_logo",
+				"css":'.next-header__logo--ft',
+				"widths":[
+					500,
+					1400
+				]
+			},
+			"mypage_button": {
+				"name":"myft_button",
+				"css":'.next-header__primary-tools__mypage',
+				"widths":[
+					600,
+					800,
+					1000,
+					1400
 				]
 			},
 			"stand-first": {

@@ -28,12 +28,8 @@ var github = new GitHubApi({
 var pr = process.env.TRAVIS_PULL_REQUEST;
 var commit = process.env.GIT_HASH;
 var gitHubOauth = process.env.GITHUB_OAUTH;
-var configFile = require('./config/page_setup');
+var page_data = require('./config/page_setup');
 
-// parameters and config data -- assumes file lives in tests/visual/config/
-var page_data = configFile;
-
-var page;
 var screenshots;
 var failures;
 var date = new Date();
@@ -152,43 +148,40 @@ startImageDiffs()
 function startImageDiffs() {
 	var imageDiffPromises = [];
 
-	for (page in page_data) {
-		if (page_data.hasOwnProperty(page)) {
+	Object.keys(page_data).forEach(function(page) {
+		var testURL = "http://" + process.env.TEST_HOST + ".herokuapp.com";
+		var prodHost = "http://next.ft.com";
+		var page_name = page_data[page].name;
+		var page_path = page_data[page].path;
+		var widths = collectWidths(page_data[page]);
+		for (var x = 0; x < widths.length; x++) {
+			var width = widths[x];
+			var elements = getAllElementsOnWidth(page_data[page], width);
 
-			var testURL = "http://" + process.env.TEST_HOST + ".herokuapp.com";
-			var prodHost = "http://next.ft.com";
-			var page_name = page_data[page].name;
-			var page_path = page_data[page].path;
-			var widths = collectWidths(page_data[page]);
-			for (var x = 0; x < widths.length; x++) {
-				var width = widths[x];
-				var elements = getAllElementsOnWidth(page_data[page], width);
+			var test = "\nPage name  : " + page_name +
+				"\npath       : " + page_path +
+				"\nwidth      : " + width +
+				"\nheight     : 1000" +
+				"\ntestURL    : " + testURL +
+				"\nprodhost   : " + prodHost +
+				"\nelements " + JSON.stringify(elements);
 
-				var test = "\nPage name  : " + page_name +
-					"\npath       : " + page_path +
-					"\nwidth      : " + width +
-					"\nheight     : 1000" +
-					"\ntestURL    : " + testURL +
-					"\nprodhost   : " + prodHost +
-					"\nelements " + JSON.stringify(elements);
+			console.log("\nStarting test for " + test);
 
-				console.log("\nStarting test for " + test);
-
-				var promise = exec("casperjs " + [
-					"--width='" + width + "'",
-					"--height=1000",
-					"--pagename='" + page_name + "'",
-					"--path='" + page_path + "'",
-					"--elements='" + JSON.stringify(elements) + "'",
-					"--testurl='" + testURL + "'",
-					"--prodhost='" + prodHost + "'",
-					"test",
-					"tests/visual/elements_test.js"
-				].join(' '));
-				imageDiffPromises.push(promise);
-			}
+			var promise = exec("casperjs " + [
+				"--width='" + width + "'",
+				"--height=1000",
+				"--pagename='" + page_name + "'",
+				"--path='" + page_path + "'",
+				"--elements='" + JSON.stringify(elements) + "'",
+				"--testurl='" + testURL + "'",
+				"--prodhost='" + prodHost + "'",
+				"test",
+				"tests/visual/elements_test.js"
+			].join(' '));
+			imageDiffPromises.push(promise);
 		}
-	}
+	});
 
 	return Promise.all(imageDiffPromises);
 
