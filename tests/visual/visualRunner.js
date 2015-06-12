@@ -12,7 +12,6 @@ var writeFile = denodeify(fs.writeFile);
 var deployStatic = require('next-build-tools').deployStatic;
 var GitHubApi = require('github');
 var github = new GitHubApi({ version: "3.0.0" });
-github.authenticate({ type: "oauth", token: process.env.GITHUB_OAUTH });
 var createComment = denodeify(github.issues.createComment);
 
 // env variables
@@ -129,6 +128,7 @@ Promise.all(imageDiffPromises)
 		var repoSlug = process.env.TRAVIS_REPO_SLUG.split('/');
 
 		if ((pullRequest !== "false") && (failures !== undefined)) {
+			github.authenticate({ type: "oauth", token: process.env.GITHUB_OAUTH });
 			return createComment({
 					user: repoSlug[0],
 					repo: repoSlug[1],
