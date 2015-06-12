@@ -2,6 +2,7 @@
 
 require('es6-promise').polyfill();
 
+var moment = require('moment');
 var normalizeName = require('next-build-tools/lib/normalize-name');
 var exec = require('next-build-tools/lib/exec');
 var packageJson = require('../../package.json');
@@ -20,17 +21,13 @@ var page_data = require('./config');
 
 var screenshots;
 var failures;
-var date = new Date();
-var dateString = date.getUTCFullYear() + "y"
-	+ date.getUTCMonth() + "m"
-	+ date.getUTCDate() + "d"
-	+ date.getUTCHours() + "h"
-	+ date.getUTCMinutes() + "m";
 
-var aws_shot_dest = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + dateString + "__" + commit + "/screenshots/";
-var aws_fail_dest = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + dateString + "__" + commit + "/failures/";
-var aws_shots_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_shot_dest + "index.html";
-var aws_fails_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_fail_dest + "index.html";
+var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + commit + "/";
+var AWS_SHOT_DEST = AWS_DEST_PREFIX + "screenshots/";
+var AWS_FAIL_DEST = AWS_DEST_PREFIX + "failures/";
+
+var AWS_SHOTS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_SHOT_DEST + "index.html";
+var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_FAIL_DEST + "index.html";
 
 console.log("Running image diff tests");
 
@@ -86,7 +83,7 @@ Promise.all(imageDiffPromises)
 			screenshots = screenshots.map(function(screenshot) {
 				return "tests/visual/screenshots/successes/" + screenshot;
 			});
-			console.log("Screenshots located at " + aws_shots_index);
+			console.log("Screenshots located at " + AWS_SHOTS_INDEX);
 		} else {
 			console.log("No screenshots here");
 		}
@@ -100,7 +97,7 @@ Promise.all(imageDiffPromises)
 			failures = failures.map(function(failure) {
 				return "tests/visual/screenshots/failures/" + failure;
 			});
-			console.log("Failure screenshots located at " + aws_fails_index);
+			console.log("Failure screenshots located at " + AWS_FAILS_INDEX);
 		} else {
 			console.log("No failures found");
 		}
@@ -110,12 +107,12 @@ Promise.all(imageDiffPromises)
 	.then(function() {
 		var promises = [];
 
-		promises.push(deployToAWS(screenshots, aws_shot_dest));
-		promises.push(deployToAWS(["tests/visual/screenshots/successes/index.html"], aws_shot_dest));
+		promises.push(deployToAWS(screenshots, AWS_SHOT_DEST));
+		promises.push(deployToAWS(["tests/visual/screenshots/successes/index.html"], AWS_SHOT_DEST));
 
 		if (fs.existsSync("tests/visual/screenshots/failures")) {
-			promises.push(deployToAWS(failures, aws_fail_dest));
-			promises.push(deployToAWS(["tests/visual/screenshots/failures/index.html"], aws_fail_dest));
+			promises.push(deployToAWS(failures, AWS_FAIL_DEST));
+			promises.push(deployToAWS(["tests/visual/screenshots/failures/index.html"], AWS_FAIL_DEST));
 		}
 
 		return Promise.all(promises);
@@ -134,7 +131,7 @@ Promise.all(imageDiffPromises)
 					number: pullRequest,
 					body: "Image diffs found between branch and production" +
 					"\nSee" +
-					"\n\n" + aws_fails_index
+					"\n\n" + AWS_FAILS_INDEX
 				})
 				.then(function(data) {
 					console.log(data);
