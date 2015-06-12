@@ -31,8 +31,7 @@ var gitHubOauth = process.env.GITHUB_OAUTH;
 var configFile = require('./config/page_setup');
 
 // parameters and config data -- assumes file lives in tests/visual/config/
-var page_data = configFile.testData;
-var prod_data = configFile.productionData;
+var page_data = configFile;
 
 var page;
 var screenshots;
