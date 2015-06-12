@@ -68,7 +68,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 	});
 	casper.thenOpen(testHost, browserOptions, function() {
 		getElementShots(pageName, elements, 'test', width, height);
-	})
+	});
 	casper.then(function compareMatched() {
 		var bases = [];
 		for (var x = 0; x < compares.length ; x++) {
