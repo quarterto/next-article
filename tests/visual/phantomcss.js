@@ -27,23 +27,11 @@ var _resembleContainerPath;
 var _libraryRoot;
 var _rebase = false;
 
-exports.screenshot = screenshot;
-exports.compareAll = compareAll;
-exports.compareMatched = compareMatched;
-exports.compareExplicit = compareExplicit;
-exports.compareSession = compareSession;
-exports.compareFiles = compareFiles;
-exports.waitForTests = waitForTests;
 exports.init = init;
-exports.update = update;
-exports.turnOffAnimations = turnOffAnimations;
-exports.getExitStatus = getExitStatus;
-exports.getCreatedDiffFiles = getCreatedDiffFiles;
+exports.compareFiles = compareFiles;
 exports.getElementShots = getElementShots;
-exports.compareEnvironments = compareEnvironments;
-exports.getCreatedDiffFiles = getCreatedDiffFiles;
 
-function update( options ) {
+function init( options ) {
 
 	function stripslash( str ) {
 		return ( str || '' ).replace( /\/\//g, '/' ).replace( /\\/g, '\\' );
@@ -90,10 +78,6 @@ function update( options ) {
 	}
 }
 
-function init( options ) {
-	update( options );
-}
-
 function getResemblePath( root ) {
 
 	var path = [ root, 'libs', 'resemblejs', 'resemble.js' ].join( fs.separator );
@@ -105,30 +89,6 @@ function getResemblePath( root ) {
 	}
 
 	return path;
-}
-
-function turnOffAnimations() {
-	console.log( '[PhantomCSS] Turning off animations' );
-	casper.evaluate( function turnOffAnimations() {
-
-		function disableAnimations() {
-			var jQuery = window.jQuery;
-			if ( jQuery ) {
-				jQuery.fx.off = true;
-			}
-
-			var css = document.createElement( "style" );
-			css.type = "text/css";
-			css.innerHTML = "* { -webkit-transition: none !important; transition: none !important; -webkit-animation: none !important; animation: none !important; }";
-			document.body.appendChild( css );
-		}
-
-		if ( document.readyState !== "loading" ) {
-			disableAnimations();
-		} else {
-			window.addEventListener( 'load', disableAnimations, false );
-		}
-	} );
 }
 
 function _fileNameGetter( root, fileName ) {
@@ -352,28 +312,6 @@ function getDiffs( path ) {
 	_realPath = _realPath.replace( fs.separator + path, '' );
 }
 
-function getCreatedDiffFiles() {
-	var d = diffsCreated;
-	diffsCreated = [];
-	return d;
-}
-
-function compareMatched( match, exclude ) {
-	// Search for diff images, but only compare matched filenames
-	_test_match = typeof match === 'string' ? new RegExp( match ) : match;
-	compareAll( exclude );
-}
-
-function compareExplicit( list ) {
-	// An explicit list of diff images to compare ['/dialog.diff.png', '/header.diff.png']
-	compareAll( void 0, list );
-}
-
-function compareSession( list ) {
-	// compare the diffs created in this session
-	compareAll( void 0, getCreatedDiffFiles() );
-}
-
 function compareFiles( baseFile, file ) {
 	var test = {
 		filename: baseFile
@@ -455,53 +393,6 @@ function compareFiles( baseFile, file ) {
 		} );
 	}
 	return test;
-}
-
-function compareAll( exclude, list ) {
-	var tests = [];
-
-	_test_exclude = typeof exclude === 'string' ? new RegExp( exclude ) : exclude;
-
-	if ( list ) {
-		_diffsToProcess = list;
-	} else {
-		_realPath = undefined;
-		getDiffs( _results );
-	}
-
-	_diffsToProcess.forEach( function ( file ) {
-		var baseFile = _replaceDiffSuffix( file );
-		tests.push( compareFiles( baseFile, file ) );
-	} );
-	waitForTests( tests );
-}
-
-function waitForTests( tests ) {
-	casper.then( function () {
-		casper.waitFor( function () {
-				return tests.length === tests.reduce( function ( count, test ) {
-					if ( test.success || test.fail || test.error ) {
-						return count + 1;
-					} else {
-						return count;
-					}
-				}, 0 );
-			}, function () {
-				var fails = 0,
-					errors = 0;
-				tests.forEach( function ( test ) {
-					if ( test.fail ) {
-						fails++;
-					} else if ( test.error ) {
-						errors++;
-					}
-				} );
-				_onComplete( tests, fails, errors );
-			}, function () {
-
-			},
-			_waitTimeout );
-	} );
 }
 
 function initClient() {
@@ -676,10 +567,6 @@ function setVisibilityToHidden( s1, s2 ) {
 	}
 }
 
-function getExitStatus() {
-	return exitStatus;
-}
-
 function generateRandomString() {
 	return ( Math.random() + 1 ).toString( 36 ).substring( 7 );
 }
@@ -691,15 +578,6 @@ function getElementShots(pagename, elements, env, width, height) {
     for (elementName in elements) {
         if (elements.hasOwnProperty(elementName)) {
             screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
-        }
-    }
-}
-
-function compareEnvironments(elements){
-    var elementName;
-    for(elementName in elements) {
-        if (elements.hasOwnProperty(elementName)) {
-            compareFiles("screenshots/" + elementName + "_prod.png", "screenshots/" + elementName + "_test.png");
         }
     }
 }

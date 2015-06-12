@@ -2,8 +2,7 @@
 "use strict";
 
 var fs = require('fs');
-var phantom_path = fs.absolute(fs.workingDirectory + '/tests/visual/phantomcss.js');
-var phantomcss = require(phantom_path);
+var phantomcss = require('./phantomcss');
 var compares = [];
 var elements = JSON.parse(casper.cli.get('elements'));
 var pageName = casper.cli.get('pagename');
