@@ -23,11 +23,8 @@ var screenshots;
 var failures;
 
 var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + commit + "/";
-var AWS_SHOT_DEST = AWS_DEST_PREFIX + "successes/";
-var AWS_FAIL_DEST = AWS_DEST_PREFIX + "failures/";
-
-var AWS_SHOTS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_SHOT_DEST + "index.html";
-var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_FAIL_DEST + "index.html";
+var AWS_SHOTS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "/successes/index.html";
+var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "/failures/index.html";
 
 console.log("Running image diff tests");
 
