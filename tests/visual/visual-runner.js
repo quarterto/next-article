@@ -102,17 +102,16 @@ Promise.all(imageDiffPromises)
 		return Promise.all(promises);
 	})
 	.then(function() {
-		var promises = [];
-
-		promises.push(deployToAWS(screenshots));
-		promises.push(deployToAWS(["tests/visual/screenshots/successes/index.html"]));
+		var files = ["tests/visual/screenshots/successes/index.html"]
+			.concat(screenshots);
 
 		if (fs.existsSync("tests/visual/screenshots/failures")) {
-			promises.push(deployToAWS(failures));
-			promises.push(deployToAWS(["tests/visual/screenshots/failures/index.html"]));
+			files = files
+				.concat(failures)
+				.concat(["tests/visual/screenshots/failures/index.html"]);
 		}
 
-		return Promise.all(promises);
+		return deployStatic(files);
 	})
 
 	// Make a comment if a changed has been detected and it's a PR build
@@ -189,14 +188,4 @@ function buildIndexPage(screenshots) {
 	}
 	html += "</body></html>";
 	return html;
-}
-
-function deployToAWS(files) {
-	return deployStatic({
-		files: files,
-		destination: AWS_DEST_PREFIX,
-		region: 'eu-west-1',
-		bucket: 'ft-next-qa',
-		strip: 3
-	});
 }
