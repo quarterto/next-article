@@ -23,7 +23,7 @@ var screenshots;
 var failures;
 
 var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + commit + "/";
-var AWS_SHOT_DEST = AWS_DEST_PREFIX + "screenshots/";
+var AWS_SHOT_DEST = AWS_DEST_PREFIX + "successes/";
 var AWS_FAIL_DEST = AWS_DEST_PREFIX + "failures/";
 
 var AWS_SHOTS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_SHOT_DEST + "index.html";
@@ -107,12 +107,12 @@ Promise.all(imageDiffPromises)
 	.then(function() {
 		var promises = [];
 
-		promises.push(deployToAWS(screenshots, AWS_SHOT_DEST));
-		promises.push(deployToAWS(["tests/visual/screenshots/successes/index.html"], AWS_SHOT_DEST));
+		promises.push(deployToAWS(screenshots));
+		promises.push(deployToAWS(["tests/visual/screenshots/successes/index.html"]));
 
 		if (fs.existsSync("tests/visual/screenshots/failures")) {
-			promises.push(deployToAWS(failures, AWS_FAIL_DEST));
-			promises.push(deployToAWS(["tests/visual/screenshots/failures/index.html"], AWS_FAIL_DEST));
+			promises.push(deployToAWS(failures));
+			promises.push(deployToAWS(["tests/visual/screenshots/failures/index.html"]));
 		}
 
 		return Promise.all(promises);
@@ -194,12 +194,12 @@ function buildIndexPage(screenshots) {
 	return html;
 }
 
-function deployToAWS(files, destination) {
+function deployToAWS(files) {
 	return deployStatic({
 		files: files,
-		destination: destination,
+		destination: AWS_DEST_PREFIX,
 		region: 'eu-west-1',
 		bucket: 'ft-next-qa',
-		strip: 4
+		strip: 3
 	});
 }
