@@ -24,6 +24,13 @@ function getElementShots(pagename, elements, env, width, height) {
 	}
 }
 
+var browserOptions = {
+	method: 'get',
+	headers: {
+		'Cookie': 'next-flags=javascript:off; FT_SITE=NEXT'
+	}
+};
+
 casper.test.begin('Next visual regression tests', function(test) {
 
 	// phantom config
@@ -61,12 +68,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 
 	// open first url
 	casper.start().then(function(){
-		this.open(baseHost,{
-			method: 'get',
-			headers: {
-				'Cookie': 'next-flags=javascript:off'
-			}
-		});
+		this.open(baseHost, browserOptions);
 	});
 
 	casper.viewport(width,height);
@@ -77,14 +79,8 @@ casper.test.begin('Next visual regression tests', function(test) {
 
 	getElementShots(pageName,elements,'base',width,height);
 
-
 	// open second url
-	casper.thenOpen(testHost,{
-		method: 'get',
-		headers: {
-			'X-flags': 'javascript' + ':'.toLowerCase() + 'off'
-		}
-	});
+	casper.thenOpen(testHost, browserOptions);
 
 	casper.then(function(){
 		console.log(testHost);
