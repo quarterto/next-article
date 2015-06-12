@@ -28,7 +28,7 @@
     "github": "^0.2.4",
     "isomorphic-fetch": "^2.0.2",
     "mocha": "^2.0.0",
-    "next-build-tools": "Financial-Times/next-build-tools#obt-beta",
+    "next-build-tools": "Financial-Times/next-build-tools#spawn-nightwatch",
     "nightwatch": "^0.5.36",
     "nock": "^2.0.0",
     "nodemon": "^1.3.5",
