@@ -10,10 +10,7 @@ var path = casper.cli.get('path');
 var width = casper.cli.get('width') || 800;
 var height = casper.cli.get('height') || 1000;
 var testHost = casper.cli.get('testhost') + path;
-var baseHost = casper.cli.get('prodhost') + path;
-
-console.log("testHost: " + testHost);
-console.log("baseHost: " + baseHost);
+var baseHost = casper.cli.get('basehost') + path;
 
 function getElementShots(pagename, elements, env, width, height) {
 	console.log('screenshotting ' + env);

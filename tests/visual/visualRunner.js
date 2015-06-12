@@ -38,18 +38,18 @@ var imageDiffPromises = [];
 
 Object.keys(page_data).forEach(function(page) {
 	var testHost = "http://" + process.env.TEST_HOST + ".herokuapp.com";
-	var prodHost = "http://next.ft.com";
-	var page_name = page_data[page].name;
-	var page_path = page_data[page].path;
+	var baseHost = "http://next.ft.com";
+	var pageName = page_data[page].name;
+	var path = page_data[page].path;
 	var widths = collectWidths(page_data[page]);
 	widths.forEach(function(width) {
 		var height = 1000;
 		var elements = getAllElementsOnWidth(page_data[page], width);
-		var test = "\nPage name  : " + page_name +
-			"\npath       : " + page_path +
+		var test = "\nPage name  : " + pageName +
+			"\npath       : " + path +
 			"\ndimensions : " + width + "x" + height +
-			"\ntestHost    : " + testHost +
-			"\nprodhost   : " + prodHost +
+			"\ntesthost    : " + testHost +
+			"\nbasehost   : " + baseHost +
 			"\nelements " + JSON.stringify(elements);
 
 		console.log("\nStarting test for " + test);
@@ -58,11 +58,11 @@ Object.keys(page_data).forEach(function(page) {
 			exec("casperjs " + [
 				"--width=" + width,
 				"--height=" + height,
-				"--pagename='" + page_name + "'",
-				"--path='" + page_path + "'",
+				"--pagename='" + pageName + "'",
+				"--path='" + path + "'",
 				"--elements='" + JSON.stringify(elements) + "'",
 				"--testhost='" + testHost + "'",
-				"--prodhost='" + prodHost + "'",
+				"--basehost='" + baseHost + "'",
 				"test",
 				"tests/visual/elements_test.js"
 			].join(' '))
