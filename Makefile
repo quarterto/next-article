@@ -72,9 +72,3 @@ provision:
 
 smoke:
 	export TEST_URL=${TEST_URL}; nbt nightwatch tests/browser/tests/*
-<<<<<<< HEAD
-
-update-flags:
-	curl http://next.ft.com/__flags.json > tests/fixtures/flags.json
-=======
->>>>>>> origin/master
