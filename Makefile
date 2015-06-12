@@ -56,7 +56,7 @@ deploy:
 	nbt scale
 
 visual:
-	export export TEST_HOST="${TEST_HOST}"; export GIT_LONG_HASH="${GIT_LONG_HASH}"; export GIT_HASH="${GIT_HASH}"; node tests/visual/visualRunner.js
+	export TEST_HOST=${TEST_HOST}; export GIT_LONG_HASH="${GIT_LONG_HASH}"; export GIT_HASH="${GIT_HASH}"; node tests/visual/visualRunner.js
 
 clean-deploy: clean install deploy
 
