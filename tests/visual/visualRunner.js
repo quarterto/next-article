@@ -1,5 +1,8 @@
 "use strict";
 
+var normalizeName = require('next-build-tools/lib/normalize-name');
+var packageJson = require('../../package.json');
+
 require('es6-promise').polyfill();
 var fs = require('fs');
 var denodeify = require('denodeify');
@@ -25,11 +28,11 @@ var github = new GitHubApi({
 var pr = process.env.TRAVIS_PULL_REQUEST;
 var commit = process.env.GIT_HASH;
 var gitHubOauth = process.env.GITHUB_OAUTH;
-var configFile = process.env.CONFIG_FILE;
+var configFile = require('./config/page_setup');
 
 // parameters and config data -- assumes file lives in tests/visual/config/
-var page_data = require('./config/' + configFile).testData;
-var prod_data = require('./config/' + configFile).productionData;
+var page_data = configFile.testData;
+var prod_data = configFile.productionData;
 
 var page;
 var screenshots;
@@ -41,8 +44,8 @@ var dateString = date.getUTCFullYear() + "y"
 	+ date.getUTCHours() + "h"
 	+ date.getUTCMinutes() + "m";
 
-var aws_shot_dest = "image_diffs/" + prod_data.app_name + "/" + dateString + "__" + commit + "/screenshots/";
-var aws_fail_dest = "image_diffs/" + prod_data.app_name + "/" + dateString + "__" + commit + "/failures/";
+var aws_shot_dest = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + dateString + "__" + commit + "/screenshots/";
+var aws_fail_dest = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + dateString + "__" + commit + "/failures/";
 var aws_shots_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_shot_dest + "index.html";
 var aws_fails_index = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + aws_fail_dest + "index.html";
 
@@ -154,8 +157,7 @@ function startImageDiffs() {
 		if (page_data.hasOwnProperty(page)) {
 
 			var testURL = "http://" + process.env.TEST_HOST + ".herokuapp.com";
-			var prodHost = prod_data.host;
-			var prodSuffix = prod_data.canary;
+			var prodHost = "http://next.ft.com";
 			var page_name = page_data[page].name;
 			var page_path = page_data[page].path;
 			var widths = collectWidths(page_data[page]);
@@ -169,12 +171,11 @@ function startImageDiffs() {
 					"\nheight     : 1000" +
 					"\ntestURL    : " + testURL +
 					"\nprodhost   : " + prodHost +
-					"\nprodsuffix : " + prodSuffix +
 					"\nelements " + JSON.stringify(elements);
 
 				console.log("\nStarting test for " + test);
 
-				var promise = startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix);
+				var promise = startTestProcess(width, page_name, page_path, elements, testURL, prodHost);
 				imageDiffPromises.push(promise);
 			}
 		}
@@ -184,7 +185,7 @@ function startImageDiffs() {
 
 }
 
-function startTestProcess(width, page_name, page_path, elements, testURL, prodHost, prodSuffix) {
+function startTestProcess(width, page_name, page_path, elements, testURL, prodHost) {
 	var args = [
 		"--width='" + width + "'",
 		"--height=1000",
@@ -193,7 +194,6 @@ function startTestProcess(width, page_name, page_path, elements, testURL, prodHo
 		"--elements='" + JSON.stringify(elements) + "'",
 		"--testurl='" + testURL + "'",
 		"--prodhost='" + prodHost + "'",
-		"--prodsuffix='" + prodSuffix + "'",
 		"test",
 		"tests/visual/elements_test.js"
 	].join(' ');

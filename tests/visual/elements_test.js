@@ -11,14 +11,14 @@ var path = casper.cli.get('path');
 var width = casper.cli.get('width') || 800;
 var height = casper.cli.get('height') || 1000;
 var testURL = casper.cli.get('testurl') + "/" + path;
-var baseURL = casper.cli.get('prodhost') + "/" + path + casper.cli.get('prodsuffix');
+var baseURL = casper.cli.get('prodhost') + "/" + path;
 
 console.log("TESTURL: " + testURL);
 console.log("BaseURL: " + baseURL);
 
 casper.test.begin('Next visual regression tests', function (test) {
 
-    // phantom config
+	// phantom config
 	phantomcss.init({
 		rebase: casper.cli.get("rebase"),
 		casper: casper,

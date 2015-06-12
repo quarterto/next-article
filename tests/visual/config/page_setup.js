@@ -72,8 +72,6 @@ exports.testData = {
 // also define the last element to load, so casper knows when to start grabbing images
 // TODO: stop using canary and log in properly.
 exports.productionData = {
-	"app_name":"grumman",
-	"host":"http://next.ft.com",
 	"canary":"?canary=grumman:ft-next-grumman-v002.herokuapp.com",
 	"wait_for_element":".article__actions__action--comments"
 };
