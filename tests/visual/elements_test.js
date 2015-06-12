@@ -71,7 +71,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 		.then(function() {
 			getElementShots(pageName, elements, 'base', width, height);
 		})
-		.thenOpen(testHost, browserOptions);
+		.thenOpen(testHost, browserOptions)
 		.then(function() {
 			getElementShots(pageName, elements, 'test', width, height);
 		})
