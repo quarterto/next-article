@@ -20,7 +20,6 @@ var GitHubApi = require('github');
 var github = new GitHubApi({ version: "3.0.0" });
 
 // env variables
-var pr = process.env.TRAVIS_PULL_REQUEST;
 var commit = process.env.GIT_HASH;
 var page_data = require('./config/page_setup');
 
@@ -133,22 +132,25 @@ Promise.all(imageDiffPromises)
 
 	// Make a comment if a changed has been detected and it's a PR build
 	.then(function() {
-		if ((pr !== "false") && (failures !== undefined)) {
+		var pullRequest = process.env.TRAVIS_PULL_REQUEST;
+		var repoSlug = process.env.TRAVIS_REPO_SLUG.split('/');
+
+		if ((pullRequest !== "false") && (failures !== undefined)) {
 			github.authenticate({ type: "oauth", token: process.env.GITHUB_OAUTH });
 			github.issues.createComment({
-				user: "Financial-Times",
-				repo: "next-grumman",
-				number: pr,
-				body: "Image diffs found between branch and production" +
-				"\nSee" +
-				"\n\n" + aws_fails_index
-			}, function(err,data){
-				if (err) {
-					console.log("Github posting error: " + err);
-				} else {
-					console.log(data);
-				}
-			});
+					user: repoSlug[0],
+					repo: repoSlug[1],
+					number: pullRequest,
+					body: "Image diffs found between branch and production" +
+					"\nSee" +
+					"\n\n" + aws_fails_index
+				}, function(err, data) {
+					if (err) {
+						console.log("Github posting error: " + err);
+					} else {
+						console.log(data);
+					}
+				});
 		} else {
 			console.log("No comments to make to Pull Request");
 		}
