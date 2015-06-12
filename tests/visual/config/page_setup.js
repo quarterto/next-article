@@ -18,16 +18,6 @@ module.exports = {
 					1400
 				]
 			},
-			"mypage_button": {
-				"name":"myft_button",
-				"css":'.next-header__primary-tools__mypage',
-				"widths":[
-					600,
-					800,
-					1000,
-					1400
-				]
-			},
 			"stand-first": {
 				"name":"stand-first",
 				"css":'.article__stand-first',
