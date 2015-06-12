@@ -9,7 +9,7 @@ module.exports.init = function(uuid, flags) {
 	if (!flags.get('articleComments') || !document.querySelector('#comments')) {
 		return;
 	}
-	return fetch('/' + uuid + '/comments-hack', { credentials: 'same-origin' })
+	return fetch('/article/' + uuid + '/comments-hack', { credentials: 'same-origin' })
 		.then(fetchres.json)
 		.then(function(flagsOn) {
 			if (!flagsOn) {
