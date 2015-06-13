@@ -15,8 +15,7 @@ var GitHubApi = require('github');
 var github = new GitHubApi({ version: "3.0.0", debug: false });
 var createComment = denodeify(github.issues.createComment);
 
-// env variables
-var page_data = require('./config');
+var tests = require('./config');
 
 var LOCAL_PREFIX = "tests/visual/screenshots/";
 var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + process.env.TRAVIS_BUILD_NUMBER + "/";
@@ -25,35 +24,14 @@ var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DES
 
 console.log("Running image diff tests");
 
-var imageDiffPromises = [];
-
-Object.keys(page_data).forEach(function(pageName) {
-	var testHost = "http://" + process.env.TEST_HOST + ".herokuapp.com";
-	var path = page_data[pageName].path;
-	var widths = page_data[pageName].widths;
-	var elements = page_data[pageName].elements;
-	var test = "\nPage name  : " + pageName +
-		"\npath       : " + path +
-		"\nwidths : " + JSON.stringify(widths) +
-		"\ntesthost    : " + testHost +
-		"\nelements " + JSON.stringify(elements);
-
-	console.log("\nStarting test for " + test);
-
-	imageDiffPromises.push(
-		exec("casperjs " + [
-			"--widths=" + JSON.stringify(widths),
-			"--pagename='" + pageName + "'",
-			"--path='" + path + "'",
-			"--elements='" + JSON.stringify(elements) + "'",
-			"--testhost='" + testHost + "'",
-			"test",
-			"tests/visual/elements-test.js"
-		].join(' '))
-	);
-});
-
-Promise.all(imageDiffPromises)
+Object.keys(tests).map(function(pageName) {
+	console.log("\nStarting test for " + pageName);
+	return exec("casperjs "
+			+ " --pagename='" + pageName + "'"
+			+ " test"
+			+ " tests/visual/elements-test.js",
+			{ env: { TEST_HOST: process.env.TEST_HOST } });
+})
 	.then(function(result) {
 		var results = {};
 		var promises = [];
