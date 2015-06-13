@@ -55,7 +55,7 @@ deploy:
 	nbt scale
 
 visual:
-	export TEST_HOST=${TEST_HOST}; export GIT_HASH="${GIT_HASH}"; casperjs test test/visual/test.js && node test/visual/publish.js
+	export TEST_HOST=${TEST_HOST}; export GIT_HASH="${GIT_HASH}"; myrtlejs
 
 clean-deploy: clean install deploy
 
