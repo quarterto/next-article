@@ -35,9 +35,9 @@ Object.keys(page_data).forEach(function(pageName) {
 	var baseHost = "http://next.ft.com";
 	var path = page_data[pageName].path;
 	var widths = page_data[pageName].widths;
+	var elements = page_data[pageName].elements;
 	widths.forEach(function(width) {
 		var height = 1000;
-		var elements page_data[pageName].elements;
 		var test = "\nPage name  : " + pageName +
 			"\npath       : " + path +
 			"\ndimensions : " + width + "x" + height +
