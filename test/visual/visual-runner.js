@@ -49,7 +49,7 @@ deployStatic({
 })
 
 	// Make a comment if a changed has been detected and it's a PR build
-	.then(function(results) {
+	.then(function() {
 		var pullRequest = process.env.TRAVIS_PULL_REQUEST;
 		var repoSlug = process.env.TRAVIS_REPO_SLUG.split('/');
 
