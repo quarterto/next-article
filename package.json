@@ -26,7 +26,7 @@
     "es6-promise": "^2.1.1",
     "isomorphic-fetch": "^2.0.2",
     "mocha": "^2.0.0",
-    "myrtlejs": "matthew-andrews/myrtlejs",
+    "myrtlejs": "^0.0.4",
     "next-build-tools": "Financial-Times/next-build-tools#spawn-nightwatch",
     "nightwatch": "^0.5.36",
     "nock": "^2.0.0",
