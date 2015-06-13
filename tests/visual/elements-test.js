@@ -6,6 +6,7 @@ var phantomcss = require('phantomcss');
 var compares = [];
 var configs = require('./config');
 var height = 1000;
+var system = require('system');
 
 function getElementShots(pageName, elements, env, width, height) {
 	console.log('screenshotting ' + env);
@@ -66,7 +67,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 				getElementShots(pageName, config.elements, 'base', width, height);
 			});
 		});
-		casper.thenOpen("http://" + process.env.TEST_HOST + ".herokuapp.com" + config.path, browserOptions, function() {
+		casper.thenOpen("http://" + system.env.TEST_HOST + ".herokuapp.com" + config.path, browserOptions, function() {
 			config.widths.forEach(function(width) {
 				casper.viewport(width, height);
 				getElementShots(pageName, config.elements, 'test', width, height);
