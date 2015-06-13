@@ -16,10 +16,10 @@ verify:
 	nbt verify
 
 unit-test:
-	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha tests/server/ --recursive
+	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha test/server/ --recursive
 
 test-debug:
-	@mocha --debug-brk --reporter spec -i tests/server/
+	@mocha --debug-brk --reporter spec -i test/server/
 
 run:
 ifeq ($(ELASTIC_SEARCH_HOST),)
@@ -55,7 +55,7 @@ deploy:
 	nbt scale
 
 visual:
-	export TEST_HOST=${TEST_HOST}; export GIT_HASH="${GIT_HASH}"; casperjs test tests/visual/elements-test.js && node tests/visual/visual-runner.js
+	export TEST_HOST=${TEST_HOST}; export GIT_HASH="${GIT_HASH}"; casperjs test test/visual/elements-test.js && node test/visual/visual-runner.js
 
 clean-deploy: clean install deploy
 
@@ -70,4 +70,4 @@ provision:
 	make smoke visual
 
 smoke:
-	export TEST_URL=${TEST_URL}; nbt nightwatch tests/browser/tests/*
+	export TEST_URL=${TEST_URL}; nbt nightwatch test/browser/tests/*

@@ -18,8 +18,8 @@ casper.test.begin('Next visual regression tests', function(test) {
 	phantomcss.init({
 		timeout: 1000,
 		libraryRoot: './node_modules/phantomcss',
-		screenshotRoot: './tests/visual/screenshots/successes',
-		failedComparisonsRoot: './tests/visual/screenshots/failures',
+		screenshotRoot: './test/visual/screenshots/successes',
+		failedComparisonsRoot: './test/visual/screenshots/failures',
 		addLabelToFailedImage: false,
 		fileNameGetter: function(root, fileName) {
 			var file = root + '/' + fileName;
@@ -56,7 +56,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 							var fileName = pageName + "_" + elementName + "_" + width + "_" + height + "_" + env;
 							phantomcss.screenshot(config.elements[elementName], 2000, undefined, fileName);
 							if (env === 'base') {
-								compares.push("tests/visual/screenshots/successes/" + fileName + ".png");
+								compares.push("test/visual/screenshots/successes/" + fileName + ".png");
 							}
 						});
 					});
