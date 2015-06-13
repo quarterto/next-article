@@ -13,4 +13,5 @@ npm-debug.log
 .editorconfig
 /test/browser/reports
 /test/browser/screenshots
+/test/visual/screenshots
 /npm-debug.log.*
