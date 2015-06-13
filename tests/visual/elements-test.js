@@ -15,7 +15,7 @@ var baseHost = casper.cli.get('basehost') + path;
 function getElementShots(pagename, elements, env, width, height) {
 	console.log('screenshotting ' + env);
 	Object.keys(elements).forEach(function(elementName) {
-		phantomcss.screenshot(elements[elementName].selector, pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
+		phantomcss.screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
 	});
 }
 

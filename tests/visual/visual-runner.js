@@ -30,15 +30,14 @@ console.log("Running image diff tests");
 
 var imageDiffPromises = [];
 
-Object.keys(page_data).forEach(function(page) {
+Object.keys(page_data).forEach(function(pageName) {
 	var testHost = "http://" + process.env.TEST_HOST + ".herokuapp.com";
 	var baseHost = "http://next.ft.com";
-	var pageName = page_data[page].name;
-	var path = page_data[page].path;
-	var widths = collectWidths(page_data[page]);
+	var path = page_data[pageName].path;
+	var widths = page_data[pageName].widths;
 	widths.forEach(function(width) {
 		var height = 1000;
-		var elements = getAllElementsOnWidth(page_data[page], width);
+		var elements page_data[pageName].elements;
 		var test = "\nPage name  : " + pageName +
 			"\npath       : " + path +
 			"\ndimensions : " + width + "x" + height +
@@ -153,19 +152,6 @@ function getAllElementsOnWidth(json, width) {
 		}
 	});
 	return elementObject;
-}
-
-function collectWidths(json) {
-	var compiledWidths = [];
-	Object.keys(json.elements).forEach(function(item) {
-		var widths = json.elements[item].widths;
-		for (var x = 0; x < widths.length; x++) {
-			if (compiledWidths.indexOf(widths[x]) === -1) {
-				compiledWidths.push(widths[x]);
-			}
-		}
-	});
-	return compiledWidths;
 }
 
 function buildIndexPage(screenshots) {
