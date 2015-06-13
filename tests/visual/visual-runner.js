@@ -23,10 +23,9 @@ return exec("casperjs test tests/visual/elements-test.js")
 		var results = { successes: [], failures: [] };
 		if (fs.existsSync(LOCAL_PREFIX + "successes")) {
 			results.successes = fs.readdirSync(LOCAL_PREFIX + "successes");
-			var successesPage = buildIndexPage(results.successes);
-			fs.writeFileSync(LOCAL_PREFIX + "successes/index.html", successesPage);
+			fs.writeFileSync(LOCAL_PREFIX + "successes/index.html", buildIndexPage(results.successes));
 			results.successes = results.successes
-				.concat(["successes/index.html"])
+				.concat(["index.html"])
 				.map(function(screenshot) { return "successes/" + screenshot; });
 		} else {
 			console.log("No screenshots here");
@@ -34,10 +33,9 @@ return exec("casperjs test tests/visual/elements-test.js")
 
 		if (fs.existsSync(LOCAL_PREFIX + "failures")) {
 			results.failures = fs.readdirSync(LOCAL_PREFIX + "failures");
-			var failurespage = buildIndexPage(results.failures);
-			fs.writeFileSync(LOCAL_PREFIX + "failures/index.html", failurespage);
+			fs.writeFileSync(LOCAL_PREFIX + "failures/index.html", buildIndexPage(results.failures));
 			results.failures = results.failures
-				.concat(["failures/index.html"])
+				.concat(["index.html"])
 				.map(function(failure) { return "failures/" + failure; });
 		} else {
 			console.log("No failures found");
