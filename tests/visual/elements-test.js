@@ -7,6 +7,10 @@ var compares = [];
 var configs = require('./config');
 var height = 1000;
 var system = require('system');
+var hosts = {
+	base: require('../../package.json').name + '.herokuapp.com',
+	test: system.env.TEST_HOST
+};
 
 function getElementShots(pageName, elements, env, width, height) {
 	console.log('screenshotting ' + env);
@@ -61,16 +65,12 @@ casper.test.begin('Next visual regression tests', function(test) {
 
 	Object.keys(configs).forEach(function(pageName) {
 		var config = configs[pageName];
-		casper.thenOpen("http://ft-next-article.herokuapp.com" + config.path, browserOptions, function() {
-			config.widths.forEach(function(width) {
-				casper.viewport(width, height);
-				getElementShots(pageName, config.elements, 'base', width, height);
-			});
-		});
-		casper.thenOpen("http://" + system.env.TEST_HOST + ".herokuapp.com" + config.path, browserOptions, function() {
-			config.widths.forEach(function(width) {
-				casper.viewport(width, height);
-				getElementShots(pageName, config.elements, 'test', width, height);
+		["base", "test"].forEach(function(env) {
+			casper.thenOpen("http://" + hosts[env] + config.path, browserOptions, function() {
+				config.widths.forEach(function(width) {
+					casper.viewport(width, height);
+					getElementShots(pageName, config.elements, env, width, height);
+				});
 			});
 		});
 
