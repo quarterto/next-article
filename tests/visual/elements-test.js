@@ -44,7 +44,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 				return name + '.diff.png';
 			}
 			return name + '.png';
-		});
+		})
 	});
 
 	// set up casper a bit
