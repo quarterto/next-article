@@ -40,10 +40,11 @@ casper.test.begin('Next visual regression tests', function(test) {
 		failedComparisonsRoot: './tests/visual/screenshots/failures',
 		addLabelToFailedImage: false,
 		fileNameGetter: function(root, fileName) {
-			if (isFile(fileName + '.png')) {
-				return fileName + '.diff.png';
+			var name = root + '/' + fileName;
+			if (isFile(file + '.png')) {
+				return file + '.diff.png';
 			}
-			return fileName + '.png';
+			return file + '.png';
 		}
 	});
 
