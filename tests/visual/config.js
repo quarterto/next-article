@@ -13,7 +13,7 @@ module.exports = {
 				]
 			},
 			pullquote: {
-				css: '.article__pull-quote",
+				css: '.article__pull-quote',
 				widths: [
 					500,
 					1400
