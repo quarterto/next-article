@@ -12,24 +12,6 @@ var hosts = {
 	test: system.env.TEST_HOST
 };
 
-function getElementShots(pageName, elements, env, width, height) {
-	console.log('screenshotting ' + env);
-	Object.keys(elements).forEach(function(elementName) {
-		var fileName = pageName + "_" + elementName + "_" + width + "_" + height + "_" + env;
-		phantomcss.screenshot(elements[elementName], 2000, undefined, fileName);
-		if (env === 'base') {
-			compares.push("tests/visual/screenshots/successes/" + fileName + ".png");
-		}
-	});
-}
-
-var browserOptions = {
-	method: 'get',
-	headers: {
-		'Cookie': 'next-flags=javascript:off; FT_SITE=NEXT'
-	}
-};
-
 casper.test.begin('Next visual regression tests', function(test) {
 
 	// phantom config
@@ -66,15 +48,22 @@ casper.test.begin('Next visual regression tests', function(test) {
 	Object.keys(configs).forEach(function(pageName) {
 		var config = configs[pageName];
 		["base", "test"].forEach(function(env) {
-			casper.thenOpen("http://" + hosts[env] + config.path, browserOptions, function() {
-				config.widths.forEach(function(width) {
-					casper.viewport(width, height);
-					getElementShots(pageName, config.elements, env, width, height);
+			casper.thenOpen("http://" + hosts[env] + config.path, { method: 'get', headers: { 'Cookie': 'next-flags=javascript:off; FT_SITE=NEXT' }
+				}, function() {
+					config.widths.forEach(function(width) {
+						casper.viewport(width, height);
+						Object.keys(config.elements).forEach(function(elementName) {
+							var fileName = pageName + "_" + elementName + "_" + width + "_" + height + "_" + env;
+							phantomcss.screenshot(elements[elementName], 2000, undefined, fileName);
+							if (env === 'base') {
+								compares.push("tests/visual/screenshots/successes/" + fileName + ".png");
+							}
+						});
+					});
 				});
-			});
 		});
-
 	});
+
 	casper.then(function() {
 		console.log("compares: ", compares);
 		compares.forEach(function(compare) {
