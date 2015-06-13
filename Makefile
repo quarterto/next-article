@@ -1,7 +1,6 @@
 API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
 API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
 GIT_HASH := $(shell git rev-parse --short HEAD)
-GIT_LONG_HASH := $(shell git rev-parse HEAD)
 TEST_HOST := "ft-article-branch-${GIT_HASH}"
 TEST_URL := "http://ft-article-branch-${GIT_HASH}.herokuapp.com/fb368c7a-c804-11e4-8210-00144feab7de"
 ELASTIC_SEARCH_HOST := $(shell cat ~/.elastic_search_host 2>/dev/null)
@@ -56,7 +55,7 @@ deploy:
 	nbt scale
 
 visual:
-	export TEST_HOST=${TEST_HOST}; export GIT_LONG_HASH="${GIT_LONG_HASH}"; export GIT_HASH="${GIT_HASH}"; node tests/visual/visual-runner.js
+	export TEST_HOST=${TEST_HOST}; export GIT_HASH="${GIT_HASH}"; node tests/visual/visual-runner.js
 
 clean-deploy: clean install deploy
 
