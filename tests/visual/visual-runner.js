@@ -4,7 +4,6 @@ require('es6-promise').polyfill();
 
 var moment = require('moment');
 var normalizeName = require('next-build-tools/lib/normalize-name');
-var exec = require('next-build-tools/lib/exec');
 var packageJson = require('../../package.json');
 
 var fs = require('fs');
@@ -18,40 +17,36 @@ var LOCAL_PREFIX = "tests/visual/screenshots/";
 var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + process.env.TRAVIS_BUILD_NUMBER + "/";
 var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "failures/index.html";
 
-return exec("casperjs test tests/visual/elements-test.js")
-	.then(function() {
-		var results = { successes: [], failures: [] };
-		if (fs.existsSync(LOCAL_PREFIX + "successes")) {
-			results.successes = fs.readdirSync(LOCAL_PREFIX + "successes");
-			fs.writeFileSync(LOCAL_PREFIX + "successes/index.html", buildIndexPage(results.successes));
-			results.successes = results.successes
-				.concat(["index.html"])
-				.map(function(screenshot) { return "successes/" + screenshot; });
-		} else {
-			console.log("No screenshots here");
-		}
+var results = { successes: [], failures: [] };
+if (fs.existsSync(LOCAL_PREFIX + "successes")) {
+	results.successes = fs.readdirSync(LOCAL_PREFIX + "successes");
+	fs.writeFileSync(LOCAL_PREFIX + "successes/index.html", buildIndexPage(results.successes));
+	results.successes = results.successes
+		.concat(["index.html"])
+		.map(function(screenshot) { return "successes/" + screenshot; });
+} else {
+	console.log("No screenshots here");
+}
 
-		if (fs.existsSync(LOCAL_PREFIX + "failures")) {
-			results.failures = fs.readdirSync(LOCAL_PREFIX + "failures");
-			fs.writeFileSync(LOCAL_PREFIX + "failures/index.html", buildIndexPage(results.failures));
-			results.failures = results.failures
-				.concat(["index.html"])
-				.map(function(failure) { return "failures/" + failure; });
-		} else {
-			console.log("No failures found");
-		}
+if (fs.existsSync(LOCAL_PREFIX + "failures")) {
+	results.failures = fs.readdirSync(LOCAL_PREFIX + "failures");
+	fs.writeFileSync(LOCAL_PREFIX + "failures/index.html", buildIndexPage(results.failures));
+	results.failures = results.failures
+		.concat(["index.html"])
+		.map(function(failure) { return "failures/" + failure; });
+} else {
+	console.log("No failures found");
+}
 
-		return deployStatic({
-			files: results.successes
-				.concat(results.failures)
-				.map(function(file) { return LOCAL_PREFIX + file; }),
-			destination: AWS_DEST_PREFIX,
-			region: 'eu-west-1',
-			bucket: 'ft-next-qa',
-			strip: 3
-		})
-			.then(function() { return results; });
-	})
+deployStatic({
+	files: results.successes
+		.concat(results.failures)
+		.map(function(file) { return LOCAL_PREFIX + file; }),
+	destination: AWS_DEST_PREFIX,
+	region: 'eu-west-1',
+	bucket: 'ft-next-qa',
+	strip: 3
+})
 
 	// Make a comment if a changed has been detected and it's a PR build
 	.then(function(results) {
