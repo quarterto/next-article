@@ -18,18 +18,13 @@ var LOCAL_PREFIX = "tests/visual/screenshots/";
 var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + process.env.TRAVIS_BUILD_NUMBER + "/";
 var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "failures/index.html";
 
-console.log("Running image diff tests");
-
 return exec("casperjs test tests/visual/elements-test.js")
 	.then(function() {
 		var results = { successes: [], failures: [] };
 		if (fs.existsSync(LOCAL_PREFIX + "successes")) {
-
-			// find all screenshots and build an html page to display them
 			results.successes = fs.readdirSync(LOCAL_PREFIX + "successes");
 			var successesPage = buildIndexPage(results.successes);
 			fs.writeFileSync(LOCAL_PREFIX + "successes/index.html", successesPage);
-
 			results.successes = results.successes
 				.concat(["successes/index.html"])
 				.map(function(screenshot) { return "successes/" + screenshot; });
@@ -41,8 +36,6 @@ return exec("casperjs test tests/visual/elements-test.js")
 			results.failures = fs.readdirSync(LOCAL_PREFIX + "failures");
 			var failurespage = buildIndexPage(results.failures);
 			fs.writeFileSync(LOCAL_PREFIX + "failures/index.html", failurespage);
-
-			// add path to failures
 			results.failures = results.failures
 				.concat(["failures/index.html"])
 				.map(function(failure) { return "failures/" + failure; });
