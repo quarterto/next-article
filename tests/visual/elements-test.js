@@ -54,7 +54,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 						casper.viewport(width, height);
 						Object.keys(config.elements).forEach(function(elementName) {
 							var fileName = pageName + "_" + elementName + "_" + width + "_" + height + "_" + env;
-							phantomcss.screenshot(elements[elementName], 2000, undefined, fileName);
+							phantomcss.screenshot(config.elements[elementName], 2000, undefined, fileName);
 							if (env === 'base') {
 								compares.push("tests/visual/screenshots/successes/" + fileName + ".png");
 							}
