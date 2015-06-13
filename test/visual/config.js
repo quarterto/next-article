@@ -1,6 +1,8 @@
 "use strict";
 
-module.exports = {
+var visualRegressionTest = require('./elements-test');
+
+visualRegressionTest({
 	article_without_image: {
 		path: "/d0377096-f290-11e4-b914-00144feab7de",
 		widths: [500, 1400],
@@ -17,4 +19,4 @@ module.exports = {
 		}
 
 	}
-};
+});

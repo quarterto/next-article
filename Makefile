@@ -55,7 +55,7 @@ deploy:
 	nbt scale
 
 visual:
-	export TEST_HOST=${TEST_HOST}; export GIT_HASH="${GIT_HASH}"; casperjs test test/visual/elements-test.js && node test/visual/visual-runner.js
+	export TEST_HOST=${TEST_HOST}; export GIT_HASH="${GIT_HASH}"; casperjs test test/visual/config.js && node test/visual/visual-runner.js
 
 clean-deploy: clean install deploy
 
