@@ -23,10 +23,9 @@ var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DES
 console.log("Running image diff tests");
 
 return exec("casperjs test tests/visual/elements-test.js")
-	.then(function(result) {
+	.then(function() {
 		var results = {};
 		var promises = [];
-		console.log("\n\nCasperJS output: \n\n" + result);
 
 		if (fs.existsSync(LOCAL_PREFIX + "successes")) {
 
