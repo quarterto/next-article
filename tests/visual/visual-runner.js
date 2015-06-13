@@ -15,8 +15,6 @@ var GitHubApi = require('github');
 var github = new GitHubApi({ version: "3.0.0", debug: false });
 var createComment = denodeify(github.issues.createComment);
 
-var tests = require('./config');
-
 var LOCAL_PREFIX = "tests/visual/screenshots/";
 var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + process.env.TRAVIS_BUILD_NUMBER + "/";
 var AWS_SHOTS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "successes/index.html";

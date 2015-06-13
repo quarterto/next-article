@@ -4,7 +4,6 @@
 var isFile = require('fs').isFile;
 var phantomcss = require('phantomcss');
 var compares = [];
-var pageName = casper.cli.get('pagename');
 var configs = require('./config');
 var height = 1000;
 
@@ -59,7 +58,8 @@ casper.test.begin('Next visual regression tests', function(test) {
 	// open first url
 	casper.start();
 
-	configs.forEach(function(config) {
+	Object.keys(configs).forEach(function(pageName) {
+		var config = configs[pageName];
 		casper.thenOpen("http://ft-next-article.herokuapp.com" + config.path, browserOptions, function() {
 			config.widths.forEach(function(width) {
 				casper.viewport(width, height);
