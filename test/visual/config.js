@@ -8,5 +8,13 @@ module.exports = {
 			header: '.article__header',
 			pullquote: '.article__pull-quote'
 		}
+	},
+	fastft_article: {
+		path: "/08939642-75f3-3ea3-8fc6-73a558524ad1",
+		widths: [500, 1400],
+		elements: {
+			article_body: '.article__body'
+		}
+
 	}
 };
