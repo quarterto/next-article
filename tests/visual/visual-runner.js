@@ -142,18 +142,6 @@ Promise.all(imageDiffPromises)
 		process.exit(1);
 	});
 
-function getAllElementsOnWidth(json, width) {
-	var elementObject = {};
-	Object.keys(json.elements).forEach(function(item) {
-		var element = json.elements[item];
-		var widths = element.widths;
-		if (widths.indexOf(width) !== -1) {
-			elementObject[element.name] = element.css;
-		}
-	});
-	return elementObject;
-}
-
 function buildIndexPage(screenshots) {
 	var html = "<html><body>";
 	for (var j = 0; j < screenshots.length; j++) {
