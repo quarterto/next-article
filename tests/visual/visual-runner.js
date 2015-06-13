@@ -18,9 +18,6 @@ var createComment = denodeify(github.issues.createComment);
 // env variables
 var page_data = require('./config');
 
-var screenshots;
-var failures;
-
 var LOCAL_PREFIX = "tests/visual/screenshots/";
 var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + process.env.TRAVIS_BUILD_NUMBER + "/";
 var AWS_SHOTS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "successes/index.html";
@@ -58,44 +55,46 @@ Object.keys(page_data).forEach(function(pageName) {
 
 Promise.all(imageDiffPromises)
 	.then(function(result) {
+		var results = {};
 		var promises = [];
 		console.log("\n\nCasperJS output: \n\n" + result);
 
 		if (fs.existsSync(LOCAL_PREFIX + "successes")) {
 
 			// find all screenshots and build an html page to display them
-			screenshots = fs.readdirSync(LOCAL_PREFIX + "successes");
-			var screenshotspage = buildIndexPage(screenshots);
+			results.screenshots = fs.readdirSync(LOCAL_PREFIX + "successes");
+			var screenshotspage = buildIndexPage(results.screenshots);
 			promises.push(writeFile(LOCAL_PREFIX + "successes/index.html", screenshotspage));
 
 			// add path to screenshots
-			screenshots = screenshots.map(function(screenshot) { return "successes/" + screenshot; });
+			results.screenshots = results.screenshots.map(function(screenshot) { return "successes/" + screenshot; });
 			console.log("Screenshots located at " + AWS_SHOTS_INDEX);
 		} else {
 			console.log("No screenshots here");
 		}
 
 		if (fs.existsSync(LOCAL_PREFIX + "failures")) {
-			failures = fs.readdirSync(LOCAL_PREFIX + "failures");
-			var failurespage = buildIndexPage(failures);
+			results.failures = fs.readdirSync(LOCAL_PREFIX + "failures");
+			var failurespage = buildIndexPage(results.failures);
 			promises.push(writeFile(LOCAL_PREFIX + "failures/index.html", failurespage));
 
 			// add path to failures
-			failures = failures.map(function(failure) { return "failures/" + failure; });
+			results.failures = results.failures.map(function(failure) { return "failures/" + failure; });
 			console.log("Failure screenshots located at " + AWS_FAILS_INDEX);
 		} else {
 			console.log("No failures found");
 		}
 
-		return Promise.all(promises);
+		return Promise.all(promises)
+			.then(function() { return results; });
 	})
-	.then(function() {
+	.then(function(results) {
 		var files = ["successes/index.html"]
-			.concat(screenshots);
+			.concat(results.screenshots);
 
-		if (fs.existsSync(LOCAL_PREFIX + "failures")) {
+		if (results.failures) {
 			files = files
-				.concat(failures)
+				.concat(results.failures)
 				.concat(["failures/index.html"]);
 		}
 
@@ -105,15 +104,16 @@ Promise.all(imageDiffPromises)
 			region: 'eu-west-1',
 			bucket: 'ft-next-qa',
 			strip: 3
-		});
+		}).
+			then(function() { return results; });
 	})
 
 	// Make a comment if a changed has been detected and it's a PR build
-	.then(function() {
+	.then(function(results) {
 		var pullRequest = process.env.TRAVIS_PULL_REQUEST;
 		var repoSlug = process.env.TRAVIS_REPO_SLUG.split('/');
 
-		if (pullRequest !== "false" && failures !== undefined) {
+		if (pullRequest !== "false" && results.failures !== undefined) {
 			github.authenticate({ type: "oauth", token: process.env.GITHUB_OAUTH });
 			return createComment({
 					user: repoSlug[0],
