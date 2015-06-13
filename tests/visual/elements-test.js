@@ -1,6 +1,7 @@
 /*global casper */
 "use strict";
 
+var isFile = require('fs').isFile;
 var phantomcss = require('phantomcss');
 var compares = [];
 var elements = JSON.parse(casper.cli.get('elements'));
@@ -37,7 +38,13 @@ casper.test.begin('Next visual regression tests', function(test) {
 		libraryRoot: './node_modules/phantomcss',
 		screenshotRoot: './tests/visual/screenshots/successes',
 		failedComparisonsRoot: './tests/visual/screenshots/failures',
-		addLabelToFailedImage: false
+		addLabelToFailedImage: false,
+		fileNameGetter: function(root, fileName) {
+			if (isFile(name + '.png')) {
+				return name + '.diff.png';
+			}
+			return name + '.png';
+		});
 	});
 
 	// set up casper a bit
