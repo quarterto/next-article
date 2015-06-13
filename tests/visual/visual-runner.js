@@ -22,7 +22,7 @@ var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DES
 
 console.log("Running image diff tests");
 
-return exec("casperjs test tests/visual/elements-test.js", { env: { TEST_HOST: process.env.TEST_HOST } })
+return exec("casperjs test tests/visual/elements-test.js")
 	.then(function(result) {
 		var results = {};
 		var promises = [];
