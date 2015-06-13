@@ -16,13 +16,12 @@ var github = new GitHubApi({ version: "3.0.0", debug: false });
 var createComment = denodeify(github.issues.createComment);
 
 // env variables
-var commit = process.env.GIT_HASH;
 var page_data = require('./config');
 
 var screenshots;
 var failures;
 
-var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + commit + "/";
+var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + process.env.TRAVIS_BUILD_NUMBER + "/";
 var AWS_SHOTS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "/successes/index.html";
 var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "/failures/index.html";
 
@@ -125,7 +124,7 @@ Promise.all(imageDiffPromises)
 		var pullRequest = process.env.TRAVIS_PULL_REQUEST;
 		var repoSlug = process.env.TRAVIS_REPO_SLUG.split('/');
 
-		if ((pullRequest !== "false") && (failures !== undefined)) {
+		if (pullRequest !== "false" && failures !== undefined) {
 			github.authenticate({ type: "oauth", token: process.env.GITHUB_OAUTH });
 			return createComment({
 					user: repoSlug[0],
@@ -134,9 +133,6 @@ Promise.all(imageDiffPromises)
 					body: "Image diffs found between branch and production" +
 					"\nSee" +
 					"\n\n" + AWS_FAILS_INDEX
-				})
-				.then(function(data) {
-					console.log(data);
 				});
 		} else {
 			console.log("No comments to make to Pull Request");
