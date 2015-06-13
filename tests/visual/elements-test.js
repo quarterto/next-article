@@ -5,10 +5,8 @@ var isFile = require('fs').isFile;
 var phantomcss = require('phantomcss');
 var compares = [];
 var pageName = casper.cli.get('pagename');
-var test = require('./config').pageName;
+var configs = require('./config');
 var height = 1000;
-var testHost = "http://" + process.env.TEST_HOST + ".herokuapp.com" + test.path;
-var baseHost = "http://ft-next-article.herokuapp.com" + test.path;
 
 function getElementShots(pageName, elements, env, width, height) {
 	console.log('screenshotting ' + env);
@@ -61,17 +59,20 @@ casper.test.begin('Next visual regression tests', function(test) {
 	// open first url
 	casper.start();
 
-	casper.thenOpen(baseHost, browserOptions, function() {
-		test.widths.forEach(function(width) {
-			casper.viewport(width, height);
-			getElementShots(pageName, test.elements, 'base', width, height);
+	configs.forEach(function(config) {
+		casper.thenOpen("http://ft-next-article.herokuapp.com" + config.path, browserOptions, function() {
+			config.widths.forEach(function(width) {
+				casper.viewport(width, height);
+				getElementShots(pageName, config.elements, 'base', width, height);
+			});
 		});
-	});
-	casper.thenOpen(testHost, browserOptions, function() {
-		test.widths.forEach(function(width) {
-			casper.viewport(width, height);
-			getElementShots(pageName, test.elements, 'test', width, height);
+		casper.thenOpen("http://" + process.env.TEST_HOST + ".herokuapp.com" + config.path, browserOptions, function() {
+			config.widths.forEach(function(width) {
+				casper.viewport(width, height);
+				getElementShots(pageName, config.elements, 'test', width, height);
+			});
 		});
+
 	});
 	casper.then(function() {
 		console.log("compares: ", compares);
