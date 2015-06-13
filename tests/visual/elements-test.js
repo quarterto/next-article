@@ -65,7 +65,6 @@ casper.test.begin('Next visual regression tests', function(test) {
 	});
 
 	casper.then(function() {
-		console.log("compares: ", compares);
 		compares.forEach(function(compare) {
 			phantomcss.compareFiles(compare, compare.replace('_base', '_test'));
 		});
