@@ -21,7 +21,7 @@ var page_data = require('./config');
 var screenshots;
 var failures;
 
-var LOCAL_PREFIX = "tests/visual/screenshots";
+var LOCAL_PREFIX = "tests/visual/screenshots/";
 var AWS_DEST_PREFIX = "image_diffs/" + normalizeName(packageJson.name, { version: false }) + "/" + moment().format('YYYY-MM-DD') + "/" + moment().format('HH:mm') + "-" + process.env.TRAVIS_BUILD_NUMBER + "/";
 var AWS_SHOTS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "/successes/index.html";
 var AWS_FAILS_INDEX = "https://s3-eu-west-1.amazonaws.com/ft-next-qa/" + AWS_DEST_PREFIX + "/failures/index.html";
