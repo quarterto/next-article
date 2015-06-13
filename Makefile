@@ -16,10 +16,10 @@ verify:
 	nbt verify
 
 unit-test:
-	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha tests/server/ --recursive
+	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha test/server/ --recursive
 
 test-debug:
-	@mocha --debug-brk --reporter spec -i tests/server/
+	@mocha --debug-brk --reporter spec -i test/server/
 
 run:
 ifeq ($(ELASTIC_SEARCH_HOST),)
@@ -54,6 +54,8 @@ deploy:
 	nbt deploy
 	nbt scale
 
+clean-deploy: clean install deploy
+
 tidy:
 	nbt destroy ${TEST_HOST}
 
@@ -65,4 +67,4 @@ provision:
 	make smoke
 
 smoke:
-	export TEST_URL=${TEST_URL}; nbt nightwatch tests/browser/tests/*
+	export TEST_URL=${TEST_URL}; nbt nightwatch test/browser/tests/*
