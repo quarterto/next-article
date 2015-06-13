@@ -11,6 +11,6 @@ npm-debug.log
 .env
 .idea/
 .editorconfig
-/tests/browser/reports
-/tests/browser/screenshots
+/test/browser/reports
+/test/browser/screenshots
 /npm-debug.log.*
