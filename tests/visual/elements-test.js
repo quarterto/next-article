@@ -1,7 +1,6 @@
 /*global casper */
 "use strict";
 
-var fs = require('fs');
 var phantomcss = require('phantomcss');
 var compares = [];
 var elements = JSON.parse(casper.cli.get('elements'));
@@ -63,18 +62,10 @@ casper.test.begin('Next visual regression tests', function(test) {
 	casper.thenOpen(testHost, browserOptions, function() {
 		getElementShots(pageName, elements, 'test', width, height);
 	});
-	casper.then(function compareMatched() {
-		var bases = [];
-		for (var x = 0; x < compares.length ; x++) {
-			if (compares[x].indexOf('_base') !== -1) {
-				bases.push(compares[x]);
-			}
-		}
-		for (x = 0; x < bases.length ; x ++) {
-			var base = bases[x];
-			var test = base.replace('_base', '_test');
-			phantomcss.compareFiles(base, test);
-		}
+	casper.then(function() {
+		compares.forEach(function(compare) {
+			phantomcss.compareFiles(compare, compare.replace('_base', '_test'));
+		});
 	});
 	casper.run(function() {
 		casper.exit();
