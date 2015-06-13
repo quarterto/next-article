@@ -35,29 +35,25 @@ Object.keys(page_data).forEach(function(pageName) {
 	var path = page_data[pageName].path;
 	var widths = page_data[pageName].widths;
 	var elements = page_data[pageName].elements;
-	widths.forEach(function(width) {
-		var height = 1000;
-		var test = "\nPage name  : " + pageName +
-			"\npath       : " + path +
-			"\ndimensions : " + width + "x" + height +
-			"\ntesthost    : " + testHost +
-			"\nelements " + JSON.stringify(elements);
+	var test = "\nPage name  : " + pageName +
+		"\npath       : " + path +
+		"\nwidths : " + JSON.stringify(widths)
+		"\ntesthost    : " + testHost +
+		"\nelements " + JSON.stringify(elements);
 
-		console.log("\nStarting test for " + test);
+	console.log("\nStarting test for " + test);
 
-		imageDiffPromises.push(
-			exec("casperjs " + [
-				"--width=" + width,
-				"--height=" + height,
-				"--pagename='" + pageName + "'",
-				"--path='" + path + "'",
-				"--elements='" + JSON.stringify(elements) + "'",
-				"--testhost='" + testHost + "'",
-				"test",
-				"tests/visual/elements-test.js"
-			].join(' '))
-		);
-	});
+	imageDiffPromises.push(
+		exec("casperjs " + [
+			"--widths=" + JSON.stringify(width),
+			"--pagename='" + pageName + "'",
+			"--path='" + path + "'",
+			"--elements='" + JSON.stringify(elements) + "'",
+			"--testhost='" + testHost + "'",
+			"test",
+			"tests/visual/elements-test.js"
+		].join(' '))
+	);
 });
 
 Promise.all(imageDiffPromises)

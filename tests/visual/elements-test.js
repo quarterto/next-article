@@ -7,8 +7,8 @@ var compares = [];
 var elements = JSON.parse(casper.cli.get('elements'));
 var pageName = casper.cli.get('pagename');
 var path = casper.cli.get('path');
-var width = casper.cli.get('width');
-var height = casper.cli.get('height');
+var widths = JSON.parse(casper.cli.get('widths'));
+var height = 1000;
 var testHost = casper.cli.get('testhost') + path;
 var baseHost = "http://ft-next-article.herokuapp.com" + path;
 
@@ -62,13 +62,18 @@ casper.test.begin('Next visual regression tests', function(test) {
 
 	// open first url
 	casper.start();
-	casper.viewport(width, height);
 
 	casper.thenOpen(baseHost, browserOptions, function() {
-		getElementShots(pageName, elements, 'base', width, height);
+		widths.forEach(function(width) {
+			casper.viewport(width, height);
+			getElementShots(pageName, elements, 'base', width, height);
+		});
 	});
 	casper.thenOpen(testHost, browserOptions, function() {
-		getElementShots(pageName, elements, 'test', width, height);
+		widths.forEach(function(width) {
+			casper.viewport(width, height);
+			getElementShots(pageName, elements, 'test', width, height);
+		});
 	});
 	casper.then(function() {
 		console.log("compares: ", compares);
