@@ -55,7 +55,7 @@ deploy:
 	nbt scale
 
 visual:
-	export TEST_HOST=${TEST_HOST}; export GIT_HASH="${GIT_HASH}"; myrtlejs
+	export TEST_HOST=${TEST_HOST}; myrtlejs
 
 clean-deploy: clean install deploy
 
