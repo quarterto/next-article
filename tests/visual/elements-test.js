@@ -51,7 +51,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 		this.echo("Error: " + msg, "ERROR");
 	});
 
-	casper.on("page.consoleMessage",function(msg){
+	casper.on("page.consoleMessage",function(msg) {
 		this.echo("Message: " + msg);
 	});
 
