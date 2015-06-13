@@ -24,5 +24,5 @@ visualRegressionTest({
 				article_body: '.article__body'
 			}
 		}
-       }
+	}
 });
