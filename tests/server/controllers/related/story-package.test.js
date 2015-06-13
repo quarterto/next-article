@@ -26,7 +26,7 @@ module.exports = function() {
 				.times(5)
 				.reply(200, articleV2);
 
-			helpers.servesGoodHTML('/02cad03a-844f-11e4-bae9-00144feabdc0/story-package', done);
+			helpers.servesGoodHTML('/article/02cad03a-844f-11e4-bae9-00144feabdc0/story-package', done);
 		});
 
 	});

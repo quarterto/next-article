@@ -90,7 +90,7 @@ module.exports = function(req, res, next) {
 								var organisationModel = {
 									name: relation.name,
 									url: '/stream/organisationsId/' + relation.id,
-									conceptId: 'organisations:' + ['"', encodeURIComponent(relation.name), '"'].join(''),
+									conceptId: res.locals.flags.userPrefsUseConceptId ? relation.id : ('organisations:' + ['"', encodeURIComponent(relation.name), '"'].join('')),
 									taxonomy: 'organisations'
 								};
 								// get the stock id

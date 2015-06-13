@@ -32,7 +32,7 @@ module.exports = function(req, res, next) {
 						var model = {
 							name: topic.name,
 							url: '/stream/topicsId/' + topic.id,
-							conceptId: 'topics:' + ['"', encodeURIComponent(topic.name), '"'].join(''),
+							conceptId: res.locals.flags.userPrefsUseConceptId ? topic.id : ('topics:' + ['"', encodeURIComponent(topic.name), '"'].join('')),
 							taxonomy: 'topics'
 						};
 
