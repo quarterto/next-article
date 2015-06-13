@@ -16,7 +16,7 @@ function getElementShots(pageName, elements, env, width, height) {
 	console.log('screenshotting ' + env);
 	Object.keys(elements).forEach(function(elementName) {
 		var fileName = pageName + "_" + elementName + "_" + width + "_" + height + "_" + env;
-		phantomcss.screenshot(elements[elementName], fileName);
+		phantomcss.screenshot(elements[elementName], 1000, undefined, fileName);
 		if (env === 'base') {
 			compares.push("tests/visual/screenshots/successes/" + fileName + ".png");
 		}
