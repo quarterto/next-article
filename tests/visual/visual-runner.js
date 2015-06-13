@@ -32,7 +32,6 @@ var imageDiffPromises = [];
 
 Object.keys(page_data).forEach(function(pageName) {
 	var testHost = "http://" + process.env.TEST_HOST + ".herokuapp.com";
-	var baseHost = "http://ft-next-article.herokuapp.com";
 	var path = page_data[pageName].path;
 	var widths = page_data[pageName].widths;
 	var elements = page_data[pageName].elements;
@@ -42,7 +41,6 @@ Object.keys(page_data).forEach(function(pageName) {
 			"\npath       : " + path +
 			"\ndimensions : " + width + "x" + height +
 			"\ntesthost    : " + testHost +
-			"\nbasehost   : " + baseHost +
 			"\nelements " + JSON.stringify(elements);
 
 		console.log("\nStarting test for " + test);
@@ -55,7 +53,6 @@ Object.keys(page_data).forEach(function(pageName) {
 				"--path='" + path + "'",
 				"--elements='" + JSON.stringify(elements) + "'",
 				"--testhost='" + testHost + "'",
-				"--basehost='" + baseHost + "'",
 				"test",
 				"tests/visual/elements-test.js"
 			].join(' '))

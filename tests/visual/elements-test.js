@@ -10,7 +10,7 @@ var path = casper.cli.get('path');
 var width = casper.cli.get('width');
 var height = casper.cli.get('height');
 var testHost = casper.cli.get('testhost') + path;
-var baseHost = casper.cli.get('basehost') + path;
+var baseHost = "http://ft-next-article.herokuapp.com" + path;
 
 function getElementShots(pageName, elements, env, width, height) {
 	console.log('screenshotting ' + env);
