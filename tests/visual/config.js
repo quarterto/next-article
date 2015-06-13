@@ -6,12 +6,19 @@ module.exports = {
 		path: "/d0377096-f290-11e4-b914-00144feab7de",
 		elements: {
 			header: {
-				name: "header_logo",
 				css: '.article__header',
 				widths: [
 					500,
 					1400
 				]
+			},
+			pullquote: {
+				css: '.article__pull-quote",
+				widths: [
+					500,
+					1400
+				]
+
 			}
 		}
 	}
