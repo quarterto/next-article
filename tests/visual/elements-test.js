@@ -6,10 +6,10 @@ var compares = [];
 var elements = JSON.parse(casper.cli.get('elements'));
 var pageName = casper.cli.get('pagename');
 var path = casper.cli.get('path');
-var width = casper.cli.get('width') || 800;
-var height = casper.cli.get('height') || 1000;
-var testHost = casper.cli.get('testhost') + path;
-var baseHost = casper.cli.get('basehost') + path;
+var width = casper.cli.get('width');
+var height = casper.cli.get('height');
+var testHost = casper.cli.get('testhost');
+var baseHost = casper.cli.get('basehost');
 
 function getElementShots(pageName, elements, env, width, height) {
 	console.log('screenshotting ' + env);
