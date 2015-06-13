@@ -32,7 +32,7 @@ var imageDiffPromises = [];
 
 Object.keys(page_data).forEach(function(pageName) {
 	var testHost = "http://" + process.env.TEST_HOST + ".herokuapp.com";
-	var baseHost = "http://next.ft.com";
+	var baseHost = "http://ft-next-article.herokuapp.com";
 	var path = page_data[pageName].path;
 	var widths = page_data[pageName].widths;
 	var elements = page_data[pageName].elements;
