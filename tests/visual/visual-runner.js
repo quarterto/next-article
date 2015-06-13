@@ -37,7 +37,7 @@ Object.keys(page_data).forEach(function(pageName) {
 	var elements = page_data[pageName].elements;
 	var test = "\nPage name  : " + pageName +
 		"\npath       : " + path +
-		"\nwidths : " + JSON.stringify(widths)
+		"\nwidths : " + JSON.stringify(widths) +
 		"\ntesthost    : " + testHost +
 		"\nelements " + JSON.stringify(elements);
 
@@ -45,7 +45,7 @@ Object.keys(page_data).forEach(function(pageName) {
 
 	imageDiffPromises.push(
 		exec("casperjs " + [
-			"--widths=" + JSON.stringify(width),
+			"--widths=" + JSON.stringify(widths),
 			"--pagename='" + pageName + "'",
 			"--path='" + path + "'",
 			"--elements='" + JSON.stringify(elements) + "'",
