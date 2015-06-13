@@ -12,10 +12,14 @@ var height = casper.cli.get('height') || 1000;
 var testHost = casper.cli.get('testhost') + path;
 var baseHost = casper.cli.get('basehost') + path;
 
-function getElementShots(pagename, elements, env, width, height) {
+function getElementShots(pageName, elements, env, width, height) {
 	console.log('screenshotting ' + env);
 	Object.keys(elements).forEach(function(elementName) {
-		phantomcss.screenshot(elements[elementName], pagename + "_" + elementName + "_" + width + "_" + height + "_" + env);
+		var fileName = pageName + "_" + elementName + "_" + width + "_" + height + "_" + env;
+		phantomcss.screenshot(elements[elementName], fileName);
+		if (env === 'base') {
+			compares.push("tests/visual/screenshots/successes/" + fileName + ".png");
+		}
 	});
 }
 
@@ -34,17 +38,7 @@ casper.test.begin('Next visual regression tests', function(test) {
 		libraryRoot: './node_modules/phantomcss',
 		screenshotRoot: './tests/visual/screenshots/successes',
 		failedComparisonsRoot: './tests/visual/screenshots/failures',
-		addLabelToFailedImage: false,
-		fileNameGetter: function(root, filename) {
-			var name = root + '/' + filename;
-			if (fs.isFile(name +'.png')) {
-				name += '.diff.png';
-			} else {
-				name += '.png';
-			}
-			compares.push(name);
-			return name;
-		}
+		addLabelToFailedImage: false
 	});
 
 	// set up casper a bit
@@ -72,13 +66,13 @@ casper.test.begin('Next visual regression tests', function(test) {
 	casper.then(function compareMatched() {
 		var bases = [];
 		for (var x = 0; x < compares.length ; x++) {
-			if (compares[x].indexOf('_' + 'base') !== -1) {
+			if (compares[x].indexOf('_base') !== -1) {
 				bases.push(compares[x]);
 			}
 		}
 		for (x = 0; x < bases.length ; x ++) {
 			var base = bases[x];
-			var test = base.replace('_' + 'base','_' + 'test');
+			var test = base.replace('_base', '_test');
 			phantomcss.compareFiles(base, test);
 		}
 	});
