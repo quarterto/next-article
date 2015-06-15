@@ -32,7 +32,7 @@ module.exports = function(req, res, next) {
 						var model = {
 							name: region.name,
 							url: '/stream/regionsId/' + region.id,
-							conceptId: 'regions:' + ['"', encodeURIComponent(region.name), '"'].join(''),
+							conceptId: res.locals.flags.userPrefsUseConceptId ? region.id : ('regions:' + ['"', encodeURIComponent(region.name), '"'].join('')),
 							taxonomy: 'regions'
 						};
 

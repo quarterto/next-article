@@ -33,7 +33,7 @@ module.exports = function() {
 				.get('/enrichedcontent/02cad03a-844f-11e4-bae9-00144feabdc0')
 				.reply(200, articleV2);
 
-			request(helpers.host + '/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?metadata-fields=primaryTheme', function(error, res, body) {
+			request(helpers.host + '/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?metadata-fields=primaryTheme', function(error, res, body) {
 				expect(res.headers['content-type']).to.match(/text\/html/);
 				expect(res.statusCode).to.equal(200);
 				done();
@@ -52,7 +52,7 @@ module.exports = function() {
 				.times(3)
 				.reply(200, anotherArticleV2);
 
-			request(helpers.host + '/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?metadata-fields=primaryTheme', function(error, response, body) {
+			request(helpers.host + '/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?metadata-fields=primaryTheme', function(error, response, body) {
 				response.statusCode.should.equal(200);
 				body.should.be.empty;
 				done();

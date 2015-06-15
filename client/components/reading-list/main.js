@@ -40,6 +40,7 @@ module.exports.init = function() {
 				if(nextArticle) {
 					var nextArticleCTA = document.querySelector('.myft-reading-list__title');
 					nextArticleCTA.href = nextArticle.href;
+					nextArticleCTA.querySelector('.myft-reading-list__title-text').textContent = 'Continue reading your daily digest';
 					nextArticleCTA.insertAdjacentHTML('beforeend', '<span class="myft-reading-list__next-headline">' + nextArticle.textContent + '</span>');
 				}
 			}
