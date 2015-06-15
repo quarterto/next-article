@@ -4,7 +4,7 @@ var beacon = require('next-beacon-component');
 var throttle = require('../../libs/throttle');
 
 var mockedWindowHeight;
-// these are the percentage 'buckets'
+// these are what scroll depth are bucketed into
 var percentageBuckets = [25, 50, 75, 100];
 
 function getPercentageViewable() {
@@ -13,7 +13,7 @@ function getPercentageViewable() {
 	return (100 / article.getBoundingClientRect().height) * (windowHeight - article.getBoundingClientRect().top);
 }
 function fireBeacon(percentage) {
-	// need to also send all 'smaller' percenatges
+	// need to also send all 'smaller' percentages
 	var currentBuckets = percentageBuckets.filter(function (bucket) {
 		return bucket <= percentage;
 	});
