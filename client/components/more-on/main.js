@@ -60,7 +60,7 @@ module.exports.init = function(flags) {
 	});
 	$('.js-more-on-topic').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/article/' + articleId + '/more-on?metadata-fields=' + el.getAttribute('data-metadata-fields').replace(' ', ',') + '&count=4', function (el, resp) {
-			var brandEl = el.querySelector('.more-on__topic-bar--taxonomy-brand');
+			var brandEl = el.querySelector('.n-topic[data-taxonomy="brand"]');
 			if (brandEl) {
 				brandEl.insertAdjacentHTML('afterend', resp);
 			} else {
