@@ -5,7 +5,6 @@ require('array.prototype.find');
 var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
-var resize = require('../../utils/resize');
 var extractUuid = require('../../utils/extract-uuid');
 
 function hasSemanticStream(taxonomy) {
