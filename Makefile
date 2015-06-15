@@ -17,6 +17,7 @@ verify:
 
 unit-test:
 	export PORT=${PORT}; export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha test/server/ --recursive
+	karma start test/client/karma.conf.js
 
 test-debug:
 	@mocha --debug-brk --reporter spec -i test/server/
