@@ -89,7 +89,8 @@ module.exports = function(req, res, next) {
 						primaryTag: primaryTag,
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
-						moreOns: {}
+						moreOns: {},
+						meta: {}
 					};
 
 					if (res.locals.barrier) {
@@ -104,6 +105,8 @@ module.exports = function(req, res, next) {
 						viewModel.tags = null;
 						viewModel.relatedContent = null;
 						viewModel.moreOns = null;
+						viewModel.headerOverlap = null;
+						viewModel.meta = null;
 					}
 
 					if (res.locals.firstClickFreeModel) {

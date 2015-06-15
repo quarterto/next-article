@@ -12,6 +12,7 @@
 				{{#if articleV1.editorial.standFirst}}
 					<h4 class="article__stand-first">{{{articleV1.editorial.standFirst}}}</h4>
 				{{/if}}
+				{{#if meta}}
 				<div class="article__meta">
 					{{#if tableOfContents}}
 						<div class="toc">
@@ -48,6 +49,7 @@
 						{{/if}}
 					</div>
 				</div>
+				{{/if}}
 			</div>
 			{{#if tags}}
 				<div class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags}}12{{else}}hide{{/if}} L4">
