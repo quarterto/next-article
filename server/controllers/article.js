@@ -80,18 +80,30 @@ module.exports = function(req, res, next) {
 								id: $subhead.attr('id')
 							};
 						}).get(),
-						showTOC: res.locals.flags.articleTOC && $subheaders.length > 2,
+						tableOfContents: res.locals.flags.articleTOC && $subheaders.length > 2,
 						isColumnist: isColumnist,
 						// if there's a main image, or slideshow or video, we overlap them on the header
 						headerOverlap:
 							$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length || $.root().first().children('.article__main-image'),
 						layout: 'wrapper',
-						primaryTag: primaryTag
+						primaryTag: primaryTag,
+						save: {},
+						relatedContent: res.locals.flags.articleRelatedContent,
+						moreOns: {}
 					};
 
 					if (res.locals.barrier) {
 						viewModel.comments = null;
 						viewModel.body = null;
+						viewModel.articleV1.editorial.standFirst = null;
+						viewModel.byline = null;
+						viewModel.article.publishedDate = null;
+						viewModel.tableOfContents = null;
+						viewModel.primaryTag = null;
+						viewModel.save = null;
+						viewModel.tags = null;
+						viewModel.relatedContent = null;
+						viewModel.moreOns = null;
 					}
 
 					if (res.locals.firstClickFreeModel) {
