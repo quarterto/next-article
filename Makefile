@@ -35,7 +35,7 @@ ifeq ($(API2_KEY),)
 	@echo "You need an api key for CAPI v2! Speak to one of the next team to get one"
 	exit 1
 endif
-	export ELASTIC_SEARCH_HOST=${ELASTIC_SEARCH_HOST}; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nbt run
+	export ELASTIC_SEARCH_HOST=${ELASTIC_SEARCH_HOST}; export apikey=${API_KEY}; export api2key=${API2_KEY}; export PORT=${PORT}; nbt run --harmony
 
 build:
 	nbt build --dev
