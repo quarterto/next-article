@@ -53,6 +53,7 @@ module.exports = function(req, res, next) {
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = res.locals.flags.userPrefsUseConceptId ? primaryTag.id : (primaryTag.taxonomy + ':"' + encodeURIComponent(primaryTag.name) + '"');
+				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
 			}
 
 			// Some posts (e.g. FastFT are only available in CAPI v2)
