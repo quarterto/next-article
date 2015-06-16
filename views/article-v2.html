@@ -1,45 +1,55 @@
 <article class="article{{#if showTOC}} article--toc{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
 		<div class="article__header-inner o-grid-row">
+			{{#if barrier}}
+			<div data-o-grid-colspan="12 L12 XL12">
+			{{else}}
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+			{{/if}}
 				<h3 class="article__title">{{{title}}}</h3>
 				{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
 				{{! Probably something like article.summaries[0] }}
 				{{#if articleV1.editorial.standFirst}}
 					<h4 class="article__stand-first">{{{articleV1.editorial.standFirst}}}</h4>
 				{{/if}}
+				{{#if meta}}
 				<div class="article__meta">
-					{{#if showTOC}}
-					<div class="toc">
-						<div class="toc__title">Article quick links:</div>
-						<ul class="toc__list">
-						{{#each subheaders}}
-							<li class="toc__item"><a class="toc__link" data-trackable="toc" href="#{{id}}">{{text}}</a></li>
-						{{/each}}
-						</ul>
-					</div>
+					{{#if tableOfContents}}
+						<div class="toc">
+							<div class="toc__title">Article quick links:</div>
+							<ul class="toc__list">
+							{{#each subheaders}}
+								<li class="toc__item"><a class="toc__link" data-trackable="toc" href="#{{id}}">{{text}}</a></li>
+							{{/each}}
+							</ul>
+						</div>
 					{{/if}}
 					<p class="article__byline">
 						{{{byline}}}
 					</p>
-					<div class="o-grid-row">
-						<div data-o-grid-colspan="12 S6">
-							<time class="article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-							</time>
+					{{#if article.publishedDate}}
+						<div class="o-grid-row">
+							<div data-o-grid-colspan="12 S6">
+								<time class="article__timestamp ng-meta o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+									{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+								</time>
+							</div>
 						</div>
-					</div>
+					{{/if}}
 					<div class="o-grid-row">
-						<div data-o-grid-colspan="12 S6" class="article__primary-theme">
 						{{#if primaryTag}}
+						<div data-o-grid-colspan="12 S6" class="article__primary-theme">
 						<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTag.name}}</a>
+						</div>
 						{{/if}}
-						</div>
-						<div class="article__actions" data-o-grid-colspan="12 S6">
-							{{>next-myft-ui/templates/save-for-later contentId=id}}
-						</div>
+						{{#if save}}
+							<div class="article__actions" data-o-grid-colspan="12 S6">
+								{{>next-myft-ui/templates/save-for-later contentId=id}}
+							</div>
+						{{/if}}
 					</div>
 				</div>
+				{{/if}}
 			</div>
 			{{#if tags}}
 				<div class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags}}12{{else}}hide{{/if}} L4">
@@ -55,42 +65,52 @@
 			{{/if}}
 		</div>
 	</div>
-	<div class="article__main o-grid-row">
-		<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-			{{#if body}}
+	{{#if body}}
+		<div class="article__main o-grid-row">
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+
 				<div class="article__body">
 					{{{body}}}
 				</div>
-			{{/if}}
 
-			{{#if @root.barriers.anonymousBarrier}}
-				{{> next-barrier-component/templates/anonymous_barrier}}
-			{{/if}}
+				{{#if firstClickFree}}
+					{{> first-click-free}}
+				{{/if}}
 
-			{{#if @root.barriers.premiumBarrier}}
-				{{> next-barrier-component/templates/premium_barrier}}
-			{{/if}}
-
-			{{#if firstClickFree}}
-				{{> first-click-free}}
-			{{/if}}
-
+			</div>
+			<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+			</div>
 		</div>
-		<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
-		</div>
-	</div>
+	{{/if}}
 </article>
-{{#if @root.flags.articleRelatedContent}}
+
+<div class="o-grid-row">
+	<div data-o-grid-colspan="12 L12 XL12">
+		{{#if @root.barriers.anonymousBarrier}}
+			{{> next-barrier-component/templates/anonymous_barrier_v2}}
+		{{/if}}
+
+		{{#if @root.barriers.premiumBarrier}}
+			{{> next-barrier-component/templates/premium_barrier}}
+		{{/if}}
+	</div>
+</div>
+
+{{#if relatedContent}}
 	<div class="o-grid-row">
 		<div data-trackable="story-package" data-o-grid-colspan="12 L8 XL7 XLoffset1">
 			<div class="js-more-on"></div>
 		</div>
 	</div>
 {{/if}}
-{{>more-ons}}
+
+{{#if moreOns}}
+	{{>more-ons}}
+{{/if}}
+
 {{#if comments}}
-<div class="o-grid-row">
-		<div data-trackable="comments" class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset1"></div>
-</div>
+	<div class="o-grid-row">
+			<div data-trackable="comments" class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset1"></div>
+	</div>
 {{/if}}
 
