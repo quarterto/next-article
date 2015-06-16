@@ -1,3 +1,5 @@
+.haikro-cache/
+node-linux-x64
 /node_modules/
 /bower_components/
 /__attic/

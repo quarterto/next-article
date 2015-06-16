@@ -13,6 +13,7 @@ var moreOn = require('./components/more-on/main');
 var toc = require('./components/toc/main');
 var comments = require('./components/comments/main');
 var readingList = require('./components/reading-list/main');
+var scrollDepth = require('./components/article/scroll-depth');
 
 oViewport.listenTo('resize');
 
@@ -53,4 +54,5 @@ setup.bootstrap(function(result) {
 	toc.init(flags);
 	comments.init(uuid, flags);
 	oDate.init(document.querySelector('.article'));
+	scrollDepth.init(flags);
 });
