@@ -67,7 +67,7 @@ provision:
 	nbt provision ${TEST_HOST}
 	nbt configure ft-next-article ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_HOST}
+	nbt deploy ${TEST_HOST} --skip-enable-preboot
 	make visual smoke
 
 smoke:
