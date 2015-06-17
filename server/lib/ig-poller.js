@@ -9,7 +9,6 @@ var poller = new Poller({
 	}
 });
 
-
 module.exports = {
 	start: poller.start.bind(poller, { initialRequest: true }),
 	getData: function () {
