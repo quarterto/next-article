@@ -235,8 +235,7 @@ $header-offset: 30px;
 	}
 
 	a {
-		color: $next-grey-dark;
-
+		@include nLinksBody();
 		@include print {
 			&:after {
 				text-decoration: none;
