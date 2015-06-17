@@ -17,6 +17,7 @@ var videoTransform = require('./video');
 
 module.exports = function(body, opts) {
 	var fullWidthMainImages = opts.fullWidthMainImages;
+	var brightcovePlayer = opts.brightcovePlayer;
 
 	// HACK around a bug in the content api by replacing <br></br> with <br>
 	// See: http://api.ft.com/content/e80e2706-c7ec-11e4-8210-00144feab7de
@@ -33,7 +34,7 @@ module.exports = function(body, opts) {
 	$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
 	$('pull-quote').replaceWith(pullQuotesTransform);
 	$('promo-box').replaceWith(promoBoxTransform);
-	$('a[href^="http://video.ft.com/"]:empty').replaceWith(videoTransform);
+	$('a[href^="http://video.ft.com/"]:empty').replaceWith(videoTransform({ brightcovePlayer: brightcovePlayer }));
 
 	// insert inline related
 	if ($('body > p').length >= 6) {
