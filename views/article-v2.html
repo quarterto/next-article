@@ -86,11 +86,15 @@
 
 <div class="o-grid-row">
 	<div data-o-grid-colspan="12 L12 XL12">
-		{{#if @root.barriers.anonymousBarrier}}
+		{{#if trialSimple}}
 			{{> next-barrier-component/templates/trial-simple}}
 		{{/if}}
 
-		{{#if @root.barriers.premiumBarrier}}
+		{{#if trialGrid}}
+			{{> next-barrier-component/templates/trial-grid}}
+		{{/if}}
+
+		{{#if premiumBarrier}}
 			{{> next-barrier-component/templates/premium-simple}}
 		{{/if}}
 	</div>

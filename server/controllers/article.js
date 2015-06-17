@@ -95,6 +95,13 @@ module.exports = function(req, res, next) {
 					};
 
 					if (res.locals.barrier) {
+
+						if(res.locals.barrier.trialGrid) {
+							viewModel.trialGrid = res.locals.barrier.trialGrid;
+						}
+
+						console.log(viewModel.trialGrid);
+
 						viewModel.comments = null;
 						viewModel.body = null;
 						viewModel.articleV1.editorial.standFirst = null;
