@@ -51,7 +51,7 @@ module.exports = function(req, res, next) {
 					})
 					.then(function(imageSet) {
 						articleModel.image = resize(
-							'http://com.ft.imagepublish.prod.s3.amazonaws.com/' + extractUuid(imageSet.members[0].id),
+							'ftcms:' + extractUuid(imageSet.members[0].id),
 							{ width: 100 }
 						);
 						return articleModel;

@@ -44,7 +44,7 @@ module.exports = function($body, opts) {
 					$(image.parentNode).children().first().html() === $image.html();
 				var width = isMain ? 710 : 600;
 				var binaryId = imageSet.members[0].id.replace(capiMapiRegex, '');
-				var imageUrl = resize('http://com.ft.imagepublish.prod.s3.amazonaws.com/' + binaryId, { width: width });
+				var imageUrl = resize('ftcms:' + binaryId, { width: width });
 				var $figure = $('<figure></figure>')
 					.addClass('article__image-wrapper ng-figure-reset');
 
