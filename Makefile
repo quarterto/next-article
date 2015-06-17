@@ -68,7 +68,7 @@ provision:
 	nbt configure ft-next-article ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_HOST} --skip-enable-preboot
-	make visual smoke
+	make -j2 visual smoke
 
 smoke:
 	export TEST_URL=${TEST_URL}; nbt nightwatch test/browser/tests/*
