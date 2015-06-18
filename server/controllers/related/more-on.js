@@ -34,18 +34,22 @@ module.exports = function (req, res, next) {
 					}
 					topics.push(topic);
 					var promises = [];
-					promises.push(api.searchLegacy({
-						query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
-						// get one extra, in case we dedupe
-						count: count + 1,
-						useElasticSearch: res.locals.flags.elasticSearchItemGet
-						}).then(function(ids) {
-							return api.content({
-								uuid: ids,
-								useElasticSearch: res.locals.flags.elasticSearchItemGet,
-								type: 'Article'
-							});
-						}));
+					promises.push(
+						api.searchLegacy({
+							query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
+							// get one extra, in case we dedupe
+							count: count + 1,
+							useElasticSearch: res.locals.flags.elasticSearchItemGet
+						})
+							.then(function(ids) {
+								return api.content({
+									uuid: ids,
+									useElasticSearch: res.locals.flags.elasticSearchItemGet,
+									type: 'Article'
+								});
+							})
+							.catch(function (err) { })
+					);
 					if (res.locals.flags.semanticStreams && hasSemanticStream(topic.term.taxonomy)) {
 						promises.push(
 							api.mapping(topic.term.id, topic.term.taxonomy)
