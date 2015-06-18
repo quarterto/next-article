@@ -52,6 +52,11 @@ module.exports.init = function(flags) {
 	var fetchPromises = [];
 	var articleId = document.querySelector('.article').getAttribute('data-content-id');
 
+	// If there is no articleId don't try to load related content
+	if (!articleId) {
+		return;
+	}
+
 	$('.js-more-on-inline').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/article/' + articleId + '/story-package?count=1&view=inline'));
 	});
