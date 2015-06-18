@@ -2,7 +2,7 @@ API_KEY := $(shell cat ~/.ftapi 2>/dev/null)
 API2_KEY := $(shell cat ~/.ftapi_v2 2>/dev/null)
 GIT_HASH := $(shell git rev-parse --short HEAD)
 TEST_HOST := "ft-article-branch-${GIT_HASH}"
-TEST_URL := "http://ft-article-branch-${GIT_HASH}.herokuapp.com/fb368c7a-c804-11e4-8210-00144feab7de"
+TEST_URL := "ft-article-branch-${GIT_HASH}.herokuapp.com"
 ELASTIC_SEARCH_HOST := $(shell cat ~/.elastic_search_host 2>/dev/null)
 
 .PHONY: test
@@ -68,7 +68,7 @@ provision:
 	nbt configure ft-next-article ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_HOST} --skip-enable-preboot
-	make visual smoke
+	make -j2 visual smoke
 
 smoke:
 	export TEST_URL=${TEST_URL}; nbt nightwatch test/browser/tests/*

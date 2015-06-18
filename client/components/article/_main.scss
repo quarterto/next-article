@@ -207,16 +207,12 @@ $header-offset: 30px;
 
 //ARTICLE BODY ELEMENTS
 .article__body {
-	@include nTypeAlpha(4);
+	@include nTypeAlpha(3);
 	color: $next-grey-dark;
 	margin-bottom: 20px;
 
-	@include oGridRespondTo(S) {
-		@include nTypeAlpha(3);
-	}
 	> p {
 		margin: 0.3em 0 0.8em;
-		line-height: 24px;
 		display: block;
 
 		@include oGridRespondTo(S) {

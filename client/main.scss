@@ -7,6 +7,7 @@ $o-gallery-is-silent: false;
 @import "o-gallery/main";
 @import "o-fonts/main";
 @import "o-expander/main";
+@import "n-video/main";
 @include oFontsInclude(MetricWeb, thin);
 
 // Fix o-comments at 2.0.3 and o-comment-ui at 2.0.2 so we can use the build service for images
