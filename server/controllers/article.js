@@ -14,6 +14,21 @@ var articlePrimaryTag = require('ft-next-article-primary-tag');
 var htmlToText = require('html-to-text');
 var bodyTransform = require('../transforms/body');
 
+function insertQuote(body) {
+	var $ = require('cheerio').load(body);
+	$('ft-content').first().after(
+		'<p>' +
+			'<pull-quote>' +
+				'<pull-quote-text>' +
+					'<p>In 2000, the economy and job market were in a different place</p>' +
+				'</pull-quote-text>' +
+				'<pull-quote-source>Duncan Wood</pull-quote-source>' +
+			'</pull-quote>' +
+		'</p>'
+	);
+	return $.html();
+}
+
 module.exports = function(req, res, next) {
 	var articleV1Promise;
 	if (res.locals.flags.articleCapiV1Fallback) {
@@ -46,6 +61,10 @@ module.exports = function(req, res, next) {
 
 			var articleV1 = articles[0];
 			var article = articles[1];
+
+			// add pull quote after image
+			article.bodyXML = insertQuote(article.bodyXML);
+
 			var $ = bodyTransform(article.bodyXML, {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
 				brightcovePlayer: res.locals.flags.brightcovePlayer

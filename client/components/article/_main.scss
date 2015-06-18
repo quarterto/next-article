@@ -356,6 +356,29 @@ $header-offset: 30px;
 		@include oQuoteStandardBig;
 	}
 }
+.article__pull-quote--follows-image {
+	width: 100%;
+	position: absolute;
+	margin: 0;
+	padding: 10px 50px;
+	margin-top: -215px;
+	color: #ffffff;
+	left: 0;
+	box-sizing: border-box;
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	p {
+		@include nTypeDelta(1);
+		margin: 0;
+	}
+	cite {
+		@include nTypeAlpha(3);
+		text-transform: uppercase;
+		float: right;
+		font-style: normal;
+	}
+}
 .article__big-number p {
 	margin: 0;
 }
