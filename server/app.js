@@ -3,10 +3,12 @@
 var express = require('ft-next-express');
 var logger = require('ft-next-logger');
 var app = module.exports = express();
+require('./lib/ig-poller').start();
 
 var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 
 app.use('^/:id(' + articleUuidRegex + ')$', require('./utils/access'));
+app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
 app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
 app.get('^/article/:id(' + articleUuidRegex + ')/people', require('./controllers/related/people'));
 app.get('^/article/:id(' + articleUuidRegex + ')/organisations', require('./controllers/related/organisations'));
