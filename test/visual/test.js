@@ -6,7 +6,7 @@ var system = require('system');
 visualRegressionTest({
 	hosts: {
 		base: require('../../package.json').name + '.herokuapp.com',
-		test: system.env.TEST_HOST + '.herokuapp.com'
+		test: system.env.TEST_APP + '.herokuapp.com'
 	},
 	tests: {
 		article_without_image: {
