@@ -98,6 +98,19 @@ module.exports = function(req, res, next) {
 					};
 
 					if (res.locals.barrier) {
+
+						if(res.locals.barrier.trialSimple) {
+							viewModel.trialSimpleBarrier = res.locals.barrier.trialSimple;
+						}
+
+						if(res.locals.barrier.trialGrid) {
+							viewModel.trialGridBarrier = res.locals.barrier.trialGrid;
+						}
+
+						if(res.locals.barrier.premiumSimple) {
+							viewModel.premiumSimpleBarrier = res.locals.barrier.premiumSimple;
+						}
+
 						viewModel.comments = null;
 						viewModel.body = null;
 						viewModel.articleV1.editorial.standFirst = null;
