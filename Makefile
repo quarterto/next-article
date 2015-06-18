@@ -49,7 +49,7 @@ tidy:
 
 provision:
 	nbt provision ${TEST_APP}
-	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch,DEBUG=*"
+	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_APP} --skip-enable-preboot
 	make -j2 visual smoke
