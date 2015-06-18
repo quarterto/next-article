@@ -1,6 +1,5 @@
 GIT_HASH := $(shell git rev-parse --short HEAD)
-TEST_HOST := "ft-article-branch-${GIT_HASH}"
-TEST_URL := "ft-article-branch-${GIT_HASH}.herokuapp.com"
+TEST_APP := "ft-article-branch-${GIT_HASH}"
 
 .PHONY: test
 
@@ -41,19 +40,19 @@ deploy:
 	nbt scale
 
 visual:
-	export TEST_HOST=${TEST_HOST}; myrtlejs
+	export TEST_APP=${TEST_APP}; myrtlejs
 
 clean-deploy: clean install deploy
 
 tidy:
-	nbt destroy ${TEST_HOST}
+	nbt destroy ${TEST_APP}
 
 provision:
-	nbt provision ${TEST_HOST}
-	nbt configure ft-next-article ${TEST_HOST} --overrides "NODE_ENV=branch,DEBUG=*"
+	nbt provision ${TEST_APP}
+	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_HOST} --skip-enable-preboot
+	nbt deploy ${TEST_APP} --skip-enable-preboot
 	make -j2 visual smoke
 
 smoke:
-	export TEST_URL=${TEST_URL}; nbt nightwatch test/browser/tests/*
+	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/*

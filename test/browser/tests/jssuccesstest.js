@@ -5,15 +5,16 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 var notifySaucelabs = require('notify-saucelabs');
+var TEST_HOST = process.env.TEST_APP + '.herokuapp.com';
 var ARTICLE_PATH = "/fb368c7a-c804-11e4-8210-00144feab7de";
 
 module.exports = {
 	"js-success test": function(browser) {
-		console.log("Launching http://" + browser.launch_url + ARTICLE_PATH);
+		console.log("Launching http://" + TEST_HOST + ARTICLE_PATH);
 		browser
-			.url('https://' + browser.launch_url + "/__gtg")
-			.setCookie({ name: 'next-flags', domain: browser.launch_url, value: 'ads:off', secure: true })
-			.url('https://' + browser.launch_url + ARTICLE_PATH)
+			.url('https://' + TEST_HOST + "/__gtg")
+			.setCookie({ name: 'next-flags', domain: TEST_HOST, value: 'ads:off', secure: true })
+			.url('https://' + TEST_HOST + ARTICLE_PATH)
 			.waitForElementPresent("html.js.js-success", 60000)
 			.end();
 	},
