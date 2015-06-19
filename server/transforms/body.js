@@ -33,7 +33,8 @@ module.exports = function(body, opts) {
 	$('img').replaceWith(externalImgTransform({ fullWidthMainImages: fullWidthMainImages }));
 	$('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
 	$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
-	$('ft-content + p > pull-quote').replaceWith(pullQuotesFollowsImageTransform);
+	$ = pullQuotesFollowsImageTransform($);
+
 	$('pull-quote').replaceWith(pullQuotesTransform);
 	$('promo-box').replaceWith(promoBoxTransform);
 	$('a[href^="http://video.ft.com/"]:empty').replaceWith(videoTransform({ brightcovePlayer: brightcovePlayer }));

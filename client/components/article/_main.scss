@@ -356,29 +356,6 @@ $header-offset: 30px;
 		@include oQuoteStandardBig;
 	}
 }
-.article__pull-quote--follows-image {
-	width: 100%;
-	position: absolute;
-	margin: 0;
-	padding: 10px 50px;
-	margin-top: -215px;
-	color: #ffffff;
-	left: 0;
-	box-sizing: border-box;
-	background-color: #000000;
-	background-color: rgba(0, 0, 0, 0.5);
-
-	p {
-		@include nTypeDelta(1);
-		margin: 0;
-	}
-	cite {
-		@include nTypeAlpha(3);
-		text-transform: uppercase;
-		float: right;
-		font-style: normal;
-	}
-}
 .article__big-number p {
 	margin: 0;
 }
@@ -447,3 +424,68 @@ $header-offset: 30px;
 }
 
 @import 'table';
+
+
+
+.article__image-with-quote {
+	position: relative;
+	margin-bottom: 20px;
+
+	.article__image-wrapper {
+		float: none;
+		margin: 0;
+		max-width: none;
+		width: 100%;
+	}
+	.article__image {
+		width: 100%;
+		margin: 0;
+	}
+	.article__image-caption {
+		display: none;
+	}
+}
+.article__pull-quote--follows-image {
+	position: absolute;
+	margin: 0 10% 0 0;
+	padding: 0 20px 10px 0;
+	color: #ffffff;
+	left: 0;
+	bottom: 5%;
+	box-sizing: border-box;
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	p {
+		@include nTypeDelta(3);
+		margin: 10px 0 0 20px;
+
+		@include oGridRespondTo(S) {
+			@include nTypeDelta(2);
+			margin-left: 50px;
+			margin-right: 100px;
+		}
+		@include oGridRespondTo(M) {
+			@include nTypeDelta(1);
+		}
+		&:first-child:before {
+			content: '“';
+			margin-right: 5px;
+		}
+		&:last-of-type:after {
+			content: '”';
+			margin-left: 5px
+		}
+	}
+	cite {
+		@include nTypeAlpha(4);
+		text-transform: uppercase;
+		float: right;
+		font-style: normal;
+		margin-top: 10px;
+
+		@include oGridRespondTo(M) {
+			@include nTypeAlpha(3);
+		}
+	}
+}
