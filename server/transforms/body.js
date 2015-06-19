@@ -30,12 +30,16 @@ module.exports = function(body, opts) {
 
 	var $ = cheerio.load(body);
 	$('a[href$="#slide0"]').replaceWith(slideshowTransform);
-	$ = bigNumberFollowsImageTransform($);
+	if (opts.comboComponents) {
+		$ = bigNumberFollowsImageTransform($);
+	}
 	$('big-number').replaceWith(bigNumberTransform);
 	$('img').replaceWith(externalImgTransform({ fullWidthMainImages: fullWidthMainImages }));
 	$('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
 	$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
-	$ = pullQuotesFollowsImageTransform($);
+	if (opts.comboComponents) {
+		$ = pullQuotesFollowsImageTransform($);
+	}
 	$('pull-quote').replaceWith(pullQuotesTransform);
 	$('promo-box').replaceWith(promoBoxTransform);
 	$('a[href^="http://video.ft.com/"]:empty').replaceWith(videoTransform({ brightcovePlayer: brightcovePlayer }));
