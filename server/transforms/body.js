@@ -5,7 +5,9 @@ var cheerio = require('cheerio');
 var replaceEllipses = require('./replace-ellipses');
 var replaceHrs = require('../transforms/replace-hrs');
 var pullQuotesTransform = require('./pull-quotes');
+var pullQuotesFollowsImageTransform = require('./pull-quotes-follows-image');
 var bigNumberTransform = require('./big-number');
+var bigNumberFollowsImageTransform = require('./big-number-follows-image');
 var ftContentTransform = require('./ft-content');
 var relativeLinksTransform = require('./relative-links');
 var slideshowTransform = require('./slideshow');
@@ -28,10 +30,16 @@ module.exports = function(body, opts) {
 
 	var $ = cheerio.load(body);
 	$('a[href$="#slide0"]').replaceWith(slideshowTransform);
+	if (opts.comboComponents) {
+		$ = bigNumberFollowsImageTransform($);
+	}
 	$('big-number').replaceWith(bigNumberTransform);
 	$('img').replaceWith(externalImgTransform({ fullWidthMainImages: fullWidthMainImages }));
 	$('ft-content').not('[type$="ImageSet"]').replaceWith(ftContentTransform);
 	$('blockquote').attr('class', 'article__block-quote o-quote o-quote--standard');
+	if (opts.comboComponents) {
+		$ = pullQuotesFollowsImageTransform($);
+	}
 	$('pull-quote').replaceWith(pullQuotesTransform);
 	$('promo-box').replaceWith(promoBoxTransform);
 	$('a[href^="http://video.ft.com/"]:empty').replaceWith(videoTransform({ brightcovePlayer: brightcovePlayer }));
