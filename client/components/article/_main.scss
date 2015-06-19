@@ -426,8 +426,7 @@ $header-offset: 30px;
 @import 'table';
 
 
-
-.article__image-with-quote {
+.article__combo {
 	position: relative;
 	margin-bottom: 20px;
 
@@ -445,7 +444,7 @@ $header-offset: 30px;
 		display: none;
 	}
 }
-.article__pull-quote--follows-image {
+.article__combo__pull-quote {
 	position: absolute;
 	margin: 0 10% 0 0;
 	padding: 0 20px 10px 0;
@@ -486,6 +485,27 @@ $header-offset: 30px;
 
 		@include oGridRespondTo(M) {
 			@include nTypeAlpha(3);
+		}
+	}
+}
+.article__combo__big-number {
+	position: absolute;
+	margin: 0 10% 0 0;
+	padding: 10px 20px;
+	color: #ffffff;
+	left: 0;
+	bottom: 5%;
+	box-sizing: border-box;
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	p {
+		margin: 0;
+	}
+	.o-big-number__title {
+		p {
+			float: left;
+			margin-right: 20px;
 		}
 	}
 }

@@ -3,14 +3,14 @@
 var cheerio = require('cheerio');
 
 module.exports = function($) {
-	$('pull-quote').each(function (index, el) {
+	$('big-number').each(function (index, el) {
 		var $el = cheerio(el);
 		/**
 		 * HACK: assumes the html for a 'image/pull-quote combo' is of the format
 		 * <p>
 		 *     <ft-content ...></ft-content>
 		 * </p>
-		 * <pull-quote>...</pull-quote>
+		 * <big-number>...</big-number>
 		 */
 		var $p = $el.prev();
 		var $pChildren = $p.children();
@@ -20,15 +20,19 @@ module.exports = function($) {
 		}
 		var imageHtml = $.html($image);
 		$image.remove();
-		var text = $el.find('pull-quote-text').text();
-		var cite = $el.find('pull-quote-source').text();
+		var title = $el.find('big-number-headline').html();
+		var content = $el.find('big-number-intro').html();
 		$el.replaceWith(
-			'<div class="article__combo article__combo--pull-quote">' +
+			'<div class="article__combo article__combo--big-number">' +
 				imageHtml +
-				'<blockquote class="article__combo__pull-quote">' +
-					'<p>' + text + '</p>' +
-					(cite ? '<cite>' + cite + '</cite>' : '') +
-				'</blockquote>' +
+				'<span class="article__combo__big-number">' +
+					'<span class="o-big-number__title">' +
+						title +
+					'</span>' +
+					'<span class="o-big-number__content">' +
+						content +
+					'</span>' +
+				'</span>' +
 			'</div>'
 		);
 	});
