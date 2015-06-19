@@ -15,7 +15,7 @@ module.exports = function($) {
 		var $p = $el.prev();
 		var $pChildren = $p.children();
 		var $image = $p.find('ft-content');
-		if ($p.get(0).tagName !== 'p' || $pChildren.length !== 1 || $image.length !==1) {
+		if (!$p.get(0) || $p.get(0).tagName !== 'p' || $pChildren.length !== 1 || $image.length !==1) {
 			return;
 		}
 		var imageHtml = $.html($image);
