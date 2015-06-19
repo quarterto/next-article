@@ -43,7 +43,7 @@ module.exports = function(req, res, next) {
 			.catch(function (err) {
 				if (err.message === 'No related') {
 					res.status(200).end();
-				} else if (err instanceof fetchres.BadServerResponseError) {
+				} else if (err instanceof fetchres.BadServerResponseError || err instanceof fetchres.ReadTimeoutError) {
 					res.status(404).end();
 				} else {
 					next(err);
