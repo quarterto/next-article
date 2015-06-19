@@ -46,9 +46,14 @@ module.exports = function (req, res, next) {
 									uuid: ids,
 									useElasticSearch: res.locals.flags.elasticSearchItemGet,
 									type: 'Article'
+								})
+								.catch(function (err) {
+									if (err instanceof fetchres.ReadTimeoutError) {
+										return [];
+									}
+									throw err;
 								});
 							})
-							.catch(function (err) { })
 					);
 					if (res.locals.flags.semanticStreams && hasSemanticStream(topic.term.taxonomy)) {
 						promises.push(
