@@ -108,11 +108,16 @@ module.exports = function (req, res, next) {
 						.slice(0, index)
 						.map(function(result) { return result[0]; }));
 					// dedupe
-					var dedupedArticles = _.filter(articleModels, function(articleModel) {
-						return !otherArticleModels.find(function(otherArticleModel) {
-							return otherArticleModel.id === articleModel.id;
+					var dedupedArticles = articleModels
+						.map(function(articleModel) {
+							articleModel.id = articleModel.id.replace('http://www.ft.com/thing/', '');
+							return articleModel;
+						})
+						.filter(function(articleModel) {
+							return !otherArticleModels.find(function(otherArticleModel) {
+								return otherArticleModel.id === articleModel.id;
+							});
 						});
-					});
 					return dedupedArticles.length ? {
 						articles: dedupedArticles,
 						topic: topicModel
