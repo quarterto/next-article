@@ -6,8 +6,8 @@ body .fyre-modal .fyre-modal-title-close {
 	background-image: none;
 
 	&:before {
-		content: '';
 		@include nextIcon(cross, #ffffff, 10);
+		content: '';
 		position: relative;
 		top: 1px;
 	}
