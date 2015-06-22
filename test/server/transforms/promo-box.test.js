@@ -17,7 +17,7 @@ describe('Promo Box', function () {
 			'</promo-box>'
 		);
 
-		$('promo-box').replaceWith(promoBoxTransform);
+		$ = promoBoxTransform($);
 		$.html().should.equal(
 			'<div data-trackable=\"promobox\" class="article__promo-box ng-pull-out ng-inline-element">' +
 				'<h3 class="article__promo-box__title">Tatomer Riesling 2012</h3>' +
@@ -37,7 +37,7 @@ describe('Promo Box', function () {
 			'</promo-box>'
 		);
 
-		$('promo-box').replaceWith(promoBoxTransform);
+		$ = promoBoxTransform($);
 		$.html().should.equal(
 			'<div data-trackable=\"promobox\" class="article__promo-box ng-pull-out ng-inline-element">' +
 				'<h4 class="article__promo-box__headline">Greece debt crisis</h4>' +
@@ -56,7 +56,7 @@ describe('Promo Box', function () {
 			'</promo-box>'
 		);
 
-		$('promo-box').replaceWith(promoBoxTransform);
+		$ = promoBoxTransform($);
 		$.html().should.equal(
 			'<div data-trackable=\"promobox\" class="article__promo-box ng-pull-out ng-inline-element">' +
 				'<h3 class="article__promo-box__title">Tatomer Riesling 2012</h3>' +
@@ -75,7 +75,7 @@ describe('Promo Box', function () {
 			'</promo-box>'
 		);
 
-		$('promo-box').replaceWith(promoBoxTransform);
+		$ = promoBoxTransform($);
 		$.html().should.equal(
 			'<div data-trackable=\"promobox\" class="article__promo-box ng-pull-out ng-inline-element">' +
 				'<h3 class="article__promo-box__title">Tatomer Riesling 2012</h3>' +
@@ -94,7 +94,7 @@ describe('Promo Box', function () {
 			'</promo-box>'
 		);
 
-		$('promo-box').replaceWith(promoBoxTransform);
+		$ = promoBoxTransform($);
 		$.html().should.equal(
 			'<div data-trackable=\"promobox\" class="article__promo-box ng-pull-out ng-inline-element">' +
 				'<h3 class="article__promo-box__title">Tatomer Riesling 2012</h3>' +
@@ -111,7 +111,7 @@ describe('Promo Box', function () {
 			'</promo-box>'
 		);
 
-		$('promo-box').replaceWith(promoBoxTransform);
+		$ = promoBoxTransform($);
 		$.html().should.equal(
 			'<div data-trackable=\"promobox\" class="article__promo-box ng-pull-out ng-inline-element">' +
 				'<h3 class="article__promo-box__title"><a href="http://blogs.ft.com/nick-butler/2015/04/08/who-next-the-restructuring-begins-in-the-oil-and-gas-business/">Tatomer Riesling 2012</a></h3>' +
@@ -126,7 +126,7 @@ describe('Promo Box', function () {
 			'</promo-box>'
 		);
 
-		$('promo-box').replaceWith(promoBoxTransform);
+		$ = promoBoxTransform($);
 		$.html().should.equal(
 			'<div data-trackable=\"promobox\" class="article__promo-box ng-pull-out ng-inline-element">' +
 				'<h4 class="article__promo-box__headline"><a href="http://www.ft.com/indepth/greece-debt-crisis" title="Greece debt crisis in depth - FT.com">Greece debt crisis</a></h4>' +

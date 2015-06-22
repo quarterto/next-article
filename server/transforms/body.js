@@ -35,9 +35,6 @@ var transform = function ($, flags) {
 };
 
 module.exports = function(body, flags) {
-	// HACK around a bug in the content api by replacing <br></br> with <br>
-	// See: http://api.ft.com/content/e80e2706-c7ec-11e4-8210-00144feab7de
-	body = body.replace(/<br><\/br>/g, '<br>');
 	body = replaceEllipses(body);
 	body = replaceHrs(body);
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');

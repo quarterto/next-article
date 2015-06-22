@@ -3,8 +3,6 @@
 var fetchres = require('fetchres');
 var logger = require('ft-next-logger');
 var api = require('next-ft-api-client');
-var subheadersTransform = require('../transforms/subheaders');
-var addSubheaderIds = require('../transforms/add-subheader-ids');
 var bylineTransform = require('../transforms/byline');
 var cacheControl = require('../utils/cache-control');
 var extractTags = require('../utils/extract-tags');
@@ -48,9 +46,6 @@ module.exports = function(req, res, next) {
 			var article = articles[1];
 
 			var $ = bodyTransform(article.bodyXML, res.locals.flags);
-			var $subheaders = $('.ft-subhead')
-				.attr('id', addSubheaderIds)
-				.replaceWith(subheadersTransform);
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = res.locals.flags.userPrefsUseConceptId ? primaryTag.id : (primaryTag.taxonomy + ':"' + encodeURIComponent(primaryTag.name) + '"');
