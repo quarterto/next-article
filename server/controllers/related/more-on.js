@@ -4,6 +4,7 @@ var _ = require('lodash');
 require('array.prototype.find');
 var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
+var splunkLogger = require('ft-next-splunk-logger')('next-article');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
 
@@ -49,6 +50,7 @@ module.exports = function (req, res, next) {
 								})
 								.catch(function (err) {
 									if (err instanceof fetchres.ReadTimeoutError) {
+										splunkLogger('Timeout reading JSON for ids: %j', ids);
 										return [];
 									}
 									throw err;
