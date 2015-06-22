@@ -1,10 +1,10 @@
 'use strict';
 
-var $ = require('cheerio');
+var cheerio = require('cheerio');
 
-module.exports = function(opts) {
-	return function (index, el) {
-		var $el = $(el);
+module.exports = function($, flags) {
+	$('a[href^="http://video.ft.com/"]:empty').replaceWith(function (index, el) {
+		var $el = cheerio(el);
 		var href = $el.attr('href');
 		// key: name of source, value: regex to extract the video's id from the url
 		var sources = {
@@ -30,9 +30,11 @@ module.exports = function(opts) {
 				.attr('data-n-component', 'n-video')
 				.attr('data-n-video-source', videoSource)
 				.attr('data-n-video-id', videoId)
-				.attr('data-n-video-player', opts.brightcovePlayer ? 'brightcove' : '');
+				.attr('data-n-video-player', flags.brightcovePlayer ? 'brightcove' : '');
 		} else {
 			return '';
 		}
-	};
+	});
+
+	return $;
 };

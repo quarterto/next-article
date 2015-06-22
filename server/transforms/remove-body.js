@@ -1,7 +1,11 @@
 'use strict';
 
-var $ = require('cheerio');
+var cheerio = require('cheerio');
 
-module.exports = function(index, el) {
-	return $(el).children();
+module.exports = function ($) {
+	$('body').replaceWith(function(index, el) {
+		return cheerio(el).children();
+	});
+
+	return $;
 };

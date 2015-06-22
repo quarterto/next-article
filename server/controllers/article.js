@@ -47,11 +47,7 @@ module.exports = function(req, res, next) {
 			var articleV1 = articles[0];
 			var article = articles[1];
 
-			var $ = bodyTransform(article.bodyXML, {
-				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
-				brightcovePlayer: res.locals.flags.brightcovePlayer,
-				comboComponents: res.locals.flags.articleComboComponents
-			});
+			var $ = bodyTransform(article.bodyXML, res.locals.flags);
 			var $subheaders = $('.ft-subhead')
 				.attr('id', addSubheaderIds)
 				.replaceWith(subheadersTransform);
