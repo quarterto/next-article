@@ -81,3 +81,24 @@
 		}
 	}
 }
+.article__combo--multiple-big-number {
+	overflow: hidden;
+	background-color: #000000;
+	padding: 10px 0;
+
+	.article__big-number {
+		border-left-color: #ffffff;
+		color: #ffffff;
+		margin: 0;
+		padding-right: 10px;
+		clear: none;
+		max-width: 50%;
+
+		&:first-child {
+			border-left: 0
+		}
+	}
+	.o-big-number__content {
+		text-transform: uppercase;
+	}
+}
