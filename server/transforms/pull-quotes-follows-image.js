@@ -3,7 +3,7 @@
 var cheerio = require('cheerio');
 
 module.exports = function($, flags) {
-	if (flags.comboComponents) {
+	if (flags.articleComboComponents) {
 		$('pull-quote').each(function (index, el) {
 			var $el = cheerio(el);
 			/**
