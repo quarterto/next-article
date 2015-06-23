@@ -109,6 +109,10 @@ module.exports = function(req, res, next) {
 							viewModel.trialGridBarrier = res.locals.barrier.trialGrid;
 						}
 
+						if(res.locals.barrier.subscriptionGrid) {
+							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
+						}
+
 						if(res.locals.barrier.premiumSimple) {
 							viewModel.premiumSimpleBarrier = res.locals.barrier.premiumSimple;
 						}
