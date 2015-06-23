@@ -23,6 +23,34 @@ visualRegressionTest({
 			elements: {
 				article_body: '.article__body'
 			}
+		},
+		slideshow: {
+			path: "/7f473d26-be68-11e4-8036-00144feab7de",
+			widths: [500, 1400],
+			elements: {
+				article_body: '.article__gallery'
+			}
+		},
+		pull_quote: {
+			path: "/af5ea60e-1578-11e5-be54-00144feabdc0",
+			widths: [500, 1400],
+			elements: {
+				article_body: '.article__pull-quote'
+			}
+		},
+		promo_box: {
+			path: "/b2c235de-166a-11e5-b07f-00144feabdc0",
+			widths: [500, 1400],
+			elements: {
+				article_body: '.article__promo-box'
+			}
+		},
+		big_number: {
+			path: "/2a6c3d6a-0f62-11e5-897e-00144feabdc0",
+			widths: [500, 1400],
+			elements: {
+				article_body: '.article__big-number'
+			}
 		}
 	}
 });
