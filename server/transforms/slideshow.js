@@ -1,22 +1,27 @@
 "use strict";
 
-var $ = require('cheerio');
-module.exports = function(index, el) {
-	var $el = $(el);
+var cheerio = require('cheerio');
 
-	// If the contents of the slideshow a link is not empty, abort and don't promote to slideshow
-	if ($el.html() !== '') {
-		return $el;
-	}
+module.exports = function ($) {
+	$('a[href$="#slide0"]').replaceWith(function(index, el) {
+		var $el = cheerio(el);
 
-	var uuid = $el.attr('href').replace(/.*([a-zA-Z0-9-]{36}).*/, '$1');
-	var slideshow = '<ft-slideshow data-uuid="' + uuid + '" data-syncid="' + (index + 1) + '"></ft-slideshow>';
+		// If the contents of the slideshow a link is not empty, abort and don't promote to slideshow
+		if ($el.html() !== '') {
+			return $el;
+		}
 
-	// NOTE - can be removed once the slideshow is moved out of p's upstream
-	if ($el.parent('p').length) {
-		$el.parent().before(slideshow);
-		return '';
-	} else {
-		return slideshow;
-	}
+		var uuid = $el.attr('href').replace(/.*([a-zA-Z0-9-]{36}).*/, '$1');
+		var slideshow = '<ft-slideshow data-uuid="' + uuid + '" data-syncid="' + (index + 1) + '"></ft-slideshow>';
+
+		// NOTE - can be removed once the slideshow is moved out of p's upstream
+		if ($el.parent('p').length) {
+			$el.parent().before(slideshow);
+			return '';
+		} else {
+			return slideshow;
+		}
+	});
+
+	return $;
 };

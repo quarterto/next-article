@@ -34,6 +34,11 @@
 
 	.myft-feed__item__headline {
 		@include nTypeAlpha(4);
+		margin: 0;
+
+		@include oGridRespondTo(S) {
+			@include nTypeAlpha(3);
+		}
 		> a {
 			color: oColorsGetPaletteColor('cold-2');
 			text-decoration: none;
@@ -41,10 +46,6 @@
 				text-decoration: underline;
 			}
 		}
-		@include oGridRespondTo(S) {
-			@include nTypeAlpha(3);
-		}
-		margin: 0;
 	}
 
 	.myft-feed__item {
@@ -95,8 +96,8 @@
 	display: block;
 	padding: 0 0 6px;
 	&:before {
-		content: '';
 		@include nextIcon(email, oColorsGetPaletteColor('white'), 20);
+		content: '';
 		margin: -5px 0 0 -3px;
 		position: relative;
 		top: 5px;
@@ -107,8 +108,8 @@
 }
 
 .myft-reading-list__current-page:before {
-	content: 'Currently reading';
 	@include nTypeBeta(5);
+	content: 'Currently reading';
 	text-transform: uppercase;
 	display: block;
 }

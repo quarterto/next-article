@@ -29,6 +29,8 @@
 	font-weight: 200;
 	line-height: 1em;
 	box-sizing: border-box;
+	min-height: 56px;
+	border: 1px solid $box-colour;
 
 	@include oGridRespondTo(S) {
 		font-size: 20px;
@@ -42,9 +44,6 @@
 			clear: left;
 		}
 	}
-
-	min-height: 56px;
-	border: 1px solid $box-colour;
 
 	&.story-package__article--with-image {
 		padding-right: 110px;

@@ -9,7 +9,7 @@ describe('Remove Body', function () {
 
 	it('should remove potential wrapped body element', function() {
 		var $ = cheerio.load('<body><h1>Anxiety over the rally</h1><p>The Obama administration accused the UK of</p></body>');
-		$('body').replaceWith(removeBody);
+		$ = removeBody($);
 		expect($.html()).to.equal('<h1>Anxiety over the rally</h1><p>The Obama administration accused the UK of</p>');
 	});
 
