@@ -8,12 +8,19 @@ module.exports.init = function() {
 	var isFromMyFT = document.location.hash.indexOf('myft') > 0;
 	var isFromEmail = isFromMyFT && document.location.hash.indexOf('email') > 0;
 
+	// HACK: we often lose the hash in redirects, but if the user hasn't come here from another page
+	// we guess they came from email - otherwise we won't show the feature to enough users to draw
+	// any conclusions
+	var getsReadingList = isFromEmail || history.length === 1;
+
 	var hasSession = document.cookie.match(/FTSession=/);
 
-	if(!isFromEmail || !hasSession) {
+	if(!getsReadingList || !hasSession) {
 		return;
 	}
-
+	// TODO: service worker for offline
+	// TODO: caching - could we allow a long browser cache when e.g &cache=true and uuid in url?
+	// TODO: all calls to /myft... to go into myft client too, so we can add uuid to urls?
 	fetch('/myft/my-news?fragment=true&source=email-reading-list&limit=30&since=-24h',{
 		credentials: 'same-origin'
 	})
