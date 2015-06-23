@@ -46,7 +46,7 @@ module.exports = function(req, res, next) {
 			var article = articles[1];
 
 			var $ = bodyTransform(article.bodyXML, res.locals.flags);
-			var $subheaders =	$('.article__subhead');
+			var $subheaders = $('.article__subhead');
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = res.locals.flags.userPrefsUseConceptId ? primaryTag.id : (primaryTag.taxonomy + ':"' + encodeURIComponent(primaryTag.name) + '"');
