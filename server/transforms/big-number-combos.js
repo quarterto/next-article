@@ -3,7 +3,8 @@
 var cheerio = require('cheerio');
 
 module.exports = function($, flags) {
-	if (flags.articleComboComponents) {
+	// HACK - ugh, way of adding running this only on /54fba5c4-e2d6-11e4-aa1d-00144feab7de for now
+	if (flags.articleComboComponents && $('ft-content').attr('url').indexOf('dff6df70-e454-11e4-0e5f-978e959e1c97') !== -1) {
 		// HACK: for now, shove two a big numbers after the 3rd para
 		$.root().find('body').children('p').eq(2).after(
 			'<big-number>' +
