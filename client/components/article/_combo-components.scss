@@ -95,7 +95,7 @@
 		max-width: 50%;
 
 		&:first-child {
-			border-left: 0
+			border-left: 0;
 		}
 	}
 	.o-big-number__content {
@@ -112,8 +112,8 @@
 		border-left-color: #ffffff;
 
 		p {
+			@include nTypeDelta(1);
 			margin: 0;
-			@include nTypeDelta(2);
 		}
 	}
 	cite {
