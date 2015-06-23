@@ -8,6 +8,7 @@ var pullQuotes = require('./pull-quotes');
 var pullQuotesFollowsImage = require('./pull-quotes-follows-image');
 var bigNumber = require('./big-number');
 var bigNumberFollowsImage = require('./big-number-follows-image');
+var bigNumberCombos = require('./big-number-combos');
 var ftContent = require('./ft-content');
 var relativeLinks = require('./relative-links');
 var slideshow = require('./slideshow');
@@ -42,6 +43,7 @@ module.exports = function(body, flags) {
 	var $ = transform(cheerio.load(body), flags)
 		.with(slideshow)
 		.with(bigNumberFollowsImage)
+		.with(bigNumberCombos)
 		.with(bigNumber)
 		.with(externalImg)
 		.with(ftContent)
