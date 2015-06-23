@@ -101,4 +101,22 @@
 	.o-big-number__content {
 		text-transform: uppercase;
 	}
+	.article__pull-quote {
+		color: #ffffff;
+		margin: 0;
+		padding-right: 10px;
+		width: 50%;
+		clear: none;
+		float: left;
+		box-sizing: border-box;
+		border-left-color: #ffffff;
+
+		p {
+			margin: 0;
+			@include nTypeDelta(2);
+		}
+	}
+	cite {
+		display: none;
+	}
 }

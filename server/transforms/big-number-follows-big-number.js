@@ -19,6 +19,7 @@ module.exports = function($, flags) {
 				'</big-number-intro>' +
 			'</big-number>'
 		);
+		// HACK: and a big number and pull quote after the 5th
 		$.root().find('body').children('p').eq(4).after(
 			'<big-number>' +
 				'<big-number-headline><p>$588m</p></big-number-headline>' +
