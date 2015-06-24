@@ -5,10 +5,7 @@ var cheerio = require('cheerio');
 var replaceEllipses = require('./replace-ellipses');
 var replaceHrs = require('../transforms/replace-hrs');
 var pullQuotes = require('./pull-quotes');
-var pullQuotesFollowsImage = require('./pull-quotes-follows-image');
 var bigNumber = require('./big-number');
-var bigNumberFollowsImage = require('./big-number-follows-image');
-var bigNumberCombos = require('./big-number-combos');
 var ftContent = require('./ft-content');
 var relativeLinks = require('./relative-links');
 var slideshow = require('./slideshow');
@@ -20,6 +17,11 @@ var video = require('./video');
 var relatedInline = require('./related-inline');
 var addTracking = require('./add-tracking');
 var subheaders = require('./subheaders');
+// combo transforms
+var bigNumberCombos = require('./big-number-combos');
+var pullQuotesFollowsImage = require('./pull-quotes-follows-image');
+var bigNumberFollowsImage = require('./big-number-follows-image');
+var doubleImages = require('./double-images');
 
 var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
@@ -42,13 +44,16 @@ module.exports = function(body, flags) {
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 
 	var $ = transform(cheerio.load(body), flags)
-		.with(slideshow)
+		// combo components
 		.with(bigNumberFollowsImage)
+		.with(pullQuotesFollowsImage)
 		.with(bigNumberCombos)
+		.with(doubleImages)
+		// other transforms
+		.with(slideshow)
 		.with(bigNumber)
 		.with(externalImg)
-		.with(ftContent)
-		.with(pullQuotesFollowsImage)
+		// .with(ftContent)
 		.with(pullQuotes)
 		.with(promoBox)
 		.with(video)

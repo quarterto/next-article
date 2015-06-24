@@ -120,3 +120,19 @@
 		display: none;
 	}
 }
+.article__combo--double-image {
+	overflow: hidden;
+
+	.article__image-wrapper {
+		width: 50%;
+		float: left;
+		clear: none;
+
+		&:first-child {
+			padding-right: 10px;
+		}
+		&:last-child {
+			padding-left: 10px;
+		}
+	}
+}
