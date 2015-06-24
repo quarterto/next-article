@@ -135,6 +135,8 @@ module.exports = function(req, res, next) {
 					return viewModel;
 				})
 				.then(function(viewModel) {
+
+					// Big read article
 					if (viewModel.id === '54fba5c4-e2d6-11e4-aa1d-00144feab7de') {
 						return listicleXSLT(viewModel.body).then(function(transformedBody) {
 							viewModel.body = transformedBody;
