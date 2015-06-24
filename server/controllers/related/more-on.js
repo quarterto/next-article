@@ -51,7 +51,6 @@ module.exports = function (req, res, next) {
 								.catch(function (err) {
 									if (err instanceof fetchres.ReadTimeoutError) {
 										splunkLogger('Timeout reading JSON for ids: %j', ids);
-										return [];
 									}
 									throw err;
 								});
@@ -107,16 +106,17 @@ module.exports = function (req, res, next) {
 					var otherArticleModels = _.flatten(results
 						.slice(0, index)
 						.map(function(result) { return result[0]; }));
+
 					// dedupe
 					var dedupedArticles = articleModels
-						.map(function(articleModel) {
-							articleModel.id = articleModel.id.replace('http://www.ft.com/thing/', '');
-							return articleModel;
-						})
 						.filter(function(articleModel) {
 							return !otherArticleModels.find(function(otherArticleModel) {
 								return otherArticleModel.id === articleModel.id;
 							});
+						})
+						.map(function(articleModel) {
+							articleModel.id = articleModel.id.replace('http://www.ft.com/thing/', '');
+							return articleModel;
 						});
 					return dedupedArticles.length ? {
 						articles: dedupedArticles,
@@ -132,6 +132,8 @@ module.exports = function (req, res, next) {
 		.catch(function(err) {
 			if (err.message === 'No related') {
 				res.status(200).end();
+			} else if (err instanceof fetchres.ReadTimeoutError) {
+				res.status(500).end();
 			} else if (err instanceof fetchres.BadServerResponseError) {
 				res.status(404).end();
 			} else {

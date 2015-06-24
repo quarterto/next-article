@@ -59,6 +59,8 @@ module.exports = function(req, res, next) {
 			.catch(function (err) {
 				if (err.message === 'No related') {
 					res.status(200).end();
+				} else if (err instanceof fetchres.ReadTimeoutError) {
+					res.status(500).end();
 				} else if (err instanceof fetchres.BadServerResponseError) {
 					res.status(404).end();
 				} else {
@@ -126,6 +128,8 @@ module.exports = function(req, res, next) {
 			.catch(function (err) {
 				if (err.message === 'No related') {
 					res.status(200).end();
+				} else if (err instanceof fetchres.ReadTimeoutError) {
+					res.status(500).end();
 				} else if (err instanceof fetchres.BadServerResponseError) {
 					res.status(404).end();
 				} else {

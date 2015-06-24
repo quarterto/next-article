@@ -25,19 +25,18 @@
 	padding: 5px 0;
 	color: oColorsGetPaletteColor(cold-3);
 
-	&:before {
-		content: '';
-		margin-right: 5px;
-		position: relative;
-		top: 5px;
-	}
-
 	@include oGridRespondTo(S) {
 		@include nTypeBeta(2);
 		padding: 10px 0;
 		&:before {
 			top: 6px;
 		}
+	}
+	&:before {
+		content: '';
+		margin-right: 5px;
+		position: relative;
+		top: 5px;
 	}
 }
 
@@ -82,20 +81,19 @@
 }
 
 .more-on__article {
+	@include nTypeAlpha(4);
 	position: relative;
 	margin: 0;
 	padding: 5px 0;
-	@include nTypeAlpha(4);
 	box-sizing: border-box;
 
+	@include oGridRespondTo(S) {
+		@include nTypeAlpha(3);
+	}
 	.more-on__article__link {
 		border-top: 1px solid oColorsGetPaletteColor(warm-3);
 		padding-top: 10px;
 	}
-	@include oGridRespondTo(S) {
-		@include nTypeAlpha(3);
-	}
-
 	&:first-child {
 		margin-top: 0;
 

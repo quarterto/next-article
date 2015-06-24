@@ -10,12 +10,12 @@ $o-gallery-is-silent: false;
 @import "n-video/main";
 @include oFontsInclude(MetricWeb, thin);
 
-// Fix o-comments at 2.0.3 and o-comment-ui at 2.0.2 so we can use the build service for images
+// Fix o-comments at 2.0.6 and o-comment-ui at 2.0.2 so we can use the build service for images
 // Note needs to match the bower.json otherwise there is a risk that images from a different version
 // of o-comments/o-comment-ui will appear on the site.
 @import "o-assets/main";
 @include oAssetsSetModulePaths((
-	o-comments: '//build.origami.ft.com/files/o-comments@2.0.3',
+	o-comments: '//build.origami.ft.com/files/o-comments@2.0.6',
 	o-comment-ui: '//build.origami.ft.com/files/o-comment-ui@2.0.2'
 ));
 $o-comments-is-silent: false;
