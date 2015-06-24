@@ -6,7 +6,7 @@ module.exports = function ($) {
 	$('promo-box').replaceWith(function(index, el) {
 		var $el = cheerio(el);
 		var $promoBox = $('<aside></aside')
-			.attr({data-trackable:'promobox', role:'complementary'})
+			.attr({'data-trackable':'promobox', role:'complementary'})
 			.addClass('article__promo-box ng-pull-out ng-inline-element');
 		var $promoBoxTitle = $el.find('promo-title');
 		var $promoBoxHeadline = $el.find('promo-headline');
