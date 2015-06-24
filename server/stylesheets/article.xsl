@@ -13,25 +13,41 @@
 
 	<!-- Listicle -->
 	<xsl:template match="//ul">
-		<xsl:if test="li[figure][h4][em]">
-			<ul class="breakout o-grid-row">
+
+		<xsl:variable name="columns" select="count(li[figure][h4][em])" />
+
+		<xsl:if test="$columns > 1">
+
+			<xsl:variable name="grid">
+				<xsl:choose>
+					<xsl:when test="$columns = 4">12 M6 L3</xsl:when>
+					<xsl:when test="$columns = 3">12 M4</xsl:when>
+					<xsl:when test="$columns = 2">12 M6</xsl:when>
+				</xsl:choose>
+			</xsl:variable>
+
+			<ul class="listicle o-grid-row">
 				<xsl:for-each select="li[figure][h4][em]">
-					<li class="breakout__item" data-o-grid-colspan="12 M6 L3" role="group">
-						<img class="breakout__item-img">
+					<li class="listicle__item" role="group">
+						<xsl:attribute name="data-o-grid-colspan">
+							<xsl:value-of select="$grid"/>
+						</xsl:attribute>
+
+						<img class="listicle__item-image" style="min-width: 100%; max-width: 100%; height: 200px;">
 							<xsl:attribute name="src">
 								<xsl:value-of select="figure/img/@src"/>
 							</xsl:attribute>
 						</img>
-						<div class="breakout__item-content">
+						<div class="listicle__item-content">
 							<header>
-								<h3 class="breakout__item-headline">
+								<h3 class="listicle__item-headline">
 									<xsl:value-of select="h4" />
 								</h3>
-								<p class="breakout__item-subheading">
+								<p class="listicle__item-subheading">
 									<xsl:value-of select="em" />
 								</p>
 							</header>
-							<p class="breakout__item-description">
+							<p class="listicle__item-description">
 								<xsl:value-of select="text()[normalize-space()]" />
 							</p>
 						</div>

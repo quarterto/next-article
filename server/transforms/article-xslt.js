@@ -25,7 +25,7 @@ function fixSelfClosingTags(article) {
 	return article.replace(SELF_CLOSED_TAGS, function(match) {
 		var tagName = TAG_NAME.exec(match);
 
-		// The regex could ignore these but creates 1000+ steps
+		// The regex could ignore these but creates 100x more steps
 		if (['br', 'hr', 'img', 'input'].indexOf(tagName) > -1) {
 			return match;
 		}

@@ -12,7 +12,7 @@ var articlePrimaryTag = require('ft-next-article-primary-tag');
 var htmlToText = require('html-to-text');
 var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
-var listicleXSLT = require('../transforms/listicle-xslt');
+var articleXSLT = require('../transforms/article-xslt');
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -138,7 +138,7 @@ module.exports = function(req, res, next) {
 
 					// Big read article
 					if (viewModel.id === '54fba5c4-e2d6-11e4-aa1d-00144feab7de') {
-						return listicleXSLT(viewModel.body).then(function(transformedBody) {
+						return articleXSLT(viewModel.body).then(function(transformedBody) {
 							viewModel.body = transformedBody;
 							return viewModel;
 						});
