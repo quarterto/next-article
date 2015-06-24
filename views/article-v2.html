@@ -44,7 +44,7 @@
 					<div class="o-grid-row">
 						{{#if primaryTag}}
 						<div data-o-grid-colspan="12 S6" class="article__primary-theme">
-						<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTag.name}}</a>
+						<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link" aria-label="in-category-{{primaryTag.name}}">{{primaryTag.name}}</a>
 						</div>
 						{{/if}}
 						{{#if save}}
