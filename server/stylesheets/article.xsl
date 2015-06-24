@@ -33,9 +33,9 @@
 							<xsl:value-of select="$grid"/>
 						</xsl:attribute>
 
-						<img class="listicle__item-image" style="min-width: 100%; max-width: 100%; height: 200px;">
+						<img class="listicle__item-image">
 							<xsl:attribute name="src">
-								<xsl:value-of select="figure/img/@src"/>
+								<xsl:value-of select="figure/img/@src" />
 							</xsl:attribute>
 						</img>
 						<div class="listicle__item-content">

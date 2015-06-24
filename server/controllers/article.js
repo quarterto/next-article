@@ -13,6 +13,7 @@ var htmlToText = require('html-to-text');
 var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
+var htmlifyXML = require('../transforms/htmlify-xml');
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -147,6 +148,8 @@ module.exports = function(req, res, next) {
 					return viewModel;
 				})
 				.then(function(viewModel) {
+					// HACK: the article is XML as libxslt can't output HTML ATM
+					viewModel.body = htmlifyXML(viewModel.body);
 					return res.render('article-v2', viewModel);
 				});
 		})
