@@ -6,12 +6,16 @@
 			{{else}}
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 			{{/if}}
-				<h1 class="article__title">{{{title}}}</h1>
-				{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
-				{{! Probably something like article.summaries[0] }}
-				{{#if articleV1.editorial.standFirst}}
+
+				<header>
+					<h1 class="article__title">{{{title}}}</h1>
+					{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
+					{{! Probably something like article.summaries[0] }}
+					{{#if articleV1.editorial.standFirst}}
 					<p class="article__stand-first">{{{articleV1.editorial.standFirst}}}</p>
-				{{/if}}
+					{{/if}}
+				</header>
+
 				{{#if meta}}
 				<div class="article__meta">
 					{{#if tableOfContents}}
@@ -121,4 +125,3 @@
 			<div data-trackable="comments" class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset1"></div>
 	</div>
 {{/if}}
-
