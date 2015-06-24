@@ -45,12 +45,12 @@ visualRegressionTest({
 				article_body: '.article__big-number'
 			}
 		},
-        temporary_opt_out: {
+		temporary_opt_out: {
 			path: "/a9efefa2-5071-11e3-befe-00144feabdc0",
 			widths: [500, 1400],
 			elements: {
 				article_temp_opt_out: '.article__warning'
 			}
-        }
+		}
 	}
 });
