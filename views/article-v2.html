@@ -57,7 +57,7 @@
 				{{/if}}
 			</div>
 			{{#if tags}}
-				<div class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags}}12{{else}}hide{{/if}} L4">
+				<aside class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags}}12{{else}}hide{{/if}} L4" role="complementary">
 					<h3 class="article__tags__title">Topics mentioned in this article</h3>
 					<ul class="ng-list-reset" data-trackable="tags">
 						{{#each tags}}
@@ -66,7 +66,7 @@
 							</li>
 						{{/each}}
 					</ul>
-				</div>
+				</aside>
 			{{/if}}
 		</div>
 	</div>
