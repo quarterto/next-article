@@ -138,7 +138,7 @@ module.exports = function(req, res, next) {
 				.then(function(viewModel) {
 
 					// Big read article
-					if (viewModel.id === '54fba5c4-e2d6-11e4-aa1d-00144feab7de') {
+					if (res.locals.flags.articleComplexTransforms && viewModel.id === '54fba5c4-e2d6-11e4-aa1d-00144feab7de') {
 						return articleXSLT(viewModel.body).then(function(transformedBody) {
 							viewModel.body = transformedBody;
 							return viewModel;
