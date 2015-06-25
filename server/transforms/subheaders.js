@@ -18,11 +18,8 @@ module.exports = function ($, flags) {
 		});
 	} else {
 		$('.ft-subhead')
-			.attr('id', function(index) {
-				return 'crosshead-' + (index + 1);
-			})
 			.replaceWith(function(index, subhead) {
-				return '<h2 class="article__subhead article__subhead--crosshead ng-pull-out ">' +
+				return '<h2 class="article__subhead article__subhead--crosshead ng-pull-out" id="crosshead-' + (index + 1) + '">' +
 					cheerio(subhead).text() +
 				'</h2>';
 			});
