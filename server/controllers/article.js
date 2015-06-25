@@ -11,6 +11,7 @@ var images = require('../transforms/images');
 var articlePrimaryTag = require('ft-next-article-primary-tag');
 var htmlToText = require('html-to-text');
 var bodyTransform = require('../transforms/body');
+var getVisualCategorisation = require('ft-next-article-genre');
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -88,7 +89,8 @@ module.exports = function(req, res, next) {
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
 						moreOns: {},
-						meta: {}
+						meta: {},
+						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : null
 					};
 
 					if (res.locals.barrier) {
