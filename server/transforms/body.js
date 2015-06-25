@@ -22,6 +22,7 @@ var bigNumberCombos = require('./big-number-combos');
 var pullQuotesFollowsImage = require('./pull-quotes-follows-image');
 var bigNumberFollowsImage = require('./big-number-follows-image');
 var doubleImages = require('./double-images');
+var subheaderPrecedingImage = require('./subheader-preceding-image');
 
 var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
@@ -49,11 +50,12 @@ module.exports = function(body, flags) {
 		.with(pullQuotesFollowsImage)
 		.with(bigNumberCombos)
 		.with(doubleImages)
+		.with(subheaderPrecedingImage)
 		// other transforms
 		.with(slideshow)
 		.with(bigNumber)
 		.with(externalImg)
-		// .with(ftContent)
+		.with(ftContent)
 		.with(pullQuotes)
 		.with(promoBox)
 		.with(video)
