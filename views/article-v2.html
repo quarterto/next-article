@@ -1,4 +1,4 @@
-<article class="article{{#if showTOC}} article--toc{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if showTOC}} article--toc{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
 		<div class="article__header-inner o-grid-row">
 			{{#if barrier}}
@@ -6,11 +6,11 @@
 			{{else}}
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 			{{/if}}
-				<h3 class="article__title">{{{title}}}</h3>
+				<h1 class="article__title">{{{title}}}</h1>
 				{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
 				{{! Probably something like article.summaries[0] }}
 				{{#if articleV1.editorial.standFirst}}
-					<h4 class="article__stand-first">{{{articleV1.editorial.standFirst}}}</h4>
+					<p class="article__stand-first">{{{articleV1.editorial.standFirst}}}</p>
 				{{/if}}
 				{{#if meta}}
 				<div class="article__meta">
