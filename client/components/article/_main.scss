@@ -333,10 +333,16 @@ $header-offset: 30px;
 	}
 }
 .article__subhead {
-	padding-right: 40px;
-	position: relative;
-	border-bottom: 1px solid black;
+	@include nTypeBeta(2);
 	clear: left;
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+.article__subhead--crosshead {
+	border-bottom: 1px solid black;
+}
+.article__subhead--standard {
+	@include nTypeBeta(3);
 }
 .article__pull-quote,
 .article__block-quote,
