@@ -145,11 +145,11 @@ module.exports = function(req, res, next) {
 						});
 					}
 
+					// HACK: Cheerio is running in XML mode now
+					viewModel.body = htmlifyXML(viewModel.body);
 					return viewModel;
 				})
 				.then(function(viewModel) {
-					// HACK: the article is XML as libxslt can't output HTML ATM
-					viewModel.body = htmlifyXML(viewModel.body);
 					return res.render('article-v2', viewModel);
 				});
 		})
