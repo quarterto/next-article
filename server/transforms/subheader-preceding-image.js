@@ -7,11 +7,11 @@ module.exports = function($, flags) {
 	var firstImageUrl = $('body > ft-content:first-child').attr('url');
 	if (flags.articleComboComponents && firstImageUrl && firstImageUrl.indexOf('dff6df70-e454-11e4-0e5f-978e959e1c97') !== -1) {
 		$.root().find('body').children('p').eq(33).after(
-			'<h3 class="ft-subhead"><strong>The new big earners</strong></h3>' +
+			'<h3 class="ft-subhead">The new big earners</h3>' +
 			'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/dff6df70-e454-11e4-0e5f-978e959e1c97" data-embedded="true"></ft-content>'
 		);
 		$.root().find('body').children('p').eq(35).after(
-			'<h3 class="ft-subhead"><strong>The new big earners</strong></h3>' +
+			'<h3 class="ft-subhead">The new big earners</h3>' +
 			'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/dff6df70-e454-11e4-0e5f-978e959e1c97" data-embedded="true"></ft-content>'
 		);
 
