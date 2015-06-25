@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "array.prototype.find": "^1.0.0",
+    "bbc-xslt": "^0.4.3",
     "cheerio": "^0.19.0",
     "denodeify": "^1.2.1",
     "express-errors-handler": "^1.2.5",
@@ -20,7 +21,6 @@
     "ft-next-splunk-logger": "^1.3.2",
     "ft-poller": "0.0.4",
     "html-to-text": "^1.3.0",
-    "libxslt": "^0.4.1",
     "lodash": "^3.6.0",
     "merge": "^1.2.0",
     "next-ft-api-client": "^3.0.0"

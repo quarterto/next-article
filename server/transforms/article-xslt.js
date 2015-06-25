@@ -1,7 +1,7 @@
 'use strict';
 
 var denodeify = require('denodeify');
-var libxslt = require('libxslt');
+var libxslt = require('bbc-xslt');
 
 // HACK: Because libxslt cannot run in HTML mode ATM (<xsl:output/> is ignored)
 
