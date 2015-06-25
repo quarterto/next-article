@@ -46,7 +46,7 @@ module.exports = function(req, res, next) {
 			var article = articles[1];
 
 			var $ = bodyTransform(article.bodyXML, res.locals.flags);
-			var $subheaders = $('.article__subhead');
+			var $crossheads = $('.article__subhead--crosshead');
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = res.locals.flags.userPrefsUseConceptId ? primaryTag.id : (primaryTag.taxonomy + ':"' + encodeURIComponent(primaryTag.name) + '"');
@@ -71,14 +71,14 @@ module.exports = function(req, res, next) {
 						byline: bylineTransform(article.byline, articleV1),
 						tags: extractTags(article, articleV1, res.locals.flags),
 						body: $.html(),
-						subheaders: $subheaders.map(function() {
-							var $subhead = $(this);
+						crossheads: $crossheads.map(function() {
+							var $crosshead = $(this);
 							return {
-								text: $subhead.find('.article__subhead__title').text(),
-								id: $subhead.attr('id')
+								text: $crosshead.text(),
+								id: $crosshead.attr('id')
 							};
 						}).get(),
-						tableOfContents: res.locals.flags.articleTOC && $subheaders.length > 2,
+						tableOfContents: res.locals.flags.articleTOC && $crossheads.length > 2,
 						isColumnist: isColumnist,
 						// if there's a main image, or slideshow or video, we overlap them on the header
 						headerOverlap:
