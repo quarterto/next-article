@@ -19,6 +19,7 @@ var promoBox = require('./promo-box');
 var video = require('./video');
 var relatedInline = require('./related-inline');
 var addTracking = require('./add-tracking');
+var subheaders = require('./subheaders');
 
 var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
@@ -56,6 +57,7 @@ module.exports = function(body, flags) {
 		.with(relativeLinks)
 		.with(trimmedLinks)
 		.with(addTracking)
+		.with(subheaders)
 		.get();
 
 	return $;
