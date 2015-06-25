@@ -7,6 +7,9 @@ script:
 - make tidy
 language: node_js
 node_js:
-- '0.12.2'
+- 0.12.2
 after_success:
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && make deploy
+notifications:
+  slack:
+    secure: n+hRxiXZgLhVJbaK7QkGufO+aun7wt7yTvAN1TfMVM1cQutcm/aKX4lUYsfTDzWINPKd69Zq/iSk8HxoGxpfhxHnLNblpwdAiYdHFXIVXTe3x4VPGRSg8Q8pSi8uMcswX5qWse5Ft0Yg5YdckA+pydg7lci/KAksZ33mJPdRDkA=
