@@ -1,0 +1,28 @@
+.listicle {}
+
+.listicle__item {
+}
+
+.listicle__item-image {
+	width: 100%;
+}
+
+.listicle__item-content {
+	padding: 0 10px;
+	border-left: 1px solid oColorsGetPaletteColor('warm-3');
+}
+
+.listicle__item-headline {
+	@include nTypeCharlie(3);
+	margin: 0;
+}
+
+.listicle__item-subheading {
+	@include nTypeBeta(4);
+	margin: 0 0 12px;
+}
+
+.listicle__item-descriptionj {
+	@include nTypeAlpha(4);
+	margin: 0 0 12px;
+}
