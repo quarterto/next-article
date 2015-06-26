@@ -114,7 +114,7 @@ module.exports = function (req, res, next) {
 						// Use bare card type
 						articleModel.isBare = true;
 					});
-						
+
 					// dedupe
 					var dedupedArticles = articleModels
 						.filter(function(articleModel) {
