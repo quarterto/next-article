@@ -16,7 +16,8 @@
     "next-myft-client": "^1.0.0",
     "next-myft-ui": "^2.0.0",
     "n-topic": "Financial-Times/n-topic#^1.0.0-beta.1",
-    "next-beacon-component": "^1.3.3"
+    "next-beacon-component": "^1.3.3",
+    "next-card": "^5.6.5"
   },
   "resolutions": {
     "o-ft-icons": "next",

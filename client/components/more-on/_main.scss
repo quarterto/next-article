@@ -82,9 +82,9 @@
 
 .more-on__article {
 	@include nTypeAlpha(4);
-	position: relative;
 	margin: 0;
-	padding: 5px 0;
+	position: relative;
+	border-bottom: 1px solid oColorsGetPaletteColor(warm-2);
 	box-sizing: border-box;
 
 	@include oGridRespondTo(S) {
