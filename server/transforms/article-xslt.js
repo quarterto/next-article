@@ -12,16 +12,18 @@ function unwrap(article) {
 	return article.replace(/<\/?root>/g, '');
 }
 
-module.exports = function bigReadTransform(article) {
+module.exports = function bigReadTransform(article, opts) {
+	var stylesheet = (opts && opts.stylesheet) || 'main';
 	var parseFile = denodeify(libxslt.parseFile);
 
 	// If you pass in an XML document you get an XML document
-	var articleXML = libxslt.libxmljs.parseXml(wrap(article));
+	var articleXML = libxslt.libxmljs.parseXml(opts && opts.wrap ? wrap(article) : article);
 
-	return parseFile(__dirname + '/../stylesheets/article.xsl').then(function(stylesheet) {
+	return parseFile(__dirname + '/../stylesheets/' + stylesheet + '.xsl').then(function(stylesheet) {
 		var transformedXML = stylesheet.apply(articleXML);
 
 		//  We only want the (HTML) context, not the XML document as a whole
-		return unwrap(transformedXML.get('.').toString());
+		var xml = transformedXML.get('.').toString();
+		return opts && opts.wrap ? unwrap(xml) : xml;
 	});
 };

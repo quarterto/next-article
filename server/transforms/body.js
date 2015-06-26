@@ -59,7 +59,6 @@ module.exports = function(body, flags) {
 		.with(pullQuotes)
 		.with(promoBox)
 		.with(video)
-		.with(relatedInline)
 		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)
