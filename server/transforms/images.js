@@ -24,6 +24,7 @@ module.exports = function($body, opts) {
 	return Promise.all(imageSetPromises)
 		.then(function (imageSets) {
 			$body(imageSetSelector).replaceWith(function (index, image) {
+
 				// get the image set data
 				var $image = $(image);
 				var id = $image.attr('url').replace(capiMapiRegex, '');
@@ -75,6 +76,7 @@ module.exports = function($body, opts) {
 					$newImage.addClass('ng-media');
 				}
 				$figure.prepend($newImage);
+
 				if ($image.parent('p').length) {
 					$image.parent('p').before($figure);
 					return '';

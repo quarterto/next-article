@@ -44,7 +44,7 @@ module.exports = function(body, flags) {
 	body = replaceHrs(body);
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 
-	var $ = transform(cheerio.load(body), flags)
+	var $ = transform(cheerio.load(body, { xmlMode: true }), flags)
 		// combo components
 		.with(bigNumberFollowsImage)
 		.with(pullQuotesFollowsImage)

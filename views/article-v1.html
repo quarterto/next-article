@@ -1,11 +1,13 @@
-<article class="article" data-content-id="{{id}}" data-trackable="article-v1">
+<article id="site-content" role="main" class="article" data-content-id="{{id}}" data-trackable="article-v1">
 	<div class="article__header" data-trackable="header">
 		<div class="article__header-inner o-grid-row">
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-				<h3 class="article__title">{{{title}}}</h3>
-				{{#if standFirst}}
-					<h4 class="article__stand-first">{{{standFirst}}}</h4>
-				{{/if}}
+				<header>
+					<h1 class="article__title">{{{title}}}</h1>
+					{{#if standFirst}}
+					<p class="article__stand-first">{{{standFirst}}}</p>
+					{{/if}}
+				<header>
 				<div class="article__meta">
 					<p class="article__byline">
 						{{{byline}}}

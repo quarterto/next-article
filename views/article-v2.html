@@ -1,4 +1,4 @@
-<article id="site-content" role="main" class="article{{#if showTOC}} article--toc{{/if}}{{#if visualCat}} article--{{visualCat}}{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if showTOC}} article--toc{{/if}}{{#if visualCat}} article--{{visualCat}}{{/if}}{{#if @root.flags.serification}} article--serified{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
 	<div class="ad-placeholder ad-placeholder__leaderboard ad-placeholder__{{__name}}"></div>
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
 		<div class="article__header-inner o-grid-row">
@@ -7,12 +7,16 @@
 			{{else}}
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 			{{/if}}
-				<h1 class="article__title">{{{title}}}</h1>
-				{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
-				{{! Probably something like article.summaries[0] }}
-				{{#if articleV1.editorial.standFirst}}
+
+				<header>
+					<h1 class="article__title">{{{title}}}</h1>
+					{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
+					{{! Probably something like article.summaries[0] }}
+					{{#if articleV1.editorial.standFirst}}
 					<p class="article__stand-first">{{{articleV1.editorial.standFirst}}}</p>
-				{{/if}}
+					{{/if}}
+				</header>
+
 				{{#if meta}}
 				<div class="article__meta">
 					{{#if tableOfContents}}
@@ -40,7 +44,7 @@
 					<div class="o-grid-row">
 						{{#if primaryTag}}
 						<div data-o-grid-colspan="12 S6" class="article__primary-theme">
-						<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link">{{primaryTag.name}}</a>
+						<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link ng-title-link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}">{{primaryTag.name}}</a>
 						</div>
 						{{/if}}
 						{{#if save}}
@@ -53,7 +57,7 @@
 				{{/if}}
 			</div>
 			{{#if tags}}
-				<div class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags}}12{{else}}hide{{/if}} L4">
+				<aside class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags}}12{{else}}hide{{/if}} L4" role="complementary">
 					<h3 class="article__tags__title">Topics mentioned in this article</h3>
 					<ul class="ng-list-reset" data-trackable="tags">
 						{{#each tags}}
@@ -62,7 +66,7 @@
 							</li>
 						{{/each}}
 					</ul>
-				</div>
+				</aside>
 			{{/if}}
 		</div>
 	</div>

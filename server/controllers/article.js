@@ -12,6 +12,8 @@ var articlePrimaryTag = require('ft-next-article-primary-tag');
 var htmlToText = require('html-to-text');
 var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
+var articleXSLT = require('../transforms/article-xslt');
+var htmlifyXML = require('../transforms/htmlify-xml');
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -48,6 +50,7 @@ module.exports = function(req, res, next) {
 
 			var $ = bodyTransform(article.bodyXML, res.locals.flags);
 			var $crossheads = $('.article__subhead--crosshead');
+
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = res.locals.flags.userPrefsUseConceptId ? primaryTag.id : (primaryTag.taxonomy + ':"' + encodeURIComponent(primaryTag.name) + '"');
@@ -130,6 +133,27 @@ module.exports = function(req, res, next) {
 						viewModel.firstClickFree = res.locals.firstClickFreeModel;
 					}
 
+					return viewModel;
+				})
+				.then(function(viewModel) {
+
+					if (!viewModel.body) {
+						return viewModel;
+					}
+
+					// Big read article
+					if (res.locals.flags.articleComplexTransforms && viewModel.id === '54fba5c4-e2d6-11e4-aa1d-00144feab7de') {
+						return articleXSLT(viewModel.body).then(function(transformedBody) {
+							viewModel.body = transformedBody;
+							return viewModel;
+						});
+					}
+
+					// HACK: Cheerio is running in XML mode now
+					viewModel.body = htmlifyXML(viewModel.body);
+					return viewModel;
+				})
+				.then(function(viewModel) {
 					return res.render('article-v2', viewModel);
 				});
 		})
