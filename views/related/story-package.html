@@ -1,4 +1,4 @@
-<div class="story-package{{#if isInline}} story-package--inline ng-pull-out ng-inline-element{{/if}}">
+<aside class="story-package{{#if isInline}} story-package--inline ng-pull-out ng-inline-element{{/if}}" role="complementary">
 	<h3 class="story-package__title">Related {{#ifEquals articles.length 1}}story{{else}}stories{{/ifEquals}}</h3>
 	<ul class="story-package__articles ng-list-reset" data-trackable="articles">
 		{{#each articles}}
@@ -19,4 +19,4 @@
 			</li>
 		{{/each}}
 	</ul>
-</div>
+</aside>
