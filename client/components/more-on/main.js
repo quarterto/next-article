@@ -17,14 +17,14 @@ function allSettled(promises) {
 	return Promise.all(promises.map(resolveWhenSettled));
 }
 var initAds = function(flags) {
-	var called = false;
-	return function() {
-		if (!called && flags.get('ads')){
-			var ads = require('next-ads-component');
-			ads.init(flags);
-			called = true;
-		}
-	};
+// 	var called = false;
+// 	return function() {
+// 		if (!called && flags.get('ads')){
+// 			var ads = require('next-ads-component');
+// 			ads.init(flags);
+// 			called = true;
+// 		}
+// 	};
 };
 var $ = function(selector) {
 	return [].slice.call(document.querySelectorAll(selector));
