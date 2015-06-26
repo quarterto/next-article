@@ -15,7 +15,7 @@ module.exports = function($, flags) {
 			 */
 			var $p = $el.prev();
 			var $pChildren = $p.children();
-			var $image = $p.find('ft-content');
+			var $image = $p.find('ft-content[type$="ImageSet"]');
 			if (!$p.get(0) || $p.get(0).tagName !== 'p' || $pChildren.length !== 1 || $image.length !==1) {
 				return;
 			}
