@@ -8,12 +8,7 @@
 			<ul class="more-on__articles ng-list-reset">
 				{{#each articles}}
 					<li class="more-on__article">
-						<a href='/{{id}}' class='more-on__article__link ng-title-link' data-trackable='headline'>
-							{{#if image}}
-								<img class="more-on__article__image" src="{{image}}" />
-							{{/if}}
-							{{{title}}}
-						</a>
+						{{>next-card/templates/card}}
 					</li>
 				{{/each}}
 			</ul>

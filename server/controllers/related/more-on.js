@@ -107,6 +107,14 @@ module.exports = function (req, res, next) {
 						.slice(0, index)
 						.map(function(result) { return result[0]; }));
 
+					// add props for more-on cards
+					articleModels.forEach(function (articleModel) {
+						articleModel.headline = articleModel.title;
+						articleModel.lastUpdated = articleModel.publishedDate;
+						// Use bare card type
+						articleModel.isBare = true;
+					});
+						
 					// dedupe
 					var dedupedArticles = articleModels
 						.filter(function(articleModel) {
