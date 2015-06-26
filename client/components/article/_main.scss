@@ -4,6 +4,13 @@ $header-offset: 30px;
 .article {
 	font-family: $fontSans;
 }
+// Experiment to show serifed copy internally
+.article--serified {
+	&,
+	.article__body {
+		font-family: $n-type-serif !important;
+	}
+}
 
 //ARTICLE HEADER
 .article__header {
