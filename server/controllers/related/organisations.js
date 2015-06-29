@@ -93,7 +93,8 @@ module.exports = function(req, res, next) {
 									name: relation.name,
 									url: '/stream/organisationsId/' + relation.id,
 									conceptId: res.locals.flags.userPrefsUseConceptId ? relation.id : ('organisations:' + ['"', encodeURIComponent(relation.name), '"'].join('')),
-									taxonomy: 'organisations'
+									taxonomy: 'organisations',
+									tmeId: res.locals.flags.userPrefsUseConceptId ? null : relation.id
 								};
 								// get the stock id
 								relation.attributes.some(function (attribute) {

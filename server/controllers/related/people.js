@@ -105,7 +105,8 @@ module.exports = function(req, res, next) {
 									url: '/stream/peopleId/' + relation.id,
 									role: person && getCurrentRole(person),
 									conceptId: res.locals.flags.userPrefsUseConceptId ? relation.id : ('people:' + ['"', encodeURIComponent(relation.name), '"'].join('')),
-									taxonomy: 'people'
+									taxonomy: 'people',
+									tmeId: res.locals.flags.userPrefsUseConceptId ? null : relation.id
 								};
 							});
 						if (!people.length) {

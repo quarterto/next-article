@@ -33,7 +33,8 @@ module.exports = function(req, res, next) {
 							name: topic.name,
 							url: '/stream/topicsId/' + topic.id,
 							conceptId: res.locals.flags.userPrefsUseConceptId ? topic.id : ('topics:' + ['"', encodeURIComponent(topic.name), '"'].join('')),
-							taxonomy: 'topics'
+							taxonomy: 'topics',
+							tmeId: res.locals.flags.userPrefsUseConceptId ? null : topic.id
 						};
 
 						return model;
