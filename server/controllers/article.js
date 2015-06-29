@@ -162,7 +162,13 @@ module.exports = function(req, res, next) {
 			if (err instanceof fetchres.BadServerResponseError) {
 				return api.contentLegacy({ uuid: req.params.id })
 						.then(function(data) {
-							if (res.locals.flags.articleCapiV1Fallback) {
+
+							// HACK: It's going to be a *long time* before we support live blogs natively in Next.
+							// In the mean time pass users straight through to the old site when we see requests
+							// for blogs.
+							if (/http:\/\/blogs\.ft\.com\/.*liveblogs/.test(data.item.location.uri)) {
+								res.redirect(302, data.item.location.uri);
+							} else if (res.locals.flags.articleCapiV1Fallback) {
 								var article = data.item;
 								res.render('article-v1', {
 									falconUrl: data.item.location.uri,
