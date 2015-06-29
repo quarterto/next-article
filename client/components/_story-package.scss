@@ -37,9 +37,6 @@
 	}
 	&:first-child {
 		margin-top: 0;
-		.story-package__article__timestamp {
-			float: left;
-		}
 		.story-package__article__link {
 			clear: left;
 		}
@@ -81,6 +78,6 @@
 	margin-top: 5px;
 	color: oColorsGetPaletteColor('cold-1');
 	display: block;
-	margin: 10px 0;
+	margin: 8px 0;
 	text-transform: uppercase;
 }
