@@ -17,12 +17,11 @@ module.exports = function($, flags) {
 			if (!$elPrev.is('ft-content[type$="ImageSet"]')) {
 				return;
 			}
-			var elPrevHtml = $.html($elPrev);
 			$elPrev.remove();
 			$image.replaceWith(
 				'<div class="article__combo article__combo--double-image">' +
-					elPrevHtml +
-					$.html(image) +
+					'<ft-content type="' + $elPrev.attr('type') + '" url="' + $elPrev.attr('url') + '"></ft-content>' +
+					'<ft-content type="' + $image.attr('type') + '" url="' + $image.attr('url') + '"></ft-content>' +
 				'</div>'
 			);
 		});
