@@ -91,6 +91,7 @@ module.exports = function (req, res, next) {
 					topicModel.isAuthor = topicModel.taxonomy === 'authors';
 					topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
 					topicModel.conceptId = res.locals.flags.userPrefsUseConceptId ? topicModel.id : (topicModel.taxonomy + ':"' + encodeURIComponent(topicModel.name) + '"');
+					topicModel.tmeId = res.locals.flags.userPrefsUseConceptId ? null : topicModel.id;
 
 					if (topicModel.taxonomy === 'organisations') {
 						// get the stock id
