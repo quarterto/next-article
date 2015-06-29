@@ -9,7 +9,8 @@
         </xsl:copy>
     </xsl:template>
 
+    <xsl:include href="./server/stylesheets/slideshow.xsl" />
     <xsl:include href="./server/stylesheets/related-inline.xsl" />
-    <xsl:include href="./server/stylesheets/links.xsl" />
+    <!-- <xsl:include href="./server/stylesheets/links.xsl" /> -->
 
 </xsl:stylesheet>

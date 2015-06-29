@@ -7,13 +7,11 @@ var replaceHrs = require('../transforms/replace-hrs');
 var pullQuotes = require('./pull-quotes');
 var bigNumber = require('./big-number');
 var relativeLinks = require('./relative-links');
-var slideshow = require('./slideshow');
 var trimmedLinks = require('./trimmed-links');
 var externalImg = require('./external-img');
 var removeBody = require('./remove-body');
 var promoBox = require('./promo-box');
 var video = require('./video');
-var addTracking = require('./add-tracking');
 var subheaders = require('./subheaders');
 // combo transforms
 var bigNumberCombos = require('./big-number-combos');
@@ -50,7 +48,6 @@ module.exports = function(body, flags) {
 		.with(doubleImages)
 		.with(subheaderPrecedingImage)
 		// other transforms
-		.with(slideshow)
 		.with(bigNumber)
 		.with(externalImg)
 		.with(pullQuotes)
