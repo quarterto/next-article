@@ -6,9 +6,11 @@ $header-offset: 30px;
 }
 // Experiment to show serifed copy internally
 .article--serified {
-	&,
-	.article__body {
-		font-family: $n-type-serif !important;
+	.article__title {
+		font-family: $n-type-serif;
+	}
+	.article__body > p {
+		font-family: oFontsGetFontFamilyWithFallbacks(FinancierTextWeb);
 	}
 }
 
