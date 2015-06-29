@@ -6,7 +6,6 @@ var replaceEllipses = require('./replace-ellipses');
 var replaceHrs = require('../transforms/replace-hrs');
 var pullQuotes = require('./pull-quotes');
 var bigNumber = require('./big-number');
-var ftContent = require('./ft-content');
 var relativeLinks = require('./relative-links');
 var slideshow = require('./slideshow');
 var trimmedLinks = require('./trimmed-links');
@@ -14,7 +13,6 @@ var externalImg = require('./external-img');
 var removeBody = require('./remove-body');
 var promoBox = require('./promo-box');
 var video = require('./video');
-var relatedInline = require('./related-inline');
 var addTracking = require('./add-tracking');
 var subheaders = require('./subheaders');
 // combo transforms
@@ -55,14 +53,12 @@ module.exports = function(body, flags) {
 		.with(slideshow)
 		.with(bigNumber)
 		.with(externalImg)
-		.with(ftContent)
 		.with(pullQuotes)
 		.with(promoBox)
 		.with(video)
 		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)
-		.with(addTracking)
 		.with(subheaders)
 		.get();
 
