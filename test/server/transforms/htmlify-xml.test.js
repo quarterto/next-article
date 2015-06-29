@@ -23,4 +23,9 @@ describe('HTML-ify XML', function () {
 		expect(article).to.not.match(/<(?!br|hr|img)[^>]+?\/>/);
 	});
 
+	it.only('should handle tag names with hyphens', function() {
+		var xml = '<ft-slideshow data-uuid="9d142288-beae-11e4-8036-00144feab7de" data-syncid="1"/>'
+		expect(htmlifyXML(xml)).to.equal('<ft-slideshow data-uuid="9d142288-beae-11e4-8036-00144feab7de" data-syncid="1"></ft-slideshow>');
+	});
+
 });
