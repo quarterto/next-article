@@ -162,7 +162,7 @@ module.exports = function(req, res, next) {
 			if (err instanceof fetchres.BadServerResponseError) {
 				return api.contentLegacy({ uuid: req.params.id })
 						.then(function(data) {
-							if (data.item.location.uri.indexOf('?')) {
+							if (data.item.location.uri.indexOf('?') > -1) {
 								res.redirect(302, data.item.location.uri + "&ft_site=falcon");
 							} else {
 								res.redirect(302, data.item.location.uri + "?ft_site=falcon");
