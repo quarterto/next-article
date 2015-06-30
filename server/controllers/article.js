@@ -162,39 +162,15 @@ module.exports = function(req, res, next) {
 			if (err instanceof fetchres.BadServerResponseError) {
 				return api.contentLegacy({ uuid: req.params.id })
 						.then(function(data) {
-
-							// HACK: It's going to be a *long time* before we support live blogs natively in Next.
-							// In the mean time pass users straight through to the old site when we see requests
-							// for blogs.
-							if (/http:\/\/blogs\.ft\.com\/.*liveblogs/.test(data.item.location.uri)) {
-								res.redirect(302, data.item.location.uri);
-							} else if (res.locals.flags.articleCapiV1Fallback) {
-								var article = data.item;
-								res.render('article-v1', {
-									falconUrl: data.item.location.uri,
-									id: article.id,
-									title: article.title.title,
-									standFirst: article.editorial.standFirst,
-									byline: article.editorial.byline,
-									body: '<p>' + htmlToText.fromString(article.body.body, {
-											wordwrap: false,
-											ignoreHref: true,
-											ignoreImage: true
-										}).replace(/\n/g, "</p>\n<p>") + '</p>',
-									publishedDate: article.lifecycle.lastPublishDateTime,
-									layout: 'wrapper'
-								});
+							if (data.item.location.uri.indexOf('?')) {
+								res.redirect(302, data.item.location.uri + "&ft_site=falcon");
 							} else {
-								res.render('layout-404', { layout: 'wrapper', url: data.item.location.uri });
+								res.redirect(302, data.item.location.uri + "?ft_site=falcon");
 							}
 						})
 						.catch(function(err) {
 							if (err instanceof fetchres.BadServerResponseError) {
-								res.render('article-v1', {
-									title: 'Article not available in the new version of FT.com',
-									layout: 'wrapper',
-									falconUrl: 'http://www.ft.com/cms/s/' + req.params.id + '.html'
-								});
+								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon');
 							} else {
 								next(err);
 							}
