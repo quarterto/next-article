@@ -9,7 +9,6 @@ var extractTags = require('../utils/extract-tags');
 var extractUuid = require('../utils/extract-uuid');
 var images = require('../transforms/images');
 var articlePrimaryTag = require('ft-next-article-primary-tag');
-var htmlToText = require('html-to-text');
 var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
