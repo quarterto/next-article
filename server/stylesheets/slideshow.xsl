@@ -4,8 +4,8 @@
     <xsl:template match="a[substring(@href, string-length(@href) - 6) = '#slide0' and string-length(text()) = 0]">
         <ft-slideshow>
             <xsl:attribute name="data-uuid">
-                <!-- assume href is of the format http://www.ft.com/cms/s/[UUID].html#slide0 -->
-                <xsl:value-of select="substring-before(substring-after(@href, 'http://www.ft.com/cms/s/'), '.html#slide0')" />
+                <!-- assume href is of the format .*[UUID].html#slide0 -->
+                <xsl:value-of select="substring-before(substring(@href, string-length(@href) - 47), '.html#slide0')" />
             </xsl:attribute>
         </ft-slideshow>
     </xsl:template>
