@@ -28,9 +28,11 @@
 								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
 							</time>
 						{{/if}}
+						{{#if byline}}
 						<p class="article__byline">
 							by: {{{byline}}}
 						</p>
+						{{/if}}
 					{{/if}}
 					</div>
 				</header>
