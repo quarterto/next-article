@@ -19,13 +19,12 @@ module.exports = function($, flags) {
 			if (!$p.get(0) || $p.get(0).tagName !== 'p' || $pChildren.length !== 1 || $image.length !==1) {
 				return;
 			}
-			var imageHtml = $.html($image);
 			$image.remove();
 			var title = $el.find('big-number-headline').html();
 			var content = $el.find('big-number-intro').html();
 			$el.replaceWith(
 				'<div class="article__combo article__combo--big-number">' +
-					imageHtml +
+					'<ft-content type="' + $image.attr('type') + '" url="' + $image.attr('url') + '"></ft-content>' +
 					'<span class="article__combo__big-number">' +
 						'<span class="o-big-number__title">' +
 							title +
