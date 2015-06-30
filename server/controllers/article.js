@@ -47,7 +47,8 @@ module.exports = function(req, res, next) {
 				Promise.resolve(article[1]),
 				articleXSLT(article[1].bodyXML, {
 					params: {
-						renderSlideshows: res.locals.flags.galleries ? 1 : 0
+						renderSlideshows: res.locals.flags.galleries ? 1 : 0,
+						renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0
 					}
 				})
 			]);
