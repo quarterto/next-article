@@ -11,7 +11,7 @@ module.exports = function(els) {
 		if (uuid) {
 			var picturesSeen = [];
 			var totalPictures;
-			function fireBeacon (picture) {
+			var fireBeacon = function (picture) {
 				if (picturesSeen.indexOf(picture) > -1) {
 					return;
 				}
