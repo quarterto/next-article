@@ -6,7 +6,7 @@ module.exports = function(byline, articleV1) {
 			var name = author.term.name;
 			byline = byline.replace(
 				new RegExp('\\b(' + name + ')\\b'),
-				'<a class="article__author ng-title-link" href="/stream/authorsId/' + author.term.id + '" data-trackable="author">$1</a>'
+				'<a class="article__author" href="/stream/authorsId/' + author.term.id + '" data-trackable="author">$1</a>'
 			);
 		});
 	}
