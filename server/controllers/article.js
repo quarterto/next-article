@@ -49,13 +49,13 @@ module.exports = function(req, res, next) {
 				articleXSLT(article[1].bodyXML)
 			]);
 		})
-		.then(function(articles) {
+		.then(function(results) {
 			res.set(cacheControl);
 
-			var articleV1 = articles[0];
-			var article = articles[1];
+			var articleV1 = results[0];
+			var article = results[1];
 
-			var $ = bodyTransform(articles[2], res.locals.flags);
+			var $ = bodyTransform(results[2], res.locals.flags);
 			var $crossheads = $('.article__subhead--crosshead');
 
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
