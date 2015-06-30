@@ -1,0 +1,40 @@
+.article--analysis,
+.article--comment,
+.article--lifestyle {
+	.article__tag {
+		background-color: transparent;
+	}
+}
+
+.article--analysis {
+	.article__header {
+		@include oColorsFor(article-analysis, background);
+	}
+}
+
+.article--comment {
+	.article__header {
+		@include oColorsFor(article-comment, background);
+	}
+	.article__title {
+		@include nTypeCharlie(2);
+		@include oGridRespondTo(L) {
+			@include nTypeCharlieSize(1);
+		}
+	}
+	.article__stand-first {
+		@include nTypeEcho(3);
+	}
+}
+
+.article--lifestyle {
+	.article__header {
+		@include oColorsFor(article-lifestyle, background);
+	}
+	.article__title {
+		@include nTypeAlpha(2);
+		@include oGridRespondTo(L) {
+			@include nTypeAlphaSize(1);
+		}
+	}
+}
