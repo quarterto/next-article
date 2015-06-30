@@ -11,7 +11,6 @@ var trimmedLinks = require('./trimmed-links');
 var externalImg = require('./external-img');
 var removeBody = require('./remove-body');
 var promoBox = require('./promo-box');
-var video = require('./video');
 var subheaders = require('./subheaders');
 // combo transforms
 var bigNumberCombos = require('./big-number-combos');
@@ -52,7 +51,6 @@ module.exports = function(body, flags) {
 		.with(externalImg)
 		.with(pullQuotes)
 		.with(promoBox)
-		.with(video)
 		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)

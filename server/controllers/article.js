@@ -48,7 +48,8 @@ module.exports = function(req, res, next) {
 				articleXSLT(article[1].bodyXML, {
 					params: {
 						renderSlideshows: res.locals.flags.galleries ? 1 : 0,
-						renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0
+						renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
+						useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0
 					}
 				})
 			]);

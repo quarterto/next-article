@@ -13,5 +13,6 @@
     <xsl:include href="./server/stylesheets/related-inline.xsl" />
     <xsl:include href="./server/stylesheets/links.xsl" />
     <xsl:include href="./server/stylesheets/interactive-graphics.xsl" />
+    <xsl:include href="./server/stylesheets/video.xsl" />
 
 </xsl:stylesheet>
