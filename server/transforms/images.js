@@ -52,6 +52,9 @@ module.exports = function($body, opts) {
 
 				if ($image.parent().hasClass('article__promo-box')) {
 					$figure.addClass('article__promo-box__image');
+					if ($image.parent().hasClass('article__promo-box__long')) {
+						$figure.addClass('article__promo-box__long__image');
+					}					
 				} else if ($image.parent().is('td')) {
 					$figure.addClass('data-table__image');
 				} else {
