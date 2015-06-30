@@ -9,7 +9,6 @@ var extractTags = require('../utils/extract-tags');
 var extractUuid = require('../utils/extract-uuid');
 var images = require('../transforms/images');
 var articlePrimaryTag = require('ft-next-article-primary-tag');
-var htmlToText = require('html-to-text');
 var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
@@ -162,33 +161,15 @@ module.exports = function(req, res, next) {
 			if (err instanceof fetchres.BadServerResponseError) {
 				return api.contentLegacy({ uuid: req.params.id })
 						.then(function(data) {
-							if (res.locals.flags.articleCapiV1Fallback) {
-								var article = data.item;
-								res.render('article-v1', {
-									falconUrl: data.item.location.uri,
-									id: article.id,
-									title: article.title.title,
-									standFirst: article.editorial.standFirst,
-									byline: article.editorial.byline,
-									body: '<p>' + htmlToText.fromString(article.body.body, {
-											wordwrap: false,
-											ignoreHref: true,
-											ignoreImage: true
-										}).replace(/\n/g, "</p>\n<p>") + '</p>',
-									publishedDate: article.lifecycle.lastPublishDateTime,
-									layout: 'wrapper'
-								});
+							if (data.item.location.uri.indexOf('?') > -1) {
+								res.redirect(302, data.item.location.uri + "&ft_site=falcon");
 							} else {
-								res.render('layout-404', { layout: 'wrapper', url: data.item.location.uri });
+								res.redirect(302, data.item.location.uri + "?ft_site=falcon");
 							}
 						})
 						.catch(function(err) {
 							if (err instanceof fetchres.BadServerResponseError) {
-								res.render('article-v1', {
-									title: 'Article not available in the new version of FT.com',
-									layout: 'wrapper',
-									falconUrl: 'http://www.ft.com/cms/s/' + req.params.id + '.html'
-								});
+								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon');
 							} else {
 								next(err);
 							}
