@@ -14,5 +14,7 @@
     <xsl:include href="./server/stylesheets/links.xsl" />
     <xsl:include href="./server/stylesheets/interactive-graphics.xsl" />
     <xsl:include href="./server/stylesheets/video.xsl" />
+    <xsl:include href="./server/stylesheets/pull-quotes.xsl" />
+    <xsl:include href="./server/stylesheets/blockquotes.xsl" />
 
 </xsl:stylesheet>

@@ -4,7 +4,6 @@ var cheerio = require('cheerio');
 
 var replaceEllipses = require('./replace-ellipses');
 var replaceHrs = require('../transforms/replace-hrs');
-var pullQuotes = require('./pull-quotes');
 var bigNumber = require('./big-number');
 var relativeLinks = require('./relative-links');
 var trimmedLinks = require('./trimmed-links');
@@ -49,7 +48,6 @@ module.exports = function(body, flags) {
 		// other transforms
 		.with(bigNumber)
 		.with(externalImg)
-		.with(pullQuotes)
 		.with(promoBox)
 		.with(removeBody)
 		.with(relativeLinks)
