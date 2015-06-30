@@ -41,13 +41,24 @@ module.exports = function(req, res, next) {
 	});
 
 	Promise.all([articleV1Promise, articleV2Promise])
-		.then(function(articles) {
+		.then(function (article) {
+			return Promise.all([
+				Promise.resolve(article[0]),
+				Promise.resolve(article[1]),
+				articleXSLT(article[1].bodyXML, {
+					params: {
+						renderSlideshows: res.locals.flags.galleries ? 1 : 0
+					}
+				})
+			]);
+		})
+		.then(function(results) {
 			res.set(cacheControl);
 
-			var articleV1 = articles[0];
-			var article = articles[1];
+			var articleV1 = results[0];
+			var article = results[1];
 
-			var $ = bodyTransform(article.bodyXML, res.locals.flags);
+			var $ = bodyTransform(results[2], res.locals.flags);
 			var $crossheads = $('.article__subhead--crosshead');
 
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
@@ -143,7 +154,7 @@ module.exports = function(req, res, next) {
 
 					// Big read article
 					if (res.locals.flags.articleComplexTransforms && viewModel.id === '54fba5c4-e2d6-11e4-aa1d-00144feab7de') {
-						return articleXSLT(viewModel.body).then(function(transformedBody) {
+						return articleXSLT(viewModel.body, { stylesheet: 'article', wrap: true }).then(function(transformedBody) {
 							viewModel.body = transformedBody;
 							return viewModel;
 						});
