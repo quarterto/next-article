@@ -42,12 +42,14 @@ module.exports = function(req, res, next) {
 
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function (article) {
+			console.log(Object.keys(res.locals.flags));
 			return Promise.all([
 				Promise.resolve(article[0]),
 				Promise.resolve(article[1]),
 				articleXSLT(article[1].bodyXML, {
 					params: {
-						renderSlideshows: res.locals.flags.galleries ? 1 : 0
+						renderSlideshows: res.locals.flags.galleries ? 1 : 0,
+						renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0
 					}
 				})
 			]);
