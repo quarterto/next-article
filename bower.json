@@ -3,7 +3,7 @@
   "dependencies": {
     "next-express": "^10.0.0",
     "o-fonts": "^1.6.4",
-    "next-ads-component": "^5.0.0",
+    "next-ads-component": "^6.0.1",
     "next-barrier-component": "^7.0.0",
     "next-sass-setup": "^6.0.0",
     "o-quote": "bogdis-design",
