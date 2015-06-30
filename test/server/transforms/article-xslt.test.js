@@ -10,7 +10,7 @@ describe('Article XSLT', function () {
 
 	before(function(callback) {
 		fs.readFile(__dirname + '/../../fixtures/article.xml', function(err, articleXML) {
-			articleXSLT(articleXML.toString()).then(function(transformedXML) {
+			articleXSLT(articleXML.toString(), { stylesheet: 'article', wrap: true }).then(function(transformedXML) {
 				article = transformedXML;
 				callback();
 			});

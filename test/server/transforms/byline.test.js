@@ -18,7 +18,7 @@ describe('Byline', function () {
 			}
 		};
 
-		bylineTransform(byline, article).should.equal('<a class="article__author ng-title-link" href="/stream/authorsId/ABCD-efhsdf" data-trackable="author">George Parker</a>');
+		bylineTransform(byline, article).should.equal('<a class="article__author" href="/stream/authorsId/ABCD-efhsdf" data-trackable="author">George Parker</a>');
 	});
 
 	it('should wrap multiple authors in links', function() {
@@ -39,9 +39,9 @@ describe('Byline', function () {
 		};
 
 		bylineTransform(byline, article).should.equal(
-			'<a class="article__author ng-title-link" href="/stream/authorsId/ABCD-efhsdf" data-trackable="author">George Parker</a>' +
+			'<a class="article__author" href="/stream/authorsId/ABCD-efhsdf" data-trackable="author">George Parker</a>' +
 			' and ' +
-			'<a class="article__author ng-title-link" href="/stream/authorsId/OBCD-efhsdf" data-trackable="author">Chris Giles</a>'
+			'<a class="article__author" href="/stream/authorsId/OBCD-efhsdf" data-trackable="author">Chris Giles</a>'
 		);
 	});
 
