@@ -46,7 +46,11 @@ module.exports = function(req, res, next) {
 			return Promise.all([
 				Promise.resolve(article[0]),
 				Promise.resolve(article[1]),
-				articleXSLT(article[1].bodyXML)
+				articleXSLT(article[1].bodyXML, {
+					params: {
+						renderSlideshows: res.locals.flags.galleries ? 1 : 0
+					}
+				})
 			]);
 		})
 		.then(function(results) {

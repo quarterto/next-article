@@ -20,7 +20,7 @@ module.exports = function bigReadTransform(article, opts) {
 	var articleXML = libxslt.libxmljs.parseXml(opts && opts.wrap ? wrap(article) : article);
 
 	return parseFile(__dirname + '/../stylesheets/' + stylesheet + '.xsl').then(function(stylesheet) {
-		var transformedXML = stylesheet.apply(articleXML);
+		var transformedXML = stylesheet.apply(articleXML, opts && opts.params);
 
 		//  We only want the (HTML) context, not the XML document as a whole
 		var xml = transformedXML.get('.').toString();
