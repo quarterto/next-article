@@ -167,11 +167,6 @@ $header-offset: 30px;
 }
 .article__tag {
 	@include nListsItem($use-case: n-lists-inversed);
-	@include oGridRespondTo(L) {
-		margin-top: 0;
-		float: right;
-		clear: right;
-	}
 	&:first-child {
 		border-top-color: #ffffff;
 	}
