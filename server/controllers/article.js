@@ -42,7 +42,6 @@ module.exports = function(req, res, next) {
 
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function (article) {
-			console.log(Object.keys(res.locals.flags));
 			return Promise.all([
 				Promise.resolve(article[0]),
 				Promise.resolve(article[1]),

@@ -4,7 +4,7 @@
     <xsl:template match="a[@data-asset-type='interactive-graphic']">
         <xsl:choose>
 	    <xsl:when test="$renderInteractiveGraphics">
-                <iframe class="article__interactive" src="{@href}" width="{@data-width}" height="{@data-height}"></iframe>
+                <iframe class="article__interactive" src="{@href}" width="{@data-width}" height="{@data-height}" scrolling="no"></iframe>
             </xsl:when>
             <xsl:otherwise>
             </xsl:otherwise>
