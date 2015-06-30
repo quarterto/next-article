@@ -58,11 +58,11 @@ setup.bootstrap(function(result) {
 	comments.init(uuid, flags);
 	oDate.init(document.querySelector('.article'));
 	oExpander.init(document.querySelector('.article'), {
-			toggleSelector: 'button.o-expander__toggle',
-			toggleState: 'all',
-			collapsedToggleText: 'Show more ',
-			expandedToggleText: 'Show less '
-			});
+		toggleSelector: 'button.o-expander__toggle',
+		toggleState: 'all',
+		collapsedToggleText: 'Show more',
+		expandedToggleText: 'Show less'
+	});
 	scrollDepth.init(flags);
 	nAds.init(flags);
 	typogSwitcher.init(flags);
