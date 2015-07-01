@@ -10,7 +10,9 @@
 
     <xsl:template match="pull-quote-source">
         <xsl:if test="text()">
-            <cite class="o-quote__cite"><xsl:value-of select="text()" /></cite>
+            <cite class="o-quote__cite">
+                <xsl:apply-templates select="text()" />
+            </cite>
         </xsl:if>
     </xsl:template>
 

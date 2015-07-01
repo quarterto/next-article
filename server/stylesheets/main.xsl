@@ -18,5 +18,7 @@
     <xsl:include href="./server/stylesheets/blockquotes.xsl" />
     <xsl:include href="./server/stylesheets/big-number.xsl" />
     <xsl:include href="./server/stylesheets/subheaders.xsl" />
+    <xsl:include href="./server/stylesheets/images.xsl" />
+    <xsl:include href="./server/stylesheets/image-with-pull-quote.xsl" />
 
 </xsl:stylesheet>
