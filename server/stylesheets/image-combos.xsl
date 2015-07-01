@@ -28,14 +28,7 @@
     </xsl:template>
 
     <xsl:template match="big-number[preceding-sibling::*[1]/ft-content[@type='http://www.ft.com/ontology/content/ImageSet']]" mode="with-image">
-        <span class="article__big-number ng-pull-out ng-inline-element o-big-number o-big-number--standard">
-            <span class="o-big-number__title">
-                <xsl:apply-templates select="big-number-headline" />
-            </span>
-            <span class="o-big-number__content">
-                <xsl:apply-templates select="big-number-intro" />
-            </span>
-        </span>
+        <xsl:call-template name="big-number" />
     </xsl:template>
 
     <xsl:template match="big-number[preceding-sibling::*[1]/ft-content[@type='http://www.ft.com/ontology/content/ImageSet']]">
