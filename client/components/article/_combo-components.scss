@@ -184,30 +184,33 @@
 	}
 }
 .article__image-with-quote {
+	width: 446px;
+
 	.article__image-wrapper {
+		width: 100%;
 		margin-bottom: 0;
 	}
 	.article__image-caption {
 		display: none;
 	}
 	.article__pull-quote {
-		width: 600px;
 		border-left: 0;
-		margin-top: 0;
+		margin-top: -15px;
 		margin-right: 20px;
 		padding-left: 0;
-		padding-right: 10px;
+		padding-right: 20px;
 		box-sizing: border-box;
 		float: left;
 
 		p {
-			@include nTypeDelta(1);
+			@include nTypeDelta(2);
 			color: #000000;
 			margin-bottom: 0;
+			margin-top: 10px;
 
 			&:before,
 			&:after {
-				@include nTypeDelta(1);
+				@include nTypeDelta(2);
 				margin-top: 0;
 			}
 			&:first-of-type:before {
@@ -218,9 +221,8 @@
 		.o-quote__cite {
 			display: inline-block;
 			padding: 5px 10px;
-			font-size: 1.5em;
+			font-size: 20px;
 			line-height: 1em;
-			margin-top: -13px;
 			background-color: #f57323;
 			color: #ffffff;
 		}
