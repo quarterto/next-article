@@ -8,6 +8,9 @@ var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
 var excludePrimaryTheme = require('../../utils/exclude-primary-theme');
 
+// HACK
+var capiV2 = require('next-ft-api-client/src/utils/capi-v2');
+
 function getCurrentRole(person) {
 	var currentMembership = (person.memberships || []).find(function (membership) {
 		return _.find(membership.changeEvents, 'startedAt') && !_.find(membership.changeEvents, 'endedAt');
@@ -89,22 +92,46 @@ module.exports = function(req, res, next) {
 				if (!relations.length) {
 					throw new Error('No related');
 				}
-				var promises = relations.map(function (item) {
-					return api.mapping(item.term.id, 'people')
-						.catch(function(err) {
-							return null;
-						});
-				});
-				return Promise.all(promises)
-					.then(function (results) {
-						var people = results
-							.map(function (person, index) {
-								var relation = relations[index].term;
+				capiV2({
+					path: "/concordances?authority=http://api.ft.com/system/FT-TME&identifierValue=" + relations
+						.map(function(tag) { return tag.term.id; })
+						.join("&identifierValue=")
+				})
+					.then(function(results) {
+						if (results.length === 0) {
+							return [];
+						}
+						return Promise.all(
+							results.concordances
+								.filter(function(concordance) {
+									return concordance.identifier.authority === 'http://api.ft.com/system/FT-TME';
+								})
+								.map(function(concordance) {
+									return capiV2({ path: concordance.concept.apiUrl.replace('http://api.ft.com', '') })
+										.then(function(person) {
+											person.tmeId = concordance.identifier.identifierValue;
+											return person;
+										});
+								})
+							);
+					})
+					.then(function(results) {
+						return results.reduce(function(previousValue, person) {
+							var tmeId = person.tmeId;
+							delete person.tmeId;
+							previousValue[tmeId] = person;
+							return previousValue;
+						}, {});
+					})
+					.then(function(results) {
+						var people = relations
+							.map(function(relation, index) {
+								var person = results[relation.term.id];
 								return {
-									name: relation.name,
-									url: '/stream/peopleId/' + relation.id,
+									name: relation.term.name,
+									url: person ? '/people/' + person.id.replace('http://api.ft.com/things/', '') : '/stream/peopleId/' + relation.term.id,
 									role: person && getCurrentRole(person),
-									conceptId: relation.id,
+									conceptId: relation.term.id,
 									taxonomy: 'people'
 								};
 							});
