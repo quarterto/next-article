@@ -45,10 +45,12 @@ describe('Slideshow', function () {
 			});
 	});
 
-	it('should move slideshows out of conaining <p> if it‘s the only thing in it', function() {
+	it('should move slideshows out of containing <p> if it‘s the only thing in it', function() {
 		return transform(
 				'<body>' +
-					'<p><a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a></p>' +
+					'<p>' +
+						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+					'</p>' +
 				'</body>'
 			)
 			.then(function (transformedXml) {
