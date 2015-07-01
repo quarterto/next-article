@@ -8,10 +8,6 @@ var splunkLogger = require('ft-next-splunk-logger')('next-article');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
 
-function hasSemanticStream(taxonomy) {
-	return ['people', 'organisations'].indexOf(taxonomy) > -1;
-}
-
 module.exports = function (req, res, next) {
 	var topics = [];
 	var metadataFields = (req.query['metadata-fields'] || '').split(',');
