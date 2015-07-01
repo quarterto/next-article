@@ -7,7 +7,7 @@ var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
 var excludePrimaryTheme = require('../../utils/exclude-primary-theme');
-var tagsToFullV2Thing = require('../../lib/tags-to-full-v2-things');
+var tagsToFullV2Things = require('../../lib/tags-to-full-v2-things');
 
 function getCurrentRole(person) {
 	var currentMembership = (person.memberships || []).find(function(membership) {
@@ -90,7 +90,7 @@ module.exports = function(req, res, next) {
 				if (!relations.length) {
 					throw new Error('No related');
 				}
-				return tagsToFullV2Thing(relations)
+				return tagsToFullV2Things(relations)
 					.then(function(results) {
 						var people = relations
 							.map(function(relation) {

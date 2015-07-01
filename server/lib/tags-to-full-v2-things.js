@@ -1,7 +1,5 @@
 "use strict";
 
-var extractUuid = require('../utils/extract-uuid');
-
 // HACK
 var capiV2 = require('next-ft-api-client/src/utils/capi-v2');
 
