@@ -90,8 +90,7 @@ module.exports = function (req, res, next) {
 						'/stream/' + encodeURIComponent(topicModel.taxonomy) + 'Id/' + encodeURIComponent(topicModel.id);
 					topicModel.isAuthor = topicModel.taxonomy === 'authors';
 					topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
-					topicModel.conceptId = res.locals.flags.userPrefsUseConceptId ? topicModel.id : (topicModel.taxonomy + ':"' + encodeURIComponent(topicModel.name) + '"');
-					topicModel.tmeId = res.locals.flags.userPrefsUseConceptId ? null : topicModel.id;
+					topicModel.conceptId = topicModel.id;
 
 					if (topicModel.taxonomy === 'organisations') {
 						// get the stock id
