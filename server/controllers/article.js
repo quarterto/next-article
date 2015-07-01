@@ -116,7 +116,13 @@ module.exports = function(req, res, next) {
 						}
 
 						if(res.locals.barrier.trialGrid) {
+
 							viewModel.trialGridBarrier = res.locals.barrier.trialGrid;
+
+							if(!res.locals.barrier.trialGrid.packages.newspaper) {
+
+								viewModel.trialGridBarrier.missingNewspaper = {};
+							}
 						}
 
 						if(res.locals.barrier.subscriptionGrid) {
