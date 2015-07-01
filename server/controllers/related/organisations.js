@@ -92,9 +92,8 @@ module.exports = function(req, res, next) {
 								var organisationModel = {
 									name: relation.name,
 									url: '/stream/organisationsId/' + relation.id,
-									conceptId: res.locals.flags.userPrefsUseConceptId ? relation.id : ('organisations:' + ['"', encodeURIComponent(relation.name), '"'].join('')),
-									taxonomy: 'organisations',
-									tmeId: res.locals.flags.userPrefsUseConceptId ? null : relation.id
+									conceptId: relation.id,
+									taxonomy: 'organisations'
 								};
 								// get the stock id
 								relation.attributes.some(function (attribute) {

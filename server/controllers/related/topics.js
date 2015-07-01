@@ -32,9 +32,8 @@ module.exports = function(req, res, next) {
 						var model = {
 							name: topic.name,
 							url: '/stream/topicsId/' + topic.id,
-							conceptId: res.locals.flags.userPrefsUseConceptId ? topic.id : ('topics:' + ['"', encodeURIComponent(topic.name), '"'].join('')),
-							taxonomy: 'topics',
-							tmeId: res.locals.flags.userPrefsUseConceptId ? null : topic.id
+							conceptId: topic.id,
+							taxonomy: 'topics'
 						};
 
 						return model;
