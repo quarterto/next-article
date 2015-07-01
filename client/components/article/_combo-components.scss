@@ -184,13 +184,16 @@
 	}
 }
 .article__image-with-quote {
+	.article__image-wrapper {
+		margin-bottom: 0;
+	}
 	.article__image-caption {
 		display: none;
 	}
 	.article__pull-quote {
-		position: relative;
 		width: auto;
 		border-left: 0;
+		margin-top: 0;
 		padding-left: 0;
 
 		p {
@@ -204,12 +207,11 @@
 			}
 		}
 		.o-quote__cite {
-			position: absolute;
-			top: 0;
-			margin-top: -40px;
+			display: inline-block;
 			padding: 5px 10px;
 			font-size: 1.5em;
 			line-height: 1em;
+			margin-top: -13px;
 			background-color: #f57323;
 			color: #ffffff;
 		}
