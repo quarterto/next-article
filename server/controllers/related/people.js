@@ -98,6 +98,9 @@ module.exports = function(req, res, next) {
 						.join("&identifierValue=")
 				})
 					.then(function(results) {
+						if (results.length === 0) {
+							return [];
+						}
 						return Promise.all(
 							results.concordances
 								.filter(function(concordance) {

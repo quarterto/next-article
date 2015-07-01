@@ -3,6 +3,7 @@
 
 var expect = require('chai').expect;
 var request = require('request');
+require('nock');
 
 var helpers = require('./helpers');
 

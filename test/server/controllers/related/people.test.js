@@ -10,17 +10,18 @@ module.exports = function() {
 
 	describe('Related - People', function() {
 
-		it('should be successful ', function() {
+		it('should be successful', function() {
 			nock('https://ft-elastic-search.com')
 				.post('/v1_api_v2/item/_mget')
 				.reply(200, require('../../../fixtures/capi-v1-elastic-search.json'));
-			nock('https://next-v1tov2-mapping-dev.herokuapp.com')
-				.filteringPath(/^\/concordance_mapping_v1tov2\/people\/.*$/, '/concordance_mapping_v1tov2/people/XXX')
-				.get('/concordance_mapping_v1tov2/people/XXX')
-				.reply(200, require('../../../fixtures/mapping.json'));
+			nock('http://api.ft.com')
+				.filteringPath(/\/concordances\?.*/g, '/concordances')
+				.get('/concordances')
+				.reply(200, []);
 
+		console.log(helpers.host + '/article/f2b13800-c70c-11e4-8e1f-00144feab7de/people');
 			return fetch(helpers.host + '/article/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
-				.then(function (response) {
+				.then(function(response) {
 					response.status.should.equal(200);
 					return response.text().then(function (text) {
 						text.should.not.be.empty;
