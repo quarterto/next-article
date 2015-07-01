@@ -9,6 +9,19 @@ module.exports = function(els) {
 		var uuid = el.getAttribute('data-uuid');
 		var syncid = el.getAttribute('data-syncid');
 		if (uuid) {
+			var picturesSeen = [];
+			var totalPictures;
+			var fireBeacon = function (picture) {
+				if (picturesSeen.indexOf(picture) > -1) {
+					return;
+				}
+				picturesSeen.push(picture);
+				beacon.fire('gallery', {
+					picture: picture,
+					totalPictures: totalPictures,
+					percentageThrough: (100 / totalPictures) * (picturesSeen.length + 1)
+				});
+			};
 			fetch('/embedded-components/slideshow/' + uuid + '?syncid=' + syncid, { credentials: 'same-origin' })
 				.then(fetchres.text)
 				.then(function(data) {
@@ -21,14 +34,12 @@ module.exports = function(els) {
 				.then(function(el) {
 					el.addEventListener('oGallery.itemSelect', function (ev) {
 						if (ev.target.classList.contains('o-gallery--slideshow')) {
-							var picture = ev.detail.itemID + 1;
-							var totalPictures = ev.target.querySelectorAll('.o-gallery__item').length;
-							beacon.fire('gallery', {
-								picture: picture,
-								totalPictures: totalPictures,
-								percentageThrough: (100 / totalPictures) * picture
-							});
+							fireBeacon(ev.detail.itemID + 1);
 						}
+					});
+					el.addEventListener('oGallery.ready', function (ev) {
+						totalPictures = ev.target.querySelectorAll('.o-gallery__item').length;
+						fireBeacon(1);
 					});
 					return Gallery.init(el);
 				})
