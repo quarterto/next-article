@@ -171,8 +171,8 @@
 
 	.o-big-number__title {
 		display: inline-block;
-		background-color: orange;
-		color: purple;
+		background-color: #f57323;
+		color: #ffffff;
 		font-size: 3.2em;
 		padding: 5px 10px;
 	}
@@ -183,22 +183,35 @@
 		display: block;
 	}
 }
-.article__image-wrapper + .article__pull-quote {
-	width: auto;
-	border-left: 0;
-	padding-left: 0;
-
-	p {
-		@include nTypeDelta(1);
-		color: #000000;
-
-		&:before,
-		&:after {
-			@include nTypeDelta(1);
-			margin-top: 0;
-		}
-	}
-	.o-quote__cite {
+.article__image-with-quote {
+	.article__image-caption {
 		display: none;
+	}
+	.article__pull-quote {
+		position: relative;
+		width: auto;
+		border-left: 0;
+		padding-left: 0;
+
+		p {
+			@include nTypeDelta(1);
+			color: #000000;
+
+			&:before,
+			&:after {
+				@include nTypeDelta(1);
+				margin-top: 0;
+			}
+		}
+		.o-quote__cite {
+			position: absolute;
+			top: 0;
+			margin-top: -40px;
+			padding: 5px 10px;
+			font-size: 1.5em;
+			line-height: 1em;
+			background-color: #f57323;
+			color: #ffffff;
+		}
 	}
 }
