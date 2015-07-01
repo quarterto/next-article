@@ -1,28 +1,27 @@
 .listicle {}
 
-.listicle__item {
-}
+.listicle__item {}
 
 .listicle__item-image {
 	width: 100%;
 }
 
-.listicle__item-content {
-	padding: 0 10px;
-	border-left: 1px solid oColorsGetPaletteColor('warm-3');
+.listicle__item-feature {
+	@include nTypeBeta(1);
+	position: relative;
+	display: inline-block;
+	margin: -30px 0 10px;
+	background: #F57323;
+	padding: 5px;
+	color: white;
 }
 
 .listicle__item-headline {
-	@include nTypeCharlie(3);
-	margin: 0;
+	@include nTypeBeta(3);
+	margin: 0 0 5px;
 }
 
-.listicle__item-subheading {
-	@include nTypeBeta(4);
-	margin: 0 0 12px;
-}
-
-.listicle__item-descriptionj {
+.listicle__item-description {
 	@include nTypeAlpha(4);
-	margin: 0 0 12px;
+	margin: 0 0 10px;
 }

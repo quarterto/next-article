@@ -38,19 +38,15 @@
 								<xsl:value-of select="figure/img/@src" />
 							</xsl:attribute>
 						</img>
-						<div class="listicle__item-content">
-							<header>
-								<h3 class="listicle__item-headline">
-									<xsl:value-of select="h4" />
-								</h3>
-								<p class="listicle__item-subheading">
-									<xsl:value-of select="em" />
-								</p>
-							</header>
-							<p class="listicle__item-description">
-								<xsl:value-of select="text()[normalize-space()]" />
-							</p>
-						</div>
+						<p class="listicle__item-feature">
+							<xsl:value-of select="em" />
+						</p>
+						<h3 class="listicle__item-headline">
+							<xsl:value-of select="h4" />
+						</h3>
+						<p class="listicle__item-description">
+							<xsl:value-of select="text()[normalize-space()]" />
+						</p>
 					</li>
 				</xsl:for-each>
 			</ul>
@@ -91,17 +87,15 @@
 								</xsl:attribute>
 							</img>
 
-							<div class="featured-items__item-body">
-								<h3 class="featured-items__item-heading">
-									<xsl:value-of select="h4" />
-								</h3>
-								<p>
-									<span class="featured-items__item-price">
-										<xsl:value-of select="em" />
-									</span>
-									<xsl:copy-of select="text()[normalize-space()]" />
-								</p>
-							</div>
+							<h3 class="featured-items__item-heading">
+								<xsl:value-of select="h4" />
+							</h3>
+							<p class="featured-items__item-description">
+								<span class="featured-items__item-price">
+									<xsl:value-of select="em" />
+								</span>
+								<xsl:copy-of select="text()[normalize-space()]" />
+							</p>
 						</li>
 					</xsl:for-each>
 				</ul>
