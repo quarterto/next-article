@@ -164,11 +164,23 @@
 /**
  * NEWER VERSIONS
  */
-.article__image-wrapper + .article__big-number {
-	margin-top: -50px;
-	padding-left: 0;
-	border-left: 0;
+.article__image-combo {
+	width: 446px;
 
+	.article__image-wrapper {
+		width: 100%;
+		margin-bottom: 0;
+	}
+	.article__image-caption {
+		display: none;
+	}
+ }
+.article__image-combo--big-number {
+	.article__big-number {
+		margin-top: -37px;
+		padding-left: 0;
+		border-left: 0;
+	}
 	.o-big-number__title {
 		display: inline-block;
 		background-color: #f57323;
@@ -183,16 +195,7 @@
 		display: block;
 	}
 }
-.article__image-with-quote {
-	width: 446px;
-
-	.article__image-wrapper {
-		width: 100%;
-		margin-bottom: 0;
-	}
-	.article__image-caption {
-		display: none;
-	}
+.article__image-combo--pull-quote {
 	.article__pull-quote {
 		border-left: 0;
 		margin-top: -15px;
