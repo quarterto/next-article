@@ -9,7 +9,7 @@ function transform(xml) {
 	var parsedXml = libxslt.libxmljs.parseXml(xml);
 	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
 		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml).get('.').toString();
+			return stylesheet.apply(parsedXml, { useBrightcovePlayer: 0 }).get('.').toString();
 		});
 }
 

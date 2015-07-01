@@ -9,8 +9,6 @@ var trimmedLinks = require('./trimmed-links');
 var externalImg = require('./external-img');
 var removeBody = require('./remove-body');
 var promoBox = require('./promo-box');
-// combo transforms
-var bigNumberCombos = require('./big-number-combos');
 
 var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
@@ -33,8 +31,6 @@ module.exports = function(body, flags) {
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 
 	var $ = transform(cheerio.load(body, { xmlMode: true }), flags)
-		// combo components
-		// .with(bigNumberCombos)
 		// other transforms
 		.with(externalImg)
 		.with(promoBox)

@@ -9,37 +9,41 @@ function transform(xml) {
 	var parsedXml = libxslt.libxmljs.parseXml(xml);
 	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
 		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml, { renderSlideshows: 1 }).get('.').toString();
+			return stylesheet.apply(parsedXml).get('.').toString();
 		});
 }
 
-describe('Slideshow', function () {
+describe('Subheaders', function () {
 
-	it('should understand slideshows', function() {
+	it('should create subheaders', function () {
 		return transform(
 				'<body>' +
-					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+					'<h3 class="ft-subhead">The new big earners</h3>' +
 				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<h2 class="article__subhead article__subhead--standard">' +
+							'The new big earners' +
+						'</h2>' +
 					'</body>'
 				);
 			});
 	});
 
-	it('should only promote links to slideshows to embeds if <a> inner text not empty', function() {
+	it('should create crossheads, if subhead contains a strong tag', function () {
 		return transform(
 				'<body>' +
-					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
+					'<h3 class="ft-subhead"><strong>The new big earners</strong></h3>' +
 				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<a data-trackable="link" href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
+						'<h2 id="crosshead-1" class="article__subhead article__subhead--crosshead ng-pull-out">' +
+							'The new big earners' +
+						'</h2>' +
 					'</body>'
 				);
 			});

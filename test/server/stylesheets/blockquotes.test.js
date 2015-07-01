@@ -13,7 +13,7 @@ function transform(xml) {
 		});
 }
 
-describe.only('Blockquotes', function () {
+describe('Blockquotes', function () {
 
 	it('should add classes to blockquotes', function () {
 		return transform(

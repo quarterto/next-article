@@ -18,4 +18,8 @@
         </h2>
     </xsl:template>
 
+    <xsl:template match="h3[contains(@class, 'ft-subhead')]/strong">
+        <xsl:apply-templates />
+    </xsl:template>
+
 </xsl:stylesheet>
