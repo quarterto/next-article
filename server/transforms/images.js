@@ -54,7 +54,11 @@ module.exports = function($body, opts) {
 					$figure.addClass('data-table__image');
 				} else {
 					if (!isMain) {
-						$figure.addClass('article__inline-image ng-pull-out ng-inline-element');
+						if ( /\{L\}$/.test(imageSet.description)) {
+							$figure.addClass('article__full-width-image');
+						} else {
+							$figure.addClass('article__inline-image ng-pull-out ng-inline-element');
+						}
 					} else {
 						$figure.addClass('article__main-image ng-media-wrapper');
 					}
@@ -70,7 +74,7 @@ module.exports = function($body, opts) {
 				var $newImage = $('<img></img')
 					.addClass('article__image')
 					.attr('src', imageUrl)
-					.attr('alt', '');
+					.attr('alt', imageSet.description.replace(/\{\w\}$/, ''));
 				if (isMain) {
 					$newImage.addClass('ng-media');
 				}
