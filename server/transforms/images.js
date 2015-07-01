@@ -24,7 +24,6 @@ module.exports = function($body, opts) {
 	return Promise.all(imageSetPromises)
 		.then(function (imageSets) {
 			$body(imageSetSelector).replaceWith(function (index, image) {
-
 				// get the image set data
 				var $image = $(image);
 				var id = $image.attr('url').replace(capiMapiRegex, '');
@@ -40,9 +39,9 @@ module.exports = function($body, opts) {
 				if (!imageSet) {
 					return '';
 				}
-				var isMain =
-					fullWidthMainImages && image.parentNode.tagName === 'root' &&
-					$(image.parentNode).children().first().html() === $image.html();
+
+				// image is main if it's the first item in the article
+				var isMain = fullWidthMainImages && $body.root().children().get(0) === image;
 				var width = isMain ? 710 : 600;
 				var binaryId = imageSet.members[0].id.replace(capiMapiRegex, '');
 				var imageUrl = resize('ftcms:' + binaryId, { width: width });
