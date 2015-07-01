@@ -14,10 +14,10 @@ module.exports = function() {
 			nock('https://ft-elastic-search.com')
 				.post('/v1_api_v2/item/_mget')
 				.reply(200, require('../../../fixtures/capi-v1-elastic-search.json'));
-			nock('https://next-v1tov2-mapping-dev.herokuapp.com')
-				.filteringPath(/^\/concordance_mapping_v1tov2\/organisations\/.*$/, '/concordance_mapping_v1tov2/organisations/XXX')
-				.get('/concordance_mapping_v1tov2/organisations/XXX')
-				.reply(200, require('../../../fixtures/mapping.json'));
+			nock('http://api.ft.com')
+				.filteringPath(/\/concordances\?.*/g, '/concordances')
+				.get('/concordances')
+				.reply(200, []);
 
 			return fetch(helpers.host + '/article/f2b13800-c70c-11e4-8e1f-00144feab7de/organisations')
 				.then(function (response) {

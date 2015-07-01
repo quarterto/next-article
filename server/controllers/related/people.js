@@ -7,12 +7,10 @@ var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
 var excludePrimaryTheme = require('../../utils/exclude-primary-theme');
-
-// HACK
-var capiV2 = require('next-ft-api-client/src/utils/capi-v2');
+var tagsToFullV2Things = require('../../lib/tags-to-full-v2-things');
 
 function getCurrentRole(person) {
-	var currentMembership = (person.memberships || []).find(function (membership) {
+	var currentMembership = (person.memberships || []).find(function(membership) {
 		return _.find(membership.changeEvents, 'startedAt') && !_.find(membership.changeEvents, 'endedAt');
 	});
 	return currentMembership ? {
@@ -33,14 +31,14 @@ module.exports = function(req, res, next) {
 			metadata: true,
 			useElasticSearch: res.locals.flags.elasticSearchItemGet
 		})
-			.then(function (article) {
+			.then(function(article) {
 				res.set(cacheControl);
 				var personPromises = article.annotations
-					.filter(function (annotation) {
+					.filter(function(annotation) {
 						return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions' &&
 							annotation.type === 'PERSON';
 					})
-					.map(function (person) {
+					.map(function(person) {
 						return api.people({
 								uuid: extractUuid(person.uri)
 							})
@@ -53,10 +51,10 @@ module.exports = function(req, res, next) {
 				}
 				return Promise.all(personPromises);
 			})
-			.then(function (results) {
+			.then(function(results) {
 				var people = results
 					.filter(_.identity)
-					.map(function (person) {
+					.map(function(person) {
 						return {
 							name: person.prefLabel || (person.labels && person.labels[0]),
 							url: '/people/' + extractUuid(person.id),
@@ -70,7 +68,7 @@ module.exports = function(req, res, next) {
 					people: people
 				});
 			})
-			.catch(function (err) {
+			.catch(function(err) {
 				if (err.message === 'No related') {
 					res.status(200).end();
 				} else if (err instanceof fetchres.ReadTimeoutError) {
@@ -86,50 +84,20 @@ module.exports = function(req, res, next) {
 			uuid: req.params.id,
 			useElasticSearch: res.locals.flags.elasticSearchItemGet
 		})
-			.then(function (article) {
+			.then(function(article) {
 				res.set(cacheControl);
 				var relations = article.item.metadata.people.filter(excludePrimaryTheme(article));
 				if (!relations.length) {
 					throw new Error('No related');
 				}
-				capiV2({
-					path: "/concordances?authority=http://api.ft.com/system/FT-TME&identifierValue=" + relations
-						.map(function(tag) { return tag.term.id; })
-						.join("&identifierValue=")
-				})
-					.then(function(results) {
-						if (results.length === 0) {
-							return [];
-						}
-						return Promise.all(
-							results.concordances
-								.filter(function(concordance) {
-									return concordance.identifier.authority === 'http://api.ft.com/system/FT-TME';
-								})
-								.map(function(concordance) {
-									return capiV2({ path: concordance.concept.apiUrl.replace('http://api.ft.com', '') })
-										.then(function(person) {
-											person.tmeId = concordance.identifier.identifierValue;
-											return person;
-										});
-								})
-							);
-					})
-					.then(function(results) {
-						return results.reduce(function(previousValue, person) {
-							var tmeId = person.tmeId;
-							delete person.tmeId;
-							previousValue[tmeId] = person;
-							return previousValue;
-						}, {});
-					})
+				return tagsToFullV2Things(relations)
 					.then(function(results) {
 						var people = relations
-							.map(function(relation, index) {
+							.map(function(relation) {
 								var person = results[relation.term.id];
 								return {
 									name: relation.term.name,
-									url: person ? '/people/' + person.id.replace('http://api.ft.com/things/', '') : '/stream/peopleId/' + relation.term.id,
+									url: person ? '/people/' + extractUuid(person.id) : '/stream/peopleId/' + relation.term.id,
 									role: person && getCurrentRole(person),
 									conceptId: relation.term.id,
 									taxonomy: 'people'
@@ -144,7 +112,7 @@ module.exports = function(req, res, next) {
 					});
 
 			})
-			.catch(function (err) {
+			.catch(function(err) {
 				if (err.message === 'No related') {
 					res.status(200).end();
 				} else if (err instanceof fetchres.ReadTimeoutError) {

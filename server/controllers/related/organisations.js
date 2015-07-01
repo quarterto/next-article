@@ -5,6 +5,7 @@ var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
 var excludePrimaryTheme = require('../../utils/exclude-primary-theme');
+var tagsToFullV2Things = require('../../lib/tags-to-full-v2-things');
 
 module.exports = function(req, res, next) {
 	if (!res.locals.flags.articleRelatedContent) {
@@ -78,25 +79,19 @@ module.exports = function(req, res, next) {
 				if (!relations.length) {
 					throw new Error('No related');
 				}
-				var promises = relations.map(function (item) {
-					return api.mapping(item.term.id, 'organisations')
-						.catch(function(err) {
-							return null;
-						});
-				});
-				return Promise.all(promises)
-					.then(function (results) {
-						var organisations = results
-							.map(function (organisation, index) {
-								var relation = relations[index].term;
+				return tagsToFullV2Things(relations)
+					.then(function(results) {
+						var organisations = relations
+							.map(function(relation) {
+								var organisation = results[relation.term.id];
 								var organisationModel = {
-									name: relation.name,
-									url: '/stream/organisationsId/' + relation.id,
-									conceptId: relation.id,
+									name: relation.term.name,
+									url: organisation ? '/organisations/' + extractUuid(organisation.id) : '/stream/organisationsId/' + relation.term.id,
+									conceptId: relation.term.id,
 									taxonomy: 'organisations'
 								};
 								// get the stock id
-								relation.attributes.some(function (attribute) {
+								relation.term.attributes.some(function(attribute) {
 									if (attribute.key === 'wsod_key') {
 										organisationModel.tickerSymbol = attribute.value;
 										return true;
