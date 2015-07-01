@@ -160,3 +160,45 @@
 		left: 20px;
 	}
 }
+
+/**
+ * NEWER VERSIONS
+ */
+.article__image-wrapper + .article__big-number {
+	margin-top: -50px;
+	padding-left: 0;
+	border-left: 0;
+
+	.o-big-number__title {
+		display: inline-block;
+		background-color: orange;
+		color: purple;
+		font-size: 3.2em;
+		padding: 5px 10px;
+	}
+	.o-big-number__content {
+		font-size: 0.9em;
+		margin-top: 10px;
+		color: #000000;
+		display: block;
+	}
+}
+.article__image-wrapper + .article__pull-quote {
+	width: auto;
+	border-left: 0;
+	padding-left: 0;
+
+	p {
+		@include nTypeDelta(1);
+		color: #000000;
+
+		&:before,
+		&:after {
+			@include nTypeDelta(1);
+			margin-top: 0;
+		}
+	}
+	.o-quote__cite {
+		display: none;
+	}
+}

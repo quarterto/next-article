@@ -18,5 +18,6 @@
     <xsl:include href="./server/stylesheets/blockquotes.xsl" />
     <xsl:include href="./server/stylesheets/big-number.xsl" />
     <xsl:include href="./server/stylesheets/subheaders.xsl" />
+    <xsl:include href="./server/stylesheets/images.xsl" />
 
 </xsl:stylesheet>
