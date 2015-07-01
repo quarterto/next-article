@@ -8,6 +8,7 @@ var capiMapiRegex = require('../utils/capi-mapi-regex').content;
 
 module.exports = function($body, opts) {
 	var fullWidthMainImages = opts && opts.fullWidthMainImages;
+	var fullWidthInlineImages = opts && opts.fullWidthInlineImages;
 
 	var imageSetSelector = 'ft-content[type$="ImageSet"]';
 	var imageSetPromises = $body(imageSetSelector)
@@ -42,7 +43,8 @@ module.exports = function($body, opts) {
 
 				// image is main if it's the first item in the article
 				var isMain = fullWidthMainImages && $body.root().children().get(0) === image;
-				var width = isMain ? 710 : 600;
+				var isFullWidth = fullWidthInlineImages && /\{L\}$/.test(imageSet.description);
+				var width = isMain ? 710 : (isFullWidth ? 800 : 600);
 				var binaryId = imageSet.members[0].id.replace(capiMapiRegex, '');
 				var imageUrl = resize('ftcms:' + binaryId, { width: width });
 				var $figure = $('<figure></figure>')
@@ -54,7 +56,7 @@ module.exports = function($body, opts) {
 					$figure.addClass('data-table__image');
 				} else {
 					if (!isMain) {
-						if ( /\{L\}$/.test(imageSet.description)) {
+						if (isFullWidth) {
 							$figure.addClass('article__full-width-image');
 						} else {
 							$figure.addClass('article__inline-image ng-pull-out ng-inline-element');
@@ -71,7 +73,7 @@ module.exports = function($body, opts) {
 
 					$figure.append($figcaption);
 				}
-				var $newImage = $('<img></img')
+				var $newImage = $('<img></img>')
 					.addClass('article__image')
 					.attr('src', imageUrl)
 					.attr('alt', imageSet.description.replace(/\{\w\}$/, ''));
