@@ -42,7 +42,7 @@ module.exports = function(body, flags) {
 		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)
-		.with(subheaders)
+		// .with(subheaders)
 		.get();
 
 	return $;

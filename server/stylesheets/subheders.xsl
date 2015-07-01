@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:template match="h3[contains(@class, 'ft-subhead')]">
+        <h2 class="article__subhead">
+            <xsl:choose>
+                <xsl:when test="strong">
+                    <xsl:attribute name="id">crosshead-<xsl:number /></xsl:attribute>
+                    <xsl:attribute name="class">article__subhead--crosshead ng-pull-out</xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="class">article__subhead--standard</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+        </h2>
+    </xsl:template>
+
+</xsl:stylesheet>
