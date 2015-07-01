@@ -6,11 +6,6 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var splunkLogger = require('ft-next-splunk-logger')('next-article');
 var cacheControl = require('../../utils/cache-control');
-var extractUuid = require('../../utils/extract-uuid');
-
-function hasSemanticStream(taxonomy) {
-	return ['people', 'organisations'].indexOf(taxonomy) > -1;
-}
 
 module.exports = function (req, res, next) {
 	var topics = [];
@@ -24,7 +19,7 @@ module.exports = function (req, res, next) {
 		.then(function(article) {
 			res.set(cacheControl);
 			var moreOnPromises = metadataFields
-				.map(function(metadataField, index) {
+				.map(function(metadataField) {
 					var topic = article.item.metadata[metadataField];
 					// if it's an array, use the first
 					if (Array.isArray(topic)) {
@@ -34,38 +29,25 @@ module.exports = function (req, res, next) {
 						return null;
 					}
 					topics.push(topic);
-					var promises = [];
-					promises.push(
-						api.searchLegacy({
+					return api.searchLegacy({
 							query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
 							// get one extra, in case we dedupe
 							count: count + 1,
 							useElasticSearch: res.locals.flags.elasticSearchItemGet
 						})
-							.then(function(ids) {
-								return api.content({
-									uuid: ids,
-									useElasticSearch: res.locals.flags.elasticSearchItemGet,
-									type: 'Article'
-								})
-								.catch(function (err) {
-									if (err instanceof fetchres.ReadTimeoutError) {
-										splunkLogger('Timeout reading JSON for ids: %j', ids);
-									}
-									throw err;
-								});
+						.then(function(ids) {
+							return api.content({
+								uuid: ids,
+								useElasticSearch: res.locals.flags.elasticSearchItemGet,
+								type: 'Article'
 							})
-					);
-					if (res.locals.flags.semanticStreams && hasSemanticStream(topic.term.taxonomy)) {
-						promises.push(
-							api.mapping(topic.term.id, topic.term.taxonomy)
-								.then(function (v2Topic) {
-									topics[index].uuid = extractUuid(v2Topic.id);
-								})
-								.catch(function (err) {})
-						);
-					}
-					return Promise.all(promises);
+							.catch(function (err) {
+								if (err instanceof fetchres.ReadTimeoutError) {
+									splunkLogger('Timeout reading JSON for ids: %j', ids);
+								}
+								throw err;
+							});
+						});
 				})
 				.filter(_.identity);
 
@@ -77,8 +59,7 @@ module.exports = function (req, res, next) {
 		})
 		.then(function(results) {
 			var moreOns = results
-				.map(function(result, index) {
-					var articleModels = result[0];
+				.map(function(articleModels, index) {
 					var topic = topics[index];
 					var topicModel = {
 						id: topic.term.id,
