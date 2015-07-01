@@ -4,7 +4,6 @@ var cheerio = require('cheerio');
 
 var replaceEllipses = require('./replace-ellipses');
 var replaceHrs = require('../transforms/replace-hrs');
-var bigNumber = require('./big-number');
 var relativeLinks = require('./relative-links');
 var trimmedLinks = require('./trimmed-links');
 var externalImg = require('./external-img');
@@ -13,10 +12,6 @@ var promoBox = require('./promo-box');
 var subheaders = require('./subheaders');
 // combo transforms
 var bigNumberCombos = require('./big-number-combos');
-var pullQuotesFollowsImage = require('./pull-quotes-follows-image');
-var bigNumberFollowsImage = require('./big-number-follows-image');
-var doubleImages = require('./double-images');
-var subheaderPrecedingImage = require('./subheader-preceding-image');
 
 var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
@@ -40,13 +35,8 @@ module.exports = function(body, flags) {
 
 	var $ = transform(cheerio.load(body, { xmlMode: true }), flags)
 		// combo components
-		.with(bigNumberFollowsImage)
-		.with(pullQuotesFollowsImage)
-		.with(bigNumberCombos)
-		.with(doubleImages)
-		.with(subheaderPrecedingImage)
+		// .with(bigNumberCombos)
 		// other transforms
-		.with(bigNumber)
 		.with(externalImg)
 		.with(promoBox)
 		.with(removeBody)

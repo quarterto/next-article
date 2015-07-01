@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:template match="big-number">
+        <span class="article__big-number ng-pull-out ng-inline-element o-big-number o-big-number--standard">
+            <span class="o-big-number__title">
+                <xsl:apply-templates select="big-number-headline/*" />
+            </span>
+            <span class="o-big-number__content">
+                <xsl:apply-templates select="big-number-intro/*" />
+            </span>
+        </span>
+    </xsl:template>
+
+</xsl:stylesheet>

@@ -16,5 +16,6 @@
     <xsl:include href="./server/stylesheets/video.xsl" />
     <xsl:include href="./server/stylesheets/pull-quotes.xsl" />
     <xsl:include href="./server/stylesheets/blockquotes.xsl" />
+    <xsl:include href="./server/stylesheets/big-number.xsl" />
 
 </xsl:stylesheet>
