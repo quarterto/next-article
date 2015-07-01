@@ -9,7 +9,6 @@ var trimmedLinks = require('./trimmed-links');
 var externalImg = require('./external-img');
 var removeBody = require('./remove-body');
 var promoBox = require('./promo-box');
-var subheaders = require('./subheaders');
 // combo transforms
 var bigNumberCombos = require('./big-number-combos');
 
@@ -42,7 +41,6 @@ module.exports = function(body, flags) {
 		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)
-		// .with(subheaders)
 		.get();
 
 	return $;
