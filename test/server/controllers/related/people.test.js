@@ -19,7 +19,6 @@ module.exports = function() {
 				.get('/concordances')
 				.reply(200, []);
 
-		console.log(helpers.host + '/article/f2b13800-c70c-11e4-8e1f-00144feab7de/people');
 			return fetch(helpers.host + '/article/f2b13800-c70c-11e4-8e1f-00144feab7de/people')
 				.then(function(response) {
 					response.status.should.equal(200);
