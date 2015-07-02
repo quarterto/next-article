@@ -19,11 +19,15 @@ describe('HTML-ify XML', function () {
 		expect(article).to.not.contain('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
 	});
 
+	it('closes tags', function() {
+		expect(htmlifyXML('<br/><strong/>')).to.equal('<br/><strong></strong>');
+	});
+
 	it('fixes tags that have been self-closed but shouldn\'t be', function() {
 		expect(article).to.not.match(/<(?!br|hr|img)[^>]+?\/>/);
 	});
 
-	it('should handle tag names with hyphens', function() {
+	it('handles tag names with hyphens', function() {
 		var xml = '<ft-slideshow data-uuid="9d142288-beae-11e4-8036-00144feab7de" data-syncid="1"/>';
 		expect(htmlifyXML(xml)).to.equal('<ft-slideshow data-uuid="9d142288-beae-11e4-8036-00144feab7de" data-syncid="1"></ft-slideshow>');
 	});
