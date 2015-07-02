@@ -84,6 +84,11 @@ module.exports.init = function() {
 				expandedToggleText: 'Show less'
 			});
 			trackEvent({ 'articleMyFTReadingList':  true });
+
+			if(isFromEmail) {
+				container.classList.add('myft-reading-list--from-email');
+			}
+
 			container.classList.add('myft-reading-list__loaded');
 		}
 	});
