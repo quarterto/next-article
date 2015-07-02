@@ -1,4 +1,4 @@
-/* global describe, xit */
+/* global describe, it */
 'use strict';
 
 var denodeify = require('denodeify');
