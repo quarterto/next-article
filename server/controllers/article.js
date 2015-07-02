@@ -74,7 +74,10 @@ module.exports = function(req, res, next) {
 			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
-			return images($, { fullWidthMainImages: res.locals.flags.fullWidthMainImages })
+			return images($, {
+				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
+				fullWidthInlineImages: res.locals.flags.fullWidthInlineImages
+			})
 				.then(function($) {
 					var viewModel = {
 						firstClickFree: null,

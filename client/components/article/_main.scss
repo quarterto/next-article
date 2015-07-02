@@ -282,7 +282,7 @@ $header-offset: 30px;
 	}
 }
 .article__inline-image {
-	max-width: 600px;
+	max-width: 480px;
 
 	@include oGridRespondTo($until: S) {
 		margin: 0 auto;
@@ -300,6 +300,17 @@ $header-offset: 30px;
 	.article__inline-image & {
 		display: table-caption;
 		caption-side: bottom;
+	}
+}
+.article__full-width-image {
+	margin: 15px 0;
+
+	@include oGridRespondTo(L) {
+		margin-left: -100px;
+	}
+
+	.article__image {
+		min-width: 100%;
 	}
 }
 .article__subhead {
