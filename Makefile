@@ -1,4 +1,4 @@
-GIT_HASH := $(shell git rev-parse --short HEAD)
+hGIT_HASH := $(shell git rev-parse --short HEAD)
 TEST_APP := "ft-article-branch-${GIT_HASH}"
 
 .PHONY: test

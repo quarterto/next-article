@@ -3,7 +3,10 @@
 var express = require('ft-next-express');
 var logger = require('ft-next-logger');
 var app = module.exports = express();
+var barriers = require('ft-next-barriers');
 require('./lib/ig-poller').start();
+
+app.use(barriers.middleware(express.metrics));
 
 var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 
