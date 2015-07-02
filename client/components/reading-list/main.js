@@ -2,6 +2,12 @@
 
 var fetchres = require('fetchres');
 var oExpander = require('o-expander');
+var myftClient = require('next-myft-client');
+
+function trackEvent(detail) {
+	var event = new CustomEvent('beacon:myft', detail);
+	document.body.dispatchEvent(event);
+}
 
 module.exports.init = function() {
 
@@ -11,17 +17,36 @@ module.exports.init = function() {
 	// HACK: we often lose the hash in redirects, but if the user hasn't come here from another page
 	// we guess they came from email - otherwise we won't show the feature to enough users to draw
 	// any conclusions
-	var getsReadingList = isFromEmail || history.length === 1;
+	var getsReadingList = isFromMyFT || history.length === 1;
 
 	var hasSession = document.cookie.match(/FTSession=/);
 
-	if(!getsReadingList || !hasSession) {
+	Promise.all([
+		myftClient.has('preferred', 'email-daily-digest'),
+		myftClient.has('followed', '')
+	])
+	.then(function(results) {
+		if(results[1] && !results[0]) {
+			document.querySelector('.js-myft-email-signup').classList.add('myft-reading-list__loaded');
+			trackEvent({ 'articleEmailSignupPrompt':  true });
+		}
+	});
+
+
+	if(!hasSession || !getsReadingList) {
 		return;
+	}
+
+	var since = '-24h';
+	var timeStamp = document.querySelector('.article__timestamp');
+	if(timeStamp) {
+		var hoursDifference = Math.ceil((new Date() - new Date(timeStamp.getAttribute('datetime'))) / (1000 * 3600));
+		since = -Math.max(Math.min(hoursDifference + 24, 168) , 24) + 'h';
 	}
 	// TODO: service worker for offline
 	// TODO: caching - could we allow a long browser cache when e.g &cache=true and uuid in url?
 	// TODO: all calls to /myft... to go into myft client too, so we can add uuid to urls?
-	fetch('/myft/my-news?fragment=true&source=email-reading-list&limit=30&since=-24h',{
+	fetch('/myft/my-news?fragment=true&source=email-reading-list&limit=80&since=' + since,{
 		credentials: 'same-origin'
 	})
 	.then(fetchres.text)
@@ -44,10 +69,11 @@ module.exports.init = function() {
 				matchingHref[0].classList.add('myft-reading-list__current-page');
 
 				var nextArticle = allLinks[index+1];
+				var nextArticleCTA = document.querySelector('.myft-reading-list__title');
+
 				if(nextArticle) {
-					var nextArticleCTA = document.querySelector('.myft-reading-list__title');
 					nextArticleCTA.href = nextArticle.href;
-					nextArticleCTA.querySelector('.myft-reading-list__title-text').textContent = 'Continue reading your daily digest';
+					nextArticleCTA.querySelector('.myft-reading-list__title-text').textContent = isFromEmail ? 'Continue reading your daily digest' : 'Continue reading your personalised news feed';
 					nextArticleCTA.insertAdjacentHTML('beforeend', '<span class="myft-reading-list__next-headline">' + nextArticle.textContent + '</span>');
 				}
 			}
@@ -57,6 +83,11 @@ module.exports.init = function() {
 				collapsedToggleText: 'Show full list',
 				expandedToggleText: 'Show less'
 			});
+			trackEvent({ 'articleMyFTReadingList':  true });
+
+			if(isFromEmail) {
+				container.classList.add('myft-reading-list--from-email');
+			}
 
 			container.classList.add('myft-reading-list__loaded');
 		}
