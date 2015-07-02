@@ -15,7 +15,7 @@ function transform(xml) {
 
 describe('Images', function () {
 
-	it('should move images out of containing <p> if it‘s the only thing in it', function() {
+	xit('should move images out of containing <p> if it‘s the only thing in it', function() {
 		return transform(
 				'<body>' +
 					'<p>' +
