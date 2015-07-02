@@ -38,23 +38,87 @@
 								<xsl:value-of select="figure/img/@src" />
 							</xsl:attribute>
 						</img>
-						<div class="listicle__item-content">
-							<header>
-								<h3 class="listicle__item-headline">
-									<xsl:value-of select="h4" />
-								</h3>
-								<p class="listicle__item-subheading">
-									<xsl:value-of select="em" />
-								</p>
-							</header>
-							<p class="listicle__item-description">
-								<xsl:value-of select="text()[normalize-space()]" />
-							</p>
-						</div>
+						<p class="listicle__item-feature">
+							<xsl:value-of select="em" />
+						</p>
+						<h3 class="listicle__item-headline">
+							<xsl:value-of select="h4" />
+						</h3>
+						<p class="listicle__item-description">
+							<xsl:value-of select="text()[normalize-space()]" />
+						</p>
 					</li>
 				</xsl:for-each>
 			</ul>
 		</xsl:if>
 	</xsl:template>
+
+	<!-- Featured items -->
+	<xsl:template match="h2[
+		following-sibling::*[1][self::figure]
+		and following-sibling::*[2][self::p]
+		and following-sibling::*[3][self::ul]
+	]">
+		<div class="featured-items">
+			<h2 class="featured-items__heading"><xsl:value-of select="text()" /></h2>
+			<p class="featured-items__description">
+				<xsl:value-of select="following-sibling::p[1]" />
+			</p>
+
+			<img class="featured-items__media">
+				<xsl:attribute name="src">
+					<xsl:value-of select="following-sibling::figure/img/@src" />
+				</xsl:attribute>
+				<xsl:attribute name="alt">
+					<xsl:value-of select="following-sibling::figure/img/@alt" />
+				</xsl:attribute>
+			</img>
+
+			<div class="featured-items__body">
+				<ul class="featured-items__list">
+					<xsl:for-each select="following-sibling::ul[1]/li">
+						<li class="featured-items__item">
+							<img class="featured-items__item-media">
+								<xsl:attribute name="src">
+									<xsl:value-of select="figure/img/@src" />
+								</xsl:attribute>
+								<xsl:attribute name="alt">
+									<xsl:value-of select="figure/img/@alt" />
+								</xsl:attribute>
+							</img>
+
+							<h3 class="featured-items__item-heading">
+								<xsl:value-of select="h4" />
+							</h3>
+							<p class="featured-items__item-description">
+								<span class="featured-items__item-price">
+									<xsl:value-of select="em" />
+								</span>
+								<xsl:copy-of select="text()[normalize-space()]" />
+							</p>
+						</li>
+					</xsl:for-each>
+				</ul>
+			</div>
+		</div>
+	</xsl:template>
+
+	<xsl:template match="figure[
+		preceding-sibling::*[1][self::h2]
+		and following-sibling::*[1][self::p]
+		and following-sibling::*[2][self::ul]
+	]" />
+
+	<xsl:template match="p[
+		preceding-sibling::*[2][self::h2]
+		and preceding-sibling::*[1][self::figure]
+		and following-sibling::*[1][self::ul]
+	]" />
+
+	<xsl:template match="ul[
+		preceding-sibling::*[3][self::h2]
+		and preceding-sibling::*[2][self::figure]
+		and preceding-sibling::*[1][self::p]
+	]" />
 
 </xsl:stylesheet>
