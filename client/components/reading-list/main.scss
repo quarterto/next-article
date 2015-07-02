@@ -1,7 +1,8 @@
+.myft-email-signup,
 .myft-reading-list {
 	display: none;
 
-	&.myft-reading-list__loaded {
+	&__loaded {
 		display: block;
 		margin-bottom: 20px;
 	}
@@ -67,56 +68,55 @@
 		margin-left: 1.7em;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-3');
 	}
-}
 
-.myft-reading-list__title {
-
-	background: oColorsGetPaletteColor('red-1');
-	padding: 10px;
-	display: block;
-	margin: 0;
-	&,
-	a {
+	&__title {
+		background: oColorsGetPaletteColor('red-1');
+		padding: 10px;
 		display: block;
-		color: oColorsGetPaletteColor('white');
-		text-transform: none;
-		text-decoration: none;
-		&:hover {
-			text-decoration: underline;
+		margin: 0;
+		&,
+		a {
+			display: block;
+			color: oColorsGetPaletteColor('white');
+			text-transform: none;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.myft-ui__icon {
+			margin: 0 4px -4px;
 		}
 	}
 
-	.myft-ui__icon {
-		margin: 0 4px -4px;
+	&__title-text {
+		@include nTypeBeta(4);
+		display: block;
+		padding: 0 0 6px;
+		&:before {
+			@include nextIcon(email, oColorsGetPaletteColor('white'), 20);
+			content: '';
+			margin: -5px 0 0 -3px;
+			position: relative;
+			top: 5px;
+		}
 	}
-}
-
-.myft-reading-list__title-text {
-	@include nTypeBeta(4);
-	display: block;
-	padding: 0 0 6px;
-	&:before {
-		@include nextIcon(email, oColorsGetPaletteColor('white'), 20);
-		content: '';
-		margin: -5px 0 0 -3px;
-		position: relative;
-		top: 5px;
+	&__next-headline {
+		@include nTypeAlpha(3);
 	}
-}
-.myft-reading-list__next-headline {
-	@include nTypeAlpha(3);
-}
 
-.myft-reading-list__current-page:before {
-	@include nTypeBeta(5);
-	content: 'Currently reading';
-	text-transform: uppercase;
-	display: block;
-}
+	&__current-page:before {
+		@include nTypeBeta(5);
+		content: 'Currently reading';
+		text-transform: uppercase;
+		display: block;
+	}
 
 
-.myft-reading-list__red-icon {
-	@include nextIcon(myft-bolder, oColorsGetPaletteColor('red-1'), 16);
-	width: 34px;
-	margin: 0 8px -12px;
+	&__red-icon {
+		@include nextIcon(myft-bolder, oColorsGetPaletteColor('red-1'), 16);
+		width: 34px;
+		margin: 0 8px -12px;
+	}
 }
