@@ -2,7 +2,7 @@
 
 var DOCTYPE = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
 var SELF_CLOSED_TAGS = /<[^>]+?\/>/g;
-var TAG_NAME = /^<([^\s]+)/;
+var TAG_NAME = /^<([^\s\/>]+)/;
 
 function removeDoctype(article) {
 	return article.replace(DOCTYPE, '');
