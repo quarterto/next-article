@@ -184,7 +184,7 @@
 }
 .article__image-combo--big-number {
 	.article__big-number {
-		margin-top: -37px;
+		margin: -37px 0 0;
 		padding-left: 0;
 		border-left: 0;
 	}
@@ -192,8 +192,13 @@
 		display: inline-block;
 		background-color: #f57323;
 		color: #ffffff;
-		font-size: 3.2em;
 		padding: 5px 10px;
+		font-size: 2.5em;
+
+		@include oGridRespondTo(M) {
+			font-size: 3.2em;
+		}
+
 	}
 	.o-big-number__content {
 		font-size: 0.9em;
@@ -213,8 +218,9 @@
 		p {
 			@include nTypeDelta(2);
 			color: #000000;
-			margin-bottom: 0;
-			margin-top: 10px;
+			margin: 10px 0 0;
+			padding-left: 0.25em;
+			text-indent: -0.25em;
 
 			&:before,
 			&:after {
@@ -223,7 +229,7 @@
 			}
 			&:first-of-type:before {
 				content: '“';
-				margin-right: 7px;
+				margin-right: 0.05em;
 			}
 		}
 		.o-quote__cite {
