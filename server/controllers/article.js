@@ -85,7 +85,7 @@ module.exports = function(req, res, next) {
 						// HACK - Force the last word in the title never to be an ‘orphan’
 						title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
 						byline: bylineTransform(article.byline, articleV1),
-						tags: extractTags(article, articleV1, res.locals.flags),
+						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
 						crossheads: $crossheads.map(function() {
 							var $crosshead = $(this);
