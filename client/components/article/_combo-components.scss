@@ -1,6 +1,5 @@
 .article__combo {
 	position: relative;
-	margin-bottom: 20px;
 
 	.article__image-wrapper {
 		float: none;
@@ -165,7 +164,15 @@
  * NEWER VERSIONS
  */
 .article__image-combo {
-	width: 360px;
+	float: left;
+	margin: 0 0 20px;
+	border-bottom: 1px solid oColorsGetPaletteColor('warm-3');
+	max-width: 360px;
+	padding-bottom: 20px;
+
+	@include oGridRespondTo(S) {
+		margin-right: 20px;
+	}
 
 	.article__image-wrapper {
 		width: 100%;
@@ -198,12 +205,10 @@
 .article__image-combo--pull-quote {
 	.article__pull-quote {
 		border-left: 0;
-		margin-top: -15px;
-		margin-right: 20px;
+		margin: -15px 0 0;
 		padding-left: 0;
 		padding-right: 20px;
 		box-sizing: border-box;
-		float: left;
 
 		p {
 			@include nTypeDelta(2);
