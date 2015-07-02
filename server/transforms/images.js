@@ -44,7 +44,7 @@ module.exports = function($body, opts) {
 				// image is main if it's the first item in the article
 				var isMain = fullWidthMainImages && $body.root().children().get(0) === image;
 				var isFullWidth = fullWidthInlineImages && /\{L\}$/.test(imageSet.description);
-				var width = isMain ? 710 : (isFullWidth ? 800 : 600);
+				var width = isMain ? 710 : (isFullWidth ? 790 : 480);
 				var binaryId = imageSet.members[0].id.replace(capiMapiRegex, '');
 				var imageUrl = resize('ftcms:' + binaryId, { width: width });
 				var $figure = $('<figure></figure>')
