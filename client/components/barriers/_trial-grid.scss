@@ -36,38 +36,52 @@
 
 .trial-barrier-grid__header {
 	background-color: oColorsGetPaletteColor('warm-2');
-	padding: 10px;
-	margin-left: 5px;
-	margin-right: 5px;
 	h2 {
 		@include nTypeBeta(3);
 		@include oGridColumn((default: full-width, L: three-quarters));
-		text-align: center;
-		margin-bottom: 10px;
+	}
 
-		@include oGridRespondTo(L) {
-			text-align: left;
-			margin-bottom: 0;
-		}
+	h2 {
+		padding-left: 10px;
+	}
+
+	h2 .trial-barrier-grid__heading-pretext {
+		display: block;
+		padding-top: 10px;
+	}
+
+	h2 .trial-barrier-grid__article-title {
+		font-weight: normal;
+		display: block;
+		margin-bottom: 10px;
 	}
 
 	.trial-barrier-grid__sign-in {
 		@include nTypeBeta(4);
 		@include oGridColumn((default: full-width, L: one-quarter));
-		text-align: center;
-		font-weight: normal;
+
+		background-color: oColorsGetPaletteColor('warm-3');
+		padding: 10px;
 
 		@include oGridRespondTo(L) {
-			@include nTypeBeta(3);
+			background-color: oColorsGetPaletteColor('warm-2');
 			text-align: right;
-			font-weight: normal;
+			padding-top: 12px;
+		}
+
+	}
+
+	.trial-barrier-grid__pretext {
+		@include oGridRespondTo(L) {
+			display: block;
 		}
 	}
 
 	.trial-barrier-grid__sign-in a {
+		text-decoration: none;
 		color: oColorsGetPaletteColor('link-1');
-		&:hover {
-			text-decoration: none;
+		@include oGridRespondTo(L) {
+			display: block;
 		}
 	}
 }
