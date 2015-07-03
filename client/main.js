@@ -15,6 +15,7 @@ var toc = require('./components/toc/main');
 var comments = require('./components/comments/main');
 var readingList = require('./components/reading-list/main');
 var scrollDepth = require('./components/article/scroll-depth');
+var typogSwitcher = require('./components/typography-switcher/main');
 
 oViewport.listenTo('resize');
 
@@ -57,4 +58,5 @@ setup.bootstrap(function(result) {
 	oDate.init(document.querySelector('.article'));
 	scrollDepth.init(flags);
 	nAds.init(flags);
+	typogSwitcher.init(flags);
 });
