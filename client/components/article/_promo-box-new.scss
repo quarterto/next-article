@@ -2,26 +2,14 @@
 	margin-top: 25px;
 	padding: 10px;
 	background-color: oColorsGetPaletteColor('warm-2');
-	> * {
-		margin: 10px 0 0;
-	}
 	> *:first-child {
-		margin-top: 0px;
+		margin-top: 0;
 	}
 	> .promo-box__title__wrapper {
 		margin-top: -45px;
 		margin-left: -10px;
 	}
 	> .o-expander__toggle {
-		@include oColorsFor(expander-text, text);
-		margin: 0;
-		padding: 0;
-		background: none;
-		font-family: oFontsGetFontFamilyWithFallbacks(BentonSans);
-		font-weight: normal;
-		font-size: 12px;
-		cursor: pointer;
-		border: 0;
 		i {
 			@include nextIcon(arrow-down, black, 12);
 			@include oFtIconsBaseIconStyles();
@@ -43,10 +31,6 @@
 		display: table;
 		clear: both;
 	}
-
-	.promo-box__image figcaption {
-		display: none;
-	}
 }
 
 .promo-box__long {
@@ -60,7 +44,7 @@
 .promo-box__title {
 	font-size: 20px;
 	font-weight: 400;
-	line-height: 1em;
+	line-height: 1;
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 5px 10px;
@@ -73,8 +57,9 @@
 	}
 }
 .promo-box__headline {
+	margin: 10px 0 0;
 	font-size: 25px;
-	line-height: 1em;
+	line-height: 1;
 	font-weight: 100;
 	color: #000000;
 
@@ -90,11 +75,17 @@
 	}
 }
 
+.promo-box__image {
+	margin: 10px 10px 10px 0;
+	figcaption {
+		display: none;
+	}
+}
+
 .promo-box__long__image {
 	@include oGridRespondTo(S) {
 		float: left;
 		margin-right: 10px;
-		width: inherit;
 		max-width: 280px;
 	}
 }
