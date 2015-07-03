@@ -4,11 +4,6 @@ var fetchres = require('fetchres');
 var oExpander = require('o-expander');
 var myftClient = require('next-myft-client');
 
-function trackEvent(detail) {
-	var event = new CustomEvent('beacon:myft', detail);
-	document.body.dispatchEvent(event);
-}
-
 module.exports.init = function() {
 
 	var isFromMyFT = document.location.hash.indexOf('myft') > 0;
@@ -28,7 +23,6 @@ module.exports.init = function() {
 	.then(function(results) {
 		if(results[1] && !results[0]) {
 			document.querySelector('.js-myft-email-signup').classList.add('myft-reading-list__loaded');
-			trackEvent({ 'articleEmailSignupPrompt':  true });
 		}
 	});
 
@@ -83,7 +77,6 @@ module.exports.init = function() {
 				collapsedToggleText: 'Show full list',
 				expandedToggleText: 'Show less'
 			});
-			trackEvent({ 'articleMyFTReadingList':  true });
 
 			if(isFromEmail) {
 				container.classList.add('myft-reading-list--from-email');
