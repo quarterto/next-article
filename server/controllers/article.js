@@ -111,6 +111,14 @@ module.exports = function(req, res, next) {
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : null
 					};
 
+					res.locals.barrier = {
+						trialGrid: {
+							packages: {
+								newspaper: {}
+							}
+						}
+					};
+
 					if (res.locals.barrier) {
 
 						if(res.locals.barrier.trialSimple) {
@@ -125,6 +133,8 @@ module.exports = function(req, res, next) {
 
 								viewModel.trialGridBarrier.missingNewspaper = {};
 							}
+
+							viewModel.trialGridBarrier.articleTitle = viewModel.title;
 						}
 
 						if(res.locals.barrier.subscriptionGrid) {
