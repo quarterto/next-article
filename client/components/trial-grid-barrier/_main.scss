@@ -202,9 +202,7 @@
 .trial-barrier-grid--missing-newspaper {
 	.trial-barrier-grid__option {
 		@include oGridColumn((default: full-width, M: one-third));
-		@include oGridRespondTo(M) {
-			@include oGridRemoveGutters();
-		}
+		@include oGridRemoveGutters();
 	}
 
 	.trial-barrier-grid__option--option2 .trial-barrier-grid__option-inner,
