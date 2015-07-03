@@ -8,7 +8,8 @@ var relativeLinks = require('./relative-links');
 var trimmedLinks = require('./trimmed-links');
 var externalImg = require('./external-img');
 var removeBody = require('./remove-body');
-var promoBox = require('./promo-box'); //require('./promo-box-new')
+var promoBox = require('./promo-box');
+var promoBoxNew = require('./promo-box-new');
 
 var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
@@ -35,7 +36,7 @@ module.exports = function(body, flags) {
 	var $ = transform(cheerio.load(body, { xmlMode: true }), flags)
 		// other transforms
 		.with(externalImg)
-		.with(promoBox)
+		.with(flags.newPromoBoxStyling ? promoBoxNew : promoBox)
 		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)
