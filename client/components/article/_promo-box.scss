@@ -12,20 +12,12 @@
 .article__promo-box__title {
 	font-size: 16px;
 	font-weight: bold;
-<<<<<<< HEAD
 	line-height: 1;
-=======
-	line-height: 1em;
->>>>>>> separate new promoboxes code out
 	text-transform: uppercase;
 }
 .article__promo-box__headline {
 	font-size: 25px;
-<<<<<<< HEAD
 	line-height: 1;
-=======
-	line-height: 1em;
->>>>>>> separate new promoboxes code out
 	font-weight: 100;
 	color: #000000;
 
@@ -48,11 +40,5 @@
 }
 .article__promo-box__content p {
 	margin: 5px 0 0;
-<<<<<<< HEAD
 	@include nTypeAlpha(3);
-=======
-	font-size: 18px;
-	line-height: 24px;
-	font-weight: normal;
->>>>>>> separate new promoboxes code out
 }
