@@ -1,0 +1,32 @@
+.register-barrier-simple {
+	margin-bottom: 35px;
+
+	h2 {
+		@include nTypeBeta(1);
+	}
+}
+
+.register-barrier-simple__already-registered {
+	@include nTypeAlpha(3);
+}
+
+.register-barrier-simple__already-registered a {
+	color: oColorsGetPaletteColor('link-1');
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.register-barrier-simple__description {
+	@include nTypeAlpha(3);
+}
+
+.register-barrier-simple__price {
+	@include nTypeBeta(2);
+}
+
+.register-barrier-simple__subscribe-now a {
+	@include nextLinkButton(
+		$background: oColorsGetPaletteColor('link-1')
+	);
+}
