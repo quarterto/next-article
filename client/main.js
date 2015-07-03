@@ -60,8 +60,8 @@ setup.bootstrap(function(result) {
 	oExpander.init(document.querySelector('.article'), {
 			toggleSelector: 'button.o-expander__toggle',
 			toggleState: 'all',
-			collapsedToggleText: 'Show more',
-			expandedToggleText: 'Show less'
+			collapsedToggleText: 'Show more ',
+			expandedToggleText: 'Show less '
 			});
 	scrollDepth.init(flags);
 	nAds.init(flags);

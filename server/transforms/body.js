@@ -8,7 +8,7 @@ var relativeLinks = require('./relative-links');
 var trimmedLinks = require('./trimmed-links');
 var externalImg = require('./external-img');
 var removeBody = require('./remove-body');
-var promoBox = require('./promo-box');
+var promoBox = require('./promo-box'); //require('./promo-box-new')
 
 var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
