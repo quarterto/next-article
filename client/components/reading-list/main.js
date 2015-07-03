@@ -3,11 +3,7 @@
 var fetchres = require('fetchres');
 var oExpander = require('o-expander');
 var myftClient = require('next-myft-client');
-
-function trackEvent(detail) {
-	var event = new CustomEvent('beacon:myft', detail);
-	document.body.dispatchEvent(event);
-}
+var card = require('next-card');
 
 module.exports.init = function() {
 
@@ -28,7 +24,6 @@ module.exports.init = function() {
 	.then(function(results) {
 		if(results[1] && !results[0]) {
 			document.querySelector('.js-myft-email-signup').classList.add('myft-reading-list__loaded');
-			trackEvent({ 'articleEmailSignupPrompt':  true });
 		}
 	});
 
@@ -58,7 +53,7 @@ module.exports.init = function() {
 			var feed = container.querySelector('.myft-feed');
 			feed.classList.add('o-expander__content');
 
-			var allLinks = [].slice.call(feed.querySelectorAll('.myft-feed__item__headline a'));
+			var allLinks = [].slice.call(feed.querySelectorAll('.next-card__headline__link'));
 
 			var matchingHref = allLinks.filter(function(el) {
 				return el.getAttribute('href').indexOf(document.querySelector('.article').getAttribute('data-content-id')) >= 0;
@@ -83,11 +78,11 @@ module.exports.init = function() {
 				collapsedToggleText: 'Show full list',
 				expandedToggleText: 'Show less'
 			});
-			trackEvent({ 'articleMyFTReadingList':  true });
 
 			if(isFromEmail) {
 				container.classList.add('myft-reading-list--from-email');
 			}
+			card.init(container);
 
 			container.classList.add('myft-reading-list__loaded');
 		}

@@ -25,9 +25,6 @@
 		margin: 0;
 	}
 
-	time {
-		display: none;
-	}
 
 	.myft-ui--prefer {
 		padding: 10px 0;
@@ -68,8 +65,7 @@
 
 	[aria-expanded="true"] .myft-feed__item {
 		display: list-item;
-		list-style: decimal;
-		margin-left: 1.7em;
+		padding: 0;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-3');
 	}
 
