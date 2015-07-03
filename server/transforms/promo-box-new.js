@@ -13,20 +13,35 @@ module.exports = function ($) {
 		var $promoBoxImage = $el.find('promo-image');
 		var $promoBoxIntro = $el.find('promo-intro');
 		var promoContentExpansion = $promoBoxIntro.children().length > 2;
+<<<<<<< HEAD
 		var promoBoxLong = ($promoBoxIntro.length &&
 												(($promoBoxIntro.html().split(' ').length > 35 &&
 												$promoBoxImage.length) ||
 												$promoBoxIntro.html().split(' ').length > 80 ));
+=======
+		var promoBoxLong = ($promoBoxIntro.html().split(' ').length > 35 &&
+			$promoBoxImage.length || $promoBoxIntro.html().split(' ').length > 80 );
+>>>>>>> separate new promoboxes code out
 		var $promoBoxIntroInitial = $('<div></div>')
 			.addClass('promo-box__content__initial')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
 				if (index < 2) { return $(this); }
+<<<<<<< HEAD
 		}));
+=======
+				})
+			);
+>>>>>>> separate new promoboxes code out
 		var $promoBoxIntroExtension = $('<div></div>')
 			.addClass('promo-box__content__extension')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
 				if (index >= 2) { return el; }
+<<<<<<< HEAD
 		}));
+=======
+				})
+			);
+>>>>>>> separate new promoboxes code out
 
 		if (promoContentExpansion) {
 			$promoBox
@@ -37,7 +52,11 @@ module.exports = function ($) {
 		}
 
 		if (promoBoxLong) {
+<<<<<<< HEAD
 			$promoBox.addClass('promo-box--long');
+=======
+			$promoBox.addClass('promo-box__long');
+>>>>>>> separate new promoboxes code out
 		}
 
 		if ($promoBoxTitle.length) {
@@ -46,20 +65,35 @@ module.exports = function ($) {
 			$promoBox.append(
 				$('<div></div>')
 					.addClass('promo-box__title__wrapper')
+<<<<<<< HEAD
 					.append(
 						$('<h3></h3>')
 							.addClass('promo-box__title')
 							.html($promoBoxTitleChild.length ? $promoBoxTitleChild.html() : $promoBoxTitle.html())
 					)
+=======
+						.append(
+							$('<h3></h3>')
+								.addClass('promo-box__title')
+								.html($promoBoxTitleChild.length ? $promoBoxTitleChild.html() : $promoBoxTitle.html())
+						)
+>>>>>>> separate new promoboxes code out
 			);
 		} else {
 			$promoBox.append(
 				$('<div></div>')
 					.addClass('promo-box__title__wrapper')
+<<<<<<< HEAD
 					.append(
 						$('<h3>Related Content</h3>')
 							.addClass('promo-box__title')
 					)
+=======
+						.append(
+							$('<h3>Related Content</h3>')
+								.addClass('promo-box__title')
+						)
+>>>>>>> separate new promoboxes code out
 			);
 		}
 
