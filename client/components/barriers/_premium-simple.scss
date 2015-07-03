@@ -1,0 +1,26 @@
+.premium-barrier-simple {
+	margin-bottom: 35px;
+
+	h2 {
+		@include nTypeBeta(1);
+	}
+
+	h3 {
+		@include nTypeBeta(2);
+	}
+
+	h4 {
+		@include nTypeBeta(3);
+	}
+
+	p {
+		@include nTypeAlpha(3);
+		margin-top: 0;
+	}
+}
+
+.premium-barrier-simple__upgrade-now {
+	@include nextLinkButton(
+		$background: oColorsGetPaletteColor('link-1')
+	);
+}

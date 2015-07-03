@@ -1,0 +1,270 @@
+.subscription-barrier-grid {
+	margin-bottom: 35px;
+	margin-top: 10px;
+}
+
+.subscription-barrier-grid h2,
+.subscription-barrier-grid h3,
+.subscription-barrier-grid p {
+	margin: 0;
+}
+
+.subscription-barrier-grid__header {
+	background-color: oColorsGetPaletteColor('warm-2');
+	padding: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	h2 {
+		@include nTypeBeta(3);
+		@include oGridColumn((default: full-width, L: three-quarters));
+		text-align: center;
+		margin-bottom: 10px;
+
+		@include oGridRespondTo(L) {
+			text-align: left;
+			margin-bottom: 0;
+		}
+	}
+
+	.subscription-barrier-grid__sign-in {
+		@include nTypeBeta(4);
+		@include oGridColumn((default: full-width, L: one-quarter));
+		text-align: center;
+		font-weight: normal;
+
+		@include oGridRespondTo(L) {
+			@include nTypeBeta(3);
+			text-align: right;
+			font-weight: normal;
+		}
+	}
+
+	.subscription-barrier-grid__sign-in a {
+		color: oColorsGetPaletteColor('link-1');
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+/*****************************************
+* Main options
+*****************************************/
+
+.subscription-barrier-grid {
+	.subscription-barrier-grid__options {
+		h3 {
+			@include nTypeAlpha(4);
+			text-align: center;
+			text-transform: uppercase;
+			margin-bottom: 10px;
+		}
+	}
+
+	.subscription-barrier-grid__image {
+		img {
+			width: 90%;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+
+
+	.subscription-barrier-grid__primary {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.subscription-barrier-grid__price,
+	.subscription-barrier-grid__select {
+		display: inline-block;
+	}
+
+	.subscription-barrier-grid__price {
+		margin-right: 4px;
+		@include oGridRespondTo(L) {
+			display: block;
+			margin-right: 0;
+			margin-bottom: 10px;
+		}
+	}
+
+	.subscription-barrier-grid__select {
+		@include nextLinkButton(
+			$background: oColorsGetPaletteColor('link-1')
+		);
+		@include nTypeAlpha(4);
+		width: 100px;
+	}
+
+	.subscription-barrier-grid__secondary {
+
+		padding-left: 10px;
+		padding-right: 10px;
+
+		h4 {
+			@include nTypeBeta(4);
+			margin-bottom: 3px;
+			margin-top: 0;
+		}
+
+		ul {
+			@include nTypeBeta(4);
+			list-style: none;
+			font-weight: normal;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			&:before {
+				@include nextIcon(tick, #35bd14, 14);
+				content: '';
+				margin-right: 4px;
+				position: relative;
+				display: inline-block;
+				top: 2px;
+				float: none;
+			}
+		}
+
+	}
+
+	.subscription-barrier-grid__option-inner {
+		background-color: oColorsGetPaletteColor('white');
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+		@include oGridRespondTo(S) {
+			min-height: 435px;
+		}
+	}
+
+	.subscription-barrier-grid__option--option1 .subscription-barrier-grid__option-inner,
+	.subscription-barrier-grid__option--option3 .subscription-barrier-grid__option-inner {
+		@include oGridRespondTo(S) {
+			border-right: 1px solid oColorsGetPaletteColor('warm-2');
+		}
+	}
+
+	.subscription-barrier-grid__option--option1 .subscription-barrier-grid__option-inner,
+	.subscription-barrier-grid__option--option2 .subscription-barrier-grid__option-inner,
+	.subscription-barrier-grid__option--option3 .subscription-barrier-grid__option-inner {
+		@include oGridRespondTo(L) {
+			border-right: 1px solid oColorsGetPaletteColor('warm-2');
+		}
+	}
+
+
+	.subscription-barrier-grid__option {
+		@include oGridColumn((default: full-width, S: one-half, L: one-quarter));
+		@include oGridRespondTo(S) {
+			@include oGridRemoveGutters();
+		}
+	}
+
+	.subscription-barrier-grid__learn-more {
+		@include nTypeBeta(4);
+
+		a {
+			text-decoration: none;
+			color: oColorsGetPaletteColor(link-1);
+		}
+	}
+
+}
+
+
+/*****************************************
+* Other options
+*****************************************/
+
+.subscription-barrier-grid__other-options {
+	padding-top: 10px;
+	background-color: oColorsGetPaletteColor('white');
+	@include oGridRespondTo(S) {
+		margin-left: -5px;
+		margin-right: -5px;
+	}
+}
+
+.subscription-barrier-grid__other-options h3 {
+	@include nTypeAlpha(4);
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 10px;
+	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+}
+
+.subscription-barrier-grid__other-option {
+	@include oGridColumn((default: one-half, L: one-quarter));
+	@include oGridRemoveGutters();
+
+	.subscription-barrier-grid__other-option-inner {
+		text-align: center;
+		padding-bottom: 10px;
+		padding-top: 10px;
+	}
+
+	a {
+		@include nTypeBeta(4);
+		text-decoration: none;
+		color: oColorsGetPaletteColor(link-1);
+		overflow: hidden;
+
+		.subscription-barrier-grid__option-options-text {
+			display: block;
+		}
+
+		&:before {
+			content: '';
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+
+.subscription-barrier-grid__other-option--corporate a {
+	&:before {
+		@include nextIcon(section-business-life, oColorsGetPaletteColor(link-1), 35);
+	}
+}
+
+.subscription-barrier-grid__other-option--epaper a {
+	&:before {
+		@include nextIcon(section-magazine, oColorsGetPaletteColor(link-1), 35);
+	}
+}
+
+.subscription-barrier-grid__other-option--newspaper a {
+	&:before {
+		@include nextIcon(newspaper, oColorsGetPaletteColor(link-1), 35);
+	}
+}
+
+.subscription-barrier-grid__other-option--weekend a {
+	&:before {
+		@include nextIcon(ipad-portrait, oColorsGetPaletteColor(link-1), 35);
+	}
+}
+
+.subscription-barrier-grid__other-option--corporate .subscription-barrier-grid__other-option-inner,
+.subscription-barrier-grid__other-option--newspaper .subscription-barrier-grid__other-option-inner {
+	border-right: 1px solid oColorsGetPaletteColor('warm-2');
+
+	@include oGridRespondTo(L) {
+		border-right: 0px;
+	}
+}
+
+.subscription-barrier-grid__other-option--corporate .subscription-barrier-grid__other-option-inner,
+.subscription-barrier-grid__other-option--epaper .subscription-barrier-grid__other-option-inner {
+	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+
+	@include oGridRespondTo(L) {
+		border-bottom: 0px;
+	}
+}
