@@ -125,6 +125,8 @@ module.exports = function(req, res, next) {
 
 								viewModel.trialGridBarrier.missingNewspaper = {};
 							}
+
+							viewModel.trialGridBarrier.articleTitle = viewModel.title;
 						}
 
 						if(res.locals.barrier.subscriptionGrid) {
