@@ -41,15 +41,11 @@ module.exports = function(req, res, next) {
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	});
 
-	var mainImage = function (articleV2) {
+	var openGraphImage = function (articleV2) {
 		
-		if (!articleV2.mainImage) {
+		if (!articleV2.mainImage || !res.locals.flags.openGraph) {
 			return Promise.resolve();
 		}
-		
-		if (!res.locals.flags.openGraph) {
-			return Promise.resolve();
-		} 
 
 		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet' })
 			.then(function (images) {
@@ -72,7 +68,7 @@ module.exports = function(req, res, next) {
 						useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0
 					}
 				}),
-				mainImage(article[1])
+				openGraphImage(article[1])
 			]);
 		})
 		.then(function(results) {
