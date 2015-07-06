@@ -133,7 +133,7 @@ module.exports = function(req, res, next) {
 
 						if(res.locals.barrier.subscriptionGrid) {
 							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
-							viewModel.articleTitle = viewModel.title;;
+							viewModel.articleTitle = viewModel.title;
 							viewModel.barrierOverlay = {};
 						}
 
