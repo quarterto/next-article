@@ -1,6 +1,15 @@
 .subscription-barrier-grid {
-	margin-bottom: 35px;
-	margin-top: 10px;
+	position: relative;
+	z-index: 18;
+	top: -65px;
+
+	@include oGridRespondTo(S) {
+		top: -35px;
+	}
+
+	@include oGridRespondTo(M) {
+		top: -40px;
+	}
 }
 
 .subscription-barrier-grid h2,

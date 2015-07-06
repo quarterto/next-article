@@ -111,6 +111,14 @@ module.exports = function(req, res, next) {
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : null
 					};
 
+					res.locals.barrier = {
+						trialGrid: {
+							packages: {
+
+							}
+						}
+					};
+
 					if (res.locals.barrier) {
 
 						if(res.locals.barrier.trialSimple) {
@@ -127,10 +135,13 @@ module.exports = function(req, res, next) {
 							}
 
 							viewModel.trialGridBarrier.articleTitle = viewModel.title;
+
+							viewModel.barrierOverlay = {};
 						}
 
 						if(res.locals.barrier.subscriptionGrid) {
 							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
+							viewModel.barrierOverlay = {};
 						}
 
 						if(res.locals.barrier.premiumSimple) {
