@@ -13,8 +13,10 @@ module.exports = function ($) {
 		var $promoBoxImage = $el.find('promo-image');
 		var $promoBoxIntro = $el.find('promo-intro');
 		var promoContentExpansion = $promoBoxIntro.children().length > 2;
-		var promoBoxLong = ($promoBoxIntro.html().split(' ').length > 35 &&
-			$promoBoxImage.length || $promoBoxIntro.html().split(' ').length > 80 );
+		var promoBoxLong = ($promoBoxIntro.length &&
+												(($promoBoxIntro.html().split(' ').length > 35 &&
+												$promoBoxImage.length) ||
+												$promoBoxIntro.html().split(' ').length > 80 ));
 		var $promoBoxIntroInitial = $('<div></div>')
 			.addClass('promo-box__content__initial')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
