@@ -112,7 +112,7 @@ module.exports = function(req, res, next) {
 					};
 
 					res.locals.barrier = {
-						trialGrid: {
+						subscriptionGrid: {
 							packages: {
 
 							}
@@ -141,6 +141,7 @@ module.exports = function(req, res, next) {
 
 						if(res.locals.barrier.subscriptionGrid) {
 							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
+							viewModel.articleTitle = viewModel.title;;
 							viewModel.barrierOverlay = {};
 						}
 
