@@ -14,6 +14,7 @@ var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
 var htmlifyXML = require('../transforms/htmlify-xml');
 var openGraph = require('../utils/open-graph');
+var twitterCardSummary = require('../utils/twitter-card').summary;
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -41,9 +42,15 @@ module.exports = function(req, res, next) {
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	});
 
-	var openGraphImage = function (articleV2) {
-		
-		if (!articleV2.mainImage || !res.locals.flags.openGraph) {
+	var socialMediaImage = function (articleV2) {
+
+		// don't bother if there's no main image to fetch
+		if (!articleV2.mainImage) {
+			return Promise.resolve();
+		}
+
+		// don't bother if social media flags are off
+		if (!res.locals.flags.openGraph && !res.locals.flags.twitterCards) {
 			return Promise.resolve();
 		}
 
@@ -52,7 +59,7 @@ module.exports = function(req, res, next) {
 				var image = images.members.reduce(function (a, b) {
 					return a;
 				});
-				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet' });  
+				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet' });
 			});
 		};
 
@@ -68,7 +75,7 @@ module.exports = function(req, res, next) {
 						useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0
 					}
 				}),
-				openGraphImage(article[1])
+				socialMediaImage(article[1])
 			]);
 		})
 		.then(function(results) {
@@ -129,13 +136,17 @@ module.exports = function(req, res, next) {
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : null
 					};
 
-					if (mainImage) {
+					if (res.locals.flags.openGraph) {
 						viewModel.og = openGraph(article, articleV1.item, mainImage);
+					}
+
+					if (res.locals.flags.twitterCards) {
+						viewModel.twitterCard = twitterCardSummary(article, articleV1.item, mainImage);
 					}
 
 					if (res.locals.barrier) {
 
-						if(res.locals.barrier.trialSimple) {
+						if (res.locals.barrier.trialSimple) {
 							viewModel.trialSimpleBarrier = res.locals.barrier.trialSimple;
 						}
 
