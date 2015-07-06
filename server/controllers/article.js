@@ -112,7 +112,7 @@ module.exports = function(req, res, next) {
 					};
 
 					res.locals.barrier = {
-						subscriptionGrid: {
+						trialGrid: {
 							packages: {
 
 							}
