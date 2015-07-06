@@ -111,14 +111,6 @@ module.exports = function(req, res, next) {
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : null
 					};
 
-					res.locals.barrier = {
-						trialGrid: {
-							packages: {
-
-							}
-						}
-					};
-
 					if (res.locals.barrier) {
 
 						if(res.locals.barrier.trialSimple) {
