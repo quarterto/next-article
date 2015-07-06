@@ -13,7 +13,7 @@ var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
 var htmlifyXML = require('../transforms/htmlify-xml');
-var extractOpenGraph = require('../utils/open-graph');
+var openGraph = require('../utils/open-graph');
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -130,7 +130,7 @@ module.exports = function(req, res, next) {
 					};
 
 					if (mainImage) {
-						viewModel.og = extractOpenGraph(article, articleV1.item, mainImage);
+						viewModel.og = openGraph(article, articleV1.item, mainImage);
 					}
 
 					if (res.locals.barrier) {
