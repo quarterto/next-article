@@ -127,10 +127,14 @@ module.exports = function(req, res, next) {
 							}
 
 							viewModel.trialGridBarrier.articleTitle = viewModel.title;
+
+							viewModel.barrierOverlay = {};
 						}
 
 						if(res.locals.barrier.subscriptionGrid) {
 							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
+							viewModel.articleTitle = viewModel.title;
+							viewModel.barrierOverlay = {};
 						}
 
 						if(res.locals.barrier.premiumSimple) {

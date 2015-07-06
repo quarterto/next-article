@@ -3,3 +3,14 @@
 @import 'subscription-grid';
 @import 'trial-grid';
 @import 'trial-simple';
+
+.barrier-overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: oColorsGetPaletteColor('warm-4');
+	opacity: 0.6;
+	top: 0;
+	left: 0;
+	z-index: 17;
+}
