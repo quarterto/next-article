@@ -64,8 +64,6 @@
 		}
 	}
 
-
-
 	.subscription-barrier-grid__primary {
 		text-align: center;
 		margin-bottom: 20px;
@@ -154,9 +152,7 @@
 
 	.subscription-barrier-grid__option {
 		@include oGridColumn((default: full-width, S: one-half, L: one-quarter));
-		@include oGridRespondTo(S) {
 			@include oGridRemoveGutters();
-		}
 	}
 
 	.subscription-barrier-grid__learn-more {
@@ -178,10 +174,6 @@
 .subscription-barrier-grid__other-options {
 	padding-top: 10px;
 	background-color: oColorsGetPaletteColor('white');
-	@include oGridRespondTo(S) {
-		margin-left: -5px;
-		margin-right: -5px;
-	}
 }
 
 .subscription-barrier-grid__other-options h3 {
@@ -194,7 +186,6 @@
 
 .subscription-barrier-grid__other-option {
 	@include oGridColumn((default: one-half, L: one-quarter));
-	@include oGridRemoveGutters();
 
 	.subscription-barrier-grid__other-option-inner {
 		text-align: center;
