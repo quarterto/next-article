@@ -35,7 +35,7 @@ module.exports = function () {
 			});
 		});
 
-		it('should work not using elastic search', function (done) {
+		it.skip('should work not using elastic search', function (done) {
 			nock('http://api.ft.com')
 				.get('/content/items/v1/0369dd4e-8513-11e1-2a93-978e959e1fd3?feature.blogposts=on&bodyFormat=structured')
 				.reply(200, require('../../fixtures/capi-v1.json'));
