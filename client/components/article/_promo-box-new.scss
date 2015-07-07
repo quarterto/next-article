@@ -38,9 +38,7 @@
 }
 
 .promo-box__title {
-	font-size: 20px;
-	font-weight: 400;
-	line-height: 1;
+	@include nTypeBeta(3);
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 5px 10px;
@@ -53,10 +51,8 @@
 	}
 }
 .promo-box__headline {
+	@include nTypeAlpha(2);
 	margin: 10px 0 0;
-	font-size: 25px;
-	line-height: 1;
-	font-weight: 100;
 	color: #000000;
 
 	@include oGridRespondTo(S) {

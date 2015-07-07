@@ -36,7 +36,7 @@ module.exports = function(body, flags) {
 	var $ = transform(cheerio.load(body, { xmlMode: true }), flags)
 		// other transforms
 		.with(externalImg)
-		.with(flags.newPromoBoxStyling ? promoBoxNew : promoBox)
+		.with(flags.articlePromoBoxNewStyling ? promoBoxNew : promoBox)
 		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)
