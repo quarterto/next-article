@@ -21,14 +21,12 @@ module.exports = function ($) {
 			.addClass('promo-box__content__initial')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
 				if (index < 2) { return $(this); }
-				})
-			);
+		}));
 		var $promoBoxIntroExtension = $('<div></div>')
 			.addClass('promo-box__content__extension')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
 				if (index >= 2) { return el; }
-				})
-			);
+		}));
 
 		if (promoContentExpansion) {
 			$promoBox
@@ -39,7 +37,7 @@ module.exports = function ($) {
 		}
 
 		if (promoBoxLong) {
-			$promoBox.addClass('promo-box__long');
+			$promoBox.addClass('promo-box--long');
 		}
 
 		if ($promoBoxTitle.length) {
@@ -48,20 +46,20 @@ module.exports = function ($) {
 			$promoBox.append(
 				$('<div></div>')
 					.addClass('promo-box__title__wrapper')
-						.append(
-							$('<h3></h3>')
-								.addClass('promo-box__title')
-								.html($promoBoxTitleChild.length ? $promoBoxTitleChild.html() : $promoBoxTitle.html())
-						)
+					.append(
+						$('<h3></h3>')
+							.addClass('promo-box__title')
+							.html($promoBoxTitleChild.length ? $promoBoxTitleChild.html() : $promoBoxTitle.html())
+					)
 			);
 		} else {
 			$promoBox.append(
 				$('<div></div>')
 					.addClass('promo-box__title__wrapper')
-						.append(
-							$('<h3>Related Content</h3>')
-								.addClass('promo-box__title')
-						)
+					.append(
+						$('<h3>Related Content</h3>')
+							.addClass('promo-box__title')
+					)
 			);
 		}
 

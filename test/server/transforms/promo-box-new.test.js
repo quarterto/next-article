@@ -44,7 +44,7 @@ describe('Promo Box New', function () {
 
 		$ = promoBoxTransform($);
 		$.html().should.equal(
-			'<aside data-trackable=\"promobox\" role="complementary" class="promo-box ng-pull-out ng-inline-element o-expander promo-box__long" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
+			'<aside data-trackable=\"promobox\" role="complementary" class="promo-box ng-pull-out ng-inline-element o-expander promo-box--long" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 				'<div class="promo-box__title__wrapper"><h3 class="promo-box__title">Tatomer Riesling 2012</h3></div>' +
 				'<h4 class="promo-box__headline">Greece debt crisis</h4>' +
 				'<ft-content data-embedded="true" type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/9ccaf9da-cde2-11e4-0f22-978e959e1c97"></ft-content>' +

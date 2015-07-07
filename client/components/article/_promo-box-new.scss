@@ -2,9 +2,6 @@
 	margin-top: 25px;
 	padding: 10px;
 	background-color: oColorsGetPaletteColor('warm-2');
-	> *:first-child {
-		margin-top: 0;
-	}
 	> .promo-box__title__wrapper {
 		margin-top: -45px;
 		margin-left: -10px;
@@ -21,11 +18,10 @@
 		&:hover {
 			text-decoration: none;
 		}
+		&[aria-pressed] i {
+			@include nextIcon(arrow-up, black, 12);
+		}
 	}
-	> .o-expander__toggle[aria-pressed] i {
-		@include nextIcon(arrow-up, black, 12);
-	}
-
 	&:after {
 		content: '';
 		display: table;
@@ -33,7 +29,7 @@
 	}
 }
 
-.promo-box__long {
+.promo-box--long {
 	float: none;
 	max-width: 100%;
 	@include oGridRespondTo(XL) {
@@ -82,7 +78,7 @@
 	}
 }
 
-.promo-box__long__image {
+.promo-box--long__image {
 	@include oGridRespondTo(S) {
 		float: left;
 		margin-right: 10px;
@@ -94,9 +90,7 @@
 }
 .promo-box__content p {
 	margin: 5px 0 0;
-	font-size: 18px;
-	line-height: 24px;
-	font-weight: normal;
+	@include nTypeAlpha(3);
 	strong a {
 		@include nLinksHeadline();
 		border-bottom: 0;

@@ -40,7 +40,5 @@
 }
 .article__promo-box__content p {
 	margin: 5px 0 0;
-	font-size: 18px;
-	line-height: 24px;
-	font-weight: normal;
+	@include nTypeAlpha(3);
 }
