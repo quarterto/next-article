@@ -20,8 +20,8 @@ module.exports.init = function(uuid, flags) {
 				var commentLink = document.createElement('a');
 				commentLink.setAttribute('href', '#comments');
 				commentLink.setAttribute('data-trackable', 'view-comments');
-				commentLink.className = 'article__actions__action article__actions__action--comments ng-meta ng-title-link';
-				commentLink.textContent = 'Comments (' + commentCount + ')';
+				commentLink.className = 'article__actions__action ng-title-link';
+				commentLink.textContent = 'comments (' + commentCount + ')';
 				document.querySelector('.article__actions').appendChild(commentLink);
 			});
 			oComments.on('tracking.postComment', function (ev) {
