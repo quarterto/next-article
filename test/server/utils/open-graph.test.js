@@ -11,8 +11,10 @@ describe('Open graph', function () {
 	};
 
 	var v1 = {
-		editorial: {
-			standFirst: 'vertical but yet are broadly'
+		item: {
+			editorial: {
+				standFirst: 'vertical but yet are broadly'
+			}
 		}
 	};
 

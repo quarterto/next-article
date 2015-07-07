@@ -137,11 +137,11 @@ module.exports = function(req, res, next) {
 					};
 
 					if (res.locals.flags.openGraph) {
-						viewModel.og = openGraph(article, articleV1.item, mainImage);
+						viewModel.og = openGraph(article, articleV1, mainImage);
 					}
 
 					if (res.locals.flags.twitterCards) {
-						viewModel.twitterCard = twitterCardSummary(article, articleV1.item, mainImage);
+						viewModel.twitterCard = twitterCardSummary(article, articleV1, mainImage);
 					}
 
 					if (res.locals.barrier) {

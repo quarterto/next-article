@@ -38,6 +38,7 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-mocha": "^0.1.10",
     "karma-sinon": "^1.0.4",
+    "mitm": "^1.1.0",
     "mocha": "^2.0.0",
     "myrtlejs": "^0.0.9",
     "next-build-tools": "^3.2.0",
