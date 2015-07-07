@@ -1,6 +1,4 @@
 'use strict';
-
-var fetchres = require('fetchres');
 var oComments = require('o-comments');
 var beacon = require('next-beacon-component');
 
@@ -9,8 +7,6 @@ module.exports.init = function(uuid, flags) {
 	if (!flags.get('articleComments') || !document.querySelector('#comments')) {
 		return;
 	}
-
-	console.log('normal comments');
 
 		oComments.on('widget.renderComplete', function (ev) {
 			var commentCount = ev.detail.instance.lfWidget.getCollection().attributes.numVisible;

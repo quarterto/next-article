@@ -1,4 +1,10 @@
 'use strict';
+/*global Livefyre*/
+
+if(typeof console !== 'object' || !console.log){
+	window.console = {log:function(){}};
+}
+
 const oCommentApi = require('o-comment-api');
 
 const ACTIVE_CONFIG = 'prod';
@@ -74,40 +80,14 @@ function getUserData(){
 				return reject(err);
 			}
 
-			resolve(data);
-		});
-	});
-
-}
-
-function getComments(uuid){
-	return new Promise(function(resolve, reject){
-		oCommentApi.api.getComments({
-			articleId: uuid,
-			url: document.location.href,
-			title: document.title
-		}, function (err, data) {
-			if (err) {
-				return reject(err);
-			}
-			resolve(data);
-		});
-	});
-}
-
-function postComment(collectionId, body){
-	return new Promise(function(resolve, reject){
-		oCommentApi.api.postComment({
-			collectionId: collectionId,
-			commentBody: body
-		}, function (err, data) {
-			if (err) {
-				return reject(err);
+			if(!data.token){
+				reject(new Error('No auth token found!'));
 			}
 
 			resolve(data);
 		});
 	});
+
 }
 
 function loadSideNotes(){
