@@ -112,13 +112,14 @@ function postComment(collectionId, body){
 
 function loadSideNotes(){
 	return new Promise(function(resolve, reject) {
-		Livefyre.require(['sidenotes#1'], function (Sidenotes) {
-			resolve(Sidenotes);
+		Livefyre.require(['sidenotes#1', 'auth'], function (Sidenotes, Auth) {
+			resolve([Sidenotes, Auth]);
 		});
 	});
 }
 
-function setupSideNotes(info, uuid, Sidenotes){
+function setupSideNotes(info, uuid, user, modules){
+	var [Sidenotes, Auth] = modules;
 	var convConfig = {
 		network: 'ft.fyre.co',
 		selectors:'.article__body p',
@@ -128,7 +129,13 @@ function setupSideNotes(info, uuid, Sidenotes){
 		collectionMeta: info.collectionMeta
 	};
 
-	return new Sidenotes(convConfig);
+	var app = new Sidenotes(convConfig);
+	Auth.delegate({
+		login: function(callback){
+			callback(null,{livefyre:user.token});
+		}
+	});
+	return app;
 }
 
 function init(uuid, flags) {
@@ -138,7 +145,7 @@ function init(uuid, flags) {
 	oCommentApi.setConfig(config[ACTIVE_CONFIG]);
 	console.log(`using ${ACTIVE_CONFIG} config`);
 
-	var info;
+	var info, user;
 
 	initLiveFyre('rhs-comments', uuid)
 		.then(function (initResponse) {
@@ -148,10 +155,11 @@ function init(uuid, flags) {
 		})
 		.then(function(userData){
 			console.log('userData', userData);
+			user = userData;
 			return loadSideNotes();
 		})
 		.then(function(Sidenotes){
-			return setupSideNotes(info, uuid, Sidenotes);
+			return setupSideNotes(info, uuid, user, Sidenotes);
 		}).
 		then(function(app){
 			console.log(app);
