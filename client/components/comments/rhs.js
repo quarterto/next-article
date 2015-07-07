@@ -1,0 +1,166 @@
+'use strict';
+const oCommentApi = require('o-comment-api');
+
+const ACTIVE_CONFIG = 'prod';
+
+const config = {
+	test :
+	{
+		"suds": {
+			"baseUrl": "//test.session-user-data.webservices.ft.com"
+		},
+		"ccs": {
+			"baseUrl": "http://test.comment-creation.webservices.ft.com"
+		},
+		"cacheConfig": {
+			"authBaseName": "comments-test-auth-",
+			"initBaseName": "comments-test-init-"
+		},
+		"livefyre": {
+			"networkName": "ft-1"
+		}
+	},
+	prod : {
+		"suds": {
+			"baseUrl": "//session-user-data.webservices.ft.com",
+			"endpoints": {
+				"livefyre": {
+					"init": "/v1/livefyre/init"
+				},
+				"user": {
+					"updateUser": "/v1/user/updateuser",
+					"getAuth": "/v1/user/getauth"
+				}
+			}
+		},
+		"ccs": {
+			"baseUrl": "http://comment-creation-service.webservices.ft.com",
+			"endpoints": {
+				"getComments": "/v1/getComments",
+				"postComment": "/v1/postComment"
+			}
+		},
+		"cacheConfig": {
+			"authBaseName": "comments-prod-auth-",
+			"initBaseName": "comments-prod-init-"
+		},
+		"livefyre": {
+			"networkName": "ft"
+		}
+	}
+};
+
+function initLiveFyre(domId, uuid){
+	return new Promise(function(resolve, reject){
+		oCommentApi.api.getLivefyreInitConfig({
+			elId: domId,
+			articleId: uuid,
+			url: document.location.href,
+			title: document.title
+		}, function (err, data) {
+			if (err) {
+				return reject(err);
+			}
+
+			resolve(data);
+		});
+	});
+}
+
+function getUserData(){
+	return new Promise(function(resolve, reject){
+		oCommentApi.api.getAuth(function (err, data) {
+			if (err) {
+				return reject(err);
+			}
+
+			resolve(data);
+		});
+	});
+
+}
+
+function getComments(uuid){
+	return new Promise(function(resolve, reject){
+		oCommentApi.api.getComments({
+			articleId: uuid,
+			url: document.location.href,
+			title: document.title
+		}, function (err, data) {
+			if (err) {
+				return reject(err);
+			}
+			resolve(data);
+		});
+	});
+}
+
+function postComment(collectionId, body){
+	return new Promise(function(resolve, reject){
+		oCommentApi.api.postComment({
+			collectionId: collectionId,
+			commentBody: body
+		}, function (err, data) {
+			if (err) {
+				return reject(err);
+			}
+
+			resolve(data);
+		});
+	});
+}
+
+function loadSideNotes(){
+	return new Promise(function(resolve, reject) {
+		Livefyre.require(['sidenotes#1'], function (Sidenotes) {
+			resolve(Sidenotes);
+		});
+	});
+}
+
+function setupSideNotes(info, uuid, Sidenotes){
+	var convConfig = {
+		network: 'ft.fyre.co',
+		selectors:'.article__body p',
+		siteId: info.siteId,
+		articleId: uuid,
+		checksum: info.checksum,
+		collectionMeta: info.collectionMeta
+	};
+
+	return new Sidenotes(convConfig);
+}
+
+function init(uuid, flags) {
+	if (!flags.get('geniusStyleComments')) {
+		return;
+	}
+	oCommentApi.setConfig(config[ACTIVE_CONFIG]);
+	console.log(`using ${ACTIVE_CONFIG} config`);
+
+	var info;
+
+	initLiveFyre('rhs-comments', uuid)
+		.then(function (initResponse) {
+			console.log('initResponse', initResponse);
+			info = initResponse;
+			return getUserData();
+		})
+		.then(function(userData){
+			console.log('userData', userData);
+			return loadSideNotes();
+		})
+		.then(function(Sidenotes){
+			return setupSideNotes(info, uuid, Sidenotes);
+		}).
+		then(function(app){
+			console.log(app);
+		})
+		.catch(function(err){
+			console.error(err);
+		});
+}
+
+module.exports = {
+	init : init
+};
