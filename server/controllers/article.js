@@ -13,6 +13,8 @@ var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
 var htmlifyXML = require('../transforms/htmlify-xml');
+var openGraph = require('../utils/open-graph');
+var twitterCardSummary = require('../utils/twitter-card').summary;
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -40,6 +42,27 @@ module.exports = function(req, res, next) {
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	});
 
+	var socialMediaImage = function (articleV2) {
+
+		// don't bother if there's no main image to fetch
+		if (!articleV2.mainImage) {
+			return Promise.resolve();
+		}
+
+		// don't bother if social media flags are off
+		if (!res.locals.flags.openGraph && !res.locals.flags.twitterCards) {
+			return Promise.resolve();
+		}
+
+		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet' })
+			.then(function (images) {
+				var image = images.members.reduce(function (a, b) {
+					return a;
+				});
+				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet' });
+			});
+		};
+
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function (article) {
 			return Promise.all([
@@ -51,7 +74,8 @@ module.exports = function(req, res, next) {
 						renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
 						useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0
 					}
-				})
+				}),
+				socialMediaImage(article[1])
 			]);
 		})
 		.then(function(results) {
@@ -59,6 +83,7 @@ module.exports = function(req, res, next) {
 
 			var articleV1 = results[0];
 			var article = results[1];
+			var mainImage = results[3];
 
 			var $ = bodyTransform(results[2], res.locals.flags);
 			var $crossheads = $('.article__subhead--crosshead');
@@ -111,9 +136,17 @@ module.exports = function(req, res, next) {
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : null
 					};
 
+					if (res.locals.flags.openGraph) {
+						viewModel.og = openGraph(article, articleV1.item, mainImage);
+					}
+
+					if (res.locals.flags.twitterCards) {
+						viewModel.twitterCard = twitterCardSummary(article, articleV1.item, mainImage);
+					}
+
 					if (res.locals.barrier) {
 
-						if(res.locals.barrier.trialSimple) {
+						if (res.locals.barrier.trialSimple) {
 							viewModel.trialSimpleBarrier = res.locals.barrier.trialSimple;
 						}
 
