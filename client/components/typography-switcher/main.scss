@@ -1,11 +1,10 @@
 .typog-variant {
 	&--variant-1 {
-		background: red !important;
-	}
-	&--variant-2 {
-		background: green !important;
-	}
-	&--variant-3 {
-		background: blue !important;
+		.article__title {
+			font-family: $n-type-serif;
+		}
+		.article__body > p {
+			font-family: oFontsGetFontFamilyWithFallbacks(FinancierTextWeb);
+		}
 	}
 }
