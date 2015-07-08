@@ -103,7 +103,7 @@ function setupSideNotes(info, uuid, user, modules){
 	var convConfig = {
 		network: 'ft.fyre.co',
 		selectors:'.article__body p',
-		numSidenotesEl : '.article__body p:before',
+		numSidenotesEl : '.sidenotes-info-container',
 		siteId: info.siteId,
 		articleId: uuid,
 		checksum: info.checksum,
@@ -127,6 +127,8 @@ function init(uuid, flags) {
 	console.log(`using ${ACTIVE_CONFIG} config`);
 
 	var info, user;
+
+	document.querySelector('.article__body p').insertAdjacentHTML('beforebegin', '<div class="sidenotes-info-container"></div>');
 
 	initLiveFyre('rhs-comments', uuid)
 		.then(function (initResponse) {
