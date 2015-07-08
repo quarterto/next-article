@@ -130,6 +130,7 @@ function init(uuid, flags) {
 	initLiveFyre('rhs-comments', uuid)
 		.then(function (initResponse) {
 			console.log('initResponse', initResponse);
+			document.body.classList.add('sidenotes-active');
 			info = initResponse;
 			return getUserData();
 		})
