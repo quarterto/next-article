@@ -60,6 +60,13 @@ module.exports = function(req, res, next) {
 					return a;
 				});
 				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet' });
+			})
+			.catch(function(err) {
+				if (err instanceof fetchres.BadServerResponseError) {
+					return;
+				} else {
+					throw err;
+				}
 			});
 		};
 
