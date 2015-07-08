@@ -5,7 +5,7 @@ var sidenotes = require('./sidenotes');
 
 function init(uuid, flags){
 	// if we're showing a barrier we don't care about comments
-	if(document.querySelector([data-barrier]) !== null){
+	if(document.querySelector('[data-barrier]') !== null){
 		return;
 	}
 

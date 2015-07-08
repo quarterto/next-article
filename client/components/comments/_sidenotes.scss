@@ -1,3 +1,14 @@
+/*
+	I'm truly sorry for what lies beneath this comment - I needed to override the default livefyre code
+	and, for better or for worse, I chose to try and match their selectors rather than just use !important
+	everywhere.  Sadly, their use of css is 'idosyncratic' to be kind.
+
+	One day maybe we will do this properly...
+*/
+
+// scss-lint:disable QualifyingElement
+
+
 @import "next-type/main";
 @import "next-buttons/main";
 @import "o-colors/main";
@@ -6,7 +17,7 @@
 
 	.lf-powered-by,
 	.lf-thread-gradient {
-		display:none !important;
+		display: none !important;
 	}
 
 	.lf-popover,
@@ -21,9 +32,9 @@
 
 	.lf .lf-editor .lf-editor-post-btn {
 		@include nButtons($theme: standout);
-		height:auto;
-		padding: 8px 8px 8px 8px;
-		margin-top:8px;
+		height: auto;
+		padding: 8px;
+		margin-top: 8px;
 	}
 
 	span.lf-thread-btn a.fycon-action-view,
@@ -69,10 +80,10 @@
 	.lf .lf-thread-popover .lf-thread .lf-thread-container article.lf-comment div.lf-comment-container a.lf-etc-btn,
 	.lf .lf-thread .lf-permalink .lf-thread-container article.lf-comment div.lf-comment-container a.lf-etc-btn,
 	.lf .lf-thread-popover .lf-permalink .lf-thread-container article.lf-comment div.lf-comment-container a.lf-etc-btn {
-		border:0;
+		border: 0;
 
 		&:hover {
-			border:0;
+			border: 0;
 			background-color: transparent;
 		}
 	}
@@ -82,7 +93,7 @@
 	.lf .lf-thread .lf-menu-body>a,
 	.lf .lf-thread-popover .lf-menu-body>a {
 		@include nTypeAlpha(3);
-		line-height:32px;
+		line-height: 32px;
 	}
 
 	.lf-comment-author-avatar {
@@ -94,9 +105,10 @@
 	}
 
 	.lf .lf-thread .lf-menu-body>li .lf-edit-timer,
-	.lf .lf-thread-popover .lf-menu-body>li .lf-edit-timer, .lf .lf-thread .lf-menu-body>a .lf-edit-timer,
+	.lf .lf-thread-popover .lf-menu-body>li .lf-edit-timer,
+	.lf .lf-thread .lf-menu-body>a .lf-edit-timer,
 	.lf .lf-thread-popover .lf-menu-body>a .lf-edit-timer {
-		top:0;
+		top: 0;
 	}
 
 }
