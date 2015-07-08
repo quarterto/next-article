@@ -336,52 +336,7 @@ $header-offset: 30px;
 .article__big-number p {
 	margin: 0;
 }
-.article__promo-box {
-	background-color: $box-colour;
-	padding: 10px;
 
-	> * {
-		margin: 10px 0 0;
-	}
-	> *:first-child {
-		margin-top: 0;
-	}
-}
-.article__promo-box__title {
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 1em;
-	text-transform: uppercase;
-}
-.article__promo-box__headline {
-	font-size: 25px;
-	line-height: 1em;
-	font-weight: 100;
-	color: #000000;
-
-	@include oGridRespondTo(S) {
-		font-size: 32px;
-	}
-	p {
-		margin: 0;
-	}
-	a {
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-}
-.article__promo-box__image {
-	width: 100%;
-}
-.article__promo-box__content p {
-	margin: 5px 0 0;
-	font-size: 18px;
-	line-height: 24px;
-	font-weight: normal;
-}
 .article__more-on {
 	padding-bottom: 15px;
 }
@@ -411,3 +366,5 @@ $header-offset: 30px;
 @import 'interactive';
 @import 'genre-styles';
 @import 'featured-items';
+@import 'promo-box';
+@import 'promo-box-new';
