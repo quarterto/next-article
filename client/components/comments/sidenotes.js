@@ -103,6 +103,7 @@ function setupSideNotes(info, uuid, user, modules){
 	var convConfig = {
 		network: 'ft.fyre.co',
 		selectors:'.article__body p',
+		numSidenotesEl : '.article__body p:before',
 		siteId: info.siteId,
 		articleId: uuid,
 		checksum: info.checksum,
