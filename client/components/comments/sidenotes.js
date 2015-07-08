@@ -119,7 +119,7 @@ function setupSideNotes(info, uuid, user, modules){
 }
 
 function init(uuid, flags) {
-	if (!flags.get('geniusStyleComments')) {
+	if (!flags.get('livefyreSideNotes')) {
 		return;
 	}
 	oCommentApi.setConfig(config[ACTIVE_CONFIG]);
