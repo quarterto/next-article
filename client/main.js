@@ -3,6 +3,7 @@
 var oViewport = require('o-viewport');
 var oDate = require('o-date');
 var myFtClient = require('next-myft-client');
+var oExpander = require('o-expander');
 
 var setup = require('next-js-setup');
 var headerFooter = require('n-header-footer');
@@ -56,6 +57,12 @@ setup.bootstrap(function(result) {
 	toc.init(flags);
 	comments.init(uuid, flags);
 	oDate.init(document.querySelector('.article'));
+	oExpander.init(document.querySelector('.article'), {
+		toggleSelector: 'button.o-expander__toggle',
+		toggleState: 'all',
+		collapsedToggleText: 'Show more',
+		expandedToggleText: 'Show less'
+	});
 	scrollDepth.init(flags);
 	nAds.init(flags);
 	typogSwitcher.init(flags);
