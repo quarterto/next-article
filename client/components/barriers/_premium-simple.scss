@@ -14,17 +14,14 @@
 
 	h3 {
 		@include nTypeBeta(2);
-		margin: 0;
-	}
-
-	h4 {
-		@include nTypeBeta(3);
-		margin: 0;
+		margin: 0 0 20px;
+		text-align: center;
 	}
 
 	p {
 		@include nTypeAlpha(3);
-		margin: 0;
+		margin: 0 0 20px;
+		text-align: center;
 	}
 }
 
@@ -61,6 +58,10 @@
 
 .premium-barrier-simple__upgrade-now {
 	@include nextLinkButton(
-		$background: oColorsGetPaletteColor('link-1')
+		$background: oColorsGetPaletteColor('link-2')
 	);
+	@include nTypeAlpha(4);
+	width: 200px;
+	margin: 0 auto;
+	display: block;
 }
