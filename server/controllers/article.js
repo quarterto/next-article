@@ -15,6 +15,7 @@ var articleXSLT = require('../transforms/article-xslt');
 var htmlifyXML = require('../transforms/htmlify-xml');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
+var escapeExpression = require('handlebars').Utils.escapeExpression;
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -106,6 +107,7 @@ module.exports = function(req, res, next) {
 			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
+			console.log(escapeExpression(article.title).replace(/(.*)(\s)/, '$1&nbsp;'));
 			return images($, {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
 				fullWidthInlineImages: res.locals.flags.fullWidthInlineImages
@@ -118,7 +120,7 @@ module.exports = function(req, res, next) {
 						articleV1: articleV1 && articleV1.item,
 						id: extractUuid(article.id),
 						// HACK - Force the last word in the title never to be an ‘orphan’
-						title: article.title.replace(/(.*)(\s)/, '$1&nbsp;'),
+						title: escapeExpression(article.title).replace(/(.*)(\s)/, '$1&nbsp;'),
 						byline: bylineTransform(article.byline, articleV1),
 						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
