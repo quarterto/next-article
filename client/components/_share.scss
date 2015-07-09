@@ -12,8 +12,14 @@ $o-share-is-silent: false;
 			opacity: 0.8;
 		}
 	}
+
+	.o-share ul {
+		display: inline-block;
+		margin-bottom: -4px;
+	}
 }
 
 .article-share__header {
 	@include nTypeBeta(2);
+	display: inline-block;
 }
