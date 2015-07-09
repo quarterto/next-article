@@ -36,6 +36,9 @@ module.exports = function (req, res, next) {
 							useElasticSearch: res.locals.flags.elasticSearchItemGet
 						})
 						.then(function(ids) {
+							if (ids.indexCount === 0) {
+								return [];
+							}
 							return api.content({
 								uuid: ids,
 								useElasticSearch: res.locals.flags.elasticSearchItemGet,
