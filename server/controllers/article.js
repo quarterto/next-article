@@ -173,12 +173,14 @@ module.exports = function(req, res, next) {
 
 						if(res.locals.barrier.subscriptionGrid) {
 							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
-							viewModel.articleTitle = viewModel.title;
+							viewModel.subscriptionGridBarrier.articleTitle = viewModel.title;
 							viewModel.barrierOverlay = {};
 						}
 
 						if(res.locals.barrier.premiumSimple) {
 							viewModel.premiumSimpleBarrier = res.locals.barrier.premiumSimple;
+							viewModel.barrierOverlay = {};
+							viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
 						}
 
 						viewModel.comments = null;
