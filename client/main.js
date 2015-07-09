@@ -4,6 +4,7 @@ var oViewport = require('o-viewport');
 var oDate = require('o-date');
 var myFtClient = require('next-myft-client');
 var oExpander = require('o-expander');
+var oShare = require('o-share');
 
 var setup = require('next-js-setup');
 var headerFooter = require('n-header-footer');
@@ -49,6 +50,10 @@ setup.bootstrap(function(result) {
 		moreOn.init(flags);
 	}
 
+	if (flags.get('articleShareButtons')) {
+		new oShare(document.querySelector('[data-o-component=o-share]'));
+	}
+	
 	nVideo.init({
 		optimumWidth: 710,
 		classes: ['article__video', 'ng-media']
