@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:output method="xml" encoding="UTF-8" />
+    <xsl:output method="html" encoding="UTF-8" />
 
     <xsl:template match="@*|node()">
         <xsl:copy>
@@ -23,16 +23,16 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:include href="./server/stylesheets/slideshow.xsl" />
-    <xsl:include href="./server/stylesheets/related-inline.xsl" />
-    <xsl:include href="./server/stylesheets/links.xsl" />
-    <xsl:include href="./server/stylesheets/interactive-graphics.xsl" />
-    <xsl:include href="./server/stylesheets/video.xsl" />
-    <xsl:include href="./server/stylesheets/pull-quotes.xsl" />
-    <xsl:include href="./server/stylesheets/blockquotes.xsl" />
-    <xsl:include href="./server/stylesheets/big-number.xsl" />
-    <xsl:include href="./server/stylesheets/subheaders.xsl" />
-    <xsl:include href="./server/stylesheets/image-combos.xsl" />
-    <xsl:include href="./server/stylesheets/toc.xsl" />
+    <xsl:include href="slideshow.xsl" />
+    <xsl:include href="related-inline.xsl" />
+    <xsl:include href="links.xsl" />
+    <xsl:include href="interactive-graphics.xsl" />
+    <xsl:include href="video.xsl" />
+    <xsl:include href="pull-quotes.xsl" />
+    <xsl:include href="blockquotes.xsl" />
+    <xsl:include href="big-number.xsl" />
+    <xsl:include href="subheaders.xsl" />
+    <xsl:include href="image-combos.xsl" />
+    <xsl:include href="toc.xsl" />
 
 </xsl:stylesheet>

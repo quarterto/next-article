@@ -1,29 +1,54 @@
 'use strict';
 
-var denodeify = require('denodeify');
-var libxslt = require('bbc-xslt');
+var tempWrite = require('temp-write');
+var spawn = require('child_process').spawn;
 
-// HACK: Body transforms have already unwrapped the document at this point.
-function wrap(article) {
-	return '<root>' + article + '</root>';
-}
+module.exports = function(content, stylesheet, params) {
+	return new Promise(function(resolve, reject) {
 
-function unwrap(article) {
-	return article.replace(/<\/?root>/g, '');
-}
+		tempWrite(content, 'article.xml', function(err, tmpFile) {
+			if (err) {
+				return reject(err);
+			}
 
-module.exports = function bigReadTransform(article, opts) {
-	var stylesheet = (opts && opts.stylesheet) || 'main';
-	var parseFile = denodeify(libxslt.parseFile);
+			var output = [];
+			var errors = [];
+			var options = [
+				'--html',
+				'--novalid',
+				'--encoding', 'utf-8'
+			];
 
-	// If you pass in an XML document you get an XML document
-	var articleXML = libxslt.libxmljs.parseXml(opts && opts.wrap ? wrap(article) : article);
+			params && Object.keys(params).forEach(function(param) {
+				options.concat('--param', param + ',' + params[param]);
+			});
 
-	return parseFile(__dirname + '/../stylesheets/' + stylesheet + '.xsl').then(function(stylesheet) {
-		var transformedXML = stylesheet.apply(articleXML, opts && opts.params);
+			var xsltproc = spawn('xsltproc', options.concat([
+				process.cwd() + '/server/stylesheets/' + stylesheet + '.xsl',
+				tmpFile
+			]));
 
-		//  We only want the (HTML) context, not the XML document as a whole
-		var xml = transformedXML.get('.').toString();
-		return opts && opts.wrap ? unwrap(xml) : xml;
+			xsltproc.stdout.on('data', function(data) {
+				output.push(data);
+			});
+
+			xsltproc.stderr.on('data', function(error) {
+				errors.push(error.toString());
+			});
+
+			xsltproc.on('error', function(error) {
+				reject(error.toString());
+			});
+
+			xsltproc.on('close', function(code) {
+				if (code !== 0) {
+					console.log.apply(console, errors);
+					return reject('xsltproc exited with code ' + code);
+				}
+
+				resolve(output.join(''));
+			});
+		});
+
 	});
 };
