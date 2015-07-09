@@ -1,26 +1,67 @@
 .premium-barrier-simple {
-	margin-bottom: 35px;
+	position: relative;
+	z-index: 18;
+	top: -65px;
+	background-color: oColorsGetPaletteColor('white');
 
-	h2 {
-		@include nTypeBeta(1);
+	@include oGridRespondTo(S) {
+		top: -35px;
+	}
+
+	@include oGridRespondTo(M) {
+		top: -40px;
 	}
 
 	h3 {
 		@include nTypeBeta(2);
-	}
-
-	h4 {
-		@include nTypeBeta(3);
+		margin: 0 0 20px;
+		text-align: center;
 	}
 
 	p {
 		@include nTypeAlpha(3);
-		margin-top: 0;
+		margin: 0 0 20px;
+		text-align: center;
 	}
+}
+
+.premium-barrier-simple__header {
+	background-color: oColorsGetPaletteColor('warm-2');
+
+	h2 {
+		margin: 0;
+		@include nTypeBeta(3);
+		@include oGridColumn((default: full-width, L: three-quarters));
+	}
+
+	h2 {
+		padding-left: 10px;
+	}
+
+	h2 .premium-barrier-simple__heading-pretext {
+		display: block;
+		padding-top: 10px;
+	}
+
+	h2 .premium-barrier-simple__article-title {
+		font-weight: normal;
+		display: block;
+		margin-bottom: 10px;
+	}
+
+}
+
+.premium-barrier-simple__main {
+	background-color: oColorsGetPaletteColor('white');
+	padding: 20px !important;
 }
 
 .premium-barrier-simple__upgrade-now {
 	@include nextLinkButton(
-		$background: oColorsGetPaletteColor('link-1')
+		$background: oColorsGetPaletteColor('link-2')
 	);
+	@include nTypeAlpha(4);
+	width: 200px;
+	margin: 0 auto;
+	display: block;
 }
