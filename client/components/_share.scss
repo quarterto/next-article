@@ -1,0 +1,19 @@
+$o-share-is-silent: false;
+
+@import "o-share/main";
+.article-share {
+	margin-bottom: 16px;
+	.o-share__action {
+		padding: 0 5px;
+		&:first-child {
+			padding-left: 0;
+		}
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+}
+
+.article-share__header {
+	@include nTypeBeta(2);
+}

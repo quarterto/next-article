@@ -19,7 +19,8 @@
     "next-card": "^5.6.5",
     "o-comment-api": "~2.0.3",
     "next-buttons": "^1.1.0",
-    "o-expander": "^1.4.1"
+    "o-expander": "^1.4.1",
+    "o-share": "~1.0.0"
   },
   "resolutions": {
     "o-ft-icons": "next",
