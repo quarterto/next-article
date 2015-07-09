@@ -1,11 +1,8 @@
 'use strict';
 /*global Livefyre*/
 
-if(typeof console !== 'object' || !console.log){
-	window.console = {log:function(){}};
-}
-
 const oCommentApi = require('o-comment-api');
+const beacon = require('next-beacon-component');
 
 const ACTIVE_CONFIG = 'prod';
 
@@ -56,6 +53,12 @@ const config = {
 	}
 };
 
+// just in case...
+if(typeof console !== 'object' || !console.log){
+	window.console = {log:function(){}};
+}
+
+
 function initLiveFyre(domId, uuid){
 	return new Promise(function(resolve, reject){
 		oCommentApi.api.getLivefyreInitConfig({
@@ -102,7 +105,7 @@ function setupSideNotes(info, uuid, user, modules){
 	var [Sidenotes, Auth] = modules;
 	var convConfig = {
 		network: 'ft.fyre.co',
-		selectors:'.article__body p',
+		selectors:'.article__body > p',
 		numSidenotesEl : '.sidenotes-info-container',
 		siteId: info.siteId,
 		articleId: uuid,
@@ -117,6 +120,23 @@ function setupSideNotes(info, uuid, user, modules){
 		}
 	});
 	return app;
+}
+
+function addTracking(app){
+	console.log('Adding tracking', app);
+
+	app.on('sidenotes.commentPosted', function(data){
+		console.log('comment', data);
+		beacon.fire('comment', { interaction: 'posted', sidenote: true });
+	});
+	app.on('sidenotes.commentVoted', function(data){
+		beacon.fire('comment', { interaction: 'liked', sidenote: true, id: data.targetId });
+	});
+	app.on('sidenotes.commentShared', function(data){
+		beacon.fire('comment', { interaction: 'shared', sidenote: true, id: data.targetId });
+	});
+
+	return Promise.resolve(null);
 }
 
 function init(uuid, flags) {
@@ -144,10 +164,8 @@ function init(uuid, flags) {
 		})
 		.then(function(Sidenotes){
 			return setupSideNotes(info, uuid, user, Sidenotes);
-		}).
-		then(function(app){
-			console.log(app);
 		})
+		.then(addTracking)
 		.catch(function(err){
 			console.error(err);
 		});
