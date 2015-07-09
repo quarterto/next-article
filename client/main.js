@@ -53,7 +53,7 @@ setup.bootstrap(function(result) {
 	if (flags.get('articleShareButtons')) {
 		new oShare(document.querySelector('[data-o-component=o-share]'));
 	}
-	
+
 	nVideo.init({
 		optimumWidth: 710,
 		classes: ['article__video', 'ng-media']
