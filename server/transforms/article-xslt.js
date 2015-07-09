@@ -1,5 +1,6 @@
 'use strict';
 
+var fs = require('fs');
 var tempWrite = require('temp-write');
 var spawn = require('child_process').spawn;
 
@@ -23,10 +24,10 @@ module.exports = function(content, stylesheet, params) {
 				options.concat('--param', param + ',' + params[param]);
 			});
 
-			var xsltproc = spawn('xsltproc', options.concat([
+			var xsltproc = spawn('xsltproc', options.concat(
 				process.cwd() + '/server/stylesheets/' + stylesheet + '.xsl',
 				tmpFile
-			]));
+			));
 
 			xsltproc.stdout.on('data', function(data) {
 				output.push(data);
@@ -41,6 +42,8 @@ module.exports = function(content, stylesheet, params) {
 			});
 
 			xsltproc.on('close', function(code) {
+				fs.unlink(tmpFile, new Function);
+
 				if (code !== 0) {
 					console.log.apply(console, errors);
 					return reject('xsltproc exited with code ' + code);
