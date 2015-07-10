@@ -167,6 +167,7 @@ function init(uuid, flags) {
 		})
 		.then(addTracking)
 		.catch(function(err){
+			console.log('Failed to set up side notes - is the user logged in?');
 			console.error(err);
 		});
 }
