@@ -17,3 +17,4 @@ npm-debug.log
 /test/browser/screenshots
 /test/visual/screenshots
 /npm-debug.log.*
+.heroku/vendor/share/doc
