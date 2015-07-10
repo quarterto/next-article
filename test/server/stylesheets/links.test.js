@@ -1,8 +1,13 @@
 /* global describe, it */
 'use strict';
 
-var transform = require('./transform-helper');
+var denodeify = require('denodeify');
+var articleXSLT = require('../../../server/transforms/article-xslt');
 require('chai').should();
+
+function transform(xml) {
+	return articleXSLT(xml, 'main');
+}
 
 describe('Links', function () {
 
@@ -16,7 +21,7 @@ describe('Links', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">aunched a programme of quantitative easing to </a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -31,7 +36,7 @@ describe('Links', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">aunched a programme of <b>quantitative</b> easing to </a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

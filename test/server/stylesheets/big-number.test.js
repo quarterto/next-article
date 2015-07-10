@@ -1,8 +1,13 @@
 /* global describe, it */
 'use strict';
 
-var transform = require('./transform-helper');
+var denodeify = require('denodeify');
+var articleXSLT = require('../../../server/transforms/article-xslt');
 require('chai').should();
+
+function transform(xml) {
+	return articleXSLT(xml, 'main');
+}
 
 describe('Big Number', function () {
 
@@ -22,7 +27,7 @@ describe('Big Number', function () {
 							'<span class="o-big-number__title">33m</span>' +
 							'<span class="o-big-number__content">These are powerful but fragile emissaries of a culture that not even their descendants remember</span>' +
 						'</div>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -43,7 +48,7 @@ describe('Big Number', function () {
 							'<span class="o-big-number__title"><a data-trackable="link" href="http://next.ft.com/1b852d96-ced7-11e4-893d-00144feab7de">33m</a></span>' +
 							'<span class="o-big-number__content">These are <a data-trackable="link" href="http://next.ft.com/712943a2-cda3-11e4-8760-00144feab7de">powerful but fragile</a> emissaries of a culture that not even their descendants remember</span>' +
 						'</div>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

@@ -1,8 +1,13 @@
 /* global describe, it */
 'use strict';
 
-var transform = require('./transform-helper');
+var denodeify = require('denodeify');
+var articleXSLT = require('../../../server/transforms/article-xslt');
 require('chai').should();
+
+function transform(xml) {
+	return articleXSLT(xml, 'main');
+}
 
 describe('Blockquotes', function () {
 
@@ -20,7 +25,7 @@ describe('Blockquotes', function () {
 						'<blockquote class="article__block-quote n-quote">' +
 							'<p>Chart 13 plots a set of cumulative probabilities of official interest rates exceeding a set of interest rate thresholds – 2%</p>' +
 						'</blockquote>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

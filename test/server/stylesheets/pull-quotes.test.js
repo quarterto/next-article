@@ -1,8 +1,13 @@
 /* global describe, it */
 'use strict';
 
-var transform = require('./transform-helper');
+var denodeify = require('denodeify');
+var articleXSLT = require('../../../server/transforms/article-xslt');
 require('chai').should();
+
+function transform(xml) {
+	return articleXSLT(xml, 'main');
+}
 
 describe('Pull Quotes', function () {
 
@@ -22,7 +27,7 @@ describe('Pull Quotes', function () {
 							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
 							'<cite class="n-quote__cite">Dr. Seuss</cite>' +
 						'</blockquote>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -42,7 +47,7 @@ describe('Pull Quotes', function () {
 						'<blockquote class="ng-pull-out n-quote">' +
 							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
 						'</blockquote>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

@@ -1,8 +1,13 @@
 /* global describe, it */
 'use strict';
 
-var transform = require('./transform-helper');
+var denodeify = require('denodeify');
+var articleXSLT = require('../../../server/transforms/article-xslt');
 require('chai').should();
+
+function transform(xml) {
+	return articleXSLT(xml, 'main', { renderSlideshows: 1 });
+}
 
 describe('Slideshow', function () {
 
@@ -20,8 +25,8 @@ describe('Slideshow', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
-					'</body>'
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
+					'</body>\n'
 				);
 			});
 	});
@@ -41,7 +46,7 @@ describe('Slideshow', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<a data-trackable="link" href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -62,8 +67,8 @@ describe('Slideshow', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
-					'</body>'
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
+					'</body>\n'
 				);
 			});
 	});
