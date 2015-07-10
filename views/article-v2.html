@@ -106,6 +106,10 @@
 	</div>
 </div>
 
+{{#if @root.flags.articleShareButtons}}
+	{{>share}}
+{{/if}}
+
 {{#if relatedContent}}
 	<div class="o-grid-row">
 		<div data-trackable="story-package" data-o-grid-colspan="12 L8 XL7 XLoffset1">
