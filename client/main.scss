@@ -7,6 +7,7 @@ $o-big-number-is-silent: false;
 $o-gallery-is-silent: false;
 @import "o-gallery/main";
 @import "o-fonts/main";
+
 @import "o-expander/main";
 @import "n-video/main";
 @include oFontsInclude(MetricWeb, thin);
@@ -38,6 +39,7 @@ $o-comments-is-silent: false;
 @import "helpers";
 @import "components/article/main";
 @import "components/toc/main";
+@import "components/share";
 @import "components/more-on/main";
 @import "components/story-package";
 @import "components/timeline/main";
