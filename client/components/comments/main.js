@@ -17,7 +17,6 @@ function init(uuid, flags){
 	var sidenotesActive = flags.get('livefyreSideNotes');
 	var articleIsCommentOrAnalysis = (function(){
 		var classification = getMetaValue('classification');
-		console.log('classification', classification);
 		return /(comment|analysis)/i.test(classification);
 	}());
 
