@@ -19,8 +19,10 @@
     "next-card": "^5.6.5",
     "o-comment-api": "~2.0.3",
     "next-buttons": "^1.1.0",
+    "n-quote": "^1.0.1",
     "o-expander": "^1.4.1",
-    "o-share": "~1.0.0"
+    "o-share": "~1.0.0",
+    "superstore": "~2.0.1"
   },
   "resolutions": {
     "o-ft-icons": "next",

@@ -1,7 +1,7 @@
 'use strict';
 
 var Superstore = require('superstore');
-var store = new Superstore('ft');
+var store = new Superstore('local', 'ft');
 var storeKey = 'typog-switcher';
 var variantPattern = new RegExp(storeKey + ':(variant-[0-9])');
 
@@ -32,7 +32,7 @@ function updateVariantState() {
 		store.set(storeKey, requestedVariant);
 	} else {
 	// Check for saved variant
-		store.get(storeKey, function (err, savedVariant) {
+		store.get(storeKey).then(function(savedVariant) {
 			// So we don't blindly append to body's className
 			if (isValidVariant(savedVariant)) {
 				addVariantClassName(savedVariant);
