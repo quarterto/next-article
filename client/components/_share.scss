@@ -1,0 +1,37 @@
+@import "o-share/main";
+
+$_o-share-icon-size: 32px;
+$_o-share-sprite-elements: (twitter, facebook, linkedin, whatsapp);
+
+@include oShareBase(o-share);
+@include oShareActionIcon(facebook, o-share);
+@include oShareActionIcon(twitter, o-share);
+@include oShareActionIcon(whatsapp, o-share);
+@include oShareActionIcon(linkedin, o-share);
+
+.article-share {
+	margin-bottom: 16px;
+	display: block;
+	.o-share__action {
+		padding: 0 5px;
+		&:first-child {
+			padding-left: 0;
+		}
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
+	.o-share>ul {
+		display: inline-block;
+		margin-bottom: -8px;
+	}
+}
+
+
+
+.article-share__header {
+	@include nTypeBeta(2);
+	display: inline-block;
+	margin-right: 4px;
+}

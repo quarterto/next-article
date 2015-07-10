@@ -4,6 +4,7 @@ var oViewport = require('o-viewport');
 var oDate = require('o-date');
 var myFtClient = require('next-myft-client');
 var oExpander = require('o-expander');
+var oShare = require('o-share');
 
 var setup = require('next-js-setup');
 var headerFooter = require('n-header-footer');
@@ -14,7 +15,6 @@ var slideshow = require('./components/slideshow/main');
 var moreOn = require('./components/more-on/main');
 var toc = require('./components/toc/main');
 var comments = require('./components/comments/main');
-var share = require('./components/share/main');
 var readingList = require('./components/reading-list/main');
 var scrollDepth = require('./components/article/scroll-depth');
 var typogSwitcher = require('./components/typography-switcher/main');
@@ -51,7 +51,7 @@ setup.bootstrap(function(result) {
 	}
 
 	if (flags.get('articleShareButtons')) {
-		share.init();
+		new oShare(document.querySelector('[data-o-component=o-share]'));
 	}
 
 	nVideo.init({
