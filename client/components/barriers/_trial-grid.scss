@@ -252,7 +252,7 @@
 }
 
 .trial-barrier-grid__other-option {
-	@include oGridColumn((default: one-half, L: one-quarter));
+	@include oGridColumn((default: one-third));
 
 	.trial-barrier-grid__other-option-inner {
 		text-align: center;
@@ -285,12 +285,6 @@
 	}
 }
 
-.trial-barrier-grid__other-option--epaper a {
-	&:before {
-		@include nextIcon(section-magazine, oColorsGetPaletteColor(link-1), 35);
-	}
-}
-
 .trial-barrier-grid__other-option--newspaper a {
 	&:before {
 		@include nextIcon(newspaper, oColorsGetPaletteColor(link-1), 35);
@@ -300,15 +294,6 @@
 .trial-barrier-grid__other-option--weekend a {
 	&:before {
 		@include nextIcon(ipad-portrait, oColorsGetPaletteColor(link-1), 35);
-	}
-}
-
-.trial-barrier-grid__other-option--corporate .trial-barrier-grid__other-option-inner,
-.trial-barrier-grid__other-option--newspaper .trial-barrier-grid__other-option-inner {
-	border-right: 1px solid oColorsGetPaletteColor('warm-2');
-
-	@include oGridRespondTo(L) {
-		border-right: 0px;
 	}
 }
 
