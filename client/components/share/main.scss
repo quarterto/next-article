@@ -23,3 +23,7 @@ $o-share-is-silent: false;
 	@include nTypeBeta(2);
 	display: inline-block;
 }
+
+.article-share__hidden {
+	display: none;
+}
