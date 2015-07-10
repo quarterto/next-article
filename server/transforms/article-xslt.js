@@ -21,7 +21,8 @@ module.exports = function(content, stylesheet, params) {
 			];
 
 			params && Object.keys(params).forEach(function(param) {
-				options.concat('--param', param + ',' + params[param]);
+				var string = typeof params[param] === 'string';
+				options = options.concat(string ? '--stringparam' : '--param', param, params[param]);
 			});
 
 			var xsltproc = spawn('xsltproc', options.concat(
@@ -49,7 +50,7 @@ module.exports = function(content, stylesheet, params) {
 					return reject('xsltproc exited with code ' + code);
 				}
 
-				resolve(output.join(''));
+				resolve(output.join('').replace(/<\/?html>/g, ''));
 			});
 		});
 
