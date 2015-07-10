@@ -1,27 +1,39 @@
-$o-share-is-silent: false;
-
 @import "o-share/main";
+
+$_o-share-icon-size: 32px;
+$_o-share-sprite-elements: (twitter, facebook, linkedin, whatsapp);
+
+@include oShareBase(article-share);
+@include oShareActionIcon(facebook, article-share);
+@include oShareActionIcon(twitter, article-share);
+@include oShareActionIcon(whatsapp, article-share);
+@include oShareActionIcon(linkedin, article-share);
+
 .article-share {
 	margin-bottom: 16px;
-	.o-share__action {
-		padding: 0 5px;
-		&:first-child {
-			padding-left: 0;
-		}
-		&:hover {
-			opacity: 0.8;
-		}
-	}
+	display: block;
 
-	.o-share ul {
+
+	>ul {
 		display: inline-block;
-		margin-bottom: -4px;
+		margin-bottom: -8px;
+	}
+}
+
+.article-share__action {
+	padding: 0 5px;
+	&:first-child {
+		padding-left: 0;
+	}
+	&:hover {
+		opacity: 0.8;
 	}
 }
 
 .article-share__header {
 	@include nTypeBeta(2);
 	display: inline-block;
+	margin-right: 4px;
 }
 
 .article-share__hidden {
