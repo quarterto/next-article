@@ -128,11 +128,6 @@ $header-offset: 30px;
 	}
 }
 
-.article__header .myft-ui__button {
-	@include nButtonsTheme(inverse);
-	@include nButtonsSize(small);
-}
-
 .article__tags {
 	@include print {
 		display: none;
