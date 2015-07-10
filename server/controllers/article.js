@@ -237,7 +237,7 @@ module.exports = function(req, res, next) {
 		})
 		.catch(function(err) {
 			if (err instanceof fetchres.BadServerResponseError) {
-				return api.contentLegacy({ uuid: req.params.id })
+				return api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet })
 						.then(function(data) {
 							if (data.item.location.uri.indexOf('?') > -1) {
 								res.redirect(302, data.item.location.uri + "&ft_site=falcon");
