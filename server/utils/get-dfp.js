@@ -10,7 +10,7 @@ module.exports = function(sections) {
 	// and returned to the caller of main function in this file.
 	// It relies on the fact that a tag with a dfpZone *needs*
 	// to also have a dfpSite.
-	sections.find(function(section) {
+	sections.some(function(section) {
 			var site = section.term.attributes.find(function(attribute) {
 					return attribute.key === 'dfpSite';
 				});
