@@ -81,7 +81,8 @@ module.exports = function(req, res, next) {
 					params: {
 						renderSlideshows: res.locals.flags.galleries ? 1 : 0,
 						renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
-						useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0
+						useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
+						renderTOC: res.locals.flags.articleTOC ? 1 : 0
 					}
 				}),
 				socialMediaImage(article[1])
@@ -95,7 +96,6 @@ module.exports = function(req, res, next) {
 			var mainImage = results[3];
 
 			var $ = bodyTransform(results[2], res.locals.flags);
-			var $crossheads = $('.article__subhead--crosshead');
 
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
 			if (primaryTag) {
@@ -108,7 +108,6 @@ module.exports = function(req, res, next) {
 			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
-			console.log(escapeExpression(article.title).replace(/(.*)(\s)/, '$1&nbsp;'));
 			return images($, {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
 				fullWidthInlineImages: res.locals.flags.fullWidthInlineImages
@@ -125,14 +124,7 @@ module.exports = function(req, res, next) {
 						byline: bylineTransform(article.byline, articleV1),
 						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
-						crossheads: $crossheads.map(function() {
-							var $crosshead = $(this);
-							return {
-								text: $crosshead.text(),
-								id: $crosshead.attr('id')
-							};
-						}).get(),
-						tableOfContents: res.locals.flags.articleTOC && $crossheads.length > 2,
+						toc: $.html('.article__toc'),
 						isColumnist: isColumnist,
 						// if there's a main image, or slideshow or video, we overlap them on the header
 						headerOverlap:

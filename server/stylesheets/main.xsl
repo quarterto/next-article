@@ -20,5 +20,6 @@
     <xsl:include href="./server/stylesheets/subheaders.xsl" />
     <xsl:include href="./server/stylesheets/images.xsl" />
     <xsl:include href="./server/stylesheets/image-combos.xsl" />
+    <xsl:include href="./server/stylesheets/toc.xsl" />
 
 </xsl:stylesheet>

@@ -9,7 +9,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article{{#if showTOC}} article--toc{{/if}}{{#if visualCat}} article--{{visualCat}}{{/if}}{{#if @root.flags.serification}} article--serified{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}{{#if @root.flags.serification}} article--serified{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
 		<div class="ad-placeholder__leaderboard ad-placeholder__{{__name}}"></div>
 		<div class="article__header-inner o-grid-row">
@@ -46,16 +46,6 @@
 					{{/if}}
 					</div>
 				</header>
-				{{#ifAll tableOfContents}}
-					<div class="toc">
-						<div class="toc__title">Article quick links:</div>
-						<ul class="toc__list">
-						{{#each crossheads}}
-							<li class="toc__item"><a class="toc__link" data-trackable="toc" href="#{{id}}">{{text}}</a></li>
-						{{/each}}
-						</ul>
-					</div>
-				{{/ifAll}}
 				{{#if save}}
 					<div class="article__actions">
 						{{>next-myft-ui/templates/save-for-later contentId=id variant='inverse'}}
@@ -89,7 +79,9 @@
 				{{/if}}
 
 			</div>
-			<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+			<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+				<div class="article__rail-advert"></div>
+				{{{toc}}}
 			</div>
 		</div>
 	{{/if}}
