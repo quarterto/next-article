@@ -16,6 +16,7 @@ var htmlifyXML = require('../transforms/htmlify-xml');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var escapeExpression = require('handlebars').Utils.escapeExpression;
+var getDfp = require('../utils/get-dfp');
 
 module.exports = function(req, res, next) {
 	var articleV1Promise;
@@ -141,7 +142,8 @@ module.exports = function(req, res, next) {
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
 						moreOns: {},
-						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : null
+						dfp: (articleV1 && articleV1.item && articleV1.item.metadata) ? getDfp(articleV1.item.metadata.sections) : undefined,
+						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : undefined
 					};
 
 					if (res.locals.flags.openGraph) {
