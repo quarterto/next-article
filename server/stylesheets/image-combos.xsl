@@ -10,7 +10,7 @@
     </xsl:template>
 
     <xsl:template match="pull-quote[preceding-sibling::*[1]/ft-content[@type='http://www.ft.com/ontology/content/ImageSet']]" mode="with-image">
-        <blockquote class="article__pull-quote ng-pull-out o-quote o-quote--standard">
+        <blockquote class="article__pull-quote ng-pull-out n-quote">
             <xsl:apply-templates select="pull-quote-source" />
             <p><xsl:value-of select="pull-quote-text" /></p>
         </blockquote>
