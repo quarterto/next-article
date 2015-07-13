@@ -296,12 +296,3 @@
 		@include nextIcon(ipad-portrait, oColorsGetPaletteColor(link-1), 35);
 	}
 }
-
-.trial-barrier-grid__other-option--corporate .trial-barrier-grid__other-option-inner,
-.trial-barrier-grid__other-option--epaper .trial-barrier-grid__other-option-inner {
-	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
-
-	@include oGridRespondTo(L) {
-		border-bottom: 0px;
-	}
-}
