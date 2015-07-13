@@ -3,6 +3,11 @@
 
     <xsl:template match="/body/p[a[substring(@href, string-length(@href) - 6) = '#slide0' and string-length(text()) = 0] and count(*) = 1]">
         <xsl:apply-templates select="a" />
+        <xsl:if test="string-length(text()) > 0">
+          <p>
+            <xsl:value-of select="text()"/>
+          </p>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="a[substring(@href, string-length(@href) - 6) = '#slide0' and string-length(text()) = 0]">

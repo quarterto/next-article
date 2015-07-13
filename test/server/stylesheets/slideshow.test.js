@@ -62,4 +62,23 @@ describe('Slideshow', function () {
 			});
 	});
 
+	it('should retain any text in the same <p> tag as the slideshow in a separate <p>', function() {
+		return transform(
+				'<body>' +
+					'<p>' +
+						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+						'Some text in the same p tag as the slideshow' +
+					'</p>' +
+				'</body>'
+			)
+			.then(function (transformedXml) {
+				transformedXml.should.equal(
+					'<body>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<p>Some text in the same p tag as the slideshow</p>' +
+					'</body>'
+				);
+			});
+	});
+
 });
