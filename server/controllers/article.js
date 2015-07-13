@@ -158,7 +158,7 @@ module.exports = function(req, res, next) {
 							viewModel.trialSimpleBarrier = res.locals.barrier.trialSimple;
 						}
 
-						if(res.locals.barrier.trialGrid == 123) {
+						if(res.locals.barrier.trialGrid) {
 
 							viewModel.trialGridBarrier = res.locals.barrier.trialGrid;
 
@@ -172,8 +172,8 @@ module.exports = function(req, res, next) {
 							viewModel.barrierOverlay = {};
 						}
 
-						if(res.locals.barrier.trialGrid) {
-							viewModel.subscriptionGridBarrier = res.locals.barrier.trialGrid;
+						if(res.locals.barrier.subscriptionGrid) {
+							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
 							viewModel.subscriptionGridBarrier.articleTitle = viewModel.title;
 							viewModel.barrierOverlay = {};
 						}
