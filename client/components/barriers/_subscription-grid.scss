@@ -78,10 +78,17 @@
 
 	.subscription-barrier-grid__price {
 		margin-right: 4px;
+		font-weight: bold;
+		font-size: 20px;
 		@include oGridRespondTo(L) {
 			display: block;
 			margin-right: 0;
 			margin-bottom: 10px;
+		}
+
+		span {
+			font-weight: normal;
+			font-size: 18px;
 		}
 	}
 
