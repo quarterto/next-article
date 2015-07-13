@@ -18,6 +18,7 @@ var share = require('./components/share/main');
 var readingList = require('./components/reading-list/main');
 var scrollDepth = require('./components/article/scroll-depth');
 var typogSwitcher = require('./components/typography-switcher/main');
+var myFTtray = require('./components/myft-tray/main');
 
 oViewport.listenTo('resize');
 
@@ -71,4 +72,5 @@ setup.bootstrap(function(result) {
 	scrollDepth.init(flags);
 	nAds.init(flags);
 	typogSwitcher.init(flags);
+	myFTtray.init(flags);
 });
