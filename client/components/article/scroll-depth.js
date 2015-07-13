@@ -6,9 +6,9 @@ var throttle = require('../../libs/throttle');
 var mockedWindowHeight;
 // these are what scroll depth are bucketed into
 var percentageBuckets = [25, 50, 75, 100];
+var article = document.querySelector('.article__body');
 
 function getPercentageViewable() {
-	var article = document.querySelector('.article__body');
 	var windowHeight = mockedWindowHeight || window.innerHeight;
 	return (100 / article.getBoundingClientRect().height) * (windowHeight - article.getBoundingClientRect().top);
 }
@@ -33,7 +33,7 @@ var scrollDepth = {
 		opts = opts || {};
 		// allow mocking of window height
 		mockedWindowHeight = opts.windowHeight;
-		if (flags.get('articleScrollDepthTracking') || true) {
+		if (flags.get('articleScrollDepthTracking') && article) {
 			// how much of the article can we initially see
 			fireBeacon(getPercentageViewable());
 			// throttle scrolling
