@@ -26,7 +26,7 @@ describe('Blockquotes', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<blockquote class="article__block-quote o-quote o-quote--standard">' +
+						'<blockquote class="article__block-quote n-quote">' +
 							'<p>Chart 13 plots a set of cumulative probabilities of official interest rates exceeding a set of interest rate thresholds – 2%</p>' +
 						'</blockquote>' +
 					'</body>'

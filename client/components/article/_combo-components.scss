@@ -211,10 +211,12 @@
 	.article__pull-quote {
 		border-left: 0;
 		margin: -15px 0 0;
-		padding-left: 0;
-		padding-right: 20px;
+		padding: 0 20px 0 0;
 		box-sizing: border-box;
 
+		&:before {
+			content: '';
+		}
 		p {
 			@include nTypeDelta(2);
 			color: #000000;
@@ -232,7 +234,7 @@
 				margin-right: 0.05em;
 			}
 		}
-		.o-quote__cite {
+		.n-quote__cite {
 			display: inline-block;
 			padding: 5px 10px;
 			font-size: 20px;
