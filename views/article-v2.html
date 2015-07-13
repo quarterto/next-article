@@ -28,21 +28,19 @@
 						<p class="article__stand-first">{{{articleV1.editorial.standFirst}}}</p>
 					{{/if}}
 
-					{{#if meta}}
-						{{#if article.publishedDate}}
-							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-							</time>
-						{{/if}}
-						{{#if byline}}
-						<p class="article__byline">
-							by: {{{byline}}}
-						</p>
-						{{/if}}
+					{{#if article.publishedDate}}
+						<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+							{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+						</time>
+					{{/if}}
+					{{#if byline}}
+					<p class="article__byline">
+						by: {{{byline}}}
+					</p>
 					{{/if}}
 					</div>
 				</header>
-				{{#ifAll meta tableOfContents}}
+				{{#ifAll tableOfContents}}
 					<div class="toc">
 						<div class="toc__title">Article quick links:</div>
 						<ul class="toc__list">
