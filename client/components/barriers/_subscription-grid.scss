@@ -115,22 +115,24 @@
 			@include nTypeBeta(4);
 			list-style: none;
 			font-weight: normal;
-			margin: 0;
+			margin: 0 0 20px;
 			padding: 0;
 		}
 
-		li {
-			&:before {
-				@include nextIcon(tick, #35bd14, 14);
-				content: '';
-				margin-right: 4px;
-				position: relative;
-				display: inline-block;
-				top: 2px;
-				float: none;
-			}
-		}
+	}
 
+	.subscription-barrier-grid__option--option1 li,
+	.subscription-barrier-grid__option--option2 li,
+	.subscription-barrier-grid__option--option3 li {
+		&:before {
+			@include nextIcon(tick, #35bd14, 14);
+			content: '';
+			margin-right: 4px;
+			position: relative;
+			display: inline-block;
+			top: 2px;
+			float: none;
+		}
 	}
 
 	.subscription-barrier-grid__option-inner {
