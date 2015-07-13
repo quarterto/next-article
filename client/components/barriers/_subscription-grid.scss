@@ -87,7 +87,7 @@
 
 	.subscription-barrier-grid__select {
 		@include nextLinkButton(
-			$background: oColorsGetPaletteColor('link-1')
+			$background: oColorsGetPaletteColor('link-2')
 		);
 		@include nTypeAlpha(4);
 		width: 100px;
