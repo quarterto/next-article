@@ -23,7 +23,32 @@ module.exports.init = function() {
 	])
 	.then(function(results) {
 		if(results[1] && !results[0]) {
-			document.querySelector('.js-myft-email-signup').classList.add('myft-reading-list__loaded');
+			var topicsOnPage = [].slice.call(document.querySelectorAll('[data-concept-id]')).map(function(tag) {
+				return tag.getAttribute('data-concept-id');
+			});
+			var followedTopics = myftClient.loaded['followed'].Items;
+			var followedTopicOfThisArticle = followedTopics.filter(function(topic) {
+				return topicsOnPage.indexOf(topic.UUID) >= 0;
+			});
+
+			if(followedTopicOfThisArticle.length) {
+				var message = 'Get a daily digest email with updates on ';
+				followedTopicOfThisArticle.forEach(function(topic, index) {
+					var topicName = topic.Meta && topic.Meta.S && topic.Meta.S.indexOf('{' === 0) ?
+						JSON.parse(topic.Meta.S).name : '';
+					if(index > 0 && topicName.length) {
+						topicName = ', ' + topicName;
+					}
+					if(index === (followedTopicOfThisArticle.length - 1)){
+						topicName += ' and other';
+					}
+					message += topicName;
+				});
+				var signup = document.querySelector('.js-myft-email-signup');
+				signup.querySelector('.myft-ui label').textContent = message + ' topics you follow.';
+				signup.classList.add('myft-reading-list__loaded');
+			}
+
 		}
 	});
 
