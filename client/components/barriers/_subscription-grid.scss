@@ -185,7 +185,7 @@
 }
 
 .subscription-barrier-grid__other-option {
-	@include oGridColumn((default: one-half, L: one-quarter));
+	@include oGridColumn((default: one-third));
 
 	.subscription-barrier-grid__other-option-inner {
 		text-align: center;
@@ -218,12 +218,6 @@
 	}
 }
 
-.subscription-barrier-grid__other-option--epaper a {
-	&:before {
-		@include nextIcon(section-magazine, oColorsGetPaletteColor(link-1), 35);
-	}
-}
-
 .subscription-barrier-grid__other-option--newspaper a {
 	&:before {
 		@include nextIcon(newspaper, oColorsGetPaletteColor(link-1), 35);
@@ -233,23 +227,5 @@
 .subscription-barrier-grid__other-option--weekend a {
 	&:before {
 		@include nextIcon(ipad-portrait, oColorsGetPaletteColor(link-1), 35);
-	}
-}
-
-.subscription-barrier-grid__other-option--corporate .subscription-barrier-grid__other-option-inner,
-.subscription-barrier-grid__other-option--newspaper .subscription-barrier-grid__other-option-inner {
-	border-right: 1px solid oColorsGetPaletteColor('warm-2');
-
-	@include oGridRespondTo(L) {
-		border-right: 0px;
-	}
-}
-
-.subscription-barrier-grid__other-option--corporate .subscription-barrier-grid__other-option-inner,
-.subscription-barrier-grid__other-option--epaper .subscription-barrier-grid__other-option-inner {
-	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
-
-	@include oGridRespondTo(L) {
-		border-bottom: 0px;
 	}
 }
