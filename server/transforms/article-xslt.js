@@ -43,7 +43,7 @@ module.exports = function(content, stylesheet, params) {
 			});
 
 			xsltproc.on('close', function(code) {
-				fs.unlink(tmpFile, new Function);
+				fs.unlink(tmpFile, null);
 
 				if (code !== 0) {
 					console.log.apply(console, errors);

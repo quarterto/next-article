@@ -1,7 +1,6 @@
 /* global describe, it */
 'use strict';
 
-var denodeify = require('denodeify');
 var articleXSLT = require('../../../server/transforms/article-xslt');
 require('chai').should();
 

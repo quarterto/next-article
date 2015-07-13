@@ -1,10 +1,12 @@
 sudo: false
+env:
+- XSLT_BUILD_DIR=$TRAVIS_BUILD_DIR/.travis/vendor/
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
+# Download and compile libxslt as apt-get is unavailable for container-based infrastructure
 - wget http://xmlsoft.org/sources/libxslt-1.1.28.tar.gz -O /tmp/libxslt.tar.gz
 - mkdir /tmp/libxslt && tar -C /tmp/libxslt -xvf /tmp/libxslt.tar.gz
-- export XSLT_BUILD_DIR=$TRAVIS_BUILD_DIR/.travis/vendor/
 - cd /tmp/libxslt/libxslt-1.1.28 && ./configure --prefix=$XSLT_BUILD_DIR && make && make install
 - cd $TRAVIS_BUILD_DIR
 - export PATH=$PATH:$XSLT_BUILD_DIR/bin

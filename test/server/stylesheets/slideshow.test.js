@@ -1,7 +1,6 @@
 /* global describe, it */
 'use strict';
 
-var denodeify = require('denodeify');
 var articleXSLT = require('../../../server/transforms/article-xslt');
 require('chai').should();
 
@@ -90,9 +89,9 @@ describe('Slideshow', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
 						'<p>Some text in the same p tag as the slideshow</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
