@@ -141,7 +141,6 @@ module.exports = function(req, res, next) {
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
 						moreOns: {},
-						meta: {},
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : null
 					};
 
@@ -197,7 +196,6 @@ module.exports = function(req, res, next) {
 						viewModel.relatedContent = null;
 						viewModel.moreOns = null;
 						viewModel.headerOverlap = null;
-						viewModel.meta = null;
 					}
 
 					if (res.locals.firstClickFreeModel) {
