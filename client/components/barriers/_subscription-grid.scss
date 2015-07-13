@@ -52,12 +52,14 @@
 			text-align: center;
 			text-transform: uppercase;
 			margin-bottom: 10px;
+			font-weight: bold;
 		}
 	}
 
 	.subscription-barrier-grid__image {
+		margin-bottom: 10px;
 		img {
-			width: 90%;
+			width: 80%;
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
@@ -76,16 +78,23 @@
 
 	.subscription-barrier-grid__price {
 		margin-right: 4px;
+		font-weight: bold;
+		font-size: 20px;
 		@include oGridRespondTo(L) {
 			display: block;
 			margin-right: 0;
 			margin-bottom: 10px;
 		}
+
+		span {
+			font-weight: normal;
+			font-size: 18px;
+		}
 	}
 
 	.subscription-barrier-grid__select {
 		@include nextLinkButton(
-			$background: oColorsGetPaletteColor('link-1')
+			$background: oColorsGetPaletteColor('link-2')
 		);
 		@include nTypeAlpha(4);
 		width: 100px;
@@ -93,8 +102,8 @@
 
 	.subscription-barrier-grid__secondary {
 
-		padding-left: 10px;
-		padding-right: 10px;
+		padding-left: 30px;
+		padding-right: 30px;
 
 		h4 {
 			@include nTypeBeta(4);
@@ -106,22 +115,24 @@
 			@include nTypeBeta(4);
 			list-style: none;
 			font-weight: normal;
-			margin: 0;
+			margin: 0 0 20px;
 			padding: 0;
 		}
 
-		li {
-			&:before {
-				@include nextIcon(tick, #35bd14, 14);
-				content: '';
-				margin-right: 4px;
-				position: relative;
-				display: inline-block;
-				top: 2px;
-				float: none;
-			}
-		}
+	}
 
+	.subscription-barrier-grid__option--option1 li,
+	.subscription-barrier-grid__option--option2 li,
+	.subscription-barrier-grid__option--option3 li {
+		&:before {
+			@include nextIcon(tick, #35bd14, 14);
+			content: '';
+			margin-right: 4px;
+			position: relative;
+			display: inline-block;
+			top: 2px;
+			float: none;
+		}
 	}
 
 	.subscription-barrier-grid__option-inner {
@@ -130,7 +141,7 @@
 		padding-bottom: 10px;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 		@include oGridRespondTo(S) {
-			min-height: 435px;
+			min-height: 480px;
 		}
 	}
 
@@ -185,7 +196,7 @@
 }
 
 .subscription-barrier-grid__other-option {
-	@include oGridColumn((default: one-half, L: one-quarter));
+	@include oGridColumn((default: one-third));
 
 	.subscription-barrier-grid__other-option-inner {
 		text-align: center;
@@ -218,12 +229,6 @@
 	}
 }
 
-.subscription-barrier-grid__other-option--epaper a {
-	&:before {
-		@include nextIcon(section-magazine, oColorsGetPaletteColor(link-1), 35);
-	}
-}
-
 .subscription-barrier-grid__other-option--newspaper a {
 	&:before {
 		@include nextIcon(newspaper, oColorsGetPaletteColor(link-1), 35);
@@ -233,23 +238,5 @@
 .subscription-barrier-grid__other-option--weekend a {
 	&:before {
 		@include nextIcon(ipad-portrait, oColorsGetPaletteColor(link-1), 35);
-	}
-}
-
-.subscription-barrier-grid__other-option--corporate .subscription-barrier-grid__other-option-inner,
-.subscription-barrier-grid__other-option--newspaper .subscription-barrier-grid__other-option-inner {
-	border-right: 1px solid oColorsGetPaletteColor('warm-2');
-
-	@include oGridRespondTo(L) {
-		border-right: 0px;
-	}
-}
-
-.subscription-barrier-grid__other-option--corporate .subscription-barrier-grid__other-option-inner,
-.subscription-barrier-grid__other-option--epaper .subscription-barrier-grid__other-option-inner {
-	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
-
-	@include oGridRespondTo(L) {
-		border-bottom: 0px;
 	}
 }
