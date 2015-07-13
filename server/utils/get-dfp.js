@@ -20,7 +20,7 @@ module.exports = function(sections) {
 			attributes = {
 				dfpSite: site && site.value,
 				dfpZone: zone && zone.value
-			}
+			};
 			return site && zone;
 		});
 
