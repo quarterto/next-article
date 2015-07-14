@@ -113,9 +113,9 @@ describe('Slideshow', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
 						'<p>Some <strong>strong</strong> text</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -137,9 +137,9 @@ describe('Slideshow', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
 						'<p>Another <a href="/home">link</a> within the text</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
