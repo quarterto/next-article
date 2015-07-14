@@ -35,9 +35,9 @@ module.exports.init = function() {
 				var message = 'Get a daily digest email with updates on ';
 				followedTopicOfThisArticle.forEach(function(topic, index) {
 					var topicName = topic.Meta && topic.Meta.S && topic.Meta.S.indexOf('{' === 0) ?
-						JSON.parse(topic.Meta.S).name : '';
+						'<b>' + JSON.parse(topic.Meta.S).name + '</b>' : '';
 					if(index > 0 && topicName.length) {
-						topicName = ', ' + topicName;
+						topicName = ', <b>' + topicName + '</b>';
 					}
 					if(index === (followedTopicOfThisArticle.length - 1)){
 						topicName += ' and other';
@@ -45,8 +45,8 @@ module.exports.init = function() {
 					message += topicName;
 				});
 				var signup = document.querySelector('.js-myft-email-signup');
-				signup.querySelector('.myft-ui label').textContent = message + ' topics you follow.';
-				signup.classList.add('myft-reading-list__loaded');
+				signup.querySelector('.myft-ui label').innerHTML = message + ' topics you follow.';
+				signup.classList.add('myft-email-signup__loaded');
 			}
 
 		}
