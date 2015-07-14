@@ -81,4 +81,42 @@ describe('Slideshow', function () {
 			});
 	});
 
+	it('should retain any <strong> tags in the text in the same <p> tag as the slideshow in a separate <p>', function() {
+		return transform(
+			'<body>' +
+	      '<p>' +
+	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+	        'Some <strong>strong</strong> text' +
+	      '</p>' +
+	    '</body>'
+			)
+			.then(function (transformedXml) {
+				transformedXml.should.equal(
+					'<body>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<p>Some <strong>strong</strong> text</p>' +
+					'</body>'
+				);
+			});
+	});
+
+	it('should retain any <a> tags in the text in the same <p> tag as the slideshow in a separate <p>', function() {
+		return transform(
+			'<body>' +
+	      '<p>' +
+	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+	        'Another <a href="/home">link</a> within the text' +
+	      '</p>' +
+	    '</body>'
+			)
+			.then(function (transformedXml) {
+				transformedXml.should.equal(
+					'<body>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<p>Another <a href="/home">link</a> within the text</p>' +
+					'</body>'
+				);
+			});
+	});
+
 });
