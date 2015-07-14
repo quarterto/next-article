@@ -22,7 +22,8 @@
     "n-quote": "^1.0.1",
     "o-expander": "^1.4.1",
     "o-share": "~1.0.0",
-    "superstore": "~2.0.1"
+    "superstore": "~2.0.1",
+    "o-tabs": "~1.4.7"
   },
   "resolutions": {
     "o-ft-icons": "next",

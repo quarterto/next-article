@@ -1,23 +1,25 @@
-<button class="myft-tray__cta js-myft-tray-cta is-hidden">myFT</button>
+<button class="myft-tray__cta js-myft-tray-cta is-hidden"><span class="myft-ui__icon"><span class="u-visually-hidden">My FT</span></span></button>
 
-<section class="myft-tray js-myft-tray is-hidden">
+<section class="myft-tray js-myft-tray">
 	<header class="myft-tray__header">
-		<h3 class="myft-tray__logo">myFT</h3>
-		<a class="myft-tray__manage" href="/myft/my-topics">Manage</a>
-	</header>
-	<div  class="myft-tray__content">
+		<h3 class="myft-tray__logo"><span class="myft-ui__icon"><span class="u-visually-hidden">My FT</span></span></h3>
+		<button class="myft-tray__close js-myft-tray-close">x</button>
 		<nav>
-		<ul class="myft-tray__tabs">
-			<li class="myft-tray__tab"><button data-tab-id="my-feed">My feed</button></li>
-			<li class="myft-tray__tab"><button data-tab-id="my-topics">My topics</button></li>
-		</ul>
-		</nav>
-		<div id="my-feed">
+			<ul data-o-component="o-tabs" class="myft-tray__tabs o-tabs o-tabs--buttontabs o-tabs--big" role="tablist">
+				<li class="myft-tray__tab" role="tab"><a href="#myft-tab-feed" >My feed</a></li>
+				<li class="myft-tray__tab" role="tab"><a href="#myft-tab-topics">My topics</a></li>
+			</ul>
+	</nav>
+	</header>
+
+	<div  class="myft-tray__content">
+
+		<div id="myft-tab-feed" class="o-tabs__tabpanel">
 			<div class="myft-tray__feed js-myft-tray-feed"></div>
 			<a href="/myft/my-feed">See all ></a>
 		</div>
-		<div id="my-topics">
-			<ul class="myft-tray__topics"></ul>
+		<div id="myft-tab-topics" class="o-tabs__tabpanel">
+			<ul class="myft-tray__topics js-myft-tray-topics"></ul>
 		</div>
 	</div>
 </section>
