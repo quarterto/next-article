@@ -2,17 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template match="/body/p[1]">
-        <xsl:choose>
-            <xsl:when test="a[substring(@href, string-length(@href) - 6) = '#slide0' and string-length(text()) = 0]">
-                <xsl:call-template name="slideshow" />
-            </xsl:when>
-            <xsl:when test="ft-content[contains(@type, 'ImageSet')] and normalize-space(string()) = ''">
-                <xsl:call-template name="image" />
-            </xsl:when>
-            <xsl:otherwise>
-                <p><xsl:apply-templates /></p>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates select="current()" mode="default" />
         <xsl:if test="$renderTOC = 1">
             <div class="article__toc" data-trackable="table-of-contents">
                 <h2 class="article__toc__title">Chapters in this article</h2>
