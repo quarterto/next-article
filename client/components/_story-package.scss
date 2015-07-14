@@ -9,6 +9,9 @@
 	@include print {
 		display: none;
 	}
+	&.story-package--inline {
+		margin-top: 0;
+	}
 }
 .story-package--inline {
 	@include oGridRespondTo(S) {
@@ -23,7 +26,6 @@
 
 .story-package__article {
 	position: relative;
-	margin: 0 5px;
 	padding: 5px;
 	font-size: 17px;
 	font-weight: 200;
