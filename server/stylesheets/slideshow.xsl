@@ -2,10 +2,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template name="slideshow">
-        <xsl:apply-templates select="a[substring(@href, string-length(@href) - 6) = '#slide0' and string-length(text()) = 0]" />
+        <xsl:apply-templates select="a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = '']" />
         <xsl:if test="string-length(text()) > 0">
           <p>
-            <xsl:copy-of select="./node()[not(self::a[substring(@href, string-length(@href) - 6) = '#slide0' and string-length(text()) = 0])]" />
+            <xsl:copy-of select="./node()[not(self::a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = ''])]" />
           </p>
         </xsl:if>
     </xsl:template>

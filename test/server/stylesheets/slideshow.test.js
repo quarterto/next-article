@@ -99,7 +99,12 @@ describe('Slideshow', function () {
 	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 	        'Some <strong>strong</strong> text' +
 	      '</p>' +
-	    '</body>'
+	    '</body>',
+				{
+					xsltVars: {
+						renderSlideshows: 1
+					}
+				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -118,7 +123,12 @@ describe('Slideshow', function () {
 	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 	        'Another <a href="/home">link</a> within the text' +
 	      '</p>' +
-	    '</body>'
+	    '</body>',
+				{
+					xsltVars: {
+						renderSlideshows: 1
+					}
+				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
