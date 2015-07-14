@@ -29,9 +29,9 @@
 	background-color: oColorsGetPaletteColor('warm-2');
 
 	h2 {
-		margin: 0;
 		@include nTypeBeta(3);
 		@include oGridColumn((default: full-width, L: three-quarters));
+		margin: 0;
 	}
 
 	h2 {
