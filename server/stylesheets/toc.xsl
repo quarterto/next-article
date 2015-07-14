@@ -3,7 +3,7 @@
 
     <xsl:template match="/body/p[1]">
         <xsl:apply-templates select="current()" mode="default" />
-        <xsl:if test="$renderTOC = 1">
+        <xsl:if test="$renderTOC = 1 and count(/body/h3[contains(@class, 'ft-subhead')]/strong) > 2">
             <div class="article__toc" data-trackable="table-of-contents">
                 <h2 class="article__toc__title">Chapters in this article</h2>
                 <ol class="article__toc__chapters ng-list-reset">

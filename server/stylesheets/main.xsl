@@ -9,10 +9,6 @@
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="p">
-        <xsl:apply-templates select="current()" mode="default" />
-    </xsl:template>
-
     <xsl:template match="p" mode="default">
         <xsl:choose>
             <xsl:when test="ft-content[contains(@type, 'ImageSet')] and normalize-space(string()) = ''">
