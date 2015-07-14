@@ -62,14 +62,18 @@
 	}
 
 	&:before {
-		@include nTypeAlphaSize(3);
+		@include nTypeAlphaSize(4);
 		content: counter(chapters);
 		counter-increment: chapters;
 		position: absolute;
-		top: 2px;
+		top: 5px;
 		left: -20px;
 		margin-right: 20px;
 		color: #f57323;
+		@include oGridRespondTo(M) {
+			@include nTypeDeltaSize(3);
+			top: 3px;
+		}
 	}
 	&:last-child {
 		border-bottom: 0;

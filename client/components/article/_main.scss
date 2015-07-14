@@ -325,7 +325,12 @@ $header-offset: 30px;
 .article__big-number p {
 	margin: 0;
 }
-
+.article__aside {
+	width: 310px;
+	@include oGridRespondTo(XL) {
+		width: auto;
+	}
+}
 .article__more-on {
 	padding-bottom: 15px;
 }
