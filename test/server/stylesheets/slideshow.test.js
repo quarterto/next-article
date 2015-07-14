@@ -85,7 +85,7 @@ describe('Slideshow', function () {
 		return transform(
 			'<body>' +
 	      '<p>' +
-	        '<a href="http://www.zz.com/abc/z/0/z3970z88-0475-11dz-8603-00144zeabdc1.html#slide0"></a>' +
+	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 	        'Some <strong>strong</strong> text' +
 	      '</p>' +
 	    '</body>'
@@ -104,7 +104,7 @@ describe('Slideshow', function () {
 		return transform(
 			'<body>' +
 	      '<p>' +
-	        '<a href="http://www.zz.com/abc/z/0/z3970z88-0475-11dz-8603-00144zeabdc1.html#slide0"></a>' +
+	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 	        'Another <a href="/home">link</a> within the text' +
 	      '</p>' +
 	    '</body>'
@@ -113,7 +113,7 @@ describe('Slideshow', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
-						'<p>Another <a href="/home">link</a> within the text' +
+						'<p>Another <a href="/home">link</a> within the text</p>' +
 					'</body>'
 				);
 			});
