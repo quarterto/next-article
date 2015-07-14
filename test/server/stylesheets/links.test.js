@@ -1,17 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var denodeify = require('denodeify');
-var libxslt = require('bbc-xslt');
+var transform = require('./transform-helper');
 require('chai').should();
-
-function transform(xml) {
-	var parsedXml = libxslt.libxmljs.parseXml(xml);
-	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
-		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml).get('.').toString();
-		});
-}
 
 describe('Links', function () {
 
