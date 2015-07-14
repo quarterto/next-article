@@ -17,4 +17,6 @@ npm-debug.log
 /test/browser/screenshots
 /test/visual/screenshots
 /npm-debug.log.*
-.heroku/vendor/share/doc
+/libxslt/include
+/libxslt/share
+/libxslt/lib

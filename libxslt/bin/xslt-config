@@ -1,6 +1,6 @@
 #! /bin/sh
 
-prefix=/app/.heroku/vendor
+prefix=/app/libxslt
 exec_prefix=${prefix}
 exec_prefix_set=no
 includedir=${prefix}/include
@@ -65,7 +65,7 @@ while test $# -gt 0; do
 	;;
 
     --plugins)
-	echo /app/.heroku/vendor/lib/libxslt-plugins
+	echo /app/libxslt/lib/libxslt-plugins
 	exit 0
 	;;
 
@@ -89,7 +89,7 @@ while test $# -gt 0; do
     shift
 done
 
-the_libs="-L${libdir} -lxslt  -lxml2 -lm  -lrt"
+the_libs="-L${libdir} -lxslt  -lxml2 -lm "
 if test "$includedir" != "/usr/include"; then
     the_flags="$the_flags -I$includedir `xml2-config --cflags`"
 else

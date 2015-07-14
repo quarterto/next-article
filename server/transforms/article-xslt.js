@@ -28,7 +28,7 @@ module.exports = function(content, stylesheet, params) {
 			var xsltproc = spawn('xsltproc', options.concat(
 				process.cwd() + '/server/stylesheets/' + stylesheet + '.xsl',
 				tmpFile
-			));
+			), { env: process.env });
 
 			xsltproc.stdout.on('data', function(data) {
 				output.push(data);
