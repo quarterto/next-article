@@ -11,10 +11,10 @@ module.exports = function (xml, opts) {
 		renderTOC: 0
 	};
 	var xsltVars = {};
-	for (var xsltVarName in defaultXsltVars) {
+	Object.keys(defaultXsltVars).forEach(function (xsltVarName) {
 		xsltVars[xsltVarName] = opts && opts.xsltVars && opts.xsltVars[xsltVarName] ?
 			opts.xsltVars[xsltVarName] : defaultXsltVars[xsltVarName];
-	}
+	});
 	var parsedXml = libxslt.libxmljs.parseXml(xml);
 	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
 		.then(function (stylesheet) {
