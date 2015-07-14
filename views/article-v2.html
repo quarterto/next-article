@@ -22,7 +22,7 @@
 					<div class="article__header-primary">
 						{{#if primaryTag}}
 						<p class="article__primary-theme">
-							<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}">{{primaryTag.name}}</a>
+							<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 						</p>
 						{{/if}}
 						<h1 class="article__title">{{{title}}}</h1>
@@ -68,7 +68,7 @@
 					<ul class="article__tags-list" data-trackable="tags">
 						{{#each tags}}
 							<li class="article__tag">
-								<a class="article__tag__link" href="{{url}}" data-trackable="tag">{{name}}</a>
+								<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
 							</li>
 						{{/each}}
 					</ul>
