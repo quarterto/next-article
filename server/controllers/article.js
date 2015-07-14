@@ -141,6 +141,7 @@ module.exports = function(req, res, next) {
 						primaryTag: primaryTag,
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
+						shareButtons: res.locals.flags.articleShareButtons,
 						moreOns: {},
 						dfp: (articleV1 && articleV1.item && articleV1.item.metadata) ? getDfp(articleV1.item.metadata.sections) : undefined,
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : undefined
@@ -198,6 +199,7 @@ module.exports = function(req, res, next) {
 						viewModel.relatedContent = null;
 						viewModel.moreOns = null;
 						viewModel.headerOverlap = null;
+						viewModel.shareButtons = null;
 					}
 
 					if (res.locals.firstClickFreeModel) {
