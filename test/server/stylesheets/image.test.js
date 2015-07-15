@@ -4,7 +4,7 @@
 var transform = require('./transform-helper');
 require('chai').should();
 
-describe('Images', function () {
+describe.only('Images', function () {
 
 	it('should move images out of containing <p> if they\'re the only thing in it', function() {
 		return transform(
@@ -17,8 +17,10 @@ describe('Images', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
-					'</body>\n'
+						'<figure class="article__image-wrapper ng-figure-reset article__main-image">' +
+							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt=""/>' +
+						'</figure>' +
+					'</body>'
 				);
 			});
 	});
@@ -34,8 +36,10 @@ describe('Images', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
-					'</body>\n'
+						'<figure class="article__image-wrapper ng-figure-reset article__main-image">' +
+							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt=""/>' +
+						'</figure>' +
+					'</body>'
 				);
 			});
 	});
@@ -52,7 +56,7 @@ describe('Images', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<p>' +
-							'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
+							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt=""/>' +
 						'Some body text</p>' +
 					'</body>\n'
 				);

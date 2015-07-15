@@ -277,7 +277,10 @@ $header-offset: 30px;
 .article__image {
 	display: block;
 	max-width: 100%;
-	margin: 0 auto;
+
+	.article__image-wrapper & {
+		margin: 0 auto;
+	}
 }
 .article__image-caption {
 	margin-top: 5px;

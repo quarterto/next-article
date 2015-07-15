@@ -21,7 +21,7 @@
             <xsl:when test="ft-content[contains(@type, 'ImageSet')] and normalize-space(string()) = ''">
                 <xsl:apply-templates select="ft-content" />
             </xsl:when>
-            <xsl:when test="a[substring(@href, string-length(@href) - 6) = '#slide0' and string-length(text()) = 0]">
+            <xsl:when test="a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = '']">
                 <xsl:call-template name="slideshow" />
             </xsl:when>
             <xsl:otherwise>
