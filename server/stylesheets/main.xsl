@@ -23,7 +23,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:include href="slideshow.xsl" />
+    <xsl:include href=".slideshow.xsl" />
     <xsl:include href="related-inline.xsl" />
     <xsl:include href="links.xsl" />
     <xsl:include href="interactive-graphics.xsl" />
@@ -34,5 +34,6 @@
     <xsl:include href="subheaders.xsl" />
     <xsl:include href="image-combos.xsl" />
     <xsl:include href="toc.xsl" />
+    <xsl:include href="images.xsl" />
 
 </xsl:stylesheet>

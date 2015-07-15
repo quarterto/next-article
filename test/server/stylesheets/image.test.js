@@ -59,4 +59,46 @@ describe('Images', function () {
 			});
 	});
 
+	it('should push external images through the image service', function () {
+		return transform(
+				'<body>' +
+					'<p>test test test</p>' +
+					'<p><img src="http://my-image/image.jpg"></img>Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.</p>' +
+				'</body>'
+			)
+			.then(function (transformedXml) {
+				transformedXml.should.equal(
+					'<body>' +
+						'<p>test test test</p>' +
+						'<p>' +
+							'<figure class="article__image-wrapper article__inline-image ng-figure-reset ng-inline-element ng-pull-out">' +
+								'<img src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" class="article__image" alt=""/>' +
+							'</figure>Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.' +
+						'</p>' +
+					'</body>'
+				);
+			});
+	});
+
+	it('should make images at the beginning of the body full width', function () {
+		return transform(
+				'<body>' +
+					'<a><img src="http://my-image/image.jpg"></img></a>' +
+					'<p>Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.</p>' +
+				'</body>'
+			)
+			.then(function (transformedXml) {
+				transformedXml.should.equal(
+					'<body>' +
+						'<a data-trackable="link">' +
+							'<figure class="article__image-wrapper ng-figure-reset article__main-image">' +
+								'<img src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" class="article__image" alt=""/>' +
+							'</figure>' +
+						'</a>' +
+						'<p>Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.</p>' +
+					'</body>'
+				);
+			});
+	});
+
 });
