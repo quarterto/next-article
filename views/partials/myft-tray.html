@@ -1,13 +1,15 @@
-<button class="myft-tray__cta js-myft-tray-cta is-hidden"><span class="myft-ui__icon"><span class="u-visually-hidden">My FT</span></span></button>
+<button class="myft-tray__cta js-myft-tray-cta is-hidden" data-trackable="myft-tray | cta"><span class="myft-ui__icon"><span class="u-visually-hidden">My FT</span></span></button>
 
-<section class="myft-tray js-myft-tray">
+<section class="myft-tray js-myft-tray" data-trackable="myft-tray">
 	<header class="myft-tray__header">
-		<h3 class="myft-tray__logo"><span class="myft-ui__icon"><span class="u-visually-hidden">My FT</span></span></h3>
-		<button class="myft-tray__close js-myft-tray-close">x</button>
+		<h3 class="myft-tray__logo">
+		<a data-trackable="myft-logo" href="/myft/my-news" class="myft-ui__icon"><span class="u-visually-hidden">My FT</span></a>
+		</h3>
+		<button class="myft-tray__close js-myft-tray-close" data-trackable="close"><span class="myft-tray__close__icon"><span class="u-visually-hidden">Close</span></span></button>
 		<nav>
 			<ul data-o-component="o-tabs" class="myft-tray__tabs o-tabs o-tabs--buttontabs o-tabs--big" role="tablist">
-				<li class="myft-tray__tab" role="tab"><a href="#myft-tab-feed" >My feed</a></li>
-				<li class="myft-tray__tab" role="tab"><a href="#myft-tab-topics">My topics</a></li>
+				<li class="myft-tray__tab" role="tab"><a data-trackable="tab-feed" href="#myft-tab-feed" >My feed</a></li>
+				<li class="myft-tray__tab" role="tab"><a data-trackable="tab-topics" href="#myft-tab-topics">My topics</a></li>
 			</ul>
 	</nav>
 	</header>
@@ -16,10 +18,11 @@
 
 		<div id="myft-tab-feed" class="o-tabs__tabpanel">
 			<div class="myft-tray__feed js-myft-tray-feed"></div>
-			<a href="/myft/my-feed">See all ></a>
+			<a data-trackable="see-all" class="myft-tray__see-all" href="/myft/my-news">See all ></a>
 		</div>
 		<div id="myft-tab-topics" class="o-tabs__tabpanel">
 			<ul class="myft-tray__topics js-myft-tray-topics"></ul>
+			<a data-trackable="manage-topics" class="myft-tray__see-all" href="/myft/my-topics">Manage topics ></a>
 		</div>
 	</div>
 </section>

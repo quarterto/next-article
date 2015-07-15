@@ -1,6 +1,7 @@
 'use strict';
 var fetchres = require('fetchres');
 var oTabs = require('o-tabs');
+var oDate = require('o-date');
 var myftClient = require('next-myft-client');
 
 function toggleButton() {
@@ -11,13 +12,19 @@ function toggleButton() {
 function toggle() {
 	let tray = document.querySelector('.js-myft-tray');
 	tray.classList.toggle('myft-tray--open');
+
 }
 
 function bindButton() {
-	let el = document.querySelector('.js-myft-tray-cta');
-	let close = document.querySelector('.js-myft-tray-close');
-	el.addEventListener('click', toggle);
-	close.addEventListener('click', toggle);
+	let tray = document.querySelector('.js-myft-tray');
+
+	document.body.addEventListener('click', function(e) {
+		if(	e.target.closest('.js-myft-tray-cta') ||
+				e.target.closest('.js-myft-tray-close') ||
+				(!e.target.closest('.js-myft-tray') && tray.classList.contains('myft-tray--open'))) {
+					toggle();
+		}
+	});
 }
 
 
@@ -30,13 +37,9 @@ function populateTopics(topics) {
 	let el = document.querySelector('.js-myft-tray-topics');
 	topics.Items.forEach(function(topic) {
 		let topicInfo = JSON.parse(topic.Meta.S);
-		let link = document.createElement('a');
-		link.classList.add('myft-tray__topic');
-		link.href = '/stream/' + topicInfo.taxonomy + 'Id/' + topic.UUID;
-		link.textContent = topicInfo.name;
-		el.appendChild(link);
-	})
-	el.innerHTML = topics;
+		let link = `<li class="myft-tray__topic"><a data-trackable="topic-link" href="/stream/${topicInfo.taxonomy}Id/${topic.UUID}">${topicInfo.name}</a></li>`;
+		el.insertAdjacentHTML('beforeend', link);
+	});
 }
 
 module.exports.init = function() {
@@ -49,6 +52,7 @@ module.exports.init = function() {
 			bindButton();
 			toggleButton();
 			populateFeed(html);
+			oDate.init(document.querySelector('.js-myft-tray'));
 			myftClient.has('followed', '')
 			.then(function(hasFollowed) {
 				if(hasFollowed) {
