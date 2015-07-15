@@ -1,12 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var articleXSLT = require('../../../server/transforms/article-xslt');
+var transform = require('./transform-helper');
 require('chai').should();
-
-function transform(xml) {
-	return articleXSLT(xml, 'main');
-}
 
 describe('Big Number', function () {
 

@@ -1,23 +1,21 @@
 'use strict';
 
-var denodeify = require('denodeify');
-var libxslt = require('bbc-xslt');
+var articleXSLT = require('../../../server/transforms/article-xslt');
 
-module.exports = function (xml, opts) {
-	var defaultXsltVars = {
-		renderSlideshows: 0,
+module.exports = function(xml, params) {
+	var defaults = {
 		renderInteractiveGraphics: 0,
 		useBrightcovePlayer: 0,
+		renderSlideshows: 0,
 		renderTOC: 0
 	};
-	var xsltVars = {};
-	Object.keys(defaultXsltVars).forEach(function (xsltVarName) {
-		xsltVars[xsltVarName] = opts && opts.xsltVars && opts.xsltVars[xsltVarName] ?
-			opts.xsltVars[xsltVarName] : defaultXsltVars[xsltVarName];
+
+	var xsltParams = {};
+
+	Object.keys(defaults).forEach(function(paramName) {
+		xsltParams[paramName] = params && params[paramName] ?
+			params[paramName] : defaults[paramName];
 	});
-	var parsedXml = libxslt.libxmljs.parseXml(xml);
-	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
-		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml, xsltVars).get('.').toString();
-		});
+
+	return articleXSLT(xml, 'main', xsltParams);
 };

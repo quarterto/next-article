@@ -1,12 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var articleXSLT = require('../../../server/transforms/article-xslt');
+var transform = require('./transform-helper');
 require('chai').should();
-
-function transform(xml) {
-	return articleXSLT(xml, 'main', { renderSlideshows: 1 });
-}
 
 describe('Slideshow', function () {
 
@@ -16,9 +12,7 @@ describe('Slideshow', function () {
 					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -36,9 +30,7 @@ describe('Slideshow', function () {
 					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
 				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -58,9 +50,7 @@ describe('Slideshow', function () {
 					'</p>' +
 				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -81,9 +71,7 @@ describe('Slideshow', function () {
 					'</p>' +
 				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -98,16 +86,14 @@ describe('Slideshow', function () {
 
 	it('should retain any <strong> tags in the text in the same <p> tag as the slideshow in a separate <p>', function() {
 		return transform(
-			'<body>' +
-	      '<p>' +
-	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
-	        'Some <strong>strong</strong> text' +
-	      '</p>' +
-	    '</body>',
+				'<body>' +
+					'<p>' +
+						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+						'Some <strong>strong</strong> text' +
+					'</p>' +
+				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -122,16 +108,14 @@ describe('Slideshow', function () {
 
 	it('should retain any <a> tags in the text in the same <p> tag as the slideshow in a separate <p>', function() {
 		return transform(
-			'<body>' +
-	      '<p>' +
-	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
-	        'Another <a href="/home">link</a> within the text' +
-	      '</p>' +
-	    '</body>',
+				'<body>' +
+					'<p>' +
+						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+						'Another <a href="/home">link</a> within the text' +
+					'</p>' +
+				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
