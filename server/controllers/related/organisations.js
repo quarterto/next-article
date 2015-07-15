@@ -12,7 +12,7 @@ module.exports = function(req, res, next) {
 		return res.status(404).end();
 	}
 
-	if (res.locals.flags.mentionsV2) {
+	if (res.locals.flags.capiV2PeopleOrganisationAnnotations) {
 		api.content({
 			uuid: req.params.id,
 			type: 'Article',
