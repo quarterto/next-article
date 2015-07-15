@@ -1,17 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var denodeify = require('denodeify');
-var libxslt = require('bbc-xslt');
+var transform = require('./transform-helper');
 require('chai').should();
-
-function transform(xml) {
-	var parsedXml = libxslt.libxmljs.parseXml(xml);
-	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
-		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml, { renderSlideshows: 1 }).get('.').toString();
-		});
-}
 
 describe('Slideshow', function () {
 
@@ -19,7 +10,12 @@ describe('Slideshow', function () {
 		return transform(
 				'<body>' +
 					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
-				'</body>'
+				'</body>',
+				{
+					xsltVars: {
+						renderSlideshows: 1
+					}
+				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -34,7 +30,12 @@ describe('Slideshow', function () {
 		return transform(
 				'<body>' +
 					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
-				'</body>'
+				'</body>',
+				{
+					xsltVars: {
+						renderSlideshows: 1
+					}
+				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -51,7 +52,12 @@ describe('Slideshow', function () {
 					'<p>' +
 						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 					'</p>' +
-				'</body>'
+				'</body>',
+				{
+					xsltVars: {
+						renderSlideshows: 1
+					}
+				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -69,7 +75,12 @@ describe('Slideshow', function () {
 						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 						'Some text in the same p tag as the slideshow' +
 					'</p>' +
-				'</body>'
+				'</body>',
+				{
+					xsltVars: {
+						renderSlideshows: 1
+					}
+				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -88,7 +99,12 @@ describe('Slideshow', function () {
 	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 	        'Some <strong>strong</strong> text' +
 	      '</p>' +
-	    '</body>'
+	    '</body>',
+				{
+					xsltVars: {
+						renderSlideshows: 1
+					}
+				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -107,7 +123,12 @@ describe('Slideshow', function () {
 	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 	        'Another <a href="/home">link</a> within the text' +
 	      '</p>' +
-	    '</body>'
+	    '</body>',
+				{
+					xsltVars: {
+						renderSlideshows: 1
+					}
+				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(

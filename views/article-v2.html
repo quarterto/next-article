@@ -9,7 +9,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article{{#if showTOC}} article--toc{{/if}}{{#if visualCat}} article--{{visualCat}}{{/if}}{{#if @root.flags.serification}} article--serified{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}{{#if @root.flags.serification}} article--serified{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
 		<div class="ad-placeholder__leaderboard ad-placeholder__{{__name}}"></div>
 		<div class="article__header-inner o-grid-row">
@@ -22,7 +22,7 @@
 					<div class="article__header-primary">
 						{{#if primaryTag}}
 						<p class="article__primary-theme">
-							<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}">{{primaryTag.name}}</a>
+							<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 						</p>
 						{{/if}}
 						<h1 class="article__title">{{{title}}}</h1>
@@ -46,16 +46,6 @@
 					{{/if}}
 					</div>
 				</header>
-				{{#ifAll tableOfContents}}
-					<div class="toc">
-						<div class="toc__title">Article quick links:</div>
-						<ul class="toc__list">
-						{{#each crossheads}}
-							<li class="toc__item"><a class="toc__link" data-trackable="toc" href="#{{id}}">{{text}}</a></li>
-						{{/each}}
-						</ul>
-					</div>
-				{{/ifAll}}
 				{{#if save}}
 					<div class="article__actions">
 						{{>next-myft-ui/templates/save-for-later contentId=id variant='inverse'}}
@@ -68,7 +58,7 @@
 					<ul class="article__tags-list" data-trackable="tags">
 						{{#each tags}}
 							<li class="article__tag">
-								<a class="article__tag__link" href="{{url}}" data-trackable="tag">{{name}}</a>
+								<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
 							</li>
 						{{/each}}
 					</ul>
@@ -89,7 +79,9 @@
 				{{/if}}
 
 			</div>
-			<div class="article__rail-advert" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+			<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+				<div class="article__rail-advert"></div>
+				{{{toc}}}
 			</div>
 		</div>
 	{{/if}}
@@ -115,7 +107,7 @@
 	</div>
 </div>
 
-{{#if @root.flags.articleShareButtons}}
+{{#if shareButtons}}
 	{{>share}}
 {{/if}}
 

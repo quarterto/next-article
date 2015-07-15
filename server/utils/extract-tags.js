@@ -46,6 +46,7 @@ module.exports = function (article, articleV1, flags, primaryTag) {
 			.map(function (tag) {
 				return {
 					name: tag.term.name,
+					id: tag.term.id,
 					url: '/stream/' + tag.term.taxonomy + 'Id/' + tag.term.id
 				};
 			})
