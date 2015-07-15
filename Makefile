@@ -6,7 +6,7 @@ TEST_APP := "ft-article-branch-${GIT_HASH}"
 install:
 	obt install --verbose
 
-test: build-production unit-test verify
+test: verify build-production unit-test
 
 verify:
 	nbt verify
