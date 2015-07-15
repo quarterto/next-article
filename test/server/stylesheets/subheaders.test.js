@@ -18,7 +18,7 @@ describe('Subheaders', function () {
 						'<h2 class="article__subhead article__subhead--standard">' +
 							'The new big earners' +
 						'</h2>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -35,7 +35,7 @@ describe('Subheaders', function () {
 						'<h2 id="crosshead-1" class="article__subhead article__subhead--crosshead ng-pull-out">' +
 							'The new big earners' +
 						'</h2>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

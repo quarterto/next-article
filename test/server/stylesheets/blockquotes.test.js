@@ -20,7 +20,7 @@ describe('Blockquotes', function () {
 						'<blockquote class="article__block-quote n-quote">' +
 							'<p>Chart 13 plots a set of cumulative probabilities of official interest rates exceeding a set of interest rate thresholds – 2%</p>' +
 						'</blockquote>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
