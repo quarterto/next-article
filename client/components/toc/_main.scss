@@ -1,24 +1,62 @@
-.toc {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-.toc__title {
-	font-size: 18px;
-	font-weight: 500;
-}
-.toc__list {
-	padding: 0;
-	margin-left: 15px;
-	margin-bottom: 0;
-	margin-top: 5px;
-}
-.toc__link {
-	color: #ffffff;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	display: block;
+.article__toc {
+	margin: 30px 0;
 
-	&:hover {
-		opacity: 0.5;
+	.article__body & {
+		@include oGridRespondTo(L) {
+			display: none;
+		}
 	}
+	.article__aside & {
+		display: none;
+
+		@include oGridRespondTo(L) {
+			display: block;
+		}
+	}
+}
+.article__toc__title {
+	@include nTypeEcho(3);
+	color: #f57323;
+	background-color: oColorsGetPaletteColor('warm-2');
+	margin: 0;
+	padding: 3px 10px;
+}
+.article__toc__chapters {
+	counter-reset: chapters;
+}
+.article__toc__chapter {
+	@include nTypeAlpha(3);
+	border-bottom: 3px solid oColorsGetPaletteColor('warm-2');
+	color: oColorsGetPaletteColor('cold-2');
+	margin-top: 10px;
+	margin-left: 20px;
+	padding-bottom: 10px;
+	position: relative;
+	@include oGridRespondTo(M) {
+		@include nTypeDeltaSize(2);
+	}
+
+	&:before {
+		@include nTypeAlphaSize(4);
+		content: counter(chapters);
+		counter-increment: chapters;
+		position: absolute;
+		top: 5px;
+		left: -20px;
+		margin-right: 20px;
+		color: #f57323;
+		@include oGridRespondTo(M) {
+			@include nTypeDeltaSize(3);
+			top: 3px;
+		}
+	}
+	&:last-child {
+		border-bottom: 0;
+		padding-bottom: 0;
+	}
+}
+.article__toc .article__toc__link {
+	border: 0;
+	color: oColorsGetPaletteColor('cold-2');
+	text-decoration: none;
 }
