@@ -24,21 +24,16 @@ module.exports = function ($) {
 			}
 			return $promoBoxIntro.html().split(' ').length > longBoxWordBoundayNoImage;
 		})();
-		var promoContentExpansion = (function() {
-			if (!promoBoxLong) {
-				return;
-			}
-			return $promoBoxIntro.children().length > expanderParaBreakPoint;
-		})();
+		var promoContentExpansion = promoBoxLong && ($promoBoxIntro.children().length > expanderParaBreakPoint);
 		var $promoBoxIntroInitial = $('<div></div>')
 			.addClass('promo-box__content__initial')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
-				if (index < expanderParaBreakPoint || !promoContentExpansion) { return el; }
+				if ((index < expanderParaBreakPoint) || !promoContentExpansion) { return el; }
 		}));
 		var $promoBoxIntroExtension = $('<div></div>')
 			.addClass('promo-box__content__extension')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
-				if (index >= expanderParaBreakPoint && promoContentExpansion) { return el; }
+				if ((index >= expanderParaBreakPoint) && promoContentExpansion) { return el; }
 		}));
 
 		if (promoContentExpansion) {
