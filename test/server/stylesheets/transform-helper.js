@@ -7,7 +7,8 @@ module.exports = function(xml, params) {
 		renderInteractiveGraphics: 0,
 		useBrightcovePlayer: 0,
 		renderSlideshows: 0,
-		renderTOC: 0
+		renderTOC: 0,
+		fullWidthMainImages: 0
 	};
 
 	var xsltParams = {};

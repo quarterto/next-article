@@ -80,7 +80,8 @@ module.exports = function(req, res, next) {
 					renderSlideshows: res.locals.flags.galleries ? 1 : 0,
 					renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
 					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
-						renderTOC: res.locals.flags.articleTOC ? 1 : 0
+					renderTOC: res.locals.flags.articleTOC ? 1 : 0,
+					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0
 				}),
 				socialMediaImage(article[1])
 			]);

@@ -38,7 +38,13 @@
     </xsl:template>
 
     <xsl:template match="/body/ft-content[contains(@type, 'ImageSet') and position() = 1] | /body/p[normalize-space(string()) = '' and position() = 1]/ft-content[contains(@type, 'ImageSet')]">
-        <figure class="article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper">
+        <figure>
+            <xsl:attribute name="class">
+                <xsl:choose>
+                    <xsl:when test="$fullWidthMainImages">article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper</xsl:when>
+                    <xsl:otherwise>article__image-wrapper article__inline-image ng-figure-reset ng-inline-element ng-pull-out</xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
             <xsl:apply-templates select="current()" mode="internal-image">
                 <xsl:with-param name="isMain" select="1" />
             </xsl:apply-templates>
@@ -57,7 +63,7 @@
         <img data-image-set-id="{substring(@url, string-length(@url) - 35)}" class="article__image" alt="">
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="$isMain">article__image ng-media</xsl:when>
+                    <xsl:when test="$isMain and $fullWidthMainImages">article__image ng-media</xsl:when>
                     <xsl:when test="$isInline">article__image ng-inline-element ng-pull-out</xsl:when>
                     <xsl:otherwise>article__image</xsl:otherwise>
                 </xsl:choose>
