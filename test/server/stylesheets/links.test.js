@@ -16,7 +16,7 @@ describe('Links', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">aunched a programme of quantitative easing to </a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -31,7 +31,7 @@ describe('Links', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">aunched a programme of <b>quantitative</b> easing to </a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

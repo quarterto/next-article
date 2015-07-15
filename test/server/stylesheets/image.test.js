@@ -17,8 +17,8 @@ describe('Images', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"/>' +
-					'</body>'
+						'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
+					'</body>\n'
 				);
 			});
 	});
@@ -26,16 +26,16 @@ describe('Images', function () {
 	it('should move images out of containing <p> if they\'re the only thing in it (ignoring whitespace)', function() {
 		return transform(
 				'<body>' +
-					'<p>    ' +
+					'<p>' +
 						'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
-					'			</p>' +
+					'</p>' +
 				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"/>' +
-					'</body>'
+						'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
+					'</body>\n'
 				);
 			});
 	});
@@ -52,9 +52,9 @@ describe('Images', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<p>' +
-							'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"/>' +
+							'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
 						'Some body text</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

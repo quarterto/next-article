@@ -12,16 +12,14 @@ describe('Slideshow', function () {
 					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
-					'</body>'
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
+					'</body>\n'
 				);
 			});
 	});
@@ -32,16 +30,14 @@ describe('Slideshow', function () {
 					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
 				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
 						'<a data-trackable="link" href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -54,16 +50,14 @@ describe('Slideshow', function () {
 					'</p>' +
 				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
-					'</body>'
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
+					'</body>\n'
 				);
 			});
 	});
@@ -77,65 +71,59 @@ describe('Slideshow', function () {
 					'</p>' +
 				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
 						'<p>Some text in the same p tag as the slideshow</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
 
 	it('should retain any <strong> tags in the text in the same <p> tag as the slideshow in a separate <p>', function() {
 		return transform(
-			'<body>' +
-	      '<p>' +
-	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
-	        'Some <strong>strong</strong> text' +
-	      '</p>' +
-	    '</body>',
+				'<body>' +
+					'<p>' +
+						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+						'Some <strong>strong</strong> text' +
+					'</p>' +
+				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
 						'<p>Some <strong>strong</strong> text</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
 
 	it('should retain any <a> tags in the text in the same <p> tag as the slideshow in a separate <p>', function() {
 		return transform(
-			'<body>' +
-	      '<p>' +
-	        '<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
-	        'Another <a href="/home">link</a> within the text' +
-	      '</p>' +
-	    '</body>',
+				'<body>' +
+					'<p>' +
+						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
+						'Another <a href="/home">link</a> within the text' +
+					'</p>' +
+				'</body>',
 				{
-					xsltVars: {
-						renderSlideshows: 1
-					}
+					renderSlideshows: 1
 				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"/>' +
+						'<ft-slideshow data-uuid="f3970f88-0475-11df-8603-00144feabdc0"></ft-slideshow>' +
 						'<p>Another <a href="/home">link</a> within the text</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

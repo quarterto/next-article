@@ -311,6 +311,9 @@ $header-offset: 30px;
 .article__subhead--standard {
 	@include nTypeBeta(3);
 }
+.article__block-quote {
+	max-width: 100%;
+}
 .article__block-quote,
 .article__big-number {
 	color: $next-blue;

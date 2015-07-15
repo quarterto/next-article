@@ -12,7 +12,6 @@ var articlePrimaryTag = require('ft-next-article-primary-tag');
 var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
-var htmlifyXML = require('../transforms/htmlify-xml');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var escapeExpression = require('handlebars').Utils.escapeExpression;
@@ -77,13 +76,11 @@ module.exports = function(req, res, next) {
 			return Promise.all([
 				Promise.resolve(article[0]),
 				Promise.resolve(article[1]),
-				articleXSLT(article[1].bodyXML, {
-					params: {
-						renderSlideshows: res.locals.flags.galleries ? 1 : 0,
-						renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
-						useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
+				articleXSLT(article[1].bodyXML, 'main', {
+					renderSlideshows: res.locals.flags.galleries ? 1 : 0,
+					renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
+					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
 						renderTOC: res.locals.flags.articleTOC ? 1 : 0
-					}
 				}),
 				socialMediaImage(article[1])
 			]);
@@ -225,18 +222,13 @@ module.exports = function(req, res, next) {
 						'54fba5c4-e2d6-11e4-aa1d-00144feab7de'
 					];
 
-					if (
-						res.locals.flags.articleComplexTransforms
-						&& exampleArticles.indexOf(viewModel.id) > -1
-					) {
-						return articleXSLT(viewModel.body, { stylesheet: 'article', wrap: true }).then(function(transformedBody) {
+					if (res.locals.flags.articleComplexTransforms && exampleArticles.indexOf(viewModel.id) > -1) {
+						return articleXSLT(viewModel.body, 'article').then(function(transformedBody) {
 							viewModel.body = transformedBody;
 							return viewModel;
 						});
 					}
 
-					// HACK: Cheerio is running in XML mode now
-					viewModel.body = htmlifyXML(viewModel.body);
 					return viewModel;
 				})
 				.then(function(viewModel) {
