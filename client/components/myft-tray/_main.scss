@@ -32,7 +32,8 @@ $o-tabs-is-silent: false;
 
 
 .myft-tray {
-	width: 320px;
+	width: 100%;
+	max-width: 320px;
 	position: fixed;
 	top: 0;
 	left: 100%;
@@ -105,6 +106,11 @@ $o-tabs-is-silent: false;
 		background: none;
 		.next-card__headline__link {
 			color: oColorsGetPaletteColor('white');
+		}
+		.next-card__headline {
+			@include oGridRespondTo($until: M) {
+				margin-bottom: 0;
+			}
 		}
 	}
 	.next-card__time__content {
