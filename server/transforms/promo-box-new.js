@@ -12,25 +12,33 @@ module.exports = function ($) {
 		var $promoBoxHeadline = $el.find('promo-headline');
 		var $promoBoxImage = $el.find('promo-image');
 		var $promoBoxIntro = $el.find('promo-intro');
-		var promoContentExpansion = $promoBoxIntro.children().length > 2;
+		var longBoxWordBoundayNoImage = 35;
+		var longBoxWordBoundaryImage = 80;
+		var expanderParaBreakPoint = 2;
 		var promoBoxLong = (function() {
 			if (!$promoBoxIntro.length) {
 				return;
 			}
-			if ($promoBoxIntro.html().split(' ').length > 35 && $promoBoxImage.length) {
+			if ($promoBoxIntro.html().split(' ').length > longBoxWordBoundaryImage && $promoBoxImage.length) {
 				return true;
 			}
-			return $promoBoxIntro.html().split(' ').length > 80;
+			return $promoBoxIntro.html().split(' ').length > longBoxWordBoundayNoImage;
+		})();
+		var promoContentExpansion = (function() {
+			if (!promoBoxLong) {
+				return;
+			}
+			return $promoBoxIntro.children().length > expanderParaBreakPoint;
 		})();
 		var $promoBoxIntroInitial = $('<div></div>')
 			.addClass('promo-box__content__initial')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
-				if (index < 2) { return $(this); }
+				if (index < expanderParaBreakPoint || !promoContentExpansion) { return el; }
 		}));
 		var $promoBoxIntroExtension = $('<div></div>')
 			.addClass('promo-box__content__extension')
 			.html($promoBoxIntro.children('p').filter(function(index, el) {
-				if (index >= 2) { return el; }
+				if (index >= expanderParaBreakPoint && promoContentExpansion) { return el; }
 		}));
 
 		if (promoContentExpansion) {
@@ -93,7 +101,9 @@ module.exports = function ($) {
 						.html($promoBoxIntroInitial + $promoBoxIntroExtension)
 				);
 				$promoBox.append(
-					$('<button></button>').addClass('o-expander__toggle o--if-js')
+					$('<button></button>')
+						.addClass('o-expander__toggle o--if-js')
+						.attr('data-trackable', 'expander-toggle')
 				);
 			} else {
 				$promoBox.append(
