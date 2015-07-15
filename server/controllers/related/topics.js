@@ -10,7 +10,7 @@ module.exports = function(req, res, next) {
 		return res.status(404).end();
 	}
 
-	if (res.locals.flags.mentionsV2) {
+	if (res.locals.flags.capiV2PeopleOrganisationAnnotations) {
 		// topics not supportd in v2 yet
 		res.status(200).end();
 	} else {
