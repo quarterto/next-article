@@ -1,17 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var denodeify = require('denodeify');
-var libxslt = require('bbc-xslt');
+var transform = require('./transform-helper');
 require('chai').should();
-
-function transform(xml) {
-	var parsedXml = libxslt.libxmljs.parseXml(xml);
-	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
-		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml).get('.').toString();
-		});
-}
 
 describe('Links', function () {
 
@@ -25,7 +16,7 @@ describe('Links', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">aunched a programme of quantitative easing to </a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -40,7 +31,7 @@ describe('Links', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">aunched a programme of <b>quantitative</b> easing to </a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

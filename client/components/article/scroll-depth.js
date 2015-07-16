@@ -33,7 +33,7 @@ var scrollDepth = {
 		opts = opts || {};
 		// allow mocking of window height
 		mockedWindowHeight = opts.windowHeight;
-		if (flags.get('articleScrollDepthTracking') || true) {
+		if (flags.get('articleScrollDepthTracking') && document.querySelector('.article__body')) {
 			// how much of the article can we initially see
 			fireBeacon(getPercentageViewable());
 			// throttle scrolling

@@ -12,7 +12,6 @@ var articlePrimaryTag = require('ft-next-article-primary-tag');
 var bodyTransform = require('../transforms/body');
 var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
-var htmlifyXML = require('../transforms/htmlify-xml');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var escapeExpression = require('handlebars').Utils.escapeExpression;
@@ -77,12 +76,11 @@ module.exports = function(req, res, next) {
 			return Promise.all([
 				Promise.resolve(article[0]),
 				Promise.resolve(article[1]),
-				articleXSLT(article[1].bodyXML, {
-					params: {
-						renderSlideshows: res.locals.flags.galleries ? 1 : 0,
-						renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
-						useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0
-					}
+				articleXSLT(article[1].bodyXML, 'main', {
+					renderSlideshows: res.locals.flags.galleries ? 1 : 0,
+					renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
+					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
+						renderTOC: res.locals.flags.articleTOC ? 1 : 0
 				}),
 				socialMediaImage(article[1])
 			]);
@@ -95,7 +93,6 @@ module.exports = function(req, res, next) {
 			var mainImage = results[3];
 
 			var $ = bodyTransform(results[2], res.locals.flags);
-			var $crossheads = $('.article__subhead--crosshead');
 
 			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
 			if (primaryTag) {
@@ -108,7 +105,6 @@ module.exports = function(req, res, next) {
 			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
-			console.log(escapeExpression(article.title).replace(/(.*)(\s)/, '$1&nbsp;'));
 			return images($, {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
 				fullWidthInlineImages: res.locals.flags.fullWidthInlineImages
@@ -125,14 +121,7 @@ module.exports = function(req, res, next) {
 						byline: bylineTransform(article.byline, articleV1),
 						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
-						crossheads: $crossheads.map(function() {
-							var $crosshead = $(this);
-							return {
-								text: $crosshead.text(),
-								id: $crosshead.attr('id')
-							};
-						}).get(),
-						tableOfContents: res.locals.flags.articleTOC && $crossheads.length > 2,
+						toc: $.html('.article__toc'),
 						isColumnist: isColumnist,
 						// if there's a main image, or slideshow or video, we overlap them on the header
 						headerOverlap:
@@ -141,6 +130,7 @@ module.exports = function(req, res, next) {
 						primaryTag: primaryTag,
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
+						shareButtons: res.locals.flags.articleShareButtons,
 						moreOns: {},
 						dfp: (articleV1 && articleV1.item && articleV1.item.metadata) ? getDfp(articleV1.item.metadata.sections) : undefined,
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : undefined
@@ -174,6 +164,20 @@ module.exports = function(req, res, next) {
 							viewModel.barrierOverlay = {};
 						}
 
+						if(res.locals.barrier.registerGrid) {
+
+							viewModel.registerGridBarrier = res.locals.barrier.registerGrid;
+
+							if(!res.locals.barrier.registerGrid.packages.newspaper) {
+
+								viewModel.registerGridBarrier.missingNewspaper = {};
+							}
+
+							viewModel.registerGridBarrier.articleTitle = viewModel.title;
+
+							viewModel.barrierOverlay = {};
+						}
+
 						if(res.locals.barrier.subscriptionGrid) {
 							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
 							viewModel.subscriptionGridBarrier.articleTitle = viewModel.title;
@@ -198,6 +202,7 @@ module.exports = function(req, res, next) {
 						viewModel.relatedContent = null;
 						viewModel.moreOns = null;
 						viewModel.headerOverlap = null;
+						viewModel.shareButtons = null;
 					}
 
 					if (res.locals.firstClickFreeModel) {
@@ -217,18 +222,13 @@ module.exports = function(req, res, next) {
 						'54fba5c4-e2d6-11e4-aa1d-00144feab7de'
 					];
 
-					if (
-						res.locals.flags.articleComplexTransforms
-						&& exampleArticles.indexOf(viewModel.id) > -1
-					) {
-						return articleXSLT(viewModel.body, { stylesheet: 'article', wrap: true }).then(function(transformedBody) {
+					if (res.locals.flags.articleComplexTransforms && exampleArticles.indexOf(viewModel.id) > -1) {
+						return articleXSLT(viewModel.body, 'article').then(function(transformedBody) {
 							viewModel.body = transformedBody;
 							return viewModel;
 						});
 					}
 
-					// HACK: Cheerio is running in XML mode now
-					viewModel.body = htmlifyXML(viewModel.body);
 					return viewModel;
 				})
 				.then(function(viewModel) {

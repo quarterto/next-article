@@ -1,17 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var denodeify = require('denodeify');
-var libxslt = require('bbc-xslt');
+var transform = require('./transform-helper');
 require('chai').should();
-
-function transform(xml) {
-	var parsedXml = libxslt.libxmljs.parseXml(xml);
-	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
-		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml).get('.').toString();
-		});
-}
 
 describe('Pull Quotes', function () {
 
@@ -31,7 +22,7 @@ describe('Pull Quotes', function () {
 							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
 							'<cite class="n-quote__cite">Dr. Seuss</cite>' +
 						'</blockquote>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -51,7 +42,7 @@ describe('Pull Quotes', function () {
 						'<blockquote class="ng-pull-out n-quote">' +
 							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
 						'</blockquote>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

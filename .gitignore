@@ -17,3 +17,6 @@ npm-debug.log
 /test/browser/screenshots
 /test/visual/screenshots
 /npm-debug.log.*
+/libxslt/include
+/libxslt/share
+/libxslt/lib

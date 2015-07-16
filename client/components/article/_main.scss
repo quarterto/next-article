@@ -28,10 +28,11 @@ $header-offset: 30px;
 	}
 }
 .article__header-inner {
+	padding: 12px 20px 0;
+
 	@include oGridRespondTo(L) {
 		display: flex;
 	}
-	padding: 12px 20px 0;
 }
 .article__header--overlap {
 	padding-bottom: $header-offset + 20;
@@ -59,17 +60,17 @@ $header-offset: 30px;
 }
 .article__title {
 	@include nTypeAlpha(2);
+	margin: 0;
 	@include oGridRespondTo(L) {
 		@include nTypeAlphaSize(1);
 	}
-	margin: 0;
 }
 .article__stand-first {
 	@include nTypeDelta(3);
+	margin: 0 0 $spacing-unit / 4;
 	@include oGridRespondTo(L) {
 		@include nTypeDeltaSize(2);
 	}
-	margin: 0 0 $spacing-unit / 4;
 }
 .article__meta {
 	margin: 20px 0 0;
@@ -85,6 +86,9 @@ $header-offset: 30px;
 	font-style: normal;
 }
 .article__timestamp {
+	@include nTypeAlpha(5);
+	display: inline-block;
+	text-transform: uppercase;
 	@include print {
 		text-indent: -9999px;
 
@@ -96,25 +100,22 @@ $header-offset: 30px;
 			text-indent: 0;
 		}
 	}
-	@include nTypeAlpha(5);
-	display: inline-block;
-	text-transform: uppercase;
 }
 .article__primary-theme {
+	@include nTypeBeta(4);
+	margin: 0;
 	@include print {
 		display: none;
 	}
-	@include nTypeBeta(4);
-	margin: 0;
 }
 .article__actions {
+	margin-top: 10px;
 	@include oGridRespondTo(L) {
 		text-align: right;
 	}
 	@include print {
 		display: none;
 	}
-	margin-top: 10px;
 }
 .article__actions__action {
 	@include nTypeAlpha(5);
@@ -129,14 +130,14 @@ $header-offset: 30px;
 }
 
 .article__tags {
+	margin-top: 10px;
+	padding: 0;
 	@include print {
 		display: none;
 	}
 	@include oGridRespondTo(L) {
 		align-self: flex-end;
 	}
-	margin-top: 10px;
-	padding: 0;
 }
 .article__tags__title {
 	@include nTypeAlpha(5);
@@ -145,10 +146,10 @@ $header-offset: 30px;
 }
 .article__tags-list {
 	@include nLists();
+	margin: ($spacing-unit/2) 0 0;
 	@include oGridRespondTo($until: S) {
 		width: 100%;
 	}
-	margin: ($spacing-unit/2) 0 0;
 }
 .article__tag {
 	@include nListsItem($use-case: n-lists-inversed);
@@ -310,6 +311,9 @@ $header-offset: 30px;
 .article__subhead--standard {
 	@include nTypeBeta(3);
 }
+.article__block-quote {
+	max-width: 100%;
+}
 .article__block-quote,
 .article__big-number {
 	color: $next-blue;
@@ -324,7 +328,12 @@ $header-offset: 30px;
 .article__big-number p {
 	margin: 0;
 }
-
+.article__aside {
+	width: 310px;
+	@include oGridRespondTo(XL) {
+		width: auto;
+	}
+}
 .article__more-on {
 	padding-bottom: 15px;
 }

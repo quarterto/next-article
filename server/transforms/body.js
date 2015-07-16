@@ -33,7 +33,7 @@ module.exports = function(body, flags) {
 	body = body.replace(/http:\/\/www\.ft\.com\/ig\//g, 'https://ig-next.ft.com/');
 	body = body.replace(/http:\/\/ig\.ft\.com\//g, 'https://ig-next.ft.com/');
 
-	var $ = transform(cheerio.load(body, { xmlMode: true }), flags)
+	var $ = transform(cheerio.load(body), flags)
 		// other transforms
 		.with(externalImg)
 		.with(flags.articlePromoBoxNewStyling ? promoBoxNew : promoBox)

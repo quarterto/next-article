@@ -1,17 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var denodeify = require('denodeify');
-var libxslt = require('bbc-xslt');
+var transform = require('./transform-helper');
 require('chai').should();
-
-function transform(xml) {
-	var parsedXml = libxslt.libxmljs.parseXml(xml);
-	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
-		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml).get('.').toString();
-		});
-}
 
 describe('Related Inline', function () {
 
@@ -32,11 +23,11 @@ describe('Related Inline', function () {
 						'<p>1</p>' +
 						'<p>2</p>' +
 						'<p>3</p>' +
-						'<div class="js-more-on-inline" data-trackable="more-on-inline"/>' +
+						'<div class="js-more-on-inline" data-trackable="more-on-inline"></div>' +
 						'<p>4</p>' +
 						'<p>5</p>' +
 						'<p>6</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});
@@ -59,7 +50,7 @@ describe('Related Inline', function () {
 						'<p>3</p>' +
 						'<p>4</p>' +
 						'<p>5</p>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

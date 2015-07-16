@@ -1,17 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var denodeify = require('denodeify');
-var libxslt = require('bbc-xslt');
+var transform = require('./transform-helper');
 require('chai').should();
-
-function transform(xml) {
-	var parsedXml = libxslt.libxmljs.parseXml(xml);
-	return denodeify(libxslt.parseFile)(__dirname + '/../../../server/stylesheets/main.xsl')
-		.then(function (stylesheet) {
-			return stylesheet.apply(parsedXml, { useBrightcovePlayer: 0 }).get('.').toString();
-		});
-}
 
 describe('Video', function () {
 
@@ -27,8 +18,8 @@ describe('Video', function () {
 						'<div class="article__video-wrapper ng-media-wrapper" ' +
             				'data-n-component="n-video" ' +
             				'data-n-video-source="brightcove" ' +
-            				'data-n-video-id="4084879507001"/>' +
-					'</body>'
+            				'data-n-video-id="4084879507001"></div>' +
+					'</body>\n'
 				);
 			});
 	});
@@ -47,7 +38,7 @@ describe('Video', function () {
 						'<a data-trackable="link" href="http://video.ft.com/4080875696001/A-FTSE-landmark-that-matters/Markets" title="A FTSE landmark that matters - FT.com">' +
 							'FTSE-All World index setting a record' +
 						'</a>' +
-					'</body>'
+					'</body>\n'
 				);
 			});
 	});

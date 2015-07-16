@@ -10,7 +10,7 @@ describe('Article XSLT', function () {
 
 	before(function(callback) {
 		fs.readFile(__dirname + '/../../fixtures/article.xml', function(err, articleXML) {
-			articleXSLT(articleXML.toString(), { stylesheet: 'article', wrap: true }).then(function(transformedXML) {
+			articleXSLT(articleXML.toString(), 'article').then(function(transformedXML) {
 				article = transformedXML;
 				callback();
 			});
@@ -18,7 +18,7 @@ describe('Article XSLT', function () {
 	});
 
 	it('is unwrapped', function() {
-		expect(article).to.not.match(/<\/?root>/g);
+		expect(article).to.not.match(/<\/?html>/g);
 	});
 
 });

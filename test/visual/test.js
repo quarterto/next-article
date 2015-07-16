@@ -31,6 +31,13 @@ visualRegressionTest({
 				article_body: '.article__pull-quote'
 			}
 		},
+		block_quote: {
+			path: "/da42476e-7592-379a-ab1e-033b6128d10d",
+			widths: [500, 1400],
+			elements: {
+				article_body: '.article__block-quote'
+			}
+		},
 		promo_box: {
 			path: "/b2c235de-166a-11e5-b07f-00144feabdc0",
 			widths: [500, 1400],
