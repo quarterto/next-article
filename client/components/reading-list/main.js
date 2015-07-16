@@ -9,11 +9,12 @@ module.exports.init = function() {
 
 	var isFromMyFT = document.location.hash.indexOf('myft') > 0;
 	var isFromEmail = isFromMyFT && document.location.hash.indexOf('email') > 0;
+	var elementExists = !!document.querySelector('.js-myft-reading-list');
 
 	// HACK: we often lose the hash in redirects, but if the user hasn't come here from another page
 	// we guess they came from email - otherwise we won't show the feature to enough users to draw
 	// any conclusions
-	var getsReadingList = isFromMyFT || history.length === 1;
+	var getsReadingList = elementExists && (isFromMyFT || history.length === 1);
 
 	var hasSession = document.cookie.match(/FTSession=/);
 
