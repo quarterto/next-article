@@ -357,6 +357,12 @@ $header-offset: 30px;
 	}
 }
 
+.o-ads {
+	@include oGridRespondTo($from: S, $until: L) {
+		clear: left;
+	}
+}
+
 @import 'combo-components';
 @import 'table';
 @import 'listicle';
