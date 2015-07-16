@@ -49,6 +49,36 @@
 		margin-bottom: 10px;
 	}
 
+	.premium-barrier-simple__sign-in {
+		@include nTypeBeta(4);
+		@include oGridColumn((default: full-width, L: one-quarter));
+
+		background-color: oColorsGetPaletteColor('warm-3');
+		padding: 10px;
+		margin: 0;
+
+		@include oGridRespondTo(L) {
+			background-color: oColorsGetPaletteColor('warm-2');
+			text-align: right;
+			padding-top: 12px;
+		}
+
+	}
+
+	.premium-barrier-simple__pretext {
+		@include oGridRespondTo(L) {
+			display: block;
+		}
+	}
+
+	.premium-barrier-simple__sign-in a {
+		text-decoration: none;
+		color: oColorsGetPaletteColor('link-1');
+		@include oGridRespondTo(L) {
+			display: block;
+		}
+	}
+
 }
 
 .premium-barrier-simple__main {

@@ -164,6 +164,20 @@ module.exports = function(req, res, next) {
 							viewModel.barrierOverlay = {};
 						}
 
+						if(res.locals.barrier.registerGrid) {
+
+							viewModel.registerGridBarrier = res.locals.barrier.registerGrid;
+
+							if(!res.locals.barrier.registerGrid.packages.newspaper) {
+
+								viewModel.registerGridBarrier.missingNewspaper = {};
+							}
+
+							viewModel.registerGridBarrier.articleTitle = viewModel.title;
+
+							viewModel.barrierOverlay = {};
+						}
+
 						if(res.locals.barrier.subscriptionGrid) {
 							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
 							viewModel.subscriptionGridBarrier.articleTitle = viewModel.title;

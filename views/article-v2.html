@@ -89,6 +89,10 @@
 
 <div class="o-grid-row">
 	<div data-o-grid-colspan="12 L12 XL12">
+		{{#if registerGridBarrier}}
+			{{> barriers/register-grid}}
+		{{/if}}
+
 		{{#if trialSimpleBarrier}}
 			{{> barriers/trial-simple}}
 		{{/if}}
