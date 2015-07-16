@@ -17,7 +17,7 @@ module.exports = function($, flags) {
 		}
 		$el.removeAttr('height');
 		$el.removeAttr('width');
-		$el.attr('src', resize($el.attr('src'), { width: 710 }));
+		$el.attr('src', resize(decodeURIComponent($el.attr('src')), { width: 710 }));
 
 		var classes = 'article__image-wrapper ng-figure-reset ';
 		if (isMain) {
