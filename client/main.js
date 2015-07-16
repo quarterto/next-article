@@ -3,6 +3,7 @@
 var oViewport = require('o-viewport');
 var oDate = require('o-date');
 var myFtClient = require('next-myft-client');
+var nMyFtTray = require('n-myft-tray');
 var oExpander = require('o-expander');
 
 var setup = require('next-js-setup');
@@ -52,6 +53,10 @@ setup.bootstrap(function(result) {
 
 	if (flags.get('articleShareButtons')) {
 		share.init();
+	}
+
+	if (flags.get('myFTTray')) {
+		nMyFtTray.init();
 	}
 
 	nVideo.init({

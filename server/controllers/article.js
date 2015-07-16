@@ -131,6 +131,7 @@ module.exports = function(req, res, next) {
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
 						shareButtons: res.locals.flags.articleShareButtons,
+						myFTTray: res.locals.flags.myFTTray,
 						moreOns: {},
 						dfp: (articleV1 && articleV1.item && articleV1.item.metadata) ? getDfp(articleV1.item.metadata.sections) : undefined,
 						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : undefined
@@ -203,6 +204,7 @@ module.exports = function(req, res, next) {
 						viewModel.moreOns = null;
 						viewModel.headerOverlap = null;
 						viewModel.shareButtons = null;
+						viewModel.myFTTray = null;
 					}
 
 					if (res.locals.firstClickFreeModel) {
