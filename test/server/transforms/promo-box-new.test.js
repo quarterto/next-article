@@ -53,7 +53,7 @@ describe('Promo Box New', function () {
 				'<p><strong>Best mentor:</strong> &#x201C;Chris Baohm, my boss at Gresham Partners in Australia&#x2009;.&#x2009;.&#x2009;.&#x2009;made me understand the importance of breaking down complex situations into the core commercial objectives.&#x201D;</p></div>' +
 				'<div class="promo-box__content__extension"><p><strong>Biggest mistake:</strong> &#x201C;It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.&#x201D;</p>' +
 				'<p><strong>Networking:</strong> &#x201C;Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.&#x201D;</p></div></div>' +
-				'<button class="o-expander__toggle o--if-js"></button>' +
+				'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
 			'</aside>'
 		);
 	});
