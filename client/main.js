@@ -3,6 +3,7 @@
 var oViewport = require('o-viewport');
 var oDate = require('o-date');
 var myFtClient = require('next-myft-client');
+var nMyFtTray = require('n-myft-tray');
 var oExpander = require('o-expander');
 
 var setup = require('next-js-setup');
@@ -18,7 +19,6 @@ var share = require('./components/share/main');
 var readingList = require('./components/reading-list/main');
 var scrollDepth = require('./components/article/scroll-depth');
 var typogSwitcher = require('./components/typography-switcher/main');
-var myFTtray = require('./components/myft-tray/main');
 
 oViewport.listenTo('resize');
 
@@ -55,6 +55,10 @@ setup.bootstrap(function(result) {
 		share.init();
 	}
 
+	if (flags.get('myFTTray')) {
+		nMyFtTray.init();
+	}
+
 	nVideo.init({
 		optimumWidth: 710,
 		classes: ['article__video', 'ng-media']
@@ -72,5 +76,4 @@ setup.bootstrap(function(result) {
 	scrollDepth.init(flags);
 	nAds.init(flags);
 	typogSwitcher.init(flags);
-	myFTtray.init(flags);
 });
