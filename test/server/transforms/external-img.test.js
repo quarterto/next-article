@@ -18,4 +18,10 @@ describe('External Img', function () {
 		expect($.html()).to.equal('<body><a><figure class="article__image-wrapper ng-figure-reset article__main-image"><img src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fmy-image%2Fimage.jpg?source=next&amp;fit=scale-down&amp;width=710\" class="article__image"></figure></a><p>Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.</p></body>');
 	});
 
+	it('should correctly encode images with spaces in file names', function() {
+		var $ = cheerio.load('<body><p>James Bond Watch</p><img alt="james bond omega.JPG" src="http://clamo.ftdata.co.uk/files/2015-07/16/james%20bond%20omega.JPG"/></body>');
+		$ = externalImgTransform($, { fullWidthMainImages: true });
+		expect($.html()).to.equal('<body><p>James Bond Watch</p><figure class="article__image-wrapper ng-figure-reset article__inline-image ng-inline-element ng-pull-out"><img alt="james bond omega.JPG" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fclamo.ftdata.co.uk%2Ffiles%2F2015-07%2F16%2Fjames%20bond%20omega.JPG?source=next&amp;fit=scale-down&amp;width=710\" class="article__image"></figure></body>');
+	});
+
 });
