@@ -31,25 +31,23 @@
 		<a class="premium-barrier-simple__upgrade-now" href="{{premiumSimpleBarrier.subscribeNowLink}}" data-trackable="subscribe">Upgrade now</a>
 	</div>
 
-	{{#if premiumSimpleBarrier.otherOptions}}
-		<div class="premium-barrier-simple__other-options o-grid-row">
-			<h3>Other subscription options</h3>
-			<div class="o-grid-row">
-				<div class="premium-barrier-simple__other-option premium-barrier-simple__other-option--corporate">
-					<div class="premium-barrier-simple__other-option-inner">
-						<a data-trackable="corporate" href="{{premiumSimpleBarrier.otherOptions.corporate.link}}">
-							<span class="premium-barrier-simple__option-options-text">Corporate</span>
-						</a>
-					</div>
+	<div class="premium-barrier-simple__other-options o-grid-row">
+		<h3>Other subscription options</h3>
+		<div class="o-grid-row">
+			<div class="premium-barrier-simple__other-option premium-barrier-simple__other-option--corporate">
+				<div class="premium-barrier-simple__other-option-inner">
+					<a data-trackable="corporate" href="{{premiumSimpleBarrier.otherOptions.corporate.link}}">
+						<span class="premium-barrier-simple__option-options-text">Corporate</span>
+					</a>
 				</div>
-				<div class="premium-barrier-simple__other-option premium-barrier-simple__other-option--newspaper">
-					<div class="premium-barrier-simple__other-option-inner">
-						<a data-trackable="newspaper" href="{{premiumSimpleBarrier.otherOptions.newspaper.link}}">
-							<span class="premium-barrier-simple__option-options-text">Newspaper only</span>
-						</a>
-					</div>
+			</div>
+			<div class="premium-barrier-simple__other-option premium-barrier-simple__other-option--newspaper">
+				<div class="premium-barrier-simple__other-option-inner">
+					<a data-trackable="newspaper" href="{{premiumSimpleBarrier.otherOptions.newspaper.link}}">
+						<span class="premium-barrier-simple__option-options-text">Newspaper only</span>
+					</a>
 				</div>
 			</div>
 		</div>
-	{{/if}}
+	</div>
 </div>
