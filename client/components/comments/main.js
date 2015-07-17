@@ -1,5 +1,4 @@
 'use strict';
-var fetchres = require('fetchres');
 var traditional = require('./traditional');
 var sidenotes = require('./sidenotes');
 
