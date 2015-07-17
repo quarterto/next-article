@@ -18,6 +18,13 @@
 		text-align: center;
 	}
 
+	h4 {
+		@include nTypeAlpha(3);
+		text-align: center;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+	}
+
 	p {
 		@include nTypeAlpha(3);
 		margin: 0 0 20px;
@@ -94,4 +101,70 @@
 	width: 200px;
 	margin: 0 auto;
 	display: block;
+}
+
+/*****************************************
+* Other options
+*****************************************/
+
+.premium-barrier-simple__other-options {
+	padding-top: 10px;
+	background-color: oColorsGetPaletteColor('white');
+}
+
+.premium-barrier-simple__other-options h3 {
+	@include nTypeAlpha(4);
+	text-align: center;
+	text-transform: uppercase;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1px solid oColorsGetPaletteColor('warm-2');
+	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+	margin-bottom: 0;
+}
+
+.premium-barrier-simple__other-option {
+	@include oGridColumn((default: one-half, L: 3));
+
+	.premium-barrier-simple__other-option-inner {
+		text-align: center;
+		padding-bottom: 10px;
+		padding-top: 10px;
+	}
+
+	a {
+		@include nTypeBeta(4);
+		text-decoration: none;
+		color: oColorsGetPaletteColor(link-1);
+		overflow: hidden;
+
+		.premium-barrier-simple__option-options-text {
+			display: block;
+		}
+
+		&:before {
+			content: '';
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+
+.premium-barrier-simple__other-option--corporate {
+	@include oGridRespondTo(L) {
+		@include oGridOffset(3);
+	}
+}
+
+.premium-barrier-simple__other-option--corporate a {
+	&:before {
+		@include nextIcon(section-business-life, oColorsGetPaletteColor(link-1), 35);
+	}
+}
+
+.premium-barrier-simple__other-option--newspaper a {
+	&:before {
+		@include nextIcon(newspaper, oColorsGetPaletteColor(link-1), 35);
+	}
 }
