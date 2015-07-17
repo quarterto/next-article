@@ -332,9 +332,8 @@ $header-offset: 30px;
 	margin: 0;
 }
 .article__aside {
-	width: 310px;
-	@include oGridRespondTo(XL) {
-		width: auto;
+	@include oGridRespondTo($from: L, $until: XL) {
+		width: 310px;
 	}
 }
 .article__more-on {
