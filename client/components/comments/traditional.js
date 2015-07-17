@@ -27,11 +27,9 @@ module.exports.init = function(uuid, flags) {
 		beacon.fire('comment', { interaction: 'shared', id: ev.detail.data.lfEventData.targetId });
 	});
 
-	var url = 'http://ftalphaville.ft.com/2015/07/17/2134702/plus500-close-but-not-closed/';
-
 	new oComments(document.querySelector('#comments'), {
 		title: document.title,
-		url: url,
+		url: document.location.href,
 		articleId: uuid, // NOTE: to test, use '3a499586-b2e0-11e4-a058-00144feab7de'
 		livefyre: {
 			initialNumVisible: 10,
