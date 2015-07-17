@@ -42,5 +42,6 @@
     <xsl:include href="image-combos.xsl" />
     <xsl:include href="toc.xsl" />
     <xsl:include href="images.xsl" />
+    <xsl:include href="functions.xsl" />
 
 </xsl:stylesheet>
