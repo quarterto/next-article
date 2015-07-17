@@ -13,7 +13,7 @@ module.exports = function($body, opts) {
 			return api.content({ uuid: $(img).attr('data-image-set-id'), type: 'ImageSet' })
 				.catch(function(error) {
 					logger.error(error);
-					return {};
+					return null;
 				});
 		})
 		.get();
@@ -22,6 +22,9 @@ module.exports = function($body, opts) {
 	return Promise.all(imageSetPromises)
 		.then(function (imageSets) {
 			imageSets.forEach(function (imageSet) {
+				if (!imageSet) {
+					return;
+				}
 				var imgSrc = resize('ftcms:' + imageSet.members[0].id.replace(capiMapiRegex, ''), { width: 710 });
 				var $img = $body('img[data-image-set-id="' + imageSet.id.replace('http://www.ft.com/thing/', '') + '"]')
 					.attr('src', imgSrc);
