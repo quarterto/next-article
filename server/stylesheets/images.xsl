@@ -21,14 +21,23 @@
 
     <xsl:template match="img" mode="external-image">
         <xsl:param name="isInline" />
-        <img src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width=710" alt="">
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="$isInline">article__image ng-inline-element ng-pull-out</xsl:when>
-                    <xsl:otherwise>article__image</xsl:otherwise>
-                </xsl:choose>
+          <img alt="">
+            <xsl:attribute name="src">
+              <xsl:value-of select="'https://next-geebee.ft.com/image/v1/images/raw/'" />
+                <xsl:call-template name="string-replace-all">
+                  <xsl:with-param name="text" select="@src" />
+                  <xsl:with-param name="replace" select='"?"' />
+                  <xsl:with-param name="by" select='"%3F"' />
+                </xsl:call-template>
+              <xsl:value-of select="'?source=next&amp;fit=scale-down&amp;width=710'" />
             </xsl:attribute>
-        </img>
+            <xsl:attribute name="class">
+              <xsl:choose>
+                  <xsl:when test="$isInline">article__image ng-inline-element ng-pull-out</xsl:when>
+                  <xsl:otherwise>article__image</xsl:otherwise>
+              </xsl:choose>
+            </xsl:attribute>
+          </img>
     </xsl:template>
 
     <xsl:template match="/html/body/ft-content[contains(@type, 'ImageSet')] | /html/body/p[normalize-space(string()) = '']/ft-content[contains(@type, 'ImageSet')]">

@@ -95,7 +95,7 @@ describe('Images', function () {
 					'<body>' +
 						'<p>test test test</p>' +
 						'<p>' +
-							'<img src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" alt="" class="article__image ng-inline-element ng-pull-out">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" class="article__image ng-inline-element ng-pull-out">' +
 							'Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.' +
 						'</p>' +
 					'</body>\n'
@@ -119,7 +119,7 @@ describe('Images', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<figure class="article__image-wrapper article__main-image ng-figure-reset">' +
-							'<img src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" alt="" class="article__image">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" class="article__image">' +
 						'</figure>' +
 						'<p>Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.</p>' +
 					'</body>\n'
@@ -149,6 +149,31 @@ describe('Images', function () {
 					'</body>\n'
 				);
 			});
+	});
+
+	it('should encode a ? in an external url', function() {
+		return transform(
+			'<html>' +
+				'<body>' +
+					'<p>test test test</p>' +
+					'<p><img src="http://markets.ft.com/ChartBuilder?t=indices&p=eYjhj93245"></img>Chart from chart builder.</p>' +
+				'</body>' +
+			'</html>',
+			{
+				fullWidthMainImages: 0
+			}
+		)
+		.then(function (transformedXml) {
+			transformedXml.should.equal(
+				'<body>' +
+					'<p>test test test</p>' +
+					'<p>' +
+						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://markets.ft.com/ChartBuilder%3Ft=indices&amp;p=eYjhj93245?source=next&amp;fit=scale-down&amp;width=710" class="article__image ng-inline-element ng-pull-out">' +
+						'Chart from chart builder.' +
+					'</p>' +
+				'</body>\n'
+			);
+		});
 	});
 
 });
