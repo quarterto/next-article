@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <!-- image with pull quote -->
-    <xsl:template match="/body/p[ft-content[@type='http://www.ft.com/ontology/content/ImageSet'] and name(following-sibling::*[1]) = 'pull-quote']">
+    <xsl:template match="/html/body/p[ft-content[@type='http://www.ft.com/ontology/content/ImageSet'] and name(following-sibling::*[1]) = 'pull-quote']">
         <div class="article__image-combo article__image-combo--pull-quote">
             <xsl:apply-templates select="ft-content" />
             <xsl:apply-templates select="following-sibling::*[1]" mode="with-image" />
@@ -20,7 +20,7 @@
     </xsl:template>
 
     <!-- image with big number -->
-    <xsl:template match="/body/p[ft-content[@type='http://www.ft.com/ontology/content/ImageSet'] and name(following-sibling::*[1]) = 'big-number']">
+    <xsl:template match="/html/body/p[ft-content[@type='http://www.ft.com/ontology/content/ImageSet'] and name(following-sibling::*[1]) = 'big-number']">
         <div class="article__image-combo article__image-combo--big-number">
             <xsl:apply-templates select="ft-content" />
             <xsl:apply-templates select="following-sibling::*[1]" mode="with-image" />
