@@ -3,7 +3,7 @@
 
     <xsl:template name="slideshow">
         <xsl:apply-templates select="a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = '']" />
-        <xsl:if test="string-length(text()) > 0">
+        <xsl:if test="normalize-space(string()) != ''">
           <p>
             <xsl:copy-of select="./node()[not(self::a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = ''])]" />
           </p>
