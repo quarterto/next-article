@@ -7,7 +7,7 @@
         </figure>
     </xsl:template>
 
-    <xsl:template match="/html/body/img[position() = 1] | /html/body/p[normalize-space(string()) = '' and position() = 1]/img">
+    <xsl:template match="/html/body/img[count(preceding-sibling::*) = 0] | /html/body/p[normalize-space(string()) = '' and count(preceding-sibling::*) = 0]/img">
         <figure class="article__image-wrapper article__main-image ng-figure-reset">
             <xsl:apply-templates select="current()" mode="external-image" />
         </figure>
@@ -37,7 +37,7 @@
         </figure>
     </xsl:template>
 
-    <xsl:template match="/html/body/ft-content[contains(@type, 'ImageSet') and position() = 1] | /html/body/p[normalize-space(string()) = '' and position() = 1]/ft-content[contains(@type, 'ImageSet')]">
+    <xsl:template match="/html/body/ft-content[contains(@type, 'ImageSet') and count(preceding-sibling::*) = 0] | /html/body/p[normalize-space(string()) = '' and count(preceding-sibling::*) = 0]/ft-content[contains(@type, 'ImageSet')]">
         <figure>
             <xsl:attribute name="class">
                 <xsl:choose>
