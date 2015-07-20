@@ -29,7 +29,7 @@ module.exports = function($body, opts) {
 				var $img = $body('img[data-image-set-id="' + imageSet.id.replace('http://www.ft.com/thing/', '') + '"]')
 					.attr('src', imgSrc);
 
-				if (imageSet.title) {
+				if ($img.parent().filter('figure').length > 0 && imageSet.title) {
 					var $figcaption = $('<figcaption></figcaption>')
 						.addClass('article__image-caption ng-meta')
 						.text(imageSet.title);
