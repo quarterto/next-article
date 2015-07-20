@@ -103,6 +103,16 @@
 	display: block;
 }
 
+.premium-barrier-grid__option {
+	@include oGridColumn((default: full-width, M: one-quarter));
+	@include oGridRemoveGutters();
+}
+
+.premium-barrier-grid__option-inner {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 /*****************************************
 * Other options
 *****************************************/
