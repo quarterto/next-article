@@ -86,7 +86,10 @@ module.exports = function ($) {
 			$promoBox.append(
 				$promoBoxImage.html()
 			);
-			var imageClass = "promo-box__image " + promoBoxLong ? "promo-box--long__image" : "";
+			var imageClass = "promo-box__image";
+			if (promoBoxLong) {
+				imageClass += " promo-box--long__image";
+			}
 			$promoBox.find('img').addClass(imageClass).removeClass('ng-pull-out');
 		}
 
