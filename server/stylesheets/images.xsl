@@ -73,7 +73,8 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="$isMain and $fullWidthMainImages">article__image ng-media</xsl:when>
-                    <xsl:when test="$isInline">article__image ng-inline-element ng-pull-out</xsl:when>
+                    <xsl:when test="$isInline and current()[name(parent::*) = 'p']">article__image ng-inline-element ng-pull-out</xsl:when>
+                    <xsl:when test="$isInline and current()[name(parent::*) != 'p']">article__image</xsl:when>
                     <xsl:otherwise>article__image</xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>

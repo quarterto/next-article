@@ -176,4 +176,32 @@ describe('Images', function () {
 		});
 	});
 
+	it('should not add ng-inline-element or ng-pull-out to an image who\'s immediate parent is not a p tag, eg. promo-box or table', function() {
+		return transform(
+			'<html>' +
+				'<body>' +
+					'<promo-box>' +
+						'<promo-image>' +
+							'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
+						'</promo-image>' +
+					'</promo-box>' +
+				'</body>' +
+			'</html>',
+			{
+				fullWidthMainImages: 0
+			}
+		)
+		.then(function (transformedXml) {
+			transformedXml.should.equal(
+				'<body>' +
+					'<promo-box>' +
+						'<promo-image>' +
+							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt="">' +
+						'</promo-image>' +
+					'</promo-box>' +
+				'</body>\n'
+			);
+		});
+	});
+
 });
