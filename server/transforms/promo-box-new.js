@@ -90,7 +90,7 @@ module.exports = function ($) {
 			if (promoBoxLong) {
 				imageClass += " promo-box--long__image";
 			}
-			$promoBox.find('img').addClass(imageClass).removeClass('ng-pull-out');
+			$promoBox.find('img').addClass(imageClass);
 		}
 
 		if ($promoBoxIntro.length) {
