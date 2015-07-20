@@ -45,6 +45,7 @@ setup.bootstrap(function(result) {
 		}
 	}
 
+	nAds.init(flags);
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
 	if (flags.get('contentApiCalls')) {
@@ -74,6 +75,5 @@ setup.bootstrap(function(result) {
 		expandedToggleText: 'Show less'
 	});
 	scrollDepth.init(flags);
-	nAds.init(flags);
 	typogSwitcher.init(flags);
 });
