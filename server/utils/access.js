@@ -39,6 +39,8 @@ module.exports = function(req, res, next) {
 						case '3' :
 							classification = 'conditional_premium';
 					}
+				}else if(article.item.location.uri.indexOf('fastft') > -1){
+					classification = 'conditional_registered';
 				}
 
 				res.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
