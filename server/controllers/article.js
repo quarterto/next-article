@@ -215,26 +215,6 @@ module.exports = function(req, res, next) {
 					return viewModel;
 				})
 				.then(function(viewModel) {
-
-					if (!viewModel.body) {
-						return viewModel;
-					}
-
-					var exampleArticles = [
-						'402e1752-e1f1-11e4-bb7f-00144feab7de',
-						'54fba5c4-e2d6-11e4-aa1d-00144feab7de'
-					];
-
-					if (res.locals.flags.articleComplexTransforms && exampleArticles.indexOf(viewModel.id) > -1) {
-						return articleXSLT(viewModel.body, 'article').then(function(transformedBody) {
-							viewModel.body = transformedBody;
-							return viewModel;
-						});
-					}
-
-					return viewModel;
-				})
-				.then(function(viewModel) {
 					return res.render('article-v2', viewModel);
 				});
 		})
