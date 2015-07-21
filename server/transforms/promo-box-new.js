@@ -86,6 +86,11 @@ module.exports = function ($) {
 			$promoBox.append(
 				$promoBoxImage.html()
 			);
+			var imageClass = "promo-box__image";
+			if (promoBoxLong) {
+				imageClass += " promo-box--long__image";
+			}
+			$promoBox.find('img').addClass(imageClass);
 		}
 
 		if ($promoBoxIntro.length) {
