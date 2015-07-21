@@ -192,6 +192,12 @@ module.exports = function(req, res, next) {
 							viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
 						}
 
+						if(res.locals.barrier.premiumGrid) {
+							viewModel.premiumGridBarrier = res.locals.barrier.premiumGrid;
+							viewModel.barrierOverlay = {};
+							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
+						}
+
 						viewModel.comments = null;
 						viewModel.body = null;
 						viewModel.articleV1.editorial.standFirst = null;
