@@ -16,7 +16,8 @@ var imageSet3 = require('fs').readFileSync('test/fixtures/image-set-3.json', { e
 describe('Images', function() {
 
 	var flags = {
-		fullWidthMainImages: true
+		fullWidthMainImages: true,
+		reserveSpaceForMasterImage: true
 	};
 
 	beforeEach(function() {
