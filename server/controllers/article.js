@@ -187,7 +187,13 @@ module.exports = function(req, res, next) {
 						}
 
 						if(res.locals.barrier.premiumSimple) {
-							viewModel.premiumGridBarrier = res.locals.barrier.premiumSimple;
+							viewModel.premiumSimpleBarrier = res.locals.barrier.premiumSimple;
+							viewModel.barrierOverlay = {};
+							viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
+						}
+
+						if(res.locals.barrier.premiumGrid) {
+							viewModel.premiumGridBarrier = res.locals.barrier.premiumGrid;
 							viewModel.barrierOverlay = {};
 							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
 						}
