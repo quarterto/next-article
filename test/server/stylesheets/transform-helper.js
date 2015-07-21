@@ -8,7 +8,8 @@ module.exports = function(xml, params) {
 		useBrightcovePlayer: 0,
 		renderSlideshows: 0,
 		renderTOC: 0,
-		fullWidthMainImages: 0
+		fullWidthMainImages: 0,
+		reserveSpaceForMasterImage: 1
 	};
 
 	var xsltParams = {};
