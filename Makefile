@@ -40,7 +40,7 @@ deploy:
 	nbt scale
 
 visual:
-	test $TRAVIS_PULL_REQUEST == "true" && export TEST_APP=${TEST_APP}; myrtlejs
+	test $TRAVIS_PULL_REQUEST == "false" || export TEST_APP=${TEST_APP}; myrtlejs
 
 clean-deploy: clean install deploy
 
