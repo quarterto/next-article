@@ -16,7 +16,8 @@ describe('Images', function () {
 					'</body>' +
 				'</html>',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -40,7 +41,8 @@ describe('Images', function () {
 					'</body>' +
 				'</html>',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -64,7 +66,8 @@ describe('Images', function () {
 					'</body>' +
 				'<html>',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -87,7 +90,8 @@ describe('Images', function () {
 					'</body>' +
 				'</html>',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -112,7 +116,8 @@ describe('Images', function () {
 					'</body>' +
 				'</html>\n',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -160,7 +165,8 @@ describe('Images', function () {
 				'</body>' +
 			'</html>',
 			{
-				fullWidthMainImages: 0
+				fullWidthMainImages: 0,
+				reserveSpaceForMasterImage: 1
 			}
 		)
 		.then(function (transformedXml) {
@@ -188,7 +194,8 @@ describe('Images', function () {
 				'</body>' +
 			'</html>',
 			{
-				fullWidthMainImages: 0
+				fullWidthMainImages: 0,
+				reserveSpaceForMasterImage: 1
 			}
 		)
 		.then(function (transformedXml) {
