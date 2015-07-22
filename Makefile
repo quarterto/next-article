@@ -36,7 +36,7 @@ clean:
 deploy:
 	nbt configure
 	nbt deploy-hashed-assets
-	nbt deploy
+	nbt deploy --docker
 	nbt scale
 
 visual:
@@ -51,7 +51,7 @@ provision:
 	nbt provision ${TEST_APP}
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_APP} --skip-enable-preboot
+	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
 	make -j2 visual smoke
 
 smoke:
