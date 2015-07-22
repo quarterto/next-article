@@ -9,9 +9,13 @@ describe('Article XSLT', function () {
 	var article;
 
 	before(function(callback) {
-		fs.readFile(__dirname + '/../../fixtures/article.xml', function(err, articleXML) {
-			articleXSLT(articleXML.toString(), 'article').then(function(transformedXML) {
-				article = transformedXML;
+		fs.readFile(process.cwd() + '/test/fixtures/article.xml', function(err, xml) {
+			if (err) {
+				throw err;
+			}
+
+			articleXSLT(xml.toString(), '../../test/fixtures/article').then(function(transformed) {
+				article = transformed;
 				callback();
 			});
 		});

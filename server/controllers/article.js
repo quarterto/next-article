@@ -81,7 +81,8 @@ module.exports = function(req, res, next) {
 					renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
 					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
 					renderTOC: res.locals.flags.articleTOC ? 1 : 0,
-					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0
+					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
+					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0
 				}),
 				socialMediaImage(article[1])
 			]);
@@ -216,26 +217,6 @@ module.exports = function(req, res, next) {
 
 					if (res.locals.firstClickFreeModel) {
 						viewModel.firstClickFree = res.locals.firstClickFreeModel;
-					}
-
-					return viewModel;
-				})
-				.then(function(viewModel) {
-
-					if (!viewModel.body) {
-						return viewModel;
-					}
-
-					var exampleArticles = [
-						'402e1752-e1f1-11e4-bb7f-00144feab7de',
-						'54fba5c4-e2d6-11e4-aa1d-00144feab7de'
-					];
-
-					if (res.locals.flags.articleComplexTransforms && exampleArticles.indexOf(viewModel.id) > -1) {
-						return articleXSLT(viewModel.body, 'article').then(function(transformedBody) {
-							viewModel.body = transformedBody;
-							return viewModel;
-						});
 					}
 
 					return viewModel;

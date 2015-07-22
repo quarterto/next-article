@@ -50,7 +50,8 @@
         <figure>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="$fullWidthMainImages">article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper</xsl:when>
+                    <xsl:when test="$fullWidthMainImages and $reserveSpaceForMasterImage">article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper</xsl:when>
+                    <xsl:when test="$fullWidthMainImages">article__image-wrapper article__main-image ng-figure-reset</xsl:when>
                     <xsl:otherwise>article__image-wrapper article__inline-image ng-figure-reset ng-inline-element ng-pull-out</xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
@@ -72,7 +73,8 @@
         <img data-image-set-id="{substring(@url, string-length(@url) - 35)}" class="article__image" alt="">
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="$isMain and $fullWidthMainImages">article__image ng-media</xsl:when>
+                    <xsl:when test="$isMain and $fullWidthMainImages and $reserveSpaceForMasterImage">article__image ng-media</xsl:when>
+                    <xsl:when test="$isMain and $fullWidthMainImages">article__image</xsl:when>
                     <xsl:when test="$isInline and current()[name(parent::*) = 'p']">article__image ng-inline-element ng-pull-out</xsl:when>
                     <xsl:when test="$isInline and current()[name(parent::*) != 'p']">article__image</xsl:when>
                     <xsl:otherwise>article__image</xsl:otherwise>
