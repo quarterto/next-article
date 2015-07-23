@@ -154,7 +154,7 @@ $header-offset: 30px;
 .article__tag {
 	@include nListsItem($use-case: n-lists-inversed);
 	&:first-child {
-		border-top-color: #ffffff;
+		border-top: 1px solid #ffffff;
 	}
 }
 
