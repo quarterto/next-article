@@ -2,7 +2,6 @@
 
 var fetchres = require('fetchres');
 var oDate = require('o-date');
-var nTopic = require('n-topic');
 var myFtUi = require('next-myft-ui');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
@@ -72,7 +71,6 @@ module.exports.init = function(flags) {
 	return allSettled(fetchPromises)
 		.then(function() {
 			var moreOnContainer = document.querySelector('.article__more-on');
-			nTopic.init(moreOnContainer);
 			myFtUi.updateUi(moreOnContainer);
 		});
 };
