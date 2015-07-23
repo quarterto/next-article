@@ -1,172 +1,41 @@
 .article__more-on {
-	background: oColorsGetPaletteColor(warm-2);
-	padding-top: 15px;
+	padding-top: $spacing-unit;
 }
 
 .more-on {
-	margin-bottom: 15px;
-	position: relative;
-	font-family: $fontSans;
-	font-weight: 100;
+	margin-bottom: 22px;
 
 	@include print {
 		display: none;
 	}
 }
 
-.more-on > ul > li {
-	margin-bottom: 10px;
-}
-
 .more-on__title {
 	@include nTypeBeta(3);
-	text-transform: none;
+	@include nTypeHeadingSeparator();
 	margin: 0;
 	padding: 5px 0;
-	color: oColorsGetPaletteColor(cold-3);
-
-	@include oGridRespondTo(S) {
-		@include nTypeBeta(2);
-		padding: 10px 0;
-		&:before {
-			top: 6px;
-		}
-	}
-	&:before {
-		content: '';
-		margin-right: 5px;
-		position: relative;
-		top: 5px;
-	}
-}
-
-.more-on--organisations .more-on__title:before {
-	@include nextIcon(section-companies, oColorsGetPaletteColor(cold-3), 25);
-}
-
-.more-on--people .more-on__title:before {
-	@include nextIcon(profile, oColorsGetPaletteColor(cold-3), 25);
-}
-
-.more-on--regions .more-on__title:before {
-	@include nextIcon(section-world, oColorsGetPaletteColor(cold-3), 25);
-}
-
-@include oGridRespondTo(S) {
-	.more-on--organisations .more-on__title:before {
-		@include nextIcon(section-companies, oColorsGetPaletteColor(cold-3), 30);
-	}
-
-	.more-on--people .more-on__title:before {
-		@include nextIcon(profile, oColorsGetPaletteColor(cold-3), 30);
-	}
-
-	.more-on--regions .more-on__title:before {
-		@include nextIcon(section-world, oColorsGetPaletteColor(cold-3), 30);
-	}
-
-}
-
-.more-on__content {
-	border: 1px solid $box-colour;
-	border-top: 0;
-	padding: 0 10px;
-	background: #fff1e0;
+	text-transform: none;
 }
 
 .more-on__articles {
-	.more-on--topic.more-on--with-image & {
-		min-height: 128px;
-	}
+	@include nCardList();
 }
 
 .more-on__article {
-	@include nTypeAlpha(4);
-	margin: 0;
-	position: relative;
-	border-bottom: 1px solid oColorsGetPaletteColor(warm-2);
-	box-sizing: border-box;
+	@include nCardListItem();
 
-	@include oGridRespondTo(S) {
-		@include nTypeAlpha(3);
-	}
-	.more-on__article__link {
-		border-top: 1px solid oColorsGetPaletteColor(warm-3);
-		padding-top: 10px;
-	}
-	&:first-child {
-		margin-top: 0;
-
-		.more-on__article__link {
-			border-top: 0;
-			clear: left;
-		}
-	}
-	.more-on--story & {
-		min-height: 56px;
-		border: 1px solid $box-colour;
-	}
-
-	.more-on--with-image & {
-		@include oGridRespondTo(S) {
-			padding-right: 220px;
-		}
-		@include oGridRespondTo(M) {
-			padding-right: 320px;
-		}
-
-		&:first-child {
-			padding-right: 0;
-
-		}
-	}
-
-	.more-on__article__link {
-		display: block;
-		color: inherit;
+	//TODO: merge this back into bare card
+	.next-card {
+		padding: $spacing-unit/2 0;
 	}
 }
 
-.more-on__article__image {
-	display: block;
-	border: 0;
-
-	.more-on--topic & {
-		width: 100%;
-		margin: 0 0 10px;
-
-		@include oGridRespondTo(S) {
-			width: 200px;
-			margin-top: 0;
-			float: right;
-			position: relative;
-			z-index: 1;
-			padding-left: 20px;
-		}
-		@include oGridRespondTo(M) {
-			width: 300px;
-		}
-	}
+.more-on__related-list {
+	@include nLists();
+	@include nListsCols();
 }
 
-.more-on__all-link {
-	clear: both;
-	position: relative;
-	display: block;
-	font-weight: 500;
-	font-size: 14px;
-	color: oColorsGetPaletteColor(link-1);
-	text-transform: uppercase;
-	text-align: right;
-	padding: 10px;
-	border-top: 0;
-
-	&:after {
-		@include nextIcon(arrow-right, oColorsGetPaletteColor(link-1), 10);
-		content: '';
-		position: relative;
-		top: -1px;
-		left: 5px;
-
-	}
+.more-on__related-item {
+	@include nListsItem();
 }
