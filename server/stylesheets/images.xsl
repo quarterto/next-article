@@ -24,11 +24,7 @@
           <img alt="">
             <xsl:attribute name="src">
               <xsl:value-of select="'https://next-geebee.ft.com/image/v1/images/raw/'" />
-                <xsl:call-template name="string-replace-all">
-                  <xsl:with-param name="text" select="@src" />
-                  <xsl:with-param name="replace" select='"?"' />
-                  <xsl:with-param name="by" select='"%3F"' />
-                </xsl:call-template>
+              <xsl:value-of select="@src" />
               <xsl:value-of select="'?source=next&amp;fit=scale-down&amp;width=710'" />
             </xsl:attribute>
             <xsl:attribute name="class">
