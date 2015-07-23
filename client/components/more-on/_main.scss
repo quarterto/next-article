@@ -33,7 +33,9 @@
 
 .more-on__related-list {
 	@include nLists();
-	@include nListsCols();
+	@include oGridRespondTo(S) {
+		@include nListsCols();
+	}
 }
 
 .more-on__related-item {
