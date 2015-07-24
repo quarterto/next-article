@@ -15,7 +15,7 @@ ENV PATH /app/heroku/node/bin:$PATH
 RUN npm i -g npm@2.13.1
 
 RUN mkdir -p /app/.profile.d
-RUN echo "export PATH=\"/app/heroku/node/bin:/app/bin:/app/src/node_modules/.bin:\$PATH\"" > /app/.profile.d/nodejs.sh
+RUN echo "export PATH=\"/app/heroku/node/bin:/app/bin:/app/src/node_modules/.bin:/usr/bin:\$PATH\"" > /app/.profile.d/nodejs.sh
 RUN echo "cd /app/src" >> /app/.profile.d/nodejs.sh
 WORKDIR /app/src
 
