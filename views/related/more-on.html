@@ -1,18 +1,15 @@
-{{#if moreOns}}<h2 class="more-on__title">More on...</h2>{{/if}}
+{{#if moreOns}}<h2>More on…</h2>{{/if}}
 {{#each moreOns}}
 	<div class="more-on more-on--topic more-on--{{topic.taxonomy}}{{#if hasMainImage}} more-on--with-image{{/if}}">
 		{{#topic}}
 			{{>n-topic/templates/bar headingLevel="h2"}}
 		{{/topic}}
-		<div class="more-on__content">
-			<ul class="more-on__articles ng-list-reset">
-				{{#each articles}}
-					<li class="more-on__article">
-						{{>next-card/templates/card}}
-					</li>
-				{{/each}}
-			</ul>
-			<a class="more-on__all-link ng-title-link" href="{{topic.url}}" data-trackable="see all">See all</a>
-		</div>
+		<ul class="more-on__articles">
+		{{#each articles}}
+			<li class="more-on__article">
+				{{>next-card/templates/card}}
+			</li>
+		{{/each}}
+		</ul>
 	</div>
 {{/each}}
