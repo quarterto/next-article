@@ -40,7 +40,7 @@ deploy:
 	nbt scale
 
 visual:
-	test $CI_PULL_REQUEST == "" || (export TEST_APP=${TEST_APP}; myrtlejs)
+	test ${CI_PULL_REQUEST} == "" || (export TEST_APP=${TEST_APP}; myrtlejs)
 
 clean-deploy: clean install deploy
 
