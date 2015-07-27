@@ -55,17 +55,12 @@
 	display: inline-block;
 	padding: 5px 10px;
 	margin-bottom: 0;
+	background-color: #f57323;
 	color: #ffffff;
 	a {
 		color: #ffffff;
-		border-bottom: 0;
-	}
-}
-
-.article--default .promo-box__title {
-	background-color: #f57323;
-	a {
 		background-color: #f57323;
+		border-bottom: 0;
 	}
 }
 
