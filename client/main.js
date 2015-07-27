@@ -76,7 +76,7 @@ setup.bootstrap(function(result) {
 	nAds.init(flags);
 	typogSwitcher.init(flags);
 	
-	window.addEventListener("load", function load(event){
-    		comments.init(uuid, flags);	
+	window.addEventListener("load", function (event) {
+		comments.init(uuid, flags);
 	},false);
 });
