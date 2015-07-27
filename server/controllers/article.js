@@ -110,7 +110,6 @@ module.exports = function(req, res, next) {
 			// Update the images (resize, add image captions, etc)
 			return images($, {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
-				fullWidthInlineImages: res.locals.flags.fullWidthInlineImages
 			})
 				.then(function($) {
 					var viewModel = {
