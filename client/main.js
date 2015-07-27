@@ -75,7 +75,7 @@ setup.bootstrap(function(result) {
 	scrollDepth.init(flags);
 	nAds.init(flags);
 	typogSwitcher.init(flags);
-	
+
 	window.addEventListener("load", function (event) {
 		comments.init(uuid, flags);
 	},false);
