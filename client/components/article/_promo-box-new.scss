@@ -29,11 +29,23 @@
 	}
 }
 
+.promo-box img {
+	margin: 10px 10px 10px 0;
+}
+
 .promo-box--long {
 	float: none;
 	max-width: 100%;
 	@include oGridRespondTo(XL) {
 		margin-right: 100px;
+	}
+}
+
+.promo-box--long img {
+	@include oGridRespondTo(S) {
+		float: left;
+		margin-right: 10px;
+		max-width: 280px;
 	}
 }
 
@@ -88,23 +100,10 @@
 	}
 }
 
-.promo-box__image {
-	margin: 10px 10px 10px 0;
-	figcaption {
-		display: none;
-	}
-}
-
-.promo-box--long__image {
-	@include oGridRespondTo(S) {
-		float: left;
-		margin-right: 10px;
-		max-width: 280px;
-	}
-}
 .promo-box__content {
 	display: inline;
 }
+
 .promo-box__content p {
 	@include nTypeAlpha(3);
 	margin: 5px 0 0;

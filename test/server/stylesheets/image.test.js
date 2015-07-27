@@ -175,11 +175,9 @@ describe('Images', function () {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 				'<body>' +
-					'<promo-box>' +
-						'<promo-image>' +
-							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt="">' +
-						'</promo-image>' +
-					'</promo-box>' +
+					'<aside class="article__promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
+						'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt="">' +
+					'</aside>' +
 				'</body>\n'
 			);
 		});
@@ -197,7 +195,8 @@ describe('Images', function () {
 			'</html>',
 			{
 				fullWidthMainImages: 0,
-				reserveSpaceForMasterImage: 1
+				reserveSpaceForMasterImage: 1,
+				promoBoxNewStyling: 1
 			}
 		)
 		.then(function (transformedXml) {
