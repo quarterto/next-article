@@ -231,14 +231,14 @@ module.exports = function(req, res, next) {
 				return api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet })
 						.then(function(data) {
 							if (data.item.location.uri.indexOf('?') > -1) {
-								res.redirect(302, data.item.location.uri + "&ft_site=falcon");
+								res.redirect(302, data.item.location.uri + "&ft_site=falcon&desktop=true");
 							} else {
-								res.redirect(302, data.item.location.uri + "?ft_site=falcon");
+								res.redirect(302, data.item.location.uri + "?ft_site=falcon&desktop=true");
 							}
 						})
 						.catch(function(err) {
 							if (err instanceof fetchres.BadServerResponseError) {
-								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon');
+								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon&desktop=true');
 							} else {
 								next(err);
 							}
