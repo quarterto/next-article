@@ -65,7 +65,6 @@ setup.bootstrap(function(result) {
 	});
 
 	toc.init(flags);
-	comments.init(uuid, flags);
 	oDate.init(document.querySelector('.article'));
 	oExpander.init(document.querySelector('.article'), {
 		toggleSelector: 'button.o-expander__toggle',
@@ -76,4 +75,8 @@ setup.bootstrap(function(result) {
 	scrollDepth.init(flags);
 	nAds.init(flags);
 	typogSwitcher.init(flags);
+	
+	window.addEventListener("load", function load(event){
+    		comments.init(uuid, flags);	
+	},false);
 });
