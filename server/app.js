@@ -6,11 +6,13 @@ var app = module.exports = express();
 var barriers = require('ft-next-barriers');
 require('./lib/ig-poller').start();
 
+// COMPLEX: Put access middleware before barrier middleware so that access can be cached by membership
+app.use('^/:id(' + articleUuidRegex + ')$', require('./utils/access'));
+
 app.use(barriers.middleware(express.metrics));
 
 var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 
-app.use('^/:id(' + articleUuidRegex + ')$', require('./utils/access'));
 app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
 app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
 app.get('^/article/:id(' + articleUuidRegex + ')/people', require('./controllers/related/people'));
