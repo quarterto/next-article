@@ -201,7 +201,9 @@ module.exports = function(req, res, next) {
 
 						viewModel.comments = null;
 						viewModel.body = null;
-						viewModel.articleV1.editorial.standFirst = null;
+						if (viewModel.articleV1) {
+							viewModel.articleV1.editorial.standFirst = null;
+						}
 						viewModel.byline = null;
 						viewModel.article.publishedDate = null;
 						viewModel.tableOfContents = null;
