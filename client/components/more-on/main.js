@@ -41,10 +41,13 @@ var createPromise = function (el, url, renderer) {
 
 module.exports.init = function(flags) {
 	var fetchPromises = [];
-	var articleId = document.querySelector('.article').getAttribute('data-content-id');
+	var article = document.querySelector('.article');
+	var articleId = article.getAttribute('data-content-id');
+	var articleSources = article.getAttribute('data-content-sources');
 
 	// If there is no articleId don't try to load related content
-	if (!articleId) {
+	// and we also only support articles available in API v1
+	if (!articleId || !/v1/.test(articleSources)) {
 		return;
 	}
 
