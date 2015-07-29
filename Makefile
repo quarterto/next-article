@@ -1,5 +1,4 @@
-GIT_HASH := $(shell git rev-parse --short HEAD)
-TEST_APP := "ft-article-branch-${GIT_HASH}"
+TEST_APP := "ft-article-branch-${CIRCLE_BUILD_NUM}"
 
 .PHONY: test
 
