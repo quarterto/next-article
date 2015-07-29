@@ -95,8 +95,7 @@ module.exports = function (req, res, next) {
 					articleModels.forEach(function (articleModel) {
 						articleModel.headline = articleModel.title;
 						articleModel.lastUpdated = articleModel.publishedDate;
-						// Use bare card type
-						articleModel.isBare = true;
+						articleModel.isDiscreet = true;
 					});
 
 					// dedupe
