@@ -55,12 +55,12 @@ module.exports = function(req, res, next) {
 			return Promise.resolve();
 		}
 
-		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet' })
+		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet', retry: 0 })
 			.then(function (images) {
 				var image = images.members.reduce(function (a, b) {
 					return a;
 				});
-				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet' });
+				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet', retry: 0 });
 			})
 			.catch(function(err) {
 				if (err instanceof fetchres.BadServerResponseError) {

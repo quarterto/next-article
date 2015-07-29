@@ -10,7 +10,7 @@ module.exports = function($body, opts) {
 
 	var imageSetPromises = $body('img[data-image-set-id]')
 		.map(function (index, img) {
-			return api.content({ uuid: $(img).attr('data-image-set-id'), type: 'ImageSet' })
+			return api.content({ uuid: $(img).attr('data-image-set-id'), type: 'ImageSet', retry: 0 })
 				.catch(function(error) {
 					logger.error(error);
 					return null;
