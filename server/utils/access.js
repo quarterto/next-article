@@ -41,7 +41,7 @@ module.exports = function(req, res, next) {
 						case '3' :
 							classification = 'conditional_premium';
 					}
-				} else if (article.webUrl.indexOf('fastft') > -1) {
+				} else if (article && article.webUrl.indexOf('fastft') > -1) {
 					classification = 'conditional_registered';
 				}
 
