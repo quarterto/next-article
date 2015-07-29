@@ -26,6 +26,7 @@ build:
 
 build-production:
 	nbt build
+	nbt about
 
 watch:
 	nbt build --dev --watch
