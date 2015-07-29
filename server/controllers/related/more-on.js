@@ -28,7 +28,17 @@ module.exports = function (req, res, next) {
 					if (!topic) {
 						return null;
 					}
+
+					var exists = topics.find(function(existing) {
+						return topic.term.id === existing.term.id;
+					});
+
+					if (exists) {
+						return;
+					}
+
 					topics.push(topic);
+
 					return api.searchLegacy({
 							query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
 							// get one extra, in case we dedupe
@@ -61,6 +71,7 @@ module.exports = function (req, res, next) {
 			return Promise.all(moreOnPromises);
 		})
 		.then(function(results) {
+
 			var moreOns = results
 				.map(function(articleModels, index) {
 					var topic = topics[index];
