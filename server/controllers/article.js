@@ -97,7 +97,8 @@ module.exports = function(req, res, next) {
 
 			var $ = bodyTransform(results[2], res.locals.flags);
 
-			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
+			var metadata = articleV1 && articleV1.item && articleV1.item.metadata;
+			var primaryTag = metadata ? articlePrimaryTag(metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
@@ -105,7 +106,7 @@ module.exports = function(req, res, next) {
 
 			// Some posts (e.g. FastFT are only available in CAPI v2)
 			// TODO: Replace with something in CAPI v2
-			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
+			var isColumnist = metadata && metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
 			return images($, {
@@ -135,8 +136,8 @@ module.exports = function(req, res, next) {
 						shareButtons: res.locals.flags.articleShareButtons,
 						myFTTray: res.locals.flags.myFTTray,
 						moreOns: {},
-						dfp: (articleV1 && articleV1.item && articleV1.item.metadata) ? getDfp(articleV1.item.metadata.sections) : undefined,
-						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : undefined
+						dfp: metadata ? getDfp(metadata.sections) : undefined,
+						visualCat: metadata ? getVisualCategorisation(metadata) : undefined
 					};
 
 					if (res.locals.flags.openGraph) {
