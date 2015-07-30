@@ -93,11 +93,9 @@
 	}
 
 	.subscription-barrier-grid__select {
-		@include nextLinkButton(
-			$background: oColorsGetPaletteColor('link-2')
-		);
-		@include nTypeAlpha(4);
-		width: 100px;
+		@include nButtons();
+		@include nButtonsSize(big);
+		@include nButtonsTheme(standout);
 	}
 
 	.subscription-barrier-grid__secondary {
@@ -124,14 +122,16 @@
 	.subscription-barrier-grid__option--option1 li,
 	.subscription-barrier-grid__option--option2 li,
 	.subscription-barrier-grid__option--option3 li {
+		position: relative;
+		margin-left: 20px;
+
 		&:before {
 			@include nextIcon(tick, #35bd14, 14);
 			content: '';
 			margin-right: 4px;
-			position: relative;
-			display: inline-block;
+			position: absolute;
 			top: 2px;
-			float: none;
+			left: -20px;
 		}
 	}
 
@@ -141,7 +141,7 @@
 		padding-bottom: 10px;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 		@include oGridRespondTo(S) {
-			min-height: 480px;
+			min-height: 490px;
 		}
 	}
 
@@ -190,7 +190,6 @@
 .subscription-barrier-grid__other-options h3 {
 	@include nTypeAlpha(4);
 	text-align: center;
-	text-transform: uppercase;
 	padding-bottom: 10px;
 	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 }
