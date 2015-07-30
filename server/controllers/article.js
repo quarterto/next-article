@@ -137,7 +137,10 @@ module.exports = function(req, res, next) {
 						myFTTray: res.locals.flags.myFTTray,
 						moreOns: {},
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
-						visualCat: metadata ? getVisualCategorisation(metadata) : undefined
+						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
+						isSpecialReport: res.locals.flags.specialReportsChallenge
+							&& metadata
+							&& metadata.primarySection.term.taxonomy === 'specialReports'
 					};
 
 					if (res.locals.flags.openGraph) {
