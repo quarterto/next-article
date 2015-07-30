@@ -124,7 +124,6 @@
 .premium-barrier-grid__other-options h3 {
 	@include nTypeAlpha(4);
 	text-align: center;
-	text-transform: uppercase;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border-top: 1px solid oColorsGetPaletteColor('warm-2');
