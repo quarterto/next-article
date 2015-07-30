@@ -8,7 +8,9 @@ var capiMapiRegex = require('../utils/capi-mapi-regex').content;
 
 module.exports = function($body, opts) {
 
-	var imageSetPromises = $body('img[data-image-set-id]')
+	var $images = $body('img[data-image-set-id]');
+
+	var imageSetPromises = $images
 		.map(function (index, img) {
 			return api.content({ uuid: $(img).attr('data-image-set-id'), type: 'ImageSet', retry: 0 })
 				.catch(function(error) {
@@ -20,20 +22,21 @@ module.exports = function($body, opts) {
 
 	// get the image sets
 	return Promise.all(imageSetPromises)
-		.then(function (imageSets) {
-			imageSets.forEach(function (imageSet) {
+		.then(function(imageSets) {
+			imageSets.forEach(function(imageSet, i) {
 				if (!imageSet) {
 					return;
 				}
+
 				var imgSrc = resize('ftcms:' + imageSet.members[0].id.replace(capiMapiRegex, ''), { width: 710 });
-				var $img = $body('img[data-image-set-id="' + imageSet.id.replace('http://www.ft.com/thing/', '') + '"]')
-					.attr('src', imgSrc);
+				var $img = $images.eq(i).attr('src', imgSrc);
 
 				if ($img.parent().filter('figure').length > 0 && imageSet.title) {
-					var $figcaption = $('<figcaption></figcaption>')
-						.addClass('article__image-caption ng-meta')
-						.text(imageSet.title);
-					$img.after($figcaption);
+					$img.after(
+						'<figcaption class="article__image-caption ng-meta">' +
+							imageSet.title +
+						'</figcaption>'
+					);
 				}
 			});
 
