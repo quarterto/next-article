@@ -4,8 +4,9 @@ var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 
 module.exports = function (req, res, next) {
+	var articleId = req.params.id;
 	api.contentLegacy({
-		uuid: req.params.id,
+		uuid: articleId,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	})
 		.then(function (article) {
@@ -22,7 +23,7 @@ module.exports = function (req, res, next) {
 		})
 		.then(function (results) {
 			var ids = results.filter(function (result) {
-				return result;
+				return result && result !== articleId;
 			});
 			return api.contentLegacy({
 				uuid: ids,
