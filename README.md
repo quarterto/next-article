@@ -1,4 +1,4 @@
-# Next Article [![Build Status](https://travis-ci.org/Financial-Times/next-article.svg?branch=master)](https://travis-ci.org/Financial-Times/next-article)
+# Next Article [![Circle CI](https://circleci.com/gh/Financial-Times/next-article/tree/master.svg?style=svg)](https://circleci.com/gh/Financial-Times/next-article/tree/master)
 
 ## Installation
 
