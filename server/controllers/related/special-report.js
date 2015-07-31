@@ -15,35 +15,41 @@ module.exports = function (req, res, next) {
 			// get the articles in this special report
 			var specialReportId = article.item.metadata.primarySection.term.id;
 			return api.searchLegacy({
-					query: {
-						match: {
-							"item.metadata.primarySection.term.id": specialReportId
-						}
-					},
-					count: 5,
-					fields: ['_source'],
-					useElasticSearch: res.locals.flags.elasticSearchItemGet
-				})
-				.then(function (results) {
-					if (!results) {
-						throw new Error('No special report');
-					}
-					var specialReport = article.item.metadata.primarySection.term;
-					var articles = results.map(function (result) {
-						return result._source.item;
-					});
-					// get the best image
-					var images = {};
-					article.item.images.forEach(function (image) {
-						images[image.type] = image;
-					});
-					res.render('related/special-report', {
-						name: specialReport.name,
-						id: specialReport.id,
-						image: images['wide-format'] || images.article || images.primary,
-						articles: articles,
-					});
-				});
+				query: 'primarySectionId:"' + specialReportId + '"',
+				count: 5,
+				useElasticSearch: res.locals.flags.elasticSearchItemGet
+			});
+		})
+		.then(function (results) {
+			var ids = results.filter(function (result) {
+				return result;
+			});
+			return api.contentLegacy({
+				uuid: ids,
+				useElasticSearch: res.locals.flags.elasticSearchItemGet,
+				type: 'Article'
+			});
+		})
+		.then(function (results) {
+			if (!results.length) {
+				throw new Error('No special report articles');
+			}
+			var articles = results.map(function (result) {
+				return result.item;
+			});
+			// get the best image from the
+			var images = {};
+			articles[0].images.forEach(function (image) {
+				images[image.type] = image;
+			});
+			// pull out the specialReports tag
+			var specialReport = articles[0].metadata.primarySection.term;
+			res.render('related/special-report', {
+				name: specialReport.name,
+				id: specialReport.id,
+				image: images['wide-format'] || images.article || images.primary,
+				articles: articles,
+			});
 		})
 		.catch(function (err) {
 			if (err.message === 'No special report') {
