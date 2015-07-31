@@ -70,6 +70,7 @@ module.exports.init = function(flags) {
 	$('.js-related').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/article/' + articleId + '/' + el.getAttribute('data-taxonomy')));
 	});
+	$('.js-special-report').forEach(el => fetchPromises.push(createPromise(el, '/article/' + articleId + '/special-report')));
 
 	return allSettled(fetchPromises)
 		.then(function() {
