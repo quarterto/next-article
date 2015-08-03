@@ -9,7 +9,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}{{#if @root.flags.serification}} article--serified{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}{{#if @root.flags.serification}} article--serified{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if article}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
 		<div class="ad-placeholder__leaderboard ad-placeholder__{{__name}}"></div>
 		<div class="article__header-inner o-grid-row">
@@ -20,10 +20,17 @@
 			{{/if}}
 				<header>
 					<div class="article__header-primary">
-						{{#if primaryTag}}
-						<p class="article__primary-theme">
-							<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
-						</p>
+						{{#if isSpecialReport}}
+							<p class="article__primary-theme">
+								Special Report:
+								<a href="/special-reports/{{articleV1.metadata.primarySection.term.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{articleV1.metadata.primarySection.term.name}}" data-concept-id="{{articleV1.metadata.primarySection.term.id}}">{{articleV1.metadata.primarySection.term.name}}</a>
+							</p>
+						{{else}}
+							{{#if primaryTag}}
+							<p class="article__primary-theme">
+								<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+							</p>
+							{{/if}}
 						{{/if}}
 						<h1 class="article__title">{{{title}}}</h1>
 					</div>
@@ -88,7 +95,7 @@
 </article>
 
 <div class="o-grid-row">
-	<div data-o-grid-colspan="12 L12 XL12">
+	<div data-o-grid-colspan="12 L10 center">
 		{{#if registerGridBarrier}}
 			{{> barriers/register-grid}}
 		{{/if}}
@@ -108,6 +115,10 @@
 		{{#if premiumSimpleBarrier}}
 			{{> barriers/premium-simple}}
 		{{/if}}
+
+		{{#if premiumGridBarrier}}
+			{{> barriers/premium-grid}}
+		{{/if}}
 	</div>
 </div>
 
@@ -115,13 +126,17 @@
 	{{>share}}
 {{/if}}
 
-{{#if relatedContent}}
-	<div class="o-grid-row">
-		<div data-trackable="story-package" data-o-grid-colspan="12 L8 XL7 XLoffset1">
-			<div class="js-more-on"></div>
-		</div>
+<div class="o-grid-row">
+	<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+		{{#if isSpecialReport}}
+				<div class="js-special-report" data-trackable="special-report"></div>
+		{{else}}
+			{{#if relatedContent}}
+				<div class="js-more-on" data-trackable="story-package"></div>
+			{{/if}}
+		{{/if}}
 	</div>
-{{/if}}
+</div>
 
 {{#if moreOns}}
 	{{>more-ons}}

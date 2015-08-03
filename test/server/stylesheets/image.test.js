@@ -16,7 +16,8 @@ describe('Images', function () {
 					'</body>' +
 				'</html>',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -40,7 +41,8 @@ describe('Images', function () {
 					'</body>' +
 				'</html>',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -64,7 +66,8 @@ describe('Images', function () {
 					'</body>' +
 				'<html>',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -87,7 +90,8 @@ describe('Images', function () {
 					'</body>' +
 				'</html>',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
@@ -95,7 +99,7 @@ describe('Images', function () {
 					'<body>' +
 						'<p>test test test</p>' +
 						'<p>' +
-							'<img src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" alt="" class="article__image ng-inline-element ng-pull-out">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" class="article__image ng-inline-element ng-pull-out">' +
 							'Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.' +
 						'</p>' +
 					'</body>\n'
@@ -112,14 +116,15 @@ describe('Images', function () {
 					'</body>' +
 				'</html>\n',
 				{
-					fullWidthMainImages: 1
+					fullWidthMainImages: 1,
+					reserveSpaceForMasterImage: 1
 				}
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
 						'<figure class="article__image-wrapper article__main-image ng-figure-reset">' +
-							'<img src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" alt="" class="article__image">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=710" class="article__image">' +
 						'</figure>' +
 						'<p>Mr Dougan has been blamed by some leading shareholders for failing to grasp the extent of the change in the aftermath of the financial crisis.</p>' +
 					'</body>\n'
@@ -149,6 +154,63 @@ describe('Images', function () {
 					'</body>\n'
 				);
 			});
+	});
+
+	it('should not add ng-inline-element or ng-pull-out to an image who\'s immediate parent is not a p tag, eg. promo-box or table', function() {
+		return transform(
+			'<html>' +
+				'<body>' +
+					'<promo-box>' +
+						'<promo-image>' +
+							'<ft-content type="http://www.ft.com/ontology/content/ImageSet" url="http://api.ft.com/content/ab3c20e8-15fe-11e5-2032-978e959e1689" data-embedded="true"></ft-content>' +
+						'</promo-image>' +
+					'</promo-box>' +
+				'</body>' +
+			'</html>',
+			{
+				fullWidthMainImages: 0,
+				reserveSpaceForMasterImage: 1
+			}
+		)
+		.then(function (transformedXml) {
+			transformedXml.should.equal(
+				'<body>' +
+					'<aside class="article__promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
+						'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt="">' +
+					'</aside>' +
+				'</body>\n'
+			);
+		});
+	});
+
+	it('should not add ng-inline-element or ng-pull-out to an external image which is in a <a> at the start of an article, eg photo diary', function() {
+		return transform(
+			'<html>' +
+				'<body>' +
+					'<a href="http://blogs.ft.com/photo-diary/files/2015/07/seal.jpg">' +
+						'<img alt="A seal cools off at Belgrade Zoo during a heatwave on Tuesday. In Serbia where the meteoalarm has been raised to \'red\', extremely hot weather with temperatures up to 39 degrees Celsius is expected to continue over the next several days" height="1364" src="http://blogs.ft.com/photo-diary/files/2015/07/seal.jpg" width="2048"/>' +
+					'</a>' +
+					'<p>A seal cools off at Belgrade Zoo during a heatwave on Tuesday. In Serbia where the meteoalarm has been raised to ‘red’, extremely hot weather with temperatures up to 39 degrees Celsius</p>' +
+					'</body>' +
+			'</html>',
+			{
+				fullWidthMainImages: 0,
+				reserveSpaceForMasterImage: 1,
+				promoBoxNewStyling: 1
+			}
+		)
+		.then(function (transformedXml) {
+			transformedXml.should.equal(
+				'<body>' +
+					'<a data-trackable="link" href="http://blogs.ft.com/photo-diary/files/2015/07/seal.jpg">' +
+						'<figure class="article__image-wrapper article__main-image ng-figure-reset">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://blogs.ft.com/photo-diary/files/2015/07/seal.jpg?source=next&amp;fit=scale-down&amp;width=710" class="article__image">' +
+						'</figure>' +
+					'</a>' +
+					'<p>A seal cools off at Belgrade Zoo during a heatwave on Tuesday. In Serbia where the meteoalarm has been raised to ‘red’, extremely hot weather with temperatures up to 39 degrees Celsius</p>' +
+				'</body>\n'
+			);
+		});
 	});
 
 });

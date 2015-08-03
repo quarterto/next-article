@@ -55,12 +55,12 @@ module.exports = function(req, res, next) {
 			return Promise.resolve();
 		}
 
-		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet' })
+		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet', retry: 0 })
 			.then(function (images) {
 				var image = images.members.reduce(function (a, b) {
 					return a;
 				});
-				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet' });
+				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet', retry: 0 });
 			})
 			.catch(function(err) {
 				if (err instanceof fetchres.BadServerResponseError) {
@@ -81,7 +81,9 @@ module.exports = function(req, res, next) {
 					renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
 					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
 					renderTOC: res.locals.flags.articleTOC ? 1 : 0,
-					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0
+					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
+					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
+					promoBoxNewStyling: res.locals.flags.articlePromoBoxNewStyling ? 1 : 0
 				}),
 				socialMediaImage(article[1])
 			]);
@@ -95,7 +97,8 @@ module.exports = function(req, res, next) {
 
 			var $ = bodyTransform(results[2], res.locals.flags);
 
-			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
+			var metadata = articleV1 && articleV1.item && articleV1.item.metadata;
+			var primaryTag = metadata ? articlePrimaryTag(metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
@@ -103,12 +106,11 @@ module.exports = function(req, res, next) {
 
 			// Some posts (e.g. FastFT are only available in CAPI v2)
 			// TODO: Replace with something in CAPI v2
-			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
+			var isColumnist = metadata && metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
 			return images($, {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
-				fullWidthInlineImages: res.locals.flags.fullWidthInlineImages
 			})
 				.then(function($) {
 					var viewModel = {
@@ -134,8 +136,11 @@ module.exports = function(req, res, next) {
 						shareButtons: res.locals.flags.articleShareButtons,
 						myFTTray: res.locals.flags.myFTTray,
 						moreOns: {},
-						dfp: (articleV1 && articleV1.item && articleV1.item.metadata) ? getDfp(articleV1.item.metadata.sections) : undefined,
-						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : undefined
+						dfp: metadata ? getDfp(metadata.sections) : undefined,
+						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
+						isSpecialReport: res.locals.flags.specialReportsChallenge
+							&& metadata
+							&& metadata.primarySection.term.taxonomy === 'specialReports'
 					};
 
 					if (res.locals.flags.openGraph) {
@@ -192,9 +197,17 @@ module.exports = function(req, res, next) {
 							viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
 						}
 
+						if(res.locals.barrier.premiumGrid) {
+							viewModel.premiumGridBarrier = res.locals.barrier.premiumGrid;
+							viewModel.barrierOverlay = {};
+							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
+						}
+
 						viewModel.comments = null;
 						viewModel.body = null;
-						viewModel.articleV1.editorial.standFirst = null;
+						if (viewModel.articleV1) {
+							viewModel.articleV1.editorial.standFirst = null;
+						}
 						viewModel.byline = null;
 						viewModel.article.publishedDate = null;
 						viewModel.tableOfContents = null;
@@ -215,26 +228,6 @@ module.exports = function(req, res, next) {
 					return viewModel;
 				})
 				.then(function(viewModel) {
-
-					if (!viewModel.body) {
-						return viewModel;
-					}
-
-					var exampleArticles = [
-						'402e1752-e1f1-11e4-bb7f-00144feab7de',
-						'54fba5c4-e2d6-11e4-aa1d-00144feab7de'
-					];
-
-					if (res.locals.flags.articleComplexTransforms && exampleArticles.indexOf(viewModel.id) > -1) {
-						return articleXSLT(viewModel.body, 'article').then(function(transformedBody) {
-							viewModel.body = transformedBody;
-							return viewModel;
-						});
-					}
-
-					return viewModel;
-				})
-				.then(function(viewModel) {
 					return res.render('article-v2', viewModel);
 				});
 		})
@@ -243,14 +236,14 @@ module.exports = function(req, res, next) {
 				return api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet })
 						.then(function(data) {
 							if (data.item.location.uri.indexOf('?') > -1) {
-								res.redirect(302, data.item.location.uri + "&ft_site=falcon");
+								res.redirect(302, data.item.location.uri + "&ft_site=falcon&desktop=true");
 							} else {
-								res.redirect(302, data.item.location.uri + "?ft_site=falcon");
+								res.redirect(302, data.item.location.uri + "?ft_site=falcon&desktop=true");
 							}
 						})
 						.catch(function(err) {
 							if (err instanceof fetchres.BadServerResponseError) {
-								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon');
+								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon&desktop=true');
 							} else {
 								next(err);
 							}

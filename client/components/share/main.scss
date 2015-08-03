@@ -10,7 +10,7 @@ $_o-share-sprite-elements: (twitter, facebook, linkedin, whatsapp);
 @include oShareActionIcon(linkedin, o-share);
 
 .article-share {
-	margin-bottom: 16px;
+	margin-bottom: $spacing-unit;
 	display: block;
 	.o-share__action {
 		padding: 0 5px;
@@ -28,9 +28,8 @@ $_o-share-sprite-elements: (twitter, facebook, linkedin, whatsapp);
 	}
 }
 
-
 .article-share__header {
-	@include nTypeBeta(2);
+	@include nTypeBravo(3);
 	display: inline-block;
-	margin-right: 4px;
+	margin: 0 4px 8px 0;
 }

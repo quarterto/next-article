@@ -7,7 +7,7 @@
         </figure>
     </xsl:template>
 
-    <xsl:template match="/html/body/img[count(preceding-sibling::*) = 0] | /html/body/p[normalize-space(string()) = '' and count(preceding-sibling::*) = 0]/img">
+    <xsl:template match="/html/body/img[count(preceding-sibling::*) = 0] | /html/body/p[normalize-space(string()) = '' and count(preceding-sibling::*) = 0]/img | /html/body/a[normalize-space(string()) = '' and count(preceding-sibling::*) = 0]/img">
         <figure class="article__image-wrapper article__main-image ng-figure-reset">
             <xsl:apply-templates select="current()" mode="external-image" />
         </figure>
@@ -21,14 +21,19 @@
 
     <xsl:template match="img" mode="external-image">
         <xsl:param name="isInline" />
-        <img src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width=710" alt="">
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="$isInline">article__image ng-inline-element ng-pull-out</xsl:when>
-                    <xsl:otherwise>article__image</xsl:otherwise>
-                </xsl:choose>
+          <img alt="">
+            <xsl:attribute name="src">
+              <xsl:value-of select="'https://next-geebee.ft.com/image/v1/images/raw/'" />
+              <xsl:value-of select="@src" />
+              <xsl:value-of select="'?source=next&amp;fit=scale-down&amp;width=710'" />
             </xsl:attribute>
-        </img>
+            <xsl:attribute name="class">
+              <xsl:choose>
+                  <xsl:when test="$isInline">article__image ng-inline-element ng-pull-out</xsl:when>
+                  <xsl:otherwise>article__image</xsl:otherwise>
+              </xsl:choose>
+            </xsl:attribute>
+          </img>
     </xsl:template>
 
     <xsl:template match="/html/body/ft-content[contains(@type, 'ImageSet')] | /html/body/p[normalize-space(string()) = '']/ft-content[contains(@type, 'ImageSet')]">
@@ -41,7 +46,8 @@
         <figure>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="$fullWidthMainImages">article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper</xsl:when>
+                    <xsl:when test="$fullWidthMainImages and $reserveSpaceForMasterImage">article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper</xsl:when>
+                    <xsl:when test="$fullWidthMainImages">article__image-wrapper article__main-image ng-figure-reset</xsl:when>
                     <xsl:otherwise>article__image-wrapper article__inline-image ng-figure-reset ng-inline-element ng-pull-out</xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
@@ -63,8 +69,10 @@
         <img data-image-set-id="{substring(@url, string-length(@url) - 35)}" class="article__image" alt="">
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="$isMain and $fullWidthMainImages">article__image ng-media</xsl:when>
-                    <xsl:when test="$isInline">article__image ng-inline-element ng-pull-out</xsl:when>
+                    <xsl:when test="$isMain and $fullWidthMainImages and $reserveSpaceForMasterImage">article__image ng-media</xsl:when>
+                    <xsl:when test="$isMain and $fullWidthMainImages">article__image</xsl:when>
+                    <xsl:when test="$isInline and current()[name(parent::*) = 'p']">article__image ng-inline-element ng-pull-out</xsl:when>
+                    <xsl:when test="$isInline and current()[name(parent::*) != 'p']">article__image</xsl:when>
                     <xsl:otherwise>article__image</xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>

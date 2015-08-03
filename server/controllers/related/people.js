@@ -86,8 +86,10 @@ module.exports = function(req, res, next) {
 		})
 			.then(function(article) {
 				res.set(cacheControl);
-				var relations = article.item.metadata.people.filter(excludePrimaryTheme(article));
-				if (!relations.length) {
+				var metadata = article && article.item && article.item.metadata;
+				var relations = metadata && metadata.people.filter(excludePrimaryTheme(article));
+
+				if (!relations || !relations.length) {
 					throw new Error('No related');
 				}
 				return tagsToFullV2Things(relations)

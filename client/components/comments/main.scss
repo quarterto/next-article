@@ -2,6 +2,11 @@
 	padding-top: 10px;
 }
 
+//Supress the comment notification since it clashes with the myFT blob
+.fyre-notifier-container {
+	display: none;
+}
+
 body .fyre-modal .fyre-modal-title-close {
 	background-image: none;
 
