@@ -115,7 +115,7 @@ module.exports = function(req, res, next) {
 				.then(function($) {
 					var viewModel = {
 						firstClickFree: null,
-						comments: {},
+						comments: article.comments && article.comments.enabled === true,
 						article: article,
 						articleV1: articleV1 && articleV1.item,
 						id: extractUuid(article.id),

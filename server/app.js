@@ -22,7 +22,6 @@ app.get('^/article/:id(' + articleUuidRegex + ')/regions', require('./controller
 app.get('^/article/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
 app.get('^/article/:id(' + articleUuidRegex + ')/more-on', require('./controllers/related/more-on'));
 app.get('^/article/:id(' + articleUuidRegex + ')/special-report', require('./controllers/related/special-report'));
-app.get('^/article/:id(' + articleUuidRegex + ')/comments-hack', require('./controllers/comments-hack'));
 
 app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow'));
 app.get('/__gtg', function(req, res) {
