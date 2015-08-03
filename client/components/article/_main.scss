@@ -171,9 +171,23 @@ $header-offset: 30px;
 	color: $next-grey-dark;
 	margin-bottom: 20px;
 
-	> p {
+	p {
 		margin: 0.3em 0 0.8em;
 		display: block;
+		a {
+			@include nLinksBody();
+			@include print {
+				&:after {
+					text-decoration: none;
+				}
+				&[href^='/']:after {
+					content: ' (http://next.ft.com' attr(href) ')';
+				}
+				&:not([href^='/']):after {
+					content: ' (' attr(href) ')';
+				}
+			}
+		}
 	}
 	> *:first-child {
 		margin-top: 0;
@@ -186,20 +200,6 @@ $header-offset: 30px;
 		}
 	}
 
-	a {
-		@include nLinksBody();
-		@include print {
-			&:after {
-				text-decoration: none;
-			}
-			&[href^='/']:after {
-				content: ' (http://next.ft.com' attr(href) ')';
-			}
-			&:not([href^='/']):after {
-				content: ' (' attr(href) ')';
-			}
-		}
-	}
 	.o-quote--standard a {
 		color: inherit;
 	}

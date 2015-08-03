@@ -97,13 +97,7 @@
 
 .promo-box__content {
 	display: inline;
-}
-
-.promo-box__content p {
-	@include nTypeAlpha(3);
-	margin: 5px 0 0;
-	strong a {
-		@include nLinksHeadline();
-		border-bottom: 0;
+	p {
+		margin: 5px 0 0;
 	}
 }

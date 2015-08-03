@@ -38,8 +38,9 @@ module.exports = function(req, res, next) {
 			var imagePromises = articles.map(function(article) {
 				var articleModel = {
 					id: extractUuid(article.id),
-					title: article.title,
-					publishedDate: article.publishedDate
+					headline: article.title,
+					lastUpdated: article.publishedDate,
+					isBlock: true
 				};
 				if (!article.mainImage) {
 					return Promise.resolve(articleModel);
