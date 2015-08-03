@@ -13,7 +13,7 @@
 	}
 
 	h3 {
-		@include nTypeBeta(2);
+		@include nTypeBravo(2);
 		margin: 0 0 20px;
 		text-align: center;
 	}
@@ -36,7 +36,7 @@
 	background-color: oColorsGetPaletteColor('warm-2');
 
 	h2 {
-		@include nTypeBeta(3);
+		@include nTypeBravo(3);
 		@include oGridColumn((default: full-width, L: three-quarters));
 		margin: 0;
 	}
@@ -57,7 +57,7 @@
 	}
 
 	.premium-barrier-simple__sign-in {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		@include oGridColumn((default: full-width, L: one-quarter));
 
 		background-color: oColorsGetPaletteColor('warm-3');
@@ -133,7 +133,7 @@
 	}
 
 	a {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		text-decoration: none;
 		color: oColorsGetPaletteColor(link-1);
 		overflow: hidden;

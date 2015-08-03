@@ -23,7 +23,6 @@ module.exports = {
 		console.log("Sauce Test Results at https://saucelabs.com/tests/" + this.client.sessionId);
 		console.log('Updating Saucelabs...');
 		notifySaucelabs({
-			accessKey: this.client.sessionId,
 			passed: this.results.failed === 0
 		})
 			.then(function() {

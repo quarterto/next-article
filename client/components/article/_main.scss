@@ -82,7 +82,7 @@ $header-offset: 30px;
 }
 .article__author {
 	@include nLinksTopic($inversed: true);
-	@include nTypeBeta(4);
+	@include nTypeBravo(4);
 	font-style: normal;
 }
 .article__timestamp {
@@ -102,7 +102,7 @@ $header-offset: 30px;
 	}
 }
 .article__primary-theme {
-	@include nTypeBeta(4);
+	@include nTypeBravo(4);
 	margin: 0;
 	@include print {
 		display: none;
@@ -154,7 +154,7 @@ $header-offset: 30px;
 .article__tag {
 	@include nListsItem($use-case: n-lists-inversed);
 	&:first-child {
-		border-top-color: #ffffff;
+		border-top: 1px solid #ffffff;
 	}
 }
 
@@ -180,9 +180,9 @@ $header-offset: 30px;
 	}
 
 	strong {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		@include oGridRespondTo(S) {
-			@include nTypeBeta(3);
+			@include nTypeBravo(3);
 		}
 	}
 
@@ -303,7 +303,7 @@ $header-offset: 30px;
 	}
 }
 .article__subhead {
-	@include nTypeBeta(2);
+	@include nTypeBravo(2);
 	clear: left;
 	margin-top: 50px;
 	margin-bottom: 20px;
@@ -312,7 +312,7 @@ $header-offset: 30px;
 	border-bottom: 1px solid black;
 }
 .article__subhead--standard {
-	@include nTypeBeta(3);
+	@include nTypeBravo(3);
 }
 .article__block-quote {
 	max-width: 100%;
@@ -355,7 +355,7 @@ $header-offset: 30px;
 		margin: 0;
 	}
 	&__link {
-		@include nTypeBeta(3);
+		@include nTypeBravo(3);
 	}
 }
 

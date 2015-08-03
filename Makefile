@@ -1,5 +1,4 @@
-GIT_HASH := $(shell git rev-parse --short HEAD)
-TEST_APP := "ft-article-branch-${GIT_HASH}"
+TEST_APP := "ft-article-branch-${CIRCLE_BUILD_NUM}"
 
 .PHONY: test
 
@@ -26,6 +25,7 @@ build:
 
 build-production:
 	nbt build
+	nbt about
 
 watch:
 	nbt build --dev --watch
@@ -36,11 +36,11 @@ clean:
 deploy:
 	nbt configure
 	nbt deploy-hashed-assets
-	nbt deploy
+	nbt deploy --docker
 	nbt scale
 
 visual:
-	export TEST_APP=${TEST_APP}; myrtlejs
+	test ${CI_PULL_REQUEST} == "" || (export TEST_APP=${TEST_APP}; myrtlejs)
 
 clean-deploy: clean install deploy
 
@@ -51,7 +51,7 @@ provision:
 	nbt provision ${TEST_APP}
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_APP} --skip-enable-preboot
+	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
 	make -j2 visual smoke
 
 smoke:

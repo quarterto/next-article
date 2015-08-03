@@ -55,12 +55,12 @@ module.exports = function(req, res, next) {
 			return Promise.resolve();
 		}
 
-		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet' })
+		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet', retry: 0 })
 			.then(function (images) {
 				var image = images.members.reduce(function (a, b) {
 					return a;
 				});
-				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet' });
+				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet', retry: 0 });
 			})
 			.catch(function(err) {
 				if (err instanceof fetchres.BadServerResponseError) {
@@ -82,7 +82,8 @@ module.exports = function(req, res, next) {
 					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
 					renderTOC: res.locals.flags.articleTOC ? 1 : 0,
 					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
-					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0
+					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
+					promoBoxNewStyling: res.locals.flags.articlePromoBoxNewStyling ? 1 : 0
 				}),
 				socialMediaImage(article[1])
 			]);
@@ -96,7 +97,8 @@ module.exports = function(req, res, next) {
 
 			var $ = bodyTransform(results[2], res.locals.flags);
 
-			var primaryTag = articleV1 && articleV1.item && articleV1.item.metadata ? articlePrimaryTag(articleV1.item.metadata) : undefined;
+			var metadata = articleV1 && articleV1.item && articleV1.item.metadata;
+			var primaryTag = metadata ? articlePrimaryTag(metadata) : undefined;
 			if (primaryTag) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
@@ -104,17 +106,16 @@ module.exports = function(req, res, next) {
 
 			// Some posts (e.g. FastFT are only available in CAPI v2)
 			// TODO: Replace with something in CAPI v2
-			var isColumnist = articleV1 && articleV1.item.metadata.primarySection.term.name === 'Columnists';
+			var isColumnist = metadata && metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
 			return images($, {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
-				fullWidthInlineImages: res.locals.flags.fullWidthInlineImages
 			})
 				.then(function($) {
 					var viewModel = {
 						firstClickFree: null,
-						comments: {},
+						comments: article.comments && article.comments.enabled === true,
 						article: article,
 						articleV1: articleV1 && articleV1.item,
 						id: extractUuid(article.id),
@@ -135,8 +136,11 @@ module.exports = function(req, res, next) {
 						shareButtons: res.locals.flags.articleShareButtons,
 						myFTTray: res.locals.flags.myFTTray,
 						moreOns: {},
-						dfp: (articleV1 && articleV1.item && articleV1.item.metadata) ? getDfp(articleV1.item.metadata.sections) : undefined,
-						visualCat: (articleV1 && articleV1.item && articleV1.item.metadata) ? getVisualCategorisation(articleV1.item.metadata) : undefined
+						dfp: metadata ? getDfp(metadata.sections) : undefined,
+						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
+						isSpecialReport: res.locals.flags.specialReportsChallenge
+							&& metadata
+							&& metadata.primarySection.term.taxonomy === 'specialReports'
 					};
 
 					if (res.locals.flags.openGraph) {
@@ -201,7 +205,9 @@ module.exports = function(req, res, next) {
 
 						viewModel.comments = null;
 						viewModel.body = null;
-						viewModel.articleV1.editorial.standFirst = null;
+						if (viewModel.articleV1) {
+							viewModel.articleV1.editorial.standFirst = null;
+						}
 						viewModel.byline = null;
 						viewModel.article.publishedDate = null;
 						viewModel.tableOfContents = null;
@@ -230,14 +236,14 @@ module.exports = function(req, res, next) {
 				return api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet })
 						.then(function(data) {
 							if (data.item.location.uri.indexOf('?') > -1) {
-								res.redirect(302, data.item.location.uri + "&ft_site=falcon");
+								res.redirect(302, data.item.location.uri + "&ft_site=falcon&desktop=true");
 							} else {
-								res.redirect(302, data.item.location.uri + "?ft_site=falcon");
+								res.redirect(302, data.item.location.uri + "?ft_site=falcon&desktop=true");
 							}
 						})
 						.catch(function(err) {
 							if (err instanceof fetchres.BadServerResponseError) {
-								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon');
+								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon&desktop=true');
 							} else {
 								next(err);
 							}

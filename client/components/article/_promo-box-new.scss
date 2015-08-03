@@ -29,6 +29,10 @@
 	}
 }
 
+.promo-box img {
+	margin: 10px 10px 10px 0;
+}
+
 .promo-box--long {
 	float: none;
 	max-width: 100%;
@@ -37,8 +41,16 @@
 	}
 }
 
+.promo-box--long img {
+	@include oGridRespondTo(S) {
+		float: left;
+		margin-right: 10px;
+		max-width: 280px;
+	}
+}
+
 .promo-box__title {
-	@include nTypeBeta(3);
+	@include nTypeBravo(3);
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 5px 10px;
@@ -47,9 +59,25 @@
 	color: #ffffff;
 	a {
 		color: #ffffff;
+		background-color: #f57323;
 		border-bottom: 0;
 	}
 }
+
+.article--comment .promo-box__title {
+	background-color: oColorsGetColorFor(article-comment, background);
+	a {
+		background-color: oColorsGetColorFor(article-comment, background);
+	}
+}
+
+.article--lifestyle .promo-box__title {
+	background-color: oColorsGetColorFor(article-lifestyle, background);
+	a {
+		background-color: oColorsGetColorFor(article-lifestyle, background);
+	}
+}
+
 .promo-box__headline {
 	@include nTypeAlpha(2);
 	margin: 10px 0 0;
@@ -67,23 +95,10 @@
 	}
 }
 
-.promo-box__image {
-	margin: 10px 10px 10px 0;
-	figcaption {
-		display: none;
-	}
-}
-
-.promo-box--long__image {
-	@include oGridRespondTo(S) {
-		float: left;
-		margin-right: 10px;
-		max-width: 280px;
-	}
-}
 .promo-box__content {
 	display: inline;
 }
+
 .promo-box__content p {
 	@include nTypeAlpha(3);
 	margin: 5px 0 0;

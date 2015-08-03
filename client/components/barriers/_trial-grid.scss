@@ -22,7 +22,7 @@
 .trial-barrier-grid__header {
 	background-color: oColorsGetPaletteColor('warm-2');
 	h2 {
-		@include nTypeBeta(3);
+		@include nTypeBravo(3);
 		@include oGridColumn((default: full-width, L: three-quarters));
 	}
 
@@ -42,7 +42,7 @@
 	}
 
 	.trial-barrier-grid__sign-in {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		@include oGridColumn((default: full-width, L: one-quarter));
 
 		background-color: oColorsGetPaletteColor('warm-3');
@@ -123,11 +123,9 @@
 	}
 
 	.trial-barrier-grid__select {
-		@include nextLinkButton(
-			$background: oColorsGetPaletteColor('link-2')
-		);
-		@include nTypeAlpha(4);
-		width: 100px;
+		@include nButtons();
+		@include nButtonsSize(big);
+		@include nButtonsTheme(standout);
 	}
 
 	.trial-barrier-grid__secondary {
@@ -136,13 +134,13 @@
 		padding-right: 30px;
 
 		h4 {
-			@include nTypeBeta(4);
+			@include nTypeBravo(4);
 			margin-bottom: 3px;
 			margin-top: 0;
 		}
 
 		ul {
-			@include nTypeBeta(4);
+			@include nTypeBravo(4);
 			list-style: none;
 			font-weight: normal;
 			margin: 0 0 20px;
@@ -154,14 +152,16 @@
 	.trial-barrier-grid__option--option1 li,
 	.trial-barrier-grid__option--option2 li,
 	.trial-barrier-grid__option--option3 li {
+		position: relative;
+		margin-left: 20px;
+
 		&:before {
 			@include nextIcon(tick, #35bd14, 14);
 			content: '';
 			margin-right: 4px;
-			position: relative;
-			display: inline-block;
+			position: absolute;
 			top: 2px;
-			float: none;
+			left: -20px;
 		}
 	}
 
@@ -171,7 +171,7 @@
 		padding-bottom: 10px;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 		@include oGridRespondTo(S) {
-			min-height: 480px;
+			min-height: 490px;
 		}
 	}
 
@@ -197,7 +197,7 @@
 	}
 
 	.trial-barrier-grid__learn-more {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 
 		a {
 			text-decoration: none;
@@ -246,7 +246,6 @@
 .trial-barrier-grid__other-options h3 {
 	@include nTypeAlpha(4);
 	text-align: center;
-	text-transform: uppercase;
 	padding-bottom: 10px;
 	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 }
@@ -261,7 +260,7 @@
 	}
 
 	a {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		text-decoration: none;
 		color: oColorsGetPaletteColor(link-1);
 		overflow: hidden;

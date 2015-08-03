@@ -7,8 +7,7 @@ var replaceHrs = require('../transforms/replace-hrs');
 var relativeLinks = require('./relative-links');
 var trimmedLinks = require('./trimmed-links');
 var removeBody = require('./remove-body');
-var promoBox = require('./promo-box');
-var promoBoxNew = require('./promo-box-new');
+var externalImages = require('./external-images');
 
 var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
@@ -34,7 +33,7 @@ module.exports = function(body, flags) {
 
 	var $ = transform(cheerio.load(body), flags)
 		// other transforms
-		.with(flags.articlePromoBoxNewStyling ? promoBoxNew : promoBox)
+		.with(externalImages)
 		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)

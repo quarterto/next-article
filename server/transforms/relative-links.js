@@ -3,6 +3,8 @@
 var cheerio = require('cheerio');
 
 module.exports = function ($) {
+
+	// TODO: MA: I suggest deleting these from here and adding these as redirects in next-redirector
 	$('a').replaceWith(function(index, el) {
 		el = cheerio(el);
 		el.attr('href', el.attr('href').replace(/https?:\/\/(?:www\.)?ft\.com\/topics\/places/, '/stream/regions'));
