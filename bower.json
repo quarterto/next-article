@@ -3,7 +3,7 @@
   "dependencies": {
     "next-express": "^10.0.0",
     "o-fonts": "^1.6.4",
-    "next-ads-component": "https://github.com/Financial-Times/next-ads-component.git#ADS-260-chartbeat",
+    "next-ads-component": "^6.0.0",
     "next-sass-setup": "^6.0.0",
     "o-quote": "bogdis-design",
     "o-big-number": "^1.1.0",
