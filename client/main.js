@@ -2,7 +2,6 @@
 
 var oViewport = require('o-viewport');
 var oDate = require('o-date');
-var myFtClient = require('next-myft-client');
 var nMyFtTray = require('n-myft-tray');
 var oExpander = require('o-expander');
 
@@ -34,9 +33,6 @@ setup.bootstrap(function(result) {
 	if (uuid) {
 		if (flags.get('userPreferencesAPI')) {
 			document.addEventListener('myft.followed.load', function(ev) {
-				if (ev.detail && ev.detail.Count > 0) {
-					myFtClient.notifications.clear([uuid], true); //force articles to mark as read
-				}
 				if (flags.get('myFTReadingListOnArticle')) {
 					readingList.init();
 				}
