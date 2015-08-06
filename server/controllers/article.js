@@ -14,7 +14,6 @@ var getVisualCategorisation = require('ft-next-article-genre');
 var articleXSLT = require('../transforms/article-xslt');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
-var escapeExpression = require('handlebars').Utils.escapeExpression;
 var getDfp = require('../utils/get-dfp');
 
 module.exports = function(req, res, next) {
@@ -119,8 +118,7 @@ module.exports = function(req, res, next) {
 						article: article,
 						articleV1: articleV1 && articleV1.item,
 						id: extractUuid(article.id),
-						// HACK - Force the last word in the title never to be an ‘orphan’
-						title: escapeExpression(article.title).replace(/(.*)(\s)/, '$1&nbsp;'),
+						title: article.title,
 						byline: bylineTransform(article.byline, articleV1),
 						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
