@@ -15,7 +15,7 @@ function init(uuid, flags) {
 		}());
 
 	if (sidenotesActive && articleIsCommentOrAnalysis) {
-	       sidenotes.init(uuid, flags);
+		sidenotes.init(uuid, flags);
 	} else {
 		traditional.init(uuid, flags);
 	}
