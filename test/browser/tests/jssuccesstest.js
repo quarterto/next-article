@@ -12,7 +12,8 @@ module.exports = {
 	"js-success test": function(browser) {
 		console.log("Launching http://" + TEST_HOST + ARTICLE_PATH);
 		browser
-			.url('https://' + TEST_HOST + "/__gtg")
+			// need to set the cookies on an html page for firefox
+			.url('https://' + TEST_HOST + ARTICLE_PATH)
 			.setCookie({ name: 'next-flags', domain: TEST_HOST, value: 'ads:off', secure: true })
 			.url('https://' + TEST_HOST + ARTICLE_PATH)
 			.waitForElementPresent("html.js.js-success", 60000)
