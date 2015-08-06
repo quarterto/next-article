@@ -1,27 +1,26 @@
 'use strict';
 
-var oViewport = require('o-viewport');
-var oDate = require('o-date');
-var nMyFtTray = require('n-myft-tray');
-var oExpander = require('o-expander');
+require('next-js-setup').bootstrap(function(result) {
+	var oViewport = require('o-viewport');
+	var oDate = require('o-date');
+	var nMyFtTray = require('n-myft-tray');
+	var oExpander = require('o-expander');
 
-var setup = require('next-js-setup');
-var headerFooter = require('n-header-footer');
-var nVideo = require('n-video');
-var nAds = require('next-ads-component');
+	var headerFooter = require('n-header-footer');
+	var nVideo = require('n-video');
+	var nAds = require('next-ads-component');
 
-var slideshow = require('./components/slideshow/main');
-var moreOn = require('./components/more-on/main');
-var toc = require('./components/toc/main');
-var comments = require('./components/comments/main');
-var share = require('./components/share/main');
-var readingList = require('./components/reading-list/main');
-var scrollDepth = require('./components/article/scroll-depth');
-var typogSwitcher = require('./components/typography-switcher/main');
+	var slideshow = require('./components/slideshow/main');
+	var moreOn = require('./components/more-on/main');
+	var toc = require('./components/toc/main');
+	var comments = require('./components/comments/main');
+	var share = require('./components/share/main');
+	var readingList = require('./components/reading-list/main');
+	var scrollDepth = require('./components/article/scroll-depth');
+	var typogSwitcher = require('./components/typography-switcher/main');
 
-oViewport.listenTo('resize');
+	oViewport.listenTo('resize');
 
-setup.bootstrap(function(result) {
 	var flags = result.flags;
 	headerFooter.init(flags);
 
