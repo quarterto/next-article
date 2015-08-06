@@ -10,6 +10,7 @@
 
 	.more-on__content {
 		overflow: hidden;
+		background: oColorsGetPaletteColor('warm-2');
 	}
 
 	.more-on__all-link {
@@ -25,10 +26,10 @@
 		margin: 0;
 	}
 
-
 	.myft-ui--prefer {
-		padding: 10px 0;
+		padding: 10px;
 	}
+
 
 	.myft-feed__item__tags {
 		display: none;
