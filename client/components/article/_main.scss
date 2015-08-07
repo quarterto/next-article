@@ -209,6 +209,8 @@ $header-offset: 30px;
 		.article__video-wrapper:first-child,
 		.article__gallery:first-child {
 			margin-top: -$header-offset - 15;
+			//HACK to allow for expected image not being returned
+			min-height: $header-offset + 15;
 		}
 	}
 }
