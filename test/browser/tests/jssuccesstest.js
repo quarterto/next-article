@@ -12,8 +12,8 @@ module.exports = {
 	"js-success test": function(browser) {
 		console.log("Launching http://" + TEST_HOST + ARTICLE_PATH);
 		browser
-			// need to set the cookies on an html page for firefox
 			.url('https://' + TEST_HOST + "/__gtg")
+			// need to set the cookie with JS for IE
 			.execute(
 				function () {
 					document.cookie = 'next-flags=ads:off; secure=true';
