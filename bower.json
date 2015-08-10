@@ -23,7 +23,8 @@
     "o-expander": "^1.4.1",
     "o-share": "^1.0.0",
     "superstore": "^2.0.1",
-    "n-myft-tray": "Financial-Times/n-myft-tray#^2.0.0"
+    "n-myft-tray": "Financial-Times/n-myft-tray#^2.0.0",
+    "n-image": "^1.2.0"
   },
   "resolutions": {
     "o-ft-icons": "next",

@@ -21,22 +21,31 @@ $image-height-allowance: $image-height + (2 * $height-padding);
 	min-height: $image-height-allowance;
 	padding-left: $image-width-allowance;
 	border-bottom: 2px solid oColorsGetPaletteColor('warm-2');
+	&--comment {
+		background-color: $comment-bg;
+	}
+	&--analysis {
+		background-color: $analysis-bg;
+	}
+	&--lifestyle {
+		background-color: $lifestyle-bg;
+	}
 }
 
 .story-package--inline {
 	.story-package__article {
-		padding-left: initial;
+		padding-left: 5px;
 	}
 	.story-package__article--with-image {
 		padding-right: $image-width-allowance;
 	}
-	.story-package__article__image {
+	.story-package__image {
 		left: initial;
 		right: 0;
 	}
 }
 
-.story-package__article__image {
+.story-package__image {
 	display: block;
 	position: absolute;
 	left: 0;
@@ -45,7 +54,7 @@ $image-height-allowance: $image-height + (2 * $height-padding);
 
 .story-package__title {
 	@include nTypeBravo(3);
-	margin: 0;
+	margin-bottom: 5px;
 	border-bottom: 1px solid oColorsGetPaletteColor('cold-2');
 	padding: $height-padding 0;
 }
