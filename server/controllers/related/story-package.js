@@ -39,7 +39,6 @@ module.exports = function(req, res, next) {
 					return article;
 				});
 			var imagePromises = articles.map(function(article) {
-				console.log(article);
 				var articleModel = {
 					id: extractUuid(article.item.id),
 					headline: article.item.title.title,
