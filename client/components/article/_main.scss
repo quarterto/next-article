@@ -4,15 +4,6 @@ $header-offset: 30px;
 .article {
 	font-family: $fontSans;
 }
-// Experiment to show serifed copy internally
-.article--serified {
-	.article__title {
-		font-family: $n-type-serif;
-	}
-	.article__body > p {
-		font-family: oFontsGetFontFamilyWithFallbacks(FinancierTextWeb);
-	}
-}
 
 //ARTICLE HEADER
 .article__header {
