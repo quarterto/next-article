@@ -35,7 +35,11 @@ module.exports = function(req, res, next) {
 			if (req.query.count) {
 				articles.splice(req.query.count);
 			}
+			articles = articles.filter(function(article) {
+					return article;
+				});
 			var imagePromises = articles.map(function(article) {
+				console.log(article);
 				var articleModel = {
 					id: extractUuid(article.item.id),
 					headline: article.item.title.title,
