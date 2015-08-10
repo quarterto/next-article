@@ -36,4 +36,10 @@ describe('Relative Links', function () {
 		expect($.html()).to.equal('<p>For Israelis and Lebanese, <a href=\"/9ffb1208-a6ef-11e4-8a71-00144feab7de\">Hizbollah&#x2019;s border attack</a> this week brought back uncomfortable memories of the start of their 2006 war, which left hundreds dead and ruined swaths of Lebanon.</p>');
 	});
 
+	it('should be able to handle a tags without hrefs', function() {
+		var $ = cheerio.load('<p>For Israelis and Lebanese, <a>Hizbollah&#x2019;s border attack</a> this week brought back uncomfortable memories of the start of their 2006 war, which left hundreds dead and ruined swaths of Lebanon.</p>');
+		$ = relativeLinksTransform($);
+		expect($.html()).to.equal('<p>For Israelis and Lebanese, <a>Hizbollah&#x2019;s border attack</a> this week brought back uncomfortable memories of the start of their 2006 war, which left hundreds dead and ruined swaths of Lebanon.</p>');
+	});
+
 });
