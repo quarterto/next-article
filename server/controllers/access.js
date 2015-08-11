@@ -45,7 +45,8 @@ module.exports = function(req, res, next) {
 					classification = 'conditional_registered';
 				}
 
-				res.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+				res.set('Outbound-Cache-Control', 'public, max-age=3600');
+				res.set('Surrogate-Control', 'max-age=3600');
 				res.vary('X-FT-UID');
 				res.set('X-FT-UID', req.params.id);
 				res.set('X-FT-Content-Classification', classification);
