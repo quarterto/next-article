@@ -8,7 +8,8 @@ require('next-js-setup').bootstrap(function(result) {
 
 	var headerFooter = require('n-header-footer');
 	var nVideo = require('n-video');
-	var nImage = require('n-image');
+	// Require n-image to load pollyfill
+	require('n-image');
 	var nAds = require('next-ads-component');
 
 	var slideshow = require('./components/slideshow/main');
