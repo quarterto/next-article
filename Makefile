@@ -55,4 +55,5 @@ provision:
 	make -j2 visual smoke
 
 smoke:
+	nbt test-urls $(TEST_APP);
 	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/*
