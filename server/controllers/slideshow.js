@@ -22,7 +22,7 @@ module.exports = function(req, res, next) {
 			}
 		})
 		.catch(function(err) {
-			if (err instanceof fetchres.BadServerResponseError) {
+			if (fetchres.originatedError(err)) {
 				res.status(404).end();
 			} else {
 				throw err;

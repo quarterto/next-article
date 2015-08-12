@@ -4,7 +4,7 @@ var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 
 function suppressBadResponses(err) {
-	if (err instanceof fetchres.BadServerResponseError) {
+	if (fetchres.originatedError(err)) {
 		return;
 	} else {
 		throw err;
