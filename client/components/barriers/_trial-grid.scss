@@ -244,7 +244,7 @@
 }
 
 .trial-barrier-grid__other-options h3 {
-	@include nTypeAlpha(4);
+	@include nTypeBravo(4);
 	text-align: center;
 	padding-bottom: 10px;
 	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
@@ -255,8 +255,8 @@
 
 	.trial-barrier-grid__other-option-inner {
 		text-align: center;
-		padding-bottom: 10px;
-		padding-top: 10px;
+		padding-bottom: 18px;
+		padding-top: 18px;
 	}
 
 	a {
@@ -295,3 +295,4 @@
 		@include nextIcon(ipad-portrait, oColorsGetPaletteColor(link-1), 35);
 	}
 }
+

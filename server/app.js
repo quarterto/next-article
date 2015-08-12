@@ -13,6 +13,18 @@ app.use('^/:id(' + articleUuidRegex + ')$', require('./controllers/access'));
 
 app.use(barriers.middleware(express.metrics));
 
+//app.use(function(req, res, next) {
+//    console.log('YESSSSSSSSSSSSSSS');
+//    req.set({
+//        //'FT-Barrier-Type': 'TRIAL',
+//        //'FT-Access-Decision': 'DENIED',
+//        //'Country-Code': 'GBR'
+//    });
+//
+//    next();
+//});
+
+
 app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
 app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
 app.get('^/article/:id(' + articleUuidRegex + ')/people', require('./controllers/related/people'));
