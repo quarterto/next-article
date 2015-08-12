@@ -42,6 +42,8 @@ module.exports = function(req, res, next) {
 							classification = 'conditional_premium';
 					}
 				} else if (article && article.webUrl.indexOf('fastft') > -1) {
+					classification = 'conditional_standard';
+				} else {
 					classification = 'conditional_registered';
 				}
 
