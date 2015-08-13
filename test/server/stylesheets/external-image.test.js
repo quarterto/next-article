@@ -78,29 +78,4 @@ describe('External images', function () {
 			});
 	});
 
-	it('should encode a ? in an external url', function() {
-	 return transform(
-		 '<html>' +
-			 '<body>' +
-				 '<p>test test test</p>' +
-				 '<p><img src="http://markets.ft.com/ChartBuilder?t=indices&p=eYjhj93245"></img>Chart from chart builder.</p>' +
-			 '</body>' +
-		 '</html>',
-		 {
-			 fullWidthMainImages: 0
-		 }
-	 )
-	 .then(function (transformedXml) {
-		 transformedXml.should.equal(
-			 '<body>' +
-				 '<p>test test test</p>' +
-				 '<p>' +
-					 '<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://markets.ft.com/ChartBuilder%3Ft=indices&amp;p=eYjhj93245?source=next&amp;fit=scale-down&amp;width=710" class="article__image ng-inline-element ng-pull-out">' +
-					 'Chart from chart builder.' +
-				 '</p>' +
-			 '</body>\n'
-		 );
-	 });
-	});
-
 });
