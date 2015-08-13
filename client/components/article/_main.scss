@@ -78,7 +78,6 @@ $header-offset: 30px;
 }
 .article__timestamp {
 	@include nTypeAlpha(5);
-	display: inline-block;
 	text-transform: uppercase;
 	@include print {
 		text-indent: -9999px;
