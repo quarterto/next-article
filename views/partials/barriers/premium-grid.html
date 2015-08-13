@@ -1,70 +1,93 @@
-<div class="premium-barrier-grid" data-trackable="premium-barrier-grid" data-barrier="premium">
-	<div class="premium-barrier-grid__header o-grid-row">
+
+<div class="barrier-grid" data-trackable="barrier-grid" data-barrier="premium">
+	<div class="barrier-grid__header o-grid-row">
 		<h2>
-			<span class="premium-barrier-grid__heading-pretext">You must be a Premium Subscriber to continue to read:</span>
-			<span class="premium-barrier-grid__article-title">{{{premiumGridBarrier.articleTitle}}}</span>
+			<span class="barrier-grid__heading-pretext">You must be a Premium Subscriber to continue to read:</span>
+			<span class="barrier-grid__article-title">{{{premiumGridBarrier.articleTitle}}}</span>
 		</h2>
 		{{#if premiuGridBarrier.signInLink}}
-			<p class="premium-barrier-grid__sign-in">
-				<span class="premium-barrier-grid__pretext">Already a subscriber?</span>
+			<p class="barrier-grid__sign-in">
+				<span class="barrier-grid__pretext">Already a subscriber?</span>
 				<a data-trackable="sign-in" href="{{premiumGridBarrier.signInLink.href}}">{{premiumGridBarrier.signInLink.text}}</a>
 			</p>
 		{{/if}}
 	</div>
-	<div class="premium-barrier-grid__main o-grid-row">
 
-		<h3>What do you get in your Premium Subscription package</h3>
+	<div class="barrier-grid__sub-header o-grid-row">
+		<h3 class="barrier-grid__sub-header-title">What do you get in your Premium Subscription package</h3>
+	</div>
 
-		<div class="premium-barrier-grid__options o-grid-row">
-			<div class="premium-barrier-grid__option">
-				<div class="premium-barrier-grid__option-inner">
-					<h4>Lex Column</h4>
+	<div class="barrier-grid__options o-grid-row">
 
+		<div class="barrier-grid__option barrier-grid__option--option1">
+			<div class="barrier-grid__option-inner">
+				<div class="barrier-grid__image">
 					<img src="//next.ft.com/assets/product/lex-column.png" alt="Lex Column">
+				</div>
+
+				<div class="barrier-grid__secondary">
+					<h4>Lex Column</h4>
 					<p>The FT’s daily guide to the corporate and financial stories that matter. Since the 1930’s Lex has been providing concise, readable and timely commentary on companies, markets and the theory behind investing. From tech valuations to the pros and cons of share buybacks, via the banking crisis and emerging markets, Our specialists in London, New York and Hong Kong give you the tools to make better investment decisions.</p>
 				</div>
 			</div>
-			<div class="premium-barrier-grid__option">
-				<div class="premium-barrier-grid__option-inner">
-					<h4>Editor's Choice</h4>
+		</div>
+		<div class="barrier-grid__option barrier-grid__option--option2">
+			<div class="barrier-grid__option-inner">
+				<div class="barrier-grid__image">
 					<img src="//next.ft.com/assets/product/em-squared.png" alt="Editor's Choice">
+				</div>
+
+				<div class="barrier-grid__secondary">
+					<h4>Editor's Choice</h4>
 					<p>An exclusive weekly newsletter with insights from Lionel Barber, the Financial Times’ lauded editor.</p>
 				</div>
 			</div>
-			<div class="premium-barrier-grid__option">
-				<div class="premium-barrier-grid__option-inner">
-					<h4>FT Newsmine Blog</h4>
+		</div>
+		<div class="barrier-grid__option barrier-grid__option--option3">
+			<div class="barrier-grid__option-inner">
+				<div class="barrier-grid__image">
 					<img src="//next.ft.com/assets/product/epaper.png" alt="FT Newsmine Blog">
+				</div>
+
+				<div class="barrier-grid__secondary">
+					<h4>FT Newsmine Blog</h4>
 					<p>A weekly email that abstracts essential macroeconomic data for you from the week’s news stories.</p>
 				</div>
 			</div>
-			<div class="premium-barrier-grid__option">
-				<div class="premium-barrier-grid__option-inner">
-					<h4>Free lunch</h4>
+		</div>
+		<div class="barrier-grid__option">
+			<div class="barrier-grid__option-inner">
+				<div class="barrier-grid__image">
 					<img src="//next.ft.com/assets/product/email.png" alt="Free lunch">
+				</div>
+
+				<div class="barrier-grid__secondary">
+					<h4>Free lunch</h4>
 					<p>Martin Sambu’s Free Lunch - A succinct daily take on global economics from columnist Martin Sandbu who selects and comments on the day's biggest topics.</p>
 				</div>
 			</div>
 		</div>
-		<div class="o-grid-row" data-o-grid-colspan="full-width">
-			<a class="premium-barrier-grid__upgrade-now" href="{{premiumGridBarrier.subscribeNowLink}}" data-trackable="subscribe">Upgrade now</a>
-		</div>
+
 	</div>
 
-	<div class="premium-barrier-grid__other-options o-grid-row">
+	<div class="barrier-grid__section premium-barrier-grid__upgrade-now-section o-grid-row">
+		<a class="barrier-grid__cto-btn" href="{{premiumGridBarrier.subscribeNowLink}}" data-trackable="subscribe">Upgrade now</a>
+	</div>
+
+	<div class="barrier-grid__other-options  o-grid-row"> <!--- premium-b-barrier-grid__other-options --->
 		<h3 data-o-grid-colspan="full-width">Other subscription options</h3>
 		<div class="o-grid-row" data-o-grid-colspan="full-width">
-			<div class="premium-barrier-grid__other-option premium-barrier-grid__other-option--corporate">
-				<div class="premium-barrier-grid__other-option-inner">
+			<div class="barrier-grid__other-option barrier-grid__other-option--corporate" data-o-grid-colspan="one-half">
+				<div class="barrier-grid__other-option-inner">
 					<a data-trackable="corporate" href="{{premiumGridBarrier.otherOptions.corporate.link}}">
-						<span class="premium-barrier-grid__option-options-text">Corporate</span>
+						<span class="barrier-grid__option-options-text">Corporate</span>
 					</a>
 				</div>
 			</div>
-			<div class="premium-barrier-grid__other-option premium-barrier-grid__other-option--newspaper">
-				<div class="premium-barrier-grid__other-option-inner">
+			<div class="barrier-grid__other-option barrier-grid__other-option--newspaper" data-o-grid-colspan="one-half">
+				<div class="barrier-grid__other-option-inner">
 					<a data-trackable="newspaper" href="{{premiumGridBarrier.otherOptions.newspaper.link}}">
-						<span class="premium-barrier-grid__option-options-text">Newspaper only</span>
+						<span class="barrier-grid__option-options-text">Newspaper only</span>
 					</a>
 				</div>
 			</div>
