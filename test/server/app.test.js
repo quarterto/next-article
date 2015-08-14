@@ -42,10 +42,4 @@ describe('Smoke Tests: ', function() {
 
 	// specific controller tests
 	require('./controllers/article.test.js')();
-	require('./controllers/related/people.test.js')();
-	require('./controllers/related/organisations.test.js')();
-	require('./controllers/related/regions.test.js')();
-	require('./controllers/related/topics.test.js')();
-	require('./controllers/related/more-on.test.js')();
-
 });
