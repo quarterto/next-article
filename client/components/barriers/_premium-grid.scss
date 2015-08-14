@@ -188,10 +188,7 @@
 	}
 }
 
-
-/*****************************************
-* Skin specific
-*****************************************/
+/*****************************************/
 
 .premium-barrier-grid__upgrade-now-section {
 	text-align: center !important;
@@ -203,4 +200,16 @@
 		@include oGridColumn((default: one-half));
 
 	}
+}
+
+.premium-a-barrier-grid__content-header {
+	text-align: center;
+	margin-top: 10px !important;
+	margin-bottom: 20px !important;
+}
+
+.premium-a-barrier-grid__subscribe-btn-container {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }

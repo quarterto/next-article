@@ -78,7 +78,7 @@
 	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 
 	.barrier-grid__sub-header-title {
-		@include nTypeBravo(4);
+		@include nTypeBravo(3);
 	}
 }
 
@@ -88,17 +88,11 @@
 	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 	text-align: left !important;
 
-	p { // TODO: Think of better way to do this
+	p {
 		margin-bottom: 20px;
 	}
 }
 
-/* TODO: Remove
-.u-contents-centered {
-	text-align: center !important;
-	justify-content: center;
-}
-*/
 
 .barrier-grid__cto-btn {
 	@include nButtons();
@@ -107,7 +101,7 @@
 
 }
 
-.barrier-grid__p-heading {
+.barrier-grid__para-heading {
 	//@include nTypeBravo(4);
 	font-weight: bold;
 }
