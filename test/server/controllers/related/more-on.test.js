@@ -1,14 +1,10 @@
 /*global describe, it, afterEach*/
 'use strict';
 
-var expect = require('chai').expect;
 var nock = require('nock');
 var request = require('request');
 
 var helpers = require('../../helpers');
-var articleV1Elastic = require('../../../fixtures/capi-v1-elastic-search.json');
-var articleV2Elastic = require('../../../fixtures/capi-v2-elastic-search.json');
-var articleV2 = require('../../../fixtures/capi-v2.json');
 var anotherArticleV2 = require('../../../fixtures/capi-v2-another.json');
 
 module.exports = function() {

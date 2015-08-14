@@ -1,14 +1,12 @@
-/*global beforeEach, afterEach, it, describe*/
+/*global it, describe*/
 'use strict';
 
 var expect = require('chai').expect;
 require('chai').should();
 var request = require('request');
 var $ = require('cheerio');
-var mitm = require('mitm');
 
 var helpers = require('../helpers');
-var articleV2 = require('../../fixtures/capi-v2.json');
 
 module.exports = function () {
 
