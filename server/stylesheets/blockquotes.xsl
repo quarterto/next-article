@@ -3,7 +3,7 @@
 
     <xsl:template match="blockquote">
         <blockquote class="article__block-quote n-quote">
-            <xsl:apply-templates select="node()"/>
+            <xsl:apply-templates />
         </blockquote>
     </xsl:template>
 

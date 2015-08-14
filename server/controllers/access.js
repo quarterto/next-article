@@ -4,7 +4,7 @@ var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 
 function suppressBadResponses(err) {
-	if (err instanceof fetchres.BadServerResponseError) {
+	if (fetchres.originatedError(err)) {
 		return;
 	} else {
 		throw err;
@@ -42,6 +42,8 @@ module.exports = function(req, res, next) {
 							classification = 'conditional_premium';
 					}
 				} else if (article && article.webUrl.indexOf('fastft') > -1) {
+					classification = 'conditional_standard';
+				} else {
 					classification = 'conditional_registered';
 				}
 

@@ -17,6 +17,7 @@ var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
 
 module.exports = function(req, res, next) {
+
 	var articleV1Promise;
 	if (res.locals.flags.articleCapiV1Fallback) {
 		articleV1Promise = api.contentLegacy({
@@ -25,7 +26,7 @@ module.exports = function(req, res, next) {
 			})
 				// Some things aren't in CAPI v1 (e.g. FastFT)
 				.catch(function(err) {
-					if (err instanceof fetchres.BadServerResponseError) {
+					if (fetchres.originatedError(err)) {
 						return;
 					} else {
 						throw err;
@@ -62,7 +63,7 @@ module.exports = function(req, res, next) {
 				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet', retry: 0 });
 			})
 			.catch(function(err) {
-				if (err instanceof fetchres.BadServerResponseError) {
+				if (fetchres.originatedError(err)) {
 					return;
 				} else {
 					throw err;
@@ -229,7 +230,7 @@ module.exports = function(req, res, next) {
 				});
 		})
 		.catch(function(err) {
-			if (err instanceof fetchres.BadServerResponseError) {
+			if (fetchres.originatedError(err)) {
 				return api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet })
 						.then(function(data) {
 							if (data.item.location.uri.indexOf('?') > -1) {
@@ -239,7 +240,7 @@ module.exports = function(req, res, next) {
 							}
 						})
 						.catch(function(err) {
-							if (err instanceof fetchres.BadServerResponseError) {
+							if (fetchres.originatedError(err)) {
 								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon&desktop=true');
 							} else {
 								next(err);

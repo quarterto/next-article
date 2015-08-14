@@ -1,10 +1,6 @@
 //VARIABLES
 $header-offset: 30px;
 
-.article {
-	font-family: $fontSans;
-}
-
 //ARTICLE HEADER
 .article__header {
 	background: oColorsGetPaletteColor(cold-2);
@@ -78,7 +74,6 @@ $header-offset: 30px;
 }
 .article__timestamp {
 	@include nTypeAlpha(5);
-	display: inline-block;
 	text-transform: uppercase;
 	@include print {
 		text-indent: -9999px;

@@ -103,8 +103,8 @@
 		color: oColorsGetPaletteColor('blue-2');
 	}
 	.stream-card__article__link {
-		color: inherit;
 		@include nTypeAlpha(3);
+		color: inherit;
 		text-decoration: none;
 		border-bottom: 1px dotted transparent;
 		transition: border-bottom 100ms;

@@ -3,6 +3,7 @@
 
     <xsl:template name="slideshow">
         <xsl:apply-templates select="a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = '']" />
+
         <xsl:if test="normalize-space(string()) != ''">
           <p>
             <xsl:copy-of select="./node()[not(self::a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = ''])]" />
@@ -13,7 +14,7 @@
     <xsl:template match="a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = '']">
         <xsl:if test="$renderSlideshows = 1">
             <!-- assume href is of the format .*[UUID].html#slide0 -->
-            <ft-slideshow data-uuid="{substring-before(substring(@href, string-length(@href) - 47), '.html#slide0')}"/>
+            <ft-slideshow data-uuid="{substring-before(substring(@href, string-length(@href) - 47), '.html#slide0')}" />
         </xsl:if>
     </xsl:template>
 

@@ -45,7 +45,7 @@ visual:
 clean-deploy: clean install deploy
 
 tidy:
-	nbt destroy ${TEST_APP}
+	# nbt destroy ${TEST_APP}
 
 provision:
 	nbt provision ${TEST_APP}
@@ -55,4 +55,5 @@ provision:
 	make -j2 visual smoke
 
 smoke:
-	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/*
+	nbt test-urls ${TEST_APP};
+	# export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/*
