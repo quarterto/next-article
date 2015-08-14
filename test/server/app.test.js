@@ -46,7 +46,6 @@ describe('Smoke Tests: ', function() {
 	require('./controllers/related/organisations.test.js')();
 	require('./controllers/related/regions.test.js')();
 	require('./controllers/related/topics.test.js')();
-	require('./controllers/related/story-package.test.js')();
 	require('./controllers/related/more-on.test.js')();
 
 });
