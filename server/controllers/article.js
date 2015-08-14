@@ -17,6 +17,7 @@ var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
 
 module.exports = function(req, res, next) {
+
 	var articleV1Promise;
 	if (res.locals.flags.articleCapiV1Fallback) {
 		articleV1Promise = api.contentLegacy({

@@ -105,6 +105,7 @@
 .premium-barrier-grid__option {
 	@include oGridColumn((default: full-width, M: one-quarter));
 	@include oGridRemoveGutters();
+
 }
 
 .premium-barrier-grid__option-inner {
@@ -119,6 +120,16 @@
 .premium-barrier-grid__other-options {
 	padding-top: 10px;
 	background-color: oColorsGetPaletteColor('white');
+}
+
+.premium-barrier-grid__image {
+	margin-bottom: 10px;
+	img {
+		width: 80%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 .premium-barrier-grid__other-options h3 {
@@ -175,4 +186,30 @@
 	&:before {
 		@include nextIcon(newspaper, oColorsGetPaletteColor(link-1), 35);
 	}
+}
+
+/*****************************************/
+
+.premium-barrier-grid__upgrade-now-section {
+	text-align: center !important;
+	justify-content: center;
+}
+
+.premium-b-barrier-grid__other-options {
+	.barrier-grid__other-option {
+		@include oGridColumn((default: one-half));
+
+	}
+}
+
+.premium-a-barrier-grid__content-header {
+	text-align: center;
+	margin-top: 10px !important;
+	margin-bottom: 20px !important;
+}
+
+.premium-a-barrier-grid__subscribe-btn-container {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
