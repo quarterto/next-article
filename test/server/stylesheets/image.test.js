@@ -24,7 +24,10 @@ describe('Images', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<figure class="article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper">' +
-							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-media" alt="">' +
+							'<picture data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-media n-image">' +
+								'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+								'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+							'</picture>' +
 						'</figure>' +
 					'</body>\n'
 				);
@@ -49,7 +52,10 @@ describe('Images', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<figure class="article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper">' +
-							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-media" alt="">' +
+							'<picture data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-media n-image">' +
+								'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+								'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+							'</picture>' +
 						'</figure>' +
 					'</body>\n'
 				);
@@ -74,7 +80,10 @@ describe('Images', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<p>' +
-							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-inline-element ng-pull-out" alt="">' +
+							'<picture data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-inline-element ng-pull-out n-image">' +
+								'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+								'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+							'</picture>' +
 						'Some body text</p>' +
 					'</body>\n'
 				);
@@ -149,7 +158,10 @@ describe('Images', function () {
 				transformedXml.should.equal(
 					'<body>' +
 						'<figure class="article__image-wrapper article__inline-image ng-figure-reset ng-inline-element ng-pull-out">' +
-							'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt="">' +
+							'<picture data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image n-image">' +
+								'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+								'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+							'</picture>' +
 						'</figure>' +
 					'</body>\n'
 				);
@@ -176,7 +188,10 @@ describe('Images', function () {
 			transformedXml.should.equal(
 				'<body>' +
 					'<aside class="article__promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-						'<img data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image" alt="">' +
+							'<picture data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image n-image">' +
+								'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+								'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+							'</picture>' +
 					'</aside>' +
 				'</body>\n'
 			);

@@ -94,7 +94,9 @@
     </xsl:template>
 
     <xsl:template match="promo-image">
-        <xsl:apply-templates />
+		<xsl:apply-templates select="ft-content">
+			<xsl:with-param name="isPromoImage" select="1" />
+		</xsl:apply-templates>
     </xsl:template>
 
     <xsl:template match="promo-intro">

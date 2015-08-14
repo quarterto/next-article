@@ -8,7 +8,7 @@ var capiMapiRegex = require('../utils/capi-mapi-regex').content;
 
 module.exports = function($body, opts) {
 
-	var $images = $body('img[data-image-set-id]');
+	var $images = $body('picture[data-image-set-id]');
 
 	var imageSetPromises = $images
 		.map(function (index, img) {
@@ -28,11 +28,18 @@ module.exports = function($body, opts) {
 					return;
 				}
 
-				var imgSrc = resize('ftcms:' + imageSet.members[0].id.replace(capiMapiRegex, ''), { width: 710 });
-				var $img = $images.eq(i).attr('src', imgSrc);
+				var sources = $images.eq(i).find('source');
 
-				if ($img.parent().filter('figure').length > 0 && imageSet.title) {
-					$img.after(
+				sources.each(function(index, source) {
+					var width = $(source).attr('data-image-size');
+					$(source).attr('srcset', resize('ftcms:' + imageSet.members[0].id.replace(capiMapiRegex, ''), { width: width }));
+				});
+
+				var fallbackType = $images.eq(i).find('img').attr('data-image-type');
+				$images.eq(i).find('img').attr(fallbackType, resize('ftcms:' + imageSet.members[0].id.replace(capiMapiRegex, ''), { width: $images.eq(i).find('img').attr('data-image-size') }));
+
+				if ($images.eq(i).parent().filter('figure').length > 0 && imageSet.title) {
+					$images.eq(i).after(
 						'<figcaption class="article__image-caption ng-meta">' +
 							imageSet.title +
 						'</figcaption>'

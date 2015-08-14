@@ -66,17 +66,32 @@
     <xsl:template match="ft-content" mode="internal-image">
         <xsl:param name="isMain" />
         <xsl:param name="isInline" />
-        <img data-image-set-id="{substring(@url, string-length(@url) - 35)}" class="article__image" alt="">
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="$isMain and $fullWidthMainImages and $reserveSpaceForMasterImage">article__image ng-media</xsl:when>
-                    <xsl:when test="$isMain and $fullWidthMainImages">article__image</xsl:when>
-                    <xsl:when test="$isInline and current()[name(parent::*) = 'p']">article__image ng-inline-element ng-pull-out</xsl:when>
-                    <xsl:when test="$isInline and current()[name(parent::*) != 'p']">article__image</xsl:when>
-                    <xsl:otherwise>article__image</xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-        </img>
+        <xsl:param name="isPromoImage" />
+        <picture data-image-set-id="{substring(@url, string-length(@url) - 35)}">
+          <xsl:attribute name="class">
+              <xsl:choose>
+                  <xsl:when test="$isMain and $fullWidthMainImages and $reserveSpaceForMasterImage">article__image ng-media n-image</xsl:when>
+                  <xsl:when test="$isMain and $fullWidthMainImages">article__image n-image</xsl:when>
+                  <xsl:when test="$isInline and current()[name(parent::*) = 'p']">article__image ng-inline-element ng-pull-out n-image</xsl:when>
+                  <xsl:when test="$isInline and current()[name(parent::*) != 'p']">article__image n-image</xsl:when>
+                  <xsl:otherwise>article__image n-image</xsl:otherwise>
+              </xsl:choose>
+          </xsl:attribute>
+          <xsl:choose>
+            <xsl:when test="$isPromoImage">
+              <!--[if IE 9]><video style="display: none;"><![endif]-->
+              <source data-image-size="280" media="(min-width: 490px)"></source>
+              <!--[if IE 9]></video><![endif]-->
+              <img data-image-type="srcset" data-image-size="400" class="n-image__img" alt=""/>
+            </xsl:when>
+            <xsl:otherwise>
+              <!--[if IE 9]><video style="display: none;"><![endif]-->
+              <source data-image-size="690" media="(min-width: 730px)"></source>
+              <!--[if IE 9]></video><![endif]-->
+              <img data-image-type="src" data-image-size="400" class="n-image__img" alt=""/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </picture>
     </xsl:template>
 
 </xsl:stylesheet>
