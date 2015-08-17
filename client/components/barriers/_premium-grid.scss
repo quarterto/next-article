@@ -205,7 +205,12 @@
 .premium-a-barrier-grid__content-header {
 	text-align: center;
 	margin-top: 10px !important;
-	margin-bottom: 20px !important;
+}
+
+.premium-a-barrier-grid__content-sub-header {
+	@include nTypeBravo(3);
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .premium-a-barrier-grid__subscribe-btn-container {
