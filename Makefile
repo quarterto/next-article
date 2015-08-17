@@ -5,7 +5,7 @@ TEST_APP := "ft-article-branch-${CIRCLE_BUILD_NUM}"
 install:
 	obt install --verbose
 
-test: verify build-production unit-test
+test: verify unit-test
 
 verify:
 	nbt verify
