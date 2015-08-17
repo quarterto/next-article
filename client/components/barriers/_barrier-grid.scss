@@ -102,7 +102,6 @@
 }
 
 .barrier-grid__para-heading {
-	//@include nTypeBravo(4);
 	font-weight: bold;
 }
 
@@ -205,7 +204,6 @@
 	.barrier-grid__option-inner {
 		background-color: oColorsGetPaletteColor('white');
 		padding-top: 20px;
-		//padding-bottom: 10px;
 	}
 
 	.barrier-grid__option--option1,
@@ -227,7 +225,7 @@
 	.barrier-grid__option {
 		@include oGridColumn((default: full-width, S: one-half, L: one-quarter));
 		@include oGridRemoveGutters();
-		border-bottom: 1px solid oColorsGetPaletteColor('warm-2'); // ***
+		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 		padding-bottom: 20px;
 	}
 
@@ -286,8 +284,6 @@
 }
 
 .barrier-grid__other-option {
-	//@include oGridColumn((default: one-third));
-
 	.barrier-grid__other-option-inner {
 		text-align: center;
 		padding-bottom: 18px;
