@@ -5,17 +5,17 @@ module.exports = [{
 			//fastft
 			'/b002e5ee-3096-3f51-9925-32b157740c98': 200,
 			// related fragments
-			'/article/f2b13800-c70c-11e4-8e1f-00144feab7de/topics': 200,
+			'/article/8b11ca16-45bf-11e5-b3b2-1672f710807b/topics': 200,
 			'/article/notreal1-c70c-11e4-8e1f-00144feab7de/topics': 404,
 			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/story-package': 200,
-			'/article/f2b13800-c70c-11e4-8e1f-00144feab7de/regions': 200,
+			'/article/8b11ca16-45bf-11e5-b3b2-1672f710807b/regions': 200,
 			'/article/notreal1-c70c-11e4-8e1f-00144feab7de/regions': 404,
-			'/article/f2b13800-c70c-11e4-8e1f-00144feab7de/people': 200,
+			'/article/8b11ca16-45bf-11e5-b3b2-1672f710807b/people': 200,
 			'/article/notreal1-c70c-11e4-8e1f-00144feab7de/people': 404,
-			'/article/f2b13800-c70c-11e4-8e1f-00144feab7de/organisations': 200,
+			'/article/8b11ca16-45bf-11e5-b3b2-1672f710807b/organisations': 200,
 			'/article/notreal1-c70c-11e4-8e1f-00144feab7de/organisations': 404,
 			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?metadata-fields=primaryTheme': 200,
-			// articles with not tageed with X
+			// articles with not tagged with X
 			'/article/a1fb6fee-93ae-359d-be8f-f215920b79ff/more-on?metadata-fields=primaryTheme': {
 				content: ''
 			},
