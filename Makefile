@@ -49,6 +49,7 @@ tidy:
 	nbt destroy ${TEST_APP}
 
 provision:
+	heroku apps:create ${TEST_APP} --region eu
 	nbt provision ${TEST_APP}
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
