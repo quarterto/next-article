@@ -171,7 +171,7 @@
 		padding-bottom: 10px;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 		@include oGridRespondTo(S) {
-			min-height: 490px;
+			min-height: 560px;
 		}
 	}
 
