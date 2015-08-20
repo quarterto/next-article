@@ -53,7 +53,7 @@ provision:
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
-	make smoke visual
+	# make smoke visual
 
 smoke:
 	nbt test-urls ${TEST_APP};
