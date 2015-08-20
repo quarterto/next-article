@@ -41,7 +41,7 @@ deploy:
 
 visual:
 	# Note: || is not OR; it executes the RH command only if LH test is truthful.
-	test ${CI_PULL_REQUEST} == "" || (export TEST_APP=${TEST_APP}; myrtlejs)
+	test -d ${CIRCLE_BUILD_NUM} || (export TEST_APP=${TEST_APP}; myrtlejs)
 
 clean-deploy: clean install deploy
 
