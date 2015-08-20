@@ -41,7 +41,7 @@
     "mitm": "^1.1.0",
     "mocha": "^2.0.0",
     "myrtlejs": "^1.0.4",
-    "next-build-tools": "^3.20.6",
+    "next-build-tools": "git://github.com/next-build-tools.git#throttle-fetch",
     "nightwatch": "^0.5.36",
     "nock": "^2.0.0",
     "nodemon": "^1.3.5",
