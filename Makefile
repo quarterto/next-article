@@ -41,7 +41,7 @@ deploy:
 
 visual:
 	# Note: || is not OR; it executes the RH command only if LH test is truthful.
-	test -d ${CI_PULL_REQUEST} || (export TEST_APP=${TEST_APP}; myrtlejs)
+	test ${CI_PULL_REQUEST} == "" || (export TEST_APP=${TEST_APP}; myrtlejs)
 
 clean-deploy: clean install deploy
 
@@ -53,7 +53,7 @@ provision:
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
-	make -j6 smoke visual
+	make -j2 visual smoke
 
 smoke:
 	nbt test-urls ${TEST_APP};
