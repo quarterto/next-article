@@ -1,19 +1,6 @@
 //VARIABLES
 $header-offset: 30px;
 
-.article {
-	font-family: $fontSans;
-}
-// Experiment to show serifed copy internally
-.article--serified {
-	.article__title {
-		font-family: $n-type-serif;
-	}
-	.article__body > p {
-		font-family: oFontsGetFontFamilyWithFallbacks(FinancierTextWeb);
-	}
-}
-
 //ARTICLE HEADER
 .article__header {
 	background: oColorsGetPaletteColor(cold-2);
@@ -82,12 +69,11 @@ $header-offset: 30px;
 }
 .article__author {
 	@include nLinksTopic($inversed: true);
-	@include nTypeBeta(4);
+	@include nTypeBravo(4);
 	font-style: normal;
 }
 .article__timestamp {
 	@include nTypeAlpha(5);
-	display: inline-block;
 	text-transform: uppercase;
 	@include print {
 		text-indent: -9999px;
@@ -102,7 +88,7 @@ $header-offset: 30px;
 	}
 }
 .article__primary-theme {
-	@include nTypeBeta(4);
+	@include nTypeBravo(4);
 	margin: 0;
 	@include print {
 		display: none;
@@ -154,7 +140,7 @@ $header-offset: 30px;
 .article__tag {
 	@include nListsItem($use-case: n-lists-inversed);
 	&:first-child {
-		border-top-color: #ffffff;
+		border-top: 1px solid #ffffff;
 	}
 }
 
@@ -171,35 +157,35 @@ $header-offset: 30px;
 	color: $next-grey-dark;
 	margin-bottom: 20px;
 
-	> p {
+	p {
 		margin: 0.3em 0 0.8em;
 		display: block;
+		a {
+			@include nLinksBody();
+			@include print {
+				&:after {
+					text-decoration: none;
+				}
+				&[href^='/']:after {
+					content: ' (http://next.ft.com' attr(href) ')';
+				}
+				&:not([href^='/']):after {
+					content: ' (' attr(href) ')';
+				}
+			}
+		}
 	}
 	> *:first-child {
 		margin-top: 0;
 	}
 
 	strong {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		@include oGridRespondTo(S) {
-			@include nTypeBeta(3);
+			@include nTypeBravo(3);
 		}
 	}
 
-	a {
-		@include nLinksBody();
-		@include print {
-			&:after {
-				text-decoration: none;
-			}
-			&[href^='/']:after {
-				content: ' (http://next.ft.com' attr(href) ')';
-			}
-			&:not([href^='/']):after {
-				content: ' (' attr(href) ')';
-			}
-		}
-	}
 	.o-quote--standard a {
 		color: inherit;
 	}
@@ -209,6 +195,8 @@ $header-offset: 30px;
 		.article__video-wrapper:first-child,
 		.article__gallery:first-child {
 			margin-top: -$header-offset - 15;
+			//HACK to allow for expected image not being returned
+			min-height: $header-offset + 15;
 		}
 	}
 }
@@ -303,7 +291,7 @@ $header-offset: 30px;
 	}
 }
 .article__subhead {
-	@include nTypeBeta(2);
+	@include nTypeBravo(2);
 	clear: left;
 	margin-top: 50px;
 	margin-bottom: 20px;
@@ -312,7 +300,7 @@ $header-offset: 30px;
 	border-bottom: 1px solid black;
 }
 .article__subhead--standard {
-	@include nTypeBeta(3);
+	@include nTypeBravo(3);
 }
 .article__block-quote {
 	max-width: 100%;
@@ -355,7 +343,7 @@ $header-offset: 30px;
 		margin: 0;
 	}
 	&__link {
-		@include nTypeBeta(3);
+		@include nTypeBravo(3);
 	}
 }
 

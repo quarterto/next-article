@@ -10,6 +10,7 @@
 
 	.more-on__content {
 		overflow: hidden;
+		background: oColorsGetPaletteColor('warm-2');
 	}
 
 	.more-on__all-link {
@@ -25,10 +26,10 @@
 		margin: 0;
 	}
 
-
 	.myft-ui--prefer {
-		padding: 10px 0;
+		padding: 10px;
 	}
+
 
 	.myft-feed__item__tags {
 		display: none;
@@ -91,7 +92,7 @@
 	}
 
 	&__title-text {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		display: block;
 		padding: 0 0 6px;
 	}
@@ -108,7 +109,7 @@
 	}
 
 	&__current-page:before {
-		@include nTypeBeta(5);
+		@include nTypeBravo(5);
 		content: 'Currently reading';
 		text-transform: uppercase;
 		display: block;

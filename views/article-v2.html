@@ -9,9 +9,9 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}{{#if @root.flags.serification}} article--serified{{/if}}" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if article}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
-		<div class="ad-placeholder__leaderboard ad-placeholder__{{__name}}"></div>
+		<div class="article__leaderboard-advert"></div>
 		<div class="article__header-inner o-grid-row">
 			{{#if barrier}}
 			<div data-o-grid-colspan="12 L12 XL12">
@@ -20,12 +20,19 @@
 			{{/if}}
 				<header>
 					<div class="article__header-primary">
-						{{#if primaryTag}}
-						<p class="article__primary-theme">
-							<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
-						</p>
+						{{#if isSpecialReport}}
+							<p class="article__primary-theme">
+								Special Report:
+								<a href="/special-reports/{{articleV1.metadata.primarySection.term.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{articleV1.metadata.primarySection.term.name}}" data-concept-id="{{articleV1.metadata.primarySection.term.id}}">{{articleV1.metadata.primarySection.term.name}}</a>
+							</p>
+						{{else}}
+							{{#if primaryTag}}
+							<p class="article__primary-theme">
+								<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+							</p>
+							{{/if}}
 						{{/if}}
-						<h1 class="article__title">{{{title}}}</h1>
+						<h1 class="article__title">{{title}}</h1>
 					</div>
 					<div class="article__header-secondary">
 					{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
@@ -53,7 +60,7 @@
 				{{/if}}
 			</div>
 			{{#if tags}}
-				<aside class="article__tags" data-o-grid-colspan="{{#if @root.flags.articleMobileTags}}12{{else}}hide{{/if}} L3 Loffset1" role="complementary">
+				<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
 					<h3 class="article__tags__title">Topics mentioned in this article</h3>
 					<ul class="article__tags-list" data-trackable="tags">
 						{{#each tags}}
@@ -88,7 +95,7 @@
 </article>
 
 <div class="o-grid-row">
-	<div data-o-grid-colspan="12 L12 XL12">
+	<div data-o-grid-colspan="12 L10 center">
 		{{#if registerGridBarrier}}
 			{{> barriers/register-grid}}
 		{{/if}}
@@ -119,13 +126,17 @@
 	{{>share}}
 {{/if}}
 
-{{#if relatedContent}}
-	<div class="o-grid-row">
-		<div data-trackable="story-package" data-o-grid-colspan="12 L8 XL7 XLoffset1">
-			<div class="js-more-on"></div>
-		</div>
+<div class="o-grid-row">
+	<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+		{{#if isSpecialReport}}
+				<div class="js-special-report" data-trackable="special-report"></div>
+		{{else}}
+			{{#if relatedContent}}
+				<div class="js-more-on" data-trackable="story-package"></div>
+			{{/if}}
+		{{/if}}
 	</div>
-{{/if}}
+</div>
 
 {{#if moreOns}}
 	{{>more-ons}}

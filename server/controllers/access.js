@@ -2,27 +2,29 @@
 
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
-var errorsHandler = require('express-errors-handler');
+
+function suppressBadResponses(err) {
+	if (fetchres.originatedError(err)) {
+		return;
+	} else {
+		throw err;
+	}
+}
 
 module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
-		api.contentLegacy({
-			uuid: req.params.id,
-			useElasticSearch: res.locals.flags.elasticSearchItemGet
-		})
-			.catch(function(err) {
-				if (err instanceof fetchres.BadServerResponseError) {
-					return;
-				} else {
-					errorsHandler.middleware(err);
-				}
-			})
-			.then(function(article) {
+		Promise.all([
+			api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet }).catch(suppressBadResponses),
+			api.content({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet }).catch(suppressBadResponses)
+		])
+			.then(function(articles) {
+				var articleLegacy = articles[0];
+				var article = articles[1];
 				var classification = 'unconditional';
 				var results;
 
-				if (article) {
-					results = /cms\/s\/([0-3])\//i.exec(article.item.location.uri);
+				if (articleLegacy) {
+					results = /cms\/s\/([0-3])\//i.exec(articleLegacy.item.location.uri);
 				}
 				// “if the match fails, the exec() method returns null” — MDN
 				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec
@@ -39,17 +41,20 @@ module.exports = function(req, res, next) {
 						case '3' :
 							classification = 'conditional_premium';
 					}
-				}else if(article.item.location.uri.indexOf('fastft') > -1){
+				} else if (article && article.webUrl.indexOf('fastft') > -1) {
+					classification = 'conditional_standard';
+				} else {
 					classification = 'conditional_registered';
 				}
 
-				res.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+				res.set('Outbound-Cache-Control', 'public, max-age=3600');
+				res.set('Surrogate-Control', 'max-age=3600');
 				res.vary('X-FT-UID');
 				res.set('X-FT-UID', req.params.id);
 				res.set('X-FT-Content-Classification', classification);
 				res.status(200).end();
 			})
-			.catch(errorsHandler.middleware);
+			.catch(next);
 	} else {
 		next();
 	}

@@ -1,5 +1,4 @@
-GIT_HASH := $(shell git rev-parse --short HEAD)
-TEST_APP := "ft-article-branch-${GIT_HASH}"
+TEST_APP := "ft-article-branch-${CIRCLE_BUILD_NUM}"
 
 .PHONY: test
 
@@ -26,6 +25,7 @@ build:
 
 build-production:
 	nbt build
+	nbt about
 
 watch:
 	nbt build --dev --watch
@@ -36,11 +36,12 @@ clean:
 deploy:
 	nbt configure
 	nbt deploy-hashed-assets
-	nbt deploy
+	nbt deploy --docker
 	nbt scale
 
 visual:
-	test $TRAVIS_PULL_REQUEST == "false" || (export TEST_APP=${TEST_APP}; myrtlejs)
+	# Note: || is not OR; it executes the RH command only if LH test is truthful.
+	test -d ${CIRCLE_BUILD_NUM} || (export TEST_APP=${TEST_APP}; myrtlejs)
 
 clean-deploy: clean install deploy
 
@@ -48,11 +49,12 @@ tidy:
 	nbt destroy ${TEST_APP}
 
 provision:
-	nbt provision ${TEST_APP}
+	heroku apps:create ${TEST_APP} --region eu
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_APP} --skip-enable-preboot
+	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
 	make -j2 visual smoke
 
 smoke:
+	nbt test-urls ${TEST_APP};
 	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/*

@@ -13,7 +13,7 @@
 	}
 
 	h3 {
-		@include nTypeBeta(2);
+		@include nTypeBravo(2);
 		margin: 0 0 20px;
 	}
 
@@ -35,7 +35,7 @@
 	background-color: oColorsGetPaletteColor('warm-2');
 
 	h2 {
-		@include nTypeBeta(3);
+		@include nTypeBravo(3);
 		@include oGridColumn((default: full-width, L: three-quarters));
 		margin: 0;
 	}
@@ -56,7 +56,7 @@
 	}
 
 	.premium-barrier-grid__sign-in {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		@include oGridColumn((default: full-width, L: one-quarter));
 
 		background-color: oColorsGetPaletteColor('warm-3');
@@ -105,6 +105,7 @@
 .premium-barrier-grid__option {
 	@include oGridColumn((default: full-width, M: one-quarter));
 	@include oGridRemoveGutters();
+
 }
 
 .premium-barrier-grid__option-inner {
@@ -121,10 +122,19 @@
 	background-color: oColorsGetPaletteColor('white');
 }
 
+.premium-barrier-grid__image {
+	margin-bottom: 10px;
+	img {
+		width: 80%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
 .premium-barrier-grid__other-options h3 {
 	@include nTypeAlpha(4);
 	text-align: center;
-	text-transform: uppercase;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border-top: 1px solid oColorsGetPaletteColor('warm-2');
@@ -142,7 +152,7 @@
 	}
 
 	a {
-		@include nTypeBeta(4);
+		@include nTypeBravo(4);
 		text-decoration: none;
 		color: oColorsGetPaletteColor(link-1);
 		overflow: hidden;
@@ -176,4 +186,35 @@
 	&:before {
 		@include nextIcon(newspaper, oColorsGetPaletteColor(link-1), 35);
 	}
+}
+
+/*****************************************/
+
+.premium-barrier-grid__upgrade-now-section {
+	text-align: center !important;
+	justify-content: center;
+}
+
+.premium-b-barrier-grid__other-options {
+	.barrier-grid__other-option {
+		@include oGridColumn((default: one-half));
+
+	}
+}
+
+.premium-a-barrier-grid__content-header {
+	text-align: center;
+	margin-top: 10px !important;
+}
+
+.premium-a-barrier-grid__content-sub-header {
+	@include nTypeBravo(3);
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.premium-a-barrier-grid__subscribe-btn-container {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }

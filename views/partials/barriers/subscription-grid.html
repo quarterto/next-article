@@ -8,10 +8,10 @@
 
 	<div class="subscription-barrier-grid__options o-grid-row">
 		<div class="subscription-barrier-grid__option subscription-barrier-grid__option--option1">
-			<div class="subscription-barrier-grid__option-inner">
+			<div class="subscription-barrier-grid__option-inner ">
 				<h3>{{subscriptionGridBarrier.packages.newspaper.name}}</h3>
 				<div class="subscription-barrier-grid__image">
-					<img src="//next.ft.com/assets/print_digital.png" alt="{{subscriptionGridBarrier.packages.newspaper.name}}">
+					<img src="{{#resize 800}}//next-geebee.ft.com/assets/print_digital.png{{/resize}}" alt="{{subscriptionGridBarrier.packages.newspaper.name}}">
 				</div>
 				<div class="subscription-barrier-grid__primary">
 					<p class="subscription-barrier-grid__price">
@@ -22,11 +22,11 @@
 				</div>
 				<div class="subscription-barrier-grid__secondary">
 					{{#if subscriptionGridBarrier.packages.newspaper.details.title}}
-						<h4>{{subscriptionGridBarrier.packages.newspaper.details.title}}</h4>
+					<h4>{{subscriptionGridBarrier.packages.newspaper.details.title}}</h4>
 					{{/if}}
 					<ul>
 						{{#each subscriptionGridBarrier.packages.newspaper.details.items}}
-							<li>{{this.description}}</li>
+						<li>{{this.description}}</li>
 						{{/each}}
 					</ul>
 				</div>
@@ -36,7 +36,7 @@
 			<div class="subscription-barrier-grid__option-inner">
 				<h3>{{subscriptionGridBarrier.packages.premium.name}}</h3>
 				<div class="subscription-barrier-grid__image">
-					<img src="//next.ft.com/assets/premium_digital.png" alt="{{subscriptionGridBarrier.packages.premium.name}}">
+					<img src="{{#resize 800}}//next-geebee.ft.com/assets/premium_digital.png{{/resize}}" alt="{{subscriptionGridBarrier.packages.premium.name}}">
 				</div>
 				<div class="subscription-barrier-grid__primary">
 					<p class="subscription-barrier-grid__price">{{subscriptionGridBarrier.packages.premium.price.weekly}} <span>per week</span></p>
@@ -44,11 +44,11 @@
 				</div>
 				<div class="subscription-barrier-grid__secondary">
 					{{#if subscriptionGridBarrier.packages.premium.details.title}}
-						<h4>{{subscriptionGridBarrier.packages.premium.details.title}}</h4>
+					<h4>{{subscriptionGridBarrier.packages.premium.details.title}}</h4>
 					{{/if}}
 					<ul>
 						{{#each subscriptionGridBarrier.packages.premium.details.items}}
-							<li>{{this.description}}</li>
+						<li>{{this.description}}</li>
 						{{/each}}
 					</ul>
 				</div>
@@ -58,7 +58,7 @@
 			<div class="subscription-barrier-grid__option-inner">
 				<h3>{{subscriptionGridBarrier.packages.standard.name}}</h3>
 				<div class="subscription-barrier-grid__image">
-					<img src="//next.ft.com/assets/standard_digital.png" alt="{{subscriptionGridBarrier.packages.standard.name}}">
+					<img src="{{#resize 800}}//next-geebee.ft.com/assets/standard_digital.png{{/resize}}" alt="{{subscriptionGridBarrier.packages.standard.name}}">
 				</div>
 				<div class="subscription-barrier-grid__primary">
 					<p class="subscription-barrier-grid__price">{{subscriptionGridBarrier.packages.standard.price.weekly}} <span>per week</span></p>
@@ -66,11 +66,11 @@
 				</div>
 				<div class="subscription-barrier-grid__secondary">
 					{{#if subscriptionGridBarrier.packages.standard.details.title}}
-						<h4>{{subscriptionGridBarrier.packages.standard.details.title}}</h4>
+					<h4>{{subscriptionGridBarrier.packages.standard.details.title}}</h4>
 					{{/if}}
 					<ul>
 						{{#each subscriptionGridBarrier.packages.standard.details.items}}
-							<li>{{this.description}}</li>
+						<li>{{this.description}}</li>
 						{{/each}}
 					</ul>
 				</div>
@@ -80,7 +80,7 @@
 			<div class="subscription-barrier-grid__option-inner">
 				<h3>{{subscriptionGridBarrier.packages.trial.name}}</h3>
 				<div class="subscription-barrier-grid__image">
-					<img src="//next.ft.com/assets/premium_digital.png" alt="{{subscriptionGridBarrier.packages.trial.name}}">
+					<img src="{{#resize 800}}//next-geebee.ft.com/assets/premium_digital.png{{/resize}}" alt="{{subscriptionGridBarrier.packages.trial.name}}">
 				</div>
 				<div class="subscription-barrier-grid__primary">
 					<p class="subscription-barrier-grid__price">{{subscriptionGridBarrier.packages.trial.price.monthly}} <span>for one month</span></p>
@@ -88,11 +88,11 @@
 				</div>
 				<div class="subscription-barrier-grid__secondary">
 					{{#if subscriptionGridBarrier.packages.trial.details.title}}
-						<h4>{{subscriptionGridBarrier.packages.trial.details.title}}</h4>
+					<h4>{{subscriptionGridBarrier.packages.trial.details.title}}</h4>
 					{{/if}}
 					<ul>
 						{{#each subscriptionGridBarrier.packages.trial.details.items}}
-							<li>{{this.description}}</li>
+						<li>{{this.description}}</li>
 						{{/each}}
 					</ul>
 				</div>
@@ -101,8 +101,8 @@
 	</div>
 
 	<div class="subscription-barrier-grid__other-options o-grid-row">
-		<h3>Other subscription options</h3>
-		<div class="o-grid-row">
+		<h3 data-o-grid-colspan="full-width">Other subscription options</h3>
+		<div class="o-grid-row" data-o-grid-colspan="full-width">
 			<div class="subscription-barrier-grid__other-option subscription-barrier-grid__other-option--corporate">
 				<div class="subscription-barrier-grid__other-option-inner">
 					<a href="{{subscriptionGridBarrier.otherOptions.corporate.link}}">

@@ -13,9 +13,14 @@ module.exports = {
 		console.log("Launching http://" + TEST_HOST + ARTICLE_PATH);
 		browser
 			.url('https://' + TEST_HOST + "/__gtg")
-			.setCookie({ name: 'next-flags', domain: TEST_HOST, value: 'ads:off', secure: true })
+			// need to set the cookie with JS for IE
+			.execute(
+				function () {
+					document.cookie = 'next-flags=ads:off; secure=true';
+				}
+			)
 			.url('https://' + TEST_HOST + ARTICLE_PATH)
-			.waitForElementPresent("html.js.js-success", 60000)
+			.waitForElementPresent("html.js.js-success", 10000)
 			.end();
 	},
 
@@ -23,7 +28,6 @@ module.exports = {
 		console.log("Sauce Test Results at https://saucelabs.com/tests/" + this.client.sessionId);
 		console.log('Updating Saucelabs...');
 		notifySaucelabs({
-			accessKey: this.client.sessionId,
 			passed: this.results.failed === 0
 		})
 			.then(function() {

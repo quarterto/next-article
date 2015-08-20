@@ -2,7 +2,6 @@
 
 var fetchres = require('fetchres');
 var oDate = require('o-date');
-var nTopic = require('n-topic');
 var myFtUi = require('next-myft-ui');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
@@ -42,10 +41,13 @@ var createPromise = function (el, url, renderer) {
 
 module.exports.init = function(flags) {
 	var fetchPromises = [];
-	var articleId = document.querySelector('.article').getAttribute('data-content-id');
+	var article = document.querySelector('.article');
+	var articleId = article.getAttribute('data-content-id');
+	var articleSources = article.getAttribute('data-content-sources');
 
 	// If there is no articleId don't try to load related content
-	if (!articleId) {
+	// and we also only support articles available in API v1
+	if (!articleId || !/v1/.test(articleSources)) {
 		return;
 	}
 
@@ -68,11 +70,11 @@ module.exports.init = function(flags) {
 	$('.js-related').forEach(function(el) {
 		fetchPromises.push(createPromise(el, '/article/' + articleId + '/' + el.getAttribute('data-taxonomy')));
 	});
+	$('.js-special-report').forEach(el => fetchPromises.push(createPromise(el, '/article/' + articleId + '/special-report')));
 
 	return allSettled(fetchPromises)
 		.then(function() {
 			var moreOnContainer = document.querySelector('.article__more-on');
-			nTopic.init(moreOnContainer);
 			myFtUi.updateUi(moreOnContainer);
 		});
 };

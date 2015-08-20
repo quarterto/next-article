@@ -16,9 +16,10 @@ module.exports = function(req, res, next) {
 	})
 		.then(function (article) {
 			res.set(cacheControl);
-			var regions = article.item.metadata.regions.filter(excludePrimaryTheme(article));
+			var metadata = article && article.item && article.item.metadata;
+			var regions = metadata && metadata.regions.filter(excludePrimaryTheme(article));
 
-			if (!regions.length) {
+			if (!regions || !regions.length) {
 				throw new Error('No related');
 			}
 
@@ -41,7 +42,7 @@ module.exports = function(req, res, next) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {
 				res.status(500).end();
-			} else if (err instanceof fetchres.BadServerResponseError) {
+			} else if (fetchres.originatedError(err)) {
 				res.status(404).end();
 			} else {
 				next(err);

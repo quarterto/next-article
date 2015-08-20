@@ -14,7 +14,7 @@ visualRegressionTest({
 			widths: [500, 1400],
 			elements: {
 				header: '.article__header',
-				pullquote: '.article__pull-quote'
+				pullquote: '.n-quote'
 			}
 		},
 		fastft_article: {
@@ -28,7 +28,7 @@ visualRegressionTest({
 			path: "/af5ea60e-1578-11e5-be54-00144feabdc0",
 			widths: [500, 1400],
 			elements: {
-				article_body: '.article__pull-quote'
+				article_body: '.n-quote'
 			}
 		},
 		block_quote: {
@@ -42,7 +42,7 @@ visualRegressionTest({
 			path: "/b2c235de-166a-11e5-b07f-00144feabdc0",
 			widths: [500, 1400],
 			elements: {
-				article_body: '.article__promo-box'
+				article_body: '.promo-box'
 			}
 		},
 		big_number: {

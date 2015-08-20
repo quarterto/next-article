@@ -1,50 +1,57 @@
-<div class="premium-barrier-simple" data-trackable="premium-barrier-simple" data-barrier="premium">
-	<div class="premium-barrier-simple__header o-grid-row">
+<div class="barrier-grid" data-trackable="barrier-grid" data-barrier="premium">
+	<div class="barrier-grid__header o-grid-row">
 		<h2>
-			<span class="premium-barrier-simple__heading-pretext">You must be a Premium Subscriber to continue to read:</span>
-			<span class="premium-barrier-simple__article-title">{{{premiumSimpleBarrier.articleTitle}}}</span>
+			<span class="barrier-grid__heading-pretext">You must be a Premium Subscriber to continue to read:</span>
+			<span class="barrier-grid__article-title">{{{premiumSimpleBarrier.articleTitle}}}</span>
 		</h2>
 		{{#if premiumSimpleBarrier.signInLink}}
-			<p class="premium-barrier-simple__sign-in">
-				<span class="premium-barrier-simple__pretext">Already a subscriber?</span>
+			<p class="barrier-grid__sign-in">
+				<span class="barrier-grid__pretext">Already a subscriber?</span>
 				<a data-trackable="sign-in" href="{{premiumSimpleBarrier.signInLink.href}}">{{premiumSimpleBarrier.signInLink.text}}</a>
 			</p>
 		{{/if}}
 	</div>
-	<div class="premium-barrier-simple__main o-grid-row">
+	<div class="barrier-grid__section o-grid-row">
+		<div>
 
-		<h3>What do you get in your Premium Subscription package</h3>
+			<h3 class="premium-a-barrier-grid__content-header">
+				Premium features include the agenda-setting Lex column, EM Squared, Martin Sandbu’s Free Lunch, Newsmine blog, daily FT ePaper and
+				exclusive weekly emails designed to enhance your FT experience.
+			</h3>
 
-		<h4>Lex Column</h4>
+			<div class="premium-a-barrier-grid__subscribe-btn-container">
+				<a class="barrier-grid__cto-btn" href="{{premiumSimpleBarrier.subscribeNowLink.href}}" data-trackable="subscribe">{{premiumSimpleBarrier.subscribeNowLink.text}}</a>
+			</div>
 
-		<p>The FT’s daily guide to the corporate and financial stories that matter. Since the 1930’s Lex has been providing concise, readable and timely commentary on companies, markets and the theory behind investing. From tech valuations to the pros and cons of share buybacks, via the banking crisis and emerging markets, Our specialists in London, New York and Hong Kong give you the tools to make better investment decisions.</p>
+			<div class="premium-a-barrier-grid__content-sub-header">What do you get in your Premium Subscription package</div>
 
-		<h4>Editor's Choice</h4>
-		<p>An exclusive weekly newsletter with insights from Lionel Barber, the Financial Times’ lauded editor.</p>
+			<p><span class="barrier-grid__para-heading">Lex Column</span> - The FT’s daily guide to the corporate and financial stories that matter. Since the 1930’s Lex has been providing concise, readable and timely commentary on companies, markets and the theory behind investing. From tech valuations to the pros and cons of share buybacks, via the banking crisis and emerging markets, Our specialists in London, New York and Hong Kong give you the tools to make better investment decisions.</p>
 
-		<h4>FT Newsmine Blog</h4>
-		<p>A weekly email that abstracts essential macroeconomic data for you from the week’s news stories.</p>
 
-		<h4>Free lunch</h4>
-		<p>Martin Sambu’s Free Lunch - A succinct daily take on global economics from columnist Martin Sandbu who selects and comments on the day's biggest topics.</p>
+			<p><span class="barrier-grid__para-heading">Editor's Choice</span> - An exclusive weekly newsletter with insights from Lionel Barber, the Financial Times’ lauded editor.</p>
 
-		<a class="premium-barrier-simple__upgrade-now" href="{{premiumSimpleBarrier.subscribeNowLink.href}}" data-trackable="subscribe">{{premiumSimpleBarrier.subscribeNowLink.text}}</a>
+
+			<p><span class="barrier-grid__para-heading">FT Newsmine Blog</span> - A weekly email that abstracts essential macroeconomic data for you from the week’s news stories.</p>
+
+			<p><span class="barrier-grid__para-heading">Free lunch</span> - Martin Sambu’s Free Lunch - A succinct daily take on global economics from columnist Martin Sandbu who selects and comments on the day's biggest topics.</p>
+
+		</div>
 	</div>
 
-	<div class="premium-barrier-simple__other-options o-grid-row">
-		<h3>Other subscription options</h3>
-		<div class="o-grid-row">
-			<div class="premium-barrier-simple__other-option premium-barrier-simple__other-option--corporate">
-				<div class="premium-barrier-simple__other-option-inner">
+	<div class="barrier-grid__other-options o-grid-row">
+		<h3 data-o-grid-colspan="full-width">Other subscription options</h3>
+		<div class="o-grid-row" data-o-grid-colspan="full-width">
+			<div class="barrier-grid__other-option barrier-grid__other-option--corporate" data-o-grid-colspan="one-half">
+				<div class="barrier-grid__other-option-inner">
 					<a data-trackable="corporate" href="{{premiumSimpleBarrier.otherOptions.corporate.link}}">
-						<span class="premium-barrier-simple__option-options-text">Corporate</span>
+						<span class="barrier-grid__option-options-text">Corporate</span>
 					</a>
 				</div>
 			</div>
-			<div class="premium-barrier-simple__other-option premium-barrier-simple__other-option--newspaper">
-				<div class="premium-barrier-simple__other-option-inner">
+			<div class="barrier-grid__other-option barrier-grid__other-option--newspaper" data-o-grid-colspan="one-half">
+				<div class="barrier-grid__other-option-inner">
 					<a data-trackable="newspaper" href="{{premiumSimpleBarrier.otherOptions.newspaper.link}}">
-						<span class="premium-barrier-simple__option-options-text">Newspaper only</span>
+						<span class="barrier-grid__option-options-text">Newspaper only</span>
 					</a>
 				</div>
 			</div>

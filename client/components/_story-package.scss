@@ -1,85 +1,60 @@
+$image-width: 100px;
+$image-width-padding: 10px;
+$image-width-allowance: $image-width + $image-width-padding;
+$image-height: 56px;
+$height-padding: 8px;
+$image-height-allowance: $image-height + (2 * $height-padding);
+
 .story-package {
 	margin-top: 15px;
 	margin-bottom: 15px;
 	position: relative;
-	font-family: $fontSans;
-	font-weight: 100;
-	color: #000000;
 
 	@include print {
 		display: none;
 	}
-	&.story-package--inline {
-		margin-top: 0;
-	}
-}
-.story-package--inline {
-	@include oGridRespondTo(S) {
-		width: 300px;
-	}
-}
-.story-package__title {
-	@include nTypeBeta(4);
-	text-transform: uppercase;
-	margin: 0;
 }
 
 .story-package__article {
 	position: relative;
-	padding: 5px;
-	font-size: 17px;
-	font-weight: 200;
-	line-height: 1em;
 	box-sizing: border-box;
-	min-height: 56px;
-	border: 1px solid $box-colour;
-
-	@include oGridRespondTo(S) {
-		font-size: 20px;
+	min-height: $image-height-allowance;
+	padding-left: $image-width-allowance;
+	border-bottom: 2px solid oColorsGetPaletteColor('warm-2');
+	&--comment {
+		background-color: $comment-bg;
 	}
-	&:first-child {
-		margin-top: 0;
-		.story-package__article__link {
-			clear: left;
-		}
+	&--analysis {
+		background-color: $analysis-bg;
 	}
-
-	&.story-package__article--with-image {
-		padding-right: 110px;
-	}
-	.story-package--with-image & {
-		@include oGridRespondTo(S) {
-			padding-right: 220px;
-		}
-		@include oGridRespondTo(M) {
-			padding-right: 320px;
-		}
-	}
-	.story-package--authors & {
-		@include oGridRespondTo(S) {
-			padding-right: 120px;
-		}
-	}
-	.story-package__article__link {
-		display: block;
-		color: inherit;
-		border: 0;
+	&--lifestyle {
+		background-color: $lifestyle-bg;
 	}
 }
 
-.story-package__article__image {
+.story-package--inline {
+	.story-package__article {
+		padding-left: 5px;
+	}
+	.story-package__article--with-image {
+		padding-right: $image-width-allowance;
+	}
+	.story-package__image {
+		left: initial;
+		right: 0;
+	}
+}
+
+.story-package__image {
 	display: block;
-	border: 0;
 	position: absolute;
-	top: -1px;
-	right: -1px;
+	left: 0;
+	padding: $height-padding 0;
 }
 
-.story-package__article__timestamp {
-	@include nTypeAlpha(5);
-	margin-top: 5px;
-	color: oColorsGetPaletteColor('cold-1');
-	display: block;
-	margin: 8px 0;
-	text-transform: uppercase;
+.story-package__title {
+	@include nTypeBravo(3);
+	margin-bottom: 5px;
+	border-bottom: 1px solid oColorsGetPaletteColor('cold-2');
+	padding: $height-padding 0;
 }

@@ -1,4 +1,4 @@
-.trial-barrier-grid {
+.barrier-grid {
 	position: relative;
 	z-index: 18;
 	top: -65px;
@@ -13,13 +13,13 @@
 
 }
 
-.trial-barrier-grid h2,
-.trial-barrier-grid h3,
-.trial-barrier-grid p {
+.barrier-grid h2,
+.barrier-grid h3,
+.barrier-grid p {
 	margin: 0;
 }
 
-.trial-barrier-grid__header {
+.barrier-grid__header {
 	background-color: oColorsGetPaletteColor('warm-2');
 	h2 {
 		@include nTypeBravo(3);
@@ -27,42 +27,43 @@
 	}
 
 	h2 {
-		padding-left: 10px;
+		padding-left: 25px;
 	}
 
-	h2 .trial-barrier-grid__heading-pretext {
+	h2 .barrier-grid__heading-pretext {
 		display: block;
-		padding-top: 10px;
+		padding-top: 20px;
 	}
 
-	h2 .trial-barrier-grid__article-title {
+	h2 .barrier-grid__article-title {
 		font-weight: normal;
 		display: block;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 	}
 
-	.trial-barrier-grid__sign-in {
+	.barrier-grid__sign-in {
 		@include nTypeBravo(4);
 		@include oGridColumn((default: full-width, L: one-quarter));
 
 		background-color: oColorsGetPaletteColor('warm-3');
-		padding: 10px;
+		padding: 10px 25px;
 
 		@include oGridRespondTo(L) {
 			background-color: oColorsGetPaletteColor('warm-2');
 			text-align: right;
-			padding-top: 12px;
+			padding-top: 20px;
+			padding-bottom: 20px;
 		}
 
 	}
 
-	.trial-barrier-grid__pretext {
+	.barrier-grid__pretext {
 		@include oGridRespondTo(L) {
 			display: block;
 		}
 	}
 
-	.trial-barrier-grid__sign-in a {
+	.barrier-grid__sign-in a {
 		text-decoration: none;
 		color: oColorsGetPaletteColor('link-1');
 		@include oGridRespondTo(L) {
@@ -71,12 +72,47 @@
 	}
 }
 
+.barrier-grid__sub-header {
+	background-color: oColorsGetPaletteColor('white');
+	padding: 18px 25px !important;
+	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+
+	.barrier-grid__sub-header-title {
+		@include nTypeBravo(3);
+	}
+}
+
+.barrier-grid__section {
+	padding: 18px 25px !important;
+	background-color: oColorsGetPaletteColor('white');
+	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+	text-align: left !important;
+
+	p {
+		margin-bottom: 20px;
+	}
+}
+
+
+.barrier-grid__cto-btn {
+	@include nButtons();
+	@include nButtonsSize(big);
+	@include nButtonsTheme(standout);
+
+}
+
+.barrier-grid__para-heading {
+	font-weight: bold;
+}
+
 /*****************************************
 * Main options
 *****************************************/
 
-.trial-barrier-grid {
-	.trial-barrier-grid__options {
+.barrier-grid {
+	.barrier-grid__options {
+		background-color: white;
+
 		h3 {
 			@include nTypeAlpha(4);
 			text-align: center;
@@ -86,7 +122,7 @@
 		}
 	}
 
-	.trial-barrier-grid__image {
+	.barrier-grid__image {
 		margin-bottom: 10px;
 		img {
 			width: 80%;
@@ -96,17 +132,17 @@
 		}
 	}
 
-	.trial-barrier-grid__primary {
+	.barrier-grid__primary {
 		text-align: center;
 		margin-bottom: 20px;
 	}
 
-	.trial-barrier-grid__price,
-	.trial-barrier-grid__select {
+	.barrier-grid__price,
+	.barrier-grid__select {
 		display: inline-block;
 	}
 
-	.trial-barrier-grid__price {
+	.barrier-grid__price {
 		margin-right: 4px;
 		font-weight: bold;
 		font-size: 20px;
@@ -122,16 +158,16 @@
 		}
 	}
 
-	.trial-barrier-grid__select {
+	.barrier-grid__select {
 		@include nButtons();
 		@include nButtonsSize(big);
 		@include nButtonsTheme(standout);
 	}
 
-	.trial-barrier-grid__secondary {
+	.barrier-grid__secondary {
 
-		padding-left: 30px;
-		padding-right: 30px;
+		padding-left: 23px;
+		padding-right: 23px;
 
 		h4 {
 			@include nTypeBravo(4);
@@ -149,9 +185,9 @@
 
 	}
 
-	.trial-barrier-grid__option--option1 li,
-	.trial-barrier-grid__option--option2 li,
-	.trial-barrier-grid__option--option3 li {
+	.barrier-grid__option--option1 li,
+	.barrier-grid__option--option2 li,
+	.barrier-grid__option--option3 li {
 		position: relative;
 		margin-left: 20px;
 
@@ -165,38 +201,35 @@
 		}
 	}
 
-	.trial-barrier-grid__option-inner {
+	.barrier-grid__option-inner {
 		background-color: oColorsGetPaletteColor('white');
 		padding-top: 20px;
-		padding-bottom: 10px;
-		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
-		@include oGridRespondTo(S) {
-			min-height: 560px;
-		}
 	}
 
-	.trial-barrier-grid__option--option1 .trial-barrier-grid__option-inner,
-	.trial-barrier-grid__option--option3 .trial-barrier-grid__option-inner {
+	.barrier-grid__option--option1,
+	.barrier-grid__option--option3 {
 		@include oGridRespondTo(S) {
 			border-right: 1px solid oColorsGetPaletteColor('warm-2');
 		}
 	}
 
-	.trial-barrier-grid__option--option1 .trial-barrier-grid__option-inner,
-	.trial-barrier-grid__option--option2 .trial-barrier-grid__option-inner,
-	.trial-barrier-grid__option--option3 .trial-barrier-grid__option-inner {
+	.barrier-grid__option--option1,
+	.barrier-grid__option--option2,
+	.barrier-grid__option--option3 {
 		@include oGridRespondTo(L) {
 			border-right: 1px solid oColorsGetPaletteColor('warm-2');
 		}
 	}
 
 
-	.trial-barrier-grid__option {
+	.barrier-grid__option {
 		@include oGridColumn((default: full-width, S: one-half, L: one-quarter));
 		@include oGridRemoveGutters();
+		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+		padding-bottom: 20px;
 	}
 
-	.trial-barrier-grid__learn-more {
+	.barrier-grid__learn-more {
 		@include nTypeBravo(4);
 
 		a {
@@ -207,24 +240,24 @@
 
 }
 
-.trial-barrier-grid--missing-newspaper {
-	.trial-barrier-grid__option {
+.barrier-grid--missing-newspaper {
+	.barrier-grid__option {
 		@include oGridColumn((default: full-width, M: one-third));
 		@include oGridRemoveGutters();
 	}
 
-	.trial-barrier-grid__option--option2 .trial-barrier-grid__option-inner,
-	.trial-barrier-grid__option--option3 .trial-barrier-grid__option-inner {
+	.barrier-grid__option--option2 .barrier-grid__option-inner,
+	.barrier-grid__option--option3 .barrier-grid__option-inner {
 		@include oGridRespondTo(M) {
 			border-right: 1px solid oColorsGetPaletteColor('warm-2');
 		}
 	}
 
-	.trial-barrier-grid__option--option4 .trial-barrier-grid__option-inner {
+	.barrier-grid__option--option4 .barrier-grid__option-inner {
 		border-right: 0;
 	}
 
-	.trial-barrier-grid__price {
+	.barrier-grid__price {
 		margin-right: 4px;
 		@include oGridRespondTo(M) {
 			display: block;
@@ -238,22 +271,20 @@
 * Other options
 *****************************************/
 
-.trial-barrier-grid__other-options {
+.barrier-grid__other-options {
 	padding-top: 10px;
 	background-color: oColorsGetPaletteColor('white');
 }
 
-.trial-barrier-grid__other-options h3 {
+.barrier-grid__other-options h3 {
 	@include nTypeBravo(4);
 	text-align: center;
 	padding-bottom: 10px;
 	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
 }
 
-.trial-barrier-grid__other-option {
-	@include oGridColumn((default: one-third));
-
-	.trial-barrier-grid__other-option-inner {
+.barrier-grid__other-option {
+	.barrier-grid__other-option-inner {
 		text-align: center;
 		padding-bottom: 18px;
 		padding-top: 18px;
@@ -264,8 +295,7 @@
 		text-decoration: none;
 		color: oColorsGetPaletteColor(link-1);
 		overflow: hidden;
-
-		.trial-barrier-grid__option-options-text {
+		.barrier-grid__option-options-text {
 			display: block;
 		}
 
@@ -278,19 +308,19 @@
 	}
 }
 
-.trial-barrier-grid__other-option--corporate a {
+.barrier-grid__other-option--corporate a {
 	&:before {
 		@include nextIcon(section-business-life, oColorsGetPaletteColor(link-1), 35);
 	}
 }
 
-.trial-barrier-grid__other-option--newspaper a {
+.barrier-grid__other-option--newspaper a {
 	&:before {
 		@include nextIcon(newspaper, oColorsGetPaletteColor(link-1), 35);
 	}
 }
 
-.trial-barrier-grid__other-option--weekend a {
+.barrier-grid__other-option--weekend a {
 	&:before {
 		@include nextIcon(ipad-portrait, oColorsGetPaletteColor(link-1), 35);
 	}

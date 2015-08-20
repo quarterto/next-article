@@ -12,7 +12,7 @@ module.exports = function (article, articleV1, flags, primaryTag) {
 			.slice(0, 5)
 			.map(function (annotation) {
 				return {
-					name: annotation.label,
+					name: annotation.prefLabel,
 					url: annotation.apiUrl.replace(capiMapiRegex, '')
 				};
 			})

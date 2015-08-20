@@ -6,6 +6,7 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var splunkLogger = require('ft-next-splunk-logger')('next-article');
 var cacheControl = require('../../utils/cache-control');
+var getVisualCategory = require('ft-next-article-genre');
 
 module.exports = function (req, res, next) {
 	var topics = [];
@@ -28,7 +29,17 @@ module.exports = function (req, res, next) {
 					if (!topic) {
 						return null;
 					}
+
+					var exists = topics.find(function(existing) {
+						return topic.term.id === existing.term.id;
+					});
+
+					if (exists) {
+						return;
+					}
+
 					topics.push(topic);
+
 					return api.searchLegacy({
 							query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
 							// get one extra, in case we dedupe
@@ -39,7 +50,7 @@ module.exports = function (req, res, next) {
 							if (ids.indexCount === 0) {
 								return [];
 							}
-							return api.content({
+							return api.contentLegacy({
 								uuid: ids,
 								useElasticSearch: res.locals.flags.elasticSearchItemGet,
 								type: 'Article'
@@ -88,27 +99,26 @@ module.exports = function (req, res, next) {
 					}
 
 					var otherArticleModels = _.flatten(results
-						.slice(0, index)
-						.map(function(result) { return result[0]; }));
-
+						.slice(0, index));
+					var articleModelsFinal = [];
 					// add props for more-on cards
 					articleModels.forEach(function (articleModel) {
-						articleModel.headline = articleModel.title;
-						articleModel.lastUpdated = articleModel.publishedDate;
-						// Use bare card type
-						articleModel.isBare = true;
+						var articleModelFinal = {
+							id: articleModel.item.id,
+							headline: articleModel.item.title.title,
+							lastUpdated: articleModel.item.lifecycle.lastPublishDateTime,
+							isDiscreet: true,
+							visualCategory: getVisualCategory(articleModel.item.metadata)
+						};
+						articleModelsFinal.push(articleModelFinal);
 					});
 
 					// dedupe
-					var dedupedArticles = articleModels
-						.filter(function(articleModel) {
+					var dedupedArticles = articleModelsFinal
+						.filter(function(articleModelFinal) {
 							return !otherArticleModels.find(function(otherArticleModel) {
-								return otherArticleModel.id === articleModel.id;
+								return otherArticleModel.item.id === articleModelFinal.id;
 							});
-						})
-						.map(function(articleModel) {
-							articleModel.id = articleModel.id.replace('http://www.ft.com/thing/', '');
-							return articleModel;
 						});
 					return dedupedArticles.length ? {
 						articles: dedupedArticles,
@@ -126,7 +136,7 @@ module.exports = function (req, res, next) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {
 				res.status(500).end();
-			} else if (err instanceof fetchres.BadServerResponseError) {
+			} else if (fetchres.originatedError(err)) {
 				res.status(404).end();
 			} else {
 				next(err);
