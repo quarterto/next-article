@@ -19,9 +19,9 @@ module.exports = function(req, res, next) {
 
 			var packagePromises = article.item.package.map(function(item) {
 				return api.contentLegacy({
-					uuid: item.id,
-					useElasticSearch: res.locals.flags.elasticSearchItemGet
-				})
+						uuid: item.id,
+						useElasticSearch: res.locals.flags.elasticSearchItemGet
+					})
 					.catch(function(err) {
 						return null;
 					});
@@ -29,15 +29,15 @@ module.exports = function(req, res, next) {
 			return Promise.all(packagePromises);
 		})
 		.then(function(articles) {
+			articles = articles.filter(function(article) {
+				return article;
+			});
 			if (!articles.length) {
 				throw new Error('No related');
 			}
 			if (req.query.count) {
 				articles.splice(req.query.count);
 			}
-			articles = articles.filter(function(article) {
-					return article;
-				});
 			var imagePromises = articles.map(function(article) {
 				var articleModel = {
 					id: extractUuid(article.item.id),
