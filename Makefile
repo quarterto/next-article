@@ -49,11 +49,11 @@ tidy:
 #	nbt destroy ${TEST_APP}
 
 provision:
-	nbt provision ${TEST_APP}
+	heroku apps:create ${TEST_APP} --region eu
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
-	make -j6 visual smoke
+	# make smoke visual
 
 smoke:
 	nbt test-urls ${TEST_APP};
