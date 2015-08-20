@@ -18,6 +18,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var comments = require('./components/comments/main');
 	var share = require('./components/share/main');
 	var readingList = require('./components/reading-list/main');
+	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
 	var typogSwitcher = require('./components/typography-switcher/main');
 
@@ -38,8 +39,8 @@ require('next-js-setup').bootstrap(function(result) {
 					readingList.init();
 				}
 			});
-
 		}
+		readingHistory.add(uuid);
 	}
 
 	nAds.init(flags);
