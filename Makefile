@@ -40,7 +40,8 @@ deploy:
 	nbt scale
 
 visual:
-	test ${CI_PULL_REQUEST} == "" || (export TEST_APP=${TEST_APP}; myrtlejs)
+	# Note: || is not OR; it executes the RH command only if LH test is truthful.
+	test -d ${CIRCLE_BUILD_NUM} || (export TEST_APP=${TEST_APP}; myrtlejs)
 
 clean-deploy: clean install deploy
 
@@ -48,7 +49,7 @@ tidy:
 	nbt destroy ${TEST_APP}
 
 provision:
-	nbt provision ${TEST_APP}
+	heroku apps:create ${TEST_APP} --region eu --org financial-times
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
