@@ -45,23 +45,15 @@
           </xsl:attribute>
           <xsl:choose>
             <xsl:when test="$isPromoImage">
-              <xsl:text disable-output-escaping="yes">
-                <![CDATA[<!--[if IE 9]><video style="display: none;"><![endif]-->]]>
-              </xsl:text>
+              <xsl:text disable-output-escaping="yes"><![CDATA[<!--[if IE 9]><video style="display: none;"><![endif]-->]]></xsl:text>
               <source data-image-size="280" media="(min-width: 490px)"></source>
-              <xsl:text disable-output-escaping="yes">
-                <![CDATA[<!--[if IE 9]></video><![endif]-->]]>
-              </xsl:text>
+              <xsl:text disable-output-escaping="yes"><![CDATA[<!--[if IE 9]></video><![endif]-->]]></xsl:text>
               <img data-image-type="srcset" data-image-size="400" class="n-image__img" alt=""/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:text disable-output-escaping="yes">
-                <![CDATA[<!--[if IE 9]><video style="display: none;"><![endif]-->]]>
-              </xsl:text>
+              <xsl:text disable-output-escaping="yes"><![CDATA[<!--[if IE 9]><video style="display: none;"><![endif]-->]]></xsl:text>
               <source data-image-size="690" media="(min-width: 730px)"></source>
-              <xsl:text disable-output-escaping="yes">
-                <![CDATA[<!--[if IE 9]></video><![endif]-->]]>
-              </xsl:text>
+              <xsl:text disable-output-escaping="yes"><![CDATA[<!--[if IE 9]></video><![endif]-->]]></xsl:text>
               <img data-image-type="src" data-image-size="400" class="n-image__img" alt=""/>
             </xsl:otherwise>
           </xsl:choose>

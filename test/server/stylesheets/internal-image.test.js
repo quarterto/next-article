@@ -23,10 +23,12 @@ describe('Internal images', function () {
                 transformedXml.should.equal(
                     '<body>' +
                         '<figure class="article__image-wrapper article__main-image ng-figure-reset ng-media-wrapper">' +
-							'<picture data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-media n-image">' +
-								'<source data-image-size="690" media="(min-width: 730px)"></source>' +
-								'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
-							'</picture>' +
+                        '<picture data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-media n-image">' +
+                        '<!--[if IE 9]><video style="display: none;"><![endif]-->' +
+                        '<source data-image-size="690" media="(min-width: 730px)"></source>' +
+                        '<!--[if IE 9]></video><![endif]-->' +
+                        '<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+                        '</picture>' +
                         '</figure>' +
                     '</body>\n'
                 );
@@ -51,7 +53,9 @@ describe('Internal images', function () {
                     '<body>' +
                         '<p>' +
 							'<picture data-image-set-id="ab3c20e8-15fe-11e5-2032-978e959e1689" class="article__image ng-inline-element ng-pull-out n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
                         'Some body text</p>' +

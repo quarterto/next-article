@@ -27,7 +27,9 @@ describe('Promo-boxes', function() {
 							'<div class="promo-box__title__wrapper"><h3 class="promo-box__title">Tatomer Riesling 2012</h3></div>' +
 							'<h4 class="promo-box__headline">Greece debt crisis</h4>' +
 							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
 							'<div class="promo-box__content">' +
@@ -58,7 +60,9 @@ describe('Promo-boxes', function() {
 							'<div class="promo-box__title__wrapper"><h3 class="promo-box__title">Tatomer Riesling 2012</h3></div>' +
 							'<h4 class="promo-box__headline">Greece debt crisis</h4>' +
 							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
 							'<div class="promo-box__content">' +
@@ -92,7 +96,9 @@ describe('Promo-boxes', function() {
 	    				'<div class="promo-box__title__wrapper"><h3 class="promo-box__title">Tatomer Riesling 2012</h3></div>' +
 	    				'<h4 class="promo-box__headline">Greece debt crisis</h4>' +
 						'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
+							'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 							'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+							'<!--[if IE 9]></video><![endif]-->' +
 							'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 						'</picture>' +
 	    				'<div class="promo-box__content o-expander__content">' +
@@ -125,7 +131,9 @@ describe('Promo-boxes', function() {
 						'<div class="promo-box__title__wrapper"><h3 class="promo-box__title">Related Content</h3></div>' +
 						'<h4 class="promo-box__headline">Greece debt crisis</h4>' +
 						'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
+							'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 							'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+							'<!--[if IE 9]></video><![endif]-->' +
 							'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 						'</picture>' +
 						'<div class="promo-box__content">' +
@@ -205,7 +213,9 @@ describe('Promo-boxes', function() {
 							'<div class="promo-box__title__wrapper"><h3 class="promo-box__title">Tatomer Riesling 2012</h3></div>' +
 							'<h4 class="promo-box__headline">Greece debt crisis</h4>' +
 							'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
 							'<div class="promo-box__content o-expander__content">' +
@@ -219,7 +229,9 @@ describe('Promo-boxes', function() {
 							'<div class="promo-box__title__wrapper"><h3 class="promo-box__title">Tatomer Riesling 2012</h3></div>' +
 							'<h4 class="promo-box__headline">Greece debt crisis</h4>' +
 							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
 							'<div class="promo-box__content">' +
@@ -250,7 +262,9 @@ describe('Promo-boxes', function() {
 							'<h3 class="article__promo-box__title">Tatomer Riesling 2012</h3>' +
 							'<h4 class="article__promo-box__headline">Greece debt crisis</h4>' +
 							'<picture data-image-set-id="9ccaf9da-cde2-11e4-0f22-978e959e1c97" class="article__image n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
 							'<div class="article__promo-box__content"><p>Graham Tatomer worked at Austrian Riesling producer Emmerich Knoll and now fashions this example from the old vines of the Kick-on Ranch in Santa Barbara (£26.95, Roberson)</p></div>' +
@@ -274,7 +288,9 @@ describe('Promo-boxes', function() {
 						'<aside class="article__promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
 							'<h4 class="article__promo-box__headline">Greece debt crisis</h4>' +
 							'<picture data-image-set-id="9ccaf9da-cde2-11e4-0f22-978e959e1c97" class="article__image n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
 							'<div class="article__promo-box__content"><p>Graham Tatomer worked at Austrian Riesling producer Emmerich Knoll and now fashions this example from the old vines of the Kick-on Ranch in Santa Barbara (£26.95, Roberson)</p></div>' +
@@ -298,7 +314,9 @@ describe('Promo-boxes', function() {
 						'<aside class="article__promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
 							'<h3 class="article__promo-box__title">Tatomer Riesling 2012</h3>' +
 							'<picture data-image-set-id="9ccaf9da-cde2-11e4-0f22-978e959e1c97" class="article__image n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
 							'<div class="article__promo-box__content"><p>Graham Tatomer worked at Austrian Riesling producer Emmerich Knoll and now fashions this example from the old vines of the Kick-on Ranch in Santa Barbara (£26.95, Roberson)</p></div>' +
@@ -344,7 +362,9 @@ describe('Promo-boxes', function() {
 						'<h3 class="article__promo-box__title">Tatomer Riesling 2012</h3>' +
 						'<h4 class="article__promo-box__headline">Greece debt crisis</h4>' +
 						'<picture data-image-set-id="9ccaf9da-cde2-11e4-0f22-978e959e1c97" class="article__image n-image">' +
+							'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 							'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+							'<!--[if IE 9]></video><![endif]-->' +
 							'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 						'</picture>' +
 					'</aside>' +
