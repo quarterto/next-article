@@ -25,7 +25,7 @@ module.exports = function(req, res, next) {
 					.filter(function (annotation) {
 						var type = annotation.directType.replace('http://www.ft.com/ontology/', '');
 						return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions' &&
-							['organisation/Organisation', 'company/PublicCompany'].indexOf(type ) > -1
+							['organisation/Organisation', 'company/PublicCompany'].indexOf(type ) > -1;
 					})
 					.map(function (organisation) {
 						return api.organisations({
