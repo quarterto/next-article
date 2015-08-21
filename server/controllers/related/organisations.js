@@ -23,12 +23,13 @@ module.exports = function(req, res, next) {
 				res.set(cacheControl);
 				var orgPromises = article.annotations
 					.filter(function (annotation) {
+						var type = annotation.directType.replace('http://www.ft.com/ontology/', '');
 						return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions' &&
-							annotation.type === 'ORGANISATION';
+							['organisation/Organisation', 'company/PublicCompany'].indexOf(type ) > -1
 					})
 					.map(function (organisation) {
 						return api.organisations({
-								uuid: extractUuid(organisation.uri)
+								uuid: extractUuid(organisation.id)
 							})
 							.catch(function(err) {
 								return null;
