@@ -1,6 +1,9 @@
 'use strict';
 
 require('next-js-setup').bootstrap(function(result) {
+
+	require('n-message-prompts');
+
 	var oViewport = require('o-viewport');
 	var oDate = require('o-date');
 	var nMyFtTray = require('n-myft-tray');
