@@ -36,7 +36,7 @@ describe('Slideshow', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<a data-trackable="link" href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
+						'<a data-trackable="link" class="article__body__link" href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
 					'</body>\n'
 				);
 			});

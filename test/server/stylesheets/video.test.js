@@ -35,7 +35,7 @@ describe('Video', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<a data-trackable="link" href="http://video.ft.com/4080875696001/A-FTSE-landmark-that-matters/Markets" title="A FTSE landmark that matters - FT.com">' +
+						'<a data-trackable="link" class="article__body__link" href="http://video.ft.com/4080875696001/A-FTSE-landmark-that-matters/Markets" title="A FTSE landmark that matters - FT.com">' +
 							'FTSE-All World index setting a record' +
 						'</a>' +
 					'</body>\n'
