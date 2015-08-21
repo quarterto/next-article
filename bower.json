@@ -24,7 +24,8 @@
     "o-share": "^1.0.0",
     "superstore": "^2.0.1",
     "n-myft-tray": "Financial-Times/n-myft-tray#^2.0.0",
-    "n-image": "^1.2.0"
+    "n-image": "^1.2.0",
+    "n-message-prompts": "Financial-Times/n-message-prompts#^v1.0.0"
   },
   "resolutions": {
     "o-ft-icons": "next",
