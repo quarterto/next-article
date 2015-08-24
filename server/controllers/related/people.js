@@ -35,12 +35,13 @@ module.exports = function(req, res, next) {
 				res.set(cacheControl);
 				var personPromises = article.annotations
 					.filter(function(annotation) {
+						var type = annotation.directType.replace('http://www.ft.com/ontology/', '');
 						return annotation.predicate === 'http://www.ft.com/ontology/annotation/mentions' &&
-							annotation.type === 'PERSON';
+							['person/Person'].indexOf(type ) > -1;
 					})
 					.map(function(person) {
 						return api.people({
-								uuid: extractUuid(person.uri)
+								uuid: extractUuid(person.id)
 							})
 							.catch(function(err) {
 								return null;

@@ -7,7 +7,8 @@ module.exports = function (article, articleV1, flags, primaryTag) {
 	if (flags.capiV2PeopleOrganisationAnnotations) {
 		return _(article.annotations)
 			.filter(function (annotation) {
-				return ['organisation', 'person'].indexOf(annotation.type.toLowerCase()) > -1;
+				var type = annotation.directType.replace('http://www.ft.com/ontology/', '');
+				return ['organisation/Organisation', 'company/PublicCompany', 'person/Person'].indexOf(type ) > -1;
 			})
 			.slice(0, 5)
 			.map(function (annotation) {
