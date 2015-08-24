@@ -1,13 +1,9 @@
-//VARIABLES
-$header-offset: 30px;
-
 //ARTICLE HEADER
 .article__header {
-	background: oColorsGetPaletteColor(cold-2);
+	background: oColorsGetPaletteColor('pink');
 	position: relative;
-	padding-bottom: 20px;
+	padding-bottom: 15px;
 	font-weight: 100;
-	color: #ffffff;
 
 	@include print {
 		color: #000000;
@@ -21,15 +17,25 @@ $header-offset: 30px;
 		display: flex;
 	}
 }
-.article__header--overlap {
-	padding-bottom: $header-offset + 20;
-}
+
 .article__header-secondary {
-	border-left: 1px solid #ffffff;
 	margin-top: $spacing-unit / 2;
-	padding-left: $spacing-unit / 2;
 	@include print {
 		border-color: #000000;
+	}
+}
+
+.article__header-time-byline {
+	@include oGridRespondTo(M) {
+		width: 75%;
+		display: inline-block;
+	}
+}
+
+.article__header-actions {
+	@include oGridRespondTo(M) {
+		max-width: 25%;
+		display: inline-block;
 	}
 }
 
@@ -46,10 +52,10 @@ $header-offset: 30px;
 	}
 }
 .article__title {
-	@include nTypeAlpha(2);
+	@include nTypeFoxtrot(2);
 	margin: 0;
 	@include oGridRespondTo(L) {
-		@include nTypeAlphaSize(1);
+		@include nTypeFoxtrotSize(1);
 	}
 }
 .article__stand-first {
@@ -88,7 +94,7 @@ $header-offset: 30px;
 	}
 }
 .article__primary-theme {
-	@include nTypeBravo(4);
+	@include nLinksTopic;
 	margin: 0;
 	@include print {
 		display: none;
@@ -96,7 +102,9 @@ $header-offset: 30px;
 }
 .article__actions {
 	margin-top: 10px;
-	@include oGridRespondTo(L) {
+	text-align: left;
+	@include oGridRespondTo(M) {
+		margin-top: 0;
 		text-align: right;
 	}
 	@include print {
@@ -138,9 +146,9 @@ $header-offset: 30px;
 	}
 }
 .article__tag {
-	@include nListsItem($use-case: n-lists-inversed);
+	@include nListsItem($use-case: n-lists);
 	&:first-child {
-		border-top: 1px solid #ffffff;
+		border-top: 1px solid rgba(0, 0, 0, 0.25);
 	}
 }
 
@@ -188,16 +196,6 @@ $header-offset: 30px;
 
 	.o-quote--standard a {
 		color: inherit;
-	}
-	> {
-		.article__main-image,
-		a > .article__main-image,
-		.article__video-wrapper:first-child,
-		.article__gallery:first-child {
-			margin-top: -$header-offset - 15;
-			//HACK to allow for expected image not being returned
-			min-height: $header-offset + 15;
-		}
 	}
 }
 .article__main-image {
