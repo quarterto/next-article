@@ -33,10 +33,6 @@ We aim to remove our dependency on the old Content API (v1) by the end of June. 
 
 If you're a Mac user you can install libxslt with [Homebrew](http://brew.sh/), just run `brew update && brew install libxslt`. If you're into Linux then the libxslt package is also available through Aptitude, Yum, RPM etc.
 
-### Travis
-
-We run our builds using Travis's container based infrastructure so pre-installing dependencies with Aptitude is not available to us. To get around this we use a `before_script` to [download and compile the library from source](http://docs.travis-ci.com/user/installing-dependencies/#Installing-Projects-from-Source).
-
 ### Heroku
 
 We include a precompiled binary for Heroku in this repo. Because we don't use [buildpacks](https://devcenter.heroku.com/articles/buildpacks) pre-installing dependencies is not an option. Creating a new binary is relatively straightforward - download source, unpack, compile and pack up the result:
