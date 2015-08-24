@@ -74,7 +74,7 @@
 	margin: 0;
 }
 .article__author {
-	@include nLinksTopic($inversed: true);
+	@include nLinksTopic();
 	@include nTypeBravo(4);
 	font-style: normal;
 }
@@ -94,7 +94,6 @@
 	}
 }
 .article__primary-theme {
-	@include nLinksTopic;
 	margin: 0;
 	@include print {
 		display: none;
@@ -153,7 +152,7 @@
 }
 
 .article__primary-theme__link {
-	@include nLinksTopic($inversed: true);
+	@include nLinksTopic();
 }
 .article__main {
 	padding-top: 15px;
