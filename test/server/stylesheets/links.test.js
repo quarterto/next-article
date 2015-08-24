@@ -15,7 +15,7 @@ describe('Links', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">aunched a programme of quantitative easing to </a>' +
+						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link" class="article__body__link">aunched a programme of quantitative easing to </a>' +
 					'</body>\n'
 				);
 			});
@@ -30,7 +30,7 @@ describe('Links', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">aunched a programme of <b>quantitative</b> easing to </a>' +
+						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link" class="article__body__link">aunched a programme of <b>quantitative</b> easing to </a>' +
 					'</body>\n'
 				);
 			});
