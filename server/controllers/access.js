@@ -2,26 +2,33 @@
 
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
+var url	= require('url');
 require('array.prototype.find');
+
 var accessMetadata = [
 	{
-		path_regex: 'cms/s/[01]',
+		path_regex: '/cms/s/[01]',
 		classification: 'conditional_standard'
 	},
 	{
-		path_regex: 'cms/s/2',
+		path_regex: '/cms/s/2',
 		classification: 'unconditional'
 	},
 	{
-		path_regex: 'cms/s/3',
+		path_regex: '/cms/s/3',
 		classification: 'conditional_premium'
 	},
 	{
-		path_regex: 'fastft',
+		path_regex: '/fastft',
 		classification: 'conditional_standard'
 
+	},
+	{
+		host_regex: 'ftalphaville\.ft\.com',
+		classification: 'conditional_registered'
+
 	}
-]
+];
 
 function suppressBadResponses(err) {
 	if (fetchres.originatedError(err)) {
@@ -47,7 +54,9 @@ module.exports = function(req, res, next) {
 			fetch('http://blogs.ft.com/__access_metadata')
 				.then(function (response) {
 					if (!response.ok) {
-						return {};
+						return {
+							accessMetadata: []
+						};
 					}
 					return response.json();
 				})
@@ -55,11 +64,23 @@ module.exports = function(req, res, next) {
 			.then(function(results) {
 				var articleLegacy = results[0];
 				var article = results[1];
-				var classification = 'conditional_registered';
-				var url = articleLegacy ? articleLegacy.item.location.uri : article.webUrl;
-				var access = accessMetadata.find(function (access) {
-					return url.search(access.path_regex);
+				var blogAccessMetadata = results[2].access_metadata.map(function (access) {
+					access.host_regex = 'blogs\.ft\.com';
+					return access;
 				});
+				var classification = 'conditional_registered';
+				var articleUrl = url.parse(articleLegacy ? articleLegacy.item.location.uri : article.webUrl);
+				var access = accessMetadata
+					.concat(blogAccessMetadata)
+					.find(function (access) {
+						if (access.path_regex && articleUrl.pathname.search(access.path_regex) === -1) {
+							return false;
+						}
+						if (access.host_regex && articleUrl.hostname.search(access.host_regex) === -1) {
+							return false;
+						}
+						return true;
+					});
 				if (access) {
 					classification = access.classification;
 				}

@@ -49,11 +49,60 @@ module.exports = [
 			'X-FT-Access-Metadata': 'remote_headers'
 		},
 		urls: {
+			// conditional standard article
+			'/b30c8de4-4754-11e5-af2f-4d6e0e5eda22': {
+				status: 200,
+				headers: {
+					'X-FT-Content-Classification': 'conditional_standard'
+				}
+			},
+			// unconditional article
+			'/459ef70a-4a43-11e5-b558-8a9722977189': {
+				status: 200,
+				headers: {
+					'X-FT-Content-Classification': 'unconditional'
+				}
+			},
+			// conditional premium article
+			'/fe857b82-4add-11e5-9b5d-89a026fda5c9': {
+				status: 200,
+				headers: {
+					'X-FT-Content-Classification': 'conditional_premium'
+				}
+			},
 			// fastft
 			'/b002e5ee-3096-3f51-9925-32b157740c98': {
 				status: 200,
 				headers: {
 					'X-FT-Content-Classification': 'conditional_standard'
+				}
+			},
+			// alphaville
+			'/06d867f9-37d0-3ea8-965e-34043575e607': {
+				status: 200,
+				headers: {
+					'X-FT-Content-Classification': 'conditional_registered'
+				}
+			},
+			// unconditional blog
+			'/166b39cd-ad97-399d-9e84-402dcce5a1c0': {
+				status: 200,
+				headers: {
+					'X-FT-Content-Classification': 'unconditional'
+				}
+			},
+			// conditional standard blog
+			'/4b3f14b6-344e-11e5-bdbb-35e55cbae175': {
+				status: 200,
+				headers: {
+					'X-FT-Content-Classification': 'conditional_standard'
+				}
+			},
+			// conditional registered blog
+			'/a0c29efb-09a5-3ab4-a624-518d16c54c4b': {
+				status: 200,
+				headers: {
+					'X-FT-Content-Classification': 'conditional_registered'
 				}
 			}
 		}
