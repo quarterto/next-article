@@ -80,6 +80,7 @@
 }
 .article__timestamp {
 	@include nTypeAlpha(5);
+	color: oColorsGetColorFor(timestamp, text);
 	text-transform: uppercase;
 	@include print {
 		text-indent: -9999px;
@@ -111,14 +112,12 @@
 	}
 }
 .article__actions__action {
-	@include nTypeAlpha(5);
-	color: inherit;
+	@include nTypeAlpha(4);
 	display: inline-block;
 
 	&:nth-child(n+2) {
 		border-left: 1px solid rgba(255, 255, 255, 0.7);
-		margin-left: 4px;
-		padding-left: 10px;
+		margin-left: 14px;
 	}
 }
 
