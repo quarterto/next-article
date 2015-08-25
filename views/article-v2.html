@@ -10,7 +10,7 @@
 {{/defineBlock}}
 
 <article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if article}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
-	<div class="article__header{{#if headerOverlap}} article__header--overlap{{/if}}" data-trackable="header">
+	<div class="article__header" data-trackable="header">
 		<div class="article__leaderboard-advert"></div>
 		<div class="article__header-inner o-grid-row">
 			{{#if barrier}}
@@ -40,24 +40,27 @@
 					{{#if articleV1.editorial.standFirst}}
 						<p class="article__stand-first">{{{articleV1.editorial.standFirst}}}</p>
 					{{/if}}
-
-					{{#if article.publishedDate}}
-						<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-							{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
-						</time>
-					{{/if}}
-					{{#if byline}}
-					<p class="article__byline">
-						by: {{{byline}}}
-					</p>
-					{{/if}}
+						<div class="article__header-time-byline">
+						{{#if article.publishedDate}}
+							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
+								{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+							</time>
+						{{/if}}
+						{{#if byline}}
+							<p class="article__byline">
+								by: {{{byline}}}
+							</p>
+						{{/if}}
+						</div>
+						<div class="article__header-actions">
+						{{#if save}}
+							<div class="article__actions">
+								{{>next-myft-ui/templates/save-for-later contentId=id}}
+							</div>
+						{{/if}}
+						</div>
 					</div>
 				</header>
-				{{#if save}}
-					<div class="article__actions">
-						{{>next-myft-ui/templates/save-for-later contentId=id variant='inverse'}}
-					</div>
-				{{/if}}
 			</div>
 			{{#if tags}}
 				<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">

@@ -125,9 +125,6 @@ module.exports = function(req, res, next) {
 						body: $.html(),
 						toc: $.html('.article__toc'),
 						isColumnist: isColumnist,
-						// if there's a main image, or slideshow or video, we overlap them on the header
-						headerOverlap:
-							$.root().children('.article__main-image, ft-slideshow:first-child, .article__video-wrapper:first-child').length || $.root().first().children('.article__main-image'),
 						layout: 'wrapper',
 						primaryTag: primaryTag,
 						save: {},
@@ -214,7 +211,6 @@ module.exports = function(req, res, next) {
 						viewModel.tags = null;
 						viewModel.relatedContent = null;
 						viewModel.moreOns = null;
-						viewModel.headerOverlap = null;
 						viewModel.shareButtons = null;
 						viewModel.myFTTray = null;
 					}
