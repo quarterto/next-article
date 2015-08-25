@@ -35,14 +35,22 @@ describe('Images', function() {
 	it('should get the image\'s src and caption', function() {
 		var $content = $.load('');
 		$content.root().append(
-			'<figure><img data-image-set-id="f14a7e9e-cc08-11e4-30d3-978e959e1c97"></figure>'
+			'<figure>'+
+				'<picture data-image-set-id="f14a7e9e-cc08-11e4-30d3-978e959e1c97" class="article__image n-image">' +
+					'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+					'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+				'</picture>' +
+			'</figure>'
 		);
 
 		return images($content, flags)
 			.then(function($content) {
 				$content.html().should.equal(
 					'<figure>' +
-					'<img data-image-set-id="f14a7e9e-cc08-11e4-30d3-978e959e1c97" src="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3Af14a7e9e-cc08-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=710">' +
+					'<picture data-image-set-id="f14a7e9e-cc08-11e4-30d3-978e959e1c97" class="article__image n-image">' +
+						'<source data-image-size="690" media="(min-width: 730px)" srcset="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3Af14a7e9e-cc08-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=690">' +
+						'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="" src="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3Af14a7e9e-cc08-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=400">' +
+					'</picture>' +
 					'<figcaption class="article__image-caption ng-meta">American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey</figcaption>' +
 					'</figure>'
 				);
@@ -52,21 +60,37 @@ describe('Images', function() {
 	it('should get the source and caption for multiple images', function() {
 		var $content = $.load('');
 		$content.root().append([
-				'<figure><img data-image-set-id="f14a7e9e-cc08-11e4-30d3-978e959e1c97"></figure>',
-				'<figure><img data-image-set-id="2ad940b2-cc01-11e4-30d3-978e959e1c97"></figure>'
+				'<figure>' +
+					'<picture data-image-set-id="f14a7e9e-cc08-11e4-30d3-978e959e1c97" class="article__image n-image">' +
+						'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+						'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+					'</picture>' +
+				'</figure>',
+				'<figure>' +
+					'<picture data-image-set-id="2ad940b2-cc01-11e4-30d3-978e959e1c97" class="article__image n-image">' +
+						'<source data-image-size="690" media="(min-width: 730px)"></source>' +
+						'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="">' +
+					'</picture>' +
+				'</figure>'
 			].join(''));
 
 		return images($content, flags)
 			.then(function($content) {
 				$content.html().should.equal([
 					'<figure>' +
-					'<img data-image-set-id="f14a7e9e-cc08-11e4-30d3-978e959e1c97" src="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3Af14a7e9e-cc08-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=710">',
+					'<picture data-image-set-id="f14a7e9e-cc08-11e4-30d3-978e959e1c97" class="article__image n-image">' +
+						'<source data-image-size="690" media="(min-width: 730px)" srcset="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3Af14a7e9e-cc08-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=690">' +
+						'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="" src="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3Af14a7e9e-cc08-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=400">' +
+					'</picture>' +
 					'<figcaption class="article__image-caption ng-meta">',
 						'American staples old and new: from top, Campbell&#x2019;s Soup, hot dogs and kale. Below, Annie&#x2019;s Homegrown co-founder Annie Withey',
 					'</figcaption>' +
 					'</figure>',
 					'<figure>' +
-					'<img data-image-set-id="2ad940b2-cc01-11e4-30d3-978e959e1c97" src="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3A2ad940b2-cc01-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=710">' +
+					'<picture data-image-set-id="2ad940b2-cc01-11e4-30d3-978e959e1c97" class="article__image n-image">' +
+						'<source data-image-size="690" media="(min-width: 730px)" srcset="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3A2ad940b2-cc01-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=690">' +
+						'<img data-image-type="src" data-image-size="400" class="n-image__img" alt="" src="https://next-geebee.ft.com/image/v1/images/raw/ftcms%3A2ad940b2-cc01-11e4-aeb5-00144feab7de?source=next&amp;fit=scale-down&amp;width=400">' +
+					'</picture>' +
 					'</figure>'
 				].join(''));
 			});
