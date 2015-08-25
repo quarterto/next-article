@@ -1,4 +1,5 @@
-module.exports = [{
+module.exports = [
+	{
 		urls: {
 			//methode
 			'/02cad03a-844f-11e4-bae9-00144feabdc0': 200,
@@ -41,4 +42,20 @@ module.exports = [{
 		urls: {
 			'/02cad03a-844f-11e4-bae9-00144feabdc0': 200
 		}
-	}];
+	},
+	{
+		// test access
+		headers: {
+			'X-FT-Access-Metadata': 'remote_headers'
+		},
+		urls: {
+			// fastft
+			'/b002e5ee-3096-3f51-9925-32b157740c98': {
+				status: 200,
+				headers: {
+					'X-FT-Content-Classification': 'conditional_standard'
+				}
+			}
+		}
+	}
+];

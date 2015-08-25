@@ -2,6 +2,26 @@
 
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
+require('array.prototype.find');
+var accessMetadata = [
+	{
+		path_regex: 'cms/s/[01]',
+		classification: 'conditional_standard'
+	},
+	{
+		path_regex: 'cms/s/2',
+		classification: 'unconditional'
+	},
+	{
+		path_regex: 'cms/s/3',
+		classification: 'conditional_premium'
+	},
+	{
+		path_regex: 'fastft',
+		classification: 'conditional_standard'
+
+	}
+]
 
 function suppressBadResponses(err) {
 	if (fetchres.originatedError(err)) {
@@ -14,37 +34,34 @@ function suppressBadResponses(err) {
 module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
 		Promise.all([
-			api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet }).catch(suppressBadResponses),
-			api.content({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet }).catch(suppressBadResponses)
-		])
-			.then(function(articles) {
-				var articleLegacy = articles[0];
-				var article = articles[1];
-				var classification = 'unconditional';
-				var results;
-
-				if (articleLegacy) {
-					results = /cms\/s\/([0-3])\//i.exec(articleLegacy.item.location.uri);
-				}
-				// “if the match fails, the exec() method returns null” — MDN
-				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec
-				// We often don't get matches for, say, blog articles.
-				if (results) {
-					switch (results[1]) {
-						case '0' :
-						case '1' :
-							classification = 'conditional_standard';
-							break;
-						case '2' :
-							classification = 'unconditional';
-							break;
-						case '3' :
-							classification = 'conditional_premium';
+			api.contentLegacy({
+					uuid: req.params.id,
+					useElasticSearch: res.locals.flags.elasticSearchItemGet
+				})
+				.catch(suppressBadResponses),
+			api.content({
+					uuid: req.params.id,
+					useElasticSearch: res.locals.flags.elasticSearchItemGet
+				})
+				.catch(suppressBadResponses),
+			fetch('http://blogs.ft.com/__access_metadata')
+				.then(function (response) {
+					if (!response.ok) {
+						return {};
 					}
-				} else if (article && article.webUrl.indexOf('fastft') > -1) {
-					classification = 'conditional_standard';
-				} else {
-					classification = 'conditional_registered';
+					return response.json();
+				})
+		])
+			.then(function(results) {
+				var articleLegacy = results[0];
+				var article = results[1];
+				var classification = 'conditional_registered';
+				var url = articleLegacy ? articleLegacy.item.location.uri : article.webUrl;
+				var access = accessMetadata.find(function (access) {
+					return url.search(access.path_regex);
+				});
+				if (access) {
+					classification = access.classification;
 				}
 
 				res.set('Outbound-Cache-Control', 'public, max-age=3600');
