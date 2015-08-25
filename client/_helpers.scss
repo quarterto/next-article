@@ -19,12 +19,7 @@
 	}
 }
 .ng-title-link {
-	text-decoration: none;
-
-	&:hover {
-		cursor: pointer;
-		text-decoration: underline;
-	}
+	@include nLinksBody();
 }
 .ng-list-reset {
 	margin: 0;
