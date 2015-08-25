@@ -2,7 +2,7 @@
 /*global Livefyre*/
 
 const oCommentApi = require('o-comment-api');
-const beacon = require('next-beacon-component');
+const trackEvent = require('../utils/tracking');
 
 const ACTIVE_CONFIG = 'prod';
 
@@ -124,16 +124,25 @@ function setupSideNotes(info, uuid, user, modules){
 
 function addTracking(app){
 	console.log('Adding tracking', app);
-
+	var eventData = {
+		action: 'comment',
+		category: 'page',
+		context: {
+			product: 'next',
+			source: 'next-article'
+		}
+	};
 	app.on('sidenotes.commentPosted', function(data){
-		console.log('comment', data);
-		beacon.fire('comment', { interaction: 'posted', sidenote: true });
+		eventData.meta = { interaction: 'posted', sidenote: true };
+		trackEvent(eventData);
 	});
 	app.on('sidenotes.commentVoted', function(data){
-		beacon.fire('comment', { interaction: 'liked', sidenote: true, id: data.targetId });
+		eventData.meta = { interaction: 'liked', sidenote: true, id: data.targetId };
+		trackEvent(eventData);
 	});
 	app.on('sidenotes.commentShared', function(data){
-		beacon.fire('comment', { interaction: 'shared', sidenote: true, id: data.targetId });
+		eventData.meta = { interaction: 'shared', sidenote: true, id: data.targetId };
+		trackEvent(eventData);
 	});
 
 	return Promise.resolve(null);

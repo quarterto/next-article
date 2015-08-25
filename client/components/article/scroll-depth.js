@@ -1,6 +1,6 @@
 'use strict';
 
-var beacon = require('next-beacon-component');
+var trackEvent = require('../utils/tracking');
 var throttle = require('../../libs/throttle');
 
 var mockedWindowHeight;
@@ -19,7 +19,18 @@ function fireBeacon(percentage) {
 	});
 	currentBuckets.forEach(function (currentBucket) {
 		if (scrollDepth.percentagesViewed.indexOf(currentBucket) === -1) {
-			beacon.fire('scrolldepth', { percentageViewed: currentBucket });
+			var data = {
+				action: 'scrolldepth',
+				category: 'page',
+				meta: {
+					percentagesViewed: currentBucket
+				},
+				context: {
+					product: 'next',
+					source: 'next-article'
+				}
+			};
+			trackEvent(data);
 			scrollDepth.percentagesViewed.push(currentBucket);
 		}
 	});
