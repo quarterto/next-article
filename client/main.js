@@ -24,6 +24,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
 	var typogSwitcher = require('./components/typography-switcher/main');
+	var relatedToast = require('./components/related-toast/main');
 
 	oViewport.listenTo('resize');
 
@@ -76,6 +77,7 @@ require('next-js-setup').bootstrap(function(result) {
 	});
 	scrollDepth.init(flags);
 	typogSwitcher.init(flags);
+	relatedToast.init(flags);
 
 	window.addEventListener("load", function (event) {
 		comments.init(uuid, flags);
