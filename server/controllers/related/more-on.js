@@ -40,8 +40,8 @@ module.exports = function (req, res, next) {
 
 					return api.searchLegacy({
 							query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
-							// get twice as many, in case we dedupe
-							count: count * 2,
+							// get twice as many plus one, in case we dedupe
+							count: (count * 2) + 1,
 							useElasticSearch: res.locals.flags.elasticSearchItemGet
 						})
 						.then(function(ids) {
@@ -100,6 +100,9 @@ module.exports = function (req, res, next) {
 					var otherArticleModels = index > 0 ? results[index - 1] : [];
 					var dedupedArticles = articleModels
 						.filter(function (articleModel) {
+							if (articleModel.item.id === req.params.id) {
+								return false;
+							}
 							return !otherArticleModels.find(function(otherArticleModel) {
 								return otherArticleModel.item.id === articleModel.item.id;
 							});
