@@ -2,7 +2,7 @@
 
 var fetchres = require('fetchres');
 var Gallery = require('o-gallery');
-var beacon = require('next-beacon-component');
+var trackEvent = require('../utils/tracking');
 
 module.exports = function(els) {
 	[].slice.call(els).forEach(function(el) {
@@ -16,11 +16,20 @@ module.exports = function(els) {
 					return;
 				}
 				picturesSeen.push(picture);
-				beacon.fire('gallery', {
-					picture: picture,
-					totalPictures: totalPictures,
-					percentageThrough: (100 / totalPictures) * (picturesSeen.length + 1)
-				});
+				var data = {
+					action: 'gallery',
+					category: 'page',
+					meta: {
+						picture: picture,
+						totalPictures: totalPictures,
+						percentageThrough: (100 / totalPictures) * (picturesSeen.length + 1)
+					},
+					context: {
+						product: 'next',
+						source: 'next-article'
+					}
+				};
+				trackEvent(data);
 			};
 			fetch('/embedded-components/slideshow/' + uuid + '?syncid=' + syncid, { credentials: 'same-origin' })
 				.then(fetchres.text)

@@ -1,0 +1,43 @@
+.myft-email-signup,
+.myft-reading-list {
+	display: none;
+	background-color: getColorFor(card, background);
+
+	&__loaded {
+		display: block;
+		margin-bottom: 20px;
+	}
+
+
+	.myft-ui--prefer {
+		padding: 10px;
+	}
+
+	&__title {
+		background: getColorFor(topic-block, background);
+		padding: 10px;
+		display: block;
+		margin: 0;
+		&,
+		a {
+			display: block;
+			color: getColorFor(topic-block, text);
+			text-transform: none;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.myft-ui__icon {
+			margin: 0 4px -4px;
+		}
+	}
+
+	&__title-text {
+		@include nTypeBravo(4);
+		display: block;
+		padding: 0 0 6px;
+	}
+
+}

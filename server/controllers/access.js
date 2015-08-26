@@ -56,6 +56,10 @@ module.exports = function(req, res, next) {
 			.then(function(results) {
 				var articleLegacy = results[0];
 				var article = results[1];
+				// if this article doesn't exist in capi, continue
+				if (!articleLegacy && !article) {
+					return next();
+				}
 				var blogAccessMetadata = blogsAccessPoller.getData().access_metadata.map(function (access) {
 					access.host_regex = 'blogs\.ft\.com';
 					return access;

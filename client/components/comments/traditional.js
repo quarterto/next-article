@@ -1,13 +1,20 @@
 'use strict';
 var oComments = require('o-comments');
-var beacon = require('next-beacon-component');
+var trackEvent = require('../utils/tracking');
 
 module.exports = {};
 module.exports.init = function(uuid, flags) {
 	if (!flags.get('articleComments') || !document.querySelector('#comments')) {
 		return;
 	}
-
+	var eventData = {
+		action: 'comment',
+		category: 'page',
+		context: {
+			product: 'next',
+			source: 'next-article'
+		}
+	};
 	oComments.on('widget.renderComplete', function (ev) {
 		var commentCount = ev.detail.instance.lfWidget.getCollection().attributes.numVisible;
 		var commentLink = document.createElement('a');
@@ -18,13 +25,16 @@ module.exports.init = function(uuid, flags) {
 		document.querySelector('.article__actions').appendChild(commentLink);
 	});
 	oComments.on('tracking.postComment', function (ev) {
-		beacon.fire('comment', { interaction: 'posted' });
+		eventData.meta = { interaction: 'posted' };
+		trackEvent(eventData);
 	});
 	oComments.on('tracking.likeComment', function (ev) {
-		beacon.fire('comment', { interaction: 'liked', id: ev.detail.data.lfEventData.targetId });
+		eventData.meta = { interaction: 'liked', id: ev.detail.data.lfEventData.targetId };
+		trackEvent(eventData);
 	});
 	oComments.on('tracking.shareComment', function (ev) {
-		beacon.fire('comment', { interaction: 'shared', id: ev.detail.data.lfEventData.targetId });
+		eventData.meta = { interaction: 'shared', id: ev.detail.data.lfEventData.targetId };
+		trackEvent(eventData);
 	});
 
 	new oComments(document.querySelector('#comments'), {
