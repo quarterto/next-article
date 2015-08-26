@@ -1,10 +1,11 @@
 {
   "name": "next-article",
   "dependencies": {
-    "next-express": "^13.0.0",
+    "n-layout": "Financial-Times/n-layout",
     "o-fonts": "^1.6.4",
     "next-ads-component": "^6.0.0",
     "next-sass-setup": "^6.0.0",
+    "next-js-setup": "^3.1.0",
     "o-quote": "bogdis-design",
     "o-big-number": "^1.1.0",
     "o-gallery": "^1.6.1",

@@ -23,14 +23,13 @@ $o-gallery-is-silent: false;
 $o-comments-is-silent: false;
 @import 'o-comments/main';
 
-@import "n-header-footer/main";
+@import "n-layout/main";
 
 .next-header {
 	margin-bottom: 0;
 }
 
 @import "next-ads-component/main";
-@import "next-welcome/main";
 @import "next-myft-ui/main";
 @import "next-buttons/main";
 @import "n-topic/main";
