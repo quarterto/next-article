@@ -2,8 +2,7 @@
 
 require('next-js-setup').bootstrap(function(result) {
 
-	require('n-message-prompts');
-
+	var prompts = require('n-message-prompts');
 	var oViewport = require('o-viewport');
 	var oDate = require('o-date');
 	var nMyFtTray = require('n-myft-tray');
@@ -25,6 +24,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var scrollDepth = require('./components/article/scroll-depth');
 	var typogSwitcher = require('./components/typography-switcher/main');
 
+	prompts.init();
 	oViewport.listenTo('resize');
 
 	var flags = result.flags;
