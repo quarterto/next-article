@@ -14,13 +14,10 @@
     </xsl:template>
 
     <xsl:template match="a|ft-content" mode="link">
-        <xsl:param name="href" />
-        <a href="{$href}" data-trackable="link">
-            <xsl:if test="not(ancestor-or-self::big-number|ancestor-or-self::promo-box)">
-                <xsl:attribute name="class">article__body__link</xsl:attribute>
-            </xsl:if>
-            <xsl:apply-templates />
-        </a>
+      <xsl:param name="href" />
+      <a href="{$href}" data-trackable="link" class="article__body__link">
+        <xsl:apply-templates />
+      </a>
     </xsl:template>
 
 </xsl:stylesheet>

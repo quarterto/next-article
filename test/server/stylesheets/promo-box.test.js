@@ -157,7 +157,7 @@ describe('Promo-boxes', function() {
 				transformedXml.should.equal(
 					'<body>' +
 						'<aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-							'<div class="promo-box__title__wrapper"><h3 class="promo-box__title"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a></h3></div>' +
+							'<div class="promo-box__title__wrapper"><h3 class="promo-box__title"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a></h3></div>' +
 						'</aside>' +
 					'</body>\n'
 				);
@@ -178,7 +178,7 @@ describe('Promo-boxes', function() {
 					'<body>' +
 						'<aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
 							'<div class="promo-box__title__wrapper"><h3 class="promo-box__title">Related Content</h3></div>' +
-							'<h4 class="promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a></h4>' +
+							'<h4 class="promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a></h4>' +
 						'</aside>' +
 					'</body>\n'
 				);
@@ -383,7 +383,7 @@ describe('Promo-boxes', function() {
 				transformedXml.should.equal(
 					'<body>' +
 						'<aside class="article__promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-							'<h3 class="article__promo-box__title"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a></h3>' +
+							'<h3 class="article__promo-box__title"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a></h3>' +
 						'</aside>' +
 					'</body>\n'
 				);
@@ -400,7 +400,7 @@ describe('Promo-boxes', function() {
 				transformedXml.should.equal(
 					'<body>' +
 						'<aside class="article__promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-							'<h4 class="article__promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a></h4>' +
+							'<h4 class="article__promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a></h4>' +
 						'</aside>' +
 					'</body>\n'
 				);
