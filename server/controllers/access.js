@@ -3,6 +3,7 @@
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var url	= require('url');
+var blogsAccessPoller = require('../lib/blogs-access-poller')
 require('array.prototype.find');
 
 var accessMetadata = [
@@ -50,21 +51,12 @@ module.exports = function(req, res, next) {
 					uuid: req.params.id,
 					useElasticSearch: res.locals.flags.elasticSearchItemGet
 				})
-				.catch(suppressBadResponses),
-			fetch('http://blogs.ft.com/__access_metadata')
-				.then(function (response) {
-					if (!response.ok) {
-						return {
-							accessMetadata: []
-						};
-					}
-					return response.json();
-				})
+				.catch(suppressBadResponses)
 		])
 			.then(function(results) {
 				var articleLegacy = results[0];
 				var article = results[1];
-				var blogAccessMetadata = results[2].access_metadata.map(function (access) {
+				var blogAccessMetadata = blogsAccessPoller.getData().access_metadata.map(function (access) {
 					access.host_regex = 'blogs\.ft\.com';
 					return access;
 				});

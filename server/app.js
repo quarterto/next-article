@@ -7,6 +7,7 @@ var logger = require('ft-next-logger');
 var app = module.exports = express();
 var barriers = require('ft-next-barriers');
 require('./lib/ig-poller').start();
+require('./lib/blogs-access-poller').start();
 
 // COMPLEX: Put access middleware before barrier middleware so that access can be cached by membership
 app.use('^/:id(' + articleUuidRegex + ')$', require('./controllers/access'));
