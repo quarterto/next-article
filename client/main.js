@@ -20,7 +20,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var toc = require('./components/toc/main');
 	var comments = require('./components/comments/main');
 	var share = require('./components/share/main');
-	var readingList = require('./components/reading-list/main');
+	var emailSignup = require('./components/email-signup/main');
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
 	var typogSwitcher = require('./components/typography-switcher/main');
@@ -38,9 +38,7 @@ require('next-js-setup').bootstrap(function(result) {
 	if (uuid) {
 		if (flags.get('userPreferencesAPI')) {
 			document.addEventListener('myft.followed.load', function(ev) {
-				if (flags.get('myFTReadingListOnArticle')) {
-					readingList.init();
-				}
+				emailSignup.init();
 			});
 		}
 		readingHistory.add(uuid);
