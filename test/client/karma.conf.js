@@ -17,6 +17,7 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
+			'http://polyfill.webservices.ft.com/v1/polyfill.min.js?callback=ftNextInit&libVersion=v1.3.0&features=default,CustomEvent|always,modernizr:promises,fetch,matchMedia,_enqueueMicrotask|always',
 			'**/*.spec.js'
 		],
 
