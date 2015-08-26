@@ -3,7 +3,7 @@
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var url	= require('url');
-var blogsAccessPoller = require('../lib/blogs-access-poller')
+var blogsAccessPoller = require('../lib/blogs-access-poller');
 require('array.prototype.find');
 
 var accessMetadata = [
