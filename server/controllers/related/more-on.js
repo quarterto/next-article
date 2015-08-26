@@ -29,11 +29,9 @@ module.exports = function (req, res, next) {
 					if (!topic) {
 						return null;
 					}
-
 					var exists = topics.find(function(existing) {
 						return topic.term.id === existing.term.id;
 					});
-
 					if (exists) {
 						return;
 					}
@@ -42,8 +40,8 @@ module.exports = function (req, res, next) {
 
 					return api.searchLegacy({
 							query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
-							// get one extra, in case we dedupe
-							count: count + 1,
+							// get two extra, in case we dedupe
+							count: count + 2,
 							useElasticSearch: res.locals.flags.elasticSearchItemGet
 						})
 						.then(function(ids) {
@@ -98,28 +96,25 @@ module.exports = function (req, res, next) {
 							});
 					}
 
-					var otherArticleModels = _.flatten(results
-						.slice(0, index));
-					var articleModelsFinal = [];
-					// add props for more-on cards
-					articleModels.forEach(function (articleModel) {
-						var articleModelFinal = {
-							id: articleModel.item.id,
-							headline: articleModel.item.title.title,
-							lastUpdated: articleModel.item.lifecycle.lastPublishDateTime,
-							isDiscreet: true,
-							visualCategory: getVisualCategory(articleModel.item.metadata)
-						};
-						articleModelsFinal.push(articleModelFinal);
-					});
-
 					// dedupe
-					var dedupedArticles = articleModelsFinal
-						.filter(function(articleModelFinal) {
+					var otherArticleModels = index > 0 ? results[index - 1] : [];
+					var dedupedArticles = articleModels
+						.filter(function (articleModel) {
 							return !otherArticleModels.find(function(otherArticleModel) {
-								return otherArticleModel.item.id === articleModelFinal.id;
+								return otherArticleModel.item.id === articleModel.item.id;
 							});
-						});
+						})
+						// add props for more-on cards
+						.map(function (articleModel) {
+							return {
+								id: articleModel.item.id,
+								headline: articleModel.item.title.title,
+								lastUpdated: articleModel.item.lifecycle.lastPublishDateTime,
+								isDiscreet: true,
+								visualCategory: getVisualCategory(articleModel.item.metadata)
+							};
+						})
+						.slice(0, count);
 					return dedupedArticles.length ? {
 						articles: dedupedArticles,
 						topic: topicModel
