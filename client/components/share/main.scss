@@ -12,6 +12,8 @@ $_o-share-sprite-elements: (twitter, facebook, linkedin, whatsapp);
 .article-share {
 	margin-bottom: $spacing-unit;
 	display: block;
+	overflow: hidden;
+
 	.o-share__action {
 		padding: 0 5px;
 		&:first-child {
