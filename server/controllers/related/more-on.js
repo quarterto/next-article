@@ -40,8 +40,8 @@ module.exports = function (req, res, next) {
 
 					return api.searchLegacy({
 							query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
-							// get two extra, in case we dedupe
-							count: count + 2,
+							// get twice as many, in case we dedupe
+							count: count * 2,
 							useElasticSearch: res.locals.flags.elasticSearchItemGet
 						})
 						.then(function(ids) {
