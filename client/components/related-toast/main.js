@@ -1,24 +1,28 @@
 'use strict';
 
-var throttle = require('../../libs/throttle');
-
 var appendToast = (article, topic) => {
     var toastTmplEl = document.createElement('div');
     toastTmplEl.classList.add('article__toast');
     toastTmplEl.innerHTML =
-        `<div class="article__toast__inner o-grid-row">
-            <div class="article__toast__header o-grid-remove-gutters" data-o-grid-colspan="1">
-                <h2>Read next</h2>
-            </div>
-             <div class="article__toast__link o-grid-remove-gutters" data-o-grid-colspan="3">
-                <a href="#related" class="article__toast__to-related js-to-related" data-trackable="to-related">See more</a>
+        `<div class="o-grid-row">
+            <div data-o-grid-colspan="12 XL11 XLoffset1">
+                <div class="article__toast__inner o-grid-row">
+                    <div class="article__toast__header" data-o-grid-colspan="1">
+                        <h2>Read next</h2>
+                    </div>
+                     <div class="article__toast__link" data-o-grid-colspan="3">
+                        <a href="#related" class="article__toast__to-related js-to-related" data-trackable="to-related">More on <span class="article__toast__link__topic">${topic}</span></a>
+                     </div>
+                 </div>
              </div>
          </div>`;
     var articleEl = document.createElement('div');
+    articleEl.classList.add('article__toast__article');
     articleEl.setAttribute('data-o-grid-colspan', 8);
     articleEl.innerHTML =
         `<a href="${article.link}" data-trackable="related">
             <h3>${topic}</h3>
+            <img class="article__toast__image" src="${article.image}" />
             <p>${article.title}</p>
         </a>`;
     toastTmplEl.querySelector('.article__toast__inner')
@@ -45,11 +49,12 @@ var addToRelatedHandler = toastEl => {
     // https://gist.github.com/gre/1650294
     var easeFunction = t => 1 - (--t) * t * t * t;
     var handler = ev => {
+        var target = ev.target.classList.contains('article__toast__link__topic') ? ev.target.parentNode : ev.target;
         ev.preventDefault();
         ev.stopPropagation();
 
         var scrollFrom = document.body.scrollTop;
-        var scrollDist = document.querySelector(ev.target.getAttribute('href')).getBoundingClientRect().top;
+        var scrollDist = document.querySelector(target.getAttribute('href')).getBoundingClientRect().top;
         var startTime = new Date();
         var interval = window.setInterval(() => {
             var elapsed = new Date() - startTime;
@@ -58,7 +63,7 @@ var addToRelatedHandler = toastEl => {
 
         window.setTimeout(() => {
             window.clearInterval(interval);
-            window.location.hash = ev.target.getAttribute('href');
+            window.location.hash = target.getAttribute('href');
         }, duration);
     };
 
@@ -87,7 +92,8 @@ module.exports = {
                 var articleEl = relatedEl.querySelector('.more-on__article');
                 var article = {
                     title: articleEl.querySelector('.n-card__headline').textContent,
-                    link: articleEl.querySelector('.n-card__headline__link').getAttribute('href')
+                    link: articleEl.querySelector('.n-card__headline__link').getAttribute('href'),
+                    image: 'https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2F844b1060-6913-4ef1-b2ae-0d84cb34fb7b.img?width=100&source=next&fit=scale-down'
                 };
                 // append
                 var toastEl = appendToast(article, topic);
