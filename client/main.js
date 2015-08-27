@@ -8,7 +8,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var nMyFtTray = require('n-myft-tray');
 	var oExpander = require('o-expander');
 
-	var headerFooter = require('n-header-footer');
+	var layout = require('n-layout');
 	var nVideo = require('n-video');
 	// Require n-image to load pollyfill
 	require('n-image');
@@ -29,7 +29,7 @@ require('next-js-setup').bootstrap(function(result) {
 	oViewport.listenTo('resize');
 
 	var flags = result.flags;
-	headerFooter.init(flags);
+	layout.init(flags);
 
 	if (document.querySelector('*[data-article-status="error"]')) {
 		return;
