@@ -78,7 +78,7 @@ module.exports = {
         }
         // get related articles
         var articleUuid = document.querySelector('#site-content').getAttribute('data-content-id');
-        fetch(`/article/${articleUuid}/more-on?metadata-fields=primaryTheme&count=1`)
+        fetch(`/article/${articleUuid}/more-on?metadata-fields=primaryTheme&count=1`, { credentials: 'same-origin' })
             .then(result => {
                 if (!result.ok) {
                     throw new Error('Error getting related');
@@ -86,6 +86,9 @@ module.exports = {
                 return result.text();
             })
             .then(relatedHtml => {
+                if (!relatedHtml) {
+                    return;
+                }
                 var relatedEl = document.createElement('div');
                 relatedEl.innerHTML = relatedHtml;
                 var topic = relatedEl.querySelector('.n-topic__name').textContent;
