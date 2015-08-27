@@ -55,6 +55,7 @@
 	min-height: 66px;
 	padding: 5px 0;
 	background-color: #fff1e0;
+	box-shadow: 0px 0px 15px getColor('cold-1');
 }
 .article__toast__article {
 	@include oGridRespondTo(M) {
