@@ -60,7 +60,7 @@ module.exports.init = flags => {
 		$('.js-more-on-topic').map(el =>
 			createPromise(
 				el,
-				`/article/${articleId}/more-on?metadata-fields=${el.getAttribute('data-metadata-fields').replace(' ', ',')}&count=4`,
+				`/article/${articleId}/more-on?metadata-fields=${el.getAttribute('data-metadata-fields').replace(' ', ',')}&count=6`,
 				{
 					renderer: (el, resp) => {
 						var brandEl = el.querySelector('.n-topic[data-taxonomy="brand"]');
