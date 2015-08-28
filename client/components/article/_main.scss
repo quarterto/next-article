@@ -172,10 +172,7 @@
 	}
 
 	strong {
-		@include nTypeBravo(4);
-		@include oGridRespondTo(S) {
-			@include nTypeBravo(3);
-		}
+		@include nTypeBravo(3);
 	}
 
 	.o-quote--standard a {
