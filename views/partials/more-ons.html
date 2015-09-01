@@ -3,9 +3,6 @@
 
 		{{#if @root.flags.myFTReadingListOnArticle}}
 			{{>email-signup}}
-			{{#unless @root.flags.myFTTray}}
-				{{>reading-list}}
-			{{/unless}}
 		{{/if}}
 
 		{{#if @root.flags.articleRelatedContent}}
