@@ -1,5 +1,6 @@
 module.exports = [
 	{
+		timeout: 5000,
 		urls: {
 			//methode
 			'/02cad03a-844f-11e4-bae9-00144feabdc0': 200,
@@ -36,6 +37,7 @@ module.exports = [
 	},
 	{
 		//elastic search off fallback
+		timeout: 5000,
 		headers: {
 			Cookie: 'next-flags=elasticSearchItemGet:off'
 		},
@@ -45,6 +47,7 @@ module.exports = [
 	},
 	{
 		// test access
+		timeout: 5000,
 		headers: {
 			'X-FT-Access-Metadata': 'remote_headers'
 		},
