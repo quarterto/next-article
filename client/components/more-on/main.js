@@ -55,8 +55,8 @@ module.exports.init = flags => {
 	}
 
 	var fetchPromises = [].concat(
-		$('.js-more-on-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline`)),
-		$('.js-more-on').map(el => createPromise(el, `/article/${articleId}/story-package?count=4`)),
+		$('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline`)),
+		$('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4`)),
 		$('.js-more-on-topic').map(el =>
 			createPromise(
 				el,
@@ -74,7 +74,6 @@ module.exports.init = flags => {
 				}
 			)
 		),
-		$('.js-related').map(el => createPromise(el, `/article/${articleId}/${el.getAttribute('data-taxonomy')}`)),
 		$('.js-special-report').map(el => createPromise(el, `/article/${articleId}/special-report`))
 	);
 

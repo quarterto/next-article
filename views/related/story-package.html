@@ -1,16 +1,32 @@
-<aside class="story-package{{#if isInline}} story-package--inline ng-pull-out ng-inline-element{{/if}}" role="complementary">
-	<h3 class="story-package__title">Related {{#ifEquals articles.length 1}}story{{else}}stories{{/ifEquals}}</h3>
-	<ul class="story-package__articles ng-list-reset" data-trackable="articles">
-		{{#each articles}}
-			<li class="story-package__article{{#if image}} story-package__article--with-image{{/if}} story-package__article--{{visualCategory}}">
-					{{#if image}}
-						<a href="/{{id}}" data-trackable="image">
-							{{>n-image/templates/image}}
-						</a>
+{{#if articles}}
+	<div class="pod{{#if isInline}} pod--inline ng-pull-out ng-inline-element{{/if}}">
+		<div class="header">
+			<h2 class="header__name">Related stories</h2>
+		</div>
+		<ul class="pod__items">
+			{{#each articles}}
+			<li class="pod__item-wrapper{{#if image}} pod__item-wrapper--with-image{{/if}}">
+				<div class="pod__item">
+					{{#if tag}}
+					<a class="pod__item__tag" href="stream/{{tag.taxonomy}}Id/{{tag.id}}" data-trackable="tag">{{tag.name}}</a>
 					{{/if}}
-				</a>
-				{{>next-card/templates/card}}
+					<h2 class="pod__item__headline">
+						<a class="pod__item__headline-link" href="/{{id}}" data-trackable="headline">{{headline}}</a>
+					</h2>
+					{{#if image}}
+					<a class="pod__item__image" href="/{{id}}" data-trackable="image">
+						{{>n-image/templates/image}}
+					</a>
+					{{/if}}
+					<p class="pod__item__subheading">{{subheading}}</p>
+					<div class="pod__item__time">
+						<time data-o-component="o-date" class="o-date n-card__time__content" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
+							{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
+						</time>
+					</div>
+				</div>
 			</li>
-		{{/each}}
-	</ul>
-</aside>
+			{{/each}}
+		</ul>
+	</div>
+{{/if}}

@@ -72,17 +72,10 @@ module.exports = function(req, res, next) {
 			return Promise.all(imagePromises);
 		})
 		.then(function(articles) {
-			if (req.query.view === 'inline') {
-				res.render('related/story-package', {
-					articles: articles,
-					isInline: req.query.view === 'inline'
-				});
-			} else {
-				res.render('related/onward-journey', {
-					articles: articles,
-					isInline: req.query.view === 'inline'
-				});
-			}
+			res.render('related/story-package', {
+				articles: articles,
+				isInline: req.query.view === 'inline'
+			});
 		})
 		.catch(function(err) {
 			if (err.message === 'No related') {

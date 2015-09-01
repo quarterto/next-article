@@ -1,18 +1,24 @@
-{{#if @root.flags.myFTArticleEmailSignup}}
-	{{>email-signup}}
-{{/if}}
-
 {{#if @root.flags.articleRelatedContent}}
 	<div class="js-more-on-topic" data-o-grid-colspan="12" data-metadata-fields="primaryTheme" role="region">
-		{{#primaryTag}}
-			{{>n-topic/templates/bar headingLevel="h2"}}
-		{{/primaryTag}}
+		<div class="pod">
+			{{#primaryTag}}
+				<div class="header">
+					<h2 class="header__name">{{name}}</h2>
+					{{#if @root.flags.userPreferencesAPI }}
+						{{>next-myft-ui/templates/follow version='3'}}
+					{{/if}}
+					<a class="header__link" href="{{url}}" data-trackable="topic-link">
+						<span class="header__link__text">Go to {{name}}</span>
+					</a>
+				</div>
+			{{/primaryTag}}
+		</div>
 	</div>
-	<div class="js-more-on-topic" data-o-grid-colspan="12 M8" data-metadata-fields="{{#if isColumnist}}authors{{else}}primarySection{{/if}}" role="region"></div>
+	<div class="js-more-on-topic more-on--primary-section" data-o-grid-colspan="12" data-metadata-fields="{{#if isColumnist}}authors{{else}}primarySection{{/if}}" role="region"></div>
 	{{#if tags}}
 		<div class="article-tags" role="region" data-o-grid-colspan="12 M4">
-			<div class="n-topic">
-				<h2 class="n-topic__name">Mentions</h2>
+			<div class="header">
+				<h2 class="header__name">Mentions</h2>
 			</div>
 			<ul class="article-tags__tags">
 				{{#each tags}}

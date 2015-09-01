@@ -129,25 +129,25 @@
 	{{>share}}
 {{/if}}
 
-<div class="article__onward-journeys o-grid-row">
+<div class="o-grid-row">
 	<div data-o-grid-colspan="12 XL11 XLoffset1">
 		<div class="o-grid-row">
 			{{#if isSpecialReport}}
 					<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12"></div>
 			{{else}}
 				{{#if relatedContent}}
-					<div class="js-more-on" data-trackable="story-package" data-o-grid-colspan="12"></div>
+					<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12"></div>
 				{{/if}}
+			{{/if}}
+			{{#if @root.flags.myFTArticleEmailSignup}}
+				{{>email-signup}}
 			{{/if}}
 			{{#if moreOns}}
 				{{>more-ons}}
 			{{/if}}
+			<div data-trackable="comments" class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8"></div>
 		</div>
 	</div>
-</div>
-
-<div class="o-grid-row">
-	<div data-trackable="comments" class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L7 Loffset1"></div>
 </div>
 
 {{#if barrierOverlay}}

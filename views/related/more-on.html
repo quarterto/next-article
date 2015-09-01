@@ -1,37 +1,35 @@
 {{#each moreOns}}
-	<div class="more-on more-on--topic more-on--{{topic.taxonomy}}{{#if hasMainImage}} more-on--with-image{{/if}}">
+	<div class="pod">
 		{{#topic}}
-			<div class="n-topic n-topic--bar{{#unless noFollow}} n-topic--follow{{/unless}}{{#variant}} n-topic--{{this}}{{/variant}}">
-				<h2 class="n-topic__name">
-					<span class="n-topic__name-prefix">More on</span> {{name}}
+			<div class="header">
+				<h2 class="header__name">
+					<span class="header__name-prefix">More {{#ifEquals taxonomy 'authors'}}by{{else}}on{{/ifEquals}}</span> {{name}}
 				</h2>
-				{{#unless noFollow}}
-					{{#if @root.flags.userPreferencesAPI }}
-						{{>next-myft-ui/templates/follow version='3'}}
-					{{/if}}
-				{{/unless}}
-				<a class="n-topic__link" href="{{url}}" data-trackable="topic-link">
-					<span class="n-topic__link__text">Go to {{name}}</span>
+				{{#if @root.flags.userPreferencesAPI }}
+					{{>next-myft-ui/templates/follow version='3'}}
+				{{/if}}
+				<a class="header__link" href="{{url}}" data-trackable="topic-link">
+					<span class="header__link__text">Go to {{name}}</span>
 				</a>
 			</div>
 		{{/topic}}
-		<ul class="more-on__articles">
+		<ul class="pod__items">
 			{{#each articles}}
-				<li class="more-on__article{{#if image}} more-on__article--with-image{{/if}}">
-					<div class="more-on__card{{#if image}} more-on__card--has-image{{/if}}">
+				<li class="pod__item-wrapper{{#if image}} pod__item-wrapper--with-image{{/if}}">
+					<div class="pod__item">
 						{{#if tag}}
-							<a class="more-on__card__tag" href="stream/{{tag.taxonomy}}Id/{{tag.id}}" data-trackable="tag">{{tag.name}}</a>
+							<a class="pod__item__tag" href="stream/{{tag.taxonomy}}Id/{{tag.id}}" data-trackable="tag">{{tag.name}}</a>
 						{{/if}}
-						<h2 class="more-on__card__headline">
-							<a class="more-on__card__headline-link" href="/{{id}}" data-trackable="headline">{{headline}}</a>
+						<h2 class="pod__item__headline">
+							<a class="pod__item__headline-link" href="/{{id}}" data-trackable="headline">{{headline}}</a>
 						</h2>
 						{{#if image}}
-							<a class="more-on__card__image" href="/{{id}}" data-trackable="image">
+							<a class="pod__item__image" href="/{{id}}" data-trackable="image">
 								{{>n-image/templates/image}}
 							</a>
 						{{/if}}
-						<p class="more-on__card__subheading">{{subheading}}</p>
-						<div class="more-on__card__time">
+						<p class="pod__item__subheading">{{subheading}}</p>
+						<div class="pod__item__time">
 							<time data-o-component="o-date" class="o-date n-card__time__content" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
 								{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
 							</time>
