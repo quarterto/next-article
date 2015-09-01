@@ -130,23 +130,24 @@
 {{/if}}
 
 <div class="o-grid-row">
-	<div data-o-grid-colspan="12 XL11 XLoffset1">
-		<div class="o-grid-row">
-			{{#if isSpecialReport}}
-					<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12"></div>
-			{{else}}
-				{{#if relatedContent}}
-					<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12"></div>
-				{{/if}}
-			{{/if}}
-			{{#if @root.flags.myFTArticleEmailSignup}}
-				{{>email-signup}}
-			{{/if}}
-			{{#if moreOns}}
-				{{>more-ons}}
-			{{/if}}
-			<div data-trackable="comments" class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8"></div>
-		</div>
+	{{#if isSpecialReport}}
+			<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12 XL11 XLoffset1"></div>
+	{{else}}
+		{{#if relatedContent}}
+			<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12 XL11 XLoffset1"></div>
+		{{/if}}
+	{{/if}}
+	{{#if @root.flags.myFTArticleEmailSignup}}
+		{{>email-signup}}
+	{{/if}}
+	{{#if moreOns}}
+		{{>more-ons}}
+	{{/if}}
+</div>
+
+<div class="o-grid-row">
+	<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+		<div data-trackable="comments" class="article__comments o-comments" id="comments"></div>
 	</div>
 </div>
 

@@ -1,12 +1,8 @@
 /**
  * New card styles
  */
-.more-on--primary-section {
-	@include oGridColumn((M: 8));
-	
-	.no-js & {
-		display: none;
-	}
+.more-on--small {
+	@include oGridColumn((L: 8, XL: 7));
 }
 .pod__items {
 	display: flex;
@@ -181,6 +177,7 @@
 	float: right;
 	margin-left: 10px;
 	padding: 12px 35px 11px 0;
+	transition: color 0.3s;
 
 	&:hover {
 		color: getColor('link-2');

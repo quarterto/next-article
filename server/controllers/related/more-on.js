@@ -111,7 +111,7 @@ module.exports = function (req, res, next) {
 							var articleViewModel = {
 								id: articleModel.item.id,
 								headline: articleModel.item.title.title,
-								subheading: articleModel.item.summary.excerpt,
+								subheading: articleModel.item.summary && articleModel.item.summary.excerpt,
 								lastUpdated: articleModel.item.lifecycle.lastPublishDateTime
 							};
 							var primaryTheme = articleModel.item.metadata.primaryTheme;

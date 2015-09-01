@@ -1,7 +1,7 @@
 {{#if @root.flags.articleRelatedContent}}
-	<div class="js-more-on-topic" data-o-grid-colspan="12" data-metadata-fields="primaryTheme" role="region">
-		<div class="pod">
-			{{#primaryTag}}
+	{{#each moreOns}}
+		<div class="js-more-on-topic{{#ifEquals @index 1}} more-on--small{{/ifEquals}}" data-o-grid-colspan="12 XL11 XLoffset1" data-metadata-fields="{{taxonomy}}" role="region">
+			<div class="pod">
 				<div class="header">
 					<h2 class="header__name">{{name}}</h2>
 					{{#if @root.flags.userPreferencesAPI }}
@@ -11,12 +11,11 @@
 						<span class="header__link__text">Go to {{name}}</span>
 					</a>
 				</div>
-			{{/primaryTag}}
+			</div>
 		</div>
-	</div>
-	<div class="js-more-on-topic more-on--primary-section" data-o-grid-colspan="12" data-metadata-fields="{{#if isColumnist}}authors{{else}}primarySection{{/if}}" role="region"></div>
+	{{/each}}
 	{{#if tags}}
-		<div class="article-tags" role="region" data-o-grid-colspan="12 M4">
+		<div class="article-tags" role="region" data-o-grid-colspan="12 L4">
 			<div class="header">
 				<h2 class="header__name">Mentions</h2>
 			</div>

@@ -137,6 +137,33 @@ module.exports = function(req, res, next) {
 							metadata.primarySection.term.taxonomy === 'specialReports'
 					};
 
+					if (metadata) {
+						var moreOnTags = [];
+						// primary theme first
+						if (metadata.primaryTheme) {
+							moreOnTags.push(metadata.primaryTheme.term);
+						}
+						// then author, if this is in a 'Columnists' section and not duplication primaryTheme
+						if (
+							metadata.primarySection.term.name === 'Columnists' &&
+							metadata.authors.length &&
+							(!moreOnTags.length || metadata.authors[0].term.id !== moreOnTags[0].id)
+						) {
+							moreOnTags.push(metadata.authors[0].term);
+						}
+						// finally the primarySection
+						moreOnTags.push(metadata.primarySection.term);
+						viewModel.moreOns = moreOnTags
+							.slice(0, 2)
+							.map(function (moreOnTag) {
+								return {
+									name: moreOnTag.name,
+									url: '/stream/' +  moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
+									taxonomy: moreOnTag.taxonomy
+								};
+							});
+					}
+
 					if (res.locals.flags.openGraph) {
 						viewModel.og = openGraph(article, articleV1, mainImage);
 					}
