@@ -112,7 +112,7 @@ module.exports = function (req, res, next) {
 								id: articleModel.item.id,
 								headline: articleModel.item.title.title,
 								subheading: articleModel.item.summary.excerpt,
-								lastUpdated: articleModel.item.lifecycle.lastPublishDateTime,
+								lastUpdated: articleModel.item.lifecycle.lastPublishDateTime
 							};
 							var primaryTheme = articleModel.item.metadata.primaryTheme;
 							if (primaryTheme) {
@@ -136,7 +136,6 @@ module.exports = function (req, res, next) {
 						articles: dedupedArticles.map(function (articleViewModel, index) {
 							if (index !== 0 && index !== 5) {
 								delete articleViewModel.image;
-								articleViewModel.hasMedia = false;
 							}
 							return articleViewModel;
 						}),

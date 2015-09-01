@@ -42,10 +42,13 @@ module.exports = function(req, res, next) {
 				var articleModel = {
 					id: extractUuid(article.item.id),
 					headline: article.item.title.title,
-					lastUpdated: article.item.lifecycle.lastPublishDateTime,
-					visualCategory: getVisualCategory(article.item.metadata),
-					isBlock: true
+					subheading: article.item.summary.excerpt,
+					lastUpdated: article.item.lifecycle.lastPublishDateTime
 				};
+				var primaryTheme = article.item.metadata.primaryTheme;
+				if (primaryTheme) {
+					articleModel.tag = primaryTheme.term;
+				}
 				if (!article.item.images) {
 					return Promise.resolve(articleModel);
 				}
@@ -53,22 +56,33 @@ module.exports = function(req, res, next) {
 				article.item.images.forEach(function(img) {
 					images[img.type] = img;
 				});
-				articleModel.image = images['wide-format'] || images.article || images.primary;
-				if (articleModel.image) {
-					articleModel.image.srcset = {
-						default: 100
+				var image = images['wide-format'] || images.article || images.primary;
+				if (image) {
+					articleModel.image = {
+						url: image.url,
+						alt: "",
+						srcset: {
+							s: 100,
+							m: 200
+						}
 					};
-					articleModel.image.class = 'story-package__image';
 				}
 				return(articleModel);
 			});
 			return Promise.all(imagePromises);
 		})
 		.then(function(articles) {
-			res.render('related/story-package', {
-				articles: articles,
-				isInline: req.query.view === 'inline'
-			});
+			if (req.query.view === 'inline') {
+				res.render('related/story-package', {
+					articles: articles,
+					isInline: req.query.view === 'inline'
+				});
+			} else {
+				res.render('related/onward-journey', {
+					articles: articles,
+					isInline: req.query.view === 'inline'
+				});
+			}
 		})
 		.catch(function(err) {
 			if (err.message === 'No related') {

@@ -129,27 +129,26 @@
 	{{>share}}
 {{/if}}
 
-<div class="o-grid-row">
-	<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-		{{#if isSpecialReport}}
-				<div class="js-special-report" data-trackable="special-report"></div>
-		{{else}}
-			{{#if relatedContent}}
-				<div class="js-more-on" data-trackable="story-package"></div>
+<div class="article__onward-journeys o-grid-row">
+	<div data-o-grid-colspan="12 XL11 XLoffset1">
+		<div class="o-grid-row">
+			{{#if isSpecialReport}}
+					<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12"></div>
+			{{else}}
+				{{#if relatedContent}}
+					<div class="js-more-on" data-trackable="story-package" data-o-grid-colspan="12"></div>
+				{{/if}}
 			{{/if}}
-		{{/if}}
+			{{#if moreOns}}
+				{{>more-ons}}
+			{{/if}}
+		</div>
 	</div>
 </div>
 
-{{#if moreOns}}
-	{{>more-ons}}
-{{/if}}
-
-{{#if comments}}
-	<div class="o-grid-row">
-			<div data-trackable="comments" class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L8 XL7 XLoffset1"></div>
-	</div>
-{{/if}}
+<div class="o-grid-row">
+	<div data-trackable="comments" class="article__comments o-comments" id="comments" data-o-grid-colspan="12 L7 Loffset1"></div>
+</div>
 
 {{#if barrierOverlay}}
 	<div class="barrier-overlay"></div>
