@@ -37,7 +37,7 @@ require('next-js-setup').bootstrap(function(result) {
 
 	var uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
 	if (uuid) {
-		if (flags.get('userPreferencesAPI')) {
+		if (flags.get('userPreferencesAPI') && flags.get('myFTArticleEmailSignup')) {
 			document.addEventListener('myft.followed.load', function(ev) {
 				emailSignup.init();
 			});
