@@ -14,29 +14,29 @@
 .pod__item-wrapper {
 	display: flex;
 	box-sizing: border-box;
-	flex: 1 1 50%;
+	flex: 1 1 auto;
 	padding: 10px;
 	border-bottom: 0;
 	@include oGridRespondTo(L) {
-		flex-basis: 25%;
+		width: 25%;
 
 		.more-on--small & {
-			flex-basis: 50%;
+			width: 50%;
 		}
 	}
 
 	&.pod__item-wrapper--with-image {
-		flex-basis: 100%;
+		width: 100%;
 		@include oGridRespondTo(L) {
-			flex-basis: 50%;
+			width: 50%;
 
 			.more-on--small & {
-				flex-basis: 100%;
+				width: 100%;
 			}
 		}
 	}
 	.pod--inline & {
-		flex-basis: 100% !important;
+		width: 100% !important;
 	}
 }
 .pod__item {
