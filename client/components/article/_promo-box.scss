@@ -1,25 +1,87 @@
-.article__promo-box {
-	background-color: $box-colour;
+.promo-box {
+	margin-top: 25px;
 	padding: 10px;
+	background-color: getColor('pink');
+	> .promo-box__title__wrapper {
+		margin-top: -45px;
+		margin-left: -10px;
+	}
+	> .o-expander__toggle {
+		i {
+			@include nextIcon(arrow-down, black, 12);
+			@include oFtIconsBaseIconStyles();
+			@include oColorsFor(expander-icon, text);
+			display: inline-block;
+			padding: 0 6px;
+			box-sizing: border-box;
+		}
+		&:hover {
+			text-decoration: none;
+		}
+		&[aria-pressed] i {
+			@include nextIcon(arrow-up, black, 12);
+		}
+	}
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
 
-	> * {
-		margin: 10px 0 0;
-	}
-	> *:first-child {
-		margin-top: 0;
+.promo-box img {
+	margin: 10px 10px 10px 0;
+}
+
+.promo-box--long {
+	float: none;
+	max-width: 100%;
+	@include oGridRespondTo(XL) {
+		margin-right: 100px;
 	}
 }
-.article__promo-box__title {
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 1;
+
+.promo-box--long img {
+	@include oGridRespondTo(S) {
+		float: left;
+		margin-right: 10px;
+		max-width: 280px;
+	}
+}
+
+.promo-box__title {
+	@include nTypeBravo(3);
 	text-transform: uppercase;
+	display: inline-block;
+	padding: 5px 10px;
+	margin-bottom: 0;
+	color: getColor('white');
+	background-color: #f57323;
+	a {
+		color: getColor('white');
+		background-color: #f57323;
+		border-bottom: 0;
+	}
 }
-.article__promo-box__headline {
-	font-size: 25px;
-	line-height: 1;
-	font-weight: 100;
-	color: #000000;
+
+.article--comment .promo-box__title {
+	background-color: oColorsGetColorFor(article-comment, background);
+	a {
+		background-color: oColorsGetColorFor(article-comment, background);
+	}
+}
+
+.article--lifestyle .promo-box__title {
+	background-color: oColorsGetColorFor(article-lifestyle, background);
+	a {
+		background-color: oColorsGetColorFor(article-lifestyle, background);
+	}
+}
+
+.promo-box__headline {
+	@include nTypeFoxtrot(2);
+	margin: 10px 0 0;
+	color: getColor('cold-3');
 
 	@include oGridRespondTo(S) {
 		font-size: 32px;
@@ -28,17 +90,14 @@
 		margin: 0;
 	}
 	a {
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
+		@include nLinksHeadline();
+		border-bottom: 0;
 	}
 }
-.article__promo-box img {
-	width: 100%;
-}
-.article__promo-box__content p {
-	@include nTypeAlpha(3);
-	margin: 5px 0 0;
+
+.promo-box__content {
+	display: inline;
+	p {
+		margin: 5px 0 0;
+	}
 }
