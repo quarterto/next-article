@@ -43,7 +43,7 @@
 	position: relative;
 	width: 100%;
 	padding-bottom: 42px;
-	background-color: #fff1e0;
+	background-color: getColor('pink');
 	border-bottom: 1px solid getColor('warm-3');
 	box-sizing: border-box;
 }
@@ -63,17 +63,13 @@
 	}
 }
 .pod__item__tag {
-	@include nTypeBravo(4);
-	color: getColor('claret');
-	text-transform: uppercase;
-	text-decoration: none;
+	@include nLinksTopic;
 	border-bottom: 1px dotted transparent;
 	transition-property: border-bottom-color, color;
 	transition-duration: 0.3s;
 
 	&:hover {
-		color: #4f1828;
-		border-bottom-color: #4f1828;
+		border-bottom-color: darken(getColorFor(topic, text), 20%);
 	}
 }
 .pod__item__headline {
@@ -110,7 +106,7 @@
 	height: 42px;
 	line-height: 42px;
 	padding: 0 10px;
-	color: #8b572a;
+	color: getColor('warm-6');
 }
 
 .article-tags__tags {
@@ -125,18 +121,14 @@
 	min-height: 26px;
 }
 .article-tags__tag__link {
-	@include nTypeBravo(4);
-	color: getColor('claret');
-	text-transform: uppercase;
-	text-decoration: none;
+	@include nLinksTopic;
 	border-bottom: 1px dotted transparent;
 	transition-property: border-bottom-color, color;
 	transition-duration: 0.3s;
 	vertical-align: middle;
 
 	&:hover {
-		color: #4f1828;
-		border-bottom-color: #4f1828;
+		border-bottom-color: darken(getColorFor(topic, text), 20%);
 	}
 }
 .article-tags__tag .n-myft-ui {
