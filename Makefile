@@ -49,12 +49,11 @@ tidy:
 	nbt destroy ${TEST_APP}
 
 provision:
-	# heroku apps:create ${TEST_APP} --region eu --org financial-times
-	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch" --no-splunk
-	# nbt deploy-hashed-assets
-	nbt deploy ${TEST_APP} --skip-enable-preboot
-	nbt test-urls ${TEST_APP};
-	# make -j2 visual smoke
+	heroku apps:create ${TEST_APP} --region eu --org financial-times
+	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
+	nbt deploy-hashed-assets
+	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
+	make -j2 visual smoke
 
 smoke:
 	nbt test-urls ${TEST_APP};
