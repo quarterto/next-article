@@ -4,7 +4,6 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
-var getVisualCategory = require('ft-next-article-genre');
 
 module.exports = function(req, res, next) {
 	var isInline = req.query.view === 'inline';
