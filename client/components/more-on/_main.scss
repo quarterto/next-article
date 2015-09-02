@@ -50,11 +50,11 @@
 	.pod__item-wrapper--with-image & {
 		@include oGridRespondTo(S) {
 			padding-left: 110px;
-			min-height: 46px;
+			min-height: 100px;
 		}
 		@include oGridRespondTo(M) {
 			padding-left: 210px;
-			min-height: 103px;
+			min-height: 157px;
 		}
 	}
 }
@@ -150,6 +150,7 @@
 .header {
 	padding: 0;
 	border-bottom: 1px solid getColor('warm-3');
+	overflow: hidden;
 }
 .header__name {
 	@include nTypeAlpha(2);
@@ -178,6 +179,7 @@
 	margin-left: 10px;
 	padding: 12px 35px 11px 0;
 	transition: color 0.3s;
+	min-height: 24px;
 
 	&:hover {
 		color: getColor('link-2');

@@ -141,25 +141,32 @@ module.exports = function(req, res, next) {
 						var moreOnTags = [];
 						// primary theme first
 						if (metadata.primaryTheme) {
-							moreOnTags.push(metadata.primaryTheme.term);
+							var primaryThemeTag = metadata.primaryTheme.term;
+							primaryThemeTag.metadata = 'primaryTheme';
+							moreOnTags.push(primaryThemeTag);
 						}
-						// then author, if this is in a 'Columnists' section and not duplication primaryTheme
+						// then author, if this is in a 'Columnists' section and not a duplication of the primaryTheme
 						if (
 							metadata.primarySection.term.name === 'Columnists' &&
 							metadata.authors.length &&
 							(!moreOnTags.length || metadata.authors[0].term.id !== moreOnTags[0].id)
 						) {
-							moreOnTags.push(metadata.authors[0].term);
+							var authorTag = metadata.authors[0].term;
+							authorTag.metadata = 'authors';
+							moreOnTags.push(authorTag);
 						}
 						// finally the primarySection
-						moreOnTags.push(metadata.primarySection.term);
+						var primarySectionTag = metadata.primarySection.term;
+						primarySectionTag.metadata = 'primarySection';
+						moreOnTags.push(primarySectionTag);
 						viewModel.moreOns = moreOnTags
 							.slice(0, 2)
 							.map(function (moreOnTag) {
 								return {
 									name: moreOnTag.name,
 									url: '/stream/' +  moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
-									taxonomy: moreOnTag.taxonomy
+									taxonomy: moreOnTag.taxonomy,
+									metadata: moreOnTag.metadata
 								};
 							});
 					}

@@ -7,6 +7,7 @@ var extractUuid = require('../../utils/extract-uuid');
 var getVisualCategory = require('ft-next-article-genre');
 
 module.exports = function(req, res, next) {
+	var isInline = req.query.view === 'inline';
 	api.contentLegacy({
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
@@ -57,7 +58,7 @@ module.exports = function(req, res, next) {
 					images[img.type] = img;
 				});
 				var image = images['wide-format'] || images.article || images.primary;
-				if (image) {
+				if (image && !isInline) {
 					articleModel.image = {
 						url: image.url,
 						alt: "",
@@ -74,7 +75,7 @@ module.exports = function(req, res, next) {
 		.then(function(articles) {
 			res.render('related/story-package', {
 				articles: articles,
-				isInline: req.query.view === 'inline'
+				isInline: isInline
 			});
 		})
 		.catch(function(err) {

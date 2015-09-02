@@ -1,6 +1,6 @@
 {{#if @root.flags.articleRelatedContent}}
 	{{#each moreOns}}
-		<div class="js-more-on-topic{{#ifEquals @index 1}} more-on--small{{/ifEquals}}" data-o-grid-colspan="12 XL11 XLoffset1" data-metadata-fields="{{taxonomy}}" role="region">
+		<div class="js-more-on-topic{{#ifEquals @index 1}} more-on--small{{/ifEquals}}" data-o-grid-colspan="12 XL11 XLoffset1" data-metadata-fields="{{metadata}}" role="region">
 			<div class="pod">
 				<div class="header">
 					<h2 class="header__name">{{name}}</h2>
@@ -23,7 +23,7 @@
 				{{#each tags}}
 					<li class="article-tags__tag">
 						<a class="article-tags__tag__link" href="{{url}}" data-trackable="tag">{{name}}</a>
-						{{#if @root.flags.userPreferencesAPI }}
+						{{#if @root.flags.userPreferencesAPI}}
 							{{>next-myft-ui/templates/follow version='3'}}
 						{{/if}}
 					</li>
