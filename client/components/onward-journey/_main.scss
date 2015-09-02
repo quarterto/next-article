@@ -42,19 +42,23 @@
 .pod__item {
 	position: relative;
 	width: 100%;
-	padding: 10px 10px 42px;
+	padding-bottom: 42px;
 	background-color: #fff1e0;
 	border-bottom: 1px solid getColor('warm-3');
 	box-sizing: border-box;
+}
+.pod__item__image {
+	float: left;
+}
+.pod__item__content {
+	padding: 10px 10px 0;
 
 	.pod__item-wrapper--with-image & {
 		@include oGridRespondTo(S) {
 			padding-left: 110px;
-			min-height: 100px;
 		}
 		@include oGridRespondTo(M) {
 			padding-left: 210px;
-			min-height: 157px;
 		}
 	}
 }
@@ -90,11 +94,6 @@
 		border-bottom-color: getColor('black');
 	}
 }
-.pod__item__image {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
 .pod__item__subheading {
 	@include nTypeDelta(4);
 	margin: 10px 0 0;
@@ -102,11 +101,11 @@
 }
 .pod__item__time {
 	@include nTypeAlpha(5);
-	box-sizing: border-box;
-	width: 100%;
 	position: absolute;
+	width: 100%;
 	bottom: 0;
 	left: 0;
+	box-sizing: border-box;
 	text-transform: uppercase;
 	height: 42px;
 	line-height: 42px;

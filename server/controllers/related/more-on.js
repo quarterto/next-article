@@ -106,7 +106,7 @@ module.exports = function (req, res, next) {
 								return otherArticleModel.item.id === articleModel.item.id;
 							});
 						})
-						// add props for more-on cards
+						// add props for more on cards
 						.map(function (articleModel) {
 							var articleViewModel = {
 								id: articleModel.item.id,

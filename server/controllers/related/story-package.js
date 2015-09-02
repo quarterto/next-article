@@ -74,6 +74,7 @@ module.exports = function(req, res, next) {
 		.then(function(articles) {
 			res.render('related/story-package', {
 				articles: articles,
+				headerText: 'Related stories',
 				isInline: isInline
 			});
 		})

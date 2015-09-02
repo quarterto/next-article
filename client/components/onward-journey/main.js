@@ -57,7 +57,7 @@ module.exports.init = flags => {
 	var fetchPromises = [].concat(
 		$('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline`)),
 		$('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4`)),
-		$('.js-more-on-topic').map(el =>
+		$('.js-more-on').map(el =>
 			createPromise(
 				el,
 				`/article/${articleId}/more-on?metadata-fields=${el.getAttribute('data-metadata-fields').replace(' ', ',')}&count=6`,

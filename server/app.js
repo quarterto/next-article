@@ -16,10 +16,6 @@ app.use(barriers.middleware(express.metrics));
 
 app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
 app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
-app.get('^/article/:id(' + articleUuidRegex + ')/people', require('./controllers/related/people'));
-app.get('^/article/:id(' + articleUuidRegex + ')/organisations', require('./controllers/related/organisations'));
-app.get('^/article/:id(' + articleUuidRegex + ')/topics', require('./controllers/related/topics'));
-app.get('^/article/:id(' + articleUuidRegex + ')/regions', require('./controllers/related/regions'));
 app.get('^/article/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
 app.get('^/article/:id(' + articleUuidRegex + ')/more-on', require('./controllers/related/more-on'));
 app.get('^/article/:id(' + articleUuidRegex + ')/special-report', require('./controllers/related/special-report'));
