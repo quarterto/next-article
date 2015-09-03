@@ -53,3 +53,25 @@ $o-comments-is-silent: false;
 @import "components/typography-switcher/main";
 @import "components/special-report/main";
 @import "components/related-toast/main";
+
+@media print {
+ 
+	body > section,
+	body > button,
+	.next-header, 
+	.article__leaderboard-advert,
+	.article__rail-advert, 
+	.article__tags,
+	.article__body > div,
+	.article__body > aside,
+	.article__more-on,
+	.article__comments,
+	.article-share,
+	.story-package,
+	.article__actions,
+	.article__main-image
+	{	
+		display: none;
+	}
+
+}

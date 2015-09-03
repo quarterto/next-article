@@ -4,10 +4,6 @@
 
 .more-on {
 	margin-bottom: 22px;
-
-	@include print {
-		display: none;
-	}
 }
 
 .more-on__title {
