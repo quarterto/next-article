@@ -20,13 +20,7 @@ module.exports = {
 				}
 			)
 			.url('https://' + TEST_HOST + ARTICLE_PATH)
-			.getLog('browser', function(result) {
-				console.log(result);
-			})
 			.waitForElementPresent("html.js.js-success", 10000)
-			.getLog('browser', function(result) {
-				console.log(result);
-			})
 			.end();
 	},
 
