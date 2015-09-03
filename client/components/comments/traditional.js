@@ -15,7 +15,7 @@ module.exports.init = function(uuid, flags) {
 			source: 'next-article'
 		}
 	};
-	OCommments.on('widget.renderComplete', function (ev) {
+	OComments.on('widget.renderComplete', function (ev) {
 		var commentCount = ev.detail.instance.lfWidget.getCollection().attributes.numVisible;
 		var commentLink = document.createElement('a');
 		commentLink.setAttribute('href', '#comments');
@@ -24,20 +24,20 @@ module.exports.init = function(uuid, flags) {
 		commentLink.textContent = 'Comments (' + commentCount + ')';
 		document.querySelector('.article__actions').appendChild(commentLink);
 	});
-	OCommments.on('tracking.postComment', function (ev) {
+	OComments.on('tracking.postComment', function (ev) {
 		eventData.meta = { interaction: 'posted' };
 		trackEvent(eventData);
 	});
-	OCommments.on('tracking.likeComment', function (ev) {
+	OComments.on('tracking.likeComment', function (ev) {
 		eventData.meta = { interaction: 'liked', id: ev.detail.data.lfEventData.targetId };
 		trackEvent(eventData);
 	});
-	OCommments.on('tracking.shareComment', function (ev) {
+	OComments.on('tracking.shareComment', function (ev) {
 		eventData.meta = { interaction: 'shared', id: ev.detail.data.lfEventData.targetId };
 		trackEvent(eventData);
 	});
 
-	new OCommments(document.querySelector('#comments'), {
+	new OComments(document.querySelector('#comments'), {
 		title: document.title,
 		url: document.location.href,
 		articleId: uuid, // NOTE: to test, use '3a499586-b2e0-11e4-a058-00144feab7de'
