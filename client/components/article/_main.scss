@@ -172,7 +172,7 @@
 	.o-quote--standard a {
 		color: inherit;
 	}
-	
+
 	@include print {
 		&:after {
 			content: 'Print a single copy of this article for personal use. Contact us if you wish to print more to distribute to others. © The Financial Times Ltd.';
