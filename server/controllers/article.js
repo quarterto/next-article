@@ -169,6 +169,8 @@ module.exports = function(req, res, next) {
 									metadata: moreOnTag.metadata
 								};
 							});
+						// add 'small' class if just one
+						viewModel.moreOns[viewModel.moreOns.length === 1 ? 0 : 1].class = 'more-on--small';
 					}
 
 					if (res.locals.flags.openGraph) {
