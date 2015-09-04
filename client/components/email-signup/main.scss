@@ -1,7 +1,6 @@
 .myft-email-signup,
 .myft-reading-list {
 	display: none;
-	background-color: getColorFor(card, background);
 
 	&__loaded {
 		display: block;
@@ -38,6 +37,9 @@
 		@include nTypeBravo(4);
 		display: block;
 		padding: 0 0 6px;
+	}
+	.more-on__content {
+		background-color: getColorFor(card, background);
 	}
 
 }
