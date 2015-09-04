@@ -15,7 +15,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var nAds = require('next-ads-component');
 
 	var slideshow = require('./components/slideshow/main');
-	var moreOn = require('./components/more-on/main');
+	var onwardJourney = require('./components/onward-journey/main');
 	var toc = require('./components/toc/main');
 	var comments = require('./components/comments/main');
 	var share = require('./components/share/main');
@@ -49,7 +49,7 @@ require('next-js-setup').bootstrap(function(result) {
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
 	if (flags.get('contentApiCalls')) {
-		moreOn.init(flags);
+		onwardJourney.init(flags);
 	}
 
 	if (flags.get('articleShareButtons')) {

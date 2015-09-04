@@ -137,6 +137,40 @@ module.exports = function(req, res, next) {
 							metadata.primarySection.term.taxonomy === 'specialReports'
 					};
 
+					if (metadata) {
+						var moreOnTags = [];
+						// primary theme first
+						if (metadata.primaryTheme) {
+							var primaryThemeTag = metadata.primaryTheme.term;
+							primaryThemeTag.metadata = 'primaryTheme';
+							moreOnTags.push(primaryThemeTag);
+						}
+						// then author, if this is in a 'Columnists' section and not a duplication of the primaryTheme
+						if (
+							metadata.primarySection.term.name === 'Columnists' &&
+							metadata.authors.length &&
+							(!moreOnTags.length || metadata.authors[0].term.id !== moreOnTags[0].id)
+						) {
+							var authorTag = metadata.authors[0].term;
+							authorTag.metadata = 'authors';
+							moreOnTags.push(authorTag);
+						}
+						// finally the primarySection
+						var primarySectionTag = metadata.primarySection.term;
+						primarySectionTag.metadata = 'primarySection';
+						moreOnTags.push(primarySectionTag);
+						viewModel.moreOns = moreOnTags
+							.slice(0, 2)
+							.map(function (moreOnTag) {
+								return {
+									name: moreOnTag.name,
+									url: '/stream/' +  moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
+									taxonomy: moreOnTag.taxonomy,
+									metadata: moreOnTag.metadata
+								};
+							});
+					}
+
 					if (res.locals.flags.openGraph) {
 						viewModel.og = openGraph(article, articleV1, mainImage);
 					}

@@ -1,15 +1,3 @@
-{{#if moreOns}}<h2>More on…</h2>{{/if}}
 {{#each moreOns}}
-	<div class="more-on more-on--topic more-on--{{topic.taxonomy}}{{#if hasMainImage}} more-on--with-image{{/if}}">
-		{{#topic}}
-			{{>n-topic/templates/bar headingLevel="h2"}}
-		{{/topic}}
-		<ul class="more-on__articles">
-		{{#each articles}}
-			<li class="more-on__article">
-				{{>next-card/templates/card}}
-			</li>
-		{{/each}}
-		</ul>
-	</div>
+	{{> pod}}
 {{/each}}

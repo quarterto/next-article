@@ -4,7 +4,7 @@
     <xsl:template match="/html/body/p[3]">
         <xsl:apply-templates select="current()" mode="default" />
         <xsl:if test="count(/html/body/p) > 5">
-            <div class="js-more-on-inline" data-trackable="more-on-inline"></div>
+            <div class="js-story-package-inline" data-trackable="more-on-inline"></div>
         </xsl:if>
     </xsl:template>
 
