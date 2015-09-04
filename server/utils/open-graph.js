@@ -21,8 +21,7 @@ module.exports = function (article, articleV1, mainImage) {
 	if(articleV1 && articleV1.item && articleV1.item.metadata &&
 		articleV1.item.metadata.authors &&
 		articleV1.item.metadata.authors.some(function(author) {
-			console.log('author, author', author);
-		return author.term.id === 'Q0ItMDAwMDc5Ng==-QXV0aG9ycw=='; //Hannah Kuchler
+		return author && author.term && author.term.id === 'Q0ItMDAwMDc5Ng==-QXV0aG9ycw=='; //Hannah Kuchler
 	})) {
 		og.facebookAuthor = 'https://www.facebook.com/HKuchler';
 	}

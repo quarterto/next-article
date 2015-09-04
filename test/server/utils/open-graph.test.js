@@ -23,7 +23,9 @@ describe('Open graph', function () {
 			metadata: {
 				authors: [
 					{
-						id: 'Q0ItMDAwMDc5Ng==-QXV0aG9ycw=='
+						term: {
+							id: 'Q0ItMDAwMDc5Ng==-QXV0aG9ycw=='
+						}
 					}
 				]
 			},
@@ -49,7 +51,7 @@ describe('Open graph', function () {
 		);
 	});
 
-	it.only('should return the Facebook URL for Hannah Kuchler', function () {
+	it('should return the Facebook URL for Hannah Kuchler', function () {
 		openGraph(v2, v1HannahKuchler, image).should.deep.equal(
 		    {
 				"description": "vertical but yet are broadly",
