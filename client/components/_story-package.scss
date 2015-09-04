@@ -9,10 +9,6 @@ $image-height-allowance: $image-height + (2 * $height-padding);
 	margin-top: 5px;
 	margin-bottom: 15px;
 	position: relative;
-
-	@include print {
-		display: none;
-	}
 }
 
 .story-package__article {

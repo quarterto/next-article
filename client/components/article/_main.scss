@@ -6,10 +6,10 @@
 	font-weight: 100;
 
 	@include print {
-		color: #000000;
-		padding-bottom: 0 !important;
+		padding-top: 40px;
 	}
 }
+
 .article__header-inner {
 	padding-top: 12px;
 
@@ -20,9 +20,6 @@
 
 .article__header-secondary {
 	margin-top: $spacing-unit / 2;
-	@include print {
-		border-color: #000000;
-	}
 }
 
 .article__header-time-byline {
@@ -84,7 +81,7 @@
 	text-transform: uppercase;
 	@include print {
 		text-indent: -9999px;
-
+		display: block;
 		&:after {
 			content: attr(title);
 			position: absolute;
@@ -96,19 +93,18 @@
 }
 .article__primary-theme {
 	margin: 0;
+
 	@include print {
-		display: none;
+		padding-top: 30px;
 	}
 }
+
 .article__actions {
 	margin-top: 10px;
 	text-align: left;
 	@include oGridRespondTo(M) {
 		margin-top: 0;
 		text-align: right;
-	}
-	@include print {
-		display: none;
 	}
 }
 .article__actions__action {
@@ -124,9 +120,6 @@
 .article__tags {
 	margin-top: 10px;
 	padding: 0;
-	@include print {
-		display: none;
-	}
 	@include oGridRespondTo(L) {
 		align-self: flex-end;
 	}
@@ -157,6 +150,7 @@
 	padding-top: 15px;
 }
 
+
 //ARTICLE BODY ELEMENTS
 .article__body {
 	@include nTypeAlpha(3);
@@ -178,6 +172,15 @@
 	.o-quote--standard a {
 		color: inherit;
 	}
+
+	@include print {
+		&:after {
+			content: 'Print a single copy of this article for personal use. Contact us if you wish to print more to distribute to others. © The Financial Times Ltd.';
+			display: block;
+			border-top: 1px solid #000000;
+			padding-top: 5px;
+		}
+	}
 }
 .article__body__link {
 	@include nLinksBody();
@@ -193,13 +196,7 @@
 		}
 	}
 }
-.article__main-image {
-	@include print {
-		width: 300px;
-		float: left;
-		margin: 0 20px 20px 0 !important;
-	}
-}
+
 .article__video-wrapper {
 	clear: left;
 
@@ -324,6 +321,7 @@
 .article__more-on {
 	padding-bottom: 15px;
 }
+
 .article__comments {
 	@include print {
 		display: none;
