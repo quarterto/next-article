@@ -1,16 +1,3 @@
-<aside class="story-package{{#if isInline}} story-package--inline ng-pull-out ng-inline-element{{/if}}" role="complementary">
-	<h3 class="story-package__title">Related {{#ifEquals articles.length 1}}story{{else}}stories{{/ifEquals}}</h3>
-	<ul class="story-package__articles ng-list-reset" data-trackable="articles">
-		{{#each articles}}
-			<li class="story-package__article{{#if image}} story-package__article--with-image{{/if}} story-package__article--{{visualCategory}}">
-					{{#if image}}
-						<a href="/{{ id }}" data-trackable="image">
-							{{>n-image/templates/image}}
-						</a>
-					{{/if}}
-				</a>
-				{{>next-card/templates/card}}
-			</li>
-		{{/each}}
-	</ul>
-</aside>
+{{#if articles}}
+	{{> pod}}
+{{/if}}

@@ -43,7 +43,7 @@ $o-comments-is-silent: false;
 @import "components/article/main";
 @import "components/toc/main";
 @import "components/share/main";
-@import "components/more-on/main";
+@import "components/onward-journey/main";
 @import "components/story-package";
 @import "components/timeline/main";
 @import "components/comments/main";
@@ -56,11 +56,12 @@ $o-comments-is-silent: false;
 
 @media print {
 	body > section,
-	body > button,
+	.n-myft-tray__cta
 	.next-header,
 	.article__leaderboard-advert,
 	.article__rail-advert,
 	.article__tags,
+	.article-tags,
 	.article__body > div,
 	.article__body > aside,
 	.article__more-on,
@@ -68,7 +69,8 @@ $o-comments-is-silent: false;
 	.article-share,
 	.story-package,
 	.article__actions,
-	.article__main-image {
+	.article__main-image,
+	.pod {
 		display: none;
 	}
 }

@@ -6,7 +6,6 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var splunkLogger = require('ft-next-splunk-logger')('next-article');
 var cacheControl = require('../../utils/cache-control');
-var getVisualCategory = require('ft-next-article-genre');
 
 module.exports = function (req, res, next) {
 	var topics = [];
@@ -107,19 +106,39 @@ module.exports = function (req, res, next) {
 								return otherArticleModel.item.id === articleModel.item.id;
 							});
 						})
-						// add props for more-on cards
+						// add props for more on cards
 						.map(function (articleModel) {
-							return {
+							var articleViewModel = {
 								id: articleModel.item.id,
 								headline: articleModel.item.title.title,
-								lastUpdated: articleModel.item.lifecycle.lastPublishDateTime,
-								isDiscreet: true,
-								visualCategory: getVisualCategory(articleModel.item.metadata)
+								subheading: articleModel.item.summary && articleModel.item.summary.excerpt,
+								lastUpdated: articleModel.item.lifecycle.lastPublishDateTime
 							};
+							var primaryTheme = articleModel.item.metadata.primaryTheme;
+							if (primaryTheme) {
+								articleViewModel.tag = primaryTheme.term;
+							}
+							var image = articleModel.item.images[0];
+							if (image) {
+								articleViewModel.image = {
+									url: image.url,
+									alt: "",
+									srcset: {
+										s: 100,
+										m: 200
+									}
+								};
+							}
+							return articleViewModel;
 						})
 						.slice(0, count);
 					return dedupedArticles.length ? {
-						articles: dedupedArticles,
+						articles: dedupedArticles.map(function (articleViewModel, index) {
+							if (index !== 0 && index !== 5) {
+								delete articleViewModel.image;
+							}
+							return articleViewModel;
+						}),
 						topic: topicModel
 					} : null;
 				})

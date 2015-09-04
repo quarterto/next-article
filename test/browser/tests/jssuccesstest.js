@@ -20,23 +20,25 @@ module.exports = {
 				}
 			)
 			.url('https://' + TEST_HOST + ARTICLE_PATH)
-			.waitForElementPresent("html.js.js-success", 10000)
-			.end();
+			.waitForElementPresent("html.js.js-success", 10000);
 	},
 
-	tearDown: function(callback) {
-		console.log("Sauce Test Results at https://saucelabs.com/tests/" + this.client.sessionId);
+	after: function(browser, done) {
+		console.log("Sauce Test Results at https://saucelabs.com/tests/" + browser.sessionId);
 		console.log('Updating Saucelabs...');
 		notifySaucelabs({
-			passed: this.results.failed === 0
+			passed: browser.currentTest.results.failed === 0 && browser.currentTest.results.errors === 0,
+			sessionId: browser.sessionId
 		})
 			.then(function() {
 				console.info('Finished updating Saucelabs.');
-				callback();
+				browser.end();
+				done();
 			})
 			.catch(function(err) {
 				console.error('An error has occurred');
-				callback(err);
+				browser.end();
+				done(err);
 			});
 	}
 
