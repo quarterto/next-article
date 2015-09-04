@@ -50,7 +50,7 @@ tidy:
 
 provision:
 	heroku apps:create ${TEST_APP} --region eu --org financial-times
-	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch" --no-splunk
+	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
 	make -j2 visual smoke
