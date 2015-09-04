@@ -7,6 +7,10 @@
 	{{#if dfp.dfpZone}}
 	<meta name="dfp_zone" content="{{dfp.dfpZone}}" />
 	{{/if}}
+
+	{{#if og.facebookAuthor }}
+		<meta property="article:author" content="{{og.facebookAuthor}}" />
+	{{/if}}
 {{/defineBlock}}
 
 <article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if article}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
