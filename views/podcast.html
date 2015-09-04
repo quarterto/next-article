@@ -1,0 +1,91 @@
+{{#defineBlock 'head'}}
+	<meta name="classification" content="{{{visualCat}}}" />
+	{{#if dfp.dfpSite}}
+	<meta name="dfp_site" content="{{dfp.dfpSite}}" />
+	{{/if}}
+	{{#if dfp.dfpZone}}
+	<meta name="dfp_zone" content="{{dfp.dfpZone}}" />
+	{{/if}}
+{{/defineBlock}}
+
+<article id="site-content" role="main" class="article" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if article}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
+	<div class="article__header" data-trackable="header">
+		<div class="article__leaderboard-advert"></div>
+		<div class="article__header-inner o-grid-row">
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+				<header>
+					<div class="article__header-primary">
+						<p class="article__primary-theme">
+							{{#with primaryTag}}
+							<a href="/stream/{{taxonomy}}Id/{{id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{name}}" data-concept-id="{{id}}">{{name}}</a>
+							{{/with}}
+						</p>
+						<h1 class="article__title">{{title}}</h1>
+					</div>
+					<div class="article__header-secondary">
+
+						<div class="article__header-time-byline">
+							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+								{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
+							</time>
+							<p class="article__byline">
+								{{{byline}}}
+							</p>
+						</div>
+						<div class="article__header-actions">
+						{{#if save}}
+							<div class="article__actions">
+								{{>next-myft-ui/templates/save-for-later contentId=id}}
+							</div>
+						{{/if}}
+						</div>
+
+					</div>
+				</header>
+			</div>
+			<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
+				<h3 class="article__tags__title">Topics mentioned in this article</h3>
+				<ul class="article__tags-list" data-trackable="tags">
+					{{#each tags}}
+						{{#with term}}
+						<li class="article__tag">
+							<a class="article__tag__link" href="/stream/{{taxonomy}}Id/{{id}}" data-trackable="tag" data-concept-id="{{id}}">{{name}}</a>
+						</li>
+						{{/with}}
+					{{/each}}
+				</ul>
+			</aside>
+		</div>
+	</div>
+	<div class="article__main o-grid-row">
+		<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+			<div class="article__body">
+				{{{body}}}
+			</div>
+			<div class="article__media">
+				{{#with media}}
+				<audio controls>
+					<source src="{{url}}" type="{{type}}" />
+				</audio>
+				{{/with}}
+			</div>
+		</div>
+		<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+			<div class="article__rail-advert"></div>
+		</div>
+	</div>
+</article>
+
+{{#if shareButtons}}
+	{{>share}}
+{{/if}}
+
+<div class="o-grid-row">
+	<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+		<div data-trackable="comments" class="article__comments o-comments" id="comments"></div>
+	</div>
+</div>
+
+{{#if myFTTray}}
+	{{>n-myft-tray/templates/tray}}
+{{/if}}

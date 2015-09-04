@@ -262,6 +262,7 @@ module.exports = function(req, res, next) {
 				});
 		})
 		.catch(function(err) {
+
 			if (fetchres.originatedError(err)) {
 				return api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet })
 						.then(function(data) {
