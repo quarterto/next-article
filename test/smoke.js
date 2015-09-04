@@ -68,7 +68,7 @@ module.exports = [
 				}
 			},
 			// unconditional blog
-			'/166b39cd-ad97-399d-9e84-402dcce5a1c0': {
+			'/1be403ef-db18-38ad-b693-38913f3a1c24': {
 				status: 200,
 				headers: {
 					'X-FT-Content-Classification': 'unconditional'
