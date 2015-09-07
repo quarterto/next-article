@@ -57,4 +57,4 @@ provision:
 
 smoke:
 	nbt test-urls ${TEST_APP};
-	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/*
+	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/* -e ie9,ie10,ie11,firefox40,chrome44,chrome45,iphone6_plus,Android_Nexus7HD

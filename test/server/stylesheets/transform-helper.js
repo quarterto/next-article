@@ -9,8 +9,7 @@ module.exports = function(xml, params) {
 		renderSlideshows: 0,
 		renderTOC: 0,
 		fullWidthMainImages: 0,
-		reserveSpaceForMasterImage: 1,
-		promoBoxNewStyling: 0
+		reserveSpaceForMasterImage: 1
 	};
 
 	var xsltParams = {};
