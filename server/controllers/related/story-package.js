@@ -42,7 +42,7 @@ module.exports = function(req, res, next) {
 				var articleModel = {
 					id: extractUuid(article.item.id),
 					headline: article.item.title.title,
-					subheading: article.item.summary.excerpt,
+					subheading: article.item.summary ? article.item.summary.excerpt : '',
 					lastUpdated: article.item.lifecycle.lastPublishDateTime
 				};
 				var primaryTheme = article.item.metadata.primaryTheme;
