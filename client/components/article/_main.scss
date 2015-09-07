@@ -301,8 +301,8 @@
 }
 .article__block-quote,
 .article__big-number {
-	color: $next-blue;
-	border-left-color: $next-blue;
+	color: getColor('cold-1');
+	border-left-color: getColor('warm-3');
 }
 .article__big-number {
 	width: 100%;
