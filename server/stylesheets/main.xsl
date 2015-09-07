@@ -30,7 +30,6 @@
     <xsl:include href="blockquotes.xsl" />
     <xsl:include href="external-image.xsl" />
     <xsl:include href="functions.xsl" />
-    <xsl:include href="image-combos.xsl" />
     <xsl:include href="interactive-graphics.xsl" />
     <xsl:include href="internal-image.xsl" />
     <xsl:include href="links.xsl" />
