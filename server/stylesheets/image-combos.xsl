@@ -28,7 +28,7 @@
     </xsl:template>
 
     <xsl:template match="big-number[preceding-sibling::*[1]/ft-content[@type='http://www.ft.com/ontology/content/ImageSet']]" mode="with-image">
-        <xsl:call-template name="big-number" />
+        <xsl:apply-templates select="big-number" />
     </xsl:template>
 
     <xsl:template match="big-number[preceding-sibling::*[1]/ft-content[@type='http://www.ft.com/ontology/content/ImageSet']]">
