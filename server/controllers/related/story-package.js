@@ -4,9 +4,9 @@ var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
-var getVisualCategory = require('ft-next-article-genre');
 
 module.exports = function(req, res, next) {
+	var isInline = req.query.view === 'inline';
 	api.contentLegacy({
 		uuid: req.params.id,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
@@ -42,10 +42,13 @@ module.exports = function(req, res, next) {
 				var articleModel = {
 					id: extractUuid(article.item.id),
 					headline: article.item.title.title,
-					lastUpdated: article.item.lifecycle.lastPublishDateTime,
-					visualCategory: getVisualCategory(article.item.metadata),
-					isBlock: true
+					subheading: article.item.summary.excerpt,
+					lastUpdated: article.item.lifecycle.lastPublishDateTime
 				};
+				var primaryTheme = article.item.metadata.primaryTheme;
+				if (primaryTheme) {
+					articleModel.tag = primaryTheme.term;
+				}
 				if (!article.item.images) {
 					return Promise.resolve(articleModel);
 				}
@@ -53,12 +56,16 @@ module.exports = function(req, res, next) {
 				article.item.images.forEach(function(img) {
 					images[img.type] = img;
 				});
-				articleModel.image = images['wide-format'] || images.article || images.primary;
-				if (articleModel.image) {
-					articleModel.image.srcset = {
-						default: 100
+				var image = images['wide-format'] || images.article || images.primary;
+				if (image && !isInline) {
+					articleModel.image = {
+						url: image.url,
+						alt: "",
+						srcset: {
+							s: 100,
+							m: 200
+						}
 					};
-					articleModel.image.class = 'story-package__image';
 				}
 				return(articleModel);
 			});
@@ -67,7 +74,8 @@ module.exports = function(req, res, next) {
 		.then(function(articles) {
 			res.render('related/story-package', {
 				articles: articles,
-				isInline: req.query.view === 'inline'
+				headerText: 'Related stories',
+				isInline: isInline
 			});
 		})
 		.catch(function(err) {

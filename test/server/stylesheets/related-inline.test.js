@@ -23,7 +23,7 @@ describe('Related Inline', function () {
 						'<p>1</p>' +
 						'<p>2</p>' +
 						'<p>3</p>' +
-						'<div class="js-more-on-inline" data-trackable="more-on-inline"></div>' +
+						'<div class="js-story-package-inline" data-trackable="more-on-inline"></div>' +
 						'<p>4</p>' +
 						'<p>5</p>' +
 						'<p>6</p>' +
