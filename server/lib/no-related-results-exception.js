@@ -1,9 +1,12 @@
 "use strict";
 
 function NoRelatedResultsException() {
-	this.name = "NoRelatedResultsException";
+	this.name = NoRelatedResultsException.NAME;
 }
 
-NoRelatedResultsException.NAME = "NoRelatedResultsException";
+Object.defineProperty(NoRelatedResultsException, 'NAME', {
+	writable:false,
+	value:'NoRelatedResultsException'
+});
 
 module.exports = NoRelatedResultsException;

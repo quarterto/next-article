@@ -4,6 +4,7 @@ var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 
+
 module.exports = function (req, res, next) {
 	var articleId = req.params.id;
 	api.contentLegacy({
