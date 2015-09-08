@@ -2,7 +2,7 @@
 
 function NoRelatedResultsException() {
 	this.name = "NoRelatedResultsException";
-};
+}
 
 NoRelatedResultsException.NAME = "NoRelatedResultsException";
 
