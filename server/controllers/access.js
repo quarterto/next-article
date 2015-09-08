@@ -1,5 +1,6 @@
 'use strict';
 
+var metrics = require('ft-next-express').metrics;
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var url	= require('url');
@@ -54,6 +55,7 @@ module.exports = function(req, res, next) {
 				.catch(suppressBadResponses)
 		])
 			.then(function(results) {
+				metrics.count('__debug.accessmiddleware.accessservice.start.count', 1);
 				var articleLegacy = results[0];
 				var article = results[1];
 				// if this article doesn't exist in capi, continue
@@ -80,7 +82,7 @@ module.exports = function(req, res, next) {
 				if (access) {
 					classification = access.classification;
 				}
-
+				metrics.count('__debug.accessmiddleware.accessservice.end.count', 1);
 				res.set('Outbound-Cache-Control', 'public, max-age=3600');
 				res.set('Surrogate-Control', 'max-age=3600');
 				res.vary('X-FT-UID');
@@ -88,8 +90,12 @@ module.exports = function(req, res, next) {
 				res.set('X-FT-Content-Classification', classification);
 				res.status(200).end();
 			})
-			.catch(next);
+			.catch(function() {
+				metrics.count('__debug.accessmiddleware.accessservice.error.count', 1);
+				next();
+			});
 	} else {
+		metrics.count('__debug.accessmiddleware.count', 1);
 		next();
 	}
 };
