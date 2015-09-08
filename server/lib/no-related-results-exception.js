@@ -1,3 +1,3 @@
 module.exports = function NoRelatedResultsException() {
-    this.name = "NoRelatedResultsException";
+	this.name = "NoRelatedResultsException";
 };
