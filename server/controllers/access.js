@@ -55,6 +55,7 @@ module.exports = function(req, res, next) {
 				.catch(suppressBadResponses)
 		])
 			.then(function(results) {
+				metrics.count('__debug.accessmiddleware.accessservice.start.count', 1);
 				var articleLegacy = results[0];
 				var article = results[1];
 				// if this article doesn't exist in capi, continue
@@ -81,7 +82,7 @@ module.exports = function(req, res, next) {
 				if (access) {
 					classification = access.classification;
 				}
-				metrics.count('__debug.accessmiddleware.accessservice.success.count', 1);
+				metrics.count('__debug.accessmiddleware.accessservice.end.count', 1);
 				res.set('Outbound-Cache-Control', 'public, max-age=3600');
 				res.set('Surrogate-Control', 'max-age=3600');
 				res.vary('X-FT-UID');
