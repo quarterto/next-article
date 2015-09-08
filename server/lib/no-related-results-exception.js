@@ -1,5 +1,9 @@
 "use strict";
 
-module.exports = function NoRelatedResultsException() {
+function NoRelatedResultsException() {
 	this.name = "NoRelatedResultsException";
 };
+
+NoRelatedResultsException.NAME = "NoRelatedResultsException";
+
+module.exports = NoRelatedResultsException;

@@ -150,7 +150,7 @@ module.exports = function (req, res, next) {
 			});
 		})
 		.catch(function(err) {
-			if(err instanceof NoRelatedResultsException) {
+			if(err.name === NoRelatedResultsException.NAME) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {
 				res.status(500).end();
