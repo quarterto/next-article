@@ -22,7 +22,6 @@ require('next-js-setup').bootstrap(function(result) {
 	var emailSignup = require('./components/email-signup/main');
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
-	var typogSwitcher = require('./components/typography-switcher/main');
 	var relatedToast = require('./components/related-toast/main');
 
 	prompts.init();
@@ -74,7 +73,6 @@ require('next-js-setup').bootstrap(function(result) {
 		expandedToggleText: 'Show less'
 	});
 	scrollDepth.init(flags);
-	typogSwitcher.init(flags);
 	relatedToast.init(flags);
 
 	window.addEventListener("load", function (event) {
