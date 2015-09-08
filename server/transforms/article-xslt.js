@@ -41,7 +41,7 @@ module.exports = function(xml, stylesheet, params) {
 		xsltproc.on('close', function(code) {
 			if (code !== 0) {
 				console.log.apply(console, errors);
-				return reject('xsltproc exited with code ' + code);
+				return reject('xsltproc exited with code ' + code + ': ' + errors);
 			}
 
 			resolve(output.join('').replace(/<\/?html>/g, ''));
