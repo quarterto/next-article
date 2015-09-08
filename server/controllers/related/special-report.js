@@ -2,6 +2,7 @@
 
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
+var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 
 module.exports = function (req, res, next) {
 	var articleId = req.params.id;
@@ -33,7 +34,7 @@ module.exports = function (req, res, next) {
 		})
 		.then(function (results) {
 			if (!results.length) {
-				throw new Error('No special report articles');
+				throw new NoRelatedResultsException();
 			}
 			var articles = results.map(function (result) {
 				return result.item;
@@ -49,11 +50,11 @@ module.exports = function (req, res, next) {
 				name: specialReport.name,
 				id: specialReport.id,
 				image: images['wide-format'] || images.article || images.primary,
-				articles: articles,
+				articles: articles
 			});
 		})
 		.catch(function (err) {
-			if (err.message === 'No special report') {
+			if (err instanceof NoRelatedResultsException) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {
 				res.status(500).end();
