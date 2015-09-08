@@ -1,9 +1,10 @@
 'use strict';
 
-var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
+var fetchres = require('fetchres');
 var cacheControl = require('../../utils/cache-control');
 var extractUuid = require('../../utils/extract-uuid');
+var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 
 module.exports = function(req, res, next) {
 	var isInline = req.query.view === 'inline';
@@ -14,7 +15,7 @@ module.exports = function(req, res, next) {
 		.then(function(article) {
 			res.set(cacheControl);
 			if (!article || !article.item || !article.item.package || article.item.package.length === 0) {
-				throw new Error('No related');
+				throw new NoRelatedResultsException();
 			}
 
 			var packagePromises = article.item.package.map(function(item) {
@@ -33,7 +34,7 @@ module.exports = function(req, res, next) {
 				return article;
 			});
 			if (!articles.length) {
-				throw new Error('No related');
+				throw new NoRelatedResultsException();
 			}
 			if (req.query.count) {
 				articles.splice(req.query.count);
@@ -79,7 +80,7 @@ module.exports = function(req, res, next) {
 			});
 		})
 		.catch(function(err) {
-			if (err.message === 'No related') {
+			if(err.name === NoRelatedResultsException.NAME) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {
 				res.status(500).end();

@@ -2,10 +2,11 @@
 
 var _ = require('lodash');
 require('array.prototype.find');
-var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
+var fetchres = require('fetchres');
 var splunkLogger = require('ft-next-splunk-logger')('next-article');
 var cacheControl = require('../../utils/cache-control');
+var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 
 module.exports = function (req, res, next) {
 	var topics = [];
@@ -63,7 +64,7 @@ module.exports = function (req, res, next) {
 				.filter(_.identity);
 
 			if (!moreOnPromises.length) {
-				throw new Error('No related');
+				throw new NoRelatedResultsException();
 			}
 
 			return Promise.all(moreOnPromises);
@@ -149,7 +150,7 @@ module.exports = function (req, res, next) {
 			});
 		})
 		.catch(function(err) {
-			if (err.message === 'No related') {
+			if(err.name === NoRelatedResultsException.NAME) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {
 				res.status(500).end();
