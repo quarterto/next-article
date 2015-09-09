@@ -12,15 +12,17 @@ require('./lib/blogs-access-poller').start();
 // COMPLEX: Put access middleware before barrier middleware so that access can be cached by membership
 app.use('^/:id(' + articleUuidRegex + ')$', require('./controllers/access'));
 
-app.use(barriers.middleware(express.metrics));
-
-app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
-app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
+// These routes supply supplement cotent for an article so don't need to go through barriers middle where
 app.get('^/article/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
 app.get('^/article/:id(' + articleUuidRegex + ')/more-on', require('./controllers/related/more-on'));
 app.get('^/article/:id(' + articleUuidRegex + ')/special-report', require('./controllers/related/special-report'));
-
 app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow'));
+
+// Use barriers middleware only before calling full article endpoints
+app.use(barriers.middleware(express.metrics));
+app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
+app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
+
 app.get('/__gtg', function(req, res) {
 	res.status(200).end();
 });
