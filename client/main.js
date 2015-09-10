@@ -19,7 +19,6 @@ require('next-js-setup').bootstrap(function(result) {
 	var toc = require('./components/toc/main');
 	var comments = require('./components/comments/main');
 	var share = require('./components/share/main');
-	var emailSignup = require('./components/email-signup/main');
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
 	var relatedToast = require('./components/related-toast/main');
@@ -36,11 +35,6 @@ require('next-js-setup').bootstrap(function(result) {
 
 	var uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
 	if (uuid) {
-		if (flags.get('userPreferencesAPI') && flags.get('myFTArticleEmailSignup')) {
-			document.addEventListener('myft.followed.load', function(ev) {
-				emailSignup.init();
-			});
-		}
 		readingHistory.add(uuid);
 	}
 
