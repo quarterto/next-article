@@ -34,7 +34,7 @@ module.exports = function () {
 				});
 				done();
 			});
-		})
+		});
 
 		it('should have concept ids on all follow buttons in moreons', function(done) {
 			helpers.mockMethode();
@@ -46,5 +46,5 @@ module.exports = function () {
 				done();
 			});
 		});
-	})
+	});
 };
