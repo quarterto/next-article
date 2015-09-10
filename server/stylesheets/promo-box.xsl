@@ -15,13 +15,17 @@
             <xsl:when test="$contentParagraphs > $expanderParaBreakPoint">
               <aside class="promo-box promo-box--long ng-pull-out ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">
                 <xsl:apply-templates select="current()" mode="default-title" />
-                <xsl:apply-templates />
+                <div class="promo-box__wrapper">
+                  <xsl:apply-templates />
+                </div>
               </aside>
             </xsl:when>
             <xsl:otherwise>
               <aside class="promo-box promo-box--long ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">
                 <xsl:apply-templates select="current()" mode="default-title" />
-                <xsl:apply-templates />
+                <div class="promo-box__wrapper">
+                  <xsl:apply-templates />
+                </div>
               </aside>
             </xsl:otherwise>
           </xsl:choose>
@@ -29,30 +33,35 @@
         <xsl:otherwise>
           <aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">
             <xsl:apply-templates select="current()" mode="default-title" />
-            <xsl:apply-templates />
+            <div class="promo-box__wrapper">
+              <xsl:apply-templates />
+            </div>
           </aside>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:template>
 
     <xsl:template match="promo-box" mode="default-title">
-      <xsl:if test="count(current()/promo-title) = 0">
-        <div class="promo-box__title__wrapper"><h3 class="promo-box__title">Related Content</h3></div>
-      </xsl:if>
-    </xsl:template>
-
-    <xsl:template match="promo-title">
-      <div class="promo-box__title__wrapper">
-        <h3 class="promo-box__title">
-          <xsl:apply-templates select="current()" mode="extract-content" />
-        </h3>
+      <div class="promo-box__title">
+        <h2 class="promo-box__title__name">
+          <xsl:choose>
+            <xsl:when test="count(current()/promo-title) = 0">
+              <xsl:text>Related Content</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="current()/promo-title" mode="extract-content" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </h2>
       </div>
     </xsl:template>
 
+    <xsl:template match="promo-title"/>
+
     <xsl:template match="promo-headline">
-      <h4 class="promo-box__headline">
+      <h2 class="promo-box__headline">
         <xsl:apply-templates select="current()" mode="extract-content" />
-      </h4>
+      </h2>
     </xsl:template>
 
     <xsl:template match="promo-headline | promo-title" mode="extract-content">
