@@ -166,7 +166,8 @@ module.exports = function(req, res, next) {
 									name: moreOnTag.name,
 									url: '/stream/' +  moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
 									taxonomy: moreOnTag.taxonomy,
-									metadata: moreOnTag.metadata
+									metadata: moreOnTag.metadata,
+									id: moreOnTag.id
 								};
 							});
 						// add 'small' class if just one
