@@ -31,6 +31,8 @@ module.exports = function () {
 				$(body).find('.n-myft-ui--follow').each(function(index, el) {
 					var $form = $(el);
 					expect($form.attr('data-concept-id')).to.not.be.empty;
+					expect($form.find('input[name="name"]').attr('value')).to.not.be.empty;
+					expect($form.find('input[name="taxonomy"]').attr('value')).to.not.be.empty;
 				});
 				done();
 			});
@@ -42,6 +44,8 @@ module.exports = function () {
 				$(body).find('.n-myft-ui--follow').each(function(index, el) {
 					var $form = $(el);
 					expect($form.attr('data-concept-id')).to.not.be.empty;
+					expect($form.find('input[name="name"]').attr('value')).to.not.be.empty;
+					expect($form.find('input[name="taxonomy"]').attr('value')).to.not.be.empty;
 				});
 				done();
 			});
