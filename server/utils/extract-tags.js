@@ -48,6 +48,7 @@ module.exports = function (article, articleV1, flags, primaryTag) {
 				return {
 					name: tag.term.name,
 					id: tag.term.id,
+					taxonomy: tag.term.taxonomy,
 					url: '/stream/' + tag.term.taxonomy + 'Id/' + tag.term.id
 				};
 			})
