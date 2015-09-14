@@ -1,0 +1,466 @@
+{
+  "requestUrl": "http://api.ft.com/content/items/v1/ae7fb5a2-52f4-11e5-8642-453585f2cfcd?feature.blogposts=on&h=6464909518",
+  "item": {
+    "aspectSet": "article",
+    "aspects": [
+      "assets",
+      "body",
+      "editorial",
+      "images",
+      "lifecycle",
+      "location",
+      "master",
+      "mediaAssets",
+      "metadata",
+      "package",
+      "packaging",
+      "provenance",
+      "summary",
+      "title"
+    ],
+    "modelVersion": "1",
+    "id": "ae7fb5a2-52f4-11e5-8642-453585f2cfcd",
+    "apiUrl": "http://api.ft.com/content/items/v1/ae7fb5a2-52f4-11e5-8642-453585f2cfcd",
+    "title": {
+      "title": "Greece, democracy and the labour of Hercules"
+    },
+    "body": {
+      "mediaType": "text/html",
+      "body": "<p><a title=\"Greece politics related stories - FT.com\" href=\"http://www.ft.com/topics/themes/Greece_Politics\">Greece</a>, the eurozone’s inveterately delinquent pupil, is top of the class when it comes to consulting the will of the people. The parliamentary election scheduled for September 20 will mark the fifth time since October 2009 that voters have been asked to choose a new government. Include July’s referendum on what emerged as <a title=\"Greece Debt Crisis in-depth - FT.com\" href=\"http://www.ft.com/indepth/greece-debt-crisis\">Greece’s third emergency financial rescue</a>, and that makes six nationwide exercises in democracy in as many years. No country in the world matches this record.</p>\n<p>Greece’s European creditors are putting a brave face on the election, suggesting that it will produce a clear mandate for the next government to carry out the reforms demanded for the €86bn bailout. Back in the real world, matters look rather different. The election campaign paints a picture of a nation pulverised by economic distress and mistrustful both of the incompetent political elites that created Greece’s disaster and of the tattered radical alternative represented by Syriza, the leftist party led by <a title=\"Alexis through the looking-glass world of Greek politics - FT.com\" href=\"http://www.ft.com/cms/s/0/6e5d6d4e-5226-11e5-8642-453585f2cfcd.html#axzz3kx7iKnMp\">Alexis Tsipras</a>, the former premier.</p>\n<p>Voters have every right to be suspicious. In Mr Tsipras they see a leader who swept to power in January promising to end austerity and slash foreign supervision of Greek economic policy. He asked them to reaffirm this stance in the referendum and won an emphatic victory. Then he performed a stupefying somersault and signed up to exactly the type of aid-for-reform programme that he had denounced so passionately on his path to power.</p>\n<p>It is unsurprising that many Greeks, especially young voters, are losing faith in a politician who asks them to support policies that are the polar opposite of what he stood for eight months ago. Moreover, thoughtful voters appreciate that the Syriza government’s irresponsible conduct resulted in bailout terms more onerous than Mr Tsipras would have secured had he negotiated in better faith with the creditors, and in the imposition of capital controls that cripple the Greek economy. </p>\n<p>As for New Democracy, the conservative party that is the only serious challenger to Syriza, it acts and sounds like a political force still exhausted after its two-and-a-half year spell in power between June 2012 and January this year. The party has yet to complete the renewal of its leadership made necessary by the resignation in July of Antonis Samaras, former prime minister. To its surprise, New Democracy may find itself propelled into government at just the moment when it might have preferred Mr Tsipras and his fellow leftists to shoulder the burden of implementing another politically contentious, foreign-dictated reform plan.</p>\n<p>It appears certain that the winner of the Greek election, be it Syriza or New Democracy, will fall short of an outright parliamentary majority and will therefore need to govern with at least one coalition partner. Whether such an outcome will yield a government stable, skilled and confident enough to satisfy the conditions set by Greece’s European creditors remains to be seen. </p>\n<p>All Greek governments since 2009 — centre-left, technocratic, centre-right and radical leftist — have struggled to root out corruption, modernise the public administration and loosen the grip of oligarchs on the economy.</p>\n<p>It will be a labour of Hercules but the next government must make an effort. For one thing, this will persuade the creditors to grant timely, substantial debt relief, essential for long-term economic recovery. For another, the latest bailout will surely be Greece’s last. Two months ago, the threat of being dumped out of the eurozone loomed as a real possibility. Next time, in the absence of a sincere reform effort, this threat will be deadly serious.</p>\n"
+    },
+    "lifecycle": {
+      "initialPublishDateTime": "2015-09-06T14:40:10Z",
+      "lastPublishDateTime": "2015-09-06T14:40:10Z"
+    },
+    "location": {
+      "uri": "http://www.ft.com/cms/s/0/ae7fb5a2-52f4-11e5-8642-453585f2cfcd.html"
+    },
+    "summary": {
+      "excerpt": "Elections are fine but what matters is a sincere reform effort"
+    },
+    "packaging": {
+      "spHeadline": "Greece, democracy and labours of Hercules"
+    },
+    "master": {
+      "masterSource": "Methode",
+      "masterEntityId": "ae7fb5a2-52f4-11e5-8642-453585f2cfcd"
+    },
+    "editorial": {
+      "otherTitles": [
+        "Greece, democracy and labours of Hercules"
+      ],
+      "subheading": "Elections are fine but what matters is a sincere reform effort",
+      "standFirst": "Elections are fine but what matters is a sincere reform effort"
+    },
+    "provenance": {
+      "originatingParty": "FT"
+    },
+    "metadata": {
+      "primarySection": {
+        "term": {
+          "name": "FT View",
+          "id": "MDRkMzU4YjktMjA0OS00MWEzLWJiY2ItYmJkZWNhMmVmMzQ0-QnJhbmRz",
+          "attributes": [],
+          "taxonomy": "brand"
+        }
+      },
+      "primaryTheme": {
+        "term": {
+          "name": "Greece Politics",
+          "id": "MTJmY2U0ZTQtZDU5Ni00ZGY0LTg5NGItMTJjMTkwM2ZkZWJj-VG9waWNz",
+          "attributes": [],
+          "taxonomy": "topics"
+        }
+      },
+      "tags": [
+        {
+          "term": {
+            "name": "Greece Politics",
+            "attributes": [],
+            "id": "MTJmY2U0ZTQtZDU5Ni00ZGY0LTg5NGItMTJjMTkwM2ZkZWJj-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "FT View",
+            "attributes": [],
+            "id": "MDRkMzU4YjktMjA0OS00MWEzLWJiY2ItYmJkZWNhMmVmMzQ0-QnJhbmRz",
+            "taxonomy": "brand"
+          }
+        },
+        {
+          "term": {
+            "name": "Comment",
+            "attributes": [],
+            "id": "OA==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        },
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        },
+        {
+          "term": {
+            "name": "11003000 - election",
+            "attributes": [],
+            "id": "MTEwMDMwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006009 - ministers (government)",
+            "attributes": [],
+            "id": "MTEwMDYwMDk=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11010000 - parties and movements",
+            "attributes": [],
+            "id": "MTEwMTAwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "Syriza",
+            "attributes": [
+              {
+                "value": "false",
+                "key": "is_company"
+              }
+            ],
+            "id": "ZjczODAyMzItMzdiNy00N2NlLThjNWQtODNjNDAzNTdmNmQ2-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Antonis Samaras",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX1BvbGl0aWNpYW5zXzIwMDlfMTBfMl80ODkyNw==-UE4=",
+            "taxonomy": "people"
+          }
+        },
+        {
+          "term": {
+            "name": "Alexis Tsipras",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX1BvbGl0aWNpYW5zXzIwMDlfMTBfMl81NTEzNA==-UE4=",
+            "taxonomy": "people"
+          }
+        },
+        {
+          "term": {
+            "name": "Greece",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0dS-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "Opinion",
+            "attributes": [
+              {
+                "value": "opinion",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "MTE2-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Politics",
+            "attributes": [],
+            "id": "MTAx-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Political Parties",
+            "attributes": [],
+            "id": "MTAy-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "General News",
+            "attributes": [],
+            "id": "MTE4-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Comment & Analysis",
+            "attributes": [],
+            "id": "MTIz-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Elections",
+            "attributes": [],
+            "id": "OTA=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Greece Debt Crisis",
+            "attributes": [],
+            "id": "ZmEzMmRmNDAtNDc0Zi00ODk3LWE2ZmQtZWFmYzJlZTRjZTVk-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        }
+      ],
+      "authors": [],
+      "brand": [
+        {
+          "term": {
+            "name": "FT View",
+            "attributes": [],
+            "id": "MDRkMzU4YjktMjA0OS00MWEzLWJiY2ItYmJkZWNhMmVmMzQ0-QnJhbmRz",
+            "taxonomy": "brand"
+          }
+        }
+      ],
+      "genre": [
+        {
+          "term": {
+            "name": "Comment",
+            "attributes": [],
+            "id": "OA==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        }
+      ],
+      "icb": [],
+      "iptc": [
+        {
+          "term": {
+            "name": "11003000 - election",
+            "attributes": [],
+            "id": "MTEwMDMwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006009 - ministers (government)",
+            "attributes": [],
+            "id": "MTEwMDYwMDk=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11010000 - parties and movements",
+            "attributes": [],
+            "id": "MTEwMTAwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        }
+      ],
+      "mediaType": [
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        }
+      ],
+      "organisations": [
+        {
+          "term": {
+            "name": "Syriza",
+            "attributes": [
+              {
+                "value": "false",
+                "key": "is_company"
+              }
+            ],
+            "id": "ZjczODAyMzItMzdiNy00N2NlLThjNWQtODNjNDAzNTdmNmQ2-T04=",
+            "taxonomy": "organisations"
+          }
+        }
+      ],
+      "people": [
+        {
+          "term": {
+            "name": "Antonis Samaras",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX1BvbGl0aWNpYW5zXzIwMDlfMTBfMl80ODkyNw==-UE4=",
+            "taxonomy": "people"
+          }
+        },
+        {
+          "term": {
+            "name": "Alexis Tsipras",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX1BvbGl0aWNpYW5zXzIwMDlfMTBfMl81NTEzNA==-UE4=",
+            "taxonomy": "people"
+          }
+        }
+      ],
+      "regions": [
+        {
+          "term": {
+            "name": "Greece",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0dS-R0w=",
+            "taxonomy": "regions"
+          }
+        }
+      ],
+      "sections": [
+        {
+          "term": {
+            "name": "Opinion",
+            "attributes": [
+              {
+                "value": "opinion",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "MTE2-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        }
+      ],
+      "specialReports": [],
+      "subjects": [
+        {
+          "term": {
+            "name": "Politics",
+            "attributes": [],
+            "id": "MTAx-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Political Parties",
+            "attributes": [],
+            "id": "MTAy-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "General News",
+            "attributes": [],
+            "id": "MTE4-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Comment & Analysis",
+            "attributes": [],
+            "id": "MTIz-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Elections",
+            "attributes": [],
+            "id": "OTA=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        }
+      ],
+      "topics": [
+        {
+          "term": {
+            "name": "Greece Politics",
+            "attributes": [],
+            "id": "MTJmY2U0ZTQtZDU5Ni00ZGY0LTg5NGItMTJjMTkwM2ZkZWJj-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "Greece Debt Crisis",
+            "attributes": [],
+            "id": "ZmEzMmRmNDAtNDc0Zi00ODk3LWE2ZmQtZWFmYzJlZTRjZTVk-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        }
+      ]
+    },
+    "images": [
+      {
+        "alt": "Snap elections in Greece...epa04903313 Outgoing Greek Prime Minister and leader of SYRIZA party Alexis Tsipras delivers his speech during a nationwide meeting of his party in Athens, Greece, 29 August 2015. Elections will be held on 20 September 2015. EPA/YANNIS KOLESIDIS",
+        "width": 272,
+        "caption": "Alexis Tsipras",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "primary",
+        "url": "http://im.ft-static.com/content/images/de48ab99-d555-4e13-91c8-516a75cdd0e6.img",
+        "height": 153
+      },
+      {
+        "alt": "Snap elections in Greece...epa04903313 Outgoing Greek Prime Minister and leader of SYRIZA party Alexis Tsipras delivers his speech during a nationwide meeting of his party in Athens, Greece, 29 August 2015. Elections will be held on 20 September 2015. EPA/YANNIS KOLESIDIS",
+        "width": 167,
+        "caption": "Alexis Tsipras",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "secondary",
+        "url": "http://im.ft-static.com/content/images/b7c21a29-393a-42c1-9a4f-fce195f4cedd.img",
+        "height": 94
+      },
+      {
+        "alt": "Snap elections in Greece...epa04903313 Outgoing Greek Prime Minister and leader of SYRIZA party Alexis Tsipras delivers his speech during a nationwide meeting of his party in Athens, Greece, 29 August 2015. Elections will be held on 20 September 2015. EPA/YANNIS KOLESIDIS",
+        "width": 600,
+        "caption": "Alexis Tsipras",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "article",
+        "url": "http://im.ft-static.com/content/images/ef0a3525-c338-4b4a-b1f8-c82e4050c8ad.img",
+        "height": 338
+      },
+      {
+        "alt": "Snap elections in Greece...epa04903313 Outgoing Greek Prime Minister and leader of SYRIZA party Alexis Tsipras delivers his speech during a nationwide meeting of his party in Athens, Greece, 29 August 2015. Elections will be held on 20 September 2015. EPA/YANNIS KOLESIDIS",
+        "width": 414,
+        "caption": "Alexis Tsipras",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "leader",
+        "url": "http://im.ft-static.com/content/images/c007b0d7-7942-45a0-9d77-35f5bf5a6f54.img",
+        "height": 233
+      },
+      {
+        "alt": "Snap elections in Greece...epa04903313 Outgoing Greek Prime Minister and leader of SYRIZA party Alexis Tsipras delivers his speech during a nationwide meeting of his party in Athens, Greece, 29 August 2015. Elections will be held on 20 September 2015. EPA/YANNIS KOLESIDIS",
+        "width": 972,
+        "caption": "Alexis Tsipras",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "wide-format",
+        "url": "http://im.ft-static.com/content/images/6a972f19-355a-4a96-8b11-66479c636a8b.img",
+        "height": 547
+      }
+    ],
+    "package": [],
+    "assets": [],
+    "mediaAssets": []
+  },
+  "_lastUpdatedDateTime": "2015-09-07T17:57:23.797Z"
+}

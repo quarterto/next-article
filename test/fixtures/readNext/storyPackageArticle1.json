@@ -1,0 +1,986 @@
+{
+  "requestUrl": "http://api.ft.com/content/items/v1/9a2b7608-5746-11e5-9846-de406ccb37f2?feature.blogposts=on&h=9402714334",
+  "item": {
+    "aspectSet": "article",
+    "aspects": [
+      "assets",
+      "body",
+      "editorial",
+      "images",
+      "lifecycle",
+      "location",
+      "master",
+      "mediaAssets",
+      "metadata",
+      "package",
+      "packaging",
+      "provenance",
+      "summary",
+      "title"
+    ],
+    "modelVersion": "1",
+    "id": "9a2b7608-5746-11e5-9846-de406ccb37f2",
+    "apiUrl": "http://api.ft.com/content/items/v1/9a2b7608-5746-11e5-9846-de406ccb37f2",
+    "title": {
+      "title": "T-Mobile takes on Apple with iPhone upgrade plan"
+    },
+    "body": {
+      "mediaType": "text/html",
+      "body": "<aside data-asset-type=\"slideshow\" data-asset-name=\"asset1\"></aside><p>\n</p>\n<p>T-Mobile US has unveiled a generous deal that will allow customers to lease the latest iPhone for as little as $20 a month, in a move designed to head off the competitive threat of a new upgrade plan from Apple. </p>\n<p>The iPhone maker on Wednesday <a title=\"Apple TV and iPad revamp with new iPhone 6S - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/33012b18-5713-11e5-9846-de406ccb37f2.html#axzz3lBpzxejN\">announced</a> its first ever upgrade plan, which will let customers trade up to the latest model of its smartphone every year, in a move that threatens to disrupt the relationship between wireless carriers and their subscribers. </p>\n<p>For a monthly fee starting at $32.41 for an entry-level iPhone 6S, customers will receive an unlocked handset every year which they can use with a carrier of their choice. The price equates to the full, unsubsidised cost of a new iPhone split over 24 months, including AppleCare+, which offers technical support and insurance against some accidental damage. </p>\n<p>Customers will only receive a new handset if they give Apple back their year-old device and renew the two-year financing plan at the same time. The financing will be provided by Citizens One Personal Loans.</p>\n<p>As part of a fightback, T-Mobile said on Thursday that consumers would be able to pre-order the same iPhone model for $20 a month through its Jump! On Demand leasing plan, which lets customers upgrade their phone up to three times a year.</p>\n<p>Even factoring in the cost of insurance and technical support, the deal is significantly cheaper than the Apple plan. After 18 months, the customer will either be able to hand back the phone in exchange for an upgrade or pay a final instalment of $164 to keep it. </p>\n<p>That would bring the total cost of the iPhone 6S to $524 — a saving of $125 on Apple’s price — and shows the degree to which T-Mobile is willing to subsidise the handset to maintain its blistering growth rate. </p>\n<p>British carrier O2 said it would also offer an iPhone 6S bundled with free insurance, and that customers on one of its tariffs would be able to upgrade to a new handset after 12 months without charge. It will announce prices on Friday. <br/>\n</p>\n<p>Apple’s new leasing plan is designed to boost the proportion of customers upgrading their phones during each cycle. </p>\n<p>Analysts at Morgan Stanley estimated the program would boost iPhone shipments by 6.5m units in 2017, increasing to 24m units if the scheme is rolled out globally. This projection is based on the assumption that 10 per cent of iPhone purchasers will opt for the plan. </p>\n<p>But the decision by carriers to start selling most phones on a two-year instalment plan could dampen demand when Apple launches a new iPhone because consumers are “tied in” to their existing contract. </p>\n<aside data-asset-type=\"video\" data-asset-name=\"asset2\"></aside>\n\n<p>Apple’s new upgrade plan represents something of a double-edged sword for US carriers, which do not make a profit from selling phones.</p>\n<p>“Carriers aren’t in the phone-selling business — they don’t make any money from it, and there is in fact a cost associated with managing inventory, and taking reserves against bad debts in case they can’t collect payments,” said Jonathan Chaplin, an analyst at New Street Research. </p>\n<aside data-asset-type=\"pullQuote\" data-asset-name=\"asset3\"></aside><p>\n</p>\n<p>Craig Moffett, an analyst at MoffettNathanson, added: “Selling handsets is a cost centre for carriers, not a profit centre, so offloading the bad debt and financing burden isn’t all bad.”</p>\n<p>However, Apple’s plan could weaken the ties between telecoms groups such as Verizon and AT&amp;T and their customers, turning them into groups providers of wireless access but taking away the opportunity to sell higher margin products and services. </p>\n<p>“Apple would love to commoditise the carriers and be the source of the entire relationship,” said Mr Chaplin.</p>\n<p>But analysts said it would be wrong to interpret Apple’s move as a declaration on the telecoms sector, which is still by far its biggest customer. Nonetheless, any move by the technology company to reinterpret the relationship between carriers and their customers would probably be viewed with suspicion by the industry. </p>\n<p>The impact of the Apple program is likely to be exacerbated by a recent shift in the business models of wireless carriers, which are ditching traditional service contracts that tie in customers for up to two years in favour of rolling agreements that can be cancelled at any time.</p>\n<aside data-asset-type=\"pullQuote\" data-asset-name=\"asset4\"></aside><p>\n</p>\n<p>Under these new agreements, carriers sell phones to customers separately, in most cases through a financing program known as an equipment instalment plan or EIP, which typically recoups the cost of the handset over two years. </p>\n<p>Increasingly, it is this contract that discourages customers from switching to a rival carrier: if they decide to leave, they have to pay off the full cost of the handset at a price that is often prohibitively expensive. </p>\n<p>However, if a customer were to lease their phone directly from Apple, they would be able to switch carriers more easily. That scenario would likely to benefit the smallest networks, T-Mobile US and Sprint, which have made a <a title=\"T-Mobile in the pink as it hurts rivals - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/7cc41b5a-edfc-11e4-987e-00144feab7de.html#axzz3lFUHIHjN\">concerted effort </a>to win new subscribers with steep price cuts. </p>\n<p>Whether customers sign up to Apple’s upgrade scheme in large numbers depends on the prices and plans that wireless carriers unveil for the new iPhones in the coming days, analysts said.</p>\n<p>Sprint already offers a leasing plan similar to Apple’s for $22 a month with a pledge to upgrade a customer whenever a new iPhone is launched, while T-Mobile offers a $25 a month plan that lets subscribers upgrade their <a title=\"T-Mobile in fresh assault on US mobile market - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/36f95aac-1b53-11e5-8201-cbdb03d71480.html#axzz3lFUHIHjN\">handset </a>up to three times a year. </p>\n<p>The iPhone upgrade scheme could encourage Verizon and AT&amp;T to follow Sprint and T-Mobile — and Apple — by offering their own leasing plans. </p>\n<p>Michael Rollins, an analyst at Citi, said: “We see the move by Apple as a further affirmation that carriers will probably move to 100 per cent device financing and leasing over the next few years.”</p>"
+    },
+    "lifecycle": {
+      "initialPublishDateTime": "2015-09-10T01:00:50Z",
+      "lastPublishDateTime": "2015-09-10T17:18:07Z"
+    },
+    "location": {
+      "uri": "http://www.ft.com/cms/s/0/9a2b7608-5746-11e5-9846-de406ccb37f2.html"
+    },
+    "summary": {
+      "excerpt": "New leasing option to upgrade handsets designed to head off competitive threat from tech group"
+    },
+    "packaging": {
+      "spHeadline": "T-Mobile takes on Apple with iPhone plan"
+    },
+    "master": {
+      "masterSource": "Methode",
+      "masterEntityId": "9a2b7608-5746-11e5-9846-de406ccb37f2"
+    },
+    "editorial": {
+      "subheading": "Leasing option aimed at heading off competitive threat",
+      "standFirst": "New leasing option to upgrade handsets designed to head off competitive threat from tech group",
+      "byline": "David Crow in New York and Tim Bradshaw in San Francisco",
+      "otherTitles": [
+        "T-Mobile takes on Apple with iPhone plan"
+      ]
+    },
+    "provenance": {
+      "originatingParty": "FT"
+    },
+    "metadata": {
+      "primarySection": {
+        "term": {
+          "name": "Telecoms",
+          "id": "NTY=-U2VjdGlvbnM=",
+          "attributes": [
+            {
+              "value": "companies",
+              "key": "dfpSite"
+            },
+            {
+              "value": "telecoms",
+              "key": "dfpZone"
+            }
+          ],
+          "taxonomy": "sections"
+        }
+      },
+      "primaryTheme": {
+        "term": {
+          "name": "Apple Inc",
+          "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+          "attributes": [
+            {
+              "value": "us:AAPL",
+              "key": "wsod_key"
+            },
+            {
+              "value": "true",
+              "key": "is_company"
+            }
+          ],
+          "taxonomy": "organisations"
+        }
+      },
+      "tags": [
+        {
+          "term": {
+            "name": "Apple Inc",
+            "attributes": [
+              {
+                "value": "us:AAPL",
+                "key": "wsod_key"
+              },
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Telecoms",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              },
+              {
+                "value": "telecoms",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "NTY=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "News",
+            "attributes": [],
+            "id": "Nw==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        },
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        },
+        {
+          "term": {
+            "name": "David Crow",
+            "attributes": [],
+            "id": "NGJkMGI5NTUtOThiMC00MjU0LWI3ZGEtNzBmMWFjODRjYTZm-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "Tim Bradshaw",
+            "attributes": [],
+            "id": "Q0ItMDAwMDY4OA==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "04003007 - telecommunication service",
+            "attributes": [],
+            "id": "MDQwMDMwMDc=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04003009 - wireless technology",
+            "attributes": [],
+            "id": "MDQwMDMwMDk=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04008017 - prices",
+            "attributes": [],
+            "id": "MDQwMDgwMTc=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04016055 - consumers",
+            "attributes": [],
+            "id": "MDQwMTYwNTU=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "T-Mobile USA Inc",
+            "attributes": [
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "OGI2MjhjNjYtMDNmOS00NDI5LWFjZDYtOTZkNzE4Zjc5ZGJj-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "AT&T Inc",
+            "attributes": [
+              {
+                "value": "us:T",
+                "key": "wsod_key"
+              },
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X1Q=-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Verizon Communications Inc",
+            "attributes": [
+              {
+                "value": "us:VZ",
+                "key": "wsod_key"
+              },
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X1Za-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Sprint Corp",
+            "attributes": [
+              {
+                "value": "false",
+                "key": "is_company"
+              }
+            ],
+            "id": "ZWY1ZDNkZDYtYWVjNi00ZTFkLTk2OWYtZGUzYmIwNDI3NzEw-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "United States of America",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX1VT-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "Companies",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "Mjk=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Technology",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              },
+              {
+                "value": "technology",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "NTM=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Companies By Region",
+            "attributes": [],
+            "id": "NjI=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "US & Canadian Companies",
+            "attributes": [],
+            "id": "NjU=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        }
+      ],
+      "authors": [
+        {
+          "term": {
+            "name": "David Crow",
+            "attributes": [],
+            "id": "NGJkMGI5NTUtOThiMC00MjU0LWI3ZGEtNzBmMWFjODRjYTZm-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "Tim Bradshaw",
+            "attributes": [],
+            "id": "Q0ItMDAwMDY4OA==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        }
+      ],
+      "brand": [],
+      "genre": [
+        {
+          "term": {
+            "name": "News",
+            "attributes": [],
+            "id": "Nw==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        }
+      ],
+      "icb": [],
+      "iptc": [
+        {
+          "term": {
+            "name": "04003007 - telecommunication service",
+            "attributes": [],
+            "id": "MDQwMDMwMDc=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04003009 - wireless technology",
+            "attributes": [],
+            "id": "MDQwMDMwMDk=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04008017 - prices",
+            "attributes": [],
+            "id": "MDQwMDgwMTc=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04016055 - consumers",
+            "attributes": [],
+            "id": "MDQwMTYwNTU=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        }
+      ],
+      "mediaType": [
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        }
+      ],
+      "organisations": [
+        {
+          "term": {
+            "name": "T-Mobile USA Inc",
+            "attributes": [
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "OGI2MjhjNjYtMDNmOS00NDI5LWFjZDYtOTZkNzE4Zjc5ZGJj-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Apple Inc",
+            "attributes": [
+              {
+                "value": "us:AAPL",
+                "key": "wsod_key"
+              },
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "AT&T Inc",
+            "attributes": [
+              {
+                "value": "us:T",
+                "key": "wsod_key"
+              },
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X1Q=-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Verizon Communications Inc",
+            "attributes": [
+              {
+                "value": "us:VZ",
+                "key": "wsod_key"
+              },
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X1Za-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Sprint Corp",
+            "attributes": [
+              {
+                "value": "false",
+                "key": "is_company"
+              }
+            ],
+            "id": "ZWY1ZDNkZDYtYWVjNi00ZTFkLTk2OWYtZGUzYmIwNDI3NzEw-T04=",
+            "taxonomy": "organisations"
+          }
+        }
+      ],
+      "people": [],
+      "regions": [
+        {
+          "term": {
+            "name": "United States of America",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX1VT-R0w=",
+            "taxonomy": "regions"
+          }
+        }
+      ],
+      "sections": [
+        {
+          "term": {
+            "name": "Companies",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "Mjk=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Technology",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              },
+              {
+                "value": "technology",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "NTM=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Telecoms",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              },
+              {
+                "value": "telecoms",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "NTY=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Companies By Region",
+            "attributes": [],
+            "id": "NjI=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "US & Canadian Companies",
+            "attributes": [],
+            "id": "NjU=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        }
+      ],
+      "specialReports": [],
+      "subjects": [],
+      "topics": []
+    },
+    "images": [
+      {
+        "width": 272,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "primary",
+        "url": "http://im.ft-static.com/content/images/9f797ffd-b2f3-49bb-933b-c299faac7846.img",
+        "height": 153
+      },
+      {
+        "width": 167,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "secondary",
+        "url": "http://im.ft-static.com/content/images/5338582c-f78b-493a-88c6-f96bbf1ae84e.img",
+        "height": 94
+      },
+      {
+        "width": 600,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "article",
+        "url": "http://im.ft-static.com/content/images/a7c4ca26-12bc-4da8-a45e-ac51dd58bcd8.img",
+        "height": 338
+      },
+      {
+        "width": 414,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "leader",
+        "url": "http://im.ft-static.com/content/images/41d96c22-64c7-4d42-ba5f-4980f9298962.img",
+        "height": 233
+      },
+      {
+        "width": 972,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "wide-format",
+        "url": "http://im.ft-static.com/content/images/c28954e5-5057-41a7-aeab-2e77a0af78d1.img",
+        "height": 547
+      },
+      {
+        "width": 150,
+        "mediaType": "image/jpeg",
+        "type": "inline",
+        "url": "http://im.ft-static.com/content/images/91b39ae8-ccff-11e1-92c1-00144feabdc0.img",
+        "height": 100
+      }
+    ],
+    "package": [
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/1438c26a-57d4-11e5-97e9-7f0bf5e7177b",
+        "packaging": {
+          "spHeadline": "Apple TV wants viewers to change channel"
+        },
+        "id": "1438c26a-57d4-11e5-97e9-7f0bf5e7177b"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/beee7cdc-576f-11e5-a28b-50226830d644",
+        "packaging": {
+          "spHeadline": "Apple — carried away",
+          "kicker": "Comment"
+        },
+        "id": "beee7cdc-576f-11e5-a28b-50226830d644"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/33012b18-5713-11e5-9846-de406ccb37f2",
+        "packaging": {
+          "spHeadline": "Apple TV and iPad revamp with iPhone 6S"
+        },
+        "id": "33012b18-5713-11e5-9846-de406ccb37f2"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/44022e2a-541e-3fff-9f6f-bd56d72330ff",
+        "packaging": {
+          "spHeadline": "new iPhone 6S and Apple TV launch",
+          "kicker": "As it happened"
+        },
+        "id": "44022e2a-541e-3fff-9f6f-bd56d72330ff"
+      }
+    ],
+    "assets": [
+      {
+        "name": "asset1",
+        "type": "slideshow",
+        "fields": {
+          "slides": [
+            {
+              "slideNumber": 1,
+              "width": 972,
+              "caption": "Phil Schiller, Apple’s marketing boss, shows off the new ‘rose gold’ finish on the updated iPhone 6S. Updates include a new camera, faster fingerprint reader and accelerated processor",
+              "mediaType": "image/jpeg",
+              "source": "Bloomberg",
+              "url": "http://im.ft-static.com/content/images/c28954e5-5057-41a7-aeab-2e77a0af78d1.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 2,
+              "width": 972,
+              "caption": "The Bill Graham Civic Auditorium in San Francisco, where Apple on Wednesday unveiled an updated iPhone 6S, an Apple TV overhaul, new Watch features and a supersized iPad Pro",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/4f298e73-d148-4813-adfc-94d11aba9517.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 3,
+              "width": 972,
+              "caption": "Apple employees outside the auditorium to hear chief executive Tim Cook and colleagues unveil the latest from Apple. ‘We are about to make some monster announcements,’ he promised",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/e54650c1-0cb0-4b96-8315-23018f83822a.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 4,
+              "width": 972,
+              "caption": "‘How do you follow a success like this? I’ve got that question a few times,’ Tim Cook said. ‘No product is more about innovation than the iPhone’",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/82b753b9-33fc-430b-b6ab-2366f54150a4.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 5,
+              "width": 972,
+              "caption": "Hardware improvements mean the iPhone can better distinguish the amount of pressure to the screen to create new shortcuts, such as ‘peeking’ into emails and jumping to a selfie camera",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/58ea6a25-2ebe-46c0-afcd-2b4dbc1f37c7.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 6,
+              "width": 972,
+              "caption": "Some of Apple’s biggest changes were for the iPad, which has seen sales decline in the past two years. The iPad Pro has a bigger, 12.9in screen",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/ba0b8e27-5341-471d-88de-a27a5ce9683b.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 7,
+              "width": 972,
+              "caption": "Falling iPad revenues prompted a rethink for the device’s capabilities — it was ‘a piece of glass that transforms into anything you want it to be,’ said Tim Cook",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/7f85f951-1a70-4aaa-b5c1-4ff53b302532.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 8,
+              "width": 972,
+              "caption": "The iPad Pro makeover has turned the tablet into a product nearer to what Microsoft had planned with its Surface device",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/6c9693c6-b822-4171-b361-35b121f79eeb.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 9,
+              "width": 972,
+              "caption": "Phil Schiller outlines the iPad Pro’s pricing. The Pro’s bigger screen makes it easier for workers to multitask by running two ‘windows’ next to each other",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/5f1a88b2-2e7c-4b24-b567-4cd20da071fb.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 10,
+              "width": 972,
+              "caption": "The new keyboard for the iPad Pro. Apple has revamped its vision of how tablet computers should fit into working life, as it aims to revive sales",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/47507bb0-687b-4758-ab2a-31614ed02376.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 11,
+              "width": 972,
+              "caption": "In a sign of how far Microsoft and Apple have moved from heated rivalry, a Microsoft executive demonstrated how the iPad software works with Microsoft’s Office",
+              "mediaType": "image/jpeg",
+              "source": "Bloomberg",
+              "url": "http://im.ft-static.com/content/images/941f02e0-523d-4477-91a4-0ade1da7b14a.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 12,
+              "width": 972,
+              "caption": "Tim Cook with the larger iPad designed to attract business users and jump-start demand. Apple has sealed partnerships with IBM and Cisco to make the devices fit better into traditional corporate IT",
+              "mediaType": "image/jpeg",
+              "source": "Bloomberg",
+              "url": "http://im.ft-static.com/content/images/4126ac61-a780-4262-84d5-bbe7e0e011b5.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 13,
+              "width": 972,
+              "caption": "Eddy Cue, head of internet software and services, demonstrates the new Siri-powered remote control which uses Bluetooth — no need to point it at the TV",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/f62d337a-4e60-4b94-847d-b4d19ba4065d.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 14,
+              "width": 972,
+              "caption": "‘This is the future of television, coming now,’ said Tim Cook, as he unveiled Apple’s third attempt to dominate the living room since it launched its set-top box in 2007",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/b734be9e-7abb-459d-8bbd-f8b2105638fe.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 15,
+              "width": 972,
+              "caption": "‘Apple has now brought back two antiquities — gold and pencils,’ one tweeter posted during the San Francisco presentation. ‘Excited to see what they do with fire and spears’",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/c72ebac6-c14d-46f4-a174-ba338cc3d8cb.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 16,
+              "width": 972,
+              "caption": "The Apple Pencil and Smart Keyboard for the iPad Pro. Late chief executive Steve Jobs once said of other companies’ devices: ‘If you see a stylus, they blew it’",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/cd3f2a58-e7df-4c34-b7ad-aca5362816f9.img",
+              "height": 547
+            },
+            {
+              "slideNumber": 17,
+              "width": 972,
+              "caption": "Senior operations vice-president Jeff Williams demonstrating new features on the Apple Watch, although the company still refused to detail figures about device sales",
+              "mediaType": "image/jpeg",
+              "source": "Getty",
+              "url": "http://im.ft-static.com/content/images/43f8551d-8a7d-4a25-8906-4b142be2ea30.img",
+              "height": 547
+            }
+          ],
+          "title": "Apple revamps iPad in bid to boost sales"
+        }
+      },
+      {
+        "name": "asset2",
+        "type": "video",
+        "fields": {
+          "sourceReference": "4474074856001",
+          "source": "Brightcove"
+        }
+      },
+      {
+        "name": "asset3",
+        "type": "pullQuote",
+        "fields": {
+          "attribution": "Jonathan Chaplin, New Street Research",
+          "body": "<p>Apple would love to commoditise the carriers and be the source of the entire relationship</p>"
+        }
+      },
+      {
+        "name": "asset4",
+        "type": "pullQuote",
+        "fields": {
+          "attribution": "Michael Rollins, Citi",
+          "body": "<p>We see the move by Apple as a further affirmation that carriers will probably move to 100% device financing and leasing over the next few years</p>"
+        }
+      }
+    ],
+    "mediaAssets": [
+      {
+        "slides": [
+          {
+            "slideNumber": 1,
+            "width": 972,
+            "caption": "Phil Schiller, Apple’s marketing boss, shows off the new ‘rose gold’ finish on the updated iPhone 6S. Updates include a new camera, faster fingerprint reader and accelerated processor",
+            "mediaType": "image/jpeg",
+            "source": "Bloomberg",
+            "url": "http://im.ft-static.com/content/images/c28954e5-5057-41a7-aeab-2e77a0af78d1.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 2,
+            "width": 972,
+            "caption": "The Bill Graham Civic Auditorium in San Francisco, where Apple on Wednesday unveiled an updated iPhone 6S, an Apple TV overhaul, new Watch features and a supersized iPad Pro",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/4f298e73-d148-4813-adfc-94d11aba9517.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 3,
+            "width": 972,
+            "caption": "Apple employees outside the auditorium to hear chief executive Tim Cook and colleagues unveil the latest from Apple. ‘We are about to make some monster announcements,’ he promised",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/e54650c1-0cb0-4b96-8315-23018f83822a.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 4,
+            "width": 972,
+            "caption": "‘How do you follow a success like this? I’ve got that question a few times,’ Tim Cook said. ‘No product is more about innovation than the iPhone’",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/82b753b9-33fc-430b-b6ab-2366f54150a4.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 5,
+            "width": 972,
+            "caption": "Hardware improvements mean the iPhone can better distinguish the amount of pressure to the screen to create new shortcuts, such as ‘peeking’ into emails and jumping to a selfie camera",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/58ea6a25-2ebe-46c0-afcd-2b4dbc1f37c7.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 6,
+            "width": 972,
+            "caption": "Some of Apple’s biggest changes were for the iPad, which has seen sales decline in the past two years. The iPad Pro has a bigger, 12.9in screen",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/ba0b8e27-5341-471d-88de-a27a5ce9683b.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 7,
+            "width": 972,
+            "caption": "Falling iPad revenues prompted a rethink for the device’s capabilities — it was ‘a piece of glass that transforms into anything you want it to be,’ said Tim Cook",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/7f85f951-1a70-4aaa-b5c1-4ff53b302532.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 8,
+            "width": 972,
+            "caption": "The iPad Pro makeover has turned the tablet into a product nearer to what Microsoft had planned with its Surface device",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/6c9693c6-b822-4171-b361-35b121f79eeb.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 9,
+            "width": 972,
+            "caption": "Phil Schiller outlines the iPad Pro’s pricing. The Pro’s bigger screen makes it easier for workers to multitask by running two ‘windows’ next to each other",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/5f1a88b2-2e7c-4b24-b567-4cd20da071fb.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 10,
+            "width": 972,
+            "caption": "The new keyboard for the iPad Pro. Apple has revamped its vision of how tablet computers should fit into working life, as it aims to revive sales",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/47507bb0-687b-4758-ab2a-31614ed02376.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 11,
+            "width": 972,
+            "caption": "In a sign of how far Microsoft and Apple have moved from heated rivalry, a Microsoft executive demonstrated how the iPad software works with Microsoft’s Office",
+            "mediaType": "image/jpeg",
+            "source": "Bloomberg",
+            "url": "http://im.ft-static.com/content/images/941f02e0-523d-4477-91a4-0ade1da7b14a.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 12,
+            "width": 972,
+            "caption": "Tim Cook with the larger iPad designed to attract business users and jump-start demand. Apple has sealed partnerships with IBM and Cisco to make the devices fit better into traditional corporate IT",
+            "mediaType": "image/jpeg",
+            "source": "Bloomberg",
+            "url": "http://im.ft-static.com/content/images/4126ac61-a780-4262-84d5-bbe7e0e011b5.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 13,
+            "width": 972,
+            "caption": "Eddy Cue, head of internet software and services, demonstrates the new Siri-powered remote control which uses Bluetooth — no need to point it at the TV",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/f62d337a-4e60-4b94-847d-b4d19ba4065d.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 14,
+            "width": 972,
+            "caption": "‘This is the future of television, coming now,’ said Tim Cook, as he unveiled Apple’s third attempt to dominate the living room since it launched its set-top box in 2007",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/b734be9e-7abb-459d-8bbd-f8b2105638fe.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 15,
+            "width": 972,
+            "caption": "‘Apple has now brought back two antiquities — gold and pencils,’ one tweeter posted during the San Francisco presentation. ‘Excited to see what they do with fire and spears’",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/c72ebac6-c14d-46f4-a174-ba338cc3d8cb.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 16,
+            "width": 972,
+            "caption": "The Apple Pencil and Smart Keyboard for the iPad Pro. Late chief executive Steve Jobs once said of other companies’ devices: ‘If you see a stylus, they blew it’",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/cd3f2a58-e7df-4c34-b7ad-aca5362816f9.img",
+            "height": 547
+          },
+          {
+            "slideNumber": 17,
+            "width": 972,
+            "caption": "Senior operations vice-president Jeff Williams demonstrating new features on the Apple Watch, although the company still refused to detail figures about device sales",
+            "mediaType": "image/jpeg",
+            "source": "Getty",
+            "url": "http://im.ft-static.com/content/images/43f8551d-8a7d-4a25-8906-4b142be2ea30.img",
+            "height": 547
+          }
+        ],
+        "name": "asset1",
+        "slideshowHeading": "Apple revamps iPad in bid to boost sales",
+        "type": "slideshow"
+      }
+    ]
+  },
+  "_lastUpdatedDateTime": "2015-09-14T13:31:19.937Z"
+}

@@ -1,0 +1,35 @@
+"use strict";
+
+var getVisualCategory = require('ft-next-article-genre');
+var articleTopicMapping = require('../mappings/article-topic-mapping');
+
+module.exports = function(article, imageOptions) {
+	imageOptions = imageOptions || {
+		imageSrcset: { default: 100 },
+		imageClass: ""
+	};
+
+	var articleModel = {
+		headline: {
+			text: article.item.title.title,
+			url: '/' + article.item.id
+		},
+		lastUpdated: article.item.lifecycle.lastPublishDateTime,
+		subheading: article.item.editorial.subheading,
+		topic: articleTopicMapping(article.item.metadata),
+		visualCategory: getVisualCategory(article.item.metadata)
+	};
+	if (!article.item.images) {
+		return articleModel;
+	}
+	var images = {};
+	article.item.images.forEach(function(img) {
+		images[img.type] = img;
+	});
+	articleModel.image = images['wide-format'] || images.article || images.primary;
+	if (articleModel.image) {
+		articleModel.image.srcset = imageOptions.imageSrcset;
+		articleModel.image.class = imageOptions.imageClass;
+	}
+	return articleModel;
+};

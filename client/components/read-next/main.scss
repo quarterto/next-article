@@ -1,0 +1,71 @@
+.article__standfirst {
+	@include nTypeBravo(2);
+}
+
+.next-up {
+	position: relative;
+	padding: 10px 10px 10px 25px;
+}
+
+.next-up__header {
+	margin-top: 10px;
+	padding-top: 15px;
+	border: 1px solid getColor('warm-3');
+}
+
+.next-up__intro {
+	@include nTypeFoxtrot(4);
+	position: absolute;
+	top: -20px;
+	left: 15px;
+	margin: 5px 0;
+	padding: 5px 10px;
+	background-color: getColor('warm-5');
+	color: getColor('cold-2');
+	font-weight: 900;
+	.next-up__bottom & {
+		@include nTypeFoxtrotSize(3);
+		left: -5px;
+		top: -25px;
+	}
+}
+
+.next-up__intro__header {
+	background-color: getColor('pink');
+}
+
+.next-up__headline {
+	@include nLinksHeadline;
+	@include nTypeFoxtrot(2);
+	position: relative;
+	color: getColor('cold-1');
+	text-decoration: none;
+	border-bottom: 0;
+	&::before {
+		content: '>';
+		speak: none;
+		position: absolute;
+		top: -2px;
+		left: -15px;
+	}
+}
+
+.next-up__timestamp {
+	@include nTypeAlpha(5);
+	color: oColorsGetColorFor(timestamp, text);
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.next-up__timestamp__more-recent {
+	color: getColor('claret-inverse');
+}
+
+.next-up__topic-link {
+	@include nLinksTopic;
+}
+
+.read-next__container {
+	margin-top: 40px;
+	border-top: 1px solid getColor('warm-3');
+}

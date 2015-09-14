@@ -1,0 +1,1128 @@
+[
+  {
+    "_index": "v1_api_v2",
+    "_type": "item",
+    "_id": "921d8c8e-5c47-11e5-a28b-50226830d644",
+    "_score": null,
+    "_source": {
+      "requestUrl": "http://api.ft.com/content/items/v1/921d8c8e-5c47-11e5-a28b-50226830d644?feature.blogposts=on&h=2568569686",
+      "item": {
+        "aspectSet": "article",
+        "aspects": [
+          "assets",
+          "body",
+          "editorial",
+          "images",
+          "lifecycle",
+          "location",
+          "master",
+          "mediaAssets",
+          "metadata",
+          "package",
+          "packaging",
+          "provenance",
+          "summary",
+          "title"
+        ],
+        "modelVersion": "1",
+        "id": "921d8c8e-5c47-11e5-a28b-50226830d644",
+        "apiUrl": "http://api.ft.com/content/items/v1/921d8c8e-5c47-11e5-a28b-50226830d644",
+        "title": {
+          "title": "China eases limits on overseas debt"
+        },
+        "body": {
+          "mediaType": "text/html",
+          "body": "<p>Beijing has eased restrictions on Chinese companies seeking to raise funds overseas, after a record monthly decline in China’s foreign exchange reserves in August. </p>\n<p>The decision to loosen capital controls on inbound funds stands to boost capital inflows at a time when big domestic stock market losses and the slowing Chinese economy are heightening concerns about <a title=\"Capital outflows reignite debate between China bulls and bears - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/5c615290-3737-11e5-b05b-b01debd57852.html\">capital outflows</a>. </p>\n<p>China’s top planning agency, the National Development and Reform Commission, has made it easier for Chinese companies to obtain foreign currency bank loans or issue renminbi bonds with a term of more than one year, according to a statement on its website dated Tuesday.</p>\n<p>“The new policy will simplify the process for Chinese entities to issue offshore bonds. It will give Chinese companies flexibility in terms of timing and the amount of bonds issued as long as it is within the approved foreign debt quota,” said Ivan Chung, head of greater China credit research at Moody’s in Hong Kong. </p>\n<p>Previously, companies needed approval on a deal-by-deal basis but now they are only required to register with the regulator. “Like Shanghai-HK Stock Connect, it is another step forward in integrating the Chinese financial market with the world,” Mr Chung said. </p>\n\n<p>China’s foreign exchange reserves fell 2.6 per cent to $3.557tn in August, a monthly <a title=\"China’s foreign exchange reserves fall by record $94bn - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/2d3eb83e-554d-11e5-8642-453585f2cfcd.html#axzz3lsE9hDZv\">$94bn</a> drop that was the sharpest on record, as the People’s Bank of China sold down some of its stockpile to support the renminbi. </p>\n<p>​Data from the Bank of International Settlements show that foreign bank claims on China shrank by $77bn in the first three months of 2015, reflecting their reluctance to lend and Chinese borrowers’ increasing wariness of taking on foreign currency debt. </p>\n<p>“On one level it’s encouraging to see that China has not lost its appetite for pro-market liberalisation, even as volatility and uncertainty have risen. It suggests the leadership understands that problems revealed by market forces can be addressed by market forces as well,” says Michael Kurtz, chief Asia equity strategist at Nomura in Hong Kong.</p>\n<p>However, he said it was not clear that Chinese firms would immediately embrace the more open overseas borrowing environment, “given expectations for both a depreciating renminbi and for rising US dollar borrowing costs vs falling domestic borrowing costs”. Markets are awaiting a decision from the US Federal Reserve on Thursday on whether to raise interest rates for the first time in nearly a decade. </p>\n<p>The NDRC also said it would encourage companies with good credit quality and strong debt repayment ability to raise money overseas for high-priority construction and investment projects such as the “One Belt, One Road” campaign to develop ties along the old Silk Road trading route. </p>\n<p>Meanwhile, China is considering implementing restrictions on automated trading in its commodity markets, according to market participants who spoke to the FT.</p>\n<p>The new regulations would define automated traders, require their identity and source of funds to be disclosed and limit the number of trades they could place in the futures markets. </p>\n<p>“A few years ago the exchanges began researching this type of unified management because programme trading is different from other trading behaviour and can cause shocks,” said one exchange official who did not want to be named. “After the August 16 crash, this discussion has sprung up again.”</p>\n<p><span class=\"ft-italic\">Additional reporting by Jackie Cai and Lucy Hornby</span>\n</p>"
+        },
+        "lifecycle": {
+          "initialPublishDateTime": "2015-08-16T09:07:26Z",
+          "lastPublishDateTime": "2015-08-16T09:07:26Z"
+        },
+        "location": {
+          "uri": "http://www.ft.com/cms/s/0/921d8c8e-5c47-11e5-a28b-50226830d644.html"
+        },
+        "summary": {
+          "excerpt": "Loosening of controls on inbound funds comes amid rising concerns over capital outflows"
+        },
+        "packaging": {
+          "spHeadline": "China eases limits on overseas debt"
+        },
+        "master": {
+          "masterSource": "Methode",
+          "masterEntityId": "921d8c8e-5c47-11e5-a28b-50226830d644"
+        },
+        "editorial": {
+          "subheading": "Inbound fund controls loosened amid fears over capital outflows",
+          "standFirst": "Loosening of controls on inbound funds comes amid rising concerns over capital outflows",
+          "byline": "Patti Waldmeir in Shanghai"
+        },
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "metadata": {
+          "primarySection": {
+            "term": {
+              "name": "Chinese Economy",
+              "id": "MTEx-U2VjdGlvbnM=",
+              "attributes": [],
+              "taxonomy": "sections"
+            }
+          },
+          "primaryTheme": {
+            "term": {
+              "name": "China Economic Slowdown",
+              "id": "NWIwYzgxZTgtZjc3MC00ODNkLWI1YjYtYTVhNGQ2OTNjYjVi-VG9waWNz",
+              "attributes": [],
+              "taxonomy": "topics"
+            }
+          },
+          "tags": [
+            {
+              "term": {
+                "name": "China Economic Slowdown",
+                "attributes": [],
+                "id": "NWIwYzgxZTgtZjc3MC00ODNkLWI1YjYtYTVhNGQ2OTNjYjVi-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            },
+            {
+              "term": {
+                "name": "Chinese Economy",
+                "attributes": [],
+                "id": "MTEx-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "News",
+                "attributes": [],
+                "id": "Nw==-R2VucmVz",
+                "taxonomy": "genre"
+              }
+            },
+            {
+              "term": {
+                "name": "Text",
+                "attributes": [],
+                "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+                "taxonomy": "mediaType"
+              }
+            },
+            {
+              "term": {
+                "name": "Patti Waldmeir",
+                "attributes": [],
+                "id": "Q0ItMDAwMDg4Ng==-QXV0aG9ycw==",
+                "taxonomy": "authors"
+              }
+            },
+            {
+              "term": {
+                "name": "8355 Banks",
+                "attributes": [],
+                "id": "MTQy-SUNC",
+                "taxonomy": "icb"
+              }
+            },
+            {
+              "term": {
+                "name": "04006000 - financial and business service",
+                "attributes": [],
+                "id": "MDQwMDYwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04006002 - banking",
+                "attributes": [],
+                "id": "MDQwMDYwMDI=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04008020 - credit and debt",
+                "attributes": [],
+                "id": "MDQwMDgwMjA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04008023 - financial markets",
+                "attributes": [],
+                "id": "MDQwMDgwMjM=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04008026 - stocks",
+                "attributes": [],
+                "id": "MDQwMDgwMjY=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04009000 - market and exchange",
+                "attributes": [],
+                "id": "MDQwMDkwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "11013000 - state budget and tax",
+                "attributes": [],
+                "id": "MTEwMTMwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "Beijing",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0FGVE1fR0xfMTEyOTc=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "Hong Kong",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0FGVE1fR0xfNTc0NjY=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "China",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0NO-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "World Economy",
+                "attributes": [
+                  {
+                    "value": "world",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "world.economy",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "MTA3-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Currencies",
+                "attributes": [
+                  {
+                    "value": "markets",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "currencies",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "MTAz-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Markets",
+                "attributes": [
+                  {
+                    "value": "markets",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "NzE=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Corporate Finance",
+                "attributes": [],
+                "id": "Ng==-U3ViamVjdHM=",
+                "taxonomy": "subjects"
+              }
+            },
+            {
+              "term": {
+                "name": "Economic Indicators",
+                "attributes": [],
+                "id": "NjU=-U3ViamVjdHM=",
+                "taxonomy": "subjects"
+              }
+            },
+            {
+              "term": {
+                "name": "China Business",
+                "attributes": [],
+                "id": "NjM3ZTU3MDUtMmY1ZS00ZGExLThkNjYtYWY4YWUzY2U1YWVm-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            }
+          ],
+          "authors": [
+            {
+              "term": {
+                "name": "Patti Waldmeir",
+                "attributes": [],
+                "id": "Q0ItMDAwMDg4Ng==-QXV0aG9ycw==",
+                "taxonomy": "authors"
+              }
+            }
+          ],
+          "brand": [],
+          "genre": [
+            {
+              "term": {
+                "name": "News",
+                "attributes": [],
+                "id": "Nw==-R2VucmVz",
+                "taxonomy": "genre"
+              }
+            }
+          ],
+          "icb": [
+            {
+              "term": {
+                "name": "8355 Banks",
+                "attributes": [],
+                "id": "MTQy-SUNC",
+                "taxonomy": "icb"
+              }
+            }
+          ],
+          "iptc": [
+            {
+              "term": {
+                "name": "04006000 - financial and business service",
+                "attributes": [],
+                "id": "MDQwMDYwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04006002 - banking",
+                "attributes": [],
+                "id": "MDQwMDYwMDI=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04008020 - credit and debt",
+                "attributes": [],
+                "id": "MDQwMDgwMjA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04008023 - financial markets",
+                "attributes": [],
+                "id": "MDQwMDgwMjM=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04008026 - stocks",
+                "attributes": [],
+                "id": "MDQwMDgwMjY=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04009000 - market and exchange",
+                "attributes": [],
+                "id": "MDQwMDkwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "11013000 - state budget and tax",
+                "attributes": [],
+                "id": "MTEwMTMwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            }
+          ],
+          "mediaType": [
+            {
+              "term": {
+                "name": "Text",
+                "attributes": [],
+                "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+                "taxonomy": "mediaType"
+              }
+            }
+          ],
+          "organisations": [],
+          "people": [],
+          "regions": [
+            {
+              "term": {
+                "name": "Beijing",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0FGVE1fR0xfMTEyOTc=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "Hong Kong",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0FGVE1fR0xfNTc0NjY=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "China",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0NO-R0w=",
+                "taxonomy": "regions"
+              }
+            }
+          ],
+          "sections": [
+            {
+              "term": {
+                "name": "World Economy",
+                "attributes": [
+                  {
+                    "value": "world",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "world.economy",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "MTA3-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Currencies",
+                "attributes": [
+                  {
+                    "value": "markets",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "currencies",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "MTAz-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Chinese Economy",
+                "attributes": [],
+                "id": "MTEx-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Markets",
+                "attributes": [
+                  {
+                    "value": "markets",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "NzE=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            }
+          ],
+          "specialReports": [],
+          "subjects": [
+            {
+              "term": {
+                "name": "Corporate Finance",
+                "attributes": [],
+                "id": "Ng==-U3ViamVjdHM=",
+                "taxonomy": "subjects"
+              }
+            },
+            {
+              "term": {
+                "name": "Economic Indicators",
+                "attributes": [],
+                "id": "NjU=-U3ViamVjdHM=",
+                "taxonomy": "subjects"
+              }
+            }
+          ],
+          "topics": [
+            {
+              "term": {
+                "name": "China Economic Slowdown",
+                "attributes": [],
+                "id": "NWIwYzgxZTgtZjc3MC00ODNkLWI1YjYtYTVhNGQ2OTNjYjVi-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            },
+            {
+              "term": {
+                "name": "China Business",
+                "attributes": [],
+                "id": "NjM3ZTU3MDUtMmY1ZS00ZGExLThkNjYtYWY4YWUzY2U1YWVm-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            }
+          ]
+        },
+        "images": [
+          {
+            "width": 272,
+            "mediaType": "image/jpeg",
+            "source": "AFP",
+            "type": "primary",
+            "url": "http://im.ft-static.com/content/images/9ec9fe0e-146c-4930-92c7-53949e4e00b7.img",
+            "height": 153
+          },
+          {
+            "width": 167,
+            "mediaType": "image/jpeg",
+            "source": "AFP",
+            "type": "secondary",
+            "url": "http://im.ft-static.com/content/images/3f32e634-042b-49f1-b4c1-7562f3ec667a.img",
+            "height": 94
+          },
+          {
+            "width": 600,
+            "mediaType": "image/jpeg",
+            "source": "AFP",
+            "type": "article",
+            "url": "http://im.ft-static.com/content/images/b29ba0c9-c059-49ad-a3ea-afc9ce552f5e.img",
+            "height": 338
+          },
+          {
+            "width": 414,
+            "mediaType": "image/jpeg",
+            "source": "AFP",
+            "type": "leader",
+            "url": "http://im.ft-static.com/content/images/37dabf00-bb83-4a0d-a5cf-7b8aad6226bc.img",
+            "height": 233
+          },
+          {
+            "width": 972,
+            "mediaType": "image/jpeg",
+            "source": "AFP",
+            "type": "wide-format",
+            "url": "http://im.ft-static.com/content/images/0521f258-e325-4d8e-8cac-29e67523f43d.img",
+            "height": 547
+          }
+        ],
+        "package": [],
+        "assets": [],
+        "mediaAssets": []
+      },
+      "_lastUpdatedDateTime": "2015-09-16T11:49:54.509Z"
+    },
+    "sort": [
+      1442394446000
+    ]
+  },
+  {
+    "_index": "v1_api_v2",
+    "_type": "item",
+    "_id": "1ae0b140-5bc6-11e5-97e9-7f0bf5e7177b",
+    "_score": null,
+    "_source": {
+      "requestUrl": "http://api.ft.com/content/items/v1/1ae0b140-5bc6-11e5-97e9-7f0bf5e7177b?feature.blogposts=on&h=5217011441",
+      "item": {
+        "aspectSet": "article",
+        "aspects": [
+          "assets",
+          "body",
+          "editorial",
+          "images",
+          "lifecycle",
+          "location",
+          "master",
+          "mediaAssets",
+          "metadata",
+          "package",
+          "packaging",
+          "provenance",
+          "summary",
+          "title"
+        ],
+        "modelVersion": "1",
+        "id": "1ae0b140-5bc6-11e5-97e9-7f0bf5e7177b",
+        "apiUrl": "http://api.ft.com/content/items/v1/1ae0b140-5bc6-11e5-97e9-7f0bf5e7177b",
+        "title": {
+          "title": "China probes top Citic Securities executives over insider trading"
+        },
+        "body": {
+          "mediaType": "text/html",
+          "body": "<p>The general manager and two other executives from Citic Securities, China's largest investment bank, have been arrested as part of an insider trading probe, the latest casualties of the country's <a title=\"China tremors in depth - FT.com\" href=\"http://www.ft.com/intl/indepth/china-tremors\">ailing stock market</a>.</p>\n<p>State-owned Citic Securities, controlled by industrial and financial conglomerate Citic Group, has been on the front line of government efforts to rescue the country's tumbling stock market. The so-called \"national team\" of state financial institutions directed many trades through the brokerage's flagship trading hall in Beijing.</p>\n<p>Police are investigating Chen Boming, Citic’s general manager, Yu Xinli, operations management head, and Wang Jinling, vice director of information technology, on allegations in connection with insider trading and the leak of inside information, the official Xinhua news agency said late on Tuesday.</p>\n<p>In late August, eight Citic executives and board members were <a title=\"China launches probes into top brokerages - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/ada9ca96-4bab-11e5-b558-8a9722977189.html\">taken into custody</a>. Four of them were later punished for insider trading. The three latest arrests deal a further blow to the company, whose stock price has fallen 61 per cent since the height of China's broader market rally in early June.</p>\n<p>In mid-July, as the government was deploying trillions of renminbi in state rescue funds to stem the panic in the Shanghai and Shenzhen markets, Mr. Chen gave an interview to Caijing, a respected financial magazine in which he pledged the broker would do its part to stabilise the market. </p>\n<p>Detailed allegations against Mr Chen and other Citic executives are not public, but the company is the government's favoured brokerage and may have had information about which stocks state institutions were buying. </p>\n<p>Traders say <a title=\"FT Explainer: What is China Securities Finance Corporation? - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/c1666694-248b-11e5-9c4e-a775d2b173ca.html\">China Securities Finance Corp</a>, the state-owned margin lending agency that became the government's main conduit for injecting rescue funds into the market, was known to route trades through Citic. Indeed, picking stocks thought to be favoured by CSF emerged as a <a title=\"China targets high-frequency traders in ‘spoofing’ probe - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/1f4751f4-3758-11e5-b05b-b01debd57852.html\">popular investment strategy</a> in July, when the agency was conducting daily market interventions.</p>\n<p>Goldman Sachs estimates that the national team has spent Rmb1.5tn ($236bn) since late June to <a title=\"Goldman estimates China’s ‘national team’ stock rescue at $144bn - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/ec29a8b2-3bf8-11e5-8613-07d16aad2152.html\">stabilise the market</a>. That includes cash injections from CSF as well as a Rmb120bn fund comprising funds from 21 leading brokerages led by Citic, China's largest by assets. </p>\n<p>The Shanghai Composite Index is down 41 per cent from its peak on June 9 and has fallen 6 per cent this week.</p>\n<p>The Citic arrests are the latest in a series of regulatory and police actions in response to the market tumble. Police have investigated so-called <a title=\"China’s hunt for short-sellers tests legal boundaries - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/88280be8-2b85-11e5-8613-e7aedbb7bdb7.html\">\"malicious\" short selling</a> and placed new limits on futures trading. Regulators also targeted <a title=\"China targets high-frequency traders in ‘spoofing’ probe - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/1f4751f4-3758-11e5-b05b-b01debd57852.html\">high-frequency traders</a> in a probe focused on the practice known as \"spoofing\".</p>\n<p>A reporter for Caijing confessed on state television to stoking '<a title=\"China reporter confesses to stoking market ‘panic and disorder’ - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/41fed0a6-4f9e-11e5-8642-453585f2cfcd.html\">panic and disorder</a>' for a story saying that the national team was looking for a way to scale back interventions.</p>"
+        },
+        "lifecycle": {
+          "initialPublishDateTime": "2015-08-15T18:21:13Z",
+          "lastPublishDateTime": "2015-08-15T18:21:13Z"
+        },
+        "location": {
+          "uri": "http://www.ft.com/cms/s/0/1ae0b140-5bc6-11e5-97e9-7f0bf5e7177b.html"
+        },
+        "summary": {
+          "excerpt": "Country’s largest brokerage was on front line of Beijing drive to rescue stock market"
+        },
+        "packaging": {
+          "spHeadline": "China holds Citic chiefs in trading probe"
+        },
+        "master": {
+          "masterSource": "Methode",
+          "masterEntityId": "1ae0b140-5bc6-11e5-97e9-7f0bf5e7177b"
+        },
+        "editorial": {
+          "otherTitles": [
+            "China holds Citic chiefs in trading probe"
+          ],
+          "subheading": "Country’s largest broker was on front line of stock market rescue",
+          "standFirst": "Country’s largest brokerage was on front line of Beijing drive to rescue stock market",
+          "byline": "Gabriel Wildau in Shanghai"
+        },
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "metadata": {
+          "primarySection": {
+            "term": {
+              "name": "Financials",
+              "id": "NTc=-U2VjdGlvbnM=",
+              "attributes": [
+                {
+                  "value": "companies",
+                  "key": "dfpSite"
+                },
+                {
+                  "value": "financials",
+                  "key": "dfpZone"
+                }
+              ],
+              "taxonomy": "sections"
+            }
+          },
+          "primaryTheme": {
+            "term": {
+              "name": "CITIC Securities Co Ltd",
+              "id": "ZWMzYzNkYTUtZTE2My00Yjk3LTliZWMtNzhjY2VlMzhkMGZl-T04=",
+              "attributes": [
+                {
+                  "value": "cn:600030",
+                  "key": "wsod_key"
+                },
+                {
+                  "value": "true",
+                  "key": "is_company"
+                }
+              ],
+              "taxonomy": "organisations"
+            }
+          },
+          "tags": [
+            {
+              "term": {
+                "name": "CITIC Securities Co Ltd",
+                "attributes": [
+                  {
+                    "value": "cn:600030",
+                    "key": "wsod_key"
+                  },
+                  {
+                    "value": "true",
+                    "key": "is_company"
+                  }
+                ],
+                "id": "ZWMzYzNkYTUtZTE2My00Yjk3LTliZWMtNzhjY2VlMzhkMGZl-T04=",
+                "taxonomy": "organisations"
+              }
+            },
+            {
+              "term": {
+                "name": "Financials",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "financials",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "NTc=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Market Report",
+                "attributes": [],
+                "id": "Mg==-R2VucmVz",
+                "taxonomy": "genre"
+              }
+            },
+            {
+              "term": {
+                "name": "Text",
+                "attributes": [],
+                "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+                "taxonomy": "mediaType"
+              }
+            },
+            {
+              "term": {
+                "name": "Gabriel Wildau",
+                "attributes": [],
+                "id": "Q0ItMDUwNjY4NA==-QXV0aG9ycw==",
+                "taxonomy": "authors"
+              }
+            },
+            {
+              "term": {
+                "name": "8770 Financial Services",
+                "attributes": [],
+                "id": "MTY0-SUNC",
+                "taxonomy": "icb"
+              }
+            },
+            {
+              "term": {
+                "name": "04006000 - financial and business service",
+                "attributes": [],
+                "id": "MDQwMDYwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04009000 - market and exchange",
+                "attributes": [],
+                "id": "MDQwMDkwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04009003 - securities",
+                "attributes": [],
+                "id": "MDQwMDkwMDM=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04016022 - insider trading",
+                "attributes": [],
+                "id": "MDQwMTYwMjI=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "CITIC Group",
+                "attributes": [
+                  {
+                    "value": "true",
+                    "key": "is_company"
+                  }
+                ],
+                "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0NJVElD-T04=",
+                "taxonomy": "organisations"
+              }
+            },
+            {
+              "term": {
+                "name": "Beijing",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0FGVE1fR0xfMTEyOTc=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "Shanghai",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0FGVE1fR0xfNjg2MDc=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "China",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0NO-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "Emerging Markets",
+                "attributes": [
+                  {
+                    "value": "markets",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "emerging.markets",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "MTA2-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Companies",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "Mjk=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Asia-Pacific Companies",
+                "attributes": [],
+                "id": "Njc=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Regulation & Governance",
+                "attributes": [],
+                "id": "ODA=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "China Business",
+                "attributes": [],
+                "id": "NjM3ZTU3MDUtMmY1ZS00ZGExLThkNjYtYWY4YWUzY2U1YWVm-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            },
+            {
+              "term": {
+                "name": "China corruption",
+                "attributes": [],
+                "id": "ZDZjMDlhOTMtZWJlOS00ZDViLThlYjktMTE4NmM3NjZmNWMw-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            }
+          ],
+          "authors": [
+            {
+              "term": {
+                "name": "Gabriel Wildau",
+                "attributes": [],
+                "id": "Q0ItMDUwNjY4NA==-QXV0aG9ycw==",
+                "taxonomy": "authors"
+              }
+            }
+          ],
+          "brand": [],
+          "genre": [
+            {
+              "term": {
+                "name": "Market Report",
+                "attributes": [],
+                "id": "Mg==-R2VucmVz",
+                "taxonomy": "genre"
+              }
+            }
+          ],
+          "icb": [
+            {
+              "term": {
+                "name": "8770 Financial Services",
+                "attributes": [],
+                "id": "MTY0-SUNC",
+                "taxonomy": "icb"
+              }
+            }
+          ],
+          "iptc": [
+            {
+              "term": {
+                "name": "04006000 - financial and business service",
+                "attributes": [],
+                "id": "MDQwMDYwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04009000 - market and exchange",
+                "attributes": [],
+                "id": "MDQwMDkwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04009003 - securities",
+                "attributes": [],
+                "id": "MDQwMDkwMDM=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04016022 - insider trading",
+                "attributes": [],
+                "id": "MDQwMTYwMjI=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            }
+          ],
+          "mediaType": [
+            {
+              "term": {
+                "name": "Text",
+                "attributes": [],
+                "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+                "taxonomy": "mediaType"
+              }
+            }
+          ],
+          "organisations": [
+            {
+              "term": {
+                "name": "CITIC Group",
+                "attributes": [
+                  {
+                    "value": "true",
+                    "key": "is_company"
+                  }
+                ],
+                "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0NJVElD-T04=",
+                "taxonomy": "organisations"
+              }
+            },
+            {
+              "term": {
+                "name": "CITIC Securities Co Ltd",
+                "attributes": [
+                  {
+                    "value": "cn:600030",
+                    "key": "wsod_key"
+                  },
+                  {
+                    "value": "true",
+                    "key": "is_company"
+                  }
+                ],
+                "id": "ZWMzYzNkYTUtZTE2My00Yjk3LTliZWMtNzhjY2VlMzhkMGZl-T04=",
+                "taxonomy": "organisations"
+              }
+            }
+          ],
+          "people": [],
+          "regions": [
+            {
+              "term": {
+                "name": "Beijing",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0FGVE1fR0xfMTEyOTc=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "Shanghai",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0FGVE1fR0xfNjg2MDc=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "China",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX0NO-R0w=",
+                "taxonomy": "regions"
+              }
+            }
+          ],
+          "sections": [
+            {
+              "term": {
+                "name": "Emerging Markets",
+                "attributes": [
+                  {
+                    "value": "markets",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "emerging.markets",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "MTA2-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Companies",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "Mjk=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Financials",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "financials",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "NTc=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Asia-Pacific Companies",
+                "attributes": [],
+                "id": "Njc=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Regulation & Governance",
+                "attributes": [],
+                "id": "ODA=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            }
+          ],
+          "specialReports": [],
+          "subjects": [],
+          "topics": [
+            {
+              "term": {
+                "name": "China Business",
+                "attributes": [],
+                "id": "NjM3ZTU3MDUtMmY1ZS00ZGExLThkNjYtYWY4YWUzY2U1YWVm-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            },
+            {
+              "term": {
+                "name": "China corruption",
+                "attributes": [],
+                "id": "ZDZjMDlhOTMtZWJlOS00ZDViLThlYjktMTE4NmM3NjZmNWMw-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            }
+          ]
+        },
+        "images": [
+          {
+            "alt": "An employee of Citic Securities Co. works in an office branch in Beijing, China, on Thursday, April 13, 2006. China's 167 percent stock rally this year has made Citic Securities Co., its largest brokerage with a market capitalization of $39.4 billion, bigger than all but three counterparts on Wall Street. Photographer: Danfung Dennis/Bloomberg News",
+            "width": 272,
+            "mediaType": "image/jpeg",
+            "source": "Bloomberg",
+            "type": "primary",
+            "url": "http://im.ft-static.com/content/images/2272651b-f5e4-4c29-92ce-162ee3a38418.img",
+            "height": 153
+          },
+          {
+            "alt": "An employee of Citic Securities Co. works in an office branch in Beijing, China, on Thursday, April 13, 2006. China's 167 percent stock rally this year has made Citic Securities Co., its largest brokerage with a market capitalization of $39.4 billion, bigger than all but three counterparts on Wall Street. Photographer: Danfung Dennis/Bloomberg News",
+            "width": 167,
+            "mediaType": "image/jpeg",
+            "source": "Bloomberg",
+            "type": "secondary",
+            "url": "http://im.ft-static.com/content/images/807dc374-b4fa-4654-b69e-0eab5f5d6c7b.img",
+            "height": 94
+          },
+          {
+            "alt": "An employee of Citic Securities Co. works in an office branch in Beijing, China, on Thursday, April 13, 2006. China's 167 percent stock rally this year has made Citic Securities Co., its largest brokerage with a market capitalization of $39.4 billion, bigger than all but three counterparts on Wall Street. Photographer: Danfung Dennis/Bloomberg News",
+            "width": 600,
+            "mediaType": "image/jpeg",
+            "source": "Bloomberg",
+            "type": "article",
+            "url": "http://im.ft-static.com/content/images/53459d82-02fe-44be-9989-538a52d79241.img",
+            "height": 338
+          },
+          {
+            "alt": "An employee of Citic Securities Co. works in an office branch in Beijing, China, on Thursday, April 13, 2006. China's 167 percent stock rally this year has made Citic Securities Co., its largest brokerage with a market capitalization of $39.4 billion, bigger than all but three counterparts on Wall Street. Photographer: Danfung Dennis/Bloomberg News",
+            "width": 414,
+            "mediaType": "image/jpeg",
+            "source": "Bloomberg",
+            "type": "leader",
+            "url": "http://im.ft-static.com/content/images/9ecb3a1c-7d2b-41c2-a0cb-489a82bfe8d0.img",
+            "height": 233
+          },
+          {
+            "alt": "An employee of Citic Securities Co. works in an office branch in Beijing, China, on Thursday, April 13, 2006. China's 167 percent stock rally this year has made Citic Securities Co., its largest brokerage with a market capitalization of $39.4 billion, bigger than all but three counterparts on Wall Street. Photographer: Danfung Dennis/Bloomberg News",
+            "width": 972,
+            "mediaType": "image/jpeg",
+            "source": "Bloomberg",
+            "type": "wide-format",
+            "url": "http://im.ft-static.com/content/images/84138b09-f1f1-4e30-bd2e-3b805d8e3f60.img",
+            "height": 547
+          }
+        ],
+        "package": [],
+        "assets": [],
+        "mediaAssets": []
+      },
+      "_lastUpdatedDateTime": "2015-09-16T03:06:53.737Z"
+    },
+    "sort": [
+      1442341273000
+    ]
+  }
+]

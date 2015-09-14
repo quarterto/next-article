@@ -1,0 +1,652 @@
+{
+  "requestUrl": "http://api.ft.com/content/items/v1/0c789340-296a-11e5-acfb-cbd2e1c81cca",
+  "item": {
+    "aspectSet": "article",
+    "aspects": [
+      "assets",
+      "body",
+      "editorial",
+      "images",
+      "lifecycle",
+      "location",
+      "master",
+      "mediaAssets",
+      "metadata",
+      "package",
+      "packaging",
+      "provenance",
+      "summary",
+      "title"
+    ],
+    "modelVersion": "1",
+    "id": "0c789340-296a-11e5-acfb-cbd2e1c81cca",
+    "apiUrl": "http://api.ft.com/content/items/v1/0c789340-296a-11e5-acfb-cbd2e1c81cca",
+    "title": {
+      "title": "UK angered by moves to help fund Greek bailout"
+    },
+    "body": {
+      "mediaType": "text/html",
+      "body": "<p>George Osborne will reject calls for the UK to take part in the latest <a title=\"Eurozone leaders reach deal on Greece - FT.com\" href=\"http://www.ft.com/cms/s/0/c895f7a8-2932-11e5-8db8-c033edba8a6e.html\">Greek bailout</a>, amid anger in Downing Street that the idea had been floated by the European Commission, supported by France.</p>\n<p>The chancellor will on Tuesday tell eurozone colleagues that the idea of Britain being on the hook for the <a title=\"Greece debt crisis in depth - FT.com\" href=\"http://www.ft.com/indepth/greece-debt-crisis\">Greece</a> rescue package is unacceptable and would be in breach of an agreement between EU leaders in 2010.</p>\n<p>He will tell a meeting of finance ministers in Brussels that the so-called European Financial Stabilisation Mechanism — a fund involving all 28 EU members — cannot be used for a bridging loan to Greece.</p>\n<p>Britain’s share of the EFSM is thought to be about €1bn. Mr Osborne spoke to Wolfgang Schäuble, his German counterpart, and others on Monday to try to head off a row in Brussels.</p>\n<p>“Our eurozone colleagues have received the message loud and clear that it would not be acceptable for this issue of British support for eurozone bailouts to be revisited,” one UK Treasury insider said. “The idea that British taxpayers’ money is going to be on the line in this latest Greek deal is a non-starter.” </p>\n<p>The idea of involving Britain in the Greek bailout emerged during acrimonious talks between eurozone leaders in the early hours of Monday morning, to the alarm of some officials in the room.</p>\n<p>Several officials raised concerns that the use of emergency cash on behalf of all 28 member states was being discussed without consulting London, where David Cameron’s objections to using the fund is well known.</p>\n<p>“We may prevent Grexit but we’d cause Brexit,” said one eurozone official.</p>\n<p>EU officials said that Martin Selmayr, the chief of staff to European Commission president Jean-Claude Juncker, was urging the use of the EFSM as a means of unlocking urgent bridge financing.</p>\n<aside data-asset-type=\"promoBox\" data-asset-name=\"asset1\"></aside><p>It is understood that France was particularly keen to use the EFSM, whose funds can be activated by a qualified majority vote following a recommendation by the commission. </p>\n<p>Greece must pay the European Central Bank €3.5bn on Monday next week, but because the International Monetary Fund is senior to all other lenders, Athens must reimburse the IMF before paying the ECB — meaning Greece must find about €7bn by Monday. Another €5bn is needed in August to meet similar bills.</p>\n<p>About half of the €7bn due on Monday can be made up in profits on Greek bonds held by the ECB, profits that were promised to Athens as part of a second bailout agreement in 2012.</p>\n<p>But eurozone authorities are struggling to find the rest of the cash quickly, and the EFSM was being sold as a ready pile of money that could be quickly deployed.</p>\n<p>David Cameron thought that he had killed off any prospect of Britain being involved in a eurozone bailout during negotiations in 2010, arguing that it would be “quite wrong”.</p>\n<p>Leaders at an EU summit in Brussels agreed in 2010 that only eurozone countries should participate in a future bailout of Greece, although Britain would participate through its membership of the IMF.</p>\n<aside data-asset-type=\"promoteNumber\" data-asset-name=\"asset2\"></aside><p>Mr Cameron has frequently hailed that decision as one of his negotiating successes in Brussels, but commission lawyers have questioned whether it is legally watertight.</p>\n<p>One hardline interpretation sees the agreement at the European Council in 2010 as merely political, not legally binding. The EFSM can be activated through a qualified majority vote, possibly leaving the UK outvoted.</p>\n<p>But such legal semantics would not play well in Britain, where any suggestion that the UK should be paying to sort out problems in the eurozone would provoke a strong political reaction.</p>\n<p>Mr Cameron, who is planning a referendum on <a title=\"Britain and the EU in depth - FT.com\" href=\"http://www.ft.com/indepth/britain-and-the-eu\">Britain’s EU membership </a>before the end of 2017, would see such a move as deeply unhelpful and liable to fuel euroscepticism.</p>"
+    },
+    "lifecycle": {
+      "initialPublishDateTime": "2015-07-13T17:30:11Z",
+      "lastPublishDateTime": "2015-07-13T17:53:12Z"
+    },
+    "location": {
+      "uri": "http://www.ft.com/cms/s/0/0c789340-296a-11e5-acfb-cbd2e1c81cca.html"
+    },
+    "summary": {
+      "excerpt": "Chancellor to reject calls for Britain to take part"
+    },
+    "packaging": {
+      "spHeadline": "UK angered by Greek bailout moves"
+    },
+    "master": {
+      "masterSource": "Methode",
+      "masterEntityId": "0c789340-296a-11e5-acfb-cbd2e1c81cca"
+    },
+    "editorial": {
+      "otherTitles": [
+        "UK angered by Greek bailout moves"
+      ],
+      "subheading": "Chancellor to reject calls for Britain to take part",
+      "standFirst": "Chancellor to reject calls for Britain to take part",
+      "byline": "George Parker in London and Alex Barker and Peter Spiegel in Brussels"
+    },
+    "provenance": {
+      "originatingParty": "FT"
+    },
+    "metadata": {
+      "primarySection": {
+        "term": {
+          "name": "UK Politics & Policy",
+          "id": "OA==-U2VjdGlvbnM=",
+          "attributes": [],
+          "taxonomy": "sections"
+        }
+      },
+      "primaryTheme": {
+        "term": {
+          "name": "Greece Debt Crisis",
+          "id": "ZmEzMmRmNDAtNDc0Zi00ODk3LWE2ZmQtZWFmYzJlZTRjZTVk-VG9waWNz",
+          "attributes": [],
+          "taxonomy": "topics"
+        }
+      },
+      "tags": [
+        {
+          "term": {
+            "name": "Greece Debt Crisis",
+            "attributes": [],
+            "id": "ZmEzMmRmNDAtNDc0Zi00ODk3LWE2ZmQtZWFmYzJlZTRjZTVk-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "UK Politics & Policy",
+            "attributes": [],
+            "id": "OA==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "News",
+            "attributes": [],
+            "id": "Nw==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        },
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        },
+        {
+          "term": {
+            "name": "Alex Barker",
+            "attributes": [],
+            "id": "Q0ItMDAwMDY3Mg==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "George Parker",
+            "attributes": [],
+            "id": "Q0ItMDAwMDgzMA==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "Peter Spiegel",
+            "attributes": [],
+            "id": "Q0ItMDAwMTMyMQ==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "02002001 - lawyer",
+            "attributes": [],
+            "id": "MDIwMDIwMDE=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04008010 - international economic institution",
+            "attributes": [],
+            "id": "MDQwMDgwMTA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11005001 - economic sanction",
+            "attributes": [],
+            "id": "MTEwMDUwMDE=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006000 - government",
+            "attributes": [],
+            "id": "MTEwMDYwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006008 - public officials",
+            "attributes": [],
+            "id": "MTEwMDYwMDg=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "International Monetary Fund",
+            "attributes": [
+              {
+                "value": "false",
+                "key": "is_company"
+              }
+            ],
+            "id": "VC0xNDcyNTU2-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "George Osborne",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX1BvbGl0aWNpYW5fNTk4-UE4=",
+            "taxonomy": "people"
+          }
+        },
+        {
+          "term": {
+            "name": "France",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0ZS-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "United Kingdom",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0dC-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "Greece",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0dS-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "Brussels",
+            "attributes": [],
+            "id": "MTA=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "UK",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              },
+              {
+                "value": "uk",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "Ng==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Europe",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              },
+              {
+                "value": "europe",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "OQ==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Politics",
+            "attributes": [],
+            "id": "MTAx-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Government News",
+            "attributes": [],
+            "id": "ODk=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Foreign Aid",
+            "attributes": [],
+            "id": "OTI=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "International Affairs",
+            "attributes": [],
+            "id": "OTc=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Britain in Europe",
+            "attributes": [],
+            "id": "NDdiMzAyNzctMTRlMy00Zjk1LWEyZjYtYmYwZWIwYWU2NzAy-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "Euro in crisis",
+            "attributes": [],
+            "id": "OTZhMTRiZDItYjI2ZS00NGMzLTg1MjAtNjlkNzVmZjk2NTI1-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        }
+      ],
+      "authors": [
+        {
+          "term": {
+            "name": "Alex Barker",
+            "attributes": [],
+            "id": "Q0ItMDAwMDY3Mg==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "George Parker",
+            "attributes": [],
+            "id": "Q0ItMDAwMDgzMA==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "Peter Spiegel",
+            "attributes": [],
+            "id": "Q0ItMDAwMTMyMQ==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        }
+      ],
+      "brand": [],
+      "genre": [
+        {
+          "term": {
+            "name": "News",
+            "attributes": [],
+            "id": "Nw==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        }
+      ],
+      "icb": [],
+      "iptc": [
+        {
+          "term": {
+            "name": "02002001 - lawyer",
+            "attributes": [],
+            "id": "MDIwMDIwMDE=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04008010 - international economic institution",
+            "attributes": [],
+            "id": "MDQwMDgwMTA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11005001 - economic sanction",
+            "attributes": [],
+            "id": "MTEwMDUwMDE=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006000 - government",
+            "attributes": [],
+            "id": "MTEwMDYwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006008 - public officials",
+            "attributes": [],
+            "id": "MTEwMDYwMDg=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        }
+      ],
+      "mediaType": [
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        }
+      ],
+      "organisations": [
+        {
+          "term": {
+            "name": "International Monetary Fund",
+            "attributes": [
+              {
+                "value": "false",
+                "key": "is_company"
+              }
+            ],
+            "id": "VC0xNDcyNTU2-T04=",
+            "taxonomy": "organisations"
+          }
+        }
+      ],
+      "people": [
+        {
+          "term": {
+            "name": "George Osborne",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX1BvbGl0aWNpYW5fNTk4-UE4=",
+            "taxonomy": "people"
+          }
+        }
+      ],
+      "regions": [
+        {
+          "term": {
+            "name": "France",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0ZS-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "United Kingdom",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0dC-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "Greece",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0dS-R0w=",
+            "taxonomy": "regions"
+          }
+        }
+      ],
+      "sections": [
+        {
+          "term": {
+            "name": "Brussels",
+            "attributes": [],
+            "id": "MTA=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "UK",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              },
+              {
+                "value": "uk",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "Ng==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "UK Politics & Policy",
+            "attributes": [],
+            "id": "OA==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Europe",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              },
+              {
+                "value": "europe",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "OQ==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        }
+      ],
+      "specialReports": [],
+      "subjects": [
+        {
+          "term": {
+            "name": "Politics",
+            "attributes": [],
+            "id": "MTAx-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Government News",
+            "attributes": [],
+            "id": "ODk=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Foreign Aid",
+            "attributes": [],
+            "id": "OTI=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "International Affairs",
+            "attributes": [],
+            "id": "OTc=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        }
+      ],
+      "topics": [
+        {
+          "term": {
+            "name": "Britain in Europe",
+            "attributes": [],
+            "id": "NDdiMzAyNzctMTRlMy00Zjk1LWEyZjYtYmYwZWIwYWU2NzAy-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "Euro in crisis",
+            "attributes": [],
+            "id": "OTZhMTRiZDItYjI2ZS00NGMzLTg1MjAtNjlkNzVmZjk2NTI1-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "Greece Debt Crisis",
+            "attributes": [],
+            "id": "ZmEzMmRmNDAtNDc0Zi00ODk3LWE2ZmQtZWFmYzJlZTRjZTVk-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        }
+      ]
+    },
+    "images": [
+      {
+        "alt": "File photo dated 1/4/2015 of Chancellor of the Exchequer George Osborne who is expected to declare today that it s time for major cities in England to take control of their own affairs. PRESS ASSOCIATION Photo. Issue date: Thursday May 14, 2015. Making his first major speech of the new Parliament, Osborne will promise \"radical devolution\" for cities to allow them to grow their local economies. The plans under the Cities Devolution Bill will help to implement the so-called northern powerhouse vision Mr Osborne has previously outlined as a way to rebalance the UK economy. See PA story POLITICS Osborne. Photo credit should read: Stefan Rousseau/PA Wire",
+        "width": 272,
+        "mediaType": "image/jpeg",
+        "source": "PA",
+        "type": "primary",
+        "url": "http://im.ft-static.com/content/images/0a3f31e2-4c32-4dea-933a-5d56515272a9.img",
+        "height": 153
+      },
+      {
+        "alt": "File photo dated 1/4/2015 of Chancellor of the Exchequer George Osborne who is expected to declare today that it s time for major cities in England to take control of their own affairs. PRESS ASSOCIATION Photo. Issue date: Thursday May 14, 2015. Making his first major speech of the new Parliament, Osborne will promise \"radical devolution\" for cities to allow them to grow their local economies. The plans under the Cities Devolution Bill will help to implement the so-called northern powerhouse vision Mr Osborne has previously outlined as a way to rebalance the UK economy. See PA story POLITICS Osborne. Photo credit should read: Stefan Rousseau/PA Wire",
+        "width": 167,
+        "mediaType": "image/jpeg",
+        "source": "PA",
+        "type": "secondary",
+        "url": "http://im.ft-static.com/content/images/5a7428cb-a56a-4111-a534-92edcca55232.img",
+        "height": 94
+      },
+      {
+        "alt": "File photo dated 1/4/2015 of Chancellor of the Exchequer George Osborne who is expected to declare today that it s time for major cities in England to take control of their own affairs. PRESS ASSOCIATION Photo. Issue date: Thursday May 14, 2015. Making his first major speech of the new Parliament, Osborne will promise \"radical devolution\" for cities to allow them to grow their local economies. The plans under the Cities Devolution Bill will help to implement the so-called northern powerhouse vision Mr Osborne has previously outlined as a way to rebalance the UK economy. See PA story POLITICS Osborne. Photo credit should read: Stefan Rousseau/PA Wire",
+        "width": 600,
+        "mediaType": "image/jpeg",
+        "source": "PA",
+        "type": "article",
+        "url": "http://im.ft-static.com/content/images/b44ce242-7c38-4196-a957-28d02828a54e.img",
+        "height": 338
+      },
+      {
+        "alt": "File photo dated 1/4/2015 of Chancellor of the Exchequer George Osborne who is expected to declare today that it s time for major cities in England to take control of their own affairs. PRESS ASSOCIATION Photo. Issue date: Thursday May 14, 2015. Making his first major speech of the new Parliament, Osborne will promise \"radical devolution\" for cities to allow them to grow their local economies. The plans under the Cities Devolution Bill will help to implement the so-called northern powerhouse vision Mr Osborne has previously outlined as a way to rebalance the UK economy. See PA story POLITICS Osborne. Photo credit should read: Stefan Rousseau/PA Wire",
+        "width": 414,
+        "mediaType": "image/jpeg",
+        "source": "PA",
+        "type": "leader",
+        "url": "http://im.ft-static.com/content/images/bfb3caf4-99a2-420a-bd57-237b5a4d3e5b.img",
+        "height": 233
+      },
+      {
+        "alt": "File photo dated 1/4/2015 of Chancellor of the Exchequer George Osborne who is expected to declare today that it s time for major cities in England to take control of their own affairs. PRESS ASSOCIATION Photo. Issue date: Thursday May 14, 2015. Making his first major speech of the new Parliament, Osborne will promise \"radical devolution\" for cities to allow them to grow their local economies. The plans under the Cities Devolution Bill will help to implement the so-called northern powerhouse vision Mr Osborne has previously outlined as a way to rebalance the UK economy. See PA story POLITICS Osborne. Photo credit should read: Stefan Rousseau/PA Wire",
+        "width": 972,
+        "mediaType": "image/jpeg",
+        "source": "PA",
+        "type": "wide-format",
+        "url": "http://im.ft-static.com/content/images/a82fa6e9-13f8-4d6a-8de3-0b8a924b0687.img",
+        "height": 547
+      },
+      {
+        "alt": "Greece debt crisis",
+        "width": 167,
+        "mediaType": "image/jpeg",
+        "type": "promo",
+        "url": "http://im.ft-static.com/content/images/e1ce46ac-ac83-11e4-9aaa-00144feab7de.img",
+        "height": 96
+      }
+    ],
+    "package": [],
+    "assets": [
+      {
+        "name": "asset1",
+        "type": "promoBox",
+        "fields": {
+          "images": [
+            {
+              "alt": "Greece debt crisis",
+              "width": 167,
+              "mediaType": "image/jpeg",
+              "type": "promo",
+              "url": "http://im.ft-static.com/content/images/e1ce46ac-ac83-11e4-9aaa-00144feab7de.img",
+              "height": 96
+            }
+          ],
+          "intro": "<p>Greece has caved in to an ultimatum from Germany and its other creditors and agreed to rush through long-resisted economic reforms in a desperate bid to secure a €82bn-€86bn rescue and stay in the eurozone</p>\n<p><a title=\"www.ft.com\" href=\"http://www.ft.com/indepth/greece-debt-crisis\">Further reading</a>\n</p>",
+          "title": "<p>In depth</p>",
+          "headline": "<p><a title=\"Greece debt crisis in depth - FT.com\" href=\"http://www.ft.com/indepth/greece-debt-crisis\">Greece debt crisis</a>\n</p>"
+        }
+      },
+      {
+        "name": "asset2",
+        "type": "promoteNumber",
+        "fields": {
+          "intro": "<p>Amount Greece must find to pay the IMF and European Central Bank by Monday next week</p>",
+          "headline": "<p>€7bn</p>"
+        }
+      }
+    ],
+    "mediaAssets": []
+  },
+  "_lastUpdatedDateTime": "2015-09-12T18:11:21.777Z"
+}

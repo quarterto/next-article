@@ -9,7 +9,9 @@ module.exports = function(xml, params) {
 		renderSlideshows: 0,
 		renderTOC: 0,
 		fullWidthMainImages: 0,
-		reserveSpaceForMasterImage: 1
+		reserveSpaceForMasterImage: 1,
+		suggestedRead: 0,
+		standFirst: ""
 	};
 
 	var xsltParams = {};

@@ -2,6 +2,11 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template match="/html/body/p[1]">
+      <xsl:if test="$suggestedRead = 1">
+          <p class="article__standfirst">
+            <xsl:value-of select="$standFirst" />
+          </p>
+      </xsl:if>
         <xsl:apply-templates select="current()" mode="default" />
         <xsl:if test="$renderTOC = 1 and count(/html/body/h3[contains(@class, 'ft-subhead')]/strong) > 2">
             <div class="article__toc" data-trackable="table-of-contents">
