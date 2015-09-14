@@ -1,0 +1,110 @@
+{
+   "docs": [
+		{
+			"_index":"v1_api_v2",
+			"_type":"item",
+			"_id":"02cad03a-844f-11e4-bae9-00144feabdc0",
+			"_version":11,
+			"found":true,
+			"_source":{
+				"item":{
+					"id":"5550ef3ac4a145d83910c7ed",
+					"aspectSet":"podcast",
+					"aspects":[
+						"assets",
+						"body",
+						"editorial",
+						"lifecycle",
+						"location",
+						"master",
+						"metadata",
+						"provenance",
+						"summary",
+						"title"
+					],
+					"title":{
+						"title":"The UK election: What next for the winners and losers?"
+					},
+					"summary":{
+						"excerpt":"Michael Stott, Robert Shrimsley and Tim Bale discuss the UK general election results, what happens next for the winners and losers, and why pollsters and pundits got it so wrong."
+					},
+					"body":{
+						"mediaType":"text/html",
+						"body":"<p>Michael Stott, Robert Shrimsley and Tim Bale discuss the UK general election results, what happens next for the winners and losers, and why pollsters and pundits got it so wrong.</p>"
+					},
+					"lifecycle":{
+						"initialPublishDateTime":"2015-05-11T16:55:00.000Z",
+						"lastPublishDateTime":"2015-05-11T16:55:00.000Z"
+					},
+					"editorial":{
+						"otherTitles":[
+							{
+
+							}
+						],
+						"byline":"UK General Election 2015"
+					},
+					"location":{
+						"uri":"https://www.acast.com/channels/ft-uk-general-election-2015/acasts/the-uk-election-what-next-for-the-winners-and-losers-"
+					},
+					"assets":[
+						{
+							"name":"podcast",
+							"type":"audio/mpeg",
+							"fields":{
+								"source":"https://www.acast.com/channels/ft-uk-general-election-2015/acasts/the-uk-election-what-next-for-the-winners-and-losers-",
+								"link":"http://rss.acast.com/ft-uk-general-election-2015/the-uk-election-what-next-for-the-winners-and-losers-/media.mp3"
+							}
+						}
+					],
+					"master":{
+						"masterSource":"Acast",
+						"masterEntityId":"5550ef3ac4a145d83910c7ed"
+					},
+					"provenance":{
+						"originatingParty":"Acast"
+					},
+					"metadata":{
+						"sections":[
+							{
+								"term":{
+									"name":"UK",
+									"id":"Ng==-U2VjdGlvbnM=",
+									"attributes":[
+										{
+											"key":"dfpSite",
+											"value":"world"
+										},
+										{
+											"key":"dfpZone",
+											"value":"uk"
+										}
+									],
+									"taxonomy":"sections"
+								}
+							},
+							{
+								"term":{
+									"taxonomy":"sections",
+									"name":"UK Politics & Policy",
+									"id":"OA==-U2VjdGlvbnM="
+								}
+							}
+						],
+						"topics":[
+							{
+								"term":{
+									"taxonomy":"topics",
+									"name":"General Election",
+									"id":"OTAzZjM5YTgtZGU1Ny00MjU5LTgxMmEtZGIzMGY4YTg5NDJi-VG9waWNz"
+								}
+							}
+						]
+					},
+					"modelVersion":1
+				},
+				"_lastUpdatedDateTime":"2015-08-28T13:26:29.690Z"
+			}
+		}
+	]
+}
