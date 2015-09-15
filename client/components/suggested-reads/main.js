@@ -1,10 +1,10 @@
 'use strict';
-var fetchres = require('fetchres')
+var fetchres = require('fetchres');
 
 module.exports = {
 	init: function(flags) {
 		var el = document.querySelector('.js-suggested-reads');
-		var data = document.querySelector('#dehydrated-data');
+		var data = document.getElementById('dehydrated-data');
 
 		try {
 			data = JSON.parse(data.text);

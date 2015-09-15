@@ -3,7 +3,6 @@
 var api = require('next-ft-api-client');
 
 module.exports = function(req, res, next) {
-	console.log(req.body);
 	api.contentLegacy({
 		uuid: req.body.ids,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet,

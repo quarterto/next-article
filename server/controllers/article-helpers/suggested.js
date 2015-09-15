@@ -1,3 +1,5 @@
+'use strict';
+
 var api = require('next-ft-api-client');
 var exposeTopic = require('./exposeTopic');
 
