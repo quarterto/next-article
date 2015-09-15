@@ -3,7 +3,6 @@
   "dependencies": {
     "n-layout": "Financial-Times/n-layout",
     "o-fonts": "^1.6.4",
-    "next-ads-component": "^6.0.0",
     "o-quote": "bogdis-design",
     "o-big-number": "^1.1.0",
     "o-gallery": "^1.6.1",
