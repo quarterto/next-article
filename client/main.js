@@ -12,7 +12,6 @@ require('next-js-setup').bootstrap(function(result) {
 	var nVideo = require('n-video');
 	// Require n-image to load pollyfill
 	require('n-image');
-	var nAds = require('next-ads-component');
 
 	var slideshow = require('./components/slideshow/main');
 	var onwardJourney = require('./components/onward-journey/main');
@@ -38,7 +37,6 @@ require('next-js-setup').bootstrap(function(result) {
 		readingHistory.add(uuid);
 	}
 
-	nAds.init(flags);
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
 	if (flags.get('contentApiCalls')) {
