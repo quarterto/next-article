@@ -1,0 +1,22 @@
+'use strict';
+
+require('array.prototype.find');
+
+module.exports = function exposeTopic(metadata) {
+	if (!metadata) { return undefined; }
+	var topic = ['primaryTheme', 'primarySection']
+		.map(function(prop) {
+			return {
+				topicName: metadata[prop].term.name,
+				topicLink: '/stream/' + metadata[prop].term.taxonomy + 'Id/' + metadata[prop].term.id,
+				metadata: metadata[prop]
+			};
+		})
+		.find(function(prop) {
+			return (prop.metadata.term && prop.metadata.term.id);
+		});
+
+	console.log('Exposing topic', topic);
+
+	return topic;
+};

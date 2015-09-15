@@ -15,6 +15,7 @@ var articleXSLT = require('../transforms/article-xslt');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
+var exposeTopic = require('./article-helpers/exposeTopic');
 
 module.exports = function(req, res, next) {
 
@@ -126,6 +127,7 @@ module.exports = function(req, res, next) {
 						isColumnist: isColumnist,
 						layout: 'wrapper',
 						primaryTag: primaryTag,
+						suggestedTopic: articleV1 && articleV1.item ? exposeTopic(articleV1.item.metadata) : null,
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
 						shareButtons: res.locals.flags.articleShareButtons,
