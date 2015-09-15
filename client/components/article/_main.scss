@@ -149,7 +149,14 @@
 .article__main {
 	padding-top: 15px;
 }
+.article__media {
+	margin-bottom: 20px;
 
+	audio,
+	video {
+		width: 100%;
+	}
+}
 
 //ARTICLE BODY ELEMENTS
 .article__body {

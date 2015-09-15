@@ -10,14 +10,15 @@ var subject = require('../../../server/controllers/podcast');
 var fixtureEsFound = require('../../fixtures/capi-v1-elastic-search-podcast');
 var fixtureEsNotFound = require('../../fixtures/capi-v1-elastic-search-not-found');
 
-describe('Podcasts Controller', function() {
+describe.only('Podcasts Controller', function() {
 
 	var instance, request, response, next;
 
-	function createInstance(params) {
+	function createInstance(params, flags) {
 		next = sinon.stub();
 		request = httpMocks.createRequest(params);
 		response = httpMocks.createResponse();
+		response.locals = { flags: flags || {} };
 		return subject(request, response, next);
 	}
 
@@ -48,6 +49,19 @@ describe('Podcasts Controller', function() {
 			expect(result).to.be.an('object');
 			expect(result.title).to.equal(original.title.title);
 			expect(result.publishedDate).to.equal(original.lifecycle.lastPublishDateTime);
+		});
+
+		it('decorates the data with flags', function() {
+			var result = response._getRenderData();
+
+			expect(result.articleShareButtons).to.be.defined;
+			expect(result.myFTTray).to.be.defined;
+		});
+
+		it('adds related and further data', function() {
+			var result = response._getRenderData();
+
+			expect(result.externalLinks).to.be.an('object');
 		});
 
 	});

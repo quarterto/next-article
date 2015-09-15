@@ -4,6 +4,7 @@ var logger = require('ft-next-logger');
 var api = require('next-ft-api-client');
 var getDfp = require('../utils/get-dfp');
 var cacheControl = require('../utils/cache-control');
+var externalPodcastLinks = require('../utils/external-podcast-links');
 
 module.exports = function(req, res, next) {
 
@@ -27,20 +28,30 @@ module.exports = function(req, res, next) {
 				type: data.item.assets[0].type,
 				url: data.item.assets[0].fields.link
 			},
-			layout: 'wrapper',
 			dfp: getDfp(data.item.metadata.sections)
 		};
 	}
 
+	function decorate(data) {
+		data.save = true;
+		data.externalLinks = externalPodcastLinks(data.primaryTag.name);
+		data.articleShareButtons = res.locals.flags.articleShareButtons;
+		data.myFTTray = res.locals.flags.myFTTray;
+
+		return data;
+	}
+
 	function render(data) {
 		res.set(cacheControl);
+		data.layout = 'wrapper';
 		return res.render('podcast', data);
 	}
 
 	function error(err) {
+		console.error(err.stack)
 		next(err);
 	}
 
-	return get(req.params.id).then(map).then(render).catch(error);
+	return get(req.params.id).then(map).then(decorate).then(render).catch(error);
 
 };

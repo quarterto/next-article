@@ -8,7 +8,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if article}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article" data-content-id="{{id}}" data-content-sources="v1" data-trackable="article" data-trackable-terminate>
 	<div class="article__header" data-trackable="header">
 		<div class="article__leaderboard-advert"></div>
 		<div class="article__header-inner o-grid-row">
@@ -28,23 +28,20 @@
 							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
 								{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
 							</time>
-							<p class="article__byline">
-								{{{byline}}}
-							</p>
 						</div>
 						<div class="article__header-actions">
-						{{#if save}}
+							{{#if save}}
 							<div class="article__actions">
 								{{>next-myft-ui/templates/save-for-later contentId=id}}
 							</div>
-						{{/if}}
+							{{/if}}
 						</div>
 
 					</div>
 				</header>
 			</div>
 			<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
-				<h3 class="article__tags__title">Topics mentioned in this article</h3>
+				<h3 class="article__tags__title">Topics mentioned in this podcast</h3>
 				<ul class="article__tags-list" data-trackable="tags">
 					{{#each tags}}
 						{{#with term}}
@@ -59,9 +56,6 @@
 	</div>
 	<div class="article__main o-grid-row">
 		<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-			<div class="article__body">
-				{{{body}}}
-			</div>
 			<div class="article__media">
 				{{#with media}}
 				<audio controls>
@@ -69,22 +63,34 @@
 				</audio>
 				{{/with}}
 			</div>
+			<div class="article__body">
+				{{{body}}}
+				<p>
+					{{#if externalLinks}}
+						{{>podcast-links}}
+					{{/if}}
+				</p>
+				<hr />
+				<p>
+					<small>{{{byline}}}</small>
+				</p>
+				{{#if articleShareButtons}}
+					{{>share}}
+				{{/if}}
+			</div>
 		</div>
 		<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
 			<div class="article__rail-advert"></div>
 		</div>
 	</div>
-</article>
-
-{{#if shareButtons}}
-	{{>share}}
-{{/if}}
-
-<div class="o-grid-row">
-	<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-		<div data-trackable="comments" class="article__comments o-comments" id="comments"></div>
+	<div class="article__related o-grid-row">
+		<h2>
+			More episodes
+		</h2>
+		<ul>
+		</ul>
 	</div>
-</div>
+</article>
 
 {{#if myFTTray}}
 	{{>n-myft-tray/templates/tray}}
