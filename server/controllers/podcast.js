@@ -8,35 +8,80 @@ var externalPodcastLinks = require('../utils/external-podcast-links');
 
 module.exports = function(req, res, next) {
 
-	function get(guid) {
+	function getArticle(guid) {
 		return api.contentLegacy({
 			uuid: guid,
 			useElasticSearch: true
 		});
 	}
 
-	function map(data) {
+	function mapArticle(data) {
 		return {
 			id: data.item.id,
 			title: data.item.title.title,
 			byline: data.item.editorial.byline,
 			tags: data.item.metadata.tags,
 			publishedDate: data.item.lifecycle.lastPublishDateTime,
-			primaryTag: data.item.metadata.primarySection && data.item.metadata.primarySection.term,
+			primaryTag: data.item.metadata.primarySection.term,
 			body: data.item.body.body,
 			media: {
 				type: data.item.assets[0].type,
 				url: data.item.assets[0].fields.link
 			},
-			dfp: getDfp(data.item.metadata.sections)
+			metadata: data.item.metadata
 		};
+	}
+
+	function getRelated(article) {
+		var related = api.searchLegacy({
+			query: article.primaryTag.taxonomy + 'Id:"' + article.primaryTag.id + '"',
+			count: 5,
+			// Hack: the default option for the client is an empty array so no fields will
+			// be returned. I don't want to type all the fields here. This invalid value
+			// will be ignored by ES and will fall back to returning all the fields.
+			fields: true,
+			useElasticSearch: true
+		});
+
+		return Promise.all([article, related]);
+	}
+
+	function mapRelated(fulfilled) {
+		var article = fulfilled[0];
+		var related = fulfilled[1];
+
+		article.relatedContent = related
+			.map(function(raw) {
+				var item = raw._source.item;
+
+				// TODO: This mapping is different to the one above. Why?
+				return {
+					id: item.id,
+					headline: item.title.title,
+					subheading: item.summary.excerpt,
+					lastUpdated: item.lifecycle.lastPublishDateTime,
+					image: item.images && item.images[0] && {
+						url: item.images[0].url,
+						alt: item.images[0].alt,
+						srcset: {
+							s: 100,
+							m: 200
+						}
+					}
+				};
+			})
+			.filter(function(item) {
+				return item.id !== article.id;
+			})
+			.slice(0, 4);
+
+		return article;
 	}
 
 	function decorate(data) {
 		data.save = true;
 		data.externalLinks = externalPodcastLinks(data.primaryTag.name);
-		data.articleShareButtons = res.locals.flags.articleShareButtons;
-		data.myFTTray = res.locals.flags.myFTTray;
+		data.dfp = getDfp(data.metadata.sections);
 
 		return data;
 	}
@@ -48,10 +93,14 @@ module.exports = function(req, res, next) {
 	}
 
 	function error(err) {
-		console.error(err.stack)
 		next(err);
 	}
 
-	return get(req.params.id).then(map).then(decorate).then(render).catch(error);
-
+	return getArticle(req.params.id)
+		.then(mapArticle)
+		.then(getRelated)
+		.then(mapRelated)
+		.then(decorate)
+		.then(render)
+		.catch(error);
 };

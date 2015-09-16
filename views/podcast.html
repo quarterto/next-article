@@ -74,24 +74,21 @@
 				<p>
 					<small>{{{byline}}}</small>
 				</p>
-				{{#if articleShareButtons}}
-					{{>share}}
-				{{/if}}
 			</div>
 		</div>
 		<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
 			<div class="article__rail-advert"></div>
 		</div>
 	</div>
-	<div class="article__related o-grid-row">
-		<h2>
-			More episodes
-		</h2>
-		<ul>
-		</ul>
-	</div>
+	{{#if @root.flags.articleShareButtons}}
+		{{>share}}
+	{{/if}}
 </article>
 
-{{#if myFTTray}}
+{{#if relatedContent}}
+	{{>podcast-related}}
+{{/if}}
+
+{{#if @root.flags.myFTTray}}
 	{{>n-myft-tray/templates/tray}}
 {{/if}}
