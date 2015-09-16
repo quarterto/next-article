@@ -1,4 +1,4 @@
-/*global it, describe, beforeEach, afterEach*/
+/*global it, describe, beforeEach*/
 'use strict';
 
 var nock = require('nock');
@@ -11,9 +11,9 @@ var fixtureEsFound = require('../../fixtures/capi-v1-elastic-search-podcast');
 var fixtureEsNotFound = require('../../fixtures/capi-v1-elastic-search-not-found');
 var fixtureEsNoResults = require('../../fixtures/capi-v1-elastic-search-no-results');
 
-describe.only('Podcasts Controller', function() {
+describe('Podcasts Controller', function() {
 
-	var instance, request, response, next;
+	var request, response, next;
 
 	function createInstance(params, flags) {
 		next = sinon.stub();
@@ -53,7 +53,7 @@ describe.only('Podcasts Controller', function() {
 
 		it('provides mapped podcast data to the template', function() {
 			var result = response._getRenderData();
-			var original = fixtureEsFound.docs[0]._source.item
+			var original = fixtureEsFound.docs[0]._source.item;
 
 			expect(result).to.be.an('object');
 			expect(result.title).to.equal(original.title.title);

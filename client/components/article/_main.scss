@@ -164,12 +164,29 @@
 	color: $next-grey-dark;
 	margin-bottom: 20px;
 
-	p {
+	> p {
 		margin: 0.3em 0 0.8em;
-		display: block;
 	}
+
 	> *:first-child {
 		margin-top: 0;
+	}
+
+	> p a,
+	> table a {
+		@include nLinksBody();
+
+		@include print {
+			&:after {
+				text-decoration: none;
+			}
+			&[href^='/']:after {
+				content: ' (http://next.ft.com' attr(href) ')';
+			}
+			&:not([href^='/']):after {
+				content: ' (' attr(href) ')';
+			}
+		}
 	}
 
 	strong {
@@ -186,20 +203,6 @@
 			display: block;
 			border-top: 1px solid #000000;
 			padding-top: 5px;
-		}
-	}
-}
-.article__body__link {
-	@include nLinksBody();
-	@include print {
-		&:after {
-			text-decoration: none;
-		}
-		&[href^='/']:after {
-			content: ' (http://next.ft.com' attr(href) ')';
-		}
-		&:not([href^='/']):after {
-			content: ' (' attr(href) ')';
 		}
 	}
 }

@@ -1,12 +1,11 @@
 'use strict';
 
-var logger = require('ft-next-logger');
 var api = require('next-ft-api-client');
 var getDfp = require('../utils/get-dfp');
 var cacheControl = require('../utils/cache-control');
 var externalPodcastLinks = require('../utils/external-podcast-links');
 
-module.exports = function(req, res, next) {
+module.exports = function podcastController(req, res, next) {
 
 	function getArticle(guid) {
 		return api.contentLegacy({
