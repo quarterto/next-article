@@ -40,7 +40,7 @@ module.exports = function podcastController(req, res, next) {
 			// will be ignored by ES and will fall back to returning all the fields.
 			fields: true,
 			useElasticSearch: true
-		});
+		}).catch(function() { return []; });
 
 		return Promise.all([article, related]);
 	}
@@ -49,7 +49,7 @@ module.exports = function podcastController(req, res, next) {
 		var article = fulfilled[0];
 		var related = fulfilled[1];
 
-		article.relatedContent = related
+		article.relatedContent = Array.isArray(related) && related
 			.map(function(raw) {
 				var item = raw._source.item;
 

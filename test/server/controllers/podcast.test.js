@@ -23,20 +23,28 @@ describe('Podcasts Controller', function() {
 		return subject(request, response, next);
 	}
 
-	describe('Success', function() {
+	function matchRelatedPostBody(body) {
+		var id1 = fixtureEsFound.docs[0]._source.item.metadata.primarySection.term.id;
+		var id2 = body.query.filtered.filter.term['item.metadata.sections.term.id'];
+		return id1 === id2;
+	}
+
+	beforeEach(function() {
+		nock('https://ft-elastic-search.com')
+			.post('/v1_api_v2/item/_mget', { ids: ['podcast-exists'] })
+			.reply(200, fixtureEsFound);
+
+		nock('https://ft-elastic-search.com')
+			.post('/v1_api_v2/item/_mget', { ids: ['podcast-does-not-exist'] })
+			.reply(200, fixtureEsNotFound);
+	});
+
+	describe('Business as usual', function() {
 
 		beforeEach(function() {
 
 			nock('https://ft-elastic-search.com')
-				.post('/v1_api_v2/item/_mget', { ids: ['podcast-exists'] })
-				.reply(200, fixtureEsFound);
-
-			nock('https://ft-elastic-search.com')
-				.post('/v1_api_v2/item/_search', function(postBody) {
-					var id1 = fixtureEsFound.docs[0]._source.item.metadata.primarySection.term.id;
-					var id2 = postBody.query.filtered.filter.term['item.metadata.sections.term.id'];
-					return id1 === id2;
-				})
+				.post('/v1_api_v2/item/_search', matchRelatedPostBody)
 				.reply(200, fixtureEsNoResults);
 
 			return createInstance({
@@ -65,18 +73,14 @@ describe('Podcasts Controller', function() {
 
 			expect(result.dfp).to.be.an('object');
 			expect(result.externalLinks).to.be.an('object');
+			expect(result.relatedContent).to.be.an('array');
 		});
 
 	});
 
-	describe('Failure', function() {
+	describe('No article', function() {
 
 		beforeEach(function() {
-
-			nock('https://ft-elastic-search.com')
-				.post('/v1_api_v2/item/_mget', { ids: ['podcast-does-not-exist'] })
-				.reply(200, fixtureEsNotFound);
-
 			return createInstance({
 				params: {
 					id: 'podcast-does-not-exist'
@@ -87,6 +91,34 @@ describe('Podcasts Controller', function() {
 		it('delegates errors back to next express', function() {
 			expect(next.calledOnce).to.be.ok;
 			expect(next.firstCall.args[0]).to.be.instanceof(Error);
+		});
+
+	});
+
+	describe('Related content failure', function() {
+
+		beforeEach(function() {
+
+			nock('https://ft-elastic-search.com')
+				.post('/v1_api_v2/item/_search', matchRelatedPostBody)
+				.reply(500, 'This is broken');
+
+			return createInstance({
+				params: {
+					id: 'podcast-exists'
+				}
+			});
+		});
+
+		it('returns a successful response', function() {
+			expect(next.callCount).to.equal(0);
+			expect(response.statusCode).to.equal(200);
+		});
+
+		it('adds related and further data', function() {
+			var result = response._getRenderData();
+
+			expect(result.relatedContent).to.be.an('array');
 		});
 
 	});
