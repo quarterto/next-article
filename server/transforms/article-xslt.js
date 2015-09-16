@@ -17,10 +17,11 @@ module.exports = function(xml, stylesheet, params) {
 			options = options.concat(string ? '--stringparam' : '--param', param, params[param]);
 		});
 
+		var env = { PATH: "/app/libxslt/bin:" + process.env.PATH; };
 		var xsltproc = spawn('xsltproc', options.concat(
 			process.cwd() + '/server/stylesheets/' + stylesheet + '.xsl',
 			'-'
-		), { env: process.env });
+		), { env: env });
 
 		xsltproc.stdin.write(xml);
 
