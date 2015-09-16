@@ -33,6 +33,7 @@
     "next-myft-ui": "^3.0.0",
     "o-buttons": "v3",
     "next-card": "^6.1.0",
-    "next-feature-flags-client": "^v8.0.0"
+    "next-feature-flags-client": "^v8.0.0",
+    "next-myft-client": "switch"
   }
 }
