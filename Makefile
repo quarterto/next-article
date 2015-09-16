@@ -36,7 +36,7 @@ clean:
 deploy:
 	nbt configure
 	nbt deploy-hashed-assets
-	nbt deploy --docker
+	nbt deploy
 	nbt scale
 
 visual:
@@ -52,7 +52,7 @@ provision:
 	heroku apps:create ${TEST_APP} --region eu --org financial-times
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
+	nbt deploy ${TEST_APP} --skip-enable-preboot
 	make smoke
 
 smoke:
