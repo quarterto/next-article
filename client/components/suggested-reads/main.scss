@@ -1,4 +1,4 @@
-$next-up-border: #cec6b9;
+$next-up-border: getColor('warm-3');
 
 .article__next-up {
 	max-width: 300px;
@@ -15,7 +15,7 @@ $next-up-border: #cec6b9;
 	position: relative;
 
 	&::before {
-		@include nextIcon(arrow-right, #333333, 15);
+		@include nextIcon(arrow-right, getColor('cold-2'), 15);
 		content: '';
 		position: absolute;
 		top: 5px;
@@ -33,7 +33,7 @@ $next-up-border: #cec6b9;
 }
 
 .article__next-up__title {
-	@include nTypeCharlie(4);
+	@include nTypeFoxtrot(3);
 	font-size: 19px;
 	margin-bottom: 15px;
 	display: inline-block;
@@ -43,8 +43,7 @@ $next-up-border: #cec6b9;
 	position: absolute;
 	top: -10px;
 	left: 10px;
-	font-style: normal;
-	font-weight: bold;
+	font-weight: 900;
 }
 
 .article__next-up__item__content {
@@ -54,7 +53,7 @@ $next-up-border: #cec6b9;
 
 .article__next-up__item__headline {
 	@include nTypeFoxtrot(3);
-	color: #333333;
+	color: getColor('warm-3');
 	margin: 0;
 	margin-bottom: 5px;
 }
@@ -94,8 +93,7 @@ $next-up-border: #cec6b9;
 
 	a {
 		@include nLinksTopic();
-		@include nTypeBravo(2);
-		font-size: 20px;
+		@include nTypeBravo(3);
 		font-style: normal;
 		text-transform: capitalize;
 		&::after {
@@ -105,7 +103,7 @@ $next-up-border: #cec6b9;
 		}
 
 		&:hover::after {
-			@include nextIcon(arrow-right, #333333, 15);
+			@include nextIcon(arrow-right, getColor('cold-2'), 15);
 			content: '';
 			margin-bottom: -2px;
 		}
