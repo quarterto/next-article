@@ -46,7 +46,7 @@ visual:
 clean-deploy: clean install deploy
 
 tidy:
-	nbt destroy ${TEST_APP}
+	#nbt destroy ${TEST_APP}
 
 provision:
 	heroku apps:create ${TEST_APP} --region eu --org financial-times
