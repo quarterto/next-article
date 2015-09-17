@@ -172,10 +172,7 @@
 		margin-top: 0;
 	}
 
-	> p a,
-	> table a {
-		@include nLinksBody();
-
+	a {
 		@include print {
 			&:after {
 				text-decoration: none;
