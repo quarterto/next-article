@@ -53,7 +53,7 @@ $next-up-border: getColor('warm-3');
 
 .article__next-up__item__headline {
 	@include nTypeFoxtrot(3);
-	color: getColor('warm-3');
+	color: getColor('cold-2');
 	margin: 0;
 	margin-bottom: 5px;
 }
