@@ -13,65 +13,65 @@ module.exports = function externalPodcastLinks(show) {
 	var data;
 
 	switch(show) {
-		case 'Copenhagen Summit podcast':
+		case 'http://rss.acast.com/ft-copenhagen-summit':
 			break;
-		case 'FT Alphachat':
+		case 'http://rss.acast.com/ft-alphachat':
 			data = ['id448302257', 'ft-alphachat', 'ftalphachat', 'ft-alphachat'];
 			break;
-		case 'FT Arts podcast':
+		case 'http://rss.acast.com/ft-arts':
 			data = ['id402479253', 'ft-arts', 'FTarts', 'ft-arts'];
 			break;
-		case 'Banking Weekly podcast':
+		case 'http://rss.acast.com/ft-banking-weekly':
 			data = ['id374270310', 'banking-weekly', 'bankingweekly', 'ft-banking-weekly'];
 			break;
-		case 'FT Big Read podcast':
+		case 'http://rss.acast.com/ft-big-read':
 			data = ['id878656889', '', 'ftbigread', ''];
 			break;
-		case 'FT Connected Business podcast':
+		case 'http://rss.acast.com/ft-connected-business':
 			data = ['id497374200', 'ft-connected-business', '', ''];
 			break;
-		case 'FT Digital Business: Managing Intelligence':
+		case 'http://rss.acast.com/ft-digital-business-mi':
 			break;
-		case 'FT Digital Business with Peter Whitehead':
+		case 'http://rss.acast.com/ft-digital-business':
 			break;
-		case 'FT Emerging Markets Weekly podcast':
+		case 'http://rss.acast.com/ft-emerging-markets-weekly':
 			break;
-		case 'FT Energy Weekly podcast':
+		case 'http://rss.acast.com/ft-energy-weekly':
 			break;
-		case 'Hard Currency podcast':
+		case 'http://rss.acast.com/ft-hard-currency':
 			data = ['id527135392', 'hard-currency', 'hardcurrency', 'ft-hard-currency'];
 			break;
-		case 'FT House and Home podcast':
+		case 'http://rss.acast.com/ft-house-and-home':
 			break;
-		case 'FT Investigations podcast':
+		case 'http://rss.acast.com/ft-investigations':
 			data = ['id1012901367', 'ft-investigations', 'ftinvestigations', 'ft-investigations'];
 			break;
-		case 'FT Management podcast':
+		case 'http://rss.acast.com/ft-management':
 			break;
-		case 'FT Money Show':
+		case 'http://rss.acast.com/ft-money-show':
 			data = ['id287031335', 'ft-money-show-5974', 'ftmoneyshow', 'ft-money-show'];
 			break;
-		case 'FT News podcast':
+		case 'http://rss.acast.com/ft-news':
 			data = ['id379613801', 'ft-news', 'ftnews', 'ft-news'];
 			break;
-		case 'FT Science podcast':
+		case 'http://rss.acast.com/ft-science':
 			break;
-		case 'FT UK General Election 2010 podcast':
+		case 'http://rss.acast.com/ft-uk-general-election-2010':
 			break;
-		case 'FT UK General Election 2015 podcast':
+		case 'http://rss.acast.com/ft-uk-general-election-2015':
 			data = ['', 'UK-election-2015', 'ftukgeneralelection2015', ''];
 			break;
-		case 'FT World Weekly podcast':
+		case 'http://rss.acast.com/ft-world-weekly':
 			data = ['id377218713', 'world-weekly-with-gideon-rachman', 'worldweeklywithgideonrachman', 'ft-world-weeky'];
 			break;
-		case 'Listen to Lucy':
+		case 'http://rss.acast.com/ft-lucy-kellaway':
 			data = ['id201455746', 'listen-to-lucy', 'listentolucy', 'ft-listen-to-lucy-kellaway'];
 			break;
-		case 'Martin Wolf podcast':
+		case 'http://rss.acast.com/ft-martin-wolf':
 			break;
-		case 'Robin Robertson podcast':
+		case 'http://rss.acast.com/ft-robin-robertson':
 			break;
-		case 'Stephen Fry and Lady Gaga podcast':
+		case 'http://rss.acast.com/ft-stephen-fry-lady-gaga':
 			break;
 	}
 
