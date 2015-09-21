@@ -20,11 +20,7 @@ module.exports.init = function(uuid, flags) {
 		var commentLink = document.createElement('a');
 		commentLink.setAttribute('href', '#comments');
 		commentLink.setAttribute('data-trackable', 'view-comments');
-<<<<<<< HEAD
 		commentLink.className = 'article__actions__action article__actions__action--comments ng-meta';
-=======
-		commentLink.className = 'article__actions__action article__actions__action--comments ng-meta ng-title-link';
->>>>>>> parent of a0b25f9... Migrating any use of o-comments to n-third-party-code
 		commentLink.textContent = 'Comments (' + commentCount + ')';
 		document.querySelector('.article__actions').appendChild(commentLink);
 	});
