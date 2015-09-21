@@ -23,6 +23,7 @@ module.exports = function podcastController(req, res, next) {
 			publishedDate: data.item.lifecycle.lastPublishDateTime,
 			primaryTag: data.item.metadata.primarySection.term,
 			body: data.item.body.body,
+			source: data.item.master.masterSource,
 			media: {
 				type: data.item.assets[0].type,
 				url: data.item.assets[0].fields.link
@@ -79,7 +80,7 @@ module.exports = function podcastController(req, res, next) {
 
 	function decorate(data) {
 		data.save = true;
-		data.externalLinks = externalPodcastLinks(data.primaryTag.name);
+		data.externalLinks = externalPodcastLinks(data.source);
 		data.dfp = getDfp(data.metadata.sections);
 
 		return data;
