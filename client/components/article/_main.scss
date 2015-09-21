@@ -149,7 +149,14 @@
 .article__main {
 	padding-top: 15px;
 }
+.article__media {
+	margin-bottom: 20px;
 
+	audio,
+	video {
+		width: 100%;
+	}
+}
 
 //ARTICLE BODY ELEMENTS
 .article__body {
@@ -157,12 +164,26 @@
 	color: $next-grey-dark;
 	margin-bottom: 20px;
 
-	p {
+	> p {
 		margin: 0.3em 0 0.8em;
-		display: block;
 	}
+
 	> *:first-child {
 		margin-top: 0;
+	}
+
+	a {
+		@include print {
+			&:after {
+				text-decoration: none;
+			}
+			&[href^='/']:after {
+				content: ' (http://next.ft.com' attr(href) ')';
+			}
+			&:not([href^='/']):after {
+				content: ' (' attr(href) ')';
+			}
+		}
 	}
 
 	strong {
@@ -179,20 +200,6 @@
 			display: block;
 			border-top: 1px solid #000000;
 			padding-top: 5px;
-		}
-	}
-}
-.article__body__link {
-	@include nLinksBody();
-	@include print {
-		&:after {
-			text-decoration: none;
-		}
-		&[href^='/']:after {
-			content: ' (http://next.ft.com' attr(href) ')';
-		}
-		&:not([href^='/']):after {
-			content: ' (' attr(href) ')';
 		}
 	}
 }
@@ -260,9 +267,6 @@
 		margin: 0 auto;
 	}
 
-	> img {
-		width: 100%;
-	}
 }
 .article__image-caption {
 	margin-top: 5px;

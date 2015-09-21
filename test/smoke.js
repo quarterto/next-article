@@ -3,7 +3,7 @@ module.exports = [
 		timeout: 5000,
 		urls: {
 			//methode
-			'/02cad03a-844f-11e4-bae9-00144feabdc0': 200,
+			'/395650fa-5b9c-11e5-a28b-50226830d644': 200,
 			//fastft
 			'/b002e5ee-3096-3f51-9925-32b157740c98': 200,
 			// related fragments

@@ -164,8 +164,7 @@
 .header__link {
 	@include nTypeAlpha(3);
 	position: relative;
-	color: getColor('link-1');
-	text-decoration: none;
+	border-bottom: 0;
 	float: right;
 	margin-left: 10px;
 	padding: 12px 35px 11px 0;

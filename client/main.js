@@ -47,7 +47,7 @@ require('next-js-setup').bootstrap(function(result) {
 	}
 
 	if (flags.get('myFTTray')) {
-		nMyFtTray.init();
+		nMyFtTray.init(flags);
 	}
 
 	nVideo.init({

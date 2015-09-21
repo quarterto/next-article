@@ -8,7 +8,7 @@ install:
 test: verify build-production unit-test
 
 verify:
-	nbt verify --skip-layout-checks
+	nbt verify
 
 unit-test:
 	export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha test/server/ --recursive
@@ -36,7 +36,7 @@ clean:
 deploy:
 	nbt configure
 	nbt deploy-hashed-assets
-	nbt deploy --docker
+	nbt deploy
 	nbt scale
 
 visual:
@@ -49,11 +49,11 @@ tidy:
 	nbt destroy ${TEST_APP}
 
 provision:
-	heroku apps:create ${TEST_APP} --region eu --org financial-times
+	nbt provision ${TEST_APP}
 	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_APP} --skip-enable-preboot --docker
-	make -j2 visual smoke
+	nbt deploy ${TEST_APP} --skip-enable-preboot
+	make smoke
 
 smoke:
 	nbt test-urls ${TEST_APP};
