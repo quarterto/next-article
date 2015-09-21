@@ -51,7 +51,6 @@
 	background-color: getColor('pink');
 	border-bottom: 1px solid getColor('warm-3');
 	> .o-expander__toggle {
-		@include nLinksBody();
 		@include nTypeAlpha(3);
 		i {
 			@include nextIcon(arrow-down, getColor('teal-1'), 12);
