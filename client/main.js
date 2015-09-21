@@ -16,6 +16,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var slideshow = require('./components/slideshow/main');
 	var onwardJourney = require('./components/onward-journey/main');
 	var toc = require('./components/toc/main');
+	var comments = require('./components/comments/main');
 	var share = require('./components/share/main');
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
@@ -66,4 +67,7 @@ require('next-js-setup').bootstrap(function(result) {
 	scrollDepth.init(flags);
 	relatedToast.init(flags);
 
+	window.addEventListener("load", function (event) {
+		comments.init(uuid, flags);
+	},false);
 });
