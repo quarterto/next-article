@@ -6,7 +6,9 @@
 
         <xsl:if test="normalize-space(string()) != ''">
           <p>
-            <xsl:copy-of select="./node()[not(self::a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = ''])]" />
+            <xsl:apply-templates select="./node()[not(self::a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = ''])]">
+              <xsl:copy-of select="." />
+            </xsl:apply-templates>
           </p>
         </xsl:if>
     </xsl:template>
