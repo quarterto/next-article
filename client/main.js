@@ -22,6 +22,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
 	var relatedToast = require('./components/related-toast/main');
+	var suggestedReads = require('./components/suggested-reads/main');
 
 	prompts.init();
 	oViewport.listenTo('resize');
@@ -68,8 +69,9 @@ require('next-js-setup').bootstrap(function(result) {
 	});
 	scrollDepth.init(flags);
 	relatedToast.init(flags);
+	suggestedReads.init(flags);
 
-	window.addEventListener("load", function (event) {
+	window.addEventListener('load', function() {
 		comments.init(uuid, flags);
-	},false);
+	}, false);
 });

@@ -51,6 +51,7 @@ $o-comments-is-silent: false;
 @import "components/barriers/main";
 @import "components/special-report/main";
 @import "components/related-toast/main";
+@import "components/suggested-reads/main";
 
 @media print {
 	body > section,

@@ -5,10 +5,12 @@ var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]
 
 var express = require('ft-next-express');
 var logger = require('ft-next-logger');
+var bodyParser = require('body-parser');
 var app = module.exports = express();
 var barriers = require('ft-next-barriers');
 require('./lib/ig-poller').start();
 require('./lib/blogs-access-poller').start();
+app.use(bodyParser.json());
 
 // COMPLEX: Put access middleware before barrier middleware so that access can be cached by membership
 app.use('^/:id(' + articleUuidRegex + ')$', require('./controllers/access'));
@@ -16,6 +18,7 @@ app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/acces
 
 // No need for access control for podcasts
 app.get('^/content/:id(' + podcastGuidRegex + ')$', require('./controllers/podcast'));
+app.post('^/articles', require('./controllers/articles'));
 
 // These routes supply supplement content for an article so don't need to go through barriers middleware
 app.get('^/article/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));

@@ -15,6 +15,8 @@ var articleXSLT = require('../transforms/article-xslt');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
+var getSuggested = require('./article-helpers/suggested');
+var exposeTopic = require('./article-helpers/exposeTopic');
 
 module.exports = function(req, res, next) {
 
@@ -126,6 +128,7 @@ module.exports = function(req, res, next) {
 						isColumnist: isColumnist,
 						layout: 'wrapper',
 						primaryTag: primaryTag,
+						suggestedTopic: articleV1 && articleV1.item ? exposeTopic(articleV1.item.metadata) : null,
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
 						shareButtons: res.locals.flags.articleShareButtons,
@@ -134,8 +137,13 @@ module.exports = function(req, res, next) {
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
 						isSpecialReport: metadata &&
-							metadata.primarySection.term.taxonomy === 'specialReports'
+							metadata.primarySection.term.taxonomy === 'specialReports',
+						dehydratedState: {}
 					};
+
+					var suggestedPromise = getSuggested(articleV1).then(function(it) {
+						viewModel.dehydratedState.suggestedReads = it;
+					});
 
 					if (metadata) {
 						var moreOnTags = [];
@@ -255,7 +263,9 @@ module.exports = function(req, res, next) {
 						viewModel.firstClickFree = res.locals.firstClickFreeModel;
 					}
 
-					return viewModel;
+					return suggestedPromise.then(function() {
+						return viewModel;
+					});
 				})
 				.then(function(viewModel) {
 					return res.render('article-v2', viewModel);
