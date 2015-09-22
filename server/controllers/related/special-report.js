@@ -40,7 +40,7 @@ module.exports = function (req, res, next) {
 			var articles = results.map(function (result) {
 				return result.item;
 			});
-			// get the best image from the
+			// get the best image
 			var images = {};
 			articles[0].images.forEach(function (image) {
 				images[image.type] = image;
