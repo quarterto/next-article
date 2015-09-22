@@ -42,7 +42,9 @@
 					{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
 					{{! Probably something like article.summaries[0] }}
 					{{#if articleV1.editorial.standFirst}}
-						<p class="article__stand-first">{{{articleV1.editorial.standFirst}}}</p>
+						{{#unless @root.flags.articleSuggestedRead}}
+							<p class="article__stand-first">{{{articleV1.editorial.standFirst}}}</p>
+						{{/unless}}
 					{{/if}}
 						<div class="article__header-time-byline">
 						{{#if article.publishedDate}}
@@ -66,17 +68,21 @@
 					</div>
 				</header>
 			</div>
-			{{#if tags}}
-				<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
-					<h3 class="article__tags__title">Topics mentioned in this article</h3>
-					<ul class="article__tags-list" data-trackable="tags">
-						{{#each tags}}
-							<li class="article__tag">
-								<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
-							</li>
-						{{/each}}
-					</ul>
-				</aside>
+			{{#if readNextArticle}}
+				{{>read-next-header readNext=readNextArticle}}
+			{{else}}
+				{{#if tags}}
+					<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
+						<h3 class="article__tags__title">Topics mentioned in this article</h3>
+						<ul class="article__tags-list" data-trackable="tags">
+							{{#each tags}}
+								<li class="article__tag">
+									<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
+								</li>
+							{{/each}}
+						</ul>
+					</aside>
+				{{/if}}
 			{{/if}}
 		</div>
 	</div>
@@ -137,10 +143,13 @@
 	{{>share}}
 {{/if}}
 
-<div class="o-grid-row">
+<div class="o-grid-row {{#if readNextArticle}}read-next__container{{/if}}">
 	{{#if isSpecialReport}}
 			<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 	{{else}}
+		{{#if readNextArticle}}
+			{{>read-next-bottom readNext=readNextArticle}}
+		{{/if}}
 		{{#if relatedContent}}
 			<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 		{{/if}}

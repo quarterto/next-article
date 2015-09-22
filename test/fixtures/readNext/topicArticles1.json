@@ -1,0 +1,1143 @@
+[
+  {
+    "_index": "v1_api_v2",
+    "_type": "item",
+    "_id": "41129eec-5b9d-11e5-a28b-50226830d644",
+    "_score": null,
+    "_source": {
+      "requestUrl": "http://api.ft.com/content/items/v1/41129eec-5b9d-11e5-a28b-50226830d644?feature.blogposts=on&h=1769303635",
+      "item": {
+        "aspectSet": "article",
+        "aspects": [
+          "assets",
+          "body",
+          "editorial",
+          "images",
+          "lifecycle",
+          "location",
+          "master",
+          "mediaAssets",
+          "metadata",
+          "package",
+          "packaging",
+          "provenance",
+          "summary",
+          "title"
+        ],
+        "modelVersion": "1",
+        "id": "41129eec-5b9d-11e5-a28b-50226830d644",
+        "apiUrl": "http://api.ft.com/content/items/v1/41129eec-5b9d-11e5-a28b-50226830d644",
+        "title": {
+          "title": "Steve Jobs film will upset fans but misreads underdog mindset"
+        },
+        "body": {
+          "mediaType": "text/html",
+          "body": "<p>Film-maker Alex Gibney knows how to pick a controversial subject for his documentaries.</p>\n<p>His examination of <a title=\"Steve Jobs: The Man in the Machine trailer - youtube.com\" href=\"https://www.youtube.com/watch?v=jhWKxtsYrJE\">Apple’s co-founder</a> arrives at a time of renewed debate about Steve Jobs’ life. In March, Brent Schlender and Rick Tetzeli argued in their book, <span class=\"ft-italic\"><a title=\"‘Becoming Steve Jobs’, by Brent Schlender and Rick Tetzeli - FT.com\" href=\"http://www.ft.com/cms/s/d8363e4c-d2df-11e4-a792-00144feab7de,Authorised=false.html?siteedition=uk&amp;_i_location=http%3A%2F%2Fwww.ft.com%2Fcms%2Fs%2F0%2Fd8363e4c-d2df-11e4-a792-00144feab7de.html%3Fsiteedition%3Duk&amp;_i_referer=&amp;classification=conditional_standard&amp;iab=barrier-app\">Becoming Steve Jobs</a>\n</span>, that their subject was too harshly portrayed by his many previous biographers. </p>\n<p>Later this year, Danny Boyle and Aaron Sorkin’s drama starring Michael Fassbender as the iPhone impresario will go backstage at key product launches.</p>\n<p>Gibney’s addition to the canon points out, like so many others before him, that <a title=\"The legacy of Steve Jobs as a civil rights hero - FT.com\" href=\"http://www.ft.com/cms/s/1f0ded26-1023-11e5-bd70-00144feabdc0,Authorised=false.html?siteedition=uk&amp;_i_location=http%3A%2F%2Fwww.ft.com%2Fcms%2Fs%2F0%2F1f0ded26-1023-11e5-bd70-00144feabdc0.html%3Fsiteedition%3Duk&amp;_i_referer=&amp;classification=conditional_standard&amp;iab=barrier-app#axzz3ltLGXtaV\">Jobs was a man of contradictions</a>: the renegade who wanted to be legit, the humanist who denied paternity of his first daughter, the Wall Street idol embroiled in stock options and recruiting scandals. “He had the focus of a monk,” Gibney says as narrator, his camera lingering over Japanese zen gardens, “but none of the empathy.”</p>\n<p>The familiar stories told in this documentary are brought to life with extensive interviews with former <a title=\"Apple Inc news headlines - FT.com\" href=\"http://www.ft.com/topics/organisations/Apple_Inc\">Apple</a> employees and Jobs’ associates, as well as archive footage that includes his first screen test.</p>\n<p>Just as compelling are clips from the March 2008 video deposition, where Jobs squirms constantly in his seat as he is quizzed over allegations of backdated stock options.</p>\n<p>Absent from the screen, however, are any current Apple employees. Several members of Apple’s current management team blessed <span class=\"ft-italic\">Becoming Steve Jobs</span> as their preferred account of their former chief. Eddy Cue, who heads Apple’s services business, was rather less enthusiastic about <span class=\"ft-italic\">Man in the Machine</span>, calling it “an inaccurate and mean-spirited view of my friend”. </p>\n<p>It is not hard to see where Apple loyalists would object. </p>\n<p>Early on, the film-maker professes his love for his iPhone and Pixar movie <span class=\"ft-italic\">Wall-E</span>, but says he struggled to understand the global outpouring of grief in 2011 at the death of a man he calls “ruthless, deceitful and cruel”. He supports this argument by recalling suicides at Apple’s suppliers in China, investigations of its overseas profits and ripped-off colleagues such as Steve Wozniak and Daniel Kottke. \n</p>\n<p><img height=\"273\" alt=\"SteveJjobs Man in the Machine\" width=\"184\" class=\"ft-web-inline-picture\" src=\"http://im.ft-static.com/content/images/fff2660c-5bbc-11e5-a28b-50226830d644.img\"/>Yet by failing to include Jobs’ heirs and bring the story up to date, Gibney misses an opportunity to examine the company that survives him — at a crucial moment for the iPhone maker’s leadership. </p>\n<p>“Jobs’ genius was how he sold the iPod. It wasn’t a machine for you, it was you,” Gibney says. As Apple pushes beyond phones into watches, televisions, even cars, it is still figuring out how to sell these new categories without its master marketer. </p>\n<p>Gibney criticises Jobs for “behaving as though Apple was a start-up”, despite it becoming one of the world’s most valuable companies, yet the film-maker underestimates the energising force of playing the underdog.</p>\n<p>“This is a field in which one does one’s work and, in 10 years, it’s obsolete,” a young, bearded Jobs tells us towards the end of the film. \n</p>\n<p>Apple is about to enter its fifth year without its co-founder. All these controversies about Jobs’ life may soon give way to renewed debate about the future of the company he left behind. </p>\n\n<p><span class=\"ft-italic\">Steve Jobs: The man in the machine</span>, <span class=\"ft-bold\">directed by Alex Gibney, released by Magnolia Pictures, now in selected cinemas, on iTunes and on demand</span>\n</p>\n<p><br/>\n<span class=\"ft-italic\">The reviewer is an FT San Francisco correspondent</span>\n</p>"
+        },
+        "lifecycle": {
+          "initialPublishDateTime": "2015-09-16T11:44:13Z",
+          "lastPublishDateTime": "2015-09-16T11:44:13Z"
+        },
+        "location": {
+          "uri": "http://www.ft.com/cms/s/0/41129eec-5b9d-11e5-a28b-50226830d644.html"
+        },
+        "summary": {
+          "excerpt": "Documentary paints critical picture of Apple founder and misses opportunity to update story"
+        },
+        "packaging": {
+          "spHeadline": "Steve Jobs film misreads underdog mindset"
+        },
+        "master": {
+          "masterSource": "Methode",
+          "masterEntityId": "41129eec-5b9d-11e5-a28b-50226830d644"
+        },
+        "editorial": {
+          "otherTitles": [
+            "Steve Jobs film misreads underdog mindset"
+          ],
+          "subheading": "Documentary paints critical picture of Apple founder",
+          "standFirst": "Documentary paints critical picture of Apple founder and misses opportunity to update story",
+          "byline": "Tim Bradshaw"
+        },
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "metadata": {
+          "primarySection": {
+            "term": {
+              "name": "Work & Career",
+              "id": "MTI1-U2VjdGlvbnM=",
+              "attributes": [
+                {
+                  "value": "work.and.career",
+                  "key": "dfpSite"
+                }
+              ],
+              "taxonomy": "sections"
+            }
+          },
+          "primaryTheme": {
+            "term": {
+              "name": "Steve Jobs",
+              "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85XzQ1MDQ3-UE4=",
+              "attributes": [],
+              "taxonomy": "people"
+            }
+          },
+          "tags": [
+            {
+              "term": {
+                "name": "Steve Jobs",
+                "attributes": [],
+                "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85XzQ1MDQ3-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Work & Career",
+                "attributes": [
+                  {
+                    "value": "work.and.career",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "MTI1-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Review",
+                "attributes": [],
+                "id": "NA==-R2VucmVz",
+                "taxonomy": "genre"
+              }
+            },
+            {
+              "term": {
+                "name": "Text",
+                "attributes": [],
+                "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+                "taxonomy": "mediaType"
+              }
+            },
+            {
+              "term": {
+                "name": "01005000 - cinema",
+                "attributes": [],
+                "id": "MDEwMDUwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04008026 - stocks",
+                "attributes": [],
+                "id": "MDQwMDgwMjY=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04010003 - cinema industry",
+                "attributes": [],
+                "id": "MDQwMTAwMDM=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04016052 - stock options",
+                "attributes": [],
+                "id": "MDQwMTYwNTI=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "Apple Inc",
+                "attributes": [
+                  {
+                    "value": "us:AAPL",
+                    "key": "wsod_key"
+                  },
+                  {
+                    "value": "true",
+                    "key": "is_company"
+                  }
+                ],
+                "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+                "taxonomy": "organisations"
+              }
+            },
+            {
+              "term": {
+                "name": "Eddy Cue",
+                "attributes": [],
+                "id": "M2NmZTE5NzctODc5Ny00YzE1LWFlYWUtNWJlMjAyZjE5MDlm-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Rick Tetzeli",
+                "attributes": [],
+                "id": "NmQ0MmI5ZGEtNmY1MS00MDA3LWJjNGMtZjcxNzJhMzUzNDE2-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Steve Wozniak",
+                "attributes": [],
+                "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85XzEwMTk1OQ==-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Alex Gibney",
+                "attributes": [],
+                "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85XzUxMTcz-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Michael Fassbender",
+                "attributes": [],
+                "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85Xzk5MDI4-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Danny Boyle",
+                "attributes": [],
+                "id": "UE5fY2VsZWJzLXBsdXNfZmV2LTIwMDhfMjU1-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Brent Schlender",
+                "attributes": [],
+                "id": "ZTE4NWY0MGYtOThmNy00NjE1LWI3OWUtNzRlNDY4N2FhMzA3-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Film & Television",
+                "attributes": [
+                  {
+                    "value": "life.and.arts",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "film.and.television",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "MTUy-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Technology",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "technology",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "NTM=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "US & Canadian Companies",
+                "attributes": [],
+                "id": "NjU=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "General News",
+                "attributes": [],
+                "id": "MTE4-U3ViamVjdHM=",
+                "taxonomy": "subjects"
+              }
+            },
+            {
+              "term": {
+                "name": "Leadership",
+                "attributes": [],
+                "id": "NDhkMTE0NjEtNGMzYS00OTEzLTg1MGEtNjViM2UzYzNmZTlk-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            }
+          ],
+          "authors": [],
+          "brand": [],
+          "genre": [
+            {
+              "term": {
+                "name": "Review",
+                "attributes": [],
+                "id": "NA==-R2VucmVz",
+                "taxonomy": "genre"
+              }
+            }
+          ],
+          "icb": [],
+          "iptc": [
+            {
+              "term": {
+                "name": "01005000 - cinema",
+                "attributes": [],
+                "id": "MDEwMDUwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04008026 - stocks",
+                "attributes": [],
+                "id": "MDQwMDgwMjY=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04010003 - cinema industry",
+                "attributes": [],
+                "id": "MDQwMTAwMDM=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04016052 - stock options",
+                "attributes": [],
+                "id": "MDQwMTYwNTI=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            }
+          ],
+          "mediaType": [
+            {
+              "term": {
+                "name": "Text",
+                "attributes": [],
+                "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+                "taxonomy": "mediaType"
+              }
+            }
+          ],
+          "organisations": [
+            {
+              "term": {
+                "name": "Apple Inc",
+                "attributes": [
+                  {
+                    "value": "us:AAPL",
+                    "key": "wsod_key"
+                  },
+                  {
+                    "value": "true",
+                    "key": "is_company"
+                  }
+                ],
+                "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+                "taxonomy": "organisations"
+              }
+            }
+          ],
+          "people": [
+            {
+              "term": {
+                "name": "Eddy Cue",
+                "attributes": [],
+                "id": "M2NmZTE5NzctODc5Ny00YzE1LWFlYWUtNWJlMjAyZjE5MDlm-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Rick Tetzeli",
+                "attributes": [],
+                "id": "NmQ0MmI5ZGEtNmY1MS00MDA3LWJjNGMtZjcxNzJhMzUzNDE2-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Steve Wozniak",
+                "attributes": [],
+                "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85XzEwMTk1OQ==-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Steve Jobs",
+                "attributes": [],
+                "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85XzQ1MDQ3-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Alex Gibney",
+                "attributes": [],
+                "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85XzUxMTcz-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Michael Fassbender",
+                "attributes": [],
+                "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85Xzk5MDI4-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Danny Boyle",
+                "attributes": [],
+                "id": "UE5fY2VsZWJzLXBsdXNfZmV2LTIwMDhfMjU1-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "Brent Schlender",
+                "attributes": [],
+                "id": "ZTE4NWY0MGYtOThmNy00NjE1LWI3OWUtNzRlNDY4N2FhMzA3-UE4=",
+                "taxonomy": "people"
+              }
+            }
+          ],
+          "regions": [],
+          "sections": [
+            {
+              "term": {
+                "name": "Work & Career",
+                "attributes": [
+                  {
+                    "value": "work.and.career",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "MTI1-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Film & Television",
+                "attributes": [
+                  {
+                    "value": "life.and.arts",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "film.and.television",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "MTUy-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Technology",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "technology",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "NTM=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "US & Canadian Companies",
+                "attributes": [],
+                "id": "NjU=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            }
+          ],
+          "specialReports": [],
+          "subjects": [
+            {
+              "term": {
+                "name": "General News",
+                "attributes": [],
+                "id": "MTE4-U3ViamVjdHM=",
+                "taxonomy": "subjects"
+              }
+            }
+          ],
+          "topics": [
+            {
+              "term": {
+                "name": "Leadership",
+                "attributes": [],
+                "id": "NDhkMTE0NjEtNGMzYS00OTEzLTg1MGEtNjViM2UzYzNmZTlk-VG9waWNz",
+                "taxonomy": "topics"
+              }
+            }
+          ]
+        },
+        "images": [
+          {
+            "alt": "Steve Jobs",
+            "width": 272,
+            "mediaType": "image/jpeg",
+            "source": "FT",
+            "type": "primary",
+            "url": "http://im.ft-static.com/content/images/75e15193-4ffb-43b6-bd1b-e43c3aaa7fe0.img",
+            "height": 153
+          },
+          {
+            "alt": "Steve Jobs",
+            "width": 167,
+            "mediaType": "image/jpeg",
+            "source": "FT",
+            "type": "secondary",
+            "url": "http://im.ft-static.com/content/images/d3199b0d-e098-4cd1-9e79-ccdaf008e8f7.img",
+            "height": 94
+          },
+          {
+            "alt": "Steve Jobs",
+            "width": 600,
+            "mediaType": "image/jpeg",
+            "source": "FT",
+            "type": "article",
+            "url": "http://im.ft-static.com/content/images/cfc3a509-9484-4a55-a547-1b6ae55c9069.img",
+            "height": 338
+          },
+          {
+            "alt": "Steve Jobs",
+            "width": 414,
+            "mediaType": "image/jpeg",
+            "source": "FT",
+            "type": "leader",
+            "url": "http://im.ft-static.com/content/images/f8021d7f-5679-4b5c-8efd-21f06b58760f.img",
+            "height": 233
+          },
+          {
+            "alt": "Steve Jobs",
+            "width": 972,
+            "mediaType": "image/jpeg",
+            "source": "FT",
+            "type": "wide-format",
+            "url": "http://im.ft-static.com/content/images/abda36f3-8afa-48a8-9bc8-58d7a6cfdd4f.img",
+            "height": 547
+          },
+          {
+            "alt": "SteveJjobs Man in the Machine",
+            "width": 184,
+            "mediaType": "image/jpeg",
+            "source": "FT",
+            "type": "inline",
+            "url": "http://im.ft-static.com/content/images/fff2660c-5bbc-11e5-a28b-50226830d644.img",
+            "height": 273
+          }
+        ],
+        "package": [],
+        "assets": [],
+        "mediaAssets": []
+      },
+      "_lastUpdatedDateTime": "2015-09-16T11:45:54.472Z"
+    },
+    "sort": [
+      1442403853000
+    ]
+  },
+  {
+    "_index": "v1_api_v2",
+    "_type": "item",
+    "_id": "71468994-5c41-11e5-9846-de406ccb37f2",
+    "_score": null,
+    "_source": {
+      "requestUrl": "http://api.ft.com/content/items/v1/71468994-5c41-11e5-9846-de406ccb37f2?feature.blogposts=on&h=7730785147",
+      "item": {
+        "aspectSet": "article",
+        "aspects": [
+          "assets",
+          "body",
+          "editorial",
+          "images",
+          "lifecycle",
+          "location",
+          "master",
+          "mediaAssets",
+          "metadata",
+          "package",
+          "packaging",
+          "provenance",
+          "summary",
+          "title"
+        ],
+        "modelVersion": "1",
+        "id": "71468994-5c41-11e5-9846-de406ccb37f2",
+        "apiUrl": "http://api.ft.com/content/items/v1/71468994-5c41-11e5-9846-de406ccb37f2",
+        "title": {
+          "title": "iOS 9 release: Apple opts for subtlety over revolutionary changes"
+        },
+        "body": {
+          "mediaType": "text/html",
+          "body": "<p><span class=\"ft-bold\">iPhone and iPad owners will immediately notice a small but satisfying change after updating to the latest version of iOS this week. As you enter your password to sign into iCloud after installing iOS 9, the letters on that tiny keyboard will be in a lower-case font, only switching back to the familiar capitals when you press the shift key.</span>\n</p>\n<p>Other smartphone keyboards have used this technique for years, but the iPhone’s previous all-caps approach made it confusing to tell when you were actually typing in lower case or upper case.</p>\n<p>This kind of change is iOS 9 all over: incremental yet worthwhile, if overdue.</p>\n<p>Unlike the iOS launches of years gone by that prompted outcry for removing Google Maps, “flattening” the design, swallowing up gigabytes of memory or — in some cases — briefly taking away wireless connectivity, iOS 9 is all about making the iPhone’s annual software update as smooth as possible. While Apple billed last year’s update as its <a title=\"Apple opens up with iOS 8 and targets the privacy high ground - FT.com\" href=\"http://www.ft.com/cms/s/0/e21fc14c-3e6c-11e4-a620-00144feabdc0.html?siteedition=uk#axzz3lsrUBBwW\">“biggest iOS release ever”</a>, its latest is full of smaller, everyday improvements.</p>\n<p><span class=\"ft-bold\">Features</span>\n</p>\n<p>The headline-grabbing features of iOS 9 when it was announced in June were a new News app, replacing the little-loved Newsstand; a smarter, pre-emptive Siri that volunteers apps and information before you realise you need them; and for recent iPads, a split-screen mode that lets you use two apps side-by-side.</p>\n<p>Judging by tumbling iPad sales figures, I am one of many people clinging on to an ageing Apple tablet that lacks the processing power to run iOS 9’s new multitasking capabilities, which ape those already offered by Microsoft’s Surface. So I will test those in a future review. (If you have an iPad Air, iPad Mini 2 or later, you should have more luck.)</p>\n<p>Over the past week, I have been browsing stories on News, swiping right on my home screen to access Siri’s “Proactive” recommendations and even checking bus routes in Apple Maps (yes, it is still catching up with Google Maps, three years on from that bungled launch).</p>\n<p>I have enjoyed reading emails and text messages in Apple’s new San Francisco font, first used on the Apple Watch and now replacing Helvetica Neue across all its devices. Apple has used distinctive typefaces to differentiate its products in the past — Susan Kare’s fonts helped to define the onscreen look of the Macintosh in the 1980s — and the curvier, well-spaced San Francisco is designed to be easy on the eye on small displays.</p>\n<p>Another subtle change is to the Notification Center that appears when you swipe down from the top of the iPhone’s screen. Posts and updates are now ordered chronologically rather than by app, making it easier to dismiss a full day’s worth of interruptions in a couple of taps. This is one of several day-to-day frustrations that Apple has tried to fix. Searching in the inbuilt Mail app actually works now. </p>\n<p><span class=\"ft-bold\">Battery life</span>\n</p>\n<p>Nips and tucks to power consumption across the operating system give battery life a small bump — up to an hour, Apple says, although I still have to recharge my iPhone 6 before the end of most days. When the battery does run low, a new power-saving option turns off background downloading of apps and email, among other tweaks which squeeze the most out of the charge you have left. </p>\n<p>Another way to save power for web surfers is the option to download adblocking extensions for the inbuilt Safari browser. This move has caused controversy among publishers but is the latest manifestation of Apple’s broader privacy push. </p>\n<p>Siri’s new “Proactive” mode also attempts to marry privacy improvements with Google-style predictive functionality. While virtual assistants Google Now and <a title=\"What happened when I let Microsoft’s Cortana into my Android life - FT.com\" href=\"http://www.ft.com/cms/s/0/712dc8ca-39ee-11e5-bbd1-b37bc06f590c.html#axzz3lsrUBBwW\">Microsoft Cortana</a> (as well as <a title=\"Amazon Echo’s virtual helper Alexa has designs on your home - FT.com\" href=\"http://www.ft.com/cms/s/0/1d1228e6-56fc-11e5-9846-de406ccb37f2.html#axzz3lsrUBBwW\">Amazon’s standalone Echo device </a>I reviewed last week) rely on the cloud to make helpful, unprompted suggestions and recommendations, Apple is trying to do more of that processing on the iPhone itself, which it says better protects personal information. </p>\n<p>The software does a decent job of remembering which apps you use or people you contact in a particular location or time of day, with recommendations improving over time. Siri suggests adding emailed restaurant or flight bookings to your calendar. Suggested news headlines, however, were hit and miss. </p>\n<p>It is early days for Proactive Siri and it will be a test of Apple’s technical capabilities if it can eventually create an assistant that matches its rivals without throwing our personal information far and wide. For now, Google Now’s more advanced suggestions make a persuasive case for entrusting it with our data. </p>\n<p><span class=\"ft-bold\">The verdict</span>\n</p>\n<p>With its biggest new feature still a work-in-progress, iOS 9 may not be revolutionary. But at a mere 1.3GB download — compared with iOS 8’s huge 4.5GB — it is worth finding the space on your iPhone for. </p>\n<aside data-asset-type=\"dataTable\" data-asset-name=\"asset1\"></aside><p>\n</p>"
+        },
+        "lifecycle": {
+          "initialPublishDateTime": "2015-09-16T08:44:41Z",
+          "lastPublishDateTime": "2015-09-16T08:44:41Z"
+        },
+        "location": {
+          "uri": "http://www.ft.com/cms/s/0/71468994-5c41-11e5-9846-de406ccb37f2.html"
+        },
+        "summary": {
+          "excerpt": "Operating system’s update focuses on move to fix day-to-day frustrations"
+        },
+        "packaging": {
+          "spHeadline": "Apple opts for subtlety",
+          "kicker": "iOS 9 release"
+        },
+        "master": {
+          "masterSource": "Methode",
+          "masterEntityId": "71468994-5c41-11e5-9846-de406ccb37f2"
+        },
+        "editorial": {
+          "otherTitles": [
+            "iOS 9 release: Apple opts for subtlety"
+          ],
+          "subheading": "Operating system update focuses on incremental improvements",
+          "standFirst": "Operating system’s update focuses on move to fix day-to-day frustrations",
+          "byline": "By Tim Bradshaw in San Francisco"
+        },
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "metadata": {
+          "primarySection": {
+            "term": {
+              "name": "Work & Career",
+              "id": "MTI1-U2VjdGlvbnM=",
+              "attributes": [
+                {
+                  "value": "work.and.career",
+                  "key": "dfpSite"
+                }
+              ],
+              "taxonomy": "sections"
+            }
+          },
+          "primaryTheme": {
+            "term": {
+              "name": "Apple Inc",
+              "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+              "attributes": [
+                {
+                  "value": "us:AAPL",
+                  "key": "wsod_key"
+                },
+                {
+                  "value": "true",
+                  "key": "is_company"
+                }
+              ],
+              "taxonomy": "organisations"
+            }
+          },
+          "tags": [
+            {
+              "term": {
+                "name": "Apple Inc",
+                "attributes": [
+                  {
+                    "value": "us:AAPL",
+                    "key": "wsod_key"
+                  },
+                  {
+                    "value": "true",
+                    "key": "is_company"
+                  }
+                ],
+                "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+                "taxonomy": "organisations"
+              }
+            },
+            {
+              "term": {
+                "name": "Work & Career",
+                "attributes": [
+                  {
+                    "value": "work.and.career",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "MTI1-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Review",
+                "attributes": [],
+                "id": "NA==-R2VucmVz",
+                "taxonomy": "genre"
+              }
+            },
+            {
+              "term": {
+                "name": "Text",
+                "attributes": [],
+                "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+                "taxonomy": "mediaType"
+              }
+            },
+            {
+              "term": {
+                "name": "Tim Bradshaw",
+                "attributes": [],
+                "id": "Q0ItMDAwMDY4OA==-QXV0aG9ycw==",
+                "taxonomy": "authors"
+              }
+            },
+            {
+              "term": {
+                "name": "9530 Software & Computer Services",
+                "attributes": [],
+                "id": "MTc2-SUNC",
+                "taxonomy": "icb"
+              }
+            },
+            {
+              "term": {
+                "name": "9535 Internet",
+                "attributes": [],
+                "id": "MTc4-SUNC",
+                "taxonomy": "icb"
+              }
+            },
+            {
+              "term": {
+                "name": "9537 Software",
+                "attributes": [],
+                "id": "MTc5-SUNC",
+                "taxonomy": "icb"
+              }
+            },
+            {
+              "term": {
+                "name": "01027000 - internet",
+                "attributes": [],
+                "id": "MDEwMjcwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04003005 - software",
+                "attributes": [],
+                "id": "MDQwMDMwMDU=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "Tim Cook (Executive)",
+                "attributes": [],
+                "id": "MzJmYWJlNDAtOWY4NS00ZWMzLTg2OTItZjMxODdiY2RiNzYz-UE4=",
+                "taxonomy": "people"
+              }
+            },
+            {
+              "term": {
+                "name": "San Francisco",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX1VTX0NBX011bmljaXBhbGl0eV8yNzc1OTM=-R0w=",
+                "taxonomy": "regions"
+              }
+            },
+            {
+              "term": {
+                "name": "Companies",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "Mjk=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Technology",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "technology",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "NTM=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "US & Canadian Companies",
+                "attributes": [],
+                "id": "NjU=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Personal Technology",
+                "attributes": [
+                  {
+                    "value": "life.and.arts",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "personal.technology",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "OTM5ZWYwODQtMGVhYS00MzBlLWE0NjctODNmMmUwYWIxOGJl-QnJhbmRz",
+                "taxonomy": "sections"
+              }
+            }
+          ],
+          "authors": [
+            {
+              "term": {
+                "name": "Tim Bradshaw",
+                "attributes": [],
+                "id": "Q0ItMDAwMDY4OA==-QXV0aG9ycw==",
+                "taxonomy": "authors"
+              }
+            }
+          ],
+          "brand": [],
+          "genre": [
+            {
+              "term": {
+                "name": "Review",
+                "attributes": [],
+                "id": "NA==-R2VucmVz",
+                "taxonomy": "genre"
+              }
+            }
+          ],
+          "icb": [
+            {
+              "term": {
+                "name": "9530 Software & Computer Services",
+                "attributes": [],
+                "id": "MTc2-SUNC",
+                "taxonomy": "icb"
+              }
+            },
+            {
+              "term": {
+                "name": "9535 Internet",
+                "attributes": [],
+                "id": "MTc4-SUNC",
+                "taxonomy": "icb"
+              }
+            },
+            {
+              "term": {
+                "name": "9537 Software",
+                "attributes": [],
+                "id": "MTc5-SUNC",
+                "taxonomy": "icb"
+              }
+            }
+          ],
+          "iptc": [
+            {
+              "term": {
+                "name": "01027000 - internet",
+                "attributes": [],
+                "id": "MDEwMjcwMDA=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            },
+            {
+              "term": {
+                "name": "04003005 - software",
+                "attributes": [],
+                "id": "MDQwMDMwMDU=-SVBUQw==",
+                "taxonomy": "iptc"
+              }
+            }
+          ],
+          "mediaType": [
+            {
+              "term": {
+                "name": "Text",
+                "attributes": [],
+                "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+                "taxonomy": "mediaType"
+              }
+            }
+          ],
+          "organisations": [
+            {
+              "term": {
+                "name": "Apple Inc",
+                "attributes": [
+                  {
+                    "value": "us:AAPL",
+                    "key": "wsod_key"
+                  },
+                  {
+                    "value": "true",
+                    "key": "is_company"
+                  }
+                ],
+                "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04=",
+                "taxonomy": "organisations"
+              }
+            }
+          ],
+          "people": [
+            {
+              "term": {
+                "name": "Tim Cook (Executive)",
+                "attributes": [],
+                "id": "MzJmYWJlNDAtOWY4NS00ZWMzLTg2OTItZjMxODdiY2RiNzYz-UE4=",
+                "taxonomy": "people"
+              }
+            }
+          ],
+          "regions": [
+            {
+              "term": {
+                "name": "San Francisco",
+                "attributes": [],
+                "id": "TnN0ZWluX0dMX1VTX0NBX011bmljaXBhbGl0eV8yNzc1OTM=-R0w=",
+                "taxonomy": "regions"
+              }
+            }
+          ],
+          "sections": [
+            {
+              "term": {
+                "name": "Work & Career",
+                "attributes": [
+                  {
+                    "value": "work.and.career",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "MTI1-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Companies",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  }
+                ],
+                "id": "Mjk=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Technology",
+                "attributes": [
+                  {
+                    "value": "companies",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "technology",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "NTM=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "US & Canadian Companies",
+                "attributes": [],
+                "id": "NjU=-U2VjdGlvbnM=",
+                "taxonomy": "sections"
+              }
+            },
+            {
+              "term": {
+                "name": "Personal Technology",
+                "attributes": [
+                  {
+                    "value": "life.and.arts",
+                    "key": "dfpSite"
+                  },
+                  {
+                    "value": "personal.technology",
+                    "key": "dfpZone"
+                  }
+                ],
+                "id": "OTM5ZWYwODQtMGVhYS00MzBlLWE0NjctODNmMmUwYWIxOGJl-QnJhbmRz",
+                "taxonomy": "sections"
+              }
+            }
+          ],
+          "specialReports": [],
+          "subjects": [],
+          "topics": []
+        },
+        "images": [
+          {
+            "alt": "User screens from the Apple iOS9 operating system update",
+            "width": 272,
+            "mediaType": "image/jpeg",
+            "type": "primary",
+            "url": "http://im.ft-static.com/content/images/9cc62dd8-0dc1-4db6-b0c4-ea7db7c58da4.img",
+            "height": 153
+          },
+          {
+            "alt": "User screens from the Apple iOS9 operating system update",
+            "width": 167,
+            "mediaType": "image/jpeg",
+            "type": "secondary",
+            "url": "http://im.ft-static.com/content/images/19110459-b270-4a58-a3f3-447ba84bba0f.img",
+            "height": 94
+          },
+          {
+            "alt": "User screens from the Apple iOS9 operating system update",
+            "width": 600,
+            "mediaType": "image/jpeg",
+            "type": "article",
+            "url": "http://im.ft-static.com/content/images/95b4b9ee-bbea-434b-97d3-a806c9b8084b.img",
+            "height": 338
+          },
+          {
+            "alt": "User screens from the Apple iOS9 operating system update",
+            "width": 414,
+            "mediaType": "image/jpeg",
+            "type": "leader",
+            "url": "http://im.ft-static.com/content/images/c1445bb3-01cb-43df-8d62-143c5e35e51e.img",
+            "height": 233
+          },
+          {
+            "alt": "User screens from the Apple iOS9 operating system update",
+            "width": 972,
+            "mediaType": "image/jpeg",
+            "type": "wide-format",
+            "url": "http://im.ft-static.com/content/images/5d18050f-3a19-4d7e-a776-d7bd5d08e399.img",
+            "height": 547
+          }
+        ],
+        "package": [
+          {
+            "provenance": {
+              "originatingParty": "FT"
+            },
+            "apiUrl": "http://api.ft.com/content/items/v1/9f7b25d8-39ee-11e5-bbd1-b37bc06f590c",
+            "packaging": {
+              "spHeadline": "what to pack",
+              "kicker": "Vacation gadgets"
+            },
+            "id": "9f7b25d8-39ee-11e5-bbd1-b37bc06f590c"
+          },
+          {
+            "provenance": {
+              "originatingParty": "FT"
+            },
+            "apiUrl": "http://api.ft.com/content/items/v1/7b2ea402-3601-11e5-b05b-b01debd57852",
+            "packaging": {
+              "spHeadline": "A marriage of old and new",
+              "kicker": "Windows 10"
+            },
+            "id": "7b2ea402-3601-11e5-b05b-b01debd57852"
+          },
+          {
+            "provenance": {
+              "originatingParty": "FT"
+            },
+            "apiUrl": "http://api.ft.com/content/items/v1/0d4a3880-3470-11e5-bdbb-35e55cbae175",
+            "packaging": {
+              "spHeadline": "Microsoft aims to woo with Windows 10",
+              "kicker": "Analysis"
+            },
+            "id": "0d4a3880-3470-11e5-bdbb-35e55cbae175"
+          },
+          {
+            "provenance": {
+              "originatingParty": "FT"
+            },
+            "apiUrl": "http://api.ft.com/content/items/v1/217f1998-3064-11e5-91ac-a5e17d9b4cff",
+            "packaging": {
+              "spHeadline": "Electric skateboard thrill",
+              "kicker": "Boosted Board"
+            },
+            "id": "217f1998-3064-11e5-91ac-a5e17d9b4cff"
+          },
+          {
+            "provenance": {
+              "originatingParty": "FT"
+            },
+            "apiUrl": "http://api.ft.com/content/items/v1/261124bc-2aef-11e5-acfb-cbd2e1c81cca",
+            "packaging": {
+              "spHeadline": "Pebble Time feels like smartwatch of past",
+              "kicker": "Personal Technology"
+            },
+            "id": "261124bc-2aef-11e5-acfb-cbd2e1c81cca"
+          }
+        ],
+        "assets": [
+          {
+            "name": "asset1",
+            "type": "dataTable",
+            "fields": {
+              "body": "<table><caption>Planet of the apps</caption>\n<tr><td colspan=\"2\"><p><span class=\"ft-bold\">What is it</span>\n<span class=\"ft-bold\"></span> <br/>Apple News (free with iOS 9)</p>\n<p>Apple chief executive Tim Cook recently said that it would consider letting iPhone users remove the company’s own apps which it automatically installs on their homescreens. In the meantime, though, it just added another: News, Apple’s take on a Flipboard-style newsreader. </p>\n<p><span class=\"ft-bold\">Why you should try it</span>\n<br/>Start by selecting your favourite publications and topics (“Food and drink”, “Economy”, “Space exploration”) and Apple News will offer a range of semi-personalised articles. Like the internet, Apple News is a great leveller — newspaper stories sit side by side with blogposts, but unlike the web, they all have the same smooth design. Much like Apple Music’s playlists, its added value is in editorial recommendations that unearth hidden gems of stories. </p>\n</td>\n</tr>\n</table>"
+            }
+          }
+        ],
+        "mediaAssets": []
+      },
+      "_lastUpdatedDateTime": "2015-09-16T13:36:54.687Z"
+    },
+    "sort": [
+      1442393081000
+    ]
+  }
+]

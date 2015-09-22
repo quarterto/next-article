@@ -1,0 +1,595 @@
+{
+  "requestUrl": "http://api.ft.com/content/items/v1/5eeeb84a-5aaa-11e5-97e9-7f0bf5e7177b?feature.blogposts=on&h=4301210744",
+  "item": {
+    "aspectSet": "article",
+    "aspects": [
+      "assets",
+      "body",
+      "editorial",
+      "images",
+      "lifecycle",
+      "location",
+      "master",
+      "mediaAssets",
+      "metadata",
+      "package",
+      "packaging",
+      "provenance",
+      "summary",
+      "title"
+    ],
+    "modelVersion": "1",
+    "id": "5eeeb84a-5aaa-11e5-97e9-7f0bf5e7177b",
+    "apiUrl": "http://api.ft.com/content/items/v1/5eeeb84a-5aaa-11e5-97e9-7f0bf5e7177b",
+    "title": {
+      "title": "China’s state-owned enterprise reform plans face compromise"
+    },
+    "body": {
+      "mediaType": "text/html",
+      "body": "<p>China’s release of a <a title=\"China plans shake-up of state-owned enterprises to boost growth - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/aff90924-5a01-11e5-9846-de406ccb37f2.html\">long-awaited plan</a> to overhaul the country’s bloated state-owned enterprises (SOEs) has proved another triumph for entrenched interests over the <a title=\"China Tremors in depth - FT.com\" href=\"http://www.ft.com/intl/indepth/china-tremors\">broader economy</a>.</p>\n\n<p>Reform of the SOEs, which control everything from telecoms to banking but produce returns far inferior to their private peers, is widely regarded as the key element of the broad economic reform plan released by top Communist party leaders at a plenary meeting in November 2013. The slowing economy makes it more vital still.</p>\n<p>The nub, as ever, is that the status quo works for some: SOE management and their political patrons have grown rich over the past decade due to preferential access to loans from state banks and protection from competition.</p>\n\n\n\n\n\n\n<p>“Any reform plan is a compromise of different constituencies, and SOE reform is no different — in fact, it’s particularly so. It cannot fully satisfy the market,” said Tao Wang, chief China economist at UBS.</p>\n<p>The latest plan aims to improve SOE efficiency and competitiveness without relying on <a title=\"China SOE’s restructuring leaves state ownership intact - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/902826f4-c878-11e4-8617-00144feab7de.html\">outright privatisation</a>. Its approach reflects contradictions inherent in the 2013 reform blueprint, which called for giving markets a “decisive role” in resource allocation while preserving a “dominant role” for the state sector.</p>\n<p>The question is whether incremental changes, including minority stake sales, stock market listings and changes to how directors and executives are appointed will be sufficient to fundamentally reshape the state sector.</p>\n<p>The influence of conservative elements keen to protect SOE privileges is clear.</p>\n<p>The call to promote “mixed ownership” of SOEs — a euphemism for partial privatisation — is followed by caution to protect against the “leaching away of state assets”, a reference to worries about national wealth being sold off on the cheap. The plan wants to increase financial returns but also calls for strengthening party control.</p>\n<p>On the positive side, the emphasis on stock market listings was stronger than expected. Most large SOEs completed listings on Hong Kong and mainland bourses over the past decade, but the free float is typically less than 20 per cent. SOEs also often hold less profitable assets outside the listed entity. </p>\n<aside data-asset-type=\"promoBox\" data-asset-name=\"asset1\"></aside><p>The current plan says that any assets that can be listed should be. The hope is that governments will be forced to improve the performance of previously unlisted assets or dispose of them.</p>\n<p>“A lot of SOEs are really happy being SOEs and a number of them are now trying to come to terms with having to think about return on capital,” said Jonathan Slone, chief executive of CLSA, the Asia-focused brokerage owned by Citic Securities, China’s largest brokerage.</p>\n<p>Average return on assets for state companies was at about 4.6 per cent in 2014, compared with 9.1 per cent for private businesses, according to estimates by Gavekal Dragonomics, a Beijing-based economic research company.</p>\n<p>“There are conversations with investment banks, asking: ‘If we do this, how will the market react’,” adds Mr Slone.</p>\n<p>Citic Securities’ parent company, Citic Group, laid down a <a title=\"Citic Group a test case for reform - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/f6c9f900-1eb9-11e4-ad93-00144feabdc0.html\">model for SOE reform</a> last year when it injected $37bn worth of unlisted assets into a Hong Kong-listed subsidiary.</p>\n<p>An issue largely unaddressed in the plan is whether SOEs will be allowed to fail. In the previous round of Chinese SOE reform, led by then-premier Zhu Rongji in the late 1990s, tens of thousands of SOEs were privatised or liquidated, resulting in more than 25m employees being laid off. The current plan refers in passing to SOE “exits” but does not dwell on it. The emphasis is on strengthening the state sector rather than shrinking it. </p>\n<aside data-asset-type=\"video\" data-asset-name=\"asset2\"></aside>\n\n<p>Yet some analysts fear that without more aggressive sell-offs, the weaker parts of the state sector will turn into zombies, kept alive on bailouts and cheap credit.</p>\n<p>With the plan itself a grab bag of initiatives meant to satisfy various interest groups and ideological camps, much will depend on implementation. While acknowledging limitations, Ms Wang sees it as a modest step in the right direction.</p>\n<p>“People from the financial markets and media tend to look for things like major privatisation. That’s out of the question. But developing mixed ownership and IPOs — in my view that’s state divestment. It’s significant,” said Ms Wang.</p>\n<p>Twitter: <a title=\"@gabewildau - Twitter.com\" href=\"https://twitter.com/gabewildau\">@gabewildau</a>\n</p>\n<p><span class=\"ft-italic\">Additional reporting by Ma Nan and Jennifer Hughes in Hong Kong</span>\n</p>"
+    },
+    "lifecycle": {
+      "initialPublishDateTime": "2015-09-14T10:35:49Z",
+      "lastPublishDateTime": "2015-09-14T10:35:49Z"
+    },
+    "location": {
+      "uri": "http://www.ft.com/cms/s/0/5eeeb84a-5aaa-11e5-97e9-7f0bf5e7177b.html"
+    },
+    "summary": {
+      "excerpt": "Incremental changes may be insufficient to revitalise state groups"
+    },
+    "packaging": {
+      "spHeadline": "China’s SOE reform plans face compromise"
+    },
+    "master": {
+      "masterSource": "Methode",
+      "masterEntityId": "5eeeb84a-5aaa-11e5-97e9-7f0bf5e7177b"
+    },
+    "editorial": {
+      "otherTitles": [
+        "China’s SOE reform plans face compromise"
+      ],
+      "subheading": "Incremental changes may be insufficient to revitalise state groups",
+      "standFirst": "Incremental changes may be insufficient to revitalise state groups",
+      "byline": "Gabriel Wildau in Shanghai"
+    },
+    "provenance": {
+      "originatingParty": "FT"
+    },
+    "metadata": {
+      "primarySection": {
+        "term": {
+          "name": "China",
+          "attributes": [],
+          "id": "TnN0ZWluX0dMX0NO-R0w=",
+          "taxonomy": "regions"
+        }
+      },
+      "primaryTheme": {
+        "term": {
+          "name": "China Business",
+          "id": "NjM3ZTU3MDUtMmY1ZS00ZGExLThkNjYtYWY4YWUzY2U1YWVm-VG9waWNz",
+          "attributes": [],
+          "taxonomy": "topics"
+        }
+      },
+      "tags": [
+        {
+          "term": {
+            "name": "China Business",
+            "attributes": [],
+            "id": "NjM3ZTU3MDUtMmY1ZS00ZGExLThkNjYtYWY4YWUzY2U1YWVm-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "China",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0NO-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "News",
+            "attributes": [],
+            "id": "Nw==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        },
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        },
+        {
+          "term": {
+            "name": "04008023 - financial markets",
+            "attributes": [],
+            "id": "MDQwMDgwMjM=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04008026 - stocks",
+            "attributes": [],
+            "id": "MDQwMDgwMjY=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04016034 - privatisation",
+            "attributes": [],
+            "id": "MDQwMTYwMzQ=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006000 - government",
+            "attributes": [],
+            "id": "MTEwMDYwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006011 - privatisation",
+            "attributes": [],
+            "id": "MTEwMDYwMTE=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11010000 - parties and movements",
+            "attributes": [],
+            "id": "MTEwMTAwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "Communist Party of China",
+            "attributes": [
+              {
+                "value": "false",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0FGVE1fT05fODEyMTA=-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Tao Wang",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX1Nwb3J0c18yMDA5XzEwXzRfNTcwMjY=-UE4=",
+            "taxonomy": "people"
+          }
+        },
+        {
+          "term": {
+            "name": "Soe",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0FGVE1fR0xfMTM2MTMw-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "World",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "MQ==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "General News",
+            "attributes": [],
+            "id": "MTE4-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Natural Resources",
+            "attributes": [],
+            "id": "MTMw-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Mergers & Acquisitions",
+            "attributes": [],
+            "id": "Mjc=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Mergers & Acquisitions",
+            "attributes": [],
+            "id": "Mjk=-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "China Economic Slowdown",
+            "attributes": [],
+            "id": "NWIwYzgxZTgtZjc3MC00ODNkLWI1YjYtYTVhNGQ2OTNjYjVi-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        }
+      ],
+      "authors": [],
+      "brand": [],
+      "genre": [
+        {
+          "term": {
+            "name": "News",
+            "attributes": [],
+            "id": "Nw==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        }
+      ],
+      "icb": [],
+      "iptc": [
+        {
+          "term": {
+            "name": "04008023 - financial markets",
+            "attributes": [],
+            "id": "MDQwMDgwMjM=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04008026 - stocks",
+            "attributes": [],
+            "id": "MDQwMDgwMjY=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04016034 - privatisation",
+            "attributes": [],
+            "id": "MDQwMTYwMzQ=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006000 - government",
+            "attributes": [],
+            "id": "MTEwMDYwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11006011 - privatisation",
+            "attributes": [],
+            "id": "MTEwMDYwMTE=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "11010000 - parties and movements",
+            "attributes": [],
+            "id": "MTEwMTAwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        }
+      ],
+      "mediaType": [
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        }
+      ],
+      "organisations": [
+        {
+          "term": {
+            "name": "Communist Party of China",
+            "attributes": [
+              {
+                "value": "false",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0FGVE1fT05fODEyMTA=-T04=",
+            "taxonomy": "organisations"
+          }
+        }
+      ],
+      "people": [
+        {
+          "term": {
+            "name": "Tao Wang",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX1Nwb3J0c18yMDA5XzEwXzRfNTcwMjY=-UE4=",
+            "taxonomy": "people"
+          }
+        }
+      ],
+      "regions": [
+        {
+          "term": {
+            "name": "Soe",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0FGVE1fR0xfMTM2MTMw-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "China",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0NO-R0w=",
+            "taxonomy": "regions"
+          }
+        }
+      ],
+      "sections": [
+        {
+          "term": {
+            "name": "World",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "MQ==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        }
+      ],
+      "specialReports": [],
+      "subjects": [
+        {
+          "term": {
+            "name": "General News",
+            "attributes": [],
+            "id": "MTE4-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Natural Resources",
+            "attributes": [],
+            "id": "MTMw-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        },
+        {
+          "term": {
+            "name": "Mergers & Acquisitions",
+            "attributes": [],
+            "id": "Mjc=-U3ViamVjdHM=",
+            "taxonomy": "subjects"
+          }
+        }
+      ],
+      "topics": [
+        {
+          "term": {
+            "name": "Mergers & Acquisitions",
+            "attributes": [],
+            "id": "Mjk=-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "China Economic Slowdown",
+            "attributes": [],
+            "id": "NWIwYzgxZTgtZjc3MC00ODNkLWI1YjYtYTVhNGQ2OTNjYjVi-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "China Business",
+            "attributes": [],
+            "id": "NjM3ZTU3MDUtMmY1ZS00ZGExLThkNjYtYWY4YWUzY2U1YWVm-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        }
+      ]
+    },
+    "images": [
+      {
+        "alt": "Pedestrians walk in the central business district of Beijing, China, on Wednesday, March 4, 2015. China's leaders are gathered this week in Beijing, where they'll map out policies on state-owned enterprises, the environment, and deliver the nation's budget. Photographer: Tomohiro Ohsumi/Bloomberg",
+        "width": 272,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "primary",
+        "url": "http://im.ft-static.com/content/images/0891f8df-0cc7-49d9-b5a4-34d28abd7cf4.img",
+        "height": 153
+      },
+      {
+        "alt": "Pedestrians walk in the central business district of Beijing, China, on Wednesday, March 4, 2015. China's leaders are gathered this week in Beijing, where they'll map out policies on state-owned enterprises, the environment, and deliver the nation's budget. Photographer: Tomohiro Ohsumi/Bloomberg",
+        "width": 167,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "secondary",
+        "url": "http://im.ft-static.com/content/images/a5cc646a-29bb-4682-8b78-ee3ab842a131.img",
+        "height": 94
+      },
+      {
+        "alt": "Pedestrians walk in the central business district of Beijing, China, on Wednesday, March 4, 2015. China's leaders are gathered this week in Beijing, where they'll map out policies on state-owned enterprises, the environment, and deliver the nation's budget. Photographer: Tomohiro Ohsumi/Bloomberg",
+        "width": 600,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "article",
+        "url": "http://im.ft-static.com/content/images/1b48b62c-ccef-413b-944d-17f43e1c75d4.img",
+        "height": 338
+      },
+      {
+        "alt": "Pedestrians walk in the central business district of Beijing, China, on Wednesday, March 4, 2015. China's leaders are gathered this week in Beijing, where they'll map out policies on state-owned enterprises, the environment, and deliver the nation's budget. Photographer: Tomohiro Ohsumi/Bloomberg",
+        "width": 414,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "leader",
+        "url": "http://im.ft-static.com/content/images/7fc883cb-cc3e-4ecb-9630-d4b9e1be6a30.img",
+        "height": 233
+      },
+      {
+        "alt": "Pedestrians walk in the central business district of Beijing, China, on Wednesday, March 4, 2015. China's leaders are gathered this week in Beijing, where they'll map out policies on state-owned enterprises, the environment, and deliver the nation's budget. Photographer: Tomohiro Ohsumi/Bloomberg",
+        "width": 972,
+        "mediaType": "image/jpeg",
+        "source": "Bloomberg",
+        "type": "wide-format",
+        "url": "http://im.ft-static.com/content/images/0c4480c1-8e28-4991-8287-f364b05a2812.img",
+        "height": 547
+      },
+      {
+        "width": 150,
+        "mediaType": "image/jpeg",
+        "type": "inline",
+        "url": "http://im.ft-static.com/content/images/91b39ae8-ccff-11e1-92c1-00144feabdc0.img",
+        "height": 100
+      },
+      {
+        "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+        "width": 272,
+        "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "promo",
+        "url": "http://im.ft-static.com/content/images/fab1b192-b82d-4bd7-83d2-71a97970671c.img",
+        "height": 153
+      },
+      {
+        "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+        "width": 972,
+        "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "promo",
+        "url": "http://im.ft-static.com/content/images/b29be4bd-ef06-4839-984b-d21ead0c0a06.img",
+        "height": 547
+      }
+    ],
+    "package": [
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/a581b44e-5acb-11e5-a28b-50226830d644",
+        "packaging": {
+          "spHeadline": "CNPC forced to dispose of hotel chain"
+        },
+        "id": "a581b44e-5acb-11e5-a28b-50226830d644"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/aff90924-5a01-11e5-9846-de406ccb37f2",
+        "packaging": {
+          "spHeadline": "China’s state-owned groups face shake-up"
+        },
+        "id": "aff90924-5a01-11e5-9846-de406ccb37f2"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/3186f3dc-5310-11e5-b029-b9d50a74fd14",
+        "packaging": {
+          "spHeadline": "Robert Zoellick – China will stumble if Xi stalls on reform",
+          "kicker": "Comment"
+        },
+        "id": "3186f3dc-5310-11e5-b029-b9d50a74fd14"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/8dfcd43e-507b-11e5-b029-b9d50a74fd14",
+        "packaging": {
+          "spHeadline": "China urges companies to shore up market"
+        },
+        "id": "8dfcd43e-507b-11e5-b029-b9d50a74fd14"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/e9b56844-4ece-11e5-b029-b9d50a74fd14",
+        "packaging": {
+          "spHeadline": "China to form top aluminium producer"
+        },
+        "id": "e9b56844-4ece-11e5-b029-b9d50a74fd14"
+      }
+    ],
+    "assets": [
+      {
+        "name": "asset1",
+        "type": "promoBox",
+        "fields": {
+          "images": [
+            {
+              "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+              "width": 272,
+              "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+              "mediaType": "image/jpeg",
+              "source": "EPA",
+              "type": "promo",
+              "url": "http://im.ft-static.com/content/images/fab1b192-b82d-4bd7-83d2-71a97970671c.img",
+              "height": 153
+            },
+            {
+              "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+              "width": 972,
+              "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+              "mediaType": "image/jpeg",
+              "source": "EPA",
+              "type": "promo",
+              "url": "http://im.ft-static.com/content/images/b29be4bd-ef06-4839-984b-d21ead0c0a06.img",
+              "height": 547
+            }
+          ],
+          "intro": "<p>Hotel chains and taxi businesses among the non-core businesses to be sold</p>\n<p><a href=\"/cms/s/a581b44e-5acb-11e5-a28b-50226830d644.html\">Read more</a>\n</p>",
+          "headline": "<p>CNPC forced to sell businesses as China’s crackdown widens</p>"
+        }
+      },
+      {
+        "name": "asset2",
+        "type": "video",
+        "fields": {
+          "sourceReference": "4478244741001",
+          "source": "Brightcove"
+        }
+      }
+    ],
+    "mediaAssets": []
+  },
+  "_lastUpdatedDateTime": "2015-09-14T15:06:38.373Z"
+}

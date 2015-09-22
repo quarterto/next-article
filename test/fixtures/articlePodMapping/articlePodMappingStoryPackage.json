@@ -1,0 +1,30 @@
+{
+  "headline": {
+    "text": "Greece, democracy and the labour of Hercules",
+    "url": "/ae7fb5a2-52f4-11e5-8642-453585f2cfcd"
+  },
+  "lastUpdated": "2015-09-06T14:40:10Z",
+  "subheading": "Elections are fine but what matters is a sincere reform effort",
+  "topic": {
+    "attributes": [],
+    "name": "Greece Politics",
+    "id": "MTJmY2U0ZTQtZDU5Ni00ZGY0LTg5NGItMTJjMTkwM2ZkZWJj-VG9waWNz",
+    "taxonomy": "topics",
+    "url": "/stream/topicsId/MTJmY2U0ZTQtZDU5Ni00ZGY0LTg5NGItMTJjMTkwM2ZkZWJj-VG9waWNz"
+  },
+  "visualCategory": "default",
+  "image": {
+    "alt": "Snap elections in Greece...epa04903313 Outgoing Greek Prime Minister and leader of SYRIZA party Alexis Tsipras delivers his speech during a nationwide meeting of his party in Athens, Greece, 29 August 2015. Elections will be held on 20 September 2015. EPA/YANNIS KOLESIDIS",
+    "width": 972,
+    "caption": "Alexis Tsipras",
+    "mediaType": "image/jpeg",
+    "source": "EPA",
+    "type": "wide-format",
+    "url": "http://im.ft-static.com/content/images/6a972f19-355a-4a96-8b11-66479c636a8b.img",
+    "height": 547,
+    "srcset": {
+      "default": 100
+    },
+    "class": ""
+  }
+}

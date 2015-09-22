@@ -33,12 +33,12 @@
     <xsl:include href="interactive-graphics.xsl" />
     <xsl:include href="internal-image.xsl" />
     <xsl:include href="links.xsl" />
+    <xsl:include href="paragraph-one.xsl" />
     <xsl:include href="promo-box.xsl" />
     <xsl:include href="pull-quotes.xsl" />
     <xsl:include href="related-inline.xsl" />
     <xsl:include href="slideshow.xsl" />
     <xsl:include href="subheaders.xsl" />
-    <xsl:include href="toc.xsl" />
     <xsl:include href="video.xsl" />
 
 </xsl:stylesheet>

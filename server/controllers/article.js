@@ -17,6 +17,7 @@ var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
 var getSuggested = require('./article-helpers/suggested');
 var exposeTopic = require('./article-helpers/exposeTopic');
+var readNext = require('../lib/read-next');
 
 module.exports = function(req, res, next) {
 
@@ -84,9 +85,12 @@ module.exports = function(req, res, next) {
 					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
 					renderTOC: res.locals.flags.articleTOC ? 1 : 0,
 					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
-					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0
+					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
+					suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
+					standFirst: article[0] ? article[0].item.editorial.standFirst : ""
 				}),
-				socialMediaImage(article[1])
+				socialMediaImage(article[1]),
+				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet) : Promise.resolve()
 			]);
 		})
 		.then(function(results) {
@@ -95,6 +99,7 @@ module.exports = function(req, res, next) {
 			var articleV1 = results[0];
 			var article = results[1];
 			var mainImage = results[3];
+			var readNextArticle = results[4];
 
 			var $ = bodyTransform(results[2], res.locals.flags);
 
@@ -190,17 +195,21 @@ module.exports = function(req, res, next) {
 						viewModel.twitterCard = twitterCardSummary(article, articleV1, mainImage);
 					}
 
+					if (res.locals.flags.articleSuggestedRead) {
+						viewModel.readNextArticle = readNextArticle;
+					}
+
 					if (res.locals.barrier) {
 
 						if (res.locals.barrier.trialSimple) {
 							viewModel.trialSimpleBarrier = res.locals.barrier.trialSimple;
 						}
 
-						if(res.locals.barrier.trialGrid) {
+						if (res.locals.barrier.trialGrid) {
 
 							viewModel.trialGridBarrier = res.locals.barrier.trialGrid;
 
-							if(!res.locals.barrier.trialGrid.packages.newspaper) {
+							if (!res.locals.barrier.trialGrid.packages.newspaper) {
 
 								viewModel.trialGridBarrier.missingNewspaper = {};
 							}
@@ -210,7 +219,7 @@ module.exports = function(req, res, next) {
 							viewModel.barrierOverlay = {};
 						}
 
-						if(res.locals.barrier.registerGrid) {
+						if (res.locals.barrier.registerGrid) {
 
 							viewModel.registerGridBarrier = res.locals.barrier.registerGrid;
 
@@ -224,19 +233,19 @@ module.exports = function(req, res, next) {
 							viewModel.barrierOverlay = {};
 						}
 
-						if(res.locals.barrier.subscriptionGrid) {
+						if (res.locals.barrier.subscriptionGrid) {
 							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
 							viewModel.subscriptionGridBarrier.articleTitle = viewModel.title;
 							viewModel.barrierOverlay = {};
 						}
 
-						if(res.locals.barrier.premiumSimple) {
+						if (res.locals.barrier.premiumSimple) {
 							viewModel.premiumSimpleBarrier = res.locals.barrier.premiumSimple;
 							viewModel.barrierOverlay = {};
 							viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
 						}
 
-						if(res.locals.barrier.premiumGrid) {
+						if (res.locals.barrier.premiumGrid) {
 							viewModel.premiumGridBarrier = res.locals.barrier.premiumGrid;
 							viewModel.barrierOverlay = {};
 							viewModel.premiumGridBarrier.articleTitle = viewModel.title;

@@ -1,0 +1,637 @@
+{
+  "requestUrl": "http://api.ft.com/content/items/v1/a581b44e-5acb-11e5-a28b-50226830d644?feature.blogposts=on&h=2580380887",
+  "item": {
+    "aspectSet": "article",
+    "aspects": [
+      "assets",
+      "body",
+      "editorial",
+      "images",
+      "lifecycle",
+      "location",
+      "master",
+      "mediaAssets",
+      "metadata",
+      "package",
+      "packaging",
+      "provenance",
+      "summary",
+      "title"
+    ],
+    "modelVersion": "1",
+    "id": "a581b44e-5acb-11e5-a28b-50226830d644",
+    "apiUrl": "http://api.ft.com/content/items/v1/a581b44e-5acb-11e5-a28b-50226830d644",
+    "title": {
+      "title": "CNPC forced to sell businesses as China’s crackdown widens"
+    },
+    "body": {
+      "mediaType": "text/html",
+      "body": "<p>China National Petroleum Corp, China’s largest oil company, is shedding a raft of non-core businesses, including a chain of hotels and a taxi business, as <a title=\"China’s state-owned enterprise reform plans face compromise - FT.com\" href=\"http://www.ft.com/cms/s/0/5eeeb84a-5aaa-11e5-97e9-7f0bf5e7177b.html#axzz3ldXLAcJI\">state-owned companies </a>come under pressure from the government to dispose of lucrative but often corrupt enterprises.</p>\n<p>China’s two-year, anti-corruption drive has targeted the perks of office of government and state-owned enterprise employees, ranging from <a title=\"A bribe-free lunar new year awaits China’s public servants - FT.com\" href=\"http://www.ft.com/cms/s/0/9d8de956-80ca-11e3-95aa-00144feab7de.html#axzz3lggYgvAN\">annual New Years’ banquets</a> and gifts of mooncakes to company trips, expensive meals and privileges that allow people employed by the Chinese state to enjoy a quality of life well above their official salary levels.</p>\n<p>The result has been a sharp slowdown in demand for Swiss watches, foreign wines and other high-end products in <a title=\"China Tremors in depth - FT.com\" href=\"http://www.ft.com/indepth/china-tremors\">China</a>, previously one of the fastest growing markets for luxury consumer goods in the world.</p>\n<p>CNPC, parent of listed PetroChina, said on its website on Monday that it would trim its regional and overseas offices and shed its hotels business. The large number of offices makes it “easy for irregularities to happen and cause problems,” it said.</p>\n<p>China’s anti-corruption watchdog had said after an audit earlier this year that CNPC had “too many offices and hotels” and “chaotic management” among other issues.</p>\n<p>Beijing’s anti-corruption drive has disproportionately affected CNPC, a former power base for Zhou Yongkang, the now-disgraced energy and security tsar. A former member of the standing committee of the politburo, Mr Zhou is the highest-ranking Communist Party member to be arrested in Xi Jinping’s anti-corruption crackdown and power consolidation.</p>\n<p>His influence thrived in CNPC’s Soluxe hotel chain, where his son Zhou Bin muscled in on hotel properties including one in the Sichuan mountain resort area of Jiuzhaigou. Soluxe operates more than 30 hotels in two dozen Chinese cities, as well as a taxi company in Beijing and a travel agency.</p>\n<p>Mr Zhou’s relatives had also encroached on CNPC oil projects overseas.</p>\n<p>The anti-corruption watchdog’s report on CNPC vowed to “resolutely eradicate the malignant influence of Zhou Yongkang and others”.</p>\n<aside data-asset-type=\"promoBox\" data-asset-name=\"asset1\"></aside><p>Also over the weekend, state oil company Cnooc pledged to “dismantle all entertainment equipment” and ban official receptions, dining, and purchases of high-end liquor and cigarettes.</p>\n<p>Chinese SOEs, government ministries and provincial governments generally own a number of hotels and representative offices in Beijing as well as in other large Chinese cities, much as a US state might have a business development office in Washington DC. Many also own hotels overseas or in resort areas in China, in part to host the executive and employee trips that are a perk of working for the Chinese state. They also operate old-age homes for elderly and retired cadres or executives.</p>\n\n<p>Oil groups and mining companies first developed hotels near oilfields and mines during the planned economy, and many morphed into freewheeling side businesses after China allowed a market economy to develop. But the businesses became a channel for corruption and nepotism for officials running the enterprises.</p>\n\n<p><span class=\"ft-italic\">Additional reporting by Owen Guo in Beijing</span>\n</p>"
+    },
+    "lifecycle": {
+      "initialPublishDateTime": "2015-09-14T14:26:37Z",
+      "lastPublishDateTime": "2015-09-14T14:26:37Z"
+    },
+    "location": {
+      "uri": "http://www.ft.com/cms/s/0/a581b44e-5acb-11e5-a28b-50226830d644.html"
+    },
+    "summary": {
+      "excerpt": "Hotel chains and taxi businesses among the non-core businesses to be sold"
+    },
+    "packaging": {
+      "spHeadline": "CNPC forced to dispose of hotel chain"
+    },
+    "master": {
+      "masterSource": "Methode",
+      "masterEntityId": "a581b44e-5acb-11e5-a28b-50226830d644"
+    },
+    "editorial": {
+      "otherTitles": [
+        "CNPC forced to dispose of hotel chain"
+      ],
+      "subheading": "Non-core businesses to go as SEOs come under government pressure",
+      "standFirst": "Hotel chains and taxi businesses among the non-core businesses to be sold",
+      "byline": "Lucy Hornby in Beijing"
+    },
+    "provenance": {
+      "originatingParty": "FT"
+    },
+    "metadata": {
+      "primarySection": {
+        "term": {
+          "name": "China",
+          "attributes": [],
+          "id": "TnN0ZWluX0dMX0NO-R0w=",
+          "taxonomy": "regions"
+        }
+      },
+      "primaryTheme": {
+        "term": {
+          "name": "China",
+          "id": "TnN0ZWluX0dMX0NO-R0w=",
+          "attributes": [],
+          "taxonomy": "regions"
+        }
+      },
+      "tags": [
+        {
+          "term": {
+            "name": "China",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0NO-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "News",
+            "attributes": [],
+            "id": "Nw==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        },
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        },
+        {
+          "term": {
+            "name": "Lucy Hornby",
+            "attributes": [],
+            "id": "Q0ItMDM4Njc5MQ==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        },
+        {
+          "term": {
+            "name": "02012006 - corruption",
+            "attributes": [],
+            "id": "MDIwMTIwMDY=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04005004 - oil and gas - upstream activities",
+            "attributes": [],
+            "id": "MDQwMDUwMDQ=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04014002 - hotel and accommodation",
+            "attributes": [],
+            "id": "MDQwMTQwMDI=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "09016000 - employee",
+            "attributes": [],
+            "id": "MDkwMTYwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "12006002 - corrupt practices",
+            "attributes": [],
+            "id": "MTIwMDYwMDI=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "China National Petroleum Corp",
+            "attributes": [
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0NOUEM=-T04=",
+            "taxonomy": "organisations"
+          }
+        },
+        {
+          "term": {
+            "name": "Zhou Yongkang",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX0FGVE1fUE5fMzI2MTAz-UE4=",
+            "taxonomy": "people"
+          }
+        },
+        {
+          "term": {
+            "name": "Beijing",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0FGVE1fR0xfMTEyOTc=-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "World",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "MQ==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Asia Pacific",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              },
+              {
+                "value": "asia.pacific",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "MTE=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Companies",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "Mjk=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Energy",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              },
+              {
+                "value": "energy",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "MzA=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Oil & Gas",
+            "attributes": [],
+            "id": "MzI=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Asia-Pacific Companies",
+            "attributes": [],
+            "id": "Njc=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Business of Luxury",
+            "attributes": [],
+            "id": "NWY0ZmJlNmUtMzY2NS00NDc4LTk5MjYtOGQ4Mjk3OGE3ZTMw-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "Oil",
+            "attributes": [],
+            "id": "ZmFmYTUxOTItMGZjZC00YmJkLWJlZTQtMmY3ZDZiOWZkYmYw-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        }
+      ],
+      "authors": [
+        {
+          "term": {
+            "name": "Lucy Hornby",
+            "attributes": [],
+            "id": "Q0ItMDM4Njc5MQ==-QXV0aG9ycw==",
+            "taxonomy": "authors"
+          }
+        }
+      ],
+      "brand": [],
+      "genre": [
+        {
+          "term": {
+            "name": "News",
+            "attributes": [],
+            "id": "Nw==-R2VucmVz",
+            "taxonomy": "genre"
+          }
+        }
+      ],
+      "icb": [],
+      "iptc": [
+        {
+          "term": {
+            "name": "02012006 - corruption",
+            "attributes": [],
+            "id": "MDIwMTIwMDY=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04005004 - oil and gas - upstream activities",
+            "attributes": [],
+            "id": "MDQwMDUwMDQ=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "04014002 - hotel and accommodation",
+            "attributes": [],
+            "id": "MDQwMTQwMDI=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "09016000 - employee",
+            "attributes": [],
+            "id": "MDkwMTYwMDA=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        },
+        {
+          "term": {
+            "name": "12006002 - corrupt practices",
+            "attributes": [],
+            "id": "MTIwMDYwMDI=-SVBUQw==",
+            "taxonomy": "iptc"
+          }
+        }
+      ],
+      "mediaType": [
+        {
+          "term": {
+            "name": "Text",
+            "attributes": [],
+            "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+            "taxonomy": "mediaType"
+          }
+        }
+      ],
+      "organisations": [
+        {
+          "term": {
+            "name": "China National Petroleum Corp",
+            "attributes": [
+              {
+                "value": "true",
+                "key": "is_company"
+              }
+            ],
+            "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0NOUEM=-T04=",
+            "taxonomy": "organisations"
+          }
+        }
+      ],
+      "people": [
+        {
+          "term": {
+            "name": "Zhou Yongkang",
+            "attributes": [],
+            "id": "TnN0ZWluX1BOX0FGVE1fUE5fMzI2MTAz-UE4=",
+            "taxonomy": "people"
+          }
+        }
+      ],
+      "regions": [
+        {
+          "term": {
+            "name": "Beijing",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0FGVE1fR0xfMTEyOTc=-R0w=",
+            "taxonomy": "regions"
+          }
+        },
+        {
+          "term": {
+            "name": "China",
+            "attributes": [],
+            "id": "TnN0ZWluX0dMX0NO-R0w=",
+            "taxonomy": "regions"
+          }
+        }
+      ],
+      "sections": [
+        {
+          "term": {
+            "name": "World",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "MQ==-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Asia Pacific",
+            "attributes": [
+              {
+                "value": "world",
+                "key": "dfpSite"
+              },
+              {
+                "value": "asia.pacific",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "MTE=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Companies",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              }
+            ],
+            "id": "Mjk=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Energy",
+            "attributes": [
+              {
+                "value": "companies",
+                "key": "dfpSite"
+              },
+              {
+                "value": "energy",
+                "key": "dfpZone"
+              }
+            ],
+            "id": "MzA=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Oil & Gas",
+            "attributes": [],
+            "id": "MzI=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        },
+        {
+          "term": {
+            "name": "Asia-Pacific Companies",
+            "attributes": [],
+            "id": "Njc=-U2VjdGlvbnM=",
+            "taxonomy": "sections"
+          }
+        }
+      ],
+      "specialReports": [],
+      "subjects": [],
+      "topics": [
+        {
+          "term": {
+            "name": "Business of Luxury",
+            "attributes": [],
+            "id": "NWY0ZmJlNmUtMzY2NS00NDc4LTk5MjYtOGQ4Mjk3OGE3ZTMw-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        },
+        {
+          "term": {
+            "name": "Oil",
+            "attributes": [],
+            "id": "ZmFmYTUxOTItMGZjZC00YmJkLWJlZTQtMmY3ZDZiOWZkYmYw-VG9waWNz",
+            "taxonomy": "topics"
+          }
+        }
+      ]
+    },
+    "images": [
+      {
+        "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+        "width": 272,
+        "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "primary",
+        "url": "http://im.ft-static.com/content/images/fab1b192-b82d-4bd7-83d2-71a97970671c.img",
+        "height": 153
+      },
+      {
+        "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+        "width": 167,
+        "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "secondary",
+        "url": "http://im.ft-static.com/content/images/ab6ed205-e36d-4c01-b803-b084c21b6382.img",
+        "height": 94
+      },
+      {
+        "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+        "width": 600,
+        "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "article",
+        "url": "http://im.ft-static.com/content/images/2f42c338-48ad-4382-8ecd-47b1d16f0a00.img",
+        "height": 338
+      },
+      {
+        "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+        "width": 414,
+        "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "leader",
+        "url": "http://im.ft-static.com/content/images/b42d2a68-d363-4b27-9f7a-84d42770755f.img",
+        "height": 233
+      },
+      {
+        "alt": "epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+        "width": 972,
+        "caption": "Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
+        "mediaType": "image/jpeg",
+        "source": "EPA",
+        "type": "wide-format",
+        "url": "http://im.ft-static.com/content/images/b29be4bd-ef06-4839-984b-d21ead0c0a06.img",
+        "height": 547
+      },
+      {
+        "width": 272,
+        "mediaType": "image/jpeg",
+        "type": "promo",
+        "url": "http://im.ft-static.com/content/images/ad0d1569-2e28-47f7-a108-1558883bc6ad.img",
+        "height": 153
+      },
+      {
+        "width": 972,
+        "mediaType": "image/jpeg",
+        "type": "promo",
+        "url": "http://im.ft-static.com/content/images/f5593565-6904-466e-a1c9-1c082a347927.img",
+        "height": 547
+      }
+    ],
+    "package": [
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/aff90924-5a01-11e5-9846-de406ccb37f2",
+        "packaging": {
+          "spHeadline": "China’s state-owned groups face shake-up"
+        },
+        "id": "aff90924-5a01-11e5-9846-de406ccb37f2"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/3186f3dc-5310-11e5-b029-b9d50a74fd14",
+        "packaging": {
+          "spHeadline": "Robert Zoellick – China will stumble if Xi stalls on reform",
+          "kicker": "Comment"
+        },
+        "id": "3186f3dc-5310-11e5-b029-b9d50a74fd14"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/8dfcd43e-507b-11e5-b029-b9d50a74fd14",
+        "packaging": {
+          "spHeadline": "China urges companies to shore up market"
+        },
+        "id": "8dfcd43e-507b-11e5-b029-b9d50a74fd14"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/e9b56844-4ece-11e5-b029-b9d50a74fd14",
+        "packaging": {
+          "spHeadline": "China to form top aluminium producer"
+        },
+        "id": "e9b56844-4ece-11e5-b029-b9d50a74fd14"
+      },
+      {
+        "provenance": {
+          "originatingParty": "FT"
+        },
+        "apiUrl": "http://api.ft.com/content/items/v1/066a5068-4d98-11e5-b558-8a9722977189",
+        "packaging": {
+          "spHeadline": "China’s problem its economy",
+          "kicker": "Comment"
+        },
+        "id": "066a5068-4d98-11e5-b558-8a9722977189"
+      }
+    ],
+    "assets": [
+      {
+        "name": "asset1",
+        "type": "promoBox",
+        "fields": {
+          "images": [
+            {
+              "width": 272,
+              "mediaType": "image/jpeg",
+              "type": "promo",
+              "url": "http://im.ft-static.com/content/images/ad0d1569-2e28-47f7-a108-1558883bc6ad.img",
+              "height": 153
+            },
+            {
+              "width": 972,
+              "mediaType": "image/jpeg",
+              "type": "promo",
+              "url": "http://im.ft-static.com/content/images/f5593565-6904-466e-a1c9-1c082a347927.img",
+              "height": 547
+            }
+          ],
+          "intro": "<p>China has been roiling global markets all summer as its authoritarian leaders try to stop a huge stock bubble from bursting and its slowing economy from stalling</p>",
+          "title": "<p>In depth</p>",
+          "headline": "<p><a title=\"www.ft.com\" href=\"http://www.ft.com/indepth/china-tremors\">China tremors</a>\n</p>"
+        }
+      }
+    ],
+    "mediaAssets": []
+  },
+  "_lastUpdatedDateTime": "2015-09-14T15:06:38.358Z"
+}
