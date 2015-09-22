@@ -119,7 +119,12 @@ module.exports = function (req, res, next) {
 							if (primaryTheme) {
 								articleViewModel.tag = primaryTheme.term;
 							}
-							var image = articleModel.item.images[0];
+
+							var images = {};
+							articleModel.item.images.forEach(function(img) {
+								images[img.type] = img;
+							});
+							var image = images['wide-format'] || images.article || images.primary;
 							if (image) {
 								articleViewModel.image = {
 									url: image.url,
