@@ -135,11 +135,13 @@ module.exports = function(req, res, next) {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages
 			})
 				.then(function($) {
+					console.log(articleV1);
 					var viewModel = {
 						firstClickFree: null,
 						comments: article.comments && article.comments.enabled === true,
 						article: article,
 						articleV1: articleV1 && articleV1.item,
+						webUrl: articleV1 && articleV1.item  && articleV1.item.location ? articleV1.item.location.uri : article.webUrl,
 						id: extractUuid(article.id),
 						title: article.title,
 						byline: bylineTransform(article.byline, articleV1),

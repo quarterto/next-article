@@ -23,6 +23,7 @@ app.get('^/articles', require('./controllers/articles'));
 app.get('^/article/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
 app.get('^/article/:id(' + articleUuidRegex + ')/more-on', require('./controllers/related/more-on'));
 app.get('^/article/:id(' + articleUuidRegex + ')/special-report', require('./controllers/related/special-report'));
+app.get('^/article/:id(' + articleUuidRegex + ')/social-counts', require('./controllers/related/social-counts'));
 app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow'));
 
 // Use barriers middleware only before calling full article endpoints
