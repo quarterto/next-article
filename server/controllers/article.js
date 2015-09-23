@@ -117,7 +117,11 @@ module.exports = function(req, res, next) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
 			}
-
+			var dehydratedMetadata = {
+				primaryTheme: metadata && metadata.primaryTheme,
+				primarySection: metadata && metadata.primarySection,
+				package: articleV1 && articleV1.item && articleV1.item.package
+			};
 			// Some posts (e.g. FastFT are only available in CAPI v2)
 			// TODO: Replace with something in CAPI v2
 			var isColumnist = metadata && metadata.primarySection.term.name === 'Columnists';
@@ -150,7 +154,8 @@ module.exports = function(req, res, next) {
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
 						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
-						dehydratedState: {}
+						dehydratedState: {},
+						dehydratedMetadata: dehydratedMetadata
 					};
 
 					if (metadata) {
