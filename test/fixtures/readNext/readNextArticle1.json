@@ -5,7 +5,7 @@
     },
   "lastUpdated": "2015-09-16T11:44:13Z",
   "subheading": "Documentary paints critical picture of Apple founder",
-  "topic": {
+  "tag": {
     "name": "Steve Jobs",
     "id": "TnN0ZWluX1BOX0VudGVydGFpbm1lbnRfMjAwOV8xMF85XzQ1MDQ3-UE4=",
     "attributes": [],
@@ -14,7 +14,7 @@
   },
   "visualCategory": "default",
   "image": {
-    "alt": "Steve Jobs",
+    "alt": "",
     "width": 972,
     "mediaType": "image/jpeg",
     "source": "FT",
@@ -22,7 +22,8 @@
     "url": "http://im.ft-static.com/content/images/abda36f3-8afa-48a8-9bc8-58d7a6cfdd4f.img",
     "height": 547,
     "srcset": {
-      "default": 100
+      "s": 100,
+      "m": 200
     },
     "class": ""
   },

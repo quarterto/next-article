@@ -3,8 +3,8 @@
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var cacheControl = require('../../utils/cache-control');
-var extractUuid = require('../../utils/extract-uuid');
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
+var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function(req, res, next) {
 	var isInline = req.query.view === 'inline';
@@ -40,35 +40,7 @@ module.exports = function(req, res, next) {
 				articles.splice(req.query.count);
 			}
 			var imagePromises = articles.map(function(article) {
-				var articleModel = {
-					id: extractUuid(article.item.id),
-					headline: article.item.title.title,
-					subheading: article.item.summary ? article.item.summary.excerpt : '',
-					lastUpdated: article.item.lifecycle.lastPublishDateTime
-				};
-				var primaryTheme = article.item.metadata.primaryTheme;
-				if (primaryTheme) {
-					articleModel.tag = primaryTheme.term;
-				}
-				if (!article.item.images) {
-					return Promise.resolve(articleModel);
-				}
-				var images = {};
-				article.item.images.forEach(function(img) {
-					images[img.type] = img;
-				});
-				var image = images['wide-format'] || images.article || images.primary;
-				if (image && !isInline) {
-					articleModel.image = {
-						url: image.url,
-						alt: "",
-						srcset: {
-							s: 100,
-							m: 200
-						}
-					};
-				}
-				return(articleModel);
+				return articlePodMapping(article);
 			});
 			return Promise.all(imagePromises);
 		})

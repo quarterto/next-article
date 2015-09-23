@@ -5,7 +5,7 @@
     },
   "lastUpdated":"2015-09-14T14:26:37Z",
   "subheading":"Non-core businesses to go as SEOs come under government pressure",
-  "topic": {
+  "tag": {
     "name": "China",
     "id": "TnN0ZWluX0dMX0NO-R0w=",
     "attributes": [],
@@ -14,7 +14,7 @@
   },
   "visualCategory":"default",
   "image":{
-    "alt":"epa04793150 (FILE) A file picture dated 01 November 2010 shows Chinese Zhou Yongkang, then member of the Standing Committee of the Politburo and Secretary of Political and Legislative Affairs Committee, addressing a seminar in New Delhi, India. Zhou Yongkang has been sentenced to life in prison, it was reported 11 June 2015. He was found guilty of bribery, abuse of power and 'intentionally disclosing national secrets', Chinese media reports. EPA/ANINDITO MUKHERJEE",
+    "alt":"",
     "width":972,
     "caption":"Zhou Yongkang, China’s disgraced energy and security tsar, whose influence thrived in CNPC’s Soluxe hotel chain",
     "mediaType":"image/jpeg",
@@ -22,7 +22,10 @@
     "type":"wide-format",
     "url":"http://im.ft-static.com/content/images/b29be4bd-ef06-4839-984b-d21ead0c0a06.img",
     "height":547,
-    "srcset":{"default":100},
+    "srcset":{
+      "s": 100,
+      "m": 200
+    },
     "class":""
   },
   "source": "package"
