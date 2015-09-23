@@ -5,12 +5,8 @@ var fetchres = require('fetchres');
 var NoRelatedResultsException = require('../lib/no-related-results-exception');
 
 module.exports = function(req, res, next) {
-	res.set({
-		'Cache-Control': 'private'
-	});
-
 	api.contentLegacy({
-		uuid: req.body.ids,
+		uuid: JSON.parse(req.query.ids),
 		useElasticSearch: res.locals.flags.elasticSearchItemGet,
 		type: 'Article'
 	})

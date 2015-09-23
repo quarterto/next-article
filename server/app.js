@@ -18,7 +18,7 @@ app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/acces
 
 // No need for access control for podcasts
 app.get('^/content/:id(' + podcastGuidRegex + ')$', require('./controllers/podcast'));
-app.post('^/articles', require('./controllers/articles'));
+app.get('^/articles', require('./controllers/articles'));
 
 // These routes supply supplement content for an article so don't need to go through barriers middleware
 app.get('^/article/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
