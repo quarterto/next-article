@@ -12,17 +12,15 @@ module.exports = {
 		} catch(err) {
 			return;
 		}
+		var ids = `ids=${encodeURI(JSON.stringify(data.suggestedReads.ids))}`;
 
-		fetch('/articles', {
-			method: 'POST',
+		fetch(`/articles?${ids}`, {
+			method: 'GET',
 			credentials: 'same-origin',
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/text'
-			},
-			body: JSON.stringify({
-				ids: data.suggestedReads.ids
-			})
+			}
 		})
 		.then(fetchres.text)
 		.then(html => {
