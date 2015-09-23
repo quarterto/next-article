@@ -16,7 +16,7 @@ module.exports = function(article, imageOptions) {
 	var articleModel = {
 		headline: {
 			text: article.item.title.title,
-			url: '/' + article.item.id
+			url: '/content/' + article.item.id
 		},
 		lastUpdated: article.item.lifecycle.lastPublishDateTime,
 		subheading: article.item.editorial.subheading,
