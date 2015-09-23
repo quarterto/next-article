@@ -28,6 +28,11 @@ app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow')
 
 // Use barriers middleware only before calling full article endpoints
 app.use(barriers.middleware(express.metrics));
+
+// TODO: Remove deprecated roots after redirect is active
+app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
+app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
+
 app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
 app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
 
