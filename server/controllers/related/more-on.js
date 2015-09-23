@@ -7,6 +7,7 @@ var fetchres = require('fetchres');
 var splunkLogger = require('ft-next-splunk-logger')('next-article');
 var cacheControl = require('../../utils/cache-control');
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
+var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function (req, res, next) {
 	var topics = [];
@@ -109,33 +110,7 @@ module.exports = function (req, res, next) {
 						})
 						// add props for more on cards
 						.map(function (articleModel) {
-							var articleViewModel = {
-								id: articleModel.item.id,
-								headline: articleModel.item.title.title,
-								subheading: articleModel.item.summary && articleModel.item.summary.excerpt,
-								lastUpdated: articleModel.item.lifecycle.lastPublishDateTime
-							};
-							var primaryTheme = articleModel.item.metadata.primaryTheme;
-							if (primaryTheme) {
-								articleViewModel.tag = primaryTheme.term;
-							}
-
-							var images = {};
-							articleModel.item.images.forEach(function(img) {
-								images[img.type] = img;
-							});
-							var image = images['wide-format'] || images.article || images.primary;
-							if (image) {
-								articleViewModel.image = {
-									url: image.url,
-									alt: "",
-									srcset: {
-										s: 100,
-										m: 200
-									}
-								};
-							}
-							return articleViewModel;
+							return articlePodMapping(articleModel);
 						})
 						.slice(0, count);
 					return dedupedArticles.length ? {

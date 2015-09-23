@@ -3,6 +3,7 @@
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
+var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 
 module.exports = function (req, res, next) {
@@ -38,19 +39,14 @@ module.exports = function (req, res, next) {
 				throw new NoRelatedResultsException();
 			}
 			var articles = results.map(function (result) {
-				return result.item;
-			});
-			// get the best image
-			var images = {};
-			articles[0].images.forEach(function (image) {
-				images[image.type] = image;
+				return articlePodMapping(result);
 			});
 			// pull out the specialReports tag
-			var specialReport = articles[0].metadata.primarySection.term;
+			var specialReport = articles[0].tag.specialReport;
 			res.render('related/special-report', {
 				name: specialReport.name,
 				id: specialReport.id,
-				image: images['wide-format'] || images.article || images.primary,
+				image: articles[0].image,
 				articles: articles
 			});
 		})

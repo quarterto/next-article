@@ -18,20 +18,26 @@
 	</div>
 	<ul class="pod__items">
 		{{#each articles}}
-		<li class="pod__item-wrapper{{#if image}} pod__item-wrapper--with-image{{/if}}">
+		<li class="pod__item-wrapper{{#if image}}{{#unless ../../isInline}} pod__item-wrapper--with-image{{/unless}}{{/if}}">
 			<div class="pod__item">
 				{{#if image}}
-				<a class="pod__item__image" href="/{{id}}" data-trackable="image">
-					{{>n-image/templates/image}}
-				</a>
+					{{#unless ../../isInline}}
+						<a class="pod__item__image" href="{{url}}" data-trackable="image">
+							{{>n-image/templates/image}}
+						</a>
+					{{/unless}}
 				{{/if}}
 				<div class="pod__item__content">
 					{{#if tag}}
-					<a class="pod__item__tag" href="stream/{{tag.taxonomy}}Id/{{tag.id}}" data-trackable="tag">{{tag.name}}</a>
+						{{#tag}}
+							<a class="pod__item__tag" href="{{url}}" data-trackable="tag">{{name}}</a>
+						{{/tag}}
 					{{/if}}
-					<h2 class="pod__item__headline">
-						<a class="pod__item__headline-link" href="/{{id}}" data-trackable="headline">{{headline}}</a>
-					</h2>
+					<h3 class="pod__item__headline">
+						{{#headline}}
+							<a class="pod__item__headline-link" href="{{url}}" data-trackable="headline">{{text}}</a>
+						{{/headline}}
+					</h3>
 					<p class="pod__item__subheading">{{subheading}}</p>
 				</div>
 				<div class="pod__item__time">

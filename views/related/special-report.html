@@ -10,11 +10,13 @@
 		<ol class="stream-card__articles">
 			{{#each articles}}
 				<li class="stream-card__article" data-trackable="article">
-					<time data-o-component="o-date" class="stream-card__article__date o-date" datetime="{{#dateformat}}{{lifecycle.lastPublishDateTime}}{{/dateformat}}">
-						{{#dateformat "dddd, d mmmm, yyyy"}}{{lifecycle.lastPublishDateTime}}{{/dateformat}}
+					<time data-o-component="o-date" class="stream-card__article__date o-date" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
+						{{#dateformat "dddd, d mmmm, yyyy"}}{{lifecycle.lastUpdated}}{{/dateformat}}
 					</time>
 					<br />
-					<a class="stream-card__article__link" href="/{{id}}" data-trackable="link">{{title.title}}</a>
+					{{#headline}}
+						<a class="stream-card__article__link" href="{{url}}" data-trackable="link">{{text}}</a>
+					{{/headline}}
 				</li>
 			{{/each}}
 		</ol>

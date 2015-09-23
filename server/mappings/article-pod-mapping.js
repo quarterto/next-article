@@ -1,12 +1,16 @@
-"use strict";
+'use strict';
 
 var getVisualCategory = require('ft-next-article-genre');
 var articleTopicMapping = require('../mappings/article-topic-mapping');
 
 module.exports = function(article, imageOptions) {
 	imageOptions = imageOptions || {
-		imageSrcset: { default: 100 },
-		imageClass: ""
+		imageSrcset: {
+			s: 100,
+			m: 200
+		},
+		imageClass: '',
+		imageAlt: ''
 	};
 
 	var articleModel = {
@@ -16,7 +20,7 @@ module.exports = function(article, imageOptions) {
 		},
 		lastUpdated: article.item.lifecycle.lastPublishDateTime,
 		subheading: article.item.editorial.subheading,
-		topic: articleTopicMapping(article.item.metadata),
+		tag: articleTopicMapping(article.item.metadata),
 		visualCategory: getVisualCategory(article.item.metadata)
 	};
 	if (!article.item.images) {
@@ -30,6 +34,7 @@ module.exports = function(article, imageOptions) {
 	if (articleModel.image) {
 		articleModel.image.srcset = imageOptions.imageSrcset;
 		articleModel.image.class = imageOptions.imageClass;
+		articleModel.image.alt = imageOptions.imageAlt;
 	}
 	return articleModel;
 };
