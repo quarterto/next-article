@@ -1,7 +1,7 @@
 {
   "name": "next-article",
   "dependencies": {
-    "n-layout": "Financial-Times/n-layout",
+    "n-layout": "^1.0.0",
     "o-fonts": "^1.6.4",
     "next-ads-component": "^6.0.0",
     "o-quote": "bogdis-design",
