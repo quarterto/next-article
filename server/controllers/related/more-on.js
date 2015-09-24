@@ -9,6 +9,8 @@ var NoRelatedResultsException = require('../../lib/no-related-results-exception'
 var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function (req, res, next) {
+	var topic = JSON.parse(req.query.topic);
+	console.log('topic ', topic);
 	var topics = [];
 	var metadataFields = (req.query['metadata-fields'] || '').split(',');
 	var count = parseInt(req.query.count) || 5;

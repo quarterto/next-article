@@ -52,6 +52,12 @@ module.exports.init = flags => {
 		return el.id;
 	}).join(',');
 	var storyPackageQueryString = `ids=${storyPackageIds}`;
+	var moreOnProperties = $('.js-more-on').map(function(el) {
+		return el.getAttribute('data-metadata-fields');
+	});
+	var moreOnQueryStrings = moreOnProperties.map(function(prop) {
+		return `topic=${encodeURI(JSON.stringify(dehydratedMetadata[prop]))}`;
+	});
 
 	// If there is no articleId don't try to load related content
 	// and we also only support articles available in API v1
@@ -62,10 +68,10 @@ module.exports.init = flags => {
 	var fetchPromises = [].concat(
 		storyPackageIds.length ? $('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline&${storyPackageQueryString}`)) : Promise.resolve(),
 		storyPackageIds.length ? $('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4&${storyPackageQueryString}`)) : Promise.resolve(),
-		$('.js-more-on').map(el =>
+		$('.js-more-on').map((el, index) =>
 			createPromise(
 				el,
-				`/article/${articleId}/more-on?metadata-fields=${el.getAttribute('data-metadata-fields').replace(' ', ',')}&count=6`,
+				`/article/${articleId}/more-on?${moreOnQueryStrings[index]}&count=6`,
 				{
 					renderer: (el, resp) => {
 						var brandEl = el.querySelector('.n-topic[data-taxonomy="brand"]');
