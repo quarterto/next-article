@@ -36,9 +36,6 @@ module.exports = {
 		nock('https://ft-elastic-search.com')
 			.post('/v2_api_v2/item/_mget', { ids: ["b002e5ee-3096-3f51-9925-32b157740c98"] })
 			.reply(200, fastFtArticleV2Elastic);
-		nock('https://ft-elastic-search.com')
-			.post('/v1_api_v2/item/_search')
-			.reply(200, moreOnArticlesElastic);
 		nock('http://www.ft.com')
 			.get('/cms/s/02cad03a-844f-11e4-bae9-00144feabdc0.html')
 			.reply(404, renderBlogPost)

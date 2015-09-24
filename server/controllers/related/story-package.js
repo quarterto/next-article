@@ -2,7 +2,6 @@
 
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
-var cacheControl = require('../../utils/cache-control');
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 var articlePodMapping = require('../../mappings/article-pod-mapping');
 

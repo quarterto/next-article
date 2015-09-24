@@ -185,14 +185,18 @@ module.exports = function(req, res, next) {
 							.map(function(moreOnTag) {
 								var title;
 
-								if (moreOnTag.taxonomy === 'authors') {
-									title = 'from';
-								} else if (moreOnTag.taxonomy === 'sections') {
-									title = 'in';
-								} else if (moreOnTag.taxonomy !== 'genre') {
-									title = 'on';
-								} else {
-									title = '';
+								switch (moreOnTag.taxonomy) {
+									case 'authors':
+										title = 'from';
+										break;
+									case 'sections':
+										title = 'in';
+										break;
+									case 'genre':
+										title = '';
+										break;
+									default:
+										title = 'on';
 								}
 
 								return {
