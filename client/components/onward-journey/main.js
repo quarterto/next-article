@@ -47,8 +47,9 @@ module.exports.init = flags => {
 	var article = document.querySelector('.article');
 	var articleId = article.getAttribute('data-content-id');
 	var articleSources = article.getAttribute('data-content-sources');
-	var dehydratedMetadata = JSON.parse(document.getElementById('dehydrated-metadata').text);
-	var storyPackageIds = dehydratedMetadata.package.length && dehydratedMetadata.package.map(function(el) {
+	var dehydratedMetadata = document.getElementById('dehydrated-metadata');
+	var hydratedMetadata = dehydratedMetadata && JSON.parse(dehydratedMetadata.innerHTML);
+	var storyPackageIds = hydratedMetadata.package && hydratedMetadata.package.length && hydratedMetadata.package.map(function(el) {
 		return el.id;
 	}).join(',');
 	var storyPackageQueryString = `ids=${storyPackageIds}`;
@@ -56,7 +57,7 @@ module.exports.init = flags => {
 		return el.getAttribute('data-metadata-fields');
 	});
 	var moreOnQueryStrings = moreOnProperties.map(function(prop) {
-		return `topic=${encodeURI(JSON.stringify(dehydratedMetadata[prop]))}`;
+		return `moreOnId=${encodeURI(hydratedMetadata[prop].term.id)}&moreOnTaxonomy=${hydratedMetadata[prop].term.taxonomy}`;
 	});
 
 	// If there is no articleId don't try to load related content

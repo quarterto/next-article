@@ -10,11 +10,12 @@ var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function (req, res, next) {
 	var parentArticleId = req.params.id;
-	var topic = JSON.parse(req.query.topic);
+	var moreOnTaxonomy = req.query.moreOnTaxonomy;
+	var moreOnId = req.query.moreOnId;
 	var count = parseInt(req.query.count) || 5;
 
 	var articleModelsPromise = api.searchLegacy({
-		query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
+		query: moreOnTaxonomy + 'Id:"' + moreOnId + '"',
 		// get plus one, in case we dedupe
 		count: (count) + 1,
 		fields: true,
@@ -38,15 +39,6 @@ module.exports = function (req, res, next) {
 
 	Promise.resolve(articleModelsPromise)
 		.then(function(articleModels) {
-			var topicModel = {
-				id: topic.term.id,
-				name: topic.term.name,
-				taxonomy: topic.term.taxonomy
-			};
-			topicModel.url = topic.uuid ?
-				topicModel.taxonomy + '/' + topic.uuid :
-				'/stream/' + encodeURIComponent(topicModel.taxonomy) + 'Id/' + encodeURIComponent(topicModel.id);
-
 			var moreOns;
 			articleModels && articleModels.length ? moreOns = {
 				articles: articleModels.map(function (articleViewModel, index) {
@@ -54,8 +46,7 @@ module.exports = function (req, res, next) {
 						delete articleViewModel.image;
 					}
 					return articleViewModel;
-				}),
-				topic: topicModel
+				})
 			} : moreOns = null;
 
 			res.render('related/more-on', {
