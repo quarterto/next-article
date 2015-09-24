@@ -6,7 +6,7 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 var notifySaucelabs = require('notify-saucelabs');
 var TEST_HOST = process.env.TEST_APP + '.herokuapp.com';
-var ARTICLE_PATH = "/fb368c7a-c804-11e4-8210-00144feab7de";
+var ARTICLE_PATH = "/content/fb368c7a-c804-11e4-8210-00144feab7de";
 
 module.exports = {
 	"js-success test": function(browser) {
