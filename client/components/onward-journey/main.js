@@ -47,6 +47,11 @@ module.exports.init = flags => {
 	var article = document.querySelector('.article');
 	var articleId = article.getAttribute('data-content-id');
 	var articleSources = article.getAttribute('data-content-sources');
+	var dehydratedMetadata = JSON.parse(document.getElementById('dehydrated-metadata').text);
+	var storyPackageIds = dehydratedMetadata.package.length && dehydratedMetadata.package.map(function(el) {
+		return el.id;
+	}).join(',');
+	var storyPackageQueryString = `ids=${storyPackageIds}`;
 
 	// If there is no articleId don't try to load related content
 	// and we also only support articles available in API v1
@@ -55,8 +60,8 @@ module.exports.init = flags => {
 	}
 
 	var fetchPromises = [].concat(
-		$('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline`)),
-		$('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4`)),
+		$('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline&${storyPackageQueryString}`)),
+		$('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4&${storyPackageQueryString}`)),
 		$('.js-more-on').map(el =>
 			createPromise(
 				el,

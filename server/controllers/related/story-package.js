@@ -8,27 +8,11 @@ var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function(req, res, next) {
 	var isInline = req.query.view === 'inline';
+	var storyPackageIds = req.query.ids.split(',');
 	api.contentLegacy({
-		uuid: req.params.id,
+		uuid: storyPackageIds,
 		useElasticSearch: res.locals.flags.elasticSearchItemGet
 	})
-		.then(function(article) {
-			res.set(cacheControl);
-			if (!article || !article.item || !article.item.package || article.item.package.length === 0) {
-				throw new NoRelatedResultsException();
-			}
-
-			var packagePromises = article.item.package.map(function(item) {
-				return api.contentLegacy({
-						uuid: item.id,
-						useElasticSearch: res.locals.flags.elasticSearchItemGet
-					})
-					.catch(function(err) {
-						return null;
-					});
-			});
-			return Promise.all(packagePromises);
-		})
 		.then(function(articles) {
 			articles = articles.filter(function(article) {
 				return article;
