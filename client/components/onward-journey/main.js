@@ -60,8 +60,8 @@ module.exports.init = flags => {
 	}
 
 	var fetchPromises = [].concat(
-		$('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline&${storyPackageQueryString}`)),
-		$('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4&${storyPackageQueryString}`)),
+		storyPackageIds.length ? $('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline&${storyPackageQueryString}`)) : Promise.resolve(),
+		storyPackageIds.length ? $('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4&${storyPackageQueryString}`)) : Promise.resolve(),
 		$('.js-more-on').map(el =>
 			createPromise(
 				el,
