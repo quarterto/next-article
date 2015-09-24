@@ -13,7 +13,6 @@ require('./lib/blogs-access-poller').start();
 app.use(bodyParser.json());
 
 // COMPLEX: Put access middleware before barrier middleware so that access can be cached by membership
-app.use('^/:id(' + articleUuidRegex + ')$', require('./controllers/access'));
 app.use('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/access'));
 
 // No need for access control for podcasts
@@ -28,10 +27,6 @@ app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow')
 
 // Use barriers middleware only before calling full article endpoints
 app.use(barriers.middleware(express.metrics));
-
-// TODO: Remove deprecated roots after redirect is active
-app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
-app.get('^/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
 
 app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
 app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
