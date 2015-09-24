@@ -183,12 +183,25 @@ module.exports = function(req, res, next) {
 						viewModel.moreOns = moreOnTags
 							.slice(0, 2)
 							.map(function(moreOnTag) {
+								var title;
+
+								if (moreOnTag.taxonomy === 'authors') {
+									title = 'from';
+								} else if (moreOnTag.taxonomy === 'sections') {
+									title = 'in';
+								} else if (moreOnTag.taxonomy !== 'genre') {
+									title = 'on';
+								} else {
+									title = '';
+								}
+
 								return {
 									name: moreOnTag.name,
 									url: '/stream/' + moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
 									taxonomy: moreOnTag.taxonomy,
 									metadata: moreOnTag.metadata,
-									id: moreOnTag.id
+									id: moreOnTag.id,
+									title: title
 								};
 							});
 						// add 'small' class if just one
