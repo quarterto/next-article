@@ -71,7 +71,7 @@ module.exports = [
 			'/1be403ef-db18-38ad-b693-38913f3a1c24': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'unconditional'
+					'X-FT-Content-Classification': 'conditional_standard'
 				}
 			},
 			// conditional standard blog
