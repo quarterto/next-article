@@ -40,7 +40,8 @@ module.exports = function podcastController(req, res, next) {
 			// be returned. I don't want to type all the fields here. This invalid value
 			// will be ignored by ES and will fall back to returning all the fields.
 			fields: true,
-			useElasticSearch: true
+			useElasticSearch: true,
+			includePodcasts: true
 		}).catch(function() { return []; });
 
 		return Promise.all([article, related]);
