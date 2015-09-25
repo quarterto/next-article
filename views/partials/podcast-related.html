@@ -1,44 +1,46 @@
-<div class="article__related o-grid-row">
-	<div class="js-more-on" data-o-grid-colspan="12 XL11 XLoffset1" data-trackable="more-on" role="region">
-		<div class="pod">
-			{{#with primaryTag}}
-			<div class="header">
-				<h2 class="header__name">More episodes from {{name}}</h2>
-				{{#if @root.flags.userPreferencesAPI }}
-					{{>next-myft-ui/templates/follow version='3' conceptId=id}}
-				{{/if}}
-				<a class="header__link" href="/stream/{{taxonomy}}Id/{{id}}" data-trackable="topic-link">
-					<span class="header__link__text">Go to {{name}}</span>
-				</a>
-			</div>
-			{{/with}}
-			<ul class="pod__items">
-				{{#each relatedContent}}
-				<li class="pod__item-wrapper{{#if image}} pod__item-wrapper--with-image{{/if}}">
-					<div class="pod__item">
-						{{#if image}}
-						<a class="pod__item__image" href="/content/{{id}}" data-trackable="image">
-							{{>n-image/templates/image}}
-						</a>
-						{{/if}}
-						<div class="pod__item__content">
-							{{#if tag}}
-							<a class="pod__item__tag" href="stream/{{tag.taxonomy}}Id/{{tag.id}}" data-trackable="tag">{{tag.name}}</a>
+<div class="article__related o-grid-container">
+	<div class="o-grid-row">
+		<div class="js-more-on" data-o-grid-colspan="12 XL11 XLoffset1" data-trackable="more-on" role="region">
+			<div class="pod">
+				{{#with primaryTag}}
+				<div class="header">
+					<h2 class="header__name">More episodes from {{name}}</h2>
+					{{#if @root.flags.userPreferencesAPI }}
+						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
+					{{/if}}
+					<a class="header__link" href="/stream/{{taxonomy}}Id/{{id}}" data-trackable="topic-link">
+						<span class="header__link__text">Go to {{name}}</span>
+					</a>
+				</div>
+				{{/with}}
+				<ul class="pod__items">
+					{{#each relatedContent}}
+					<li class="pod__item-wrapper{{#if image}} pod__item-wrapper--with-image{{/if}}">
+						<div class="pod__item">
+							{{#if image}}
+							<a class="pod__item__image" href="/content/{{id}}" data-trackable="image">
+								{{>n-image/templates/image}}
+							</a>
 							{{/if}}
-							<h3 class="pod__item__headline">
-								<a class="pod__item__headline-link" href="/content/{{id}}" data-trackable="headline">{{headline}}</a>
-							</h3>
-							<p class="pod__item__subheading">{{{subheading}}}</p>
+							<div class="pod__item__content">
+								{{#if tag}}
+								<a class="pod__item__tag" href="stream/{{tag.taxonomy}}Id/{{tag.id}}" data-trackable="tag">{{tag.name}}</a>
+								{{/if}}
+								<h3 class="pod__item__headline">
+									<a class="pod__item__headline-link" href="/content/{{id}}" data-trackable="headline">{{headline}}</a>
+								</h3>
+								<p class="pod__item__subheading">{{{subheading}}}</p>
+							</div>
+							<div class="pod__item__time">
+								<time data-o-component="o-date" class="o-date n-card__time__content" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
+									{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
+								</time>
+							</div>
 						</div>
-						<div class="pod__item__time">
-							<time data-o-component="o-date" class="o-date n-card__time__content" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
-								{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
-							</time>
-						</div>
-					</div>
-				</li>
-				{{/each}}
-		</ul>
+					</li>
+					{{/each}}
+			</ul>
+			</div>
 		</div>
 	</div>
 </div>
