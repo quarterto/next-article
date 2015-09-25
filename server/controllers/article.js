@@ -116,7 +116,7 @@ module.exports = function(req, res, next) {
 
 			// Update the images (resize, add image captions, etc)
 			return images($, {
-				fullWidthMainImages: res.locals.flags.fullWidthMainImages,
+				fullWidthMainImages: res.locals.flags.fullWidthMainImages
 			})
 				.then(function($) {
 					var viewModel = {
@@ -177,7 +177,7 @@ module.exports = function(req, res, next) {
 							.map(function (moreOnTag) {
 								return {
 									name: moreOnTag.name,
-									url: '/stream/' +  moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
+									url: '/stream/' + moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
 									taxonomy: moreOnTag.taxonomy,
 									metadata: moreOnTag.metadata,
 									id: moreOnTag.id

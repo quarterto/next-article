@@ -44,6 +44,7 @@ var createPromise = (el, url, options = {}) => {
 };
 
 module.exports.init = flags => {
+	if(flags.get('articleSuggestedRead')) { return; }
 	var article = document.querySelector('.article');
 	var articleId = article.getAttribute('data-content-id');
 	var articleSources = article.getAttribute('data-content-sources');
