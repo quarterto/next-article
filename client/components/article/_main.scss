@@ -321,6 +321,9 @@
 	@include oGridRespondTo($from: L, $until: XL) {
 		width: 310px;
 	}
+	@include oGridRespondTo($from: XL) {
+		padding-left: 0;
+	}
 }
 .article__more-on {
 	padding-bottom: 15px;
