@@ -4,7 +4,7 @@ var _ = require('lodash');
 require('array.prototype.find');
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
-var logger = require('ft-next-logger');
+var logger = require('ft-next-express').logger;
 var cacheControl = require('../../utils/cache-control');
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 var articlePodMapping = require('../../mappings/article-pod-mapping');

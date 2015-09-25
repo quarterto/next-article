@@ -3,7 +3,7 @@
 var $ = require('cheerio');
 var resize = require('../utils/resize');
 var api = require('next-ft-api-client');
-var logger = require('ft-next-logger').logger;
+var logger = require('ft-next-express').logger;
 var capiMapiRegex = require('../utils/capi-mapi-regex').content;
 
 module.exports = function($body, opts) {
