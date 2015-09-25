@@ -1,7 +1,7 @@
 'use strict';
 
 var fetchres = require('fetchres');
-var logger = require('ft-next-logger');
+require('ft-next-logger').logger;
 var api = require('next-ft-api-client');
 var bylineTransform = require('../transforms/byline');
 var cacheControl = require('../utils/cache-control');

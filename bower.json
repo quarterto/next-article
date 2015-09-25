@@ -37,6 +37,7 @@
     "lodash": "3.10.1-npm",
     "o-grid": "^4.0.0",
     "n-third-party-code": "^1.0.0",
-    "next-sass-setup": "^7.0.0"
+    "next-sass-setup": "^7.0.0",
+    "next-welcome": "^3.0.0"
   }
 }
