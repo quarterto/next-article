@@ -2,7 +2,6 @@
 
 var fetchres = require('fetchres');
 var oDate = require('o-date');
-var myFtUi = require('next-myft-ui');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
 var allSettled = promises => {
@@ -16,30 +15,18 @@ var allSettled = promises => {
 
 var $ = selector => [].slice.call(document.querySelectorAll(selector));
 
-var createPromise = (el, url, options = {}) => {
-	// default options
-	var opts = {
-		renderer: null,
-		removeOnFail: true
-	};
-	Object.assign(opts, options);
+var createPromise = (el, url) => {
 	return fetch(url, { credentials: 'same-origin' })
 		.then(fetchres.text)
 		.then(resp => {
 			if (!resp) {
 				throw new Error('No response');
 			}
-			if (opts.renderer) {
-				opts.renderer(el, resp);
-			} else {
-				el.innerHTML = resp;
-			}
+			el.innerHTML = resp;
 			oDate.init(el);
 		})
 		.catch(function() {
-			if (opts.removeOnFail) {
-				el.parentNode.removeChild(el);
-			}
+			return;
 		});
 };
 
@@ -69,29 +56,9 @@ module.exports.init = flags => {
 	var fetchPromises = [].concat(
 		storyPackageIds.length ? $('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline&${storyPackageQueryString}`)) : Promise.resolve(),
 		storyPackageIds.length ? $('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4&${storyPackageQueryString}`)) : Promise.resolve(),
-		$('.js-more-on').map((el, index) =>
-			createPromise(
-				el,
-				`/article/${articleId}/more-on?${moreOnQueryStrings[index]}&count=6`,
-				{
-					renderer: (el, resp) => {
-						var brandEl = el.querySelector('.n-topic[data-taxonomy="brand"]');
-						if (brandEl) {
-							brandEl.insertAdjacentHTML('afterend', resp);
-						} else {
-							el.innerHTML = resp;
-						}
-					},
-					removeOnFail: false
-				}
-			)
-		),
+		$('.js-more-on').map((el, index) => createPromise(el, `/article/${articleId}/more-on?${moreOnQueryStrings[index]}&count=6`)),
 		$('.js-special-report').map(el => createPromise(el, `/article/${articleId}/special-report`))
 	);
 
-	return allSettled(fetchPromises)
-		.then(() => {
-			var moreOnContainer = document.querySelector('.article__more-on');
-			myFtUi.updateUi(moreOnContainer);
-		});
+	return allSettled(fetchPromises);
 };
