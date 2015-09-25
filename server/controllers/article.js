@@ -117,6 +117,10 @@ module.exports = function(req, res, next) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
 			}
+			//specialReport is a circular - if it exists, delete it before dehydrating it
+			if (metadata && metadata.primarySection && metadata.primarySection.term.specialReport) {
+				delete metadata.primarySection.term.specialReport;
+			}
 			var dehydratedMetadata = {
 				primaryTheme: metadata && metadata.primaryTheme,
 				primarySection: metadata && metadata.primarySection,

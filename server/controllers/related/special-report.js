@@ -7,48 +7,46 @@ var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 
 module.exports = function (req, res, next) {
-	var articleId = req.params.id;
-	api.contentLegacy({
-		uuid: articleId,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet
+	var parentArticleId = req.params.id;
+	var specialReportId = req.query.specialReportId;
+	var count = parseInt(req.query.count) || 5;
+
+	var articleModelsPromise = api.searchLegacy({
+			query: 'primarySectionId:"' + specialReportId + '"',
+			count: (count) + 1,
+			fields: true,
+			useElasticSearch: res.locals.flags.elasticSearchItemGet
 	})
-		.then(function (article) {
-			if (article.item.metadata.primarySection.term.taxonomy !== 'specialReports') {
-				return res.status(200).end();
-			}
-			// get the articles in this special report
-			var specialReportId = article.item.metadata.primarySection.term.id;
-			return api.searchLegacy({
-				query: 'primarySectionId:"' + specialReportId + '"',
-				count: 5,
-				useElasticSearch: res.locals.flags.elasticSearchItemGet
-			});
+	.then(function(specialReportArticlesES) {
+		return specialReportArticlesES.map(function(specialReportArticleES) {
+			return specialReportArticleES._source;
 		})
-		.then(function (results) {
-			var ids = results.filter(function (result) {
-				return result && result !== articleId;
+			.filter(function(specialReportArticle) {
+				return specialReportArticle.item.id !== parentArticleId;
+			})
+			.slice(0,count)
+			.map(function(specialReportArticle) {
+			return articlePodMapping(specialReportArticle);
 			});
-			return api.contentLegacy({
-				uuid: ids,
-				useElasticSearch: res.locals.flags.elasticSearchItemGet,
-				type: 'Article'
-			});
-		})
-		.then(function (results) {
-			if (!results.length) {
-				throw new NoRelatedResultsException();
-			}
-			var articles = results.map(function (result) {
-				return articlePodMapping(result);
-			});
+	})
+	.catch(function(error) {
+		return;
+	});
+
+	Promise.resolve(articleModelsPromise)
+		.then(function(articles) {
 			// pull out the specialReports tag
-			var specialReport = articles[0].tag.specialReport;
-			res.render('related/special-report', {
-				name: specialReport.name,
-				id: specialReport.id,
-				image: articles[0].image,
-				articles: articles
-			});
+			var result = null;
+			if (articles && articles.length) {
+				var specialReport = articles[0].tag.specialReport;
+				result = {
+					name: specialReport.name,
+					id: specialReport.id,
+					image: articles[0].image,
+					articles: articles
+				};
+			}
+			res.render('related/special-report', {specialReport: result});
 		})
 		.catch(function (err) {
 			if (err.name === NoRelatedResultsException.NAME) {

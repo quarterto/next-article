@@ -46,6 +46,10 @@ module.exports.init = flags => {
 	var moreOnQueryStrings = moreOnProperties.map(function(prop) {
 		return `moreOnId=${encodeURI(hydratedMetadata[prop].term.id)}&moreOnTaxonomy=${hydratedMetadata[prop].term.taxonomy}`;
 	});
+	var specialReport = hydratedMetadata.primarySection && hydratedMetadata.primarySection.term.taxonomy === 'specialReports';
+	var specialReportId = specialReport && hydratedMetadata.primarySection.term.id;
+	var specialReportQueryString = `specialReportId=${encodeURI(specialReportId)}`;
+
 
 	// If there is no articleId don't try to load related content
 	// and we also only support articles available in API v1
@@ -57,7 +61,7 @@ module.exports.init = flags => {
 		storyPackageIds.length ? $('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline&${storyPackageQueryString}`)) : Promise.resolve(),
 		storyPackageIds.length ? $('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4&${storyPackageQueryString}`)) : Promise.resolve(),
 		$('.js-more-on').map((el, index) => createPromise(el, `/article/${articleId}/more-on?${moreOnQueryStrings[index]}&count=6`)),
-		$('.js-special-report').map(el => createPromise(el, `/article/${articleId}/special-report`))
+		specialReport ? $('.js-special-report').map(el => createPromise(el, `/article/${articleId}/special-report?${specialReportQueryString}&count=5`)) : Promise.resolve()
 	);
 
 	return allSettled(fetchPromises);
