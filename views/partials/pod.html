@@ -17,36 +17,6 @@
 		{{/if}}
 	</div>
 	<ul class="pod__items">
-		{{#each articles}}
-		<li class="pod__item-wrapper{{#if image}}{{#unless ../isInline}} pod__item-wrapper--with-image{{/unless}}{{/if}}">
-			<div class="pod__item">
-				{{#if image}}
-					{{#unless ../isInline}}
-						<a class="pod__item__image" href="{{url}}" data-trackable="image">
-							{{>n-image/templates/image}}
-						</a>
-					{{/unless}}
-				{{/if}}
-				<div class="pod__item__content">
-					{{#if tag}}
-						{{#tag}}
-							<a class="pod__item__tag" href="{{url}}" data-trackable="tag">{{name}}</a>
-						{{/tag}}
-					{{/if}}
-					<h3 class="pod__item__headline">
-						{{#headline}}
-							<a class="pod__item__headline-link" href="{{url}}" data-trackable="headline">{{text}}</a>
-						{{/headline}}
-					</h3>
-					<p class="pod__item__subheading">{{subheading}}</p>
-				</div>
-				<div class="pod__item__time">
-					<time data-o-component="o-date" class="o-date n-card__time__content" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
-						{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
-					</time>
-				</div>
-			</div>
-		</li>
-		{{/each}}
+		{{#each articles}}{{>pod-item}}{{/each}}
 	</ul>
 </div>

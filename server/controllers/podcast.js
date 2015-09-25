@@ -4,6 +4,7 @@ var api = require('next-ft-api-client');
 var getDfp = require('../utils/get-dfp');
 var cacheControl = require('../utils/cache-control');
 var externalPodcastLinks = require('../utils/external-podcast-links');
+var articlePodItemMapping = require('../mappings/article-pod-mapping');
 
 module.exports = function podcastController(req, res, next) {
 
@@ -53,23 +54,7 @@ module.exports = function podcastController(req, res, next) {
 
 		article.relatedContent = Array.isArray(related) && related
 			.map(function(raw) {
-				var item = raw._source.item;
-
-				// TODO: This mapping is different to the one above. Why?
-				return {
-					id: item.id,
-					headline: item.title.title,
-					subheading: item.summary.excerpt,
-					lastUpdated: item.lifecycle.lastPublishDateTime,
-					image: item.images && item.images[0] && {
-						url: item.images[0].url,
-						alt: item.images[0].alt,
-						srcset: {
-							s: 100,
-							m: 200
-						}
-					}
-				};
+				return articlePodItemMapping(raw._source);
 			})
 			.filter(function(item) {
 				return item.id !== article.id;

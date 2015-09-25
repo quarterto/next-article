@@ -14,32 +14,8 @@
 				</div>
 				{{/with}}
 				<ul class="pod__items">
-					{{#each relatedContent}}
-					<li class="pod__item-wrapper{{#if image}} pod__item-wrapper--with-image{{/if}}">
-						<div class="pod__item">
-							{{#if image}}
-							<a class="pod__item__image" href="/content/{{id}}" data-trackable="image">
-								{{>n-image/templates/image}}
-							</a>
-							{{/if}}
-							<div class="pod__item__content">
-								{{#if tag}}
-								<a class="pod__item__tag" href="stream/{{tag.taxonomy}}Id/{{tag.id}}" data-trackable="tag">{{tag.name}}</a>
-								{{/if}}
-								<h3 class="pod__item__headline">
-									<a class="pod__item__headline-link" href="/content/{{id}}" data-trackable="headline">{{headline}}</a>
-								</h3>
-								<p class="pod__item__subheading">{{{subheading}}}</p>
-							</div>
-							<div class="pod__item__time">
-								<time data-o-component="o-date" class="o-date n-card__time__content" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
-									{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
-								</time>
-							</div>
-						</div>
-					</li>
-					{{/each}}
-			</ul>
+					{{#each relatedContent}}{{>pod-item}}{{/each}}
+				</ul>
 			</div>
 		</div>
 	</div>
