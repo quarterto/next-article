@@ -25,9 +25,7 @@ var createPromise = (el, url) => {
 			el.innerHTML = resp;
 			oDate.init(el);
 		})
-		.catch(function() {
-			return;
-		});
+		.catch(() => {});
 };
 
 module.exports.init = flags => {
@@ -36,7 +34,7 @@ module.exports.init = flags => {
 	var articleSources = article.getAttribute('data-content-sources');
 	var dehydratedMetadata = document.getElementById('dehydrated-metadata');
 	var hydratedMetadata = dehydratedMetadata && JSON.parse(dehydratedMetadata.innerHTML);
-	var storyPackageIds = hydratedMetadata.package && hydratedMetadata.package.length && hydratedMetadata.package.map(function(el) {
+	var storyPackageIds = hydratedMetadata.package && hydratedMetadata.package.map(function(el) {
 		return el.id;
 	}).join(',');
 	var storyPackageQueryString = `ids=${storyPackageIds}`;

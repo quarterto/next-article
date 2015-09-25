@@ -122,9 +122,9 @@ module.exports = function(req, res, next) {
 				delete metadata.primarySection.term.specialReport;
 			}
 			var dehydratedMetadata = {
-				primaryTheme: metadata && metadata.primaryTheme,
-				primarySection: metadata && metadata.primarySection,
-				package: articleV1 && articleV1.item && articleV1.item.package
+				primaryTheme: metadata && metadata.primaryTheme ? metadata.primaryTheme : null,
+				primarySection: metadata && metadata.primarySection ? metadata.primarySection : null,
+				package: articleV1 && articleV1.item && articleV1.item.package ? articleV1.item.package : null
 			};
 			// Some posts (e.g. FastFT are only available in CAPI v2)
 			// TODO: Replace with something in CAPI v2
