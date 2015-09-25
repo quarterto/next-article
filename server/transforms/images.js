@@ -12,9 +12,10 @@ module.exports = function($body, opts) {
 
 	var imageSetPromises = $images
 		.map(function (index, img) {
-			return api.content({ uuid: $(img).attr('data-image-set-id'), type: 'ImageSet', retry: 0 })
+			const uuid = $(img).attr('data-image-set-id');
+			return api.content({ uuid, type: 'ImageSet', retry: 0 })
 				.catch(function(error) {
-					logger.error(error);
+					logger.error(`Failed getting image '${uuid}'`, error);
 					return null;
 				});
 		})

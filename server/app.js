@@ -4,6 +4,7 @@ var podcastGuidRegex = '[a-z0-9]{24}';
 var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 
 var express = require('ft-next-express');
+// set up logger
 require('ft-next-logger').init('ft-next-article');
 var logger = require('ft-next-logger').logger;
 var bodyParser = require('body-parser');
