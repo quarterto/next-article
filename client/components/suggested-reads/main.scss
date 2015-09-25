@@ -9,7 +9,6 @@ $suggested-reads-border: getColor('warm-3');
 }
 
 .article__suggested-reads__item {
-	@include oGridRow();
 	margin-bottom: 15px;
 	padding: 0;
 	position: relative;
