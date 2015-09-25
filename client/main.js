@@ -20,7 +20,6 @@ require('next-js-setup').bootstrap(function(result) {
 	var share = require('./components/share/main');
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
-	var relatedToast = require('./components/related-toast/main');
 	var suggestedReads = require('./components/suggested-reads/main');
 
 	prompts.init();
@@ -66,7 +65,6 @@ require('next-js-setup').bootstrap(function(result) {
 		expandedToggleText: 'Show less'
 	});
 	scrollDepth.init(flags);
-	relatedToast.init(flags);
 	suggestedReads.init(flags);
 
 	window.addEventListener('load', function() {
