@@ -1,6 +1,6 @@
 <div class="article__related o-grid-container">
 	<div class="o-grid-row">
-		<div class="js-more-on" data-o-grid-colspan="12 XL11 XLoffset1" data-trackable="more-on" role="region">
+		<div class="js-more-on" data-o-grid-colspan="12 XL11 XLoffset1" data-trackable="podcast-more-episodes" role="region">
 			<div class="pod">
 				{{#with primaryTag}}
 				<div class="header">
@@ -8,7 +8,7 @@
 					{{#if @root.flags.userPreferencesAPI }}
 						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
 					{{/if}}
-					<a class="header__link" href="/stream/{{taxonomy}}Id/{{id}}" data-trackable="topic-link">
+					<a class="header__link" href="/stream/{{taxonomy}}Id/{{id}}" data-trackable="show-link">
 						<span class="header__link__text">Go to {{name}}</span>
 					</a>
 				</div>
