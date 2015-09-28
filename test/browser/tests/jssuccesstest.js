@@ -2,7 +2,6 @@
 
 "use strict";
 
-require('es6-promise').polyfill();
 require('isomorphic-fetch');
 var notifySaucelabs = require('notify-saucelabs');
 var TEST_HOST = process.env.TEST_APP + '.herokuapp.com';

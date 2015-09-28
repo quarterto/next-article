@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-require('array.prototype.find');
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var logger = require('ft-next-express').logger;
