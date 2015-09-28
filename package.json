@@ -51,6 +51,9 @@
     "rewire": "^2.3.4",
     "sinon": "^1.15.3"
   },
+  "babel": {
+    "optional": "es7.classProperties"
+  },
   "engines": {
     "node": "4.1.0"
   }
