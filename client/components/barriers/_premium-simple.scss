@@ -77,15 +77,6 @@
 			display: block;
 		}
 	}
-
-	.premium-barrier-simple__sign-in a {
-		text-decoration: none;
-		color: oColorsGetPaletteColor('link-1');
-		@include oGridRespondTo(L) {
-			display: block;
-		}
-	}
-
 }
 
 .premium-barrier-simple__main {
@@ -134,8 +125,7 @@
 
 	a {
 		@include nTypeBravo(4);
-		text-decoration: none;
-		color: oColorsGetPaletteColor(link-1);
+		border: 0;
 		overflow: hidden;
 
 		.premium-barrier-simple__option-options-text {

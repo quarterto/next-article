@@ -61,14 +61,6 @@
 			display: block;
 		}
 	}
-
-	.trial-barrier-grid__sign-in a {
-		text-decoration: none;
-		color: oColorsGetPaletteColor('link-1');
-		@include oGridRespondTo(L) {
-			display: block;
-		}
-	}
 }
 
 /*****************************************
@@ -190,10 +182,10 @@
 		}
 	}
 
-
 	.trial-barrier-grid__option {
-		@include oGridColumn((default: full-width, S: one-half, L: one-quarter));
-		@include oGridRemoveGutters();
+		@include oGridColspan((default: full-width, S: one-half, L: one-quarter));
+		background: white;
+		color: black;
 	}
 
 	.trial-barrier-grid__learn-more {
@@ -261,8 +253,7 @@
 
 	a {
 		@include nTypeBravo(4);
-		text-decoration: none;
-		color: oColorsGetPaletteColor(link-1);
+		border: 0;
 		overflow: hidden;
 
 		.trial-barrier-grid__option-options-text {
