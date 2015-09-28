@@ -20,8 +20,7 @@
     "handlebars": "^4.0.0",
     "html-entities": "~1.1.3",
     "lodash": "~3.9.3",
-    "next-ft-api-client": "^3.9.5",
-    "superstore": "~1.0.0"
+    "next-ft-api-client": "^3.9.5"
   },
   "devDependencies": {
     "chai": "^2.0.0",
