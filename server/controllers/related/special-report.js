@@ -2,53 +2,42 @@
 
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
+var logger = require('ft-next-express').logger;
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 var articlePodMapping = require('../../mappings/article-pod-mapping');
-
 
 module.exports = function (req, res, next) {
 	var parentArticleId = req.params.id;
 	var specialReportId = req.query.specialReportId;
-	var count = parseInt(req.query.count) || 5;
+	var count = parseInt(req.query.count, 10) || 5;
 
-	var articleModelsPromise = api.searchLegacy({
-			query: 'primarySectionId:"' + specialReportId + '"',
-			count: (count) + 1,
-			fields: true,
-			useElasticSearch: res.locals.flags.elasticSearchItemGet
+	return api.searchLegacy({
+		query: 'primarySectionId:"' + specialReportId + '"',
+		count: count,
+		// HACK: Always use ES for more ons so we can get the document directly
+		fields: true,
+		useElasticSearch: true
 	})
-	.then(function(specialReportArticlesES) {
-		return specialReportArticlesES.map(function(specialReportArticleES) {
-			return specialReportArticleES._source;
-		})
-			.filter(function(specialReportArticle) {
-				return specialReportArticle.item.id !== parentArticleId;
-			})
-			.slice(0,count)
-			.map(function(specialReportArticle) {
-			return articlePodMapping(specialReportArticle);
-			});
-	})
-	.catch(function(error) {
-		return;
-	});
+		.then(function(specialReportArticlesES) {
 
-	Promise.resolve(articleModelsPromise)
-		.then(function(articles) {
+			var articles = specialReportArticlesES
+				.filter(topicArticle => topicArticle._id !== parentArticleId)
+				.map(topicArticle => articlePodMapping(topicArticle._source))
+				.slice(0, count);
+
 			// pull out the specialReports tag
-			var result = null;
-			if (articles && articles.length) {
-				var specialReport = articles[0].tag.specialReport;
-				result = {
-					name: specialReport.name,
-					id: specialReport.id,
-					image: articles[0].image,
-					articles: articles
-				};
-			}
-			res.render('related/special-report', {specialReport: result});
+			var specialReport = articles[0].tag.specialReport;
+
+			return res.render('related/special-report', {
+				id: specialReport && specialReport.id,
+				name: specialReport && specialReport.name,
+				image: articles[0].image,
+				articles: articles
+			});
 		})
 		.catch(function (err) {
+			logger.error(err);
+
 			if (err.name === NoRelatedResultsException.NAME) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {

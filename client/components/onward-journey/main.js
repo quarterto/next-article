@@ -15,7 +15,7 @@ var allSettled = promises => {
 
 var $ = selector => [].slice.call(document.querySelectorAll(selector));
 
-var createPromise = (el, url) => {
+function createPromise(el, url) {
 	return fetch(url, { credentials: 'same-origin' })
 		.then(fetchres.text)
 		.then(resp => {
@@ -26,28 +26,18 @@ var createPromise = (el, url) => {
 			oDate.init(el);
 		})
 		.catch(() => {});
-};
+}
 
 module.exports.init = flags => {
-	var article = document.querySelector('.article');
-	var articleId = article.getAttribute('data-content-id');
-	var articleSources = article.getAttribute('data-content-sources');
+	var articleEl = document.querySelector('.article');
 	var dehydratedMetadata = document.getElementById('dehydrated-metadata');
-	var hydratedMetadata = dehydratedMetadata && JSON.parse(dehydratedMetadata.innerHTML);
-	var storyPackageIds = hydratedMetadata.package && hydratedMetadata.package.map(function(el) {
-		return el.id;
-	}).join(',');
-	var storyPackageQueryString = `ids=${storyPackageIds}`;
-	var moreOnProperties = $('.js-more-on').map(function(el) {
-		return el.getAttribute('data-metadata-fields');
-	});
-	var moreOnQueryStrings = moreOnProperties.map(function(prop) {
-		return `moreOnId=${encodeURI(hydratedMetadata[prop].term.id)}&moreOnTaxonomy=${hydratedMetadata[prop].term.taxonomy}`;
-	});
-	var specialReport = hydratedMetadata.primarySection && hydratedMetadata.primarySection.term.taxonomy === 'specialReports';
-	var specialReportId = specialReport && hydratedMetadata.primarySection.term.id;
-	var specialReportQueryString = `specialReportId=${encodeURI(specialReportId)}`;
 
+	if (!articleEl || !dehydratedMetadata) {
+		return;
+	}
+
+	var articleId = articleEl.getAttribute('data-content-id');
+	var articleSources = articleEl.getAttribute('data-content-sources');
 
 	// If there is no articleId don't try to load related content
 	// and we also only support articles available in API v1
@@ -55,12 +45,46 @@ module.exports.init = flags => {
 		return;
 	}
 
-	var fetchPromises = [].concat(
-		storyPackageIds.length ? $('.js-story-package-inline').map(el => createPromise(el, `/article/${articleId}/story-package?count=1&view=inline&${storyPackageQueryString}`)) : Promise.resolve(),
-		storyPackageIds.length ? $('.js-story-package').map(el => createPromise(el, `/article/${articleId}/story-package?count=4&${storyPackageQueryString}`)) : Promise.resolve(),
-		$('.js-more-on').map((el, index) => createPromise(el, `/article/${articleId}/more-on?${moreOnQueryStrings[index]}&count=6`)),
-		specialReport ? $('.js-special-report').map(el => createPromise(el, `/article/${articleId}/special-report?${specialReportQueryString}&count=5`)) : Promise.resolve()
-	);
+	var fetchPromises = [];
+
+	var hydratedMetadata = JSON.parse(dehydratedMetadata.innerHTML);
+	var storyPackageIds = hydratedMetadata.package.map(el => el.id).join();
+	var primarySection = hydratedMetadata.primarySection && hydratedMetadata.primarySection.term;
+
+	if (storyPackageIds) {
+		let url = `/article/${articleId}/story-package?ids=${storyPackageIds}`;
+
+		fetchPromises = fetchPromises.concat(
+			$('.js-story-package-inline').map(el => createPromise(el, `${url}&view=inline&count=1`)),
+			$('.js-story-package').map(el => createPromise(el, `${url}&count=4`))
+		);
+	}
+
+	if (primarySection.taxonomy === 'specialReports') {
+		let url = `/article/${articleId}/special-report?specialReportId=${encodeURI(primarySection.id)}&count=5`;
+
+		fetchPromises = fetchPromises.concat(
+			$('.js-special-report').map(el => createPromise(el, url))
+		);
+	}
+
+	var $moreOns = $('.js-more-on');
+
+	if ($moreOns.length) {
+		let moreOnProperties = $moreOns.map(el => el.getAttribute('data-metadata-fields'));
+
+		let moreOnQueryStrings = moreOnProperties.map(function(prop) {
+			let term = hydratedMetadata[prop].term;
+			return `moreOnId=${encodeURI(term.id)}&moreOnTaxonomy=${term.taxonomy}`;
+		});
+
+		fetchPromises = fetchPromises.concat(
+			$('.js-more-on').map((el, index) => {
+				let url = `/article/${articleId}/more-on?${moreOnQueryStrings[index]}&count=6`;
+				return createPromise(el, url);
+			})
+		);
+	}
 
 	return allSettled(fetchPromises);
 };
