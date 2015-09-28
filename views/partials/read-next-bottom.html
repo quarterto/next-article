@@ -1,7 +1,14 @@
-{{#with readNext}}
-	<div class="next-up next-up__bottom" data-trackable="next-up-bottom" data-o-grid-colspan="12 L8 XL7 XLoffset1">
-		<p><span class="next-up__intro">Read next:</span>
-			<span><a href="{{headline.url}}" class="next-up__headline" data-trackable="headline-link--{{source}}{{#if moreRecent}}--moreRecent{{/if}}">{{headline.text}}</a></span>
-		</p>
+<div class="next-up__bottom__wrapper">
+	<div class="o-grid-container">
+		<div class="next-up__bottom" data-trackable="next-up-bottom" data-o-grid-colspan="12 L8 XL7 XLoffset1">
+			<h3 class="next-up__intro">Read next:</h3>
+			<ul class="next_up__bottom__article_list">
+				{{#slice articles limit=3}}
+					<li class="next_up__bottom__article">
+						<h4><a href="{{headline.url}}" class="next-up__headline" data-trackable="headline-link--{{source}}{{#if moreRecent}}--moreRecent{{/if}}">{{headline.text}}</a></h4>
+					</li>
+				{{/slice}}
+			</ul>
+		</div>
 	</div>
-{{/with}}
+</div>

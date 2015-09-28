@@ -18,6 +18,7 @@ var getDfp = require('../utils/get-dfp');
 var getSuggested = require('./article-helpers/suggested');
 var exposeTopic = require('./article-helpers/exposeTopic');
 var readNext = require('../lib/read-next');
+var articlePodMapping = require('../mappings/article-pod-mapping.js');
 
 module.exports = function(req, res, next) {
 
@@ -72,7 +73,7 @@ module.exports = function(req, res, next) {
 					throw err;
 				}
 			});
-		};
+	};
 
 	Promise.all([articleV1Promise, articleV2Promise])
 		.then(function (article) {
@@ -90,7 +91,13 @@ module.exports = function(req, res, next) {
 					standFirst: article[0] ? article[0].item.editorial.standFirst : ""
 				}),
 				socialMediaImage(article[1]),
-				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet) : Promise.resolve()
+				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet) : Promise.resolve(),
+				getSuggested(article[0]).then(function(it) {
+					return api.contentLegacy({
+						uuid: (it && it.ids) || [],
+						useElasticSearch: res.locals.flags.elasticSearchItemGet
+					});
+				})
 			]);
 		})
 		.then(function(results) {
@@ -100,6 +107,7 @@ module.exports = function(req, res, next) {
 			var article = results[1];
 			var mainImage = results[3];
 			var readNextArticle = results[4];
+			var readNextArticles = results[5].map(it => articlePodMapping(it));
 
 			var $ = bodyTransform(results[2], res.locals.flags);
 
@@ -141,14 +149,9 @@ module.exports = function(req, res, next) {
 						moreOns: {},
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
-						isSpecialReport: metadata &&
-							metadata.primarySection.term.taxonomy === 'specialReports',
+						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
 						dehydratedState: {}
 					};
-
-					var suggestedPromise = getSuggested(articleV1).then(function(it) {
-						viewModel.dehydratedState.suggestedReads = it;
-					});
 
 					if (metadata) {
 						var moreOnTags = [];
@@ -174,7 +177,7 @@ module.exports = function(req, res, next) {
 						moreOnTags.push(primarySectionTag);
 						viewModel.moreOns = moreOnTags
 							.slice(0, 2)
-							.map(function (moreOnTag) {
+							.map(function(moreOnTag) {
 								return {
 									name: moreOnTag.name,
 									url: '/stream/' + moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
@@ -196,6 +199,7 @@ module.exports = function(req, res, next) {
 					}
 
 					if (res.locals.flags.articleSuggestedRead) {
+						viewModel.readNextArticles = readNextArticles;
 						viewModel.readNextArticle = readNextArticle;
 					}
 
@@ -271,10 +275,7 @@ module.exports = function(req, res, next) {
 					if (res.locals.firstClickFreeModel) {
 						viewModel.firstClickFree = res.locals.firstClickFreeModel;
 					}
-
-					return suggestedPromise.then(function() {
-						return viewModel;
-					});
+					return viewModel;
 				})
 				.then(function(viewModel) {
 					return res.render('article-v2', viewModel);

@@ -39,7 +39,7 @@ require('next-js-setup').bootstrap(function(result) {
 
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
-	if (flags.get('contentApiCalls')) {
+	if (flags.get('contentApiCalls') && !flags.get('articleSuggestedRead')) {
 		onwardJourney.init(flags);
 	}
 

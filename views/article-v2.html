@@ -70,7 +70,7 @@
 					</header>
 				</div>
 				{{#if readNextArticle}}
-					{{>read-next-header readNext=readNextArticle}}
+					{{>read-next-header article=readNextArticle}}
 				{{else}}
 					{{#if tags}}
 						<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
@@ -105,8 +105,8 @@
 			<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
 				<div class="article__rail-advert"></div>
 				{{#if @root.flags.articleSuggestedRead}}
+					{{> related/suggested-reads items=readNextArticles }}
 					{{> related/suggested-topic suggested=suggestedTopic }}
-					<div class="js-suggested-reads"></div>
 				{{/if}}
 				{{{toc}}}
 			</div>
@@ -152,15 +152,15 @@
 
 {{>propensity-messaging-promo-unit}}
 
-<div class="o-grid-container">
+{{#if readNextArticles}}
+	{{>read-next-bottom articles=readNextArticles}}
+{{/if}}
 
+<div class="o-grid-container">
 	<div class="o-grid-row {{#if readNextArticle}}read-next__container{{/if}}">
 		{{#if isSpecialReport}}
 				<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 		{{else}}
-			{{#if readNextArticle}}
-				{{>read-next-bottom readNext=readNextArticle}}
-			{{/if}}
 			{{#if relatedContent}}
 				<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 			{{/if}}

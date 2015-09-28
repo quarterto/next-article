@@ -3,7 +3,8 @@ var fetchres = require('fetchres');
 
 module.exports = {
 	init: function(flags) {
-		if (!flags.get('articleSuggestedRead')) { return; }
+		return;
+		// if (!flags.get('articleSuggestedRead')) { return; }
 		var el = document.querySelector('.js-suggested-reads');
 		var data = document.getElementById('dehydrated-data');
 
