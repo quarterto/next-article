@@ -1,7 +1,6 @@
 /*global describe, it*/
 'use strict';
 
-require('array.prototype.find');
 var expect = require('chai').expect;
 var getDfp = require('../../../server/utils/get-dfp');
 

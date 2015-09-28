@@ -1,7 +1,5 @@
 'use strict';
 
-require('array.prototype.find');
-
 module.exports = function exposeTopic(metadata) {
 	if (!metadata) { return undefined; }
 	var topic = ['primaryTheme', 'primarySection']
