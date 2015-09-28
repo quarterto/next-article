@@ -29,6 +29,9 @@ $suggested-reads-border: getColor('warm-3');
 	padding-bottom: 5px;
 	position: relative;
 
+	h3,
+	h4 { margin: 0; }
+
 }
 
 .article__suggested-reads__title {
@@ -85,10 +88,10 @@ $suggested-reads-border: getColor('warm-3');
 		margin-bottom: 5px;
 	}
 
-	h3 {
-		margin: 0;
-		margin-left: 5px;
-	}
+	h3,
+	h4 { margin: 0; }
+
+	h3 { margin-left: 5px; }
 
 
 	a {
