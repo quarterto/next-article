@@ -22,9 +22,11 @@ module.exports = function () {
 				done();
 			});
 		});
+
 	});
 
 	describe('Follow buttons', function() {
+
 		it('should have concept ids on all follow buttons in article', function(done) {
 			helpers.mockMethode();
 			request(helpers.host + '/02cad03a-844f-11e4-bae9-00144feabdc0', function(error, response, body) {
@@ -38,17 +40,5 @@ module.exports = function () {
 			});
 		});
 
-		it('should have concept ids on all follow buttons in moreons', function(done) {
-			helpers.mockMethode();
-			request(helpers.host + '/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on', function(error, response, body) {
-				$(body).find('.n-myft-ui--follow').each(function(index, el) {
-					var $form = $(el);
-					expect($form.attr('data-concept-id')).to.not.be.empty;
-					expect($form.find('input[name="name"]').attr('value')).to.not.be.empty;
-					expect($form.find('input[name="taxonomy"]').attr('value')).to.not.be.empty;
-				});
-				done();
-			});
-		});
 	});
 };
