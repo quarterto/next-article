@@ -28,7 +28,7 @@ function createPromise(el, url) {
 		.catch(() => {});
 }
 
-module.exports.init = flags => {
+module.exports.init = function(flags) {
 	var articleEl = document.querySelector('.article');
 	var dehydratedMetadata = document.getElementById('dehydrated-metadata');
 
@@ -71,17 +71,14 @@ module.exports.init = flags => {
 	var $moreOns = $('.js-more-on');
 
 	if ($moreOns.length) {
-		let moreOnProperties = $moreOns.map(el => el.getAttribute('data-metadata-fields'));
-
-		let moreOnQueryStrings = moreOnProperties.map(function(prop) {
-			let term = hydratedMetadata[prop].term;
-			return `moreOnId=${encodeURI(term.id)}&moreOnTaxonomy=${term.taxonomy}`;
-		});
+		let url = `/article/${articleId}/more-on?count=6`;
 
 		fetchPromises = fetchPromises.concat(
-			$('.js-more-on').map((el, index) => {
-				let url = `/article/${articleId}/more-on?${moreOnQueryStrings[index]}&count=6`;
-				return createPromise(el, url);
+			$moreOns.map(el => {
+				let prop = el.getAttribute('data-metadata-fields');
+				let term = hydratedMetadata[prop].term;
+				let query = `moreOnId=${encodeURI(term.id)}&moreOnTaxonomy=${term.taxonomy}`;
+				return createPromise(el, `${url}&${query}`);
 			})
 		);
 	}
