@@ -1,37 +1,39 @@
 @import "o-share/main";
 
-$_o-share-icon-size: 32px;
-$_o-share-sprite-elements: (twitter, facebook, linkedin, whatsapp);
-
 @include oShareBase(o-share);
 @include oShareActionIcon(facebook, o-share);
 @include oShareActionIcon(twitter, o-share);
 @include oShareActionIcon(whatsapp, o-share);
 @include oShareActionIcon(linkedin, o-share);
 
-.article-share {
+.article__share {
 	margin-bottom: $spacing-unit;
 	display: block;
 	overflow: hidden;
 
-	.o-share__action {
-		padding: 0 5px;
-		&:first-child {
-			padding-left: 0;
-		}
-		&:hover {
-			opacity: 0.8;
-		}
-	}
+	&__count {
 
-	.o-share>ul {
 		display: inline-block;
-		margin-bottom: -8px;
+		overflow: hidden;
+		padding: 9px;
 	}
-}
 
-.article-share__header {
-	@include nTypeBravo(3);
-	display: inline-block;
-	margin: 0 4px 8px 0;
+	.o-share__action--whatsapp {
+		@include oGridColspan((M: hide));
+		@include oGridRemoveGutters();
+	}
+
+	@include oGridRespondTo(XL) {
+		@include oShareVertical();
+		&.o-grid-row {
+			width: 48px;
+			position: absolute;
+			left: -48px;
+			text-align: center;
+		}
+		.article__share__count {
+			display: block;
+			padding: 9px 0;
+		}
+	}
 }
