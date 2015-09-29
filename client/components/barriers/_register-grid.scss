@@ -61,14 +61,6 @@
 			display: block;
 		}
 	}
-
-	.register-barrier-grid__sign-in a {
-		text-decoration: none;
-		color: oColorsGetPaletteColor('link-1');
-		@include oGridRespondTo(L) {
-			display: block;
-		}
-	}
 }
 
 /*****************************************
@@ -198,11 +190,6 @@
 
 	.register-barrier-grid__learn-more {
 		@include nTypeBravo(4);
-
-		a {
-			text-decoration: none;
-			color: oColorsGetPaletteColor(link-1);
-		}
 	}
 
 }
@@ -261,8 +248,7 @@
 
 	a {
 		@include nTypeBravo(4);
-		text-decoration: none;
-		color: oColorsGetPaletteColor(link-1);
+		border: 0;
 		overflow: hidden;
 
 		.register-barrier-grid__option-options-text {
