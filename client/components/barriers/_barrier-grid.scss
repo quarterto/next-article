@@ -85,12 +85,37 @@
 	}
 }
 
+.barrier-grid__section--style2 {
+	border-bottom-style: none;
+	padding-bottom:0 !important;
+}
+
+.barrier-grid__section-heading {
+	margin-bottom: 20px !important;
+}
+
+.barrier-grid__section-logo-column {
+	text-align:right
+}
+.barrier-grid__section-logo {
+	height:50px;
+}
+
+.barrier-grid__bigger-text {
+	font-size:20px;
+	margin-bottom: 0
+}
 
 .barrier-grid__cto-btn {
 	@include nButtons();
 	@include nButtonsSize(big);
 	@include nButtonsTheme(standout);
 
+}
+
+.barrier-grid__cto-btn--style2 {
+	text-transform: none;
+	width: 160px;
 }
 
 .barrier-grid__para-heading {
@@ -291,6 +316,19 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
+	}
+}
+
+.barrier-grid__other-option--digital a {
+	&:before {
+		display: inline-block;
+		width: 40px;
+		height: 25px;
+		background-image: url(http://next-geebee.ft.com/assets/desktop_laptop_tablet.png);
+		background: rgba(0, 0, 0, 0.0001) url(http://next-geebee.ft.com/assets/desktop_laptop_tablet.png);
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		background-color: transparent;
 	}
 }
 
