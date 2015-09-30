@@ -203,6 +203,11 @@ module.exports = function(req, res, next) {
 						viewModel.readNextArticle = readNextArticle;
 					}
 
+					console.log('************ BLAHHHHHHHH', res.locals.barrier); // TODO: Remove
+
+
+
+					// TAG: Barrier View Models
 					if (res.locals.barrier) {
 
 						if (res.locals.barrier.trialSimple) {
@@ -253,6 +258,14 @@ module.exports = function(req, res, next) {
 							viewModel.premiumGridBarrier = res.locals.barrier.premiumGrid;
 							viewModel.barrierOverlay = {};
 							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
+						}
+
+						console.log('******************* B2b SIMPLE: ', res.locals.barrier.b2bSimple); // TODO: Remove
+
+						if (res.locals.barrier.b2bSimple) {
+							viewModel.b2bBarrier = res.locals.barrier.b2bSimple;
+							viewModel.barrierOverlay = {};
+							viewModel.b2bBarrier.articleTitle = viewModel.title;
 						}
 
 						viewModel.comments = null;

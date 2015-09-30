@@ -1,0 +1,77 @@
+ <div class="ft-subscription-panel barrier-grid" data-trackable="barrier-grid" data-barrier="premium">
+	<div class="barrier-grid__header o-grid-row o-grid-row--compact">
+		<h2>
+			<span class="barrier-grid__heading-pretext">Join your group subscription to access FT.com including:</span>
+			<span class="barrier-grid__article-title">{{{b2bBarrier.articleTitle}}}</span>
+		</h2>
+
+		<p class="barrier-grid__sign-in">
+			<span class="barrier-grid__pretext">Already a subscriber?</span>
+			<a data-trackable="sign-in" href="https://accounts.ft.com/login?location=https://next.ft.com/uk">Sign in here</a>
+		</p>
+	</div>
+	<div class="barrier-grid__section o-grid-row o-grid-row--compact" style="border-bottom-style: none; padding-bottom:0 !important; ">
+		<div data-o-grid-colspan="8">
+			<p style="font-size:20px; margin-bottom: 0">
+			 {{b2bBarrier.company.name}} has purchased a group subscription to FT.com.<br/>
+			 Join now for free and unlimited access to FT content on your desktop and mobile.
+			</p>
+		</div>
+
+		<div data-o-grid-colspan="4" style="text-align:right">
+			<img src="{{b2bBarrier.company.logoUrl}}" height="50" alt="{{b2bBarrier.company.name}}">
+		</div>
+	</div>
+	<div class="barrier-grid__section o-grid-row o-grid-row--compact">
+
+			<h3 style="margin-bottom: 20px">Why join your FT group subscription?</h3>
+
+			<p>
+				<span class="barrier-grid__para-heading">You’ll enjoy free daily insights</span> from the FT’s global
+				network of journalists on-the-ground in 51 countries. FT.com provides a rich source of global market
+				intelligence, delivering accurate and unbiased news on international finance, business and politics.
+			</p>
+
+			<p>
+				<span class="barrier-grid__para-heading">Our macro-economic and political coverage</span> helps our
+				readers understand how events from around the world might impact their organisations and the markets in
+				which they operate. Whilst our business reports let you monitor industry trends and company developments
+				so you can respond quickly
+			</p>
+
+			<p>
+				<span class="barrier-grid__para-heading">You can discover who is worth investing in,</span> what to
+				avoid and how to prepare for the future with our coverage of the global financial markets. Important
+				market-moving themes, corporate analysis and daily emerging market news.
+			</p>
+
+			<p>
+				<span class="barrier-grid__para-heading">Readers use the FT to save time.</span> Available on your
+				tablet or smartphone, it’s a quick way to understand what’s really happening and inform your
+				decision-making. Use our alerts to keep track of the topics, markets and organisations you are
+				interested in.
+			</p>
+
+			<a class="barrier-grid__cto-btn" href="{{b2bBarrier.signupUrl}}" data-trackable="subscribe" style="text-transform: none">Join now</a>
+
+	</div>
+	<div class="barrier-grid__other-options o-grid-row o-grid-row--compact">
+		<h3 data-o-grid-colspan="full-width">Other subscription options</h3>
+		<div class="o-grid-row" data-o-grid-colspan="full-width">
+			<div class="barrier-grid__other-option barrier-grid__other-option--corporate" data-o-grid-colspan="one-half">
+				<div class="barrier-grid__other-option-inner">
+					<a data-trackable="corporate" href="{{premiumSimpleBarrier.otherOptions.corporate.link}}">
+						<span class="barrier-grid__option-options-text">Corporate</span>
+					</a>
+				</div>
+			</div>
+			<div class="barrier-grid__other-option barrier-grid__other-option--newspaper" data-o-grid-colspan="one-half">
+				<div class="barrier-grid__other-option-inner">
+					<a data-trackable="newspaper" href="{{premiumSimpleBarrier.otherOptions.newspaper.link}}">
+						<span class="barrier-grid__option-options-text">Newspaper only</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
