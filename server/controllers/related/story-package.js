@@ -8,10 +8,14 @@ var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function(req, res, next) {
 	var isInline = req.query.view === 'inline';
-	var storyPackageIds = req.query.ids.split(',');
+	var storyPackageIds = req.query.ids;
+
+	if (!req.query.ids) {
+		return res.status(400).end();
+	}
 
 	return api.contentLegacy({
-		uuid: storyPackageIds,
+		uuid: storyPackageIds.split(','),
 		useElasticSearch: true
 	})
 		.then(function(articles) {

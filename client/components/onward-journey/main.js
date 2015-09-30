@@ -4,14 +4,14 @@ var fetchres = require('fetchres');
 var oDate = require('o-date');
 
 // Sort of like Promise.all but will be called whether they fail or succeed
-var allSettled = promises => {
+function allSettled(promises) {
 	var resolveWhenSettled = function(promise) {
 		return new Promise(res => {
 			promise.then(res, () => res());
 		});
 	};
 	return Promise.all(promises.map(resolveWhenSettled));
-};
+}
 
 var $ = selector => [].slice.call(document.querySelectorAll(selector));
 
@@ -48,11 +48,11 @@ module.exports.init = function(flags) {
 	var fetchPromises = [];
 
 	var hydratedMetadata = JSON.parse(dehydratedMetadata.innerHTML);
-	var storyPackageIds = hydratedMetadata.package.map(el => el.id).join();
+	var storyPackageIds = hydratedMetadata.package.map(article => article.id);
 	var primarySection = hydratedMetadata.primarySection && hydratedMetadata.primarySection.term;
 
-	if (storyPackageIds) {
-		let url = `/article/${articleId}/story-package?ids=${storyPackageIds}`;
+	if (storyPackageIds.length) {
+		let url = `/article/${articleId}/story-package?ids=${storyPackageIds.join()}`;
 
 		fetchPromises = fetchPromises.concat(
 			$('.js-story-package-inline').map(el => createPromise(el, `${url}&view=inline&count=1`)),
@@ -68,13 +68,13 @@ module.exports.init = function(flags) {
 		);
 	}
 
-	var $moreOns = $('.js-more-on');
+	var moreOns = $('.js-more-on');
 
-	if ($moreOns.length) {
+	if (moreOns.length) {
 		let url = `/article/${articleId}/more-on?count=6`;
 
 		fetchPromises = fetchPromises.concat(
-			$moreOns.map(el => {
+			moreOns.map(el => {
 				let prop = el.getAttribute('data-metadata-fields');
 				let term = hydratedMetadata[prop].term;
 				let query = `moreOnId=${encodeURI(term.id)}&moreOnTaxonomy=${term.taxonomy}`;
