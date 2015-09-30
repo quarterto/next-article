@@ -12,6 +12,10 @@ module.exports = function (req, res, next) {
 	var moreOnId = req.query.moreOnId;
 	var count = parseInt(req.query.count, 10) || 5;
 
+	if (!moreOnTaxonomy || !moreOnId) {
+		return res.status(400).end();
+	}
+
 	return api.searchLegacy({
 		query: moreOnTaxonomy + 'Id:"' + moreOnId + '"',
 		// get plus one, in case we dedupe
