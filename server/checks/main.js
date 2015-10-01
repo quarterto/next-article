@@ -3,7 +3,7 @@
 var api = require('next-ft-api-client');
 
 const ARTICLE_ID = "d0377096-f290-11e4-b914-00144feab7de";
-const INTERVAL = 60*1000;
+const INTERVAL = 60 * 1000;
 
 const statuses = {
 	elastic: {
@@ -16,6 +16,11 @@ const statuses = {
 	}
 };
 
+/**
+ * Calls CAPI and elasticsearch for both V1 & V2 and updates [statuses]
+ * in the parent scope.
+ * @method pingServices
+ */
 function pingServices() {
 	[ {useElastic: true}, {useElastic: false} ]
 		.forEach(config => {
@@ -39,6 +44,13 @@ function pingServices() {
 	});
 }
 
+/**
+ * Creates a object to be passed to healthchecks. Fetching the latest status from [statuses]
+ * @method buildStatus
+ * @param  {String}    backend The backend we are fetching from; ['elastic', 'capi']
+ * @param  {String}    version The CAPI version; ['v1', 'v2']
+ * @return {Object}
+ */
 function buildStatus(backend, version) {
 	return {
 		getStatus: () => ({
