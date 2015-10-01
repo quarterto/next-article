@@ -3,10 +3,12 @@
 const fetchres = require('fetchres');
 const cacheControl = require('../../utils/cache-control');
 
+const services = 'facebook,gplus,twitter,stumbleupon,reddit';
+const metrics = 'comments,shares,votes,endorsements';
 function getShareCounts(articleUrl) {
-	let url = 'https://ft-next-sharedcount-api.herokuapp.com/v1/getCounts?groupby=url' +
-			'&services=facebook,gplus,twitter,stumbleupon,reddit&metrics=comments,shares,votes,endorsements&source=spoor' +
-			'&urls=' + articleUrl;
+	let url = `https://ft-next-sharedcount-api.herokuapp.com/v1/getCounts?groupby=url` +
+			`&services=${services}&metrics=${metrics}&source=next-article` +
+			`&urls=${articleUrl}`;
 	return fetch(url, { timeout: 3000 })
 		.then(fetchres.json);
 };

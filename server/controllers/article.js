@@ -91,7 +91,7 @@ module.exports = function(req, res, next) {
 					standFirst: article[0] ? article[0].item.editorial.standFirst : "",
 					renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
 					id: extractUuid(article[1].id),
-					webUrl: article[0] && article[0].item  && article[0].item.location ? article[0].item.location.uri : article[1].webUrl,
+					webUrl: article[0] && article[0].item  && article[0].item.location ? article[0].item.location.uri : '',
 					encodedTitle: encodeURIComponent(article[1].title.replace(/\&nbsp\;/g, ' '))
 				}),
 				socialMediaImage(article[1]),

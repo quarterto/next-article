@@ -9,18 +9,19 @@ function loadShareCount() {
 	let articleId = article.getAttribute('data-content-id');
 	if(shareCount) {
 		let url = shareCount.getAttribute('data-shared-url');
-		fetch(`/article/${articleId}/social-counts?url=${url}`)
+		if(url && url.length) {
+			fetch(`/article/${articleId}/social-counts?url=${url}`)
 			.then(fetchres.json)
 			.then(function(counts) {
-				shareCount.textContent = counts.shares + ' shares';
+				shareCount.textContent = `${counts.shares}  shares`;
 			});
+		}
 	}
-
 }
 
 exports.init = function() {
 	var shareContainer = document.querySelector('[data-o-component=o-share]');
-	if (shareContainer) {
+	if (shareContainer && !shareContainer.classList.contains('data-o-share--js')) {
 		new OShare(shareContainer);
 		loadShareCount();
 	}
