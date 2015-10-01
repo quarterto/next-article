@@ -24,5 +24,13 @@ module.exports = function(req, res, next) {
 				shares: shareCounts
 			})
 		})
-		.catch(next);
+		.catch(function(err) {
+			if (err.name === fetchres.BadServerResponseError.name
+				|| err.message.indexOf('timeout') > -1) {
+				logger.info("event=BAD_UPSTREAM_RESPONSE status=504 " + err.name);
+				res.sendStatus(504).end();
+			} else {
+				next(err);
+			}
+		});
 }

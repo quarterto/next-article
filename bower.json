@@ -17,7 +17,7 @@
     "next-buttons": "^1.1.0",
     "n-quote": "^1.0.1",
     "o-expander": "^1.4.1",
-    "o-share": "^1.0.0",
+    "o-share": "Financial-Times/o-share#next",
     "superstore": "^2.0.1",
     "n-myft-tray": "Financial-Times/n-myft-tray#^2.0.0",
     "n-image": "^1.2.0",

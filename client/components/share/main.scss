@@ -7,33 +7,56 @@
 @include oShareActionIcon(linkedin, o-share);
 
 .article__share {
-	margin-bottom: $spacing-unit;
-	display: block;
-	overflow: hidden;
+
+	position: relative;
+	margin-top: 5px;
 
 	&__count {
-
+		@include nTypeAlphaSize(4);
 		display: inline-block;
 		overflow: hidden;
-		padding: 9px;
+		padding: 9px 0;
+	}
+
+	&__comments {
+		@include nTypeAlphaSize(4);
+		border-bottom-width: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin-top: 5px;
+		&:before {
+			@include nextIcon(comment, getColorFor('link', 'text'), 17);
+			content: '';
+			position: relative;
+			top: 5px;
+			margin-right: 5px;
+		}
+	}
+
+	.o-share__action a {
+		border-bottom-width: 0;
 	}
 
 	.o-share__action--whatsapp {
 		@include oGridColspan((M: hide));
 		@include oGridRemoveGutters();
+		padding: 0;
 	}
 
 	@include oGridRespondTo(XL) {
 		@include oShareVertical();
-		&.o-grid-row {
-			width: 48px;
-			position: absolute;
-			left: -48px;
-			text-align: center;
-		}
+		width: 48px;
+		position: absolute;
+		top: 0;
+		left: -48px;
+		text-align: center;
 		.article__share__count {
 			display: block;
 			padding: 9px 0;
+		}
+		.article__share__comments {
+			position: static;
 		}
 	}
 }
