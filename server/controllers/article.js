@@ -203,10 +203,6 @@ module.exports = function(req, res, next) {
 						viewModel.readNextArticle = readNextArticle;
 					}
 
-					console.log('************ BLAHHHHHHHH', res.locals.barrier); // TODO: Remove
-
-
-
 					// TAG: Barrier View Models
 					if (res.locals.barrier) {
 
@@ -259,8 +255,6 @@ module.exports = function(req, res, next) {
 							viewModel.barrierOverlay = {};
 							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
 						}
-
-						console.log('******************* B2b SIMPLE: ', res.locals.barrier.b2bSimple); // TODO: Remove
 
 						if (res.locals.barrier.b2bSimple) {
 							viewModel.b2bBarrier = res.locals.barrier.b2bSimple;
