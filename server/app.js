@@ -5,7 +5,21 @@ var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]
 
 var express = require('ft-next-express');
 var bodyParser = require('body-parser');
-var app = module.exports = express();
+var checks = require('./checks/main.js');
+
+// Starts polling checks
+checks.init();
+
+var app = module.exports = express({
+	name: 'article',
+	healthChecks: [
+		checks.esv1,
+		checks.esv2,
+		checks.capiv1,
+		checks.capiv2
+	]
+});
+
 var logger = express.logger;
 var barriers = require('ft-next-barriers');
 require('./lib/ig-poller').start();
