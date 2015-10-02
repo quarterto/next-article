@@ -14,6 +14,7 @@ module.exports = function(article, imageOptions) {
 	};
 
 	var articleModel = {
+		id: article.item.id,
 		headline: {
 			text: article.item.title.title,
 			url: '/content/' + article.item.id
