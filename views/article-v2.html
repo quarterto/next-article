@@ -118,6 +118,10 @@
 <div class="o-grid-container">
 	<div class="o-grid-row">
 		<div data-o-grid-colspan="12 L10 center">
+			{{#if registerSimpleBarrier}}
+				{{> barriers/register-simple}}
+			{{/if}}
+
 			{{#if registerGridBarrier}}
 				{{> barriers/register-grid}}
 			{{/if}}
