@@ -249,6 +249,12 @@ module.exports = function(req, res, next) {
 							viewModel.barrierOverlay = {};
 						}
 
+						if (res.locals.barrier.registerSimple) {
+							viewModel.registerSimpleBarrier = res.locals.barrier.registerSimple;
+							viewModel.barrierOverlay = {};
+							viewModel.registerSimpleBarrier.articleTitle = viewModel.title;
+						}
+
 						if (res.locals.barrier.registerGrid) {
 
 							viewModel.registerGridBarrier = res.locals.barrier.registerGrid;
