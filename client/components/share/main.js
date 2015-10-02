@@ -10,7 +10,7 @@ function loadShareCount() {
 	if(shareCount) {
 		let url = shareCount.getAttribute('data-shared-url');
 		if(url && url.length) {
-			fetch(`/article/${articleId}/social-counts?url=${url}`)
+			fetch(`/article/${articleId}/social-counts?url=${url}`, { credentials: 'same-origin' })
 			.then(fetchres.json)
 			.then(function(counts) {
 				shareCount.textContent = `${counts.shares}  shares`;
