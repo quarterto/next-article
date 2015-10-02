@@ -88,7 +88,11 @@ module.exports = function(req, res, next) {
 					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
 					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
 					suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
-					standFirst: article[0] ? article[0].item.editorial.standFirst : ""
+					standFirst: article[0] ? article[0].item.editorial.standFirst : "",
+					renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
+					id: extractUuid(article[1].id),
+					webUrl: article[0] && article[0].item  && article[0].item.location ? article[0].item.location.uri : '',
+					encodedTitle: encodeURIComponent(article[1].title.replace(/\&nbsp\;/g, ' '))
 				}),
 				socialMediaImage(article[1]),
 				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet) : Promise.resolve(),
