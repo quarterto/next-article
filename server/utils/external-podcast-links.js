@@ -18,17 +18,18 @@ function source(url) {
 	if (url.includes('overcast.fm')) {
 		return 'overcast';
 	}
+	if (url.includes('rss.acast.com')) {
+		return 'rss';
+	}
 }
 
 module.exports = function externalPodcastLinks(showUrl) {
 	var showSlug = showUrl.replace('http://rss.acast.com/', '');
-	var links = podcastMapping.linksFor(showSlug);
+	var links = podcastMapping.linksFor(showSlug).concat(showUrl);
 
 	return links.reduce(function(map, value) {
 		var key = source(value);
 		key && (map[key] = value);
 		return map;
 	}, {});
-
-	return data && apply(data);
 };
