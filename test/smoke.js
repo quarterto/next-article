@@ -26,6 +26,13 @@ module.exports = [
 		}
 	},
 	{
+		// Podcast
+		timeout: 5000,
+		urls: {
+			'/content/55ef024ec7a00b32cb5a5991': 200
+		}
+	},
+	{
 		// test access
 		timeout: 5000,
 		headers: {
