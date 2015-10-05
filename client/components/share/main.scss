@@ -1,37 +1,63 @@
 @import "o-share/main";
 
-$_o-share-icon-size: 32px;
-$_o-share-sprite-elements: (twitter, facebook, linkedin, whatsapp);
-
 @include oShareBase(o-share);
 @include oShareActionIcon(facebook, o-share);
 @include oShareActionIcon(twitter, o-share);
 @include oShareActionIcon(whatsapp, o-share);
 @include oShareActionIcon(linkedin, o-share);
 
-.article-share {
-	margin-bottom: $spacing-unit;
-	display: block;
-	overflow: hidden;
+.article__share {
 
-	.o-share__action {
-		padding: 0 5px;
-		&:first-child {
-			padding-left: 0;
-		}
-		&:hover {
-			opacity: 0.8;
-		}
-	}
+	position: relative;
+	margin-top: 5px;
 
-	.o-share>ul {
+	&__count {
+		@include nTypeAlphaSize(4);
 		display: inline-block;
-		margin-bottom: -8px;
+		overflow: hidden;
+		padding: 9px 0;
+		vertical-align: top;
 	}
-}
 
-.article-share__header {
-	@include nTypeBravo(3);
-	display: inline-block;
-	margin: 0 4px 8px 0;
+	&__comments {
+		@include nTypeAlphaSize(4);
+		border-bottom-width: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin-top: 5px;
+		&:before {
+			@include nextIcon(comment, getColorFor('link', 'text'), 17);
+			content: '';
+			position: relative;
+			top: 5px;
+			margin-right: 5px;
+		}
+	}
+
+	.o-share__action a {
+		border-bottom-width: 0;
+	}
+
+	.o-share__action--whatsapp {
+		@include oGridColspan((M: hide));
+		@include oGridRemoveGutters();
+		padding: 0;
+	}
+
+	@include oGridRespondTo(XL) {
+		@include oShareVertical();
+		width: 48px;
+		position: absolute;
+		top: 0;
+		left: -48px;
+		text-align: center;
+		.article__share__count {
+			display: block;
+			padding: 9px 0;
+		}
+		.article__share__comments {
+			position: static;
+		}
+	}
 }

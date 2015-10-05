@@ -2,6 +2,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template match="/html/body/p[1]">
+
+      <xsl:call-template name="social" />
+
       <xsl:if test="$suggestedRead = 1">
           <p class="article__standfirst">
             <xsl:value-of select="$standFirst" />
@@ -21,5 +24,6 @@
             </div>
         </xsl:if>
     </xsl:template>
+
 
 </xsl:stylesheet>

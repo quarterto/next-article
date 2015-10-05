@@ -1,134 +1,49 @@
 'use strict';
 
-var _ = require('lodash');
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
 var logger = require('ft-next-express').logger;
-var cacheControl = require('../../utils/cache-control');
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function (req, res, next) {
-	var topics = [];
-	var metadataFields = (req.query['metadata-fields'] || '').split(',');
-	var count = parseInt(req.query.count) || 5;
+	var parentArticleId = req.params.id;
+	var moreOnTaxonomy = req.query.moreOnTaxonomy;
+	var moreOnId = req.query.moreOnId;
+	var count = parseInt(req.query.count, 10) || 5;
 
-	api.contentLegacy({
-		uuid: req.params.id,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet
+	if (!moreOnTaxonomy || !moreOnId) {
+		return res.status(400).end();
+	}
+
+	return api.searchLegacy({
+		query: moreOnTaxonomy + 'Id:"' + moreOnId + '"',
+		// get plus one, in case we dedupe
+		count: count + 1,
+		// HACK: Always use ES for more ons so we can get the document directly
+		fields: true,
+		useElasticSearch: true
 	})
-		.then(function(article) {
-			res.set(cacheControl);
-			var moreOnPromises = metadataFields
-				.map(function(metadataField) {
-					var topic = article.item.metadata[metadataField];
-					// if it's an array, use the first
-					if (Array.isArray(topic)) {
-						topic = topic.shift();
-					}
-					if (!topic) {
-						return null;
-					}
-					var exists = topics.find(function(existing) {
-						return topic.term.id === existing.term.id;
-					});
-					if (exists) {
-						return;
+		.then(function(topicArticlesES) {
+
+			var articles = topicArticlesES
+				.filter(topicArticle => topicArticle._id !== parentArticleId)
+				.map(topicArticle => articlePodMapping(topicArticle._source))
+				.slice(0, count);
+
+			return res.render('related/more-on', {
+				articles: articles.map(function(article, index) {
+					if (article.image && index && index !== 5) {
+						article.image = undefined;
 					}
 
-					topics.push(topic);
-
-					return api.searchLegacy({
-							query: topic.term.taxonomy + 'Id:"' + topic.term.id + '"',
-							// get twice as many plus one, in case we dedupe
-							count: (count * 2) + 1,
-							useElasticSearch: res.locals.flags.elasticSearchItemGet
-						})
-						.then(function(ids) {
-							if (ids.indexCount === 0) {
-								return [];
-							}
-							return api.contentLegacy({
-								uuid: ids,
-								useElasticSearch: res.locals.flags.elasticSearchItemGet,
-								type: 'Article'
-							})
-							.catch(function (err) {
-								if (err instanceof fetchres.ReadTimeoutError) {
-									logger.error(`Timeout reading JSON for ids: ${ids.join(', ')}`);
-								}
-								throw err;
-							});
-						});
+					return article;
 				})
-				.filter(_.identity);
-
-			if (!moreOnPromises.length) {
-				throw new NoRelatedResultsException();
-			}
-
-			return Promise.all(moreOnPromises);
-		})
-		.then(function(results) {
-			var moreOns = results
-				.map(function(articleModels, index) {
-					var topic = topics[index];
-					var topicModel = {
-						id: topic.term.id,
-						name: topic.term.name,
-						taxonomy: topic.term.taxonomy
-					};
-					topicModel.url = topic.uuid ?
-						topicModel.taxonomy + '/' + topic.uuid :
-						'/stream/' + encodeURIComponent(topicModel.taxonomy) + 'Id/' + encodeURIComponent(topicModel.id);
-					topicModel.isAuthor = topicModel.taxonomy === 'authors';
-					topicModel.title = 'More ' + (topicModel.isAuthor ? 'from' : 'on');
-					topicModel.conceptId = topicModel.id;
-
-					if (topicModel.taxonomy === 'organisations') {
-						// get the stock id
-							topic.term.attributes.some(function(attribute) {
-								if (attribute.key === 'wsod_key') {
-									topicModel.tickerSymbol = attribute.value;
-									return true;
-								}
-								return false;
-							});
-					}
-
-					// dedupe
-					var otherArticleModels = index > 0 ? results[index - 1] : [];
-					var dedupedArticles = articleModels
-						.filter(function (articleModel) {
-							if (articleModel.item.id === req.params.id) {
-								return false;
-							}
-							return !otherArticleModels.find(function(otherArticleModel) {
-								return otherArticleModel.item.id === articleModel.item.id;
-							});
-						})
-						// add props for more on cards
-						.map(function (articleModel) {
-							return articlePodMapping(articleModel);
-						})
-						.slice(0, count);
-					return dedupedArticles.length ? {
-						articles: dedupedArticles.map(function (articleViewModel, index) {
-							if (index !== 0 && index !== 5) {
-								delete articleViewModel.image;
-							}
-							return articleViewModel;
-						}),
-						topic: topicModel
-					} : null;
-				})
-				.filter(_.identity);
-
-			res.render('related/more-on', {
-				moreOns: moreOns
 			});
 		})
 		.catch(function(err) {
+			logger.error(err);
+
 			if(err.name === NoRelatedResultsException.NAME) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {

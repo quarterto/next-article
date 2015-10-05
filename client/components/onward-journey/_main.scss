@@ -49,18 +49,11 @@
 }
 .pod__item__image {
 	float: left;
+	border-bottom: 0;
 }
 .pod__item__content {
 	padding: 10px 10px 0;
-
-	.pod__item-wrapper--with-image & {
-		@include oGridRespondTo(S) {
-			padding-left: 110px;
-		}
-		@include oGridRespondTo(M) {
-			padding-left: 210px;
-		}
-	}
+	overflow: hidden;
 }
 .pod__item__tag {
 	@include nLinksTopic;

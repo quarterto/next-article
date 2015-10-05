@@ -118,6 +118,10 @@
 <div class="o-grid-container">
 	<div class="o-grid-row">
 		<div data-o-grid-colspan="12 L10 center">
+			{{#if registerSimpleBarrier}}
+				{{> barriers/register-simple}}
+			{{/if}}
+
 			{{#if registerGridBarrier}}
 				{{> barriers/register-grid}}
 			{{/if}}
@@ -147,11 +151,6 @@
 			{{/if}}
 		</div>
 	</div>
-
-	{{#if shareButtons}}
-		{{>share}}
-	{{/if}}
-
 </div>
 
 {{>propensity-messaging-promo-unit}}
@@ -192,3 +191,4 @@
 {{/if}}
 
 <script type="text/json" id="dehydrated-data" >{{{json dehydratedState}}}</script>
+<script type="text/json" id="dehydrated-metadata">{{{json dehydratedMetadata}}}</script>

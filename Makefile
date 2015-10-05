@@ -5,7 +5,7 @@ TEST_APP := "ft-article-branch-${CIRCLE_BUILD_NUM}"
 install:
 	obt install --verbose
 
-test: verify build-production unit-test
+test: verify unit-test
 
 verify:
 	nbt verify
@@ -18,7 +18,7 @@ test-debug:
 	@mocha --debug-brk --reporter spec -i test/server/
 
 run:
-	nbt run --harmony
+	nbt run
 
 build:
 	nbt build --dev
@@ -56,5 +56,5 @@ provision:
 	make smoke
 
 smoke:
-	nbt test-urls ${TEST_APP};
+	nbt test-urls ${TEST_APP} --throttle 1;
 	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/* -e ie9,ie10,ie11,firefox40,chrome44,chrome45,iphone6_plus,Android_Nexus7HD

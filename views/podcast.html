@@ -63,6 +63,9 @@
 					{{#with media}}
 					<audio controls>
 						<source src="{{url}}" type="{{type}}" />
+						<p>
+							Your browser does not support playing this file but you can still <a href="{{url}}">download the MP3 file</a> to play locally.
+						</p>
 					</audio>
 					{{/with}}
 				</div>
@@ -83,9 +86,6 @@
 				<div class="article__rail-advert"></div>
 			</div>
 		</div>
-		{{#if @root.flags.articleShareButtons}}
-			{{>share}}
-		{{/if}}
 	</div>
 </article>
 

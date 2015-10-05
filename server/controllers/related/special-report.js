@@ -2,55 +2,42 @@
 
 var api = require('next-ft-api-client');
 var fetchres = require('fetchres');
+var logger = require('ft-next-express').logger;
 var NoRelatedResultsException = require('../../lib/no-related-results-exception');
 var articlePodMapping = require('../../mappings/article-pod-mapping');
 
-
 module.exports = function (req, res, next) {
-	var articleId = req.params.id;
-	api.contentLegacy({
-		uuid: articleId,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet
+	var parentArticleId = req.params.id;
+	var specialReportId = req.query.specialReportId;
+	var count = parseInt(req.query.count, 10) || 5;
+
+	return api.searchLegacy({
+		query: 'primarySectionId:"' + specialReportId + '"',
+		count: count,
+		// HACK: Always use ES for more ons so we can get the document directly
+		fields: true,
+		useElasticSearch: true
 	})
-		.then(function (article) {
-			if (article.item.metadata.primarySection.term.taxonomy !== 'specialReports') {
-				return res.status(200).end();
-			}
-			// get the articles in this special report
-			var specialReportId = article.item.metadata.primarySection.term.id;
-			return api.searchLegacy({
-				query: 'primarySectionId:"' + specialReportId + '"',
-				count: 5,
-				useElasticSearch: res.locals.flags.elasticSearchItemGet
-			});
-		})
-		.then(function (results) {
-			var ids = results.filter(function (result) {
-				return result && result !== articleId;
-			});
-			return api.contentLegacy({
-				uuid: ids,
-				useElasticSearch: res.locals.flags.elasticSearchItemGet,
-				type: 'Article'
-			});
-		})
-		.then(function (results) {
-			if (!results.length) {
-				throw new NoRelatedResultsException();
-			}
-			var articles = results.map(function (result) {
-				return articlePodMapping(result);
-			});
+		.then(function(specialReportArticlesES) {
+
+			var articles = specialReportArticlesES
+				.filter(topicArticle => topicArticle._id !== parentArticleId)
+				.map(topicArticle => articlePodMapping(topicArticle._source))
+				.slice(0, count);
+
 			// pull out the specialReports tag
 			var specialReport = articles[0].tag.specialReport;
-			res.render('related/special-report', {
-				name: specialReport.name,
-				id: specialReport.id,
+
+			return res.render('related/special-report', {
+				id: specialReport && specialReport.id,
+				name: specialReport && specialReport.name,
 				image: articles[0].image,
 				articles: articles
 			});
 		})
 		.catch(function (err) {
+			logger.error(err);
+
 			if (err.name === NoRelatedResultsException.NAME) {
 				res.status(200).end();
 			} else if (err instanceof fetchres.ReadTimeoutError) {

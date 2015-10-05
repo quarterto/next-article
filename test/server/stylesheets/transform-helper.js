@@ -10,8 +10,13 @@ module.exports = function(xml, params) {
 		renderTOC: 0,
 		fullWidthMainImages: 0,
 		reserveSpaceForMasterImage: 1,
+		renderSocial: 1,
 		suggestedRead: 0,
-		standFirst: ""
+		standFirst: "",
+		renderSocial: 0,
+		id: 'article-uuid',
+		webUrl: 'http://www.ft.com/article-uuid',
+		encodedTitle: 'Article Title'
 	};
 
 	var xsltParams = {};

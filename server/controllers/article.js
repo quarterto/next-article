@@ -88,7 +88,11 @@ module.exports = function(req, res, next) {
 					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
 					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
 					suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
-					standFirst: article[0] ? article[0].item.editorial.standFirst : ""
+					standFirst: article[0] ? article[0].item.editorial.standFirst : "",
+					renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
+					id: extractUuid(article[1].id),
+					webUrl: article[0] && article[0].item  && article[0].item.location ? article[0].item.location.uri : '',
+					encodedTitle: encodeURIComponent(article[1].title.replace(/\&nbsp\;/g, ' '))
 				}),
 				socialMediaImage(article[1]),
 				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet) : Promise.resolve(),
@@ -117,7 +121,15 @@ module.exports = function(req, res, next) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
 			}
-
+			//specialReport is a circular - if it exists, delete it before dehydrating it
+			if (metadata && metadata.primarySection && metadata.primarySection.term.specialReport) {
+				delete metadata.primarySection.term.specialReport;
+			}
+			var dehydratedMetadata = {
+				primaryTheme: metadata && metadata.primaryTheme ? metadata.primaryTheme : null,
+				primarySection: metadata && metadata.primarySection ? metadata.primarySection : null,
+				package: articleV1 && articleV1.item && articleV1.item.package ? articleV1.item.package : null
+			};
 			// Some posts (e.g. FastFT are only available in CAPI v2)
 			// TODO: Replace with something in CAPI v2
 			var isColumnist = metadata && metadata.primarySection.term.name === 'Columnists';
@@ -150,7 +162,8 @@ module.exports = function(req, res, next) {
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
 						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
-						dehydratedState: {}
+						dehydratedState: {},
+						dehydratedMetadata: dehydratedMetadata
 					};
 
 					if (metadata) {
@@ -178,12 +191,29 @@ module.exports = function(req, res, next) {
 						viewModel.moreOns = moreOnTags
 							.slice(0, 2)
 							.map(function(moreOnTag) {
+								var title;
+
+								switch (moreOnTag.taxonomy) {
+									case 'authors':
+										title = 'from';
+										break;
+									case 'sections':
+										title = 'in';
+										break;
+									case 'genre':
+										title = '';
+										break;
+									default:
+										title = 'on';
+								}
+
 								return {
 									name: moreOnTag.name,
 									url: '/stream/' + moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
 									taxonomy: moreOnTag.taxonomy,
 									metadata: moreOnTag.metadata,
-									id: moreOnTag.id
+									id: moreOnTag.id,
+									title: title
 								};
 							});
 						// add 'small' class if just one
@@ -222,6 +252,12 @@ module.exports = function(req, res, next) {
 							viewModel.trialGridBarrier.articleTitle = viewModel.title;
 
 							viewModel.barrierOverlay = {};
+						}
+
+						if (res.locals.barrier.registerSimple) {
+							viewModel.registerSimpleBarrier = res.locals.barrier.registerSimple;
+							viewModel.barrierOverlay = {};
+							viewModel.registerSimpleBarrier.articleTitle = viewModel.title;
 						}
 
 						if (res.locals.barrier.registerGrid) {

@@ -5,7 +5,21 @@ var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]
 
 var express = require('ft-next-express');
 var bodyParser = require('body-parser');
-var app = module.exports = express();
+var checks = require('./checks/main.js');
+
+// Starts polling checks
+checks.init();
+
+var app = module.exports = express({
+	name: 'article',
+	healthChecks: [
+		checks.esv1,
+		checks.esv2,
+		checks.capiv1,
+		checks.capiv2
+	]
+});
+
 var logger = express.logger;
 var barriers = require('ft-next-barriers');
 require('./lib/ig-poller').start();
@@ -23,6 +37,7 @@ app.get('^/articles', require('./controllers/articles'));
 app.get('^/article/:id(' + articleUuidRegex + ')/story-package', require('./controllers/related/story-package'));
 app.get('^/article/:id(' + articleUuidRegex + ')/more-on', require('./controllers/related/more-on'));
 app.get('^/article/:id(' + articleUuidRegex + ')/special-report', require('./controllers/related/special-report'));
+app.get('^/article/:id(' + articleUuidRegex + ')/social-counts', require('./controllers/related/social-counts'));
 app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow'));
 
 // Use barriers middleware only before calling full article endpoints
