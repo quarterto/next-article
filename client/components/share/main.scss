@@ -45,19 +45,4 @@
 		padding: 0;
 	}
 
-	@include oGridRespondTo(XL) {
-		@include oShareVertical();
-		width: 48px;
-		position: absolute;
-		top: 0;
-		left: -48px;
-		text-align: center;
-		.article__share__count {
-			display: block;
-			padding: 9px 0;
-		}
-		.article__share__comments {
-			position: static;
-		}
-	}
 }
