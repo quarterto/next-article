@@ -292,10 +292,10 @@ module.exports = function(req, res, next) {
 							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
 						}
 
-						if (res.locals.barrier.b2bSimple) {
-							viewModel.b2bBarrier = res.locals.barrier.b2bSimple;
+						if (res.locals.barrier.corporateSimple) {
+							viewModel.corporateBarrier = res.locals.barrier.corporateSimple;
 							viewModel.barrierOverlay = {};
-							viewModel.b2bBarrier.articleTitle = viewModel.title;
+							viewModel.corporateBarrier.articleTitle = viewModel.title;
 						}
 
 						viewModel.comments = null;
