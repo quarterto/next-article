@@ -1,7 +1,7 @@
-<li class="pod__item-wrapper{{#if image}}{{#unless ../isInline}} pod__item-wrapper--with-image{{/unless}}{{/if}}">
+<li class="pod__item-wrapper{{#if image}}{{#unless isInline}} pod__item-wrapper--with-image{{/unless}}{{/if}}">
 	<div class="pod__item">
 		{{#if image}}
-			{{#unless ../isInline}}
+			{{#unless isInline}}
 				<a class="pod__item__image" href="{{url}}" data-trackable="image">
 					{{>n-image/templates/image}}
 				</a>
