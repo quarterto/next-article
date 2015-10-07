@@ -233,7 +233,6 @@ module.exports = function(req, res, next) {
 						viewModel.readNextArticle = readNextArticle;
 					}
 
-					// TAG: Barrier View Models
 					if (res.locals.barrier) {
 
 						if (res.locals.barrier.trialSimple) {
