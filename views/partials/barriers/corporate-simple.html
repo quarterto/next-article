@@ -24,36 +24,39 @@
 	</div>
 	<div class="barrier-grid__section o-grid-row o-grid-row--compact">
 
-			<h3 class="barrier-grid__section-heading">Why join your FT group subscription?</h3>
+		<h3 class="barrier-grid__section-heading">Why join your FT group subscription?</h3>
 
-			<p>
-				<span class="barrier-grid__para-heading">You’ll enjoy free daily insights</span> from the FT’s global
-				network of journalists on-the-ground in 51 countries. FT.com provides a rich source of global market
-				intelligence, delivering accurate and unbiased news on international finance, business and politics.
-			</p>
+		<p>
+			<span class="barrier-grid__para-heading">You’ll enjoy free daily insights</span> from the FT’s global
+			network of journalists on-the-ground in 51 countries. FT.com provides a rich source of global market
+			intelligence, delivering accurate and unbiased news on international finance, business and politics.
+		</p>
 
-			<p>
-				<span class="barrier-grid__para-heading">Our macro-economic and political coverage</span> helps our
-				readers understand how events from around the world might impact their organisations and the markets in
-				which they operate. Whilst our business reports let you monitor industry trends and company developments
-				so you can respond quickly
-			</p>
+		<p>
+			<span class="barrier-grid__para-heading">Our macro-economic and political coverage</span> helps our
+			readers understand how events from around the world might impact their organisations and the markets in
+			which they operate. Whilst our business reports let you monitor industry trends and company developments
+			so you can respond quickly
+		</p>
 
-			<p>
-				<span class="barrier-grid__para-heading">You can discover who is worth investing in,</span> what to
-				avoid and how to prepare for the future with our coverage of the global financial markets. Important
-				market-moving themes, corporate analysis and daily emerging market news.
-			</p>
+		<p>
+			<span class="barrier-grid__para-heading">You can discover who is worth investing in,</span> what to
+			avoid and how to prepare for the future with our coverage of the global financial markets. Important
+			market-moving themes, corporate analysis and daily emerging market news.
+		</p>
 
-			<p>
-				<span class="barrier-grid__para-heading">Readers use the FT to save time.</span> Available on your
-				tablet or smartphone, it’s a quick way to understand what’s really happening and inform your
-				decision-making. Use our alerts to keep track of the topics, markets and organisations you are
-				interested in.
-			</p>
+		<p>
+			<span class="barrier-grid__para-heading">Readers use the FT to save time.</span> Available on your
+			tablet or smartphone, it’s a quick way to understand what’s really happening and inform your
+			decision-making. Use our alerts to keep track of the topics, markets and organisations you are
+			interested in.
+		</p>
 
-			<a class="barrier-grid__cto-btn barrier-grid__cto-btn--style2" href="{{corporateBarrier.signupUrl}}" data-trackable="subscribe">Join now</a>
-
+		{{#if corporateBarrier.shouldShowSignupBtn}}
+			<a class="barrier-grid__cta-btn barrier-grid__cta-btn--style2" href="{{corporateBarrier.signupUrl}}" data-trackable="subscribe">Join now</a>
+		{{else}}
+			<p class="barrier-grid__cta-text">Contact {{corporateBarrier.company.name}} to get signed up</p>
+		{{/if}}
 	</div>
 	<div class="barrier-grid__other-options o-grid-row o-grid-row--compact">
 		<h3 data-o-grid-colspan="full-width">Other subscription options</h3>

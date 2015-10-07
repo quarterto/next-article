@@ -106,10 +106,16 @@
 	margin-bottom: 0
 }
 
-.barrier-grid__cto-btn {
+.barrier-grid__cta-btn {
 	@include nButtons();
 	@include nButtonsSize(big);
 	@include nButtonsTheme(standout);
+}
+
+.barrier-grid__cta-text{
+	font-weight: 600;
+	color: #27757b;
+	font-size: 20px;
 }
 
 .barrier-grid__cto-btn--style2 {
