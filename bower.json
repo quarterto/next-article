@@ -6,7 +6,7 @@
     "o-quote": "bogdis-design",
     "o-big-number": "^1.1.0",
     "o-gallery": "^1.6.1",
-    "o-date": "^1.1.1",
+    "o-date": "^2.0.0",
     "n-video": "^2.5.1",
     "o-comments": "2.0.6",
     "o-comment-ui": "2.0.2",
@@ -29,15 +29,11 @@
     "o-colors": "^3.1.0",
     "next-buttons": "^2.1.0",
     "next-myft-ui": "^3.0.0",
-    "o-buttons": "v3",
-    "next-card": "^6.1.0",
-    "next-feature-flags-client": "^v8.0.0",
     "next-myft-client": "switch",
     "lodash": "3.10.1-npm",
     "o-grid": "^4.0.0",
     "n-third-party-code": "^1.0.0",
     "next-sass-setup": "^7.0.0",
-    "next-welcome": "^3.0.0",
     "o-errors": "^3.1.0"
   }
 }
