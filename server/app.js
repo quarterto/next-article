@@ -16,7 +16,8 @@ var app = module.exports = express({
 		checks.esv1,
 		checks.esv2,
 		checks.capiv1,
-		checks.capiv2
+		checks.capiv2,
+		checks.livefyre
 	]
 });
 
