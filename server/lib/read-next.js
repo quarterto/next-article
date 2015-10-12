@@ -11,16 +11,18 @@ module.exports = function(articleV1, useElasticSearch, useElasticSearchOnAws) {
 	var storyPackagePromise;
 	if (parent.item.package.length) {
 		storyPackagePromise = api.contentLegacy({
-			uuid: parent.item.package[0].id,
-			useElasticSearch: useElasticSearch,
-			useElasticSearchOnAws: useElasticSearchOnAws
-		})
-		.then(function(storyPackageArticle) {
-			return articlePodMapping(storyPackageArticle);
-		})
-		.catch(function(error) {
-			return ;
-		});
+				uuid: parent.item.package[0].id,
+				useElasticSearch: useElasticSearch,
+				useElasticSearchOnAws: useElasticSearchOnAws
+			})
+
+		storyPackagePromise = storyPackagePromise
+			.then(function(storyPackageArticle) {
+				return articlePodMapping(storyPackageArticle);
+			})
+			.catch(function(error) {
+				return ;
+			});
 	}
 
 	var parentTopic = articleTopicMapping(parent.item.metadata);

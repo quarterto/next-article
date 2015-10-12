@@ -48,7 +48,8 @@ describe('Suggested Read Model', function() {
 		before(function() {
 			stubContentLegacy.withArgs({
 				uuid: storyPackageId1,
-				useElasticSearch: true
+				useElasticSearch: true,
+				useElasticSearchOnAws: false
 			}).returns(Promise.resolve(storyPackageArticle1));
 			stubSearchLegacy.withArgs({
 				query: topicQuery1,
@@ -57,7 +58,7 @@ describe('Suggested Read Model', function() {
 				useElasticSearch: true
 			}).returns(Promise.resolve(topicArticles1));
 
-			return readNext(parentArticle1, useElasticSearch)
+			return readNext(parentArticle1, useElasticSearch, false)
 				.then(function(result) {
 					results = result;
 				});
@@ -80,7 +81,8 @@ describe('Suggested Read Model', function() {
     before(function() {
       stubContentLegacy.withArgs({
         uuid: storyPackageId2,
-        useElasticSearch: true
+        useElasticSearch: true,
+        useElasticSearchOnAws: false
       }).returns(Promise.resolve(storyPackageArticle2));
       stubSearchLegacy.withArgs({
         query: topicQuery2,
@@ -89,7 +91,7 @@ describe('Suggested Read Model', function() {
         useElasticSearch: true
       }).returns(Promise.resolve(topicArticles2));
 
-      return readNext(parentArticle2, useElasticSearch)
+      return readNext(parentArticle2, useElasticSearch, false)
         .then(function(result) {
           results = result;
         });
@@ -116,7 +118,7 @@ describe('Suggested Read Model', function() {
         useElasticSearch: true
       }).returns(Promise.resolve(topicArticles3));
 
-      return readNext(parentArticle3, useElasticSearch)
+      return readNext(parentArticle3, useElasticSearch, false)
         .then(function(result) {
           results = result;
         });
@@ -144,7 +146,7 @@ describe('Suggested Read Model', function() {
         useElasticSearch: true
       }).returns(Promise.resolve(topicArticles4));
 
-      return readNext(parentArticle4, useElasticSearch)
+      return readNext(parentArticle4, useElasticSearch, false)
         .then(function(result) {
           results = result;
         });
