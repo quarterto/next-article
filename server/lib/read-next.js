@@ -15,8 +15,6 @@ module.exports = function(articleV1, useElasticSearch, useElasticSearchOnAws) {
 				useElasticSearch: useElasticSearch,
 				useElasticSearchOnAws: useElasticSearchOnAws
 			})
-
-		storyPackagePromise = storyPackagePromise
 			.then(function(storyPackageArticle) {
 				return articlePodMapping(storyPackageArticle);
 			})
