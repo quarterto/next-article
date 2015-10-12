@@ -11,7 +11,8 @@ module.exports = function podcastController(req, res, next) {
 	function getArticle(guid) {
 		return api.contentLegacy({
 			uuid: guid,
-			useElasticSearch: true
+			useElasticSearch: true,
+			useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
 		});
 	}
 
@@ -42,6 +43,7 @@ module.exports = function podcastController(req, res, next) {
 			// will be ignored by ES and will fall back to returning all the fields.
 			fields: true,
 			useElasticSearch: true,
+			useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws,
 			includePodcasts: true
 		}).catch(function() { return []; });
 

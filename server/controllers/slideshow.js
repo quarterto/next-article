@@ -8,7 +8,8 @@ module.exports = function(req, res, next) {
 	// E.g. 4eb77dd4-9b35-11e4-be20-002128161462
 	api.contentLegacy({
 		uuid: req.params.id,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet
+		useElasticSearch: res.locals.flags.elasticSearchItemGet,
+		useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
 	})
 		.then(function(data) {
 			if (data.item && data.item && data.item.assets && data.item.assets[0] && data.item.assets[0].type === 'slideshow') {

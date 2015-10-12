@@ -16,7 +16,8 @@ module.exports = function(req, res, next) {
 
 	return api.contentLegacy({
 		uuid: storyPackageIds.split(','),
-		useElasticSearch: true
+		useElasticSearch: true,
+		useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
 	})
 		.then(function(articles) {
 			if (!articles.length) {

@@ -26,7 +26,8 @@ module.exports = function(req, res, next) {
 	if (res.locals.flags.articleCapiV1Fallback) {
 		articleV1Promise = api.contentLegacy({
 				uuid: req.params.id,
-				useElasticSearch: res.locals.flags.elasticSearchItemGet
+				useElasticSearch: res.locals.flags.elasticSearchItemGet,
+				useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
 			})
 				// Some things aren't in CAPI v1 (e.g. FastFT)
 				.catch(function(err) {
@@ -44,7 +45,8 @@ module.exports = function(req, res, next) {
 		uuid: req.params.id,
 		type: 'Article',
 		metadata: true,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet
+		useElasticSearch: res.locals.flags.elasticSearchItemGet,
+		useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
 	});
 
 	var socialMediaImage = function (articleV2) {
@@ -95,11 +97,12 @@ module.exports = function(req, res, next) {
 					encodedTitle: encodeURIComponent(article[1].title.replace(/\&nbsp\;/g, ' '))
 				}),
 				socialMediaImage(article[1]),
-				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet) : Promise.resolve(),
+				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet, res.locals.flags.elasticSearchOnAws) : Promise.resolve(),
 				getSuggested(article[0]).then(function(it) {
 					return api.contentLegacy({
 						uuid: (it && it.ids) || [],
-						useElasticSearch: res.locals.flags.elasticSearchItemGet
+						useElasticSearch: res.locals.flags.elasticSearchItemGet,
+						useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
 					});
 				})
 			]);
@@ -326,7 +329,11 @@ module.exports = function(req, res, next) {
 		.catch(function(err) {
 
 			if (fetchres.originatedError(err)) {
-				return api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet })
+				return api.contentLegacy({
+						uuid: req.params.id,
+						useElasticSearch: res.locals.flags.elasticSearchItemGet,
+						useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
+					})
 						.then(function(data) {
 							if (data.item.location.uri.indexOf('?') > -1) {
 								res.redirect(302, data.item.location.uri + "&ft_site=falcon&desktop=true");

@@ -22,7 +22,8 @@ module.exports = function (req, res, next) {
 		count: count + 1,
 		// HACK: Always use ES for more ons so we can get the document directly
 		fields: true,
-		useElasticSearch: true
+		useElasticSearch: true,
+		useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
 	})
 		.then(function(topicArticlesES) {
 

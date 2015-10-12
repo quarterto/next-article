@@ -8,6 +8,7 @@ module.exports = function(req, res, next) {
 	api.contentLegacy({
 		uuid: JSON.parse(req.query.ids),
 		useElasticSearch: res.locals.flags.elasticSearchItemGet,
+		useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws,
 		type: 'Article'
 	})
 	.then(function(items) {
