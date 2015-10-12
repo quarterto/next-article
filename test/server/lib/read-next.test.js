@@ -54,7 +54,7 @@ describe('Suggested Read Model', function() {
 			stubSearchLegacy.withArgs({
 				query: topicQuery1,
 				count: 2,
-        fields: true,
+				fields: true,
 				useElasticSearch: true
 			}).returns(Promise.resolve(topicArticles1));
 
@@ -66,101 +66,101 @@ describe('Suggested Read Model', function() {
 
 		it('read next should be based on topic as more recent', function() {
 			JSON.stringify(results).should.equal(JSON.stringify(readNextArticle1));
-      results.source.should.equal('topic');
+			results.source.should.equal('topic');
 		});
 
-    it('should flag the read next article as more recent than the parent', function() {
-      results.should.have.property('moreRecent');
-      results.moreRecent.should.be.true;
-    });
+		it('should flag the read next article as more recent than the parent', function() {
+			results.should.have.property('moreRecent');
+			results.moreRecent.should.be.true;
+		});
 
 	});
 
-  describe('Parent has a story package, Topic articles older than parent', function() {
+	describe('Parent has a story package, Topic articles older than parent', function() {
 
-    before(function() {
-      stubContentLegacy.withArgs({
-        uuid: storyPackageId2,
-        useElasticSearch: true,
-        useElasticSearchOnAws: false
-      }).returns(Promise.resolve(storyPackageArticle2));
-      stubSearchLegacy.withArgs({
-        query: topicQuery2,
-        count: 2,
-        fields: true,
-        useElasticSearch: true
-      }).returns(Promise.resolve(topicArticles2));
+		before(function() {
+			stubContentLegacy.withArgs({
+				uuid: storyPackageId2,
+				useElasticSearch: true,
+				useElasticSearchOnAws: false
+			}).returns(Promise.resolve(storyPackageArticle2));
+			stubSearchLegacy.withArgs({
+				query: topicQuery2,
+				count: 2,
+				fields: true,
+				useElasticSearch: true
+			}).returns(Promise.resolve(topicArticles2));
 
-      return readNext(parentArticle2, useElasticSearch, false)
-        .then(function(result) {
-          results = result;
-        });
-    });
+			return readNext(parentArticle2, useElasticSearch, false)
+				.then(function(result) {
+					results = result;
+				});
+		});
 
-    it('read next should be based on story package as topic not more recent than parent', function() {
-      JSON.stringify(results).should.equal(JSON.stringify(readNextArticle2));
-      results.source.should.equal('package');
-    });
+		it('read next should be based on story package as topic not more recent than parent', function() {
+			JSON.stringify(results).should.equal(JSON.stringify(readNextArticle2));
+			results.source.should.equal('package');
+		});
 
-    it('should not flag the read next article as more recent than the parent', function() {
-      results.should.not.have.property('moreRecent');
-    });
+		it('should not flag the read next article as more recent than the parent', function() {
+			results.should.not.have.property('moreRecent');
+		});
 
-  });
+	});
 
-  describe('Parent has no story package, Topic article more recent than parent', function() {
+	describe('Parent has no story package, Topic article more recent than parent', function() {
 
-    before(function() {
-      stubSearchLegacy.withArgs({
-        query: topicQuery3,
-        count: 2,
-        fields: true,
-        useElasticSearch: true
-      }).returns(Promise.resolve(topicArticles3));
+		before(function() {
+			stubSearchLegacy.withArgs({
+				query: topicQuery3,
+				count: 2,
+				fields: true,
+				useElasticSearch: true
+			}).returns(Promise.resolve(topicArticles3));
 
-      return readNext(parentArticle3, useElasticSearch, false)
-        .then(function(result) {
-          results = result;
-        });
-    });
+			return readNext(parentArticle3, useElasticSearch, false)
+				.then(function(result) {
+					results = result;
+				});
+		});
 
-    it('read next should be based on topic as no story package', function() {
-      JSON.stringify(results).should.equal(JSON.stringify(readNextArticle3));
-      results.source.should.equal('topic');
-    });
+		it('read next should be based on topic as no story package', function() {
+			JSON.stringify(results).should.equal(JSON.stringify(readNextArticle3));
+			results.source.should.equal('topic');
+		});
 
-    it('should flag the read next article as more recent than the parent', function() {
-      results.should.have.property('moreRecent');
-      results.moreRecent.should.be.true;
-    });
+		it('should flag the read next article as more recent than the parent', function() {
+			results.should.have.property('moreRecent');
+			results.moreRecent.should.be.true;
+		});
 
-  });
+	});
 
-  describe('Parent has no story package, Topic articles older than parent', function() {
+	describe('Parent has no story package, Topic articles older than parent', function() {
 
-    before(function() {
-      stubSearchLegacy.withArgs({
-        query: topicQuery4,
-        count: 2,
-        fields: true,
-        useElasticSearch: true
-      }).returns(Promise.resolve(topicArticles4));
+		before(function() {
+			stubSearchLegacy.withArgs({
+				query: topicQuery4,
+				count: 2,
+				fields: true,
+				useElasticSearch: true
+			}).returns(Promise.resolve(topicArticles4));
 
-      return readNext(parentArticle4, useElasticSearch, false)
-        .then(function(result) {
-          results = result;
-        });
-    });
+			return readNext(parentArticle4, useElasticSearch, false)
+				.then(function(result) {
+					results = result;
+				});
+		});
 
-    it('read next should be based on topic as no story package', function() {
-      JSON.stringify(results).should.equal(JSON.stringify(readNextArticle4));
-      results.source.should.equal('topic');
-    });
+		it('read next should be based on topic as no story package', function() {
+			JSON.stringify(results).should.equal(JSON.stringify(readNextArticle4));
+			results.source.should.equal('topic');
+		});
 
-    it('should not flag the read next article as more recent than the parent', function() {
-      results.should.not.have.property('moreRecent');
-    });
+		it('should not flag the read next article as more recent than the parent', function() {
+			results.should.not.have.property('moreRecent');
+		});
 
-  });
+	});
 
 });
