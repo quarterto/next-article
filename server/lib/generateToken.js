@@ -24,7 +24,6 @@ function createCookie(name,value,domain,days) {
 	} else {
 		return name+"="+value+expires+"; path=/";
 	}
-
 }
 
 module.exports = function(articleUUID, res) {
