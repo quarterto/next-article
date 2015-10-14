@@ -1,6 +1,5 @@
 'use strict';
 
-require('dotenv').load();
 var podcastGuidRegex = '[a-z0-9]{24}';
 var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 

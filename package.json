@@ -14,7 +14,6 @@
     "cookie-parser": "^1.4.0",
     "cookies-js": "^1.2.2",
     "denodeify": "~1.2.1",
-    "dotenv": "^1.2.0",
     "fetchres": "~1.4.0",
     "forever": "~0.15.1",
     "ft-next-article-genre": "^1.1.0",
