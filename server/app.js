@@ -9,7 +9,6 @@ var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]
 var express = require('ft-next-express');
 var bodyParser = require('body-parser');
 var checks = require('./checks/main.js');
-var cookieParser = require('cookie-parser');
 
 // Starts polling checks
 checks.init();
@@ -24,8 +23,6 @@ var app = module.exports = express({
 		checks.livefyre
 	]
 });
-
-app.use(cookieParser());
 
 var logger = express.logger;
 var barriers = require('ft-next-barriers');
