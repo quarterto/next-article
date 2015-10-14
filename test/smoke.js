@@ -1,5 +1,8 @@
 module.exports = [
 	{
+		headers: {
+			Cookie: 'next-flags=elasticSearchItemGet:on'
+		},
 		timeout: 5000,
 		urls: {
 			//methode
@@ -27,6 +30,9 @@ module.exports = [
 //	},
 	{
 		// Podcast
+		headers: {
+			Cookie: 'next-flags=elasticSearchItemGet:on'
+		},
 		timeout: 5000,
 		urls: {
 			'/content/55ef024ec7a00b32cb5a5991': 200
@@ -34,6 +40,9 @@ module.exports = [
 	},
 	{
 		// test access
+		headers: {
+			Cookie: 'next-flags=elasticSearchItemGet:on'
+		},
 		timeout: 5000,
 		headers: {
 			'X-FT-Access-Metadata': 'remote_headers'
