@@ -40,12 +40,10 @@ module.exports = [
 	},
 	{
 		// test access
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:on'
-		},
 		timeout: 5000,
 		headers: {
-			'X-FT-Access-Metadata': 'remote_headers'
+			'X-FT-Access-Metadata': 'remote_headers',
+			Cookie: 'next-flags=elasticSearchItemGet:on'
 		},
 		urls: {
 			// conditional standard article
