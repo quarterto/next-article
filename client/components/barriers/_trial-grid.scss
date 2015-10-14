@@ -120,6 +120,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 		@include nButtons();
 		@include nButtonsSize(big);
 		@include nButtonsTheme(standout);
+		text-transform: none;
 	}
 
 	.trial-barrier-grid__secondary {
