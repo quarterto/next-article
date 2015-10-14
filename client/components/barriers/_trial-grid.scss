@@ -12,7 +12,6 @@ $o-grid-gutters: (default: 0px, M: 0px);
 	@include oGridRespondTo(M) {
 		top: -40px;
 	}
-
 }
 
 .trial-barrier-grid h2,
@@ -55,7 +54,6 @@ $o-grid-gutters: (default: 0px, M: 0px);
 			text-align: right;
 			padding-top: 12px;
 		}
-
 	}
 
 	.trial-barrier-grid__pretext {
