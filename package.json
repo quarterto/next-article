@@ -29,6 +29,7 @@
     "node-rsa": "^0.2.25",
     "query-string": "^2.4.2",
     "ramda": "^0.17.1",
+    "share-code-creator": "ssh://git@git.svc.ft.com:7999/labsprot/share-code-generator.git",
     "text-encoding": "^0.5.2",
     "uuid": "^2.0.1"
   },

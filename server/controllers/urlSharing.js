@@ -4,7 +4,7 @@ var atob = require('base-64').decode;
 var R = require('ramda');
 
 var generateToken = require('../lib/generateToken');
-var decrypt = require('../../client/libs/urlSharing').decrypt;
+var decrypt = require('share-code-creator').decrypt;
 
 var shareCodeRegex = /[a-z0-9]{32}/
 var isShareCode = shareCodeRegex.test.bind(shareCodeRegex);
