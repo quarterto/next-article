@@ -21,6 +21,8 @@ require('next-js-setup').bootstrap(function(result) {
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
 
+	var urlSharing = require('./libs/urlSharing');
+
 	prompts.init();
 	oViewport.listenTo('resize');
 
@@ -67,5 +69,6 @@ require('next-js-setup').bootstrap(function(result) {
 
 	window.addEventListener('load', function() {
 		comments.init(uuid, flags);
+		urlSharing.encrypt();
 	}, false);
 });
