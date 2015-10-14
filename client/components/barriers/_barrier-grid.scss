@@ -110,6 +110,7 @@
 	@include nButtons();
 	@include nButtonsSize(big);
 	@include nButtonsTheme(standout);
+	text-transform: none;
 }
 
 .barrier-grid__cta-text {
