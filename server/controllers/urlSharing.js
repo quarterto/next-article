@@ -14,7 +14,7 @@ module.exports = function (req, res, next) {
 		var sharingUserID = decrypt(code, article);
 
 		if (true) { // need to check the user ID is infact a user -- may want to check dam or subs to see if they are allowed to share the article and have tokens left
-			if (req.header('FT-User-UUID') {
+			if (req.header('FT-User-UUID')) {
 				// if the user is logged in and can already view the article, no need to create a gift token
 				return next();
 			} else {
