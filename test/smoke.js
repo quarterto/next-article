@@ -15,16 +15,16 @@ module.exports = [
 			}
 		}
 	},
-	{
-		//elastic search off fallback
-		timeout: 5000,
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:off'
-		},
-		urls: {
-			'/content/02cad03a-844f-11e4-bae9-00144feabdc0': 200
-		}
-	},
+//	{
+//		//elastic search off fallback
+//		timeout: 5000,
+//		headers: {
+//			Cookie: 'next-flags=elasticSearchItemGet:off'
+//		},
+//		urls: {
+//			'/content/02cad03a-844f-11e4-bae9-00144feabdc0': 200
+//		}
+//	},
 	{
 		// Podcast
 		timeout: 5000,
