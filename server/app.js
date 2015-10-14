@@ -1,11 +1,13 @@
 'use strict';
 
+require('dotenv').load();
 var podcastGuidRegex = '[a-z0-9]{24}';
 var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 
 var express = require('ft-next-express');
 var bodyParser = require('body-parser');
 var checks = require('./checks/main.js');
+var cookieParser = require('cookie-parser');
 
 // Starts polling checks
 checks.init();
@@ -19,6 +21,8 @@ var app = module.exports = express({
 		checks.capiv2
 	]
 });
+
+app.use(cookieParser());
 
 var logger = express.logger;
 var barriers = require('ft-next-barriers');
@@ -43,6 +47,7 @@ app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow')
 // Use barriers middleware only before calling full article endpoints
 app.use(barriers.middleware(express.metrics));
 
+app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/urlSharing'));
 app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
 app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
 
