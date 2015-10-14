@@ -3,7 +3,7 @@ module.exports = [
 		headers: {
 			Cookie: 'next-flags=elasticSearchItemGet:on'
 		},
-		timeout: 5000,
+		timeout: 10000,
 		urls: {
 			//methode
 			'/content/395650fa-5b9c-11e5-a28b-50226830d644': 200,
@@ -33,14 +33,14 @@ module.exports = [
 		headers: {
 			Cookie: 'next-flags=elasticSearchItemGet:on'
 		},
-		timeout: 5000,
+		timeout: 10000,
 		urls: {
 			'/content/55ef024ec7a00b32cb5a5991': 200
 		}
 	},
 	{
 		// test access
-		timeout: 5000,
+		timeout: 10000,
 		headers: {
 			'X-FT-Access-Metadata': 'remote_headers',
 			Cookie: 'next-flags=elasticSearchItemGet:on'
