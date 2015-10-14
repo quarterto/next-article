@@ -8,7 +8,7 @@ var TextEncoder = require('text-encoding').TextEncoder;
 var atob = require('base-64').decode;
 var btoa = require('base-64').encode;
 var escape = require('base64-url').escape;
-var key = new NodeRSA(process.env.PRIVATE_KEY);
+var key = new NodeRSA(process.env.TOKEN_GENERATING_PRIVATE_KEY);
 
 function createCookie(name,value,domain,days) {
 	var expires = "";
