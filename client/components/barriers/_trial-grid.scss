@@ -118,6 +118,7 @@
 		@include nButtons();
 		@include nButtonsSize(big);
 		@include nButtonsTheme(standout);
+		text-transform: none;
 	}
 
 	.trial-barrier-grid__secondary {
