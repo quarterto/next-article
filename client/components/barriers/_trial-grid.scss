@@ -1,3 +1,5 @@
+$o-grid-gutters: (default: 0px, M: 0px);
+
 .trial-barrier-grid {
 	position: relative;
 	z-index: 18;
@@ -186,7 +188,7 @@
 		@include oGridColspan((default: full-width, S: one-half, L: one-quarter));
 		background: white;
 		color: black;
-	}
+        }
 
 	.trial-barrier-grid__learn-more {
 		@include nTypeBravo(4);
