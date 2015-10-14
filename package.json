@@ -11,7 +11,6 @@
     "base64-url": "^1.2.1",
     "body-parser": "^1.13.3",
     "cheerio": "~0.19.0",
-    "cookie-parser": "^1.4.0",
     "cookies-js": "^1.2.2",
     "denodeify": "~1.2.1",
     "fetchres": "~1.4.0",
@@ -27,8 +26,6 @@
     "n-podcast-mapping": "Financial-Times/n-podcast-mapping",
     "next-ft-api-client": "^3.9.5",
     "node-rsa": "^0.2.25",
-    "query-string": "^2.4.2",
-    "ramda": "^0.17.1",
     "share-code-creator": "ssh://git@git.svc.ft.com:7999/labsprot/share-code-generator.git",
     "text-encoding": "^0.5.2",
     "uuid": "^2.0.1"
