@@ -15,13 +15,6 @@ Please install [`next-router`](http://git.svc.ft.com/projects/NEXT/repos/router/
 
 Next article also requires the [libxslt](http://xmlsoft.org/libxslt/) C library - and more specifically its [processing tool](http://xmlsoft.org/XSLT/xsltproc2.html). See the [XSLT section](#xslt) below for more information.
 
-Next article also requires a PEM-formatted private key for signing purposes. This private key is not included in the repository, instead the path to where the private key is to be located in the file system is stored within the `.env` file at the root of this repo. This file is ignored from git. The key Next-Article looks for is `PRIVATE_KEY_PATH`.
-
-An example `.env` file:
-```bash
-PRIVATE_KEY_PATH=~/keys/ft/url_sharing/private.key.pem
-```
-
 ## Run
 
 Run article through the router (localhost:5050):
