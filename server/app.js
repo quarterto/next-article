@@ -1,5 +1,11 @@
 'use strict';
 
+<<<<<<< c9822ece5c87b15f9e05923b014d26f9b539a667
+=======
+var podcastGuidRegex = '[a-z0-9]{24}';
+var articleUuidRegex = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
+
+>>>>>>> Remove dotenv and is handled by nbt
 var express = require('ft-next-express');
 var bodyParser = require('body-parser');
 var checks = require('./checks/main.js');
