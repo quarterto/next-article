@@ -21,5 +21,3 @@ npm-debug.log
 /libxslt/share
 /libxslt/lib
 .env
-
-private.key.pem
