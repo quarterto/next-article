@@ -5,6 +5,7 @@ var shareCodeCreator = require('share-code-creator');
 var decrypt = shareCodeCreator.decrypt;
 var isShareCodePattern = shareCodeCreator.isShareCodePattern;
 var privateKey = process.env.TOKEN_GENERATING_PRIVATE_KEY;
+var userApiUrl = 'https://user-api-uk-prod.apps.memb.ft.com:8443/membership/users/v1/';
 
 module.exports = function (req, res, next) {
 	var code = req.query.share_code;
@@ -13,11 +14,13 @@ module.exports = function (req, res, next) {
 	if (req.header('FT-User-UUID') === undefined || req.header('FT-User-UUID') === null) {
 		if (isShareCodePattern(code)) {
 			var sharingUserID = decrypt(code, article);
-
-			if (true) { // need to check the user ID is infact a user -- may want to check dam or subs to see if they are allowed to share the article and have tokens left
-				res.append('Set-Cookie', generateToken(article, privateKey));
-				return res.redirect('/content/' + req.params.id);
-			}
+			fetch(userApiUrl + sharingUserID)
+			.then(userApiResponse => {
+				if (userApiResponse.status === 200) {
+					res.append('Set-Cookie', generateToken(article, privateKey));
+					return res.redirect('/content/' + req.params.id);
+				}
+			});
 		}
 	}
 
