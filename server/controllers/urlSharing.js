@@ -17,6 +17,7 @@ module.exports = function (req, res, next) {
 			fetch(userApiUrl + sharingUserID)
 			.then(userApiResponse => {
 				if (userApiResponse.status === 200) {
+					// An assumption is made that if a code decodes to an active user Id, that user was able to view the article to generate the share code
 					res.append('Set-Cookie', generateToken(article, privateKey));
 					return res.redirect('/content/' + req.params.id);
 				}
