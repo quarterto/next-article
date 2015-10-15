@@ -1,7 +1,8 @@
 "use strict";
 
-var generateToken = require('../lib/generateToken');
+var generateToken = require('article-token-creator');
 var decrypt = require('share-code-creator').decrypt;
+var privateKey = process.env.TOKEN_GENERATING_PRIVATE_KEY;
 
 var shareCodeRegex = /[a-z0-9]{32}/;
 var isShareCode = shareCodeRegex.test.bind(shareCodeRegex);
@@ -18,7 +19,7 @@ module.exports = function (req, res, next) {
 				// if the user is logged in and can already view the article, no need to create a gift token
 				return next();
 			} else {
-				var token = generateToken(article, res);
+				res.append('Set-Cookie', generateToken(article, privateKey));
 				return res.redirect('/content/' + req.params.id);
 			}
 		} else {
