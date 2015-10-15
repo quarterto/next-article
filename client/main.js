@@ -22,6 +22,7 @@ require('next-js-setup').bootstrap(function(result) {
 	var scrollDepth = require('./components/article/scroll-depth');
 
 	var encrypt = require('share-code-creator').encrypt;
+	var session = require('ft-next-session-client');
 
 	prompts.init();
 	oViewport.listenTo('resize');
@@ -69,8 +70,13 @@ require('next-js-setup').bootstrap(function(result) {
 
 	window.addEventListener('load', function() {
 		comments.init(uuid, flags);
-		var user = localStorage['o-tracking-proper-id'];
-		var article = window.location.pathname.split('/')[2];
-		history.pushState({}, '', window.location.pathname + '?share_code=' + encodeURI(encrypt(user, article)));
+		// get uuid from session
+		session.uuid().then(function(data){
+			if (data) {
+				var userId = data.uuid;
+				var article = window.location.pathname.split('/')[2];
+				history.pushState({}, '', window.location.pathname + '?share_code=' + encodeURI(encrypt(user, article)));
+			}
+		});
 	}, false);
 });
