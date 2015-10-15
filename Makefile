@@ -34,7 +34,7 @@ clean:
 	git clean -fxd
 
 deploy:
-	nbt configure
+	nbt configure --no-splunk
 	nbt deploy-hashed-assets
 	nbt deploy --skip-logging
 	nbt scale
@@ -50,7 +50,7 @@ tidy:
 
 provision:
 	nbt provision ${TEST_APP}
-	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch"
+	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch" --no-splunk
 	nbt deploy-hashed-assets
 	nbt deploy ${TEST_APP} --skip-enable-preboot --skip-logging
 	make smoke
