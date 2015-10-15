@@ -175,15 +175,18 @@
 		{{/unless}}
 	</div>
 
-	<div class="o-grid-row">
-		<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-			<div data-trackable="comments" class="article__comments o-comments" id="comments"></div>
+	{{#unless barrier}}
+		<div class="o-grid-row">
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+				<div data-trackable="comments" class="article__comments o-comments" id="comments"></div>
+			</div>
 		</div>
-	</div>
+	{{/unless}}
 
 	{{#if barrierOverlay}}
 		<div class="barrier-overlay"></div>
 	{{/if}}
+
 </div>
 
 {{#if myFTTray}}
