@@ -9,24 +9,3 @@
 		@content;
 	}
 }
-
-@mixin barrier-button() {
-	color: getColor('white');
-	
-	// TODO: Switch to o-colors colour
-	background-color: $next-primary-transparent;
-	width: 150px;
-	text-align: center;
-	text-decoration: none;
-	padding: 10px;
-	display: block;
-	border-radius: 5px;
-	font-size: 20px;
-	@include nTypeAlpha(3);
-
-	&:hover {
-		
-		// TODO: Switch to o-colors colour
-		background-color: $next-primary-color;
-	}
-}
