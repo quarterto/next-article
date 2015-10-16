@@ -11,7 +11,9 @@
 }
 
 @mixin barrier-button() {
-	color: $next-white;
+	color: getColor('white');
+	
+	// TODO: Switch to o-colors colour
 	background-color: $next-primary-transparent;
 	width: 150px;
 	text-align: center;
@@ -23,6 +25,8 @@
 	@include nTypeAlpha(3);
 
 	&:hover {
+		
+		// TODO: Switch to o-colors colour
 		background-color: $next-primary-color;
 	}
 }
