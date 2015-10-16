@@ -18,12 +18,12 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 				'<body>' +
-					'<aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-						'<div class="promo-box__title">' +
-							'<h2 class="promo-box__title__name">Tatomer Riesling 2012</h2>' +
-						'</div>' +
+					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 						'<div class="promo-box__wrapper">' +
-							'<h2 class="promo-box__headline">Greece debt crisis</h2>' +
+							'<div class="promo-box__title">' +
+								'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+							'</div>' +
+							'<div class="promo-box__headline">Greece debt crisis</div>' +
 							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
 								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
@@ -52,12 +52,12 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 				'<body>' +
-					'<aside class="promo-box promo-box--long ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-						'<div class="promo-box__title">' +
-							'<h2 class="promo-box__title__name">Tatomer Riesling 2012</h2>' +
-						'</div>' +
+					'<aside class="promo-box promo-box--long ng-inline-element" data-trackable="promobox" role="complementary">' +
 						'<div class="promo-box__wrapper">' +
-							'<h2 class="promo-box__headline">Greece debt crisis</h2>' +
+							'<div class="promo-box__title">' +
+								'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+							'</div>' +
+							'<div class="promo-box__headline">Greece debt crisis</div>' +
 							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
 								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
@@ -89,12 +89,12 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
   			'<body>' +
-          '<aside class="promo-box promo-box--long ng-pull-out ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
-						'<div class="promo-box__title">' +
-							'<h2 class="promo-box__title__name">Tatomer Riesling 2012</h2>' +
-						'</div>' +
+          '<aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 						'<div class="promo-box__wrapper">' +
-							'<h2 class="promo-box__headline">Greece debt crisis</h2>' +
+							'<div class="promo-box__title">' +
+								'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+							'</div>' +
+							'<div class="promo-box__headline">Greece debt crisis</div>' +
 							'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
 								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
@@ -125,12 +125,12 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 			'<body>' +
-				'<aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-					'<div class="promo-box__title">' +
-						'<h2 class="promo-box__title__name">Related Content</h2>' +
-					'</div>' +
+				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
-						'<h2 class="promo-box__headline">Greece debt crisis</h2>' +
+						'<div class="promo-box__title">' +
+							'<div class="promo-box__title__name">Related Content</div>' +
+						'</div>' +
+						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
 							'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 							'<source data-image-size="280" media="(min-width: 490px)"></source>' +
@@ -155,9 +155,10 @@ describe('Promo-boxes', function() {
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
 				'<body>' +
-					'<aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-						'<div class="promo-box__title"><h2 class="promo-box__title__name"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a></h2></div>' +
-						'<div class="promo-box__wrapper"></div>' +
+					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
+						'<div class="promo-box__wrapper">' +
+							'<div class="promo-box__title"><div class="promo-box__title__name"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a> </div></div>' +
+						'</div>' +
 					'</aside>' +
 				'</body>\n'
 			);
@@ -173,10 +174,10 @@ describe('Promo-boxes', function() {
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
 				'<body>' +
-					'<aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-						'<div class="promo-box__title"><h2 class="promo-box__title__name">Related Content</h2></div>' +
+					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 						'<div class="promo-box__wrapper">' +
-							'<h2 class="promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a></h2>' +
+							'<div class="promo-box__title"><div class="promo-box__title__name">Related Content</div></div>' +
+							'<div class="promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a></div>' +
 						'</div>' +
 					'</aside>' +
 				'</body>\n'
@@ -205,10 +206,10 @@ describe('Promo-boxes', function() {
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
 				'<body>' +
-					'<aside class="promo-box promo-box--long ng-pull-out ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
-						'<div class="promo-box__title"><h2 class="promo-box__title__name">Tatomer Riesling 2012</h2></div>' +
+					'<aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 						'<div class="promo-box__wrapper">' +
-							'<h2 class="promo-box__headline">Greece debt crisis</h2>' +
+							'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
+							'<div class="promo-box__headline">Greece debt crisis</div>' +
 							'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
 								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
@@ -223,10 +224,10 @@ describe('Promo-boxes', function() {
 							'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
 						'</div>' +
 					'</aside>' +
-					'<aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">' +
-						'<div class="promo-box__title"><h2 class="promo-box__title__name">Tatomer Riesling 2012</h2></div>' +
+					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 						'<div class="promo-box__wrapper">' +
-							'<h2 class="promo-box__headline">Greece debt crisis</h2>' +
+							'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
+							'<div class="promo-box__headline">Greece debt crisis</div>' +
 							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
 								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
 								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
@@ -235,6 +236,56 @@ describe('Promo-boxes', function() {
 							'</picture>' +
 							'<div class="promo-box__content">' +
 							'<div class="promo-box__content__initial"><p>Graham Tatomer worked at Austrian Riesling producer Emmerich Knoll and now fashions this example from the old vines of the Kick-on Ranch in Santa Barbara (£26.95, Roberson)</p></div></div>' +
+						'</div>' +
+					'</aside>' +
+				'</body>\n'
+			);
+		});
+	});
+
+	it('should not strip out text in a headline before a link', function() {
+		return transform(
+			'<promo-box>' +
+				'<promo-title><p>Series: China Great Game</p></promo-title>' +
+				'<promo-headline><p>As China seeks to expand its sphere of influence, it is likely to encounter significant resistance. <a href="http://www.ft.com/indepth/china-great-game" title="Chinas Great Game in depth">Read more</a> </p></promo-headline>' +
+				'<promo-intro><p><a href="/content/6e098274-587a-11e5-a28b-50226830d644">Road to a new empire </a> <br/>A modern-day Silk route is Xi Jinping’s signature foreign policy. <a href="/content/6e098274-587a-11e5-a28b-50226830d644">Read more </a> </p></promo-intro>' +
+			'</promo-box>'
+		)
+		.then(function(transformedXml) {
+			transformedXml.should.equal(
+				'<body>' +
+					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
+						'<div class="promo-box__wrapper">' +
+							'<div class="promo-box__title"><div class="promo-box__title__name">Series: China Great Game</div></div>' +
+							'<div class="promo-box__headline">As China seeks to expand its sphere of influence, it is likely to encounter significant resistance. <a href="http://www.ft.com/indepth/china-great-game" data-trackable="link" class="article__body__link">Read more</a> </div>' +
+							'<div class="promo-box__content">' +
+								'<div class="promo-box__content__initial"><p><a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link" class="article__body__link">Road to a new empire </a> <br>A modern-day Silk route is Xi Jinping’s signature foreign policy. <a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link" class="article__body__link">Read more </a> </p></div>' +
+								'</div>' +
+						'</div>' +
+					'</aside>' +
+				'</body>\n'
+			);
+		});
+	});
+
+	it('should accept a title without <p> element inside it', function() {
+		return transform(
+			'<promo-box>' +
+				'<promo-title><b>CV</b></promo-title>' +
+				'<promo-headline><p>This is the headline</p></promo-headline>' +
+				'<promo-intro><p>Here is some content</p></promo-intro>' +
+			'</promo-box>'
+		)
+		.then(function(transformedXml) {
+			transformedXml.should.equal(
+				'<body>' +
+					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
+						'<div class="promo-box__wrapper">' +
+							'<div class="promo-box__title"><div class="promo-box__title__name"><b>CV</b></div></div>' +
+							'<div class="promo-box__headline">This is the headline</div>' +
+							'<div class="promo-box__content">' +
+								'<div class="promo-box__content__initial"><p>Here is some content</p></div>' +
+							'</div>' +
 						'</div>' +
 					'</aside>' +
 				'</body>\n'

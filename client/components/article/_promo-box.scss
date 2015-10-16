@@ -13,9 +13,6 @@
 .promo-box--long {
 	float: none;
 	max-width: 100%;
-	@include oGridRespondTo(XL) {
-		margin-right: 100px;
-	}
 }
 
 .promo-box--long img {
@@ -27,16 +24,20 @@
 }
 
 .promo-box__title {
+	position: absolute;
+	top: -20px;
+	left: 10px;
 	padding: 0;
-	border-bottom: 1px solid getColor('warm-3');
 	overflow: hidden;
+	background-color: getColor('warm-5');
 }
+
 .promo-box__title__name {
-	@include nTypeAlpha(2);
+	@include nTypeFoxtrot(3);
 	display: inline-block;
-	margin: 0 10px 0 0;
-	padding: 10px 0;
+	padding: 10px;
 	color: getColor('cold-3');
+	font-weight: 900;
 	a {
 		color: getColor('cold-3');
 		border-bottom: 0;
@@ -45,11 +46,11 @@
 }
 
 .promo-box__wrapper {
+	position: relative;
 	float: left;
-	padding: 10px;
-	margin-top: 10px;
-	background-color: getColor('pink');
-	border-bottom: 1px solid getColor('warm-3');
+	margin-top: 20px;
+	padding: 15px;
+	border: 1px solid getColor('warm-3');
 	> .o-expander__toggle {
 		@include nTypeAlpha(3);
 		i {
@@ -73,16 +74,11 @@
 }
 
 .promo-box__headline {
-	@include nTypeFoxtrot(2);
-	margin: 0;
+	@include nTypeBravo(2);
+	margin-top: 10px;
 	color: getColor('cold-3');
-
 	p {
 		margin: 0;
-	}
-	a {
-		@include nLinksHeadline();
-		border-bottom: 0;
 	}
 }
 
@@ -91,4 +87,9 @@
 	p {
 		margin: 5px 0 0;
 	}
+}
+
+.promo-box__list {
+	padding-left: 20px;
+	margin: 10px 0;
 }
