@@ -4,7 +4,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 	position: relative;
 	z-index: 18;
 	top: -65px;
-	background-color: oColorsGetPaletteColor('white');
+	background-color: white;
 
 	@include oGridRespondTo(S) {
 		top: -35px;
@@ -72,6 +72,10 @@ $o-grid-gutters: (default: 0px, M: 0px);
 
 .trial-barrier-grid {
 	.trial-barrier-grid__options {
+		@include oGridRespondTo(L) {
+			border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+		}
+
 		h3 {
 			@include nTypeAlpha(4);
 			text-align: center;
@@ -166,8 +170,13 @@ $o-grid-gutters: (default: 0px, M: 0px);
 		padding-top: 20px;
 		padding-bottom: 10px;
 		border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
+
 		@include oGridRespondTo(S) {
 			min-height: 560px;
+		}
+
+		@include oGridRespondTo(L) {
+			border-bottom: 0px;
 		}
 	}
 
