@@ -4,6 +4,7 @@ TEST_APP := "ft-article-branch-${CIRCLE_BUILD_NUM}"
 
 install:
 	obt install --verbose
+	bower install
 
 test: verify unit-test
 
