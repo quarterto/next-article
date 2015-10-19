@@ -4,6 +4,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 	position: relative;
 	z-index: 18;
 	top: -65px;
+	background-color: oColorsGetPaletteColor('white');
 
 	@include oGridRespondTo(S) {
 		top: -35px;
