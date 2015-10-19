@@ -4,6 +4,7 @@ TEST_APP := "ft-article-branch-${CIRCLE_BUILD_NUM}"
 
 install:
 	obt install --verbose
+	obt install --verbose # hackily run obt install twice (bower install doesn't seem to work first time :()
 
 test: verify unit-test
 
