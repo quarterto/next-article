@@ -6,8 +6,7 @@ var articleTopicMapping = require('../mappings/article-topic-mapping');
 module.exports = function(article, imageOptions) {
 	imageOptions = imageOptions || {
 		imageSrcset: {
-			s: 100,
-			m: 200
+			s: 200
 		},
 		imageClass: '',
 		imageAlt: ''
