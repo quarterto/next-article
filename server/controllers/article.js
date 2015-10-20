@@ -124,18 +124,26 @@ module.exports = function(req, res, next) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
 			}
+			if (metadata && metadata.primarySection) {
 			//specialReport is a circular - if it exists, delete it before dehydrating it
-			if (metadata && metadata.primarySection && metadata.primarySection.term.specialReport) {
-				delete metadata.primarySection.term.specialReport;
+				if (metadata.primarySection.term.specialReport) {
+					delete metadata.primarySection.term.specialReport;
+				}
+			//if primarySection is Columnists, replace with Author
+				if (
+					metadata.primarySection.term.name === 'Columnists' &&
+					metadata.authors.length &&
+					(metadata.authors[0].term.id !== metadata.primaryTheme.term.id)
+				) {
+					metadata.primarySection.term = metadata.authors[0].term;
+				}
 			}
+
 			var dehydratedMetadata = {
 				primaryTheme: metadata && metadata.primaryTheme ? metadata.primaryTheme : null,
 				primarySection: metadata && metadata.primarySection ? metadata.primarySection : null,
 				package: articleV1 && articleV1.item && articleV1.item.package ? articleV1.item.package : null
 			};
-			// Some posts (e.g. FastFT are only available in CAPI v2)
-			// TODO: Replace with something in CAPI v2
-			var isColumnist = metadata && metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
 			return images($, {
@@ -153,7 +161,6 @@ module.exports = function(req, res, next) {
 						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
 						toc: $.html('.article__toc'),
-						isColumnist: isColumnist,
 						layout: 'wrapper',
 						primaryTag: primaryTag,
 						suggestedTopic: articleV1 && articleV1.item ? exposeTopic(articleV1.item.metadata) : null,
