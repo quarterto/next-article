@@ -30,11 +30,11 @@ describe('Podcasts Controller', function() {
 	}
 
 	beforeEach(function() {
-		nock('https://ft-elastic-search.com')
+		nock('https://next-elastic.ft.com')
 			.post('/v1_api_v2/item/_mget', { ids: ['podcast-exists'] })
 			.reply(200, fixtureEsFound);
 
-		nock('https://ft-elastic-search.com')
+		nock('https://next-elastic.ft.com')
 			.post('/v1_api_v2/item/_mget', { ids: ['podcast-does-not-exist'] })
 			.reply(200, fixtureEsNotFound);
 	});
@@ -43,7 +43,7 @@ describe('Podcasts Controller', function() {
 
 		beforeEach(function() {
 
-			nock('https://ft-elastic-search.com')
+			nock('https://next-elastic.ft.com')
 				.post('/v1_api_v2/item/_search', matchRelatedPostBody)
 				.reply(200, fixtureEsNoResults);
 
@@ -99,7 +99,7 @@ describe('Podcasts Controller', function() {
 
 		beforeEach(function() {
 
-			nock('https://ft-elastic-search.com')
+			nock('https://next-elastic.ft.com')
 				.post('/v1_api_v2/item/_search', matchRelatedPostBody)
 				.reply(500, 'This is broken');
 
