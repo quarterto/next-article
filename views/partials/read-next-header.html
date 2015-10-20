@@ -1,9 +1,11 @@
 {{#with article}}
-	<aside class="next-up next-up__header" data-o-grid-colspan="hide L3 Loffset1" data-trackable="next-up-header" role="complementary" aria-hidden="true">
-		<p class="next-up__intro next-up__intro__header">{{#if moreRecent}}Read latest:{{else}}Read next:{{/if}}</p>
-			<a href="{{headline.url}}" class="next-up__headline" data-trackable="headline-link--{{source}}{{#if moreRecent}}--moreRecent{{/if}}">{{headline.text}}</a>
-		<time class="next-up__timestamp {{#if moreRecent}}next-up__timestamp__more-recent{{/if}} o-date" data-o-component="o-date" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}" data-o-date-js>
-			{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
-		</time>
+	<aside class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="hide L4 XL3 XLoffset1" data-trackable="next-up-header" role="complementary" aria-hidden="true">
+		<div class="next-up next-up__header">
+			<p class="next-up__intro next-up__intro__header">{{#if moreRecent}}Read latest:{{else}}Read next:{{/if}}</p>
+				<a href="{{headline.url}}" class="next-up__headline" data-trackable="headline-link--{{source}}{{#if moreRecent}}--moreRecent{{/if}}">{{headline.text}}</a>
+			<time class="next-up__timestamp {{#if moreRecent}}next-up__timestamp__more-recent{{/if}} o-date" data-o-component="o-date" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}" data-o-date-js>
+				{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
+			</time>
+		</div>
 	</aside>
 {{/with}}
