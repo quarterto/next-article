@@ -52,7 +52,7 @@
             </xsl:when>
             <xsl:otherwise>
               <xsl:text disable-output-escaping="yes"><![CDATA[<!--[if IE 9]><video style="display: none;"><![endif]-->]]></xsl:text>
-              <source data-image-size="690" media="(min-width: 730px)"></source>
+              <source data-image-size="690" media="(min-width: 420px)"></source>
               <xsl:text disable-output-escaping="yes"><![CDATA[<!--[if IE 9]></video><![endif]-->]]></xsl:text>
               <img data-image-type="src" data-image-size="400" class="n-image__img" alt=""/>
             </xsl:otherwise>
