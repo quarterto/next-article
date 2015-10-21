@@ -1,8 +1,12 @@
 {{#with suggested}}
-	<div class="article__suggested-reads">
-		<div class="article__suggested-reads__topic">
-			<h3 class="article__suggested-reads__title">More on:</h3>
-			<h4><a data-trackable="suggested-topic" href="{{topicLink}}">{{topicName}}</a></h4>
+	<div class="suggested-reads">
+		<div class="suggested-reads__topic">
+			<h3 class="suggested-reads__title">More on:</h3>
+			<div class="suggested-reads__item">
+				<div class="suggested-reads__item__content">
+					<h4><a class="suggested-reads__item__topic" data-trackable="suggested-topic" href="{{topicLink}}">{{topicName}}</a></h4>
+				</div>
+			</div>
 		</div>
 	</div>
 {{/with}}
