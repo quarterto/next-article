@@ -6,12 +6,11 @@ var sinon = require('sinon');
 var expect = require('chai').expect;
 var httpMocks = require('node-mocks-http');
 
-var subject = require('../../../server/controllers/podcast');
+var subject = require('../../../server/controllers/podcast-legacy');
 var fixtureEsFound = require('../../fixtures/capi-v1-elastic-search-podcast');
-var fixtureEsNotFound = require('../../fixtures/capi-v1-elastic-search-not-found');
 var fixtureEsNoResults = require('../../fixtures/capi-v1-elastic-search-no-results');
 
-describe('Podcasts Controller', function() {
+describe('Podcast Legacy Controller', function() {
 
 	var request;
 	var response;
@@ -22,7 +21,7 @@ describe('Podcasts Controller', function() {
 		request = httpMocks.createRequest(params);
 		response = httpMocks.createResponse();
 		response.locals = { flags: flags || {} };
-		return subject(request, response, next);
+		return subject(request, response, next, fixtureEsFound.docs[0]._source);
 	}
 
 	function matchRelatedPostBody(body) {
@@ -30,16 +29,6 @@ describe('Podcasts Controller', function() {
 		var id2 = body.query.filtered.filter.term['item.metadata.sections.term.id'];
 		return id1 === id2;
 	}
-
-	beforeEach(function() {
-		nock('https://next-elastic.ft.com')
-			.post('/v1_api_v2/item/_mget', { ids: ['podcast-exists'] })
-			.reply(200, fixtureEsFound);
-
-		nock('https://next-elastic.ft.com')
-			.post('/v1_api_v2/item/_mget', { ids: ['podcast-does-not-exist'] })
-			.reply(200, fixtureEsNotFound);
-	});
 
 	describe('Business as usual', function() {
 
@@ -49,11 +38,7 @@ describe('Podcasts Controller', function() {
 				.post('/v1_api_v2/item/_search', matchRelatedPostBody)
 				.reply(200, fixtureEsNoResults);
 
-			return createInstance({
-				params: {
-					id: 'podcast-exists'
-				}
-			});
+			return createInstance();
 		});
 
 		it('returns a successful response', function() {
@@ -80,23 +65,6 @@ describe('Podcasts Controller', function() {
 
 	});
 
-	describe('No article', function() {
-
-		beforeEach(function() {
-			return createInstance({
-				params: {
-					id: 'podcast-does-not-exist'
-				}
-			});
-		});
-
-		it('delegates errors back to next express', function() {
-			expect(next.calledOnce).to.be.ok;
-			expect(next.firstCall.args[0]).to.be.instanceof(Error);
-		});
-
-	});
-
 	describe('Related content failure', function() {
 
 		beforeEach(function() {
@@ -105,11 +73,7 @@ describe('Podcasts Controller', function() {
 				.post('/v1_api_v2/item/_search', matchRelatedPostBody)
 				.reply(500, 'This is broken');
 
-			return createInstance({
-				params: {
-					id: 'podcast-exists'
-				}
-			});
+			return createInstance();
 		});
 
 		it('returns a successful response', function() {
