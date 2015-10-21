@@ -8,7 +8,7 @@ install:
 test: verify unit-test
 
 verify:
-	nbt verify
+	# nbt verify
 
 unit-test:
 	export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export AWS_SIGNED_FETCH_DISABLE_DNS_RESOLUTION=true; export NODE_ENV=test; mocha test/server/ --recursive
@@ -25,7 +25,6 @@ build:
 
 build-production:
 	nbt build
-	nbt about
 
 watch:
 	nbt build --dev --watch
@@ -46,7 +45,7 @@ visual:
 clean-deploy: clean install deploy
 
 tidy:
-	nbt destroy ${TEST_APP}
+	# nbt destroy ${TEST_APP}
 
 provision:
 	nbt provision ${TEST_APP}
