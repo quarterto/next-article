@@ -139,7 +139,6 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
 						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
-						dehydratedState: {},
 						dehydratedMetadata: dehydratedMetadata
 					};
 

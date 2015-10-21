@@ -28,7 +28,6 @@ app.use(bodyParser.json());
 app.use('^/content/:id$', require('./controllers/access'));
 
 // These routes supply supplement content for an article so don't need to go through barriers middleware
-app.get('^/articles', require('./controllers/articles'));
 app.get('^/article/:id/story-package', require('./controllers/related/story-package'));
 app.get('^/article/:id/more-on', require('./controllers/related/more-on'));
 app.get('^/article/:id/special-report', require('./controllers/related/special-report'));
