@@ -1,6 +1,6 @@
 $suggested-reads-border: getColor('warm-3');
 
-.article__suggested-reads {
+.suggested-reads {
 	max-width: 300px;
 	margin: 0 auto;
 	a {
@@ -8,7 +8,7 @@ $suggested-reads-border: getColor('warm-3');
 	}
 }
 
-.article__suggested-reads__item {
+.suggested-reads__item {
 	margin-bottom: 15px;
 	padding: 0;
 	position: relative;
@@ -17,11 +17,11 @@ $suggested-reads-border: getColor('warm-3');
 		@include nextIcon(arrow-right, getColor('cold-2'), 15);
 		content: '';
 		position: absolute;
-		top: 5px;
+		top: 4px;
 	}
 }
 
-.article__suggested-reads__article-list {
+.suggested-reads__article-list {
 	border: 1px solid $suggested-reads-border;
 	margin: 30px 0 20px;
 	padding: 15px;
@@ -34,7 +34,7 @@ $suggested-reads-border: getColor('warm-3');
 
 }
 
-.article__suggested-reads__title {
+.suggested-reads__title {
 	@include nTypeFoxtrot(3);
 	font-size: 19px;
 	margin-bottom: 15px;
@@ -48,35 +48,33 @@ $suggested-reads-border: getColor('warm-3');
 	font-weight: 900;
 }
 
-.article__suggested-reads__item__content {
+.suggested-reads__item__content {
 	margin-left: 20px;
 	a { text-decoration: none; }
 }
 
-.article__suggested-reads__item__headline {
+.suggested-reads__item__headline {
 	@include nTypeFoxtrot(3);
+	@include nLinksHeadline();
 	color: getColor('cold-2');
 	margin: 0;
 	margin-bottom: 5px;
 }
 
-.article__suggested-reads__item__topic {
+.suggested-reads__item__topic {
 	@include nLinksTopic();
-	@include nTypeBravo(4);
-	font-size: 14px;
-	line-height: 16px;
-	display: inline;
-	margin: 0;
-	display: none;
+	@include nTypeBravo(3);
+	font-style: normal;
+	text-transform: capitalize;
 }
 
-.article__suggested-reads__item__image {
+.suggested-reads__item__image {
 	@include oGridColumn(4);
 	align-self: center;
 	display: none;
 }
 
-.article__suggested-reads__topic {
+.suggested-reads__topic {
 	border: 1px solid $suggested-reads-border;
 	margin: 20px 0;
 	padding: 15px;
@@ -92,24 +90,4 @@ $suggested-reads-border: getColor('warm-3');
 	h4 { margin: 0; }
 
 	h3 { margin-left: 5px; }
-
-
-	a {
-		@include nLinksTopic();
-		@include nTypeBravo(3);
-		font-style: normal;
-		text-transform: capitalize;
-		&::after {
-			@include nextIcon(arrow-right, oColorsGetPaletteColor('claret'), 15);
-			content: '';
-			margin-bottom: -2px;
-		}
-
-		&:hover::after {
-			@include nextIcon(arrow-right, getColor('cold-2'), 15);
-			content: '';
-			margin-bottom: -2px;
-		}
-
-	}
 }

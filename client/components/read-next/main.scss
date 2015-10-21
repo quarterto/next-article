@@ -38,6 +38,22 @@
 	}
 }
 
+.next-up__item {
+
+	margin-left: 15px;
+
+	h4 {
+		margin: 0;
+	}
+
+	&::before {
+		@include nextIcon(arrow-right, getColor('cold-2'), 17);
+		content: '';
+		position: absolute;
+		top: 22px;
+		left: 10px;
+	}
+}
 .next-up__bottom__wrapper {
 	margin-top: 45px;
 	border-top: 1px solid getColor('warm-3');
@@ -73,19 +89,9 @@
 	color: getColor('cold-2');
 	text-decoration: none;
 	border-bottom: 0;
-	display: inline-block;
 
 	.next-up__header & {
 		font-size: 24px; // FIXME: revist upon type scale revisions
-		&::after {
-			@include nextIcon(arrow-right, getColor('cold-2'), 17);
-			content: '';
-			speak: none;
-			position: absolute;
-			bottom: 6px;
-			padding-left: 10px;
-		}
-
 	}
 
 	.next-up__bottom & {
