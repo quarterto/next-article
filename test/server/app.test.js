@@ -16,14 +16,14 @@ describe('Smoke Tests: ', function() {
 	describe('Assets', function() {
 
 		it('should serve a good to go page', function(done) {
-			request(helpers.host + '/__gtg', function(error, res, body) {
+			request(helpers.host + '/__gtg', function(error, res) {
 				expect(res.statusCode).to.equal(200);
 				done();
 			});
 		});
 
 		it('should serve a main.js file', function(done) {
-			request(helpers.host + '/article/main.js', function(error, res, body) {
+			request(helpers.host + '/article/main.js', function(error, res) {
 				expect(res.headers['content-type']).to.match(/application\/javascript/);
 				expect(res.statusCode).to.equal(200);
 				done();
@@ -31,7 +31,7 @@ describe('Smoke Tests: ', function() {
 		});
 
 		it('should serve a main.css file', function(done) {
-			request(helpers.host + '/article/main.css', function(error, res, body) {
+			request(helpers.host + '/article/main.css', function(error, res) {
 				expect(res.headers['content-type']).to.match(/text\/css/);
 				expect(res.statusCode).to.equal(200);
 				done();

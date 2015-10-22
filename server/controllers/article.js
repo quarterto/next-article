@@ -63,7 +63,7 @@ module.exports = function(req, res, next) {
 
 		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet', retry: 0 })
 			.then(function (images) {
-				var image = images.members.reduce(function (a, b) {
+				var image = images.members.reduce(function (a) {
 					return a;
 				});
 				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet', retry: 0 });
@@ -93,7 +93,7 @@ module.exports = function(req, res, next) {
 					standFirst: article[0] ? article[0].item.editorial.standFirst : "",
 					renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
 					id: extractUuid(article[1].id),
-					webUrl: article[0] && article[0].item  && article[0].item.location ? article[0].item.location.uri : '',
+					webUrl: article[0] && article[0].item && article[0].item.location ? article[0].item.location.uri : '',
 					encodedTitle: encodeURIComponent(article[1].title.replace(/\&nbsp\;/g, ' '))
 				}),
 				socialMediaImage(article[1]),

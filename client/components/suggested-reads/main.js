@@ -2,7 +2,7 @@
 var fetchres = require('fetchres');
 
 module.exports = {
-	init: function(flags) {
+	init: function() {
 		return;
 		// if (!flags.get('articleSuggestedRead')) { return; }
 		var el = document.querySelector('.js-suggested-reads');

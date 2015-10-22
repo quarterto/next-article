@@ -24,7 +24,7 @@ module.exports.init = function(uuid, flags) {
 		commentLink.textContent = commentCount;
 		document.querySelector('.article__share').appendChild(commentLink);
 	});
-	OComments.on('tracking.postComment', function (ev) {
+	OComments.on('tracking.postComment', function () {
 		eventData.meta = { interaction: 'posted' };
 		trackEvent(eventData);
 	});

@@ -13,7 +13,9 @@ var fixtureEsNoResults = require('../../fixtures/capi-v1-elastic-search-no-resul
 
 describe('Podcasts Controller', function() {
 
-	var request, response, next;
+	var request;
+	var response;
+	var next;
 
 	function createInstance(params, flags) {
 		next = sinon.stub();

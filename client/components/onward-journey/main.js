@@ -28,7 +28,7 @@ function createPromise(el, url) {
 		.catch(() => {});
 }
 
-module.exports.init = function(flags) {
+module.exports.init = function() {
 	var articleEl = document.querySelector('.article');
 	var dehydratedMetadata = document.getElementById('dehydrated-metadata');
 

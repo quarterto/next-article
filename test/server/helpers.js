@@ -16,7 +16,7 @@ var host = 'http://localhost:' + PORT;
 module.exports = {
 	host: host,
 	servesGoodHTML: function(url, done) {
-		request(host + url, function(error, res, body) {
+		request(host + url, function(error, res) {
 			expect(res.headers['content-type']).to.match(/text\/html/);
 			expect(res.statusCode).to.equal(200);
 			done();

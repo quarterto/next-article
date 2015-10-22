@@ -6,7 +6,7 @@ var api = require('next-ft-api-client');
 var logger = require('ft-next-express').logger;
 var capiMapiRegex = require('../utils/capi-mapi-regex').content;
 
-module.exports = function($body, opts) {
+module.exports = function($body) {
 
 	var $images = $body('picture[data-image-set-id]');
 
