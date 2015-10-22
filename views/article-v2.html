@@ -155,9 +155,9 @@
 
 {{>propensity-messaging-promo-unit}}
 
-{{#if readNextArticles}}
-	{{>read-next-bottom articles=readNextArticles}}
-{{/if}}
+{{#ifAll readNextArticle readNextArticle.moreRecent}}
+	{{>read-next-bottom article=readNextArticle}}
+{{/ifAll}}
 
 <div class="o-grid-container">
 	<div class="o-grid-row {{#if readNextArticle}}read-next__container{{/if}}">
@@ -168,11 +168,9 @@
 				<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 			{{/if}}
 		{{/if}}
-		{{#unless @root.flags.articleSuggestedRead}}
 			{{#if moreOns}}
 				{{>more-ons}}
 			{{/if}}
-		{{/unless}}
 	</div>
 
 	{{#if comments}}
