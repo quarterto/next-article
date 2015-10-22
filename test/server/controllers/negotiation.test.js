@@ -134,7 +134,7 @@ describe('Negotiation Controller', function() {
 
 				return createInstance({
 					params: {
-						id: '395650fa-5b9c-11e5-a28b-50226830d644'
+						id: '0e43fa9c-cbeb-11e0-9176-00144feabdc0'
 					}
 				}, { elasticSearchItemGet: true });
 
@@ -144,9 +144,8 @@ describe('Negotiation Controller', function() {
 				dependencyStubs.articleLegacy.reset();
 			});
 
-			it('defers to the article legacy controller', function() {
-				expect(dependencyStubs.articleLegacy.callCount).to.equal(1);
-				expect(response.statusCode).to.not.equal(404);
+			it('redirects to ft.com', function() {
+				expect(response.statusCode).to.equal(302);
 			});
 		});
 
