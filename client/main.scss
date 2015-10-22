@@ -50,6 +50,7 @@ $o-comments-is-silent: false;
 @import "components/special-report/main";
 @import "components/suggested-reads/main";
 @import "components/read-next/main";
+@import "components/propensity-messaging/main";
 
 @media print {
 	body > section,
