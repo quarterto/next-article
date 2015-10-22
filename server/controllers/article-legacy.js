@@ -2,6 +2,7 @@
 
 var fetchres = require('fetchres');
 var api = require('next-ft-api-client');
+var logger = require('ft-next-express').logger;
 var bylineTransform = require('../transforms/byline');
 var cacheControl = require('../utils/cache-control');
 var extractTags = require('../utils/extract-tags');
@@ -298,6 +299,10 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 				})
 				.then(function(viewModel) {
 					return res.render('article-v2', viewModel);
+				})
+				.catch(function(error) {
+					logger.error(error);
+					next(error);
 				});
 		});
 };

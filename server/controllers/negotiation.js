@@ -65,12 +65,13 @@ module.exports = function negotiationController(req, res, next) {
 		getArticleV2(req.params.id, res.locals.flags)
 	])
 		.then(articles => {
-			if (articles[0] || articles[1]) {
-				if (isArticlePodcast(articles[0])) {
-					controllerPodcastLegacy(req, res, next, articles[0]);
-				} else {
-					controllerArticleLegacy(req, res, next, articles);
-				}
+			if (articles[1]) {
+				controllerArticleLegacy(req, res, next, articles);
+			} else if (isArticlePodcast(articles[0])) {
+				controllerPodcastLegacy(req, res, next, articles[0]);
+			} else if (articles[0]) {
+				let url = articles[0].item.location.uri;
+				res.redirect(302, `${url}${url.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
 			} else {
 				res.sendStatus(404);
 			}
