@@ -35,7 +35,10 @@ var topicQuery4 = 'authorsId:"Q0ItMDAwMDg4Ng==-QXV0aG9ycw=="';
 
 describe('Suggested Read Model', function() {
 
-	var stubContentLegacy, stubSearchLegacy, api, results;
+	var stubContentLegacy;
+	var stubSearchLegacy;
+	var api;
+	var results;
 
 	before(function() {
 		api = readNext.__get__('api');

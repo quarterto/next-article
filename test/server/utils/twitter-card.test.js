@@ -25,12 +25,12 @@ describe('Twitter card', function () {
 
 	it('should return an Open Graph object', function () {
 		twitterCard(v2, v1, image).should.deep.equal(
-		    {
+				{
 				"description": "vertical but yet are broadly",
 				"image": "http://foo.png",
 				"title": "Monitise issues fresh",
 				"card": "summary_large_image"
-			}	
+			}
 		);
 	});
 
