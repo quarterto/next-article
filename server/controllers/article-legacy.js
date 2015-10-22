@@ -16,9 +16,9 @@ var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
 var getSuggested = require('./article-helpers/suggested');
-var exposeTopic = require('./article-helpers/exposeTopic');
+var articleTopicMapping = require('../mappings/article-topic-mapping');
 var readNext = require('../lib/read-next');
-var articlePodMapping = require('../mappings/article-pod-mapping.js');
+var articlePodMapping = require('../mappings/article-pod-mapping');
 
 module.exports = function articleLegacyController(req, res, next, payload) {
 
@@ -131,7 +131,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 						toc: $.html('.article__toc'),
 						layout: 'wrapper',
 						primaryTag: primaryTag,
-						suggestedTopic: articleV1 && articleV1.item ? exposeTopic(articleV1.item.metadata) : null,
+						suggestedTopic: articleV1 && articleV1.item ? articleTopicMapping(articleV1.item.metadata) : null,
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
 						shareButtons: res.locals.flags.articleShareButtons,
@@ -140,7 +140,6 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
 						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
-						dehydratedState: {},
 						dehydratedMetadata: dehydratedMetadata
 					};
 
