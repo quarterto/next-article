@@ -6,15 +6,7 @@ var cacheControl = require('../utils/cache-control');
 var externalPodcastLinks = require('../utils/external-podcast-links');
 var articlePodItemMapping = require('../mappings/article-pod-mapping');
 
-module.exports = function podcastController(req, res, next) {
-
-	function getArticle(guid) {
-		return api.contentLegacy({
-			uuid: guid,
-			useElasticSearch: true,
-			useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
-		});
-	}
+module.exports = function podcastLegacyController(req, res, next, payload) {
 
 	function mapArticle(data) {
 		return {
@@ -84,7 +76,7 @@ module.exports = function podcastController(req, res, next) {
 		next(err);
 	}
 
-	return getArticle(req.params.id)
+	return Promise.resolve(payload)
 		.then(mapArticle)
 		.then(getRelated)
 		.then(mapRelated)
