@@ -31,7 +31,9 @@ const subject = proxyquire('../../../server/controllers/negotiation', {
 
 describe('Negotiation Controller', function() {
 
-	let request, response, next;
+	let request;
+	let response;
+	let next;
 
 	function createInstance(params, flags) {
 		next = sinon.stub();
