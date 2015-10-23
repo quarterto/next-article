@@ -6,15 +6,15 @@ const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 
 function isCapiV1(article) {
-	return article.provenance.find(source => {
-		return source.includes('http://api.ft.com/content/items/v1/');
-	});
+	return article.provenance.find(
+	 	source => source.includes('http://api.ft.com/content/items/v1/')
+	);
 }
 
 function isCapiV2(article) {
-	return article.provenance.find(source => {
-		return source.includes('http://api.ft.com/enrichedcontent/');
-	});
+	return article.provenance.find(
+		source => source.includes('http://api.ft.com/enrichedcontent/')
+	);
 }
 
 function transformArticleBody(article, flags) {
@@ -43,6 +43,22 @@ function transformArticleBody(article, flags) {
 		.then(articleBody => bodyTransform(articleBody, flags).html());
 }
 
+function transformMetadata(metadata) {
+	let ignore = [ 'mediaType', 'iptc', 'icb' ];
+
+	return metadata
+		.filter(tag => {
+			return !ignore.find(taxonomy => taxonomy === tag.taxonomy);
+		})
+		.map(tag => {
+			return {
+				id: tag.idV1,
+				name: tag.prefLabel,
+				url: `/stream/${tag.taxonomy}Id/${tag.idV1}`
+			};
+		});
+}
+
 module.exports = function articleV3Controller(req, res, next, payload) {
 
 	transformArticleBody(payload, res.locals.flags)
@@ -54,6 +70,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			// Start hacking for V1 and V2 compat.
 			payload.articleV3 = true;
 			payload.standFirst = payload.summaries[0];
+			payload.tags = transformMetadata(payload.metadata);
 			// End hacking for V1 and V2 compat.
 
 			// TODO: barrier
@@ -62,7 +79,6 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.dfp = null;
 			payload.visualCat = null;
 			payload.isSpecialReport = null;
-			payload.tags = [];
 			payload.toc = null;
 			payload.primaryTag = null;
 			payload.suggestedTopic = null;
