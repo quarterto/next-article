@@ -6,6 +6,7 @@
     overflow: hidden;
     text-align: center;
     font-family: FinancierDisplayWeb;
+    font-size: 25px;
     &:before,
     &:after {
       background-color: white;
@@ -22,14 +23,20 @@
       left: 0.5em;
       margin-right: -50%;}}
   &__related-content-subheading {
-    font-size: 3em;
+    font-size: 40px;
     text-align: center;
     font-weight: bold;
     padding: 0 20% 0 20%;}
+  &__related-content-items {
+    width: 82%;
+    margin: auto auto 60px auto;}
   &__related-content-tag {
     font-weight: bold;
+    font-size: 20px;
+    margin: 5px 0 5px 0;
     color: #F47985;}
   &__related-content-headline {
+    margin: 0;
     font-size: 2em;
     font-weight: lighter;
     font-family: FinancierDisplayWeb;}
@@ -41,6 +48,8 @@
     overflow: hidden;
     padding-left: 10%;
     font-family: FinancierDisplayWeb;
+    margin: 0;
+    font-size: 30px;
     &:before,
     &:after {
       background-color: white;
@@ -59,9 +68,10 @@
       left: 0.5em;
       margin-right: -50%;}}
   &__best-from-ft-item {
-    border-bottom: 1px solid white;}
+    border-bottom: 1px solid white;
+    margin: 20px 10% 0 10%;
+    text-align: center;}
   &__best-from-ft-stream-name {
-    text-align: center;
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 3em;}
@@ -98,11 +108,26 @@
     font-weight: bold;
     font-size: 1.5em;
     margin: 5px 0 5px 0;
+    border-bottom: none;
     &::after {
       content: '';
-      @include nextIcon(arrow-right, getColor('white'), 17);}}}
+      @include nextIcon(arrow-right, getColor('white'), 17);}
+    &:hover {
+      color: inherit;}}}
+
 .vertically-centered {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  @include oGridRespondTo(M) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+.horizontally-centered {
+  display: inline-block;}
+
+.text-box {
+  border: 2px solid red;
+}
+.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after {
+    visibility: hidden !important;
 }
