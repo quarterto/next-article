@@ -15,7 +15,8 @@ var articleXSLT = require('../transforms/article-xslt');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
-var getSuggested = require('./article-helpers/suggested');
+var suggestedHelper = require('./article-helpers/suggested');
+var barrierHelper = require('./article-helpers/barrier');
 var articleTopicMapping = require('../mappings/article-topic-mapping');
 var readNext = require('../lib/read-next');
 var articlePodMapping = require('../mappings/article-pod-mapping');
@@ -67,7 +68,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 		}),
 		socialMediaImage(payload[1]),
 		res.locals.flags.articleSuggestedRead && payload[0] ? readNext(payload[0], res.locals.flags.elasticSearchItemGet, res.locals.flags.elasticSearchOnAws) : Promise.resolve(),
-		getSuggested(payload[0]).then(function(it) {
+		suggestedHelper(payload[0]).then(function(it) {
 			return api.contentLegacy({
 				uuid: (it && it.ids) || [],
 				useElasticSearch: res.locals.flags.elasticSearchItemGet,
@@ -211,89 +212,17 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 					}
 
 					if (res.locals.barrier) {
+						viewModel = barrierHelper(viewModel, res.locals.barrier);
 
-						if (res.locals.barrier.trialSimple) {
-							viewModel.trialSimpleBarrier = res.locals.barrier.trialSimple;
-						}
-
-						if (res.locals.barrier.trialGrid) {
-
-							viewModel.trialGridBarrier = res.locals.barrier.trialGrid;
-
-							if (!res.locals.barrier.trialGrid.packages.newspaper) {
-
-								viewModel.trialGridBarrier.missingNewspaper = {};
-							}
-
-							viewModel.trialGridBarrier.articleTitle = viewModel.title;
-
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.registerSimple) {
-							viewModel.registerSimpleBarrier = res.locals.barrier.registerSimple;
-							viewModel.barrierOverlay = {};
-							viewModel.registerSimpleBarrier.articleTitle = viewModel.title;
-						}
-
-						if (res.locals.barrier.registerGrid) {
-
-							viewModel.registerGridBarrier = res.locals.barrier.registerGrid;
-
-							if(!res.locals.barrier.registerGrid.packages.newspaper) {
-
-								viewModel.registerGridBarrier.missingNewspaper = {};
-							}
-
-							viewModel.registerGridBarrier.articleTitle = viewModel.title;
-
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.subscriptionGrid) {
-							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
-							viewModel.subscriptionGridBarrier.articleTitle = viewModel.title;
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.premiumSimple) {
-							viewModel.premiumSimpleBarrier = res.locals.barrier.premiumSimple;
-							viewModel.barrierOverlay = {};
-							viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
-						}
-
-						if (res.locals.barrier.premiumGrid) {
-							viewModel.premiumGridBarrier = res.locals.barrier.premiumGrid;
-							viewModel.barrierOverlay = {};
-							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
-						}
-
-						if (res.locals.barrier.corporateSimple) {
-							viewModel.corporateBarrier = res.locals.barrier.corporateSimple;
-							viewModel.barrierOverlay = {};
-							viewModel.corporateBarrier.articleTitle = viewModel.title;
-						}
-
-						viewModel.comments = null;
-						viewModel.body = null;
 						if (viewModel.articleV1) {
 							viewModel.articleV1.editorial.standFirst = null;
 						}
-						viewModel.byline = null;
-						viewModel.article.publishedDate = null;
-						viewModel.tableOfContents = null;
-						viewModel.primaryTag = null;
-						viewModel.save = null;
-						viewModel.tags = null;
-						viewModel.relatedContent = null;
-						viewModel.moreOns = null;
-						viewModel.shareButtons = null;
-						viewModel.myFTTray = null;
 					}
 
 					if (res.locals.firstClickFreeModel) {
 						viewModel.firstClickFree = res.locals.firstClickFreeModel;
 					}
+
 					return viewModel;
 				})
 				.then(function(viewModel) {
