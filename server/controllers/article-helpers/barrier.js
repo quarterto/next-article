@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = barrierHelper(viewModel, options) {
+module.exports = function barrierHelper(viewModel, options) {
 	if (options.trialSimple) {
 		viewModel.trialSimpleBarrier = options.trialSimple;
 	}
@@ -60,6 +60,7 @@ module.exports = barrierHelper(viewModel, options) {
 	viewModel.comments = null;
 	viewModel.body = null;
 	viewModel.byline = null;
+	viewModel.standFirst = null;
 	viewModel.article.publishedDate = null;
 	viewModel.tableOfContents = null;
 	viewModel.primaryTag = null;

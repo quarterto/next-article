@@ -80,7 +80,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 			res.set(cacheControl);
 
 			var articleV1 = results[0];
-			var article = results[1];
+			var articleV2 = results[1];
 			var mainImage = results[3];
 			var readNextArticle = results[4];
 			var readNextArticles = results[5].map(it => articlePodMapping(it));
@@ -89,10 +89,17 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 
 			var metadata = articleV1 && articleV1.item && articleV1.item.metadata;
 			var primaryTag = metadata ? articlePrimaryTag(metadata) : undefined;
+			var isSpecialReport = metadata && metadata.primarySection.term.taxonomy === 'specialReports';
+
+			if (isSpecialReport) {
+				primaryTag = metadata && metadata.primarySection.term;
+			}
+
 			if (primaryTag) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
 			}
+
 			if (metadata && metadata.primarySection) {
 			//specialReport is a circular - if it exists, delete it before dehydrating it
 				if (metadata.primarySection.term.specialReport) {
@@ -121,13 +128,15 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 				.then(function($) {
 					var viewModel = {
 						firstClickFree: null,
-						comments: article.comments && article.comments.enabled === true,
-						article: article,
-						articleV1: articleV1 && articleV1.item,
-						id: extractUuid(article.id),
-						title: article.title,
-						byline: bylineTransform(article.byline, articleV1),
-						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
+						comments: articleV2.comments && articleV2.comments.enabled,
+						articleV1: !!articleV1,
+						articleV2: true,
+						id: extractUuid(articleV2.id),
+						title: articleV2.title,
+						publishedDate: articleV2.publishedDate,
+						standFirst: articleV1 && articleV1.item.editorial.standFirst,
+						byline: bylineTransform(articleV2.byline, articleV1),
+						tags: extractTags(articleV2, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
 						toc: $.html('.article__toc'),
 						layout: 'wrapper',
@@ -140,7 +149,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 						moreOns: {},
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
-						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
+						isSpecialReport: isSpecialReport,
 						dehydratedMetadata: dehydratedMetadata
 					};
 
@@ -199,11 +208,11 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 					}
 
 					if (res.locals.flags.openGraph) {
-						viewModel.og = openGraph(article, articleV1, mainImage);
+						viewModel.og = openGraph(articleV2, articleV1, mainImage);
 					}
 
 					if (res.locals.flags.twitterCards) {
-						viewModel.twitterCard = twitterCardSummary(article, articleV1, mainImage);
+						viewModel.twitterCard = twitterCardSummary(articleV2, articleV1, mainImage);
 					}
 
 					if (res.locals.flags.articleSuggestedRead) {
@@ -213,10 +222,6 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 
 					if (res.locals.barrier) {
 						viewModel = barrierHelper(viewModel, res.locals.barrier);
-
-						if (viewModel.articleV1) {
-							viewModel.articleV1.editorial.standFirst = null;
-						}
 					}
 
 					if (res.locals.firstClickFreeModel) {
