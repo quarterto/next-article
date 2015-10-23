@@ -10,7 +10,7 @@ module.exports = function(metadata) {
 	tagToUse.term.url = '/stream/' +	tagToUse.term.taxonomy + 'Id/' + tagToUse.term.id;
 
 	//if part of a special report return the primarySection also
-	if (metadata.primarySection && metadata.primarySection.term.taxonomy === 'specialReports') {
+	if (metadata.primaryTheme && metadata.primarySection && metadata.primarySection.term.taxonomy === 'specialReports') {
 		tagToUse.term.specialReport = metadata.primarySection.term;
 	}
 
