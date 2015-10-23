@@ -7,7 +7,6 @@ var NoRelatedResultsException = require('../../lib/no-related-results-exception'
 var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function(req, res, next) {
-	var isInline = req.query.view === 'inline';
 	var storyPackageIds = req.query.ids;
 
 	if (!req.query.ids) {
@@ -33,9 +32,13 @@ module.exports = function(req, res, next) {
 		})
 		.then(function(articles) {
 			return res.render('related/story-package', {
-				articles: articles,
+				articles: articles.map(function(article, index) {
+					if (articles.length > 4 && article.image && index && index > 2) {
+						article.image = undefined;
+					}
+					return article;
+				}),
 				headerText: 'Related stories',
-				isInline: isInline
 			});
 		})
 		.catch(function(err) {
