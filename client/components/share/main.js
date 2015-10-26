@@ -2,7 +2,6 @@
 
 const OShare = require('o-share');
 const fetchres = require('fetchres');
-const oOverlay = require('o-overlay');
 
 function loadShareCount() {
 	let shareCount = document.querySelector('.js-share-count');
@@ -21,13 +20,6 @@ function loadShareCount() {
 }
 
 exports.init = function() {
-
-	console.log(">>>>>>>>");
-	console.log(oOverlay);
-	console.log("<<<<<<<<");
-
-	oOverlay.init();
-
 	var shareContainer = document.querySelector('[data-o-component=o-share]');
 	if (shareContainer && !shareContainer.classList.contains('data-o-share--js')) {
 		new OShare(shareContainer);
