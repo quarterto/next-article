@@ -25,17 +25,17 @@ function transformArticleBody(article, flags) {
 
 	let xsltParams = {
 		v3: 1,
-		renderSlideshows: flags.galleries ? 1 : 0,
-		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0,
-		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
-		renderTOC: flags.articleTOC ? 1 : 0,
-		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
-		reserveSpaceForMasterImage: flags.reserveSpaceForMasterImage ? 1 : 0,
-		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
-		standFirst: article.summaries[0],
-		renderSocial: flags.articleShareButtons ? 1 : 0,
 		id: article.id,
 		webUrl: article.webUrl,
+		standFirst: article.summaries[0],
+		renderTOC: flags.articleTOC ? 1 : 0,
+		renderSlideshows: flags.galleries ? 1 : 0,
+		renderSocial: flags.articleShareButtons ? 1 : 0,
+		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
+		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
+		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
+		reserveSpaceForMasterImage: flags.reserveSpaceForMasterImage ? 1 : 0,
+		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0,
 		encodedTitle: encodeURIComponent(article.title.replace(/\&nbsp\;/g, ' '))
 	};
 
@@ -43,34 +43,31 @@ function transformArticleBody(article, flags) {
 		.then(articleBody => bodyTransform(articleBody, flags).html());
 }
 
-function transformMetadata(metadata, primaryTag) {
-	let ignore = [ 'mediaType', 'iptc', 'icb' ];
+function transformMetadata(metadata) {
+	return metadata.map(tag => {
+		let v1 = {
+			id: tag.idV1,
+			name: tag.prefLabel,
+			url: `/stream/${tag.taxonomy}Id/${tag.idV1}`
+		};
 
-	return metadata
-		.filter(tag => {
-			return !ignore.find(taxonomy => taxonomy === tag.taxonomy)
-				&& (!primaryTag || tag.idV1 !== primaryTag.id);
-		})
-		.map(tag => {
-			return {
-				id: tag.idV1,
-				name: tag.prefLabel,
-				url: `/stream/${tag.taxonomy}Id/${tag.idV1}`
-			};
-		})
-		.slice(0, 5);
+		return Object.assign(v1, tag);
+	});
 }
 
-function getPrimaryTag(metadata) {
-	let primaryTheme = metadata.find(
+function getPrimaryTheme(metadata) {
+	return metadata.find(
 		tag => tag.primary && tag.taxonomy !== 'sections'
 	);
+}
 
-	let primarySection = metadata.find(
+function getPrimarySection(metadata) {
+	return metadata.find(
 		tag => tag.primary && tag.taxonomy === 'sections'
 	);
+}
 
-	// 'theme' takes precedence unless the section taxonomy is listed below
+function getPrimaryTag(primaryTheme, primarySection) {
 	let precedence = [ 'specialReports' ];
 	let primaryTag = primaryTheme || primarySection || null;
 
@@ -78,30 +75,92 @@ function getPrimaryTag(metadata) {
 		primaryTag = primarySection;
 	}
 
-	return primaryTag && {
-		id: primaryTag.idV1,
-		name: primaryTag.prefLabel,
-		taxonomy: primaryTag.taxonomy
-	};
+	return primaryTag;
+}
+
+function getTagsForDisplay(metadata, primaryTag) {
+	let ignore = [ 'mediaType', 'iptc', 'icb' ];
+
+	return metadata
+		.filter(tag => {
+			return !ignore.find(taxonomy => taxonomy === tag.taxonomy)
+				&& (!primaryTag || tag.id !== primaryTag.id);
+		})
+		.slice(0, 5);
+}
+
+function getMoreOnTags(primaryTheme, primarySection) {
+	let moreOnTags = [];
+
+	// TODO: Improve dehydrated data so this isn't necessary
+	primaryTheme && moreOnTags.push(
+		Object.assign({ metadata: 'primaryTheme' }, primaryTheme)
+	);
+
+	primarySection && moreOnTags.push(
+		Object.assign({ metadata: 'primarySection' }, primarySection)
+	);
+
+	// TODO: display should be up the template
+	moreOnTags[moreOnTags.length -1].class = 'more-on--small';
+
+	return moreOnTags.map(tag => {
+		let title;
+
+		switch (tag.taxonomy) {
+			case 'authors':
+				title = 'from';
+				break;
+			case 'sections':
+				title = 'in';
+				break;
+			case 'genre':
+				title = '';
+				break;
+			default:
+				title = 'on';
+		}
+
+		tag.title = title;
+
+		return tag;
+	});
 }
 
 module.exports = function articleV3Controller(req, res, next, payload) {
+
+	// Make metadata speak the same language as V1
+	payload.metadata = transformMetadata(payload.metadata)
+
+	let primarySection = getPrimarySection(payload.metadata);
+	let primaryTheme = getPrimaryTheme(payload.metadata);
+	let primaryTag = getPrimaryTag(primaryTheme, primarySection);
+
+	payload.primaryTag = primaryTag;
+	payload.tags = getTagsForDisplay(payload.metadata, primaryTag);
+	payload.isSpecialReport = primaryTag && primaryTag.taxonomy === 'specialReports';
+
+	// Decorate with related stuff
+	payload.moreOns = getMoreOnTags(primaryTheme, primarySection);
+
+	// <<< hacking for V1 and V2 compat.
+	payload.articleV1 = isCapiV1(payload);
+	payload.articleV2 = isCapiV2(payload);
+
+	payload.standFirst = payload.summaries[0];
+
+	// TODO: remove extraneous 'term' nesting
+	payload.dehydratedMetadata = {
+		primarySection: { term: primarySection },
+		primaryTheme: { term: primaryTheme },
+		package: payload.storyPackage || [],
+	};
+	// >>> hacking for V1 and V2 compat.
 
 	return transformArticleBody(payload, res.locals.flags)
 		.then(articleBody => {
 
 			payload.body = articleBody;
-			payload.layout = 'wrapper';
-
-			// Start hacking for V1 and V2 compat.
-			payload.articleV1 = isCapiV1(payload);
-			payload.articleV2 = isCapiV2(payload);
-			payload.standFirst = payload.summaries[0];
-			// End hacking for V1 and V2 compat.
-
-			payload.primaryTag = getPrimaryTag(payload.metadata);
-			payload.tags = transformMetadata(payload.metadata, payload.primaryTag);
-			payload.isSpecialReport = payload.primaryTag && payload.primaryTag.taxonomy === 'specialReports';
 
 			// TODO: barrier
 
@@ -110,8 +169,8 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.visualCat = null;
 			payload.toc = null;
 			payload.suggestedTopic = null;
-			payload.moreOns = null;
-			payload.dehydratedMetadata = null;
+
+			payload.layout = 'wrapper';
 
 			res.set(cacheControlUtil);
 			return res.render('article-v2', payload);

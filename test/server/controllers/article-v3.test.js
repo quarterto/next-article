@@ -51,7 +51,7 @@ describe.only('Article V3 Controller', function() {
 			);
 		});
 
-		it('defines the primary tag and remove it from tags', function() {
+		it('defines the primary tag and removes it from tags', function() {
 			let result = response._getRenderData();
 
 			expect(result.primaryTag).not.to.be.null;
@@ -60,6 +60,30 @@ describe.only('Article V3 Controller', function() {
 			result.tags.forEach(
 				tag => expect(tag.id).not.to.equal(result.primaryTag.id)
 			);
+		});
+
+		it('provides more on data for related content', function() {
+			let result = response._getRenderData();
+
+			expect(result.moreOns.length).to.equal(2);
+
+			result.moreOns.forEach(
+				tag => expect(tag).to.include.keys('metadata', 'title')
+			);
+
+			expect(result.moreOns[result.moreOns.length - 1]).to.include.keys('class');
+		});
+
+		it('provides dehydrated metadata for related content', function() {
+			let result = response._getRenderData();
+
+			expect(result.dehydratedMetadata).to.include.keys('primaryTheme', 'primarySection', 'package');
+
+			// TODO: this is for V1 and V2 compatibility and nesting should be removed
+			expect(result.dehydratedMetadata.primaryTheme.term).to.include.keys('id', 'name', 'taxonomy');
+			expect(result.dehydratedMetadata.primarySection.term).to.include.keys('id', 'name', 'taxonomy');
+
+			expect(result.dehydratedMetadata.package).to.be.an.instanceOf(Array);
 		});
 
 	});
