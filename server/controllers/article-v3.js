@@ -43,9 +43,8 @@ function transformArticleBody(article, flags) {
 		.then(articleBody => bodyTransform(articleBody, flags).html());
 }
 
-function transformMetadata(metadata) {
+function transformMetadata(metadata, primaryTag) {
 	let ignore = [ 'mediaType', 'iptc', 'icb' ];
-	let primaryTag = getPrimaryTag(metadata);
 
 	return metadata
 		.filter(tag => {
@@ -71,12 +70,18 @@ function getPrimaryTag(metadata) {
 		tag => tag.primary && tag.taxonomy === 'sections'
 	);
 
+	// 'theme' takes precedence unless the section taxonomy is listed below
+	let precedence = [ 'specialReports' ];
 	let primaryTag = primaryTheme || primarySection || null;
+
+	if (primarySection && precedence.indexOf(primarySection.taxonomy) > -1) {
+		primaryTag = primarySection;
+	}
 
 	return primaryTag && {
 		id: primaryTag.idV1,
 		name: primaryTag.prefLabel,
-		url: `/stream/${primaryTag.taxonomy}Id/${primaryTag.idV1}`
+		taxonomy: primaryTag.taxonomy
 	};
 }
 
@@ -92,16 +97,17 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.articleV1 = isCapiV1(payload);
 			payload.articleV2 = isCapiV2(payload);
 			payload.standFirst = payload.summaries[0];
-			payload.tags = transformMetadata(payload.metadata);
-			payload.primaryTag = getPrimaryTag(payload.metadata);
 			// End hacking for V1 and V2 compat.
+
+			payload.primaryTag = getPrimaryTag(payload.metadata);
+			payload.tags = transformMetadata(payload.metadata, payload.primaryTag);
+			payload.isSpecialReport = payload.primaryTag && payload.primaryTag.taxonomy === 'specialReports';
 
 			// TODO: barrier
 
 			// TODO: implement this
 			payload.dfp = null;
 			payload.visualCat = null;
-			payload.isSpecialReport = null;
 			payload.toc = null;
 			payload.suggestedTopic = null;
 			payload.save = null;
