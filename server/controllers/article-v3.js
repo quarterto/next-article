@@ -110,15 +110,8 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.visualCat = null;
 			payload.toc = null;
 			payload.suggestedTopic = null;
-			payload.save = null;
 			payload.moreOns = null;
 			payload.dehydratedMetadata = null;
-
-			// TODO: Passing flags is not necessary
-			payload.firstClickFree = res.locals.firstClickFreeModel;
-			payload.relatedContent = res.locals.flags.articleRelatedContent;
-			payload.shareButtons = res.locals.flags.articleShareButtons;
-			payload.myFTTray = res.locals.flags.myFTTray;
 
 			res.set(cacheControlUtil);
 			return res.render('article-v2', payload);

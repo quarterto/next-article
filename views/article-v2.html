@@ -57,7 +57,7 @@
 							{{/if}}
 							</div>
 							<div class="article__header-actions">
-							{{#if save}}
+							{{#if @root.flags.saveForLater}}
 								<div class="article__actions">
 									{{>next-myft-ui/templates/save-for-later contentId=id}}
 								</div>
@@ -161,7 +161,7 @@
 		{{#if isSpecialReport}}
 				<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 		{{else}}
-			{{#if relatedContent}}
+			{{#if @root.flags.articleRelatedContent}}
 				<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 			{{/if}}
 		{{/if}}
@@ -184,7 +184,7 @@
 
 </div>
 
-{{#if myFTTray}}
+{{#if @root.flags.myFTTray}}
 	{{>n-myft-tray/templates/tray}}
 {{/if}}
 
