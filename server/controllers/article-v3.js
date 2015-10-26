@@ -147,6 +147,12 @@ function getOpenGraphData(article) {
 	};
 }
 
+function getTwitterCardData(article) {
+	let openGraph = getOpenGraphData(article);
+	openGraph.card = openGraph.image ? 'summary_large_image' : 'summary';
+	return openGraph;
+}
+
 module.exports = function articleV3Controller(req, res, next, payload) {
 	res.set(cacheControlUtil);
 
@@ -192,6 +198,10 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	if (res.locals.flags.openGraph) {
 		payload.og = getOpenGraphData(payload);
+	}
+
+	if (res.locals.flags.twitterCards) {
+		payload.twitterCard = getTwitterCardData(payload);
 	}
 
 	return transformArticleBody(payload, res.locals.flags)

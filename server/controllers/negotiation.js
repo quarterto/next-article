@@ -47,7 +47,7 @@ function getArticleV1(contentId, flags) {
 function getArticleV2(contentId, flags) {
 	return api.content({
 		uuid: contentId,
-		inex: 'v2_api_v2',
+		index: 'v2_api_v2',
 		metadata: true,
 		useElasticSearch: flags.elasticSearchItemGet
 	})

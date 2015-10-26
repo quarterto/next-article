@@ -31,7 +31,15 @@ describe('Article V3 Controller', function() {
 
 	beforeEach(function() {
 		result = null;
-		return createInstance(null, { openGraph: true }).then(() => result = response._getRenderData());
+
+		let flags = {
+			openGraph: true,
+			twitterCards: true
+		};
+
+		return createInstance(null, flags).then(() => {
+			result = response._getRenderData()
+		});
 	});
 
 	context('Business as usual', function() {
@@ -93,6 +101,13 @@ describe('Article V3 Controller', function() {
 			expect(result.og).to.include.keys('title', 'description', 'url', 'image');
 			expect(result.og.image).to.equal(fixtureEsFound.mainImage.url);
 			expect(result.og.title).to.equal(fixtureEsFound.title);
+		});
+
+		it('provides Twitter card data', function() {
+			expect(result.twitterCard).to.include.keys('title', 'description', 'url', 'image', 'card');
+			expect(result.twitterCard.image).to.equal(fixtureEsFound.mainImage.url);
+			expect(result.twitterCard.title).to.equal(fixtureEsFound.title);
+			expect(result.twitterCard.card).to.equal('summary_large_image');
 		});
 
 	});
