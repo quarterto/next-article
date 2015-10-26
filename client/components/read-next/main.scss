@@ -6,12 +6,16 @@
 	position: relative;
 	padding: 15px;
 	padding-right: 25px;
+
+	h4 {
+		margin: 0;
+	}
 }
 
 .next-up__header {
 	margin-top: 10px;
-	padding-top: 15px;
-	border: 1px solid #ddccb6;
+	padding-left: 20px;
+	border: 1px solid getColor('warm-3');
 }
 
 .next-up__intro {
@@ -22,38 +26,21 @@
 	font-weight: 900;
 	display: block;
 	margin: 0;
+	padding: 0 10px;
 
 	.next-up__header & {
 		font-size: 18px; // FIXME: revist upon type scale revisions
 		left: 10px;
 		top: -10px;
-		padding: 0 5px;
 	}
 
 	.next-up__bottom & {
-		font-size: 30px;  // FIXME: revist upon type scale revisions
-		top: -12px;
+		@include nTypeFoxtrotSize(3);
+		top: -11px;
 		left: -10px;
-		padding: 0 15px;
 	}
 }
 
-.next-up__item {
-
-	margin-left: 15px;
-
-	h4 {
-		margin: 0;
-	}
-
-	&::before {
-		@include nextIcon(arrow-right, getColor('cold-2'), 17);
-		content: '';
-		position: absolute;
-		top: 22px;
-		left: 10px;
-	}
-}
 .next-up__bottom__wrapper {
 	margin-top: 45px;
 	border-top: 1px solid getColor('warm-3');
@@ -69,15 +56,6 @@
 	}
 }
 
-.next_up__bottom__article_list {
-	margin: 45px 0 0;
-	padding-left: 20px;
-}
-
-.next_up__bottom__article {
-	list-style: none;
-}
-
 .next-up__intro__header {
 	background-color: getColor('pink');
 }
@@ -85,47 +63,21 @@
 .next-up__headline {
 	@include nLinksHeadline;
 	@include nTypeFoxtrot(2);
-	position: relative;
-	color: getColor('cold-2');
-	text-decoration: none;
-	border-bottom: 0;
 
 	.next-up__header & {
-		font-size: 24px; // FIXME: revist upon type scale revisions
+		line-height: 29px; // FIXME: revist upon type scale revisions
 	}
 
-	.next-up__bottom & {
-		&::before {
-			@include nextIcon(arrow-right, getColor('cold-2'), 17);
-			content: '';
-			speak: none;
-			position: absolute;
-			top: 8px;
-			left: -22px;
-		}
-
-		@include oGridRespondTo(M) {
-			font-size: 30px;
-		}
-
-	}
 }
 
 .next-up__timestamp {
-	display: none;
+	@include nTypeAlpha(5);
+	text-transform: uppercase;
+	color: oColorsGetColorFor(timestamp, text);
 }
 
 .next-up__timestamp__more-recent {
 	color: getColor('claret-inverse');
-}
-
-.next-up__topic-link {
-	@include nLinksTopic;
-}
-
-.read-next__container {
-	margin-top: 40px;
-	border: 0;
 }
 
 .next-up__bottom {

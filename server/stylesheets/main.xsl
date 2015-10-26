@@ -36,7 +36,6 @@
     <xsl:include href="paragraph-one.xsl" />
     <xsl:include href="promo-box.xsl" />
     <xsl:include href="pull-quotes.xsl" />
-    <xsl:include href="related-inline.xsl" />
     <xsl:include href="slideshow.xsl" />
     <xsl:include href="social.xsl" />
     <xsl:include href="subheaders.xsl" />
