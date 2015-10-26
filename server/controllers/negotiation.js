@@ -10,11 +10,17 @@ const controllerPodcastLegacy = require('./podcast-legacy');
 const controllerArticleLegacy = require('./article-legacy');
 const controllerArticleV3 = require('./article-v3');
 
-function isArticlePodcast(article) {
+function isArticlePodcastV1(article) {
 	return article
 		&& article.item
 		&& article.item.provenance
 		&& article.item.provenance.originatingParty === 'Acast';
+}
+
+function isArticlePodcastV3(article) {
+	return article.provenance.find(
+		source => source.includes('https://www.acast.com/')
+	);
 }
 
 function getInteractive(contentId) {
@@ -41,6 +47,7 @@ function getArticleV1(contentId, flags) {
 function getArticleV2(contentId, flags) {
 	return api.content({
 		uuid: contentId,
+		inex: 'v2_api_v2',
 		metadata: true,
 		useElasticSearch: flags.elasticSearchItemGet
 	})
@@ -80,18 +87,28 @@ module.exports = function negotiationController(req, res, next) {
 
 	return Promise.all(articleSources)
 		.then(articles => {
-			if (res.locals.flags.elasticV3) {
-				controllerArticleV3(req, res, next, articles[0]);
-			} else if (articles[1]) {
-				controllerArticleLegacy(req, res, next, articles);
-			} else if (isArticlePodcast(articles[0])) {
-				controllerPodcastLegacy(req, res, next, articles[0]);
-			} else if (articles[0]) {
-				let url = articles[0].item.location.uri;
-				res.redirect(302, `${url}${url.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
-			} else {
-				res.sendStatus(404);
+			if (articles[0] && res.locals.flags.elasticV3) {
+				if (isArticlePodcastV3(articles[0])) {
+					// return controllerPodcastV3(req, res, next, articles[0]);
+				} else {
+					return controllerArticleV3(req, res, next, articles[0]);
+				}
 			}
+
+			if (articles[0] && isArticlePodcastV1(articles[0])) {
+				return controllerPodcastLegacy(req, res, next, articles[0]);
+			}
+
+			if (articles[1]) {
+				return controllerArticleLegacy(req, res, next, articles);
+			}
+
+			if (articles[0]) {
+				let url = articles[0].item.location.uri;
+				return res.redirect(302, `${url}${url.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
+			}
+
+			return res.sendStatus(404);
 		})
 		.catch(error => {
 			logger.error(`Failed to fetch content: ${error.toString()}`);

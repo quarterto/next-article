@@ -56,19 +56,21 @@ function transformMetadata(metadata) {
 				name: tag.prefLabel,
 				url: `/stream/${tag.taxonomy}Id/${tag.idV1}`
 			};
-		});
+		})
+		.slice(0, 5);
 }
 
 module.exports = function articleV3Controller(req, res, next, payload) {
 
-	transformArticleBody(payload, res.locals.flags)
+	return transformArticleBody(payload, res.locals.flags)
 		.then(articleBody => {
 
 			payload.body = articleBody;
 			payload.layout = 'wrapper';
 
 			// Start hacking for V1 and V2 compat.
-			payload.articleV3 = true;
+			payload.articleV1 = isCapiV1(payload);
+			payload.articleV2 = isCapiV2(payload);
 			payload.standFirst = payload.summaries[0];
 			payload.tags = transformMetadata(payload.metadata);
 			// End hacking for V1 and V2 compat.
