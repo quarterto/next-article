@@ -3,6 +3,7 @@
 const logger = require('ft-next-express').logger;
 const cacheControlUtil = require('../utils/cache-control');
 const getDfpUtil = require('../utils/get-dfp');
+const barrierHelper = require('./article-helpers/barrier');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 
@@ -138,6 +139,17 @@ function getDfpMetadata(metadata) {
 }
 
 module.exports = function articleV3Controller(req, res, next, payload) {
+	res.set(cacheControlUtil);
+
+	payload.layout = 'wrapper';
+
+	if (res.locals.barrier) {
+		return res.render('article-v2', barrierHelper(payload, res.locals.barrier));
+	}
+
+	if (res.locals.firstClickFreeModel) {
+		payload.firstClickFree = res.locals.firstClickFreeModel;
+	}
 
 	// Make metadata speak the same language as V1
 	payload.metadata = transformMetadata(payload.metadata)
@@ -171,19 +183,13 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	return transformArticleBody(payload, res.locals.flags)
 		.then(articleBody => {
-
 			payload.body = articleBody;
-
-			// TODO: barrier
 
 			// TODO: implement this
 			payload.visualCat = null;
 			payload.toc = null;
 			payload.suggestedTopic = null;
 
-			payload.layout = 'wrapper';
-
-			res.set(cacheControlUtil);
 			return res.render('article-v2', payload);
 		})
 		.catch(error => {

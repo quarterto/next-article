@@ -61,15 +61,12 @@ module.exports = function barrierHelper(viewModel, options) {
 	viewModel.body = null;
 	viewModel.byline = null;
 	viewModel.standFirst = null;
-	viewModel.article.publishedDate = null;
+	viewModel.publishedDate = null;
 	viewModel.tableOfContents = null;
 	viewModel.primaryTag = null;
-	viewModel.save = null;
 	viewModel.tags = null;
-	viewModel.relatedContent = null;
 	viewModel.moreOns = null;
-	viewModel.shareButtons = null;
-	viewModel.myFTTray = null;
+	viewModel.dehydratedMetadata = null;
 
 	return viewModel;
 };

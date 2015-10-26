@@ -2,15 +2,19 @@
 
 'use strict';
 
-const nock = require('nock');
 const sinon = require('sinon');
 const expect = require('chai').expect;
+const proxyquire = require('proxyquire');
 const httpMocks = require('node-mocks-http');
 
-const subject = require('../../../server/controllers/article-v3');
 const fixtureEsFound = require('../../fixtures/v3-elastic-article-found');
 
-describe.only('Article V3 Controller', function() {
+const subject = proxyquire('../../../server/controllers/article-v3', {
+	'../transforms/article-xslt': (article) => Promise.resolve(article.bodyXML),
+	'../transforms/body': (articleHtml) => { return { html: () => articleHtml } }
+});
+
+describe('Article V3 Controller', function() {
 
 	let request;
 	let response;
