@@ -45,10 +45,12 @@ function transformArticleBody(article, flags) {
 
 function transformMetadata(metadata) {
 	let ignore = [ 'mediaType', 'iptc', 'icb' ];
+	let primaryTag = getPrimaryTag(metadata);
 
 	return metadata
 		.filter(tag => {
-			return !ignore.find(taxonomy => taxonomy === tag.taxonomy);
+			return !ignore.find(taxonomy => taxonomy === tag.taxonomy)
+				&& (!primaryTag || tag.idV1 !== primaryTag.id);
 		})
 		.map(tag => {
 			return {
@@ -58,6 +60,24 @@ function transformMetadata(metadata) {
 			};
 		})
 		.slice(0, 5);
+}
+
+function getPrimaryTag(metadata) {
+	let primaryTheme = metadata.find(
+		tag => tag.primary && tag.taxonomy !== 'sections'
+	);
+
+	let primarySection = metadata.find(
+		tag => tag.primary && tag.taxonomy === 'sections'
+	);
+
+	let primaryTag = primaryTheme || primarySection || null;
+
+	return primaryTag && {
+		id: primaryTag.idV1,
+		name: primaryTag.prefLabel,
+		url: `/stream/${primaryTag.taxonomy}Id/${primaryTag.idV1}`
+	};
 }
 
 module.exports = function articleV3Controller(req, res, next, payload) {
@@ -73,6 +93,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.articleV2 = isCapiV2(payload);
 			payload.standFirst = payload.summaries[0];
 			payload.tags = transformMetadata(payload.metadata);
+			payload.primaryTag = getPrimaryTag(payload.metadata);
 			// End hacking for V1 and V2 compat.
 
 			// TODO: barrier
@@ -82,7 +103,6 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.visualCat = null;
 			payload.isSpecialReport = null;
 			payload.toc = null;
-			payload.primaryTag = null;
 			payload.suggestedTopic = null;
 			payload.save = null;
 			payload.moreOns = null;

@@ -51,6 +51,17 @@ describe.only('Article V3 Controller', function() {
 			);
 		});
 
+		it('defines the primary tag and remove it from tags', function() {
+			let result = response._getRenderData();
+
+			expect(result.primaryTag).not.to.be.null;
+			expect(result.primaryTag).to.include.keys('id', 'name', 'url');
+
+			result.tags.forEach(
+				tag => expect(tag.id).not.to.equal(result.primaryTag.id)
+			);
+		});
+
 	});
 
 });
