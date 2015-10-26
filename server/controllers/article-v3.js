@@ -2,6 +2,7 @@
 
 const logger = require('ft-next-express').logger;
 const cacheControlUtil = require('../utils/cache-control');
+const getDfpUtil = require('../utils/get-dfp');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 
@@ -101,7 +102,7 @@ function getMoreOnTags(primaryTheme, primarySection) {
 		Object.assign({ metadata: 'primarySection' }, primarySection)
 	);
 
-	// TODO: display should be up the template
+	// TODO: display should be up to the template
 	moreOnTags[moreOnTags.length -1].class = 'more-on--small';
 
 	return moreOnTags.map(tag => {
@@ -125,6 +126,15 @@ function getMoreOnTags(primaryTheme, primarySection) {
 
 		return tag;
 	});
+}
+
+function getDfpMetadata(metadata) {
+	// TODO: remove extraneous 'term' nesting
+	return getDfpUtil(
+		metadata.map(tag => {
+			return { term: tag };
+		})
+	);
 }
 
 module.exports = function articleV3Controller(req, res, next, payload) {
@@ -155,6 +165,8 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		primaryTheme: { term: primaryTheme },
 		package: payload.storyPackage || [],
 	};
+
+	payload.dfp = getDfpMetadata(payload.metadata);
 	// >>> hacking for V1 and V2 compat.
 
 	return transformArticleBody(payload, res.locals.flags)
@@ -165,7 +177,6 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			// TODO: barrier
 
 			// TODO: implement this
-			payload.dfp = null;
 			payload.visualCat = null;
 			payload.toc = null;
 			payload.suggestedTopic = null;

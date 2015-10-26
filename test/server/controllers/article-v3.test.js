@@ -86,6 +86,12 @@ describe.only('Article V3 Controller', function() {
 			expect(result.dehydratedMetadata.package).to.be.an.instanceOf(Array);
 		});
 
+		it('provides DFP data from metadata', function() {
+			let result = response._getRenderData();
+
+			expect(result.dfp).to.include.keys('dfpSite', 'dfpZone');
+		});
+
 	});
 
 });
