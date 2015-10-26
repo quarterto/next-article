@@ -7,7 +7,7 @@ module.exports = function (article, articleV1, mainImage) {
 
 	var og = {
 		title: article.title,
-		url: 'https://next.ft.com/' + extractUuid(article.id)
+		url: 'https://next.ft.com/content/' + extractUuid(article.id)
 	};
 
 	if (articleV1 && articleV1.item && articleV1.item.editorial) {

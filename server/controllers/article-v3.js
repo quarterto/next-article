@@ -138,6 +138,15 @@ function getDfpMetadata(metadata) {
 	);
 }
 
+function getOpenGraphData(article) {
+	return {
+		title: article.title,
+		description: article.summaries[0],
+		image: article.mainImage && article.mainImage.url,
+		url: `https://next.ft.com/content/${article.id}`
+	};
+}
+
 module.exports = function articleV3Controller(req, res, next, payload) {
 	res.set(cacheControlUtil);
 
@@ -180,6 +189,10 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	payload.dfp = getDfpMetadata(payload.metadata);
 	// >>> hacking for V1 and V2 compat.
+
+	if (res.locals.flags.openGraph) {
+		payload.og = getOpenGraphData(payload);
+	}
 
 	return transformArticleBody(payload, res.locals.flags)
 		.then(articleBody => {

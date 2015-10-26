@@ -19,6 +19,7 @@ describe('Article V3 Controller', function() {
 	let request;
 	let response;
 	let next;
+	let result;
 
 	function createInstance(params, flags) {
 		next = sinon.stub();
@@ -29,7 +30,8 @@ describe('Article V3 Controller', function() {
 	}
 
 	beforeEach(function() {
-		return createInstance();
+		result = null;
+		return createInstance(null, { openGraph: true }).then(() => result = response._getRenderData());
 	});
 
 	context('Business as usual', function() {
@@ -40,26 +42,20 @@ describe('Article V3 Controller', function() {
 		});
 
 		it('maps data for compatibility with legacy templates', function() {
-			let result = response._getRenderData();
-
 			expect(result.standFirst).to.not.be.undefined;
 		});
 
 		it('maps the metadata to legacy template compatible format', function() {
-			let result = response._getRenderData();
-
 			expect(result.tags.length).to.equal(5);
 
 			result.tags.forEach(
-				tag => expect(tag).to.include.keys('id', 'name', 'url')
+				tag => expect(tag).to.include.keys('id', 'name', 'taxonomy', 'url')
 			);
 		});
 
 		it('defines the primary tag and removes it from tags', function() {
-			let result = response._getRenderData();
-
-			expect(result.primaryTag).not.to.be.null;
-			expect(result.primaryTag).to.include.keys('id', 'name', 'taxonomy');
+			expect(result.primaryTag).to.include.keys('id', 'name', 'taxonomy', 'url');
+			expect(result.primaryTag.id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
 
 			result.tags.forEach(
 				tag => expect(tag.id).not.to.equal(result.primaryTag.id)
@@ -67,8 +63,6 @@ describe('Article V3 Controller', function() {
 		});
 
 		it('provides more on data for related content', function() {
-			let result = response._getRenderData();
-
 			expect(result.moreOns.length).to.equal(2);
 
 			result.moreOns.forEach(
@@ -79,21 +73,26 @@ describe('Article V3 Controller', function() {
 		});
 
 		it('provides dehydrated metadata for related content', function() {
-			let result = response._getRenderData();
-
 			expect(result.dehydratedMetadata).to.include.keys('primaryTheme', 'primarySection', 'package');
 
 			// TODO: this is for V1 and V2 compatibility and nesting should be removed
 			expect(result.dehydratedMetadata.primaryTheme.term).to.include.keys('id', 'name', 'taxonomy');
 			expect(result.dehydratedMetadata.primarySection.term).to.include.keys('id', 'name', 'taxonomy');
 
+			expect(result.dehydratedMetadata.primaryTheme.term.id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
+			expect(result.dehydratedMetadata.primarySection.term.id).to.equal('NTg=-U2VjdGlvbnM=');
+
 			expect(result.dehydratedMetadata.package).to.be.an.instanceOf(Array);
 		});
 
 		it('provides DFP data from metadata', function() {
-			let result = response._getRenderData();
-
 			expect(result.dfp).to.include.keys('dfpSite', 'dfpZone');
+		});
+
+		it('provides Open Graph data', function() {
+			expect(result.og).to.include.keys('title', 'description', 'url', 'image');
+			expect(result.og.image).to.equal(fixtureEsFound.mainImage.url);
+			expect(result.og.title).to.equal(fixtureEsFound.title);
 		});
 
 	});
