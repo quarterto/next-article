@@ -2,11 +2,12 @@
   "name": "ft-next-article",
   "private": true,
   "description": "Render a Next FT Article",
-  "main": "app.js",
+  "main": "server/app.js",
   "scripts": {
     "test": "make test -j 3"
   },
   "dependencies": {
+    "article-token-creator": "Financial-Times/article-token-creator#v1.0.2",
     "body-parser": "^1.13.3",
     "cheerio": "~0.19.0",
     "fetchres": "~1.4.0",
@@ -15,11 +16,14 @@
     "ft-next-article-primary-tag": "^1.0.0",
     "ft-next-barriers": "^2.2.3",
     "ft-next-express": "^15.1.0",
+    "ft-next-session-client": "^1.1.8",
     "ft-poller": "^2.0.3",
     "html-entities": "~1.1.3",
     "lodash": "~3.9.3",
     "n-podcast-mapping": "Financial-Times/n-podcast-mapping",
-    "next-ft-api-client": "^3.9.5"
+    "next-ft-api-client": "^3.9.5",
+    "node-rsa": "^0.2.25",
+    "share-code-creator": "Financial-Times/share-code-generator#v1.1.1"
   },
   "devDependencies": {
     "chai": "^2.0.0",

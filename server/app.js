@@ -38,6 +38,9 @@ app.get('/embedded-components/slideshow/:id', require('./controllers/slideshow')
 app.use(barriers.middleware(express.metrics));
 
 app.get('^/content/:id$', require('./controllers/negotiation'));
+app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/urlSharing'));
+app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/interactive'));
+app.get('^/content/:id(' + articleUuidRegex + ')$', require('./controllers/article'));
 
 app.get('/__gtg', function(req, res) {
 	res.status(200).end();
