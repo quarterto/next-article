@@ -1,8 +1,141 @@
+@mixin center-vertically {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)}
 .promo-unit-msg {
   background-color: #005277;
   color: white;
   padding: 10px 0 60px 0;
-  &__related-content-header {
+  .promo-unit-msg__related-content-subheading {
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+    padding: 0 20% 0 20%;}
+  .promo-unit-msg__related-content-tag {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 5px 0 5px 0;
+    color: #F47985;}
+  .promo-unit-msg__related-content-headline {
+    margin: 0;
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: lighter;
+    font-family: FinancierDisplayWeb;}
+  .promo-unit-msg__related-content-image {
+    width: 100%;}
+  .promo-unit-msg__best-from-ft {
+    padding-bottom: 35px;}
+  .promo-unit-msg__best-from-ft-item {
+    border-bottom: 1px solid white;
+    padding: 50px 0 50px 0;
+    text-align: center;}
+  .promo-unit-msg__best-from-ft-stream-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    font-size: 3em;}
+  .promo-unit-msg__best-from-ft-stream-description {
+    font-size: 25px;
+    text-align: center;}
+  .promo-unit-msg__best-from-ft-item-top-pictures {
+    margin-bottom: 50px;}
+  .promo-unit-msg__best-from-ft-item-pictures {
+    position: relative;
+    top: 0px;}
+  .promo-unit-msg__best-from-ft-item-overlapping-images {
+    position: relative;
+    height: 217px;
+    width: 435px;}
+  .promo-unit-msg__best-from-ft-item-lil-pic {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    bottom: 0;}
+  .promo-unit-msg__best-from-ft-item-big-pic {
+    position: absolute;
+    right: 0;}
+  .promo-unit-msg__sign-up {
+    background-color: #00496A;
+    border: 1px solid white;
+    border-radius: 7px;
+    text-align: center;
+    margin: auto;
+    padding: 15px 0 15px 0;
+    width: 550px;}
+  .promo-unit-msg__sign-up-text {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 5px 0 5px 0;
+    border-bottom: none;
+    &::after {
+      content: '';
+      @include nextIcon(arrow-right, getColor('white'), 17);}
+    &:hover {
+      color: inherit;}}}
+.overlapping-images {
+  position: relative;
+  height: 217px;
+  width: 435px;
+  &--centered {
+    margin-left: auto;
+    margin-right: auto;}
+  .overlapping-images__hind-img {
+    height:176.75px;
+    width: 314px;
+    position: absolute;
+    right: 0;}
+  .overlapping-images__fore-img {
+    height:119.03px;
+    width: 211px;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    bottom: 0;}
+  @include oGridRespondTo($until: L) {
+    width: 320px;
+    height: 170px;
+    .overlapping-images__hind-img {
+      width: 245px;
+      height: auto;}
+    .overlapping-images__fore-img {
+      height: 86px;
+      width: 156px;}}}
+.promo-unit-msg__best-from-ft-item-overlapping-images.overlapping-images {
+  @include center-vertically;
+  right: 40px;}
+.promo-unit-msg__lined-header {
+  position: relative;
+  &::before {
+    @include center-vertically;
+    border-top: 1px solid white;
+    content:' ';
+    display:block;
+    height: 1px;
+    left: 0;
+    right: 0;}
+  .promo-unit-msg__lined-header__inner {
+    position: absolute;
+    top: -16px;
+    left: 0;
+    right: 0;}
+  .promo-unit-msg__lined-header__heading {
+    margin: 0;
+    padding: 0;
+    background-color: #005277;
+    padding: 0 12px;
+    display: inline;}
+  .promo-unit-msg__lined-header__heading-container--contents-centered {
+    text-align: center;}}
+.thin-container {
+  padding: 0px;}
+
+/*
+.overlapping-images--centered {
+  margin-left: auto;
+  margin-right: auto;}
+.promo-unit-msg__related-content-header {
     overflow: hidden;
     text-align: center;
     font-family: FinancierDisplayWeb;
@@ -22,27 +155,7 @@
     &:after {
       left: 0.5em;
       margin-right: -50%;}}
-  &__related-content-subheading {
-    font-size: 40px;
-    text-align: center;
-    font-weight: bold;
-    padding: 0 20% 0 20%;}
-  &__related-content-tag {
-    font-weight: bold;
-    font-size: 20px;
-    margin: 5px 0 5px 0;
-    color: #F47985;}
-  &__related-content-headline {
-    margin: 0;
-    margin-bottom: 30px;
-    font-size: 2em;
-    font-weight: lighter;
-    font-family: FinancierDisplayWeb;}
-  &__related-content-image {
-    width: 100%;}
-  &__best-from-ft {
-    padding-bottom: 35px;}
-  &__best-from-ft-heading {
+.promo-unit-msg__best-from-ft-heading {
     overflow: hidden;
     font-family: FinancierDisplayWeb;
     margin: 0;
@@ -58,127 +171,13 @@
       width: 50%;
       right: 5em;
       margin-left: 0%;}}
-  &__best-from-ft-item {
-    border-bottom: 1px solid white;
-    padding: 50px 0 50px 0;
-    text-align: center;}
-  &__best-from-ft-stream-name {
-    font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: 0px;
-    font-size: 3em;}
-  &__best-from-ft-stream-description {
-    font-size: 25px;
-    text-align: center;}
-  &__best-from-ft-item-pictures {
-    position: relative;
-    top: 0px;}
-  &__best-from-ft-item-overlapping-images {
-    position: relative;
-    height: 217px;
-    width: 435px;}
-  &__best-from-ft-item-lil-pic {
-    position: absolute;
-    bottom: 40px;
-    left: 0;
-    bottom: 0;}
-  &__best-from-ft-item-big-pic {
-    position: absolute;
-    right: 0;}
-  &__sign-up {
-    background-color: #00496A;
-    border: 1px solid white;
-    border-radius: 7px;
-    text-align: center;
-    margin: auto;
-    padding: 15px 0 15px 0;
-    width: 550px;}
-  &__sign-up-text {
-    color: white;
-    font-weight: bold;
-    font-size: 1.5em;
-    margin: 5px 0 5px 0;
-    border-bottom: none;
-    &::after {
-      content: '';
-      @include nextIcon(arrow-right, getColor('white'), 17);}
-    &:hover {
-      color: inherit;}}}
-
+.horizontally-centered {
+  display: inline-block;}
+.text-box {
+  border: 2px solid red;}
 .vertically-centered {
   @include oGridRespondTo(M) {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);}}
-
-.horizontally-centered {
-  display: inline-block;}
-
-.text-box {
-  border: 2px solid red;}
-
-.thin-container {
-  padding: 0px;}
-
-.overlapping-images {
-  position: relative;
-  height: 217px;
-  width: 435px;
-  &__hind-img {
-    position: absolute;
-    right: 0;}
-  &__fore-img {
-    position: absolute;
-    bottom: 40px;
-    left: 0;
-    bottom: 0;}}
-
-.promo-unit-msg__best-from-ft-item-overlapping-images.overlapping-images {
-  position: absolute;
-  right: 50px;
-  top:50%;
-  transform: translateY(-50%);
-
-  @include oGridRespondTo($until: L) {
-    //background-color: red;
-    width: 310px;
-    height: 165px;
-    right: 15px;
-    .overlapping-images__hind-img {
-      width: 245px;
-    }
-    .overlapping-images__fore-img {
-      height: 86px;
-      width: 156px;
-    }
-  }
-
-  /*
-  @include oGridRespondTo(S) {
-    background-color: green;
-    width: 500px;
-    .overlapping-images__hind-img {
-      width: 10px;
-      height: 10px;}}
-  @include oGridRespondTo(M) {
-    background-color: yellow;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);}
-  @include oGridRespondTo(L) {
-    position: absolute;
-    right: 200px;
-    background-color: red;
-    width: 500px;
-    .overlapping-images__hind-img {
-      position: absolute;
-      right: 0;
-    }
-    .overlapping-images__fore-img {
-      position: absolute;
-      bottom: 40px;
-      left: 0;
-      bottom: 0;}
-  }
 */
-}
