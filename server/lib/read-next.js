@@ -4,7 +4,7 @@ var articlePodMapping = require('../mappings/article-pod-mapping');
 var articleTopicMapping = require('../mappings/article-topic-mapping');
 var api = require('next-ft-api-client');
 
-module.exports = function(articleV1, useElasticSearch, useElasticSearchOnAws) {
+module.exports = function(articleV1) {
 	var parent = articleV1;
 	var parentLastPublishedDateTime = parent.item.lifecycle.lastPublishDateTime;
 
@@ -12,8 +12,7 @@ module.exports = function(articleV1, useElasticSearch, useElasticSearchOnAws) {
 	if (parent.item.package.length) {
 		storyPackagePromise = api.contentLegacy({
 				uuid: parent.item.package[0].id,
-				useElasticSearch: useElasticSearch,
-				useElasticSearchOnAws: useElasticSearchOnAws
+				useElasticSearch: true
 			})
 			.then(function(storyPackageArticle) {
 				return articlePodMapping(storyPackageArticle);
@@ -30,7 +29,7 @@ module.exports = function(articleV1, useElasticSearch, useElasticSearchOnAws) {
 			query: parentTopic.taxonomy + 'Id:"' + parentTopic.id + '"',
 			count: 2,
 			fields: true,
-			useElasticSearch: useElasticSearch
+			useElasticSearch: true
 		})
 		.then(function(topicArticlesES) {
 			var topicArticle = topicArticlesES.map(function(topicArticleES) {
