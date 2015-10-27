@@ -1,14 +1,13 @@
 <div class="next-up__bottom__wrapper">
 	<div class="o-grid-container">
-		<div class="next-up__bottom" data-trackable="next-up-bottom" data-o-grid-colspan="12 XLoffset1">
-			<h3 class="next-up__intro">Read next:</h3>
-			<ul class="next_up__bottom__article_list">
-				{{#slice articles limit=3}}
-					<li class="next_up__bottom__article">
-						<h4><a href="{{headline.url}}" class="next-up__headline" data-trackable="headline-link--{{source}}{{#if moreRecent}}--moreRecent{{/if}}">{{headline.text}}</a></h4>
-					</li>
-				{{/slice}}
-			</ul>
+		<div class="next-up next-up__bottom" data-trackable="next-up-bottom" data-o-grid-colspan="12 XLoffset1">
+			<h3 class="next-up__intro">Read latest:</h3>
+			{{#with article}}
+				<h4><a href="{{headline.url}}" class="next-up__headline" data-trackable="headline-link">{{headline.text}}</a></h4>
+				<time class="next-up__timestamp {{#if moreRecent}}next-up__timestamp__more-recent{{/if}} o-date" data-o-component="o-date" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}" data-o-date-js>
+					{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
+				</time>
+			{{/with}}
 		</div>
 	</div>
 </div>

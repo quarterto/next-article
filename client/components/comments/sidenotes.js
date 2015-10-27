@@ -94,7 +94,7 @@ function getUserData(){
 }
 
 function loadSideNotes(){
-	return new Promise(function(resolve, reject) {
+	return new Promise(function(resolve) {
 		Livefyre.require(['sidenotes#1', 'auth'], function (Sidenotes, Auth) {
 			resolve([Sidenotes, Auth]);
 		});
@@ -132,7 +132,7 @@ function addTracking(app){
 			source: 'next-article'
 		}
 	};
-	app.on('sidenotes.commentPosted', function(data){
+	app.on('sidenotes.commentPosted', function(){
 		eventData.meta = { interaction: 'posted', sidenote: true };
 		trackEvent(eventData);
 	});
@@ -155,7 +155,8 @@ function init(uuid, flags) {
 	oCommentApi.setConfig(config[ACTIVE_CONFIG]);
 	console.log(`using ${ACTIVE_CONFIG} config`);
 
-	var info, user;
+	var info;
+	var user;
 
 	document.querySelector('.article__body p').insertAdjacentHTML('beforebegin', '<div class="sidenotes-info-container"></div>');
 

@@ -20,7 +20,6 @@ require('next-js-setup').bootstrap(function(result) {
 	var share = require('./components/share/main');
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
-	var suggestedReads = require('./components/suggested-reads/main');
 
 	prompts.init();
 	oViewport.listenTo('resize');
@@ -39,7 +38,7 @@ require('next-js-setup').bootstrap(function(result) {
 
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
-	if (flags.get('contentApiCalls') && !flags.get('articleSuggestedRead')) {
+	if (flags.get('contentApiCalls')) {
 		onwardJourney.init(flags);
 	}
 
@@ -65,7 +64,6 @@ require('next-js-setup').bootstrap(function(result) {
 		expandedToggleText: 'Show less'
 	});
 	scrollDepth.init(flags);
-	suggestedReads.init(flags);
 
 	window.addEventListener('load', function() {
 		comments.init(uuid, flags);

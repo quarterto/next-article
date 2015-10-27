@@ -42,7 +42,7 @@ describe('Open graph', function () {
 
 	it('should return an Open Graph object', function () {
 		openGraph(v2, v1, image).should.deep.equal(
-		    {
+				{
 				"description": "vertical but yet are broadly",
 				"image": "http://foo.png",
 				"title": "Monitise issues fresh",
@@ -53,7 +53,7 @@ describe('Open graph', function () {
 
 	it('should return the Facebook URL for Hannah Kuchler', function () {
 		openGraph(v2, v1HannahKuchler, image).should.deep.equal(
-		    {
+				{
 				"description": "vertical but yet are broadly",
 				"image": "http://foo.png",
 				"title": "Monitise issues fresh",

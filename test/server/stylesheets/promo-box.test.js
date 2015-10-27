@@ -88,8 +88,8 @@ describe('Promo-boxes', function() {
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-  			'<body>' +
-          '<aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
+				'<body>' +
+					'<aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 						'<div class="promo-box__wrapper">' +
 							'<div class="promo-box__title">' +
 								'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
@@ -101,18 +101,18 @@ describe('Promo-boxes', function() {
 								'<!--[if IE 9]></video><![endif]-->' +
 								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
 							'</picture>' +
-	    				'<div class="promo-box__content o-expander__content">' +
-		    				'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
-		    				'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></div>' +
-		    				'<div class="promo-box__content__extension"><p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
-		    				'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></div></div>' +
-	    				'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
+							'<div class="promo-box__content o-expander__content">' +
+								'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
+								'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></div>' +
+								'<div class="promo-box__content__extension"><p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
+								'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></div></div>' +
+							'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
 						'</div>' +
-    			'</aside>' +
-        '</body>\n'
-		  );
-    });
-  });
+					'</aside>' +
+				'</body>\n'
+			);
+		});
+	});
 
 	it('should output default title if no title provided', function () {
 		return transform(

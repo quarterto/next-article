@@ -4,12 +4,12 @@
 			<div class="pod">
 				<div class="header">
 					<h2 class="header__name">Latest {{title}} {{name}}</h2>
-					{{#if @root.flags.userPreferencesAPI }}
-						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
-					{{/if}}
 					<a class="header__link" href="{{url}}" data-trackable="topic-link">
 						<span class="header__link__text">Go to {{name}}</span>
 					</a>
+					{{#if @root.flags.userPreferencesAPI }}
+						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
+					{{/if}}
 				</div>
 				<ul class="pod__items js-more-on" data-metadata-fields="{{metadata}}">
 				</ul>

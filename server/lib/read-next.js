@@ -18,7 +18,7 @@ module.exports = function(articleV1, useElasticSearch, useElasticSearchOnAws) {
 			.then(function(storyPackageArticle) {
 				return articlePodMapping(storyPackageArticle);
 			})
-			.catch(function(error) {
+			.catch(function() {
 				return ;
 			});
 	}
@@ -42,7 +42,7 @@ module.exports = function(articleV1, useElasticSearch, useElasticSearchOnAws) {
 				.slice(0,1);
 			return articlePodMapping(topicArticle[0]);
 		})
-		.catch(function(error) {
+		.catch(function() {
 			return ;
 		});
 	}

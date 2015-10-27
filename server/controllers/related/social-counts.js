@@ -2,9 +2,10 @@
 
 const fetchres = require('fetchres');
 const cacheControl = require('../../utils/cache-control');
-
+const logger = require('ft-next-express').logger;
 const services = 'facebook,gplus,twitter,stumbleupon,reddit';
 const metrics = 'comments,shares,votes,endorsements';
+
 function getShareCounts(articleUrl) {
 	let url = `https://ft-next-sharedcount-api.herokuapp.com/v1/getCounts?groupby=url` +
 			`&services=${services}&metrics=${metrics}&source=next-article` +
@@ -16,7 +17,6 @@ function getShareCounts(articleUrl) {
 
 module.exports = function(req, res, next) {
 	let url = req.query.url;
-	let id = req.params.id;
 
 	getShareCounts(url)
 		.then(function(results) {

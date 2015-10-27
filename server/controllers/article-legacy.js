@@ -1,8 +1,8 @@
 'use strict';
 
 var fetchres = require('fetchres');
-var logger = require('ft-next-express').logger;
 var api = require('next-ft-api-client');
+var logger = require('ft-next-express').logger;
 var bylineTransform = require('../transforms/byline');
 var cacheControl = require('../utils/cache-control');
 var extractTags = require('../utils/extract-tags');
@@ -16,38 +16,11 @@ var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
 var getSuggested = require('./article-helpers/suggested');
-var exposeTopic = require('./article-helpers/exposeTopic');
+var articleTopicMapping = require('../mappings/article-topic-mapping');
 var readNext = require('../lib/read-next');
-var articlePodMapping = require('../mappings/article-pod-mapping.js');
+var articlePodMapping = require('../mappings/article-pod-mapping');
 
-module.exports = function(req, res, next) {
-
-	var articleV1Promise;
-	if (res.locals.flags.articleCapiV1Fallback) {
-		articleV1Promise = api.contentLegacy({
-				uuid: req.params.id,
-				useElasticSearch: res.locals.flags.elasticSearchItemGet,
-				useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
-			})
-				// Some things aren't in CAPI v1 (e.g. FastFT)
-				.catch(function(err) {
-					if (fetchres.originatedError(err)) {
-						return;
-					} else {
-						throw err;
-					}
-				});
-	} else {
-		logger.info("CAPI v1 fallback disabled, defaulting to CAPI v2 only");
-	}
-
-	var articleV2Promise = api.content({
-		uuid: req.params.id,
-		type: 'Article',
-		metadata: true,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet,
-		useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
-	});
+module.exports = function articleLegacyController(req, res, next, payload) {
 
 	var socialMediaImage = function (articleV2) {
 
@@ -63,9 +36,7 @@ module.exports = function(req, res, next) {
 
 		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet', retry: 0 })
 			.then(function (images) {
-				var image = images.members.reduce(function (a, b) {
-					return a;
-				});
+				var image = images.members[0];
 				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet', retry: 0 });
 			})
 			.catch(function(err) {
@@ -77,36 +48,33 @@ module.exports = function(req, res, next) {
 			});
 	};
 
-	Promise.all([articleV1Promise, articleV2Promise])
-		.then(function (article) {
-			return Promise.all([
-				Promise.resolve(article[0]),
-				Promise.resolve(article[1]),
-				articleXSLT(article[1].bodyXML, 'main', {
-					renderSlideshows: res.locals.flags.galleries ? 1 : 0,
-					renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
-					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
-					renderTOC: res.locals.flags.articleTOC ? 1 : 0,
-					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
-					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
-					suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
-					standFirst: article[0] ? article[0].item.editorial.standFirst : "",
-					renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
-					id: extractUuid(article[1].id),
-					webUrl: article[0] && article[0].item  && article[0].item.location ? article[0].item.location.uri : '',
-					encodedTitle: encodeURIComponent(article[1].title.replace(/\&nbsp\;/g, ' '))
-				}),
-				socialMediaImage(article[1]),
-				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet, res.locals.flags.elasticSearchOnAws) : Promise.resolve(),
-				getSuggested(article[0]).then(function(it) {
-					return api.contentLegacy({
-						uuid: (it && it.ids) || [],
-						useElasticSearch: res.locals.flags.elasticSearchItemGet,
-						useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
-					});
-				})
-			]);
+	Promise.all([
+		Promise.resolve(payload[0]),
+		Promise.resolve(payload[1]),
+		articleXSLT(payload[1].bodyXML, 'main', {
+			renderSlideshows: res.locals.flags.galleries ? 1 : 0,
+			renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
+			useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
+			renderTOC: res.locals.flags.articleTOC ? 1 : 0,
+			fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
+			reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
+			suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
+			standFirst: payload[0] ? payload[0].item.editorial.standFirst : "",
+			renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
+			id: extractUuid(payload[1].id),
+			webUrl: payload[0] && payload[0].item && payload[0].item.location ? payload[0].item.location.uri : '',
+			encodedTitle: encodeURIComponent(payload[1].title.replace(/\&nbsp\;/g, ' '))
+		}),
+		socialMediaImage(payload[1]),
+		res.locals.flags.articleSuggestedRead && payload[0] ? readNext(payload[0], res.locals.flags.elasticSearchItemGet, res.locals.flags.elasticSearchOnAws) : Promise.resolve(),
+		getSuggested(payload[0]).then(function(it) {
+			return api.contentLegacy({
+				uuid: (it && it.ids) || [],
+				useElasticSearch: res.locals.flags.elasticSearchItemGet,
+				useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
+			});
 		})
+	])
 		.then(function(results) {
 			res.set(cacheControl);
 
@@ -124,18 +92,26 @@ module.exports = function(req, res, next) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
 			}
+			if (metadata && metadata.primarySection) {
 			//specialReport is a circular - if it exists, delete it before dehydrating it
-			if (metadata && metadata.primarySection && metadata.primarySection.term.specialReport) {
-				delete metadata.primarySection.term.specialReport;
+				if (metadata.primarySection.term.specialReport) {
+					delete metadata.primarySection.term.specialReport;
+				}
+			//if primarySection is Columnists, replace with Author
+				if (
+					metadata.primarySection.term.name === 'Columnists' &&
+					metadata.authors.length &&
+					(metadata.authors[0].term.id !== metadata.primaryTheme.term.id)
+				) {
+					metadata.primarySection.term = metadata.authors[0].term;
+				}
 			}
+
 			var dehydratedMetadata = {
 				primaryTheme: metadata && metadata.primaryTheme ? metadata.primaryTheme : null,
 				primarySection: metadata && metadata.primarySection ? metadata.primarySection : null,
 				package: articleV1 && articleV1.item && articleV1.item.package ? articleV1.item.package : null
 			};
-			// Some posts (e.g. FastFT are only available in CAPI v2)
-			// TODO: Replace with something in CAPI v2
-			var isColumnist = metadata && metadata.primarySection.term.name === 'Columnists';
 
 			// Update the images (resize, add image captions, etc)
 			return images($, {
@@ -153,10 +129,9 @@ module.exports = function(req, res, next) {
 						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
 						toc: $.html('.article__toc'),
-						isColumnist: isColumnist,
 						layout: 'wrapper',
 						primaryTag: primaryTag,
-						suggestedTopic: articleV1 && articleV1.item ? exposeTopic(articleV1.item.metadata) : null,
+						suggestedTopic: articleV1 && articleV1.item ? articleTopicMapping(articleV1.item.metadata) : null,
 						save: {},
 						relatedContent: res.locals.flags.articleRelatedContent,
 						shareButtons: res.locals.flags.articleShareButtons,
@@ -165,7 +140,6 @@ module.exports = function(req, res, next) {
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
 						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
-						dehydratedState: {},
 						dehydratedMetadata: dehydratedMetadata
 					};
 
@@ -324,31 +298,10 @@ module.exports = function(req, res, next) {
 				})
 				.then(function(viewModel) {
 					return res.render('article-v2', viewModel);
+				})
+				.catch(function(error) {
+					logger.error(error);
+					next(error);
 				});
-		})
-		.catch(function(err) {
-
-			if (fetchres.originatedError(err)) {
-				return api.contentLegacy({
-						uuid: req.params.id,
-						useElasticSearch: res.locals.flags.elasticSearchItemGet,
-						useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
-					})
-						.then(function(data) {
-							if (data.item.location.uri.indexOf('?') > -1) {
-								res.redirect(302, data.item.location.uri + "&ft_site=falcon&desktop=true");
-							} else {
-								res.redirect(302, data.item.location.uri + "?ft_site=falcon&desktop=true");
-							}
-						})
-						.catch(function(err) {
-							if (fetchres.originatedError(err)) {
-								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon&desktop=true');
-							} else {
-								next(err);
-							}
-						});
-			}
-			next(err);
 		});
 };

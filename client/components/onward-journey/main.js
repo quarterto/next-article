@@ -28,7 +28,7 @@ function createPromise(el, url) {
 		.catch(() => {});
 }
 
-module.exports.init = function(flags) {
+module.exports.init = function() {
 	var articleEl = document.querySelector('.article');
 	var dehydratedMetadata = document.getElementById('dehydrated-metadata');
 
@@ -55,8 +55,7 @@ module.exports.init = function(flags) {
 		let url = `/article/${articleId}/story-package?ids=${storyPackageIds.join()}`;
 
 		fetchPromises = fetchPromises.concat(
-			$('.js-story-package-inline').map(el => createPromise(el, `${url}&view=inline&count=1`)),
-			$('.js-story-package').map(el => createPromise(el, `${url}&count=4`))
+			$('.js-story-package').map(el => createPromise(el, `${url}`))
 		);
 	}
 
@@ -71,7 +70,7 @@ module.exports.init = function(flags) {
 	var moreOns = $('.js-more-on');
 
 	if (moreOns.length) {
-		let url = `/article/${articleId}/more-on?count=6`;
+		let url = `/article/${articleId}/more-on?count=5`;
 
 		fetchPromises = fetchPromises.concat(
 			moreOns.map(el => {

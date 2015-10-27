@@ -4,7 +4,6 @@ TEST_APP := "ft-article-branch-${CIRCLE_BUILD_NUM}"
 
 install:
 	obt install --verbose
-	obt install --verbose # hackily run obt install twice (bower install doesn't seem to work first time :()
 
 test: verify unit-test
 
@@ -12,7 +11,7 @@ verify:
 	nbt verify
 
 unit-test:
-	export apikey=12345; export api2key=67890; export ELASTIC_SEARCH_HOST=ft-elastic-search.com; export NODE_ENV=test; mocha test/server/ --recursive
+	export apikey=12345; export api2key=67890; export AWS_SIGNED_FETCH_DISABLE_DNS_RESOLUTION=true; export NODE_ENV=test; mocha test/server/ --recursive
 	karma start test/client/karma.conf.js
 
 test-debug:
@@ -26,7 +25,6 @@ build:
 
 build-production:
 	nbt build
-	nbt about
 
 watch:
 	nbt build --dev --watch
@@ -35,10 +33,8 @@ clean:
 	git clean -fxd
 
 deploy:
-	nbt configure --no-splunk
 	nbt deploy-hashed-assets
-	nbt deploy --skip-logging
-	nbt scale
+	nbt ship -m
 
 visual:
 	# Note: || is not OR; it executes the RH command only if LH test is truthful.
@@ -50,10 +46,8 @@ tidy:
 	nbt destroy ${TEST_APP}
 
 provision:
-	nbt provision ${TEST_APP}
-	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch" --no-splunk
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_APP} --skip-enable-preboot --skip-logging
+	nbt float -md --testapp ${TEST_APP}
 	make smoke
 
 smoke:
