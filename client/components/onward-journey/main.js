@@ -52,7 +52,7 @@ module.exports.init = function() {
 	var primarySection = hydratedMetadata.primarySection && hydratedMetadata.primarySection.term;
 
 	if (storyPackageIds.length) {
-		let url = `/article/${articleId}/story-package?ids=${storyPackageIds.join()}`;
+		let url = `/article/${articleId}/story-package?ids=${storyPackageIds.join()}&count=5`;
 
 		fetchPromises = fetchPromises.concat(
 			$('.js-story-package').map(el => createPromise(el, `${url}`))
