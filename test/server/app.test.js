@@ -41,5 +41,5 @@ describe('Smoke Tests: ', function() {
 	});
 
 	// specific controller tests
-	require('./controllers/article.test.js')();
+	require('./controllers/article-legacy.test.js')();
 });

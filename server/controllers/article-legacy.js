@@ -15,7 +15,8 @@ var articleXSLT = require('../transforms/article-xslt');
 var openGraph = require('../utils/open-graph');
 var twitterCardSummary = require('../utils/twitter-card').summary;
 var getDfp = require('../utils/get-dfp');
-var getSuggested = require('./article-helpers/suggested');
+var suggestedHelper = require('./article-helpers/suggested');
+var barrierHelper = require('./article-helpers/barrier');
 var articleTopicMapping = require('../mappings/article-topic-mapping');
 var readNext = require('../lib/read-next');
 var articlePodMapping = require('../mappings/article-pod-mapping');
@@ -67,7 +68,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 		}),
 		socialMediaImage(payload[1]),
 		res.locals.flags.articleSuggestedRead && payload[0] ? readNext(payload[0], res.locals.flags.elasticSearchItemGet, res.locals.flags.elasticSearchOnAws) : Promise.resolve(),
-		getSuggested(payload[0]).then(function(it) {
+		suggestedHelper(payload[0]).then(function(it) {
 			return api.contentLegacy({
 				uuid: (it && it.ids) || [],
 				useElasticSearch: res.locals.flags.elasticSearchItemGet,
@@ -79,7 +80,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 			res.set(cacheControl);
 
 			var articleV1 = results[0];
-			var article = results[1];
+			var articleV2 = results[1];
 			var mainImage = results[3];
 			var readNextArticle = results[4];
 			var readNextArticles = results[5].map(it => articlePodMapping(it));
@@ -88,10 +89,17 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 
 			var metadata = articleV1 && articleV1.item && articleV1.item.metadata;
 			var primaryTag = metadata ? articlePrimaryTag(metadata) : undefined;
+			var isSpecialReport = metadata && metadata.primarySection.term.taxonomy === 'specialReports';
+
+			if (isSpecialReport) {
+				primaryTag = metadata && metadata.primarySection.term;
+			}
+
 			if (primaryTag) {
 				primaryTag.conceptId = primaryTag.id;
 				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
 			}
+
 			if (metadata && metadata.primarySection) {
 			//specialReport is a circular - if it exists, delete it before dehydrating it
 				if (metadata.primarySection.term.specialReport) {
@@ -120,26 +128,24 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 				.then(function($) {
 					var viewModel = {
 						firstClickFree: null,
-						comments: article.comments && article.comments.enabled === true,
-						article: article,
-						articleV1: articleV1 && articleV1.item,
-						id: extractUuid(article.id),
-						title: article.title,
-						byline: bylineTransform(article.byline, articleV1),
-						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
+						comments: articleV2.comments && articleV2.comments.enabled,
+						articleV1: !!articleV1,
+						articleV2: true,
+						id: extractUuid(articleV2.id),
+						title: articleV2.title,
+						publishedDate: articleV2.publishedDate,
+						standFirst: articleV1 && articleV1.item.editorial.standFirst,
+						byline: bylineTransform(articleV2.byline, articleV1),
+						tags: extractTags(articleV2, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
 						toc: $.html('.article__toc'),
 						layout: 'wrapper',
 						primaryTag: primaryTag,
 						suggestedTopic: articleV1 && articleV1.item ? articleTopicMapping(articleV1.item.metadata) : null,
-						save: {},
-						relatedContent: res.locals.flags.articleRelatedContent,
-						shareButtons: res.locals.flags.articleShareButtons,
-						myFTTray: res.locals.flags.myFTTray,
 						moreOns: {},
 						dfp: metadata ? getDfp(metadata.sections) : undefined,
 						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
-						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
+						isSpecialReport: isSpecialReport,
 						dehydratedMetadata: dehydratedMetadata
 					};
 
@@ -198,11 +204,11 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 					}
 
 					if (res.locals.flags.openGraph) {
-						viewModel.og = openGraph(article, articleV1, mainImage);
+						viewModel.og = openGraph(articleV2, articleV1, mainImage);
 					}
 
 					if (res.locals.flags.twitterCards) {
-						viewModel.twitterCard = twitterCardSummary(article, articleV1, mainImage);
+						viewModel.twitterCard = twitterCardSummary(articleV2, articleV1, mainImage);
 					}
 
 					if (res.locals.flags.articleSuggestedRead) {
@@ -211,89 +217,13 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 					}
 
 					if (res.locals.barrier) {
-
-						if (res.locals.barrier.trialSimple) {
-							viewModel.trialSimpleBarrier = res.locals.barrier.trialSimple;
-						}
-
-						if (res.locals.barrier.trialGrid) {
-
-							viewModel.trialGridBarrier = res.locals.barrier.trialGrid;
-
-							if (!res.locals.barrier.trialGrid.packages.newspaper) {
-
-								viewModel.trialGridBarrier.missingNewspaper = {};
-							}
-
-							viewModel.trialGridBarrier.articleTitle = viewModel.title;
-
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.registerSimple) {
-							viewModel.registerSimpleBarrier = res.locals.barrier.registerSimple;
-							viewModel.barrierOverlay = {};
-							viewModel.registerSimpleBarrier.articleTitle = viewModel.title;
-						}
-
-						if (res.locals.barrier.registerGrid) {
-
-							viewModel.registerGridBarrier = res.locals.barrier.registerGrid;
-
-							if(!res.locals.barrier.registerGrid.packages.newspaper) {
-
-								viewModel.registerGridBarrier.missingNewspaper = {};
-							}
-
-							viewModel.registerGridBarrier.articleTitle = viewModel.title;
-
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.subscriptionGrid) {
-							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
-							viewModel.subscriptionGridBarrier.articleTitle = viewModel.title;
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.premiumSimple) {
-							viewModel.premiumSimpleBarrier = res.locals.barrier.premiumSimple;
-							viewModel.barrierOverlay = {};
-							viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
-						}
-
-						if (res.locals.barrier.premiumGrid) {
-							viewModel.premiumGridBarrier = res.locals.barrier.premiumGrid;
-							viewModel.barrierOverlay = {};
-							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
-						}
-
-						if (res.locals.barrier.corporateSimple) {
-							viewModel.corporateBarrier = res.locals.barrier.corporateSimple;
-							viewModel.barrierOverlay = {};
-							viewModel.corporateBarrier.articleTitle = viewModel.title;
-						}
-
-						viewModel.comments = null;
-						viewModel.body = null;
-						if (viewModel.articleV1) {
-							viewModel.articleV1.editorial.standFirst = null;
-						}
-						viewModel.byline = null;
-						viewModel.article.publishedDate = null;
-						viewModel.tableOfContents = null;
-						viewModel.primaryTag = null;
-						viewModel.save = null;
-						viewModel.tags = null;
-						viewModel.relatedContent = null;
-						viewModel.moreOns = null;
-						viewModel.shareButtons = null;
-						viewModel.myFTTray = null;
+						viewModel = barrierHelper(viewModel, res.locals.barrier);
 					}
 
 					if (res.locals.firstClickFreeModel) {
 						viewModel.firstClickFree = res.locals.firstClickFreeModel;
 					}
+
 					return viewModel;
 				})
 				.then(function(viewModel) {

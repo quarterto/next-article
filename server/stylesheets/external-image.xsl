@@ -22,15 +22,19 @@
 
     <xsl:template match="img" mode="external-image">
         <xsl:param name="isInline" />
+        <xsl:param name="isPromoImage" />
 
-        <img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width=710">
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="$isInline">article__image ng-inline-element ng-pull-out</xsl:when>
-                    <xsl:otherwise>article__image</xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-        </img>
+        <xsl:choose>
+            <xsl:when test="$isInline">
+                <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width=710" class="article__image ng-inline-element ng-pull-out" />
+            </xsl:when>
+            <xsl:when test="$isPromoImage">
+                <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width=400" class="n-image__img" />
+            </xsl:when>
+            <xsl:otherwise>
+                <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width=710" class="article__image" />
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>

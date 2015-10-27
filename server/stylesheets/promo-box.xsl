@@ -82,6 +82,9 @@
       <xsl:apply-templates select="ft-content" mode="internal-image">
         <xsl:with-param name="isPromoImage" select="1" />
       </xsl:apply-templates>
+      <xsl:apply-templates select="img" mode="external-image">
+        <xsl:with-param name="isPromoImage" select="1" />
+      </xsl:apply-templates>
     </xsl:template>
 
     <xsl:template match="promo-intro">

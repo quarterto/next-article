@@ -31,7 +31,7 @@
 								</time>
 							</div>
 							<div class="article__header-actions">
-								{{#if save}}
+								{{#if @root.flags.saveForLater}}
 								<div class="article__actions">
 									{{>next-myft-ui/templates/save-for-later contentId=id}}
 								</div>

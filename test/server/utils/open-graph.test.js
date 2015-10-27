@@ -46,7 +46,7 @@ describe('Open graph', function () {
 				"description": "vertical but yet are broadly",
 				"image": "http://foo.png",
 				"title": "Monitise issues fresh",
-				"url": "https://next.ft.com/0786d5a8-23b2-11e5-bd83-71cb60e8f08c"
+				"url": "https://next.ft.com/content/0786d5a8-23b2-11e5-bd83-71cb60e8f08c"
 			}
 		);
 	});
@@ -58,7 +58,7 @@ describe('Open graph', function () {
 				"image": "http://foo.png",
 				"title": "Monitise issues fresh",
 				"facebookAuthor": "https://www.facebook.com/HKuchler",
-				"url": "https://next.ft.com/0786d5a8-23b2-11e5-bd83-71cb60e8f08c"
+				"url": "https://next.ft.com/content/0786d5a8-23b2-11e5-bd83-71cb60e8f08c"
 			}
 		);
 	});

@@ -1,5 +1,4 @@
 {{#defineBlock 'head'}}
-	<meta name="auth" content="{{article.byline}}" />
 	<meta name="classification" content="{{{visualCat}}}" />
 	{{#if dfp.dfpSite}}
 	<meta name="dfp_site" content="{{dfp.dfpSite}}" />
@@ -13,7 +12,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if article}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header" data-trackable="header">
 		<div class="article__leaderboard-advert"></div>
 		<div class="o-grid-container">
@@ -28,7 +27,7 @@
 							{{#if isSpecialReport}}
 								<p class="article__primary-theme">
 									Special Report:
-									<a href="/special-reports/{{articleV1.metadata.primarySection.term.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{articleV1.metadata.primarySection.term.name}}" data-concept-id="{{articleV1.metadata.primarySection.term.id}}">{{articleV1.metadata.primarySection.term.name}}</a>
+									<a href="/special-reports/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 								</p>
 							{{else}}
 								{{#if primaryTag}}
@@ -40,17 +39,15 @@
 							<h1 class="article__title">{{title}}</h1>
 						</div>
 						<div class="article__header-secondary">
-						{{! TODO: Update to CAPI v2 when this is available ~end of Q1 }}
-						{{! Probably something like article.summaries[0] }}
-						{{#if articleV1.editorial.standFirst}}
-							{{#unless @root.flags.articleSuggestedRead}}
-								<p class="article__stand-first">{{{articleV1.editorial.standFirst}}}</p>
-							{{/unless}}
-						{{/if}}
+							{{#if standFirst}}
+								{{#unless @root.flags.articleSuggestedRead}}
+									<p class="article__stand-first">{{{standFirst}}}</p>
+								{{/unless}}
+							{{/if}}
 							<div class="article__header-time-byline">
-							{{#if article.publishedDate}}
-								<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{article.publishedDate}}{{/dateformat}}" data-o-date-js>
-									{{#dateformat "dddd, d mmmm, yyyy"}}{{article.publishedDate}}{{/dateformat}}
+							{{#if publishedDate}}
+								<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+									{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
 								</time>
 							{{/if}}
 							{{#if byline}}
@@ -60,7 +57,7 @@
 							{{/if}}
 							</div>
 							<div class="article__header-actions">
-							{{#if save}}
+							{{#if @root.flags.saveForLater}}
 								<div class="article__actions">
 									{{>next-myft-ui/templates/save-for-later contentId=id}}
 								</div>
@@ -164,7 +161,7 @@
 		{{#if isSpecialReport}}
 				<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 		{{else}}
-			{{#if relatedContent}}
+			{{#if @root.flags.articleRelatedContent}}
 				<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 			{{/if}}
 		{{/if}}
@@ -187,7 +184,7 @@
 
 </div>
 
-{{#if myFTTray}}
+{{#if @root.flags.myFTTray}}
 	{{>n-myft-tray/templates/tray}}
 {{/if}}
 
