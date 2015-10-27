@@ -7,6 +7,7 @@ const barrierHelper = require('./article-helpers/barrier');
 const suggestedHelper = require('./article-helpers/suggested');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
+const bylineTransform = require('../transforms/byline');
 
 function isCapiV1(article) {
 	return article.provenance.find(
@@ -223,6 +224,8 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			)
 		);
 	}
+
+	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
 
 	// TODO: implement this
 	payload.visualCat = null;
