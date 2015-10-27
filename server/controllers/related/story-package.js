@@ -1,13 +1,13 @@
 'use strict';
 
-var api = require('next-ft-api-client');
-var fetchres = require('fetchres');
-var logger = require('ft-next-express').logger;
-var NoRelatedResultsException = require('../../lib/no-related-results-exception');
-var articlePodMapping = require('../../mappings/article-pod-mapping');
+const api = require('next-ft-api-client');
+const fetchres = require('fetchres');
+const logger = require('ft-next-express').logger;
+const NoRelatedResultsException = require('../../lib/no-related-results-exception');
+const articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function(req, res, next) {
-	var storyPackageIds = req.query.ids;
+	let storyPackageIds = req.query.ids;
 
 	if (!req.query.ids) {
 		return res.status(400).end();
@@ -31,9 +31,16 @@ module.exports = function(req, res, next) {
 			});
 		})
 		.then(function(articles) {
+			let numImages = 0;
+			articles.map( article => article.image && numImages ++);
+			let imageCount = 0;
 			return res.render('related/story-package', {
-				articles: articles.map(function(article, index) {
-					if (articles.length > 4 && article.image && index && index > 2) {
+				articles: articles.map(function(article) {
+					article.image && imageCount ++;
+					if (articles.length === 5 && numImages === 5 && (imageCount === 3 || imageCount === 4)) {
+						article.image = undefined;
+					}
+					if (articles.length === 3 && numImages > 1 && article.image && (imageCount === 2 || imageCount === 3)) {
 						article.image = undefined;
 					}
 					return article;
