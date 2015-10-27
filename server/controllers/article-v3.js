@@ -20,11 +20,6 @@ function isCapiV2(article) {
 }
 
 function transformArticleBody(article, flags) {
-	// Return plain HTML for non-CAPI V2 content
-	if (!isCapiV2(article)) {
-		return Promise.resolve(article.bodyXML);
-	}
-
 	let xsltParams = {
 		v3: 1,
 		id: article.id,
