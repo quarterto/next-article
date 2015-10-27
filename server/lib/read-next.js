@@ -1,75 +1,65 @@
-"use strict";
+'use strict';
 
-var articlePodMapping = require('../mappings/article-pod-mapping');
-var articleTopicMapping = require('../mappings/article-topic-mapping');
-var api = require('next-ft-api-client');
+const api = require('next-ft-api-client');
+const articlePodMapping = require('../mappings/article-pod-mapping');
 
-module.exports = function(articleV1) {
-	var parent = articleV1;
-	var parentLastPublishedDateTime = parent.item.lifecycle.lastPublishDateTime;
+module.exports = function(storyPackageIds, articleId, primaryTag, publishedDate) {
 
-	var storyPackagePromise;
-	if (parent.item.package.length) {
-		storyPackagePromise = api.contentLegacy({
-				uuid: parent.item.package[0].id,
-				useElasticSearch: true
-			})
-			.then(function(storyPackageArticle) {
-				return articlePodMapping(storyPackageArticle);
-			})
-			.catch(function() {
-				return ;
-			});
+	let packageArticleFetch;
+	let topicArticleFetch;
+
+	if (storyPackageIds.length) {
+		packageArticleFetch = api.contentLegacy({
+			uuid: storyPackageIds[0],
+			useElasticSearch: true
+		})
+			.then(articlePodMapping);
 	}
 
-	var parentTopic = articleTopicMapping(parent.item.metadata);
-	var topicPromise;
-	if (parentTopic) {
-		topicPromise = api.searchLegacy({
-			query: parentTopic.taxonomy + 'Id:"' + parentTopic.id + '"',
+	if (primaryTag) {
+		topicArticleFetch = api.searchLegacy({
+			query: primaryTag.taxonomy + 'Id:"' + primaryTag.id + '"',
 			count: 2,
 			fields: true,
 			useElasticSearch: true
 		})
-		.then(function(topicArticlesES) {
-			var topicArticle = topicArticlesES.map(function(topicArticleES) {
-				return topicArticleES._source;
-			})
-				.filter(function(topicArticle) {
-					return topicArticle.item.id !== parent.item.id;
-				})
-				.slice(0,1);
-			return articlePodMapping(topicArticle[0]);
-		})
-		.catch(function() {
-			return ;
-		});
+			.then(articles => {
+				return articlePodMapping(
+					articles
+						.map(article => article._source)
+						.filter(article => article.item.id !== articleId)
+						.shift()
+				);
+			});
 	}
 
-	return Promise.all([storyPackagePromise,topicPromise])
-		.then(function(results) {
-			var packageArticle = results[0];
-			if (packageArticle) {
-				packageArticle.source = "package";
-			}
-			var topicArticle = results[1];
-			if (!topicArticle && packageArticle) {
-					return packageArticle;
-			}
+	return Promise.all([ packageArticleFetch, topicArticleFetch ])
+		.then(results => {
+			let packageArticle = results[0];
+			let topicArticle = results[1];
+
 			if (!topicArticle && !packageArticle) {
-				return ;
+				return;
 			}
-			topicArticle.source = "topic";
+
+			if (packageArticle) {
+				packageArticle.source = 'package';
+			}
+
+			if (topicArticle) {
+				topicArticle.source = 'topic';
+			}
+
 			// hierarchy of compellingness governing which read next article to return
-			// 1. return article with same topic as parent if more recent
-			if (new Date(topicArticle.lastUpdated) > new Date(parentLastPublishedDateTime)) {
+			if (topicArticle && new Date(topicArticle.lastUpdated) > new Date(publishedDate)) {
+				// 1. return article with same topic as parent if more recent
 				topicArticle.moreRecent = true;
 				return topicArticle;
 			} else if (packageArticle) {
-			// 2. otherwise if story package return the first one
+				// 2. otherwise if story package return the first one
 				return packageArticle;
 			} else {
-			// 3. failing that return the article on the same topic
+				// 3. failing that return the article on the same topic
 				return topicArticle;
 			}
 		});

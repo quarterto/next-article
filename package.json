@@ -44,7 +44,6 @@
     "origami-build-tools": "^4.1.1",
     "proxyquire": "^1.7.3",
     "request": "^2.55.0",
-    "rewire": "^2.3.4",
     "sinon": "^1.15.3"
   },
   "babel": {
