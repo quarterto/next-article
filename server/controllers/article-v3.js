@@ -134,6 +134,7 @@ function getDfpMetadata(metadata) {
 }
 
 function getOpenGraphData(article) {
+	// TODO: this can be dealt with in the template
 	return {
 		title: article.title,
 		description: article.summaries[0],
@@ -143,15 +144,14 @@ function getOpenGraphData(article) {
 }
 
 function getTwitterCardData(article) {
+	// TODO: this can be dealt with in the template
 	let openGraph = getOpenGraphData(article);
 	openGraph.card = openGraph.image ? 'summary_large_image' : 'summary';
 	return openGraph;
 }
 
 module.exports = function articleV3Controller(req, res, next, payload) {
-	res.set(cacheControlUtil);
-
-	payload.layout = 'wrapper';
+	let asyncWorkToDo = [];
 
 	if (res.locals.barrier) {
 		return res.render('article-v2', barrierHelper(payload, res.locals.barrier));
@@ -171,6 +171,12 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.primaryTag = primaryTag;
 	payload.tags = getTagsForDisplay(payload.metadata, primaryTag);
 	payload.isSpecialReport = primaryTag && primaryTag.taxonomy === 'specialReports';
+
+	asyncWorkToDo.push(
+		transformArticleBody(payload, res.locals.flags).then(
+			articleBody => payload.body = articleBody
+		)
+	);
 
 	// Decorate with related stuff
 	payload.moreOns = getMoreOnTags(primaryTheme, primarySection);
@@ -199,20 +205,18 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		payload.twitterCard = getTwitterCardData(payload);
 	}
 
-	return transformArticleBody(payload, res.locals.flags)
-		.then(articleBody => {
-			payload.body = articleBody;
+	// TODO: implement this
+	payload.visualCat = null;
+	payload.toc = null;
+	payload.suggestedTopic = null;
 
-			// TODO: implement this
-			payload.visualCat = null;
-			payload.toc = null;
-			payload.suggestedTopic = null;
-
-			return res.render('article-v2', payload);
+	return Promise.all(asyncWorkToDo)
+		.then(() => {
+			payload.layout = 'wrapper';
+			return res.set(cacheControlUtil).render('article-v2', payload);
 		})
 		.catch(error => {
 			logger.error(error);
 			next(error);
 		});
-
 };
