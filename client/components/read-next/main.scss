@@ -42,7 +42,7 @@
 }
 
 .next-up__bottom__wrapper {
-	margin-top: 45px;
+	margin-top: 10px;
 	border-top: 1px solid getColor('warm-3');
 
 	// Clearfix
@@ -81,5 +81,6 @@
 }
 
 .next-up__bottom {
+	padding-top: 25px;
 	padding-left: 0;
 }

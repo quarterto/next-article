@@ -162,7 +162,7 @@
 .article__body {
 	@include nTypeAlpha(3);
 	color: getColor('grey-tint5');
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 
 	> p {
 		margin: 0.3em 0 0.8em;
