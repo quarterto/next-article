@@ -208,4 +208,27 @@ describe('Negotiation Controller', function() {
 		});
 	});
 
+
+	describe('for live blogs', () => {
+		it('should redirect back to FT.com', () => {
+			nock('https://next-elastic.ft.com')
+				.post('/v3_api_v2/item/_mget')
+				.reply(200, {
+					docs: [{
+						found: true,
+						_source: {
+							webUrl: 'http://ftalphaville.ft.com/marketslive/2015-10-27/'
+						}
+					}]
+				});
+
+			return createInstance({
+				params: { id: 'uuid' }
+			}, { elasticV3: true })
+				.then(() => {
+					expect(response.statusCode).to.equal(302);
+				});
+		});
+	})
+
 });
