@@ -53,11 +53,23 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 					throw err;
 				}
 			});
-	};
+	}
+
+	function getStoryPackageIds(articleV1) {
+		return (articleV1.item.package || []).map(item => item.id);
+	}
 
 	function getSuggestedReads(articleV1) {
-		let storyPackageIds = (articleV1.item.package || []).map(item => item.id);
-		return suggestedHelper(storyPackageIds, extractUuid(articleV2.id), primaryTag);
+		return suggestedHelper(getStoryPackageIds(articleV1), articleV1.item.id, primaryTag);
+	}
+
+	function getReadNext(articleV1) {
+		return readNextHelper(
+			getStoryPackageIds(articleV1),
+			articleV1.item.id,
+			primaryTag,
+			articleV1.item.lifecycle.lastPublishDateTime
+		);
 	}
 
 	Promise.all([
@@ -78,7 +90,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 		socialMediaImage(articleV2),
 
 		res.locals.flags.articleSuggestedRead && articleV1
-			? readNextHelper(articleV1)
+			? getReadNext(articleV1)
 			: Promise.resolve(),
 
 		res.locals.flags.articleSuggestedRead && articleV1

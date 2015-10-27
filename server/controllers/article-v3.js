@@ -5,6 +5,7 @@ const cacheControlUtil = require('../utils/cache-control');
 const getDfpUtil = require('../utils/get-dfp');
 const barrierHelper = require('./article-helpers/barrier');
 const suggestedHelper = require('./article-helpers/suggested');
+const readNextHelper = require('../lib/read-next');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 
@@ -151,9 +152,7 @@ function getTwitterCardData(article) {
 	return openGraph;
 }
 
-function getSuggestedReads(storyPackage, articleId, primaryTag) {
-	let storyPackageIds = (storyPackage || []).map(story => story.id);
-
+function getSuggestedReads(storyPackageIds, articleId, primaryTag) {
 	if (!storyPackageIds.length) {
 		return Promise.resolve();
 	}
@@ -217,9 +216,17 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	}
 
 	if (res.locals.flags.articleSuggestedRead) {
+		let storyPackageIds = (payload.storyPackage || []).map(story => story.id);
+
 		asyncWorkToDo.push(
-			getSuggestedReads(payload.storyPackage, payload.id, primaryTag).then(
+			getSuggestedReads(storyPackageIds, payload.id, primaryTag).then(
 				articles => payload.readNextArticles = articles
+			)
+		);
+
+		asyncWorkToDo.push(
+			readNextHelper(storyPackageIds, payload.id, primaryTag, payload.publishedDate).then(
+				article => payload.readNextArticle = article
 			)
 		);
 	}
