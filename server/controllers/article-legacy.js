@@ -18,12 +18,18 @@ var getDfp = require('../utils/get-dfp');
 var suggestedHelper = require('./article-helpers/suggested');
 var barrierHelper = require('./article-helpers/barrier');
 var articleTopicMapping = require('../mappings/article-topic-mapping');
-var readNext = require('../lib/read-next');
-var articlePodMapping = require('../mappings/article-pod-mapping');
+var readNextHelper = require('../lib/read-next');
 
 module.exports = function articleLegacyController(req, res, next, payload) {
 
-	var socialMediaImage = function (articleV2) {
+	var articleV1 = payload[0];
+	var articleV2 = payload[1];
+
+	var metadata = articleV1 && articleV1.item && articleV1.item.metadata;
+	var primaryTag = metadata ? articlePrimaryTag(metadata) : undefined;
+	var isSpecialReport = metadata && metadata.primarySection.term.taxonomy === 'specialReports';
+
+	function socialMediaImage(articleV2) {
 
 		// don't bother if there's no main image to fetch
 		if (!articleV2.mainImage) {
@@ -49,10 +55,13 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 			});
 	};
 
+	function getSuggestedReads(articleV1) {
+		let storyPackageIds = (articleV1.item.package || []).map(item => item.id);
+		return suggestedHelper(storyPackageIds, extractUuid(articleV2.id), primaryTag);
+	}
+
 	Promise.all([
-		Promise.resolve(payload[0]),
-		Promise.resolve(payload[1]),
-		articleXSLT(payload[1].bodyXML, 'main', {
+		articleXSLT(articleV2.bodyXML, 'main', {
 			renderSlideshows: res.locals.flags.galleries ? 1 : 0,
 			renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
 			useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
@@ -60,36 +69,30 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 			fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
 			reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
 			suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
-			standFirst: payload[0] ? payload[0].item.editorial.standFirst : "",
+			standFirst: articleV1 ? articleV1.item.editorial.standFirst : "",
 			renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
-			id: extractUuid(payload[1].id),
-			webUrl: payload[0] && payload[0].item && payload[0].item.location ? payload[0].item.location.uri : '',
-			encodedTitle: encodeURIComponent(payload[1].title.replace(/\&nbsp\;/g, ' '))
+			id: extractUuid(articleV2.id),
+			webUrl: articleV1 && articleV1.item && articleV1.item.location ? articleV1.item.location.uri : '',
+			encodedTitle: encodeURIComponent(articleV2.title.replace(/\&nbsp\;/g, ' '))
 		}),
-		socialMediaImage(payload[1]),
-		res.locals.flags.articleSuggestedRead && payload[0] ? readNext(payload[0], res.locals.flags.elasticSearchItemGet, res.locals.flags.elasticSearchOnAws) : Promise.resolve(),
-		suggestedHelper(payload[0]).then(function(it) {
-			return api.contentLegacy({
-				uuid: (it && it.ids) || [],
-				useElasticSearch: res.locals.flags.elasticSearchItemGet,
-				useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
-			});
-		})
+		socialMediaImage(articleV2),
+
+		res.locals.flags.articleSuggestedRead && articleV1
+			? readNextHelper(articleV1)
+			: Promise.resolve(),
+
+		res.locals.flags.articleSuggestedRead && articleV1
+			? getSuggestedReads(articleV1)
+			: Promise.resolve()
+
 	])
 		.then(function(results) {
 			res.set(cacheControl);
 
-			var articleV1 = results[0];
-			var articleV2 = results[1];
-			var mainImage = results[3];
-			var readNextArticle = results[4];
-			var readNextArticles = results[5].map(it => articlePodMapping(it));
-
-			var $ = bodyTransform(results[2], res.locals.flags);
-
-			var metadata = articleV1 && articleV1.item && articleV1.item.metadata;
-			var primaryTag = metadata ? articlePrimaryTag(metadata) : undefined;
-			var isSpecialReport = metadata && metadata.primarySection.term.taxonomy === 'specialReports';
+			var $ = bodyTransform(results[0], res.locals.flags);
+			var mainImage = results[1];
+			var readNextArticle = results[2];
+			var readNextArticles = results[3];
 
 			if (isSpecialReport) {
 				primaryTag = metadata && metadata.primarySection.term;

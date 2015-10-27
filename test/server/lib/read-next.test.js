@@ -5,7 +5,6 @@ var sinon = require('sinon');
 require('chai').should();
 var rewire = require('rewire');
 var readNext = rewire('../../../server/lib/read-next');
-var useElasticSearch = true;
 
 var parentArticle1 = require('../../fixtures/readNext/parentArticle1');
 var parentArticle2 = require('../../fixtures/readNext/parentArticle2');
@@ -51,8 +50,7 @@ describe('Suggested Read Model', function() {
 		before(function() {
 			stubContentLegacy.withArgs({
 				uuid: storyPackageId1,
-				useElasticSearch: true,
-				useElasticSearchOnAws: false
+				useElasticSearch: true
 			}).returns(Promise.resolve(storyPackageArticle1));
 			stubSearchLegacy.withArgs({
 				query: topicQuery1,
@@ -61,7 +59,7 @@ describe('Suggested Read Model', function() {
 				useElasticSearch: true
 			}).returns(Promise.resolve(topicArticles1));
 
-			return readNext(parentArticle1, useElasticSearch, false)
+			return readNext(parentArticle1)
 				.then(function(result) {
 					results = result;
 				});
@@ -84,8 +82,7 @@ describe('Suggested Read Model', function() {
 		before(function() {
 			stubContentLegacy.withArgs({
 				uuid: storyPackageId2,
-				useElasticSearch: true,
-				useElasticSearchOnAws: false
+				useElasticSearch: true
 			}).returns(Promise.resolve(storyPackageArticle2));
 			stubSearchLegacy.withArgs({
 				query: topicQuery2,
@@ -94,7 +91,7 @@ describe('Suggested Read Model', function() {
 				useElasticSearch: true
 			}).returns(Promise.resolve(topicArticles2));
 
-			return readNext(parentArticle2, useElasticSearch, false)
+			return readNext(parentArticle2)
 				.then(function(result) {
 					results = result;
 				});
@@ -121,7 +118,7 @@ describe('Suggested Read Model', function() {
 				useElasticSearch: true
 			}).returns(Promise.resolve(topicArticles3));
 
-			return readNext(parentArticle3, useElasticSearch, false)
+			return readNext(parentArticle3)
 				.then(function(result) {
 					results = result;
 				});
@@ -149,7 +146,7 @@ describe('Suggested Read Model', function() {
 				useElasticSearch: true
 			}).returns(Promise.resolve(topicArticles4));
 
-			return readNext(parentArticle4, useElasticSearch, false)
+			return readNext(parentArticle4)
 				.then(function(result) {
 					results = result;
 				});

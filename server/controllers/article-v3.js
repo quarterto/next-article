@@ -4,6 +4,7 @@ const logger = require('ft-next-express').logger;
 const cacheControlUtil = require('../utils/cache-control');
 const getDfpUtil = require('../utils/get-dfp');
 const barrierHelper = require('./article-helpers/barrier');
+const suggestedHelper = require('./article-helpers/suggested');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 
@@ -134,6 +135,7 @@ function getDfpMetadata(metadata) {
 }
 
 function getOpenGraphData(article) {
+	// TODO: this can be dealt with in the template
 	return {
 		title: article.title,
 		description: article.summaries[0],
@@ -143,15 +145,24 @@ function getOpenGraphData(article) {
 }
 
 function getTwitterCardData(article) {
+	// TODO: this can be dealt with in the template
 	let openGraph = getOpenGraphData(article);
 	openGraph.card = openGraph.image ? 'summary_large_image' : 'summary';
 	return openGraph;
 }
 
-module.exports = function articleV3Controller(req, res, next, payload) {
-	res.set(cacheControlUtil);
+function getSuggestedReads(storyPackage, articleId, primaryTag) {
+	let storyPackageIds = (storyPackage || []).map(story => story.id);
 
-	payload.layout = 'wrapper';
+	if (!storyPackageIds.length) {
+		return Promise.resolve();
+	}
+
+	return suggestedHelper(storyPackageIds, articleId, primaryTag);
+}
+
+module.exports = function articleV3Controller(req, res, next, payload) {
+	let asyncWorkToDo = [];
 
 	if (res.locals.barrier) {
 		return res.render('article-v2', barrierHelper(payload, res.locals.barrier));
@@ -171,6 +182,12 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.primaryTag = primaryTag;
 	payload.tags = getTagsForDisplay(payload.metadata, primaryTag);
 	payload.isSpecialReport = primaryTag && primaryTag.taxonomy === 'specialReports';
+
+	asyncWorkToDo.push(
+		transformArticleBody(payload, res.locals.flags).then(
+			articleBody => payload.body = articleBody
+		)
+	);
 
 	// Decorate with related stuff
 	payload.moreOns = getMoreOnTags(primaryTheme, primarySection);
@@ -199,20 +216,26 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		payload.twitterCard = getTwitterCardData(payload);
 	}
 
-	return transformArticleBody(payload, res.locals.flags)
-		.then(articleBody => {
-			payload.body = articleBody;
+	if (res.locals.flags.articleSuggestedRead) {
+		asyncWorkToDo.push(
+			getSuggestedReads(payload.storyPackage, payload.id, primaryTag).then(
+				articles => payload.readNextArticles = articles
+			)
+		);
+	}
 
-			// TODO: implement this
-			payload.visualCat = null;
-			payload.toc = null;
-			payload.suggestedTopic = null;
+	// TODO: implement this
+	payload.visualCat = null;
+	payload.toc = null;
+	payload.suggestedTopic = null;
 
-			return res.render('article-v2', payload);
+	return Promise.all(asyncWorkToDo)
+		.then(() => {
+			payload.layout = 'wrapper';
+			return res.set(cacheControlUtil).render('article-v2', payload);
 		})
 		.catch(error => {
 			logger.error(error);
 			next(error);
 		});
-
 };
