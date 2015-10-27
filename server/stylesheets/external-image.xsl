@@ -11,6 +11,11 @@
     <xsl:template match="/html/body/img[count(preceding-sibling::*) = 0] | /html/body/p[normalize-space(string()) = '' and count(preceding-sibling::*) = 0]/img">
         <figure class="article__image-wrapper article__main-image ng-figure-reset">
             <xsl:apply-templates select="current()" mode="external-image" />
+            <xsl:choose>
+                <xsl:when test="string-length(@longdesc) > 0">
+                    <figcaption class="article__image-caption ng-meta"><xsl:value-of select="@longdesc" /></figcaption>
+                </xsl:when>
+            </xsl:choose>
         </figure>
     </xsl:template>
 
