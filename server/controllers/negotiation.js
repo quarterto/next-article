@@ -87,6 +87,16 @@ module.exports = function negotiationController(req, res, next) {
 
 	return Promise.all(articleSources)
 		.then(articles => {
+
+			// TODO: When only articleV3 this can be changed to simply `webUrl = articles.webUrl`
+			const webUrl = articles[0] && articles[0].item && articles[0].item.location && articles[0].item.location.uri
+				|| articles[0] && articles[0].webUrl
+				|| '';
+
+			if (webUrl.includes('/liveblogs/') || webUrl.includes('/marketslive/')) {
+				return res.redirect(302, `${webUrl}${webUrl.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
+			}
+
 			if (articles[0] && res.locals.flags.elasticV3) {
 				if (isArticlePodcastV3(articles[0])) {
 					// return controllerPodcastV3(req, res, next, articles[0]);
@@ -103,9 +113,9 @@ module.exports = function negotiationController(req, res, next) {
 				return controllerArticleLegacy(req, res, next, articles);
 			}
 
-			if (articles[0]) {
-				let url = articles[0].item.location.uri;
-				return res.redirect(302, `${url}${url.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
+			// TODO: When only articleV3 remove this code and never redirect back to FT.com (except for the liveblog/marketslive case, above)
+			if (webUrl) {
+				return res.redirect(302, `${webUrl}${webUrl.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
 			}
 
 			return res.sendStatus(404);
