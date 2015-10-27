@@ -124,6 +124,9 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 				package: articleV1 && articleV1.item && articleV1.item.package ? articleV1.item.package : null
 			};
 
+			const authors = (articleV1 && articleV1.item && articleV1.item.metadata && articleV1.item.metadata.authors || [])
+				.map(author => author.term);
+
 			// Update the images (resize, add image captions, etc)
 			return images($, {
 				fullWidthMainImages: res.locals.flags.fullWidthMainImages
@@ -138,7 +141,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 						title: articleV2.title,
 						publishedDate: articleV2.publishedDate,
 						standFirst: articleV1 && articleV1.item.editorial.standFirst,
-						byline: bylineTransform(articleV2.byline, articleV1),
+						byline: bylineTransform(articleV2.byline, authors),
 						tags: extractTags(articleV2, articleV1, res.locals.flags, primaryTag),
 						body: $.html(),
 						toc: $.html('.article__toc'),
