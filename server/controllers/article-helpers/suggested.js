@@ -1,11 +1,10 @@
 'use strict';
 
 var api = require('next-ft-api-client');
-var articleTopicMapping = require('../../mappings/article-topic-mapping');
 var articlePodMapping = require('../../mappings/article-pod-mapping');
 
 module.exports = function(packageIds, articleId, primaryTag) {
-	let todo = Promise.resolve();
+	let todo = Promise.resolve(packageIds);
 
 	if (packageIds.length < 5) {
 		todo = api.searchLegacy({
@@ -15,17 +14,14 @@ module.exports = function(packageIds, articleId, primaryTag) {
 		})
 			.then(function(ids) {
 				let deduped = ids.filter(id => id !== articleId).slice(0, 5);
-
-				return {
-					ids: packageIds.concat(deduped)
-				};
+				return packageIds.concat(deduped);
 			});
 	}
 
-	todo
+	return todo
 		.then(function(it) {
 			return api.contentLegacy({
-				uuid: (it && it.ids) || [],
+				uuid: it || [],
 				useElasticSearch: true
 			});
 		})

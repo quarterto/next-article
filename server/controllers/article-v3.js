@@ -4,6 +4,7 @@ const logger = require('ft-next-express').logger;
 const cacheControlUtil = require('../utils/cache-control');
 const getDfpUtil = require('../utils/get-dfp');
 const barrierHelper = require('./article-helpers/barrier');
+const suggestedHelper = require('./article-helpers/suggested');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 
@@ -150,6 +151,16 @@ function getTwitterCardData(article) {
 	return openGraph;
 }
 
+function getSuggestedReads(storyPackage, articleId, primaryTag) {
+	let storyPackageIds = (storyPackage || []).map(story => story.id);
+
+	if (!storyPackageIds.length) {
+		return Promise.resolve();
+	}
+
+	return suggestedHelper(storyPackageIds, articleId, primaryTag);
+}
+
 module.exports = function articleV3Controller(req, res, next, payload) {
 	let asyncWorkToDo = [];
 
@@ -203,6 +214,14 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	if (res.locals.flags.twitterCards) {
 		payload.twitterCard = getTwitterCardData(payload);
+	}
+
+	if (res.locals.flags.articleSuggestedRead) {
+		asyncWorkToDo.push(
+			getSuggestedReads(payload.storyPackage, payload.id, primaryTag).then(
+				articles => payload.readNextArticles = articles
+			)
+		);
 	}
 
 	// TODO: implement this

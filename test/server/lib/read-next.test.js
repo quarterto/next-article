@@ -5,7 +5,6 @@ var sinon = require('sinon');
 require('chai').should();
 var rewire = require('rewire');
 var readNext = rewire('../../../server/lib/read-next');
-var useElasticSearch = true;
 
 var parentArticle1 = require('../../fixtures/readNext/parentArticle1');
 var parentArticle2 = require('../../fixtures/readNext/parentArticle2');
