@@ -2,11 +2,11 @@
 
 const api = require('next-ft-api-client');
 const articlePodMapping = require('../mappings/article-pod-mapping');
-const articleTopicMapping = require('../mappings/article-topic-mapping');
 
 module.exports = function(storyPackageIds, articleId, primaryTag, publishedDate) {
 
-	let packageArticleFetch, topicArticleFetch;
+	let packageArticleFetch;
+	let topicArticleFetch;
 
 	if (storyPackageIds.length) {
 		packageArticleFetch = api.contentLegacy({
