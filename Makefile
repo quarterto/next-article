@@ -33,10 +33,8 @@ clean:
 	git clean -fxd
 
 deploy:
-	nbt configure --no-splunk
 	nbt deploy-hashed-assets
-	nbt deploy --skip-logging
-	nbt scale
+	nbt ship -m
 
 visual:
 	# Note: || is not OR; it executes the RH command only if LH test is truthful.
@@ -48,10 +46,8 @@ tidy:
 	nbt destroy ${TEST_APP}
 
 provision:
-	nbt provision ${TEST_APP}
-	nbt configure ft-next-article ${TEST_APP} --overrides "NODE_ENV=branch" --no-splunk
 	nbt deploy-hashed-assets
-	nbt deploy ${TEST_APP} --skip-enable-preboot --skip-logging
+	nbt float -md --testapp ${TEST_APP}
 	make smoke
 
 smoke:
