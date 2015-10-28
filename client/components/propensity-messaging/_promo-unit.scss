@@ -1,23 +1,34 @@
 @mixin center-vertically {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%)
+  transform: translateY(-50%);
+}
+
+@mixin uncenter-vertically {
+  position: relative;
+  top: 50%;
+  transform: none;
 }
 
 .promo-unit-msg {
   background-color: #005277;
   color: white;
-  padding: 20px 0 60px 0;
+  padding: 30px 0 60px 0;
 
   .promo-unit-msg__related-content {
     margin: 0 0 40px 0;
   }
 
-  .promo-unit-msg__related-content-subheading {
+  .promo-unit-msg__related-content-subheading-container {
+    @include oGridRespondTo(L) {
+      padding: 0 20% 0 20%;
+    }
+  }
+
+  .promo-unit-msg__related-content-subheading-text {
     font-size: 40px;
     text-align: center;
     font-weight: bold;
-    padding: 0 20% 0 20%;
   }
 
   .promo-unit-msg__related-content-tag {
@@ -44,9 +55,52 @@
   }
 
   .promo-unit-msg__best-from-ft-item {
+    position: relative;
     border-bottom: 1px solid white;
     padding: 50px 0 50px 0;
+    min-height: 210px;
     text-align: center;
+  }
+
+  .promo-unit-msg__item--pos-relative {
+    position: relative;
+  }
+
+  .promo-unit__item--vertically-centered {
+    @include center-vertically;
+  }
+
+  .promo-unit-msg__caption {
+
+  }
+
+  .promo-unit-msg__caption-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    font-size: 3em;
+  }
+
+  .promo-unit-msg__caption-description {
+    font-size: 25px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .promo-unit-msg__highlight-grid-caption {
+    @include center-vertically;
+
+    @include oGridRespondTo($until: M) {
+      @include uncenter-vertically;
+    }
+    /* @include oGridRespondTo(L) {
+      @incude center-vertically;
+    } */
+  }
+
+  .promo-unit-msg__best-from-ft-item-caption {
+   // position: absolute;
+    //@include center-vertically;
   }
 
   .promo-unit-msg__best-from-ft-stream-name {
@@ -59,6 +113,7 @@
   .promo-unit-msg__best-from-ft-stream-description {
     font-size: 25px;
     text-align: center;
+    margin: 0;
   }
 
   .promo-unit-msg__best-from-ft-item-top-pictures {
@@ -103,9 +158,6 @@
       display: inline;
     }
 
-    .promo-unit-msg__lined-header__heading-container--contents-centered {
-      text-align: center;
-    }
   }
 
   .promo-unit-msg__best-from-ft-item-lil-pic {
@@ -120,17 +172,20 @@
     right: 0;
   }
 
-  .promo-unit-msg__sign-up {
+  .promo-unit-msg__button {
     background-color: #00496A;
     border: 1px solid white;
     border-radius: 7px;
     text-align: center;
     margin: auto;
-    padding: 15px 0 15px 0;
+    padding: 15px 0 20px 0;
     width: 550px;
+    @include oGridRespondTo($until: M) {
+      width: auto;
+    }
   }
 
-  .promo-unit-msg__sign-up-text {
+  .promo-unit-msg__button-text {
     color: white;
     font-weight: bold;
     font-size: 1.5em;
@@ -143,6 +198,26 @@
       color: inherit;}
   }
 
+  .promo-unit-msg__contents--aligned-center {
+     text-align: center;
+  }
+
+  .promo-unit-msg__contents--centered-on-medium {
+    @include oGridRespondTo($until: M) {
+      text-align: center;
+    }
+  }
+
+}
+
+.promo-unit-msg__heading--financier-medium {
+  font-family: FinancierDisplayWeb;
+  font-size: 25px;
+}
+
+.promo-unit-msg__heading--financier-large {
+  font-family: FinancierDisplayWeb;
+  font-size: 30px;
 }
 
 .overlapping-images {
@@ -182,61 +257,16 @@
   }
 }
 
-  .overlapping-images--centered {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-.thin-container {
-  padding: 0px;}
-
-/*
 .overlapping-images--centered {
   margin-left: auto;
-  margin-right: auto;}
-.promo-unit-msg__related-content-header {
-    overflow: hidden;
-    text-align: center;
-    font-family: FinancierDisplayWeb;
-    font-size: 25px;
-    &:before,
-    &:after {
-      background-color: white;
-      content: "";
-      display: inline-block;
-      height: 1px;
-      position: relative;
-      vertical-align: middle;
-      width: 50%;}
-    &:before {
-      right: 0.5em;
-      margin-left: -50%;}
-    &:after {
-      left: 0.5em;
-      margin-right: -50%;}}
-.promo-unit-msg__best-from-ft-heading {
-    overflow: hidden;
-    font-family: FinancierDisplayWeb;
-    margin: 0;
-    font-size: 30px;
-    &:before {
-      background-color: white;
-      content: "";
-      display: inline-block;
-      height: 1px;
-      position: relative;
-      vertical-align: middle;
-      overflow: hidden;
-      width: 50%;
-      right: 5em;
-      margin-left: 0%;}}
-.horizontally-centered {
-  display: inline-block;}
-.text-box {
-  border: 2px solid red;}
-.vertically-centered {
-  @include oGridRespondTo(M) {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);}}
-*/
+  margin-right: auto;
+}
+
+.button--centred {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thin-container {
+  padding: 0px;
+}
