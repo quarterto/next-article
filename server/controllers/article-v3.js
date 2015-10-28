@@ -107,6 +107,10 @@ function getMoreOnTags(primaryTheme, primarySection) {
 		Object.assign({ metadata: 'primarySection' }, primarySection)
 	);
 
+	if (!moreOnTags.length) {
+		return;
+	}
+
 	// TODO: display should be up to the template
 	moreOnTags[moreOnTags.length -1].class = 'more-on--small';
 
@@ -146,7 +150,7 @@ function getOpenGraphData(article) {
 	// TODO: this can be dealt with in the template
 	return {
 		title: article.title,
-		description: article.summaries[0],
+		description: article.summaries ? article.summaries[0] : '',
 		image: article.mainImage && article.mainImage.url,
 		url: `https://next.ft.com/content/${article.id}`
 	};
