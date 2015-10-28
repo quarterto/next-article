@@ -27,7 +27,7 @@ function transformArticleBody(article, flags) {
 		v3: 1,
 		id: article.id,
 		webUrl: article.webUrl,
-		standFirst: article.summaries[0],
+		standFirst: article.summaries ? article.summaries[0] : '',
 		renderTOC: flags.articleTOC ? 1 : 0,
 		renderSlideshows: flags.galleries ? 1 : 0,
 		renderSocial: flags.articleShareButtons ? 1 : 0,
@@ -56,14 +56,20 @@ function transformMetadata(metadata) {
 }
 
 function getPrimaryTheme(metadata) {
+	// TODO: there is no concept of primary theme/section in V3
+	// so we should move this logic into ES
+	let sections = [ 'sections', 'specialReports' ];
+
 	return metadata.find(
-		tag => tag.primary && tag.taxonomy !== 'sections'
+		tag => tag.primary && sections.indexOf(tag.taxonomy) === -1
 	);
 }
 
 function getPrimarySection(metadata) {
+	let sections = [ 'sections', 'specialReports' ];
+
 	return metadata.find(
-		tag => tag.primary && tag.taxonomy === 'sections'
+		tag => tag.primary && sections.indexOf(tag.taxonomy) >= 0
 	);
 }
 
@@ -196,7 +202,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.articleV1 = isCapiV1(payload);
 	payload.articleV2 = isCapiV2(payload);
 
-	payload.standFirst = payload.summaries[0];
+	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
 	// TODO: remove extraneous 'term' nesting
 	payload.dehydratedMetadata = {

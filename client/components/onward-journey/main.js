@@ -59,7 +59,7 @@ module.exports.init = function() {
 		);
 	}
 
-	if (primarySection.taxonomy === 'specialReports') {
+	if (primarySection && primarySection.taxonomy === 'specialReports') {
 		let url = `/article/${articleId}/special-report?specialReportId=${encodeURI(primarySection.id)}&count=5`;
 
 		fetchPromises = fetchPromises.concat(
