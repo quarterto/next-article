@@ -4,8 +4,7 @@
 
 .next-up {
 	position: relative;
-	padding: 15px;
-	padding-right: 25px;
+	padding: 15px 25px 15px 20px;
 
 	h4 {
 		margin: 0;
@@ -14,7 +13,6 @@
 
 .next-up__header {
 	margin-top: 10px;
-	padding-left: 20px;
 	border: 1px solid getColor('warm-3');
 }
 
@@ -35,7 +33,7 @@
 	}
 
 	.next-up__bottom & {
-		@include nTypeFoxtrotSize(3);
+		font-size: 25px;
 		top: -11px;
 		left: -10px;
 	}
@@ -68,6 +66,10 @@
 		line-height: 29px; // FIXME: revist upon type scale revisions
 	}
 
+	.next-up__bottom & {
+		font-size: 30px;
+	}
+
 }
 
 .next-up__timestamp {
@@ -81,6 +83,6 @@
 }
 
 .next-up__bottom {
-	padding-top: 25px;
-	padding-left: 0;
+	padding: 25px 25px 0 0;
+	margin-bottom: 60px;
 }
