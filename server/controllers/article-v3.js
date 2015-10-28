@@ -56,14 +56,20 @@ function transformMetadata(metadata) {
 }
 
 function getPrimaryTheme(metadata) {
+	// TODO: there is no concept of primary theme/section in V3
+	// so we should move this logic into ES
+	let sections = [ 'sections', 'specialReports' ];
+
 	return metadata.find(
-		tag => tag.primary && tag.taxonomy !== 'sections'
+		tag => tag.primary && sections.indexOf(tag.taxonomy) === -1
 	);
 }
 
 function getPrimarySection(metadata) {
+	let sections = [ 'sections', 'specialReports' ];
+
 	return metadata.find(
-		tag => tag.primary && tag.taxonomy === 'sections'
+		tag => tag.primary && sections.indexOf(tag.taxonomy) >= 0
 	);
 }
 
