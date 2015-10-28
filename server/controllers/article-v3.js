@@ -27,7 +27,6 @@ function transformArticleBody(article, flags) {
 		v3: 1,
 		id: article.id,
 		webUrl: article.webUrl,
-		standFirst: article.summaries ? article.summaries[0] : '',
 		renderTOC: flags.articleTOC ? 1 : 0,
 		renderSlideshows: flags.galleries ? 1 : 0,
 		renderSocial: flags.articleShareButtons ? 1 : 0,
