@@ -116,14 +116,15 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 			}
 
 			if (metadata && metadata.primarySection) {
-			//specialReport is a circular - if it exists, delete it before dehydrating it
+				//specialReport is a circular - if it exists, delete it before dehydrating it
 				if (metadata.primarySection.term.specialReport) {
 					delete metadata.primarySection.term.specialReport;
 				}
-			//if primarySection is Columnists, replace with Author
+				//if primarySection is Columnists, replace with Author
 				if (
 					metadata.primarySection.term.name === 'Columnists' &&
 					metadata.authors.length &&
+					metadata.primaryTheme &&
 					(metadata.authors[0].term.id !== metadata.primaryTheme.term.id)
 				) {
 					metadata.primarySection.term = metadata.authors[0].term;
@@ -246,10 +247,10 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 				})
 				.then(function(viewModel) {
 					return res.render('article-v2', viewModel);
-				})
-				.catch(function(error) {
-					logger.error(error);
-					next(error);
 				});
+		})
+		.catch(function(error) {
+			logger.error(error);
+			next(error);
 		});
 };
