@@ -5,8 +5,8 @@ module.exports = [
 		},
 		timeout: 10000,
 		urls: {
-			// v1 only (redirected to ft.com -> redirected to barrier)
-			'/content/0e43fa9c-cbeb-11e0-9176-00144feabdc0': 'http://www.ft.com/cms/s/0e43fa9c-cbeb-11e0-9176-00144feabdc0,Authorised=false.html?ft_site=falcon&desktop=true&_i_location=http%3A%2F%2Fwww.ft.com%2Fcms%2Fs%2F0%2F0e43fa9c-cbeb-11e0-9176-00144feabdc0.html%3Fft_site%3Dfalcon%26desktop%3Dtrue&_i_referer=&classification=conditional_standard&iab=barrier-app',
+			// not in CAPI (redirected to ft.com -> redirected to barrier)
+			'/content/8f88c930-d00a-11da-80fb-0000779e2340': 'http://www.ft.com/cms/s/8f88c930-d00a-11da-80fb-0000779e2340,Authorised=false.html?ft_site=falcon&desktop=true&_i_location=http%3A%2F%2Fwww.ft.com%2Fcms%2Fs%2F0%2F8f88c930-d00a-11da-80fb-0000779e2340.html%3Fft_site%3Dfalcon%26desktop%3Dtrue&_i_referer=&classification=conditional_standard&iab=barrier-app',
 			//methode
 			'/content/395650fa-5b9c-11e5-a28b-50226830d644': 200,
 			//fastft
