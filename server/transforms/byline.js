@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (byline, authors) => {
-	if (authors) {
+	if (byline && authors) {
 		authors.forEach(author => {
 			byline = byline.replace(
 				new RegExp('\\b(' + author.name + ')\\b'),
