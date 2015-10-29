@@ -42,8 +42,14 @@ function transformArticleBody(article, flags) {
 		encodedTitle: encodeURIComponent(article.title.replace(/\&nbsp\;/g, ' '))
 	};
 
-	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
-		.then(articleBody => bodyTransform(articleBody, flags).html());
+	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
+		let $ = bodyTransform(articleBody, flags);
+
+		return {
+			body: $.html(),
+			toc: $.html('.article__toc')
+		};
+	});
 }
 
 function transformMetadata(metadata) {
@@ -189,9 +195,10 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.isSpecialReport = primaryTag && primaryTag.taxonomy === 'specialReports';
 
 	asyncWorkToDo.push(
-		transformArticleBody(payload, res.locals.flags).then(
-			articleBody => payload.body = articleBody
-		)
+		transformArticleBody(payload, res.locals.flags).then(fragments => {
+			payload.body = fragments.body;
+			payload.toc = fragments.toc;
+		})
 	);
 
 	// Decorate with related stuff
