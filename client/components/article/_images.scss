@@ -1,0 +1,57 @@
+.next-article-placeholder {
+	position: relative;
+	background: getColor('warm-3');
+}
+
+.next-article-placeholder__image {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.article__image-wrapper {
+	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
+	&.article__inline-image {
+		display: table;
+		table-layout: fixed;
+		@include oGridRespondTo(S) {
+			width: auto;
+		}
+	}
+}
+.article__inline-image {
+	max-width: 480px;
+
+	@include oGridRespondTo($until: S) {
+		margin: 0 auto;
+	}
+}
+.article__image {
+	display: block;
+	max-width: 100%;
+
+	.article__image-wrapper & {
+		margin: 0 auto;
+	}
+
+}
+.article__image-caption {
+	margin-top: 5px;
+
+	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
+	.article__inline-image & {
+		display: table-caption;
+		caption-side: bottom;
+	}
+}
+.article__full-width-image {
+	margin: 15px 0;
+
+	@include oGridRespondTo(L) {
+		margin-left: -100px;
+	}
+
+	.article__image {
+		min-width: 100%;
+	}
+}
