@@ -1,0 +1,162 @@
+[
+  {
+    "id": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0JBUkM=-T04=",
+    "name": "Barclays PLC",
+    "url": "/stream/organisationsId/TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0JBUkM=-T04=",
+    "idV1": "TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0JBUkM=-T04=",
+    "prefLabel": "Barclays PLC",
+    "taxonomy": "organisations",
+    "primary": "theme",
+    "attributes": [
+      {
+        "key": "wsod_key",
+        "value": "uk:BARC"
+      },
+      {
+        "key": "is_company",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "id": "NTg=-U2VjdGlvbnM=",
+    "name": "Banks",
+    "url": "/stream/sectionsId/NTg=-U2VjdGlvbnM=",
+    "idV1": "NTg=-U2VjdGlvbnM=",
+    "prefLabel": "Banks",
+    "taxonomy": "sections",
+    "primary": "section",
+    "attributes": []
+  },
+  {
+    "id": "QnJhbmRzXzEwNA==-QnJhbmRz",
+    "name": "Lombard",
+    "url": "/stream/brandId/QnJhbmRzXzEwNA==-QnJhbmRz",
+    "idV1": "QnJhbmRzXzEwNA==-QnJhbmRz",
+    "prefLabel": "Lombard",
+    "taxonomy": "brand",
+    "attributes": []
+  },
+  {
+    "id": "OA==-R2VucmVz",
+    "name": "Comment",
+    "url": "/stream/genreId/OA==-R2VucmVz",
+    "idV1": "OA==-R2VucmVz",
+    "prefLabel": "Comment",
+    "taxonomy": "genre",
+    "attributes": []
+  },
+  {
+    "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+    "name": "Text",
+    "url": "/stream/mediaTypeId/ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+    "idV1": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+    "prefLabel": "Text",
+    "taxonomy": "mediaType",
+    "attributes": []
+  },
+  {
+    "id": "Q0ItMDAwMTEwNQ==-QXV0aG9ycw==",
+    "name": "Jonathan Guthrie",
+    "url": "/stream/authorsId/Q0ItMDAwMTEwNQ==-QXV0aG9ycw==",
+    "idV1": "Q0ItMDAwMTEwNQ==-QXV0aG9ycw==",
+    "prefLabel": "Jonathan Guthrie",
+    "taxonomy": "authors",
+    "attributes": []
+  },
+  {
+    "id": "MTQw-SUNC",
+    "name": "8300 Banks",
+    "url": "/stream/icbId/MTQw-SUNC",
+    "idV1": "MTQw-SUNC",
+    "prefLabel": "8300 Banks",
+    "taxonomy": "icb",
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDgwMTc=-SVBUQw==",
+    "name": "04008017 - prices",
+    "url": "/stream/iptcId/MDQwMDgwMTc=-SVBUQw==",
+    "idV1": "MDQwMDgwMTc=-SVBUQw==",
+    "prefLabel": "04008017 - prices",
+    "taxonomy": "iptc",
+    "attributes": []
+  },
+  {
+    "id": "MjIyYzcxMjUtNTk0NC00YmJlLWFjZGEtNTQwZjQyMjk5ZTNl-UE4=",
+    "name": "Tushar Morzaria",
+    "url": "/stream/peopleId/MjIyYzcxMjUtNTk0NC00YmJlLWFjZGEtNTQwZjQyMjk5ZTNl-UE4=",
+    "idV1": "MjIyYzcxMjUtNTk0NC00YmJlLWFjZGEtNTQwZjQyMjk5ZTNl-UE4=",
+    "prefLabel": "Tushar Morzaria",
+    "taxonomy": "people",
+    "attributes": []
+  },
+  {
+    "id": "ZTFhNWQ1ZmEtNTIzZS00MWVkLTk1MjAtMzU3OTBiZjc3MjI3-UE4=",
+    "name": "Jes Staley",
+    "url": "/stream/peopleId/ZTFhNWQ1ZmEtNTIzZS00MWVkLTk1MjAtMzU3OTBiZjc3MjI3-UE4=",
+    "idV1": "ZTFhNWQ1ZmEtNTIzZS00MWVkLTk1MjAtMzU3OTBiZjc3MjI3-UE4=",
+    "prefLabel": "Jes Staley",
+    "taxonomy": "people",
+    "attributes": []
+  },
+  {
+    "id": "Mjk=-U2VjdGlvbnM=",
+    "name": "Companies",
+    "url": "/stream/sectionsId/Mjk=-U2VjdGlvbnM=",
+    "idV1": "Mjk=-U2VjdGlvbnM=",
+    "prefLabel": "Companies",
+    "taxonomy": "sections",
+    "attributes": [
+      {
+        "key": "dfpSite",
+        "value": "companies"
+      }
+    ]
+  },
+  {
+    "id": "NTc=-U2VjdGlvbnM=",
+    "name": "Financials",
+    "url": "/stream/sectionsId/NTc=-U2VjdGlvbnM=",
+    "idV1": "NTc=-U2VjdGlvbnM=",
+    "prefLabel": "Financials",
+    "taxonomy": "sections",
+    "attributes": [
+      {
+        "key": "dfpSite",
+        "value": "companies"
+      },
+      {
+        "key": "dfpZone",
+        "value": "financials"
+      }
+    ]
+  },
+  {
+    "id": "NjM=-U2VjdGlvbnM=",
+    "name": "UK Companies",
+    "url": "/stream/sectionsId/NjM=-U2VjdGlvbnM=",
+    "idV1": "NjM=-U2VjdGlvbnM=",
+    "prefLabel": "UK Companies",
+    "taxonomy": "sections",
+    "attributes": []
+  },
+  {
+    "id": "MQ==-U3ViamVjdHM=",
+    "name": "Company News",
+    "url": "/stream/subjectsId/MQ==-U3ViamVjdHM=",
+    "idV1": "MQ==-U3ViamVjdHM=",
+    "prefLabel": "Company News",
+    "taxonomy": "subjects",
+    "attributes": []
+  },
+  {
+    "id": "Mzk=-U3ViamVjdHM=",
+    "name": "Results",
+    "url": "/stream/subjectsId/Mzk=-U3ViamVjdHM=",
+    "idV1": "Mzk=-U3ViamVjdHM=",
+    "prefLabel": "Results",
+    "taxonomy": "subjects",
+    "attributes": []
+  }
+]

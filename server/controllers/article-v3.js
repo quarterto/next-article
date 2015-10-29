@@ -139,8 +139,6 @@ function getTwitterCardData(article) {
 
 module.exports = function articleV3Controller(req, res, next, payload) {
 
-	// TO REMOVE - testing genre mapping.
-	console.log('genreMapping ', articleGenreMapping(payload.metadata, 'v3'));
 
 	let asyncWorkToDo = [];
 
@@ -169,6 +167,9 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.toc = fragments.toc;
 		})
 	);
+	// TO REMOVE - testing genre mapping.
+	payload.designGenre = articleGenreMapping(payload.metadata);
+	console.log('designGenre ', payload.designGenre);
 
 	// Decorate with related stuff
 	payload.moreOns = getMoreOnTags(primaryTheme, primarySection);
@@ -214,6 +215,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	}
 
 	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
+
 
 	// TODO: implement this
 	payload.visualCat = null;

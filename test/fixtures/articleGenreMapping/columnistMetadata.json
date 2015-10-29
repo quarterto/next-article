@@ -1,0 +1,363 @@
+[
+  {
+    "id": "Q0ItMDAwMDc1Mw==-QXV0aG9ycw==",
+    "name": "John Gapper",
+    "url": "/stream/authorsId/Q0ItMDAwMDc1Mw==-QXV0aG9ycw==",
+    "idV1": "Q0ItMDAwMDc1Mw==-QXV0aG9ycw==",
+    "prefLabel": "John Gapper",
+    "taxonomy": "authors",
+    "primary": true,
+    "attributes": [
+      {
+        "key": "isColumnist",
+        "value": true
+      }
+    ]
+  },
+  {
+    "id": "MTE3-U2VjdGlvbnM=",
+    "name": "Columnists",
+    "url": "/stream/sectionsId/MTE3-U2VjdGlvbnM=",
+    "idV1": "MTE3-U2VjdGlvbnM=",
+    "prefLabel": "Columnists",
+    "taxonomy": "sections",
+    "primary": true,
+    "attributes": [
+      {
+        "key": "dfpSite",
+        "value": "opinion"
+      },
+      {
+        "key": "dfpZone",
+        "value": "columnists"
+      }
+    ]
+  },
+  {
+    "id": "Mjk=-VG9waWNz",
+    "name": "Mergers & Acquisitions",
+    "url": "/stream/topicsId/Mjk=-VG9waWNz",
+    "idV1": "Mjk=-VG9waWNz",
+    "prefLabel": "Mergers & Acquisitions",
+    "taxonomy": "topics",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "OA==-R2VucmVz",
+    "name": "Comment",
+    "url": "/stream/genreId/OA==-R2VucmVz",
+    "idV1": "OA==-R2VucmVz",
+    "prefLabel": "Comment",
+    "taxonomy": "genre",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+    "name": "Text",
+    "url": "/stream/mediaTypeId/ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+    "idV1": "ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
+    "prefLabel": "Text",
+    "taxonomy": "mediaType",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDIwMDY=-SVBUQw==",
+    "name": "04002006 - pharmaceutical",
+    "url": "/stream/iptcId/MDQwMDIwMDY=-SVBUQw==",
+    "idV1": "MDQwMDIwMDY=-SVBUQw==",
+    "prefLabel": "04002006 - pharmaceutical",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDYwMDA=-SVBUQw==",
+    "name": "04006000 - financial and business service",
+    "url": "/stream/iptcId/MDQwMDYwMDA=-SVBUQw==",
+    "idV1": "MDQwMDYwMDA=-SVBUQw==",
+    "prefLabel": "04006000 - financial and business service",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDYwMDU=-SVBUQw==",
+    "name": "04006005 - healthcare provider",
+    "url": "/stream/iptcId/MDQwMDYwMDU=-SVBUQw==",
+    "idV1": "MDQwMDYwMDU=-SVBUQw==",
+    "prefLabel": "04006005 - healthcare provider",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDgwMDU=-SVBUQw==",
+    "name": "04008005 - emerging market",
+    "url": "/stream/iptcId/MDQwMDgwMDU=-SVBUQw==",
+    "idV1": "MDQwMDgwMDU=-SVBUQw==",
+    "prefLabel": "04008005 - emerging market",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDgwMDk=-SVBUQw==",
+    "name": "04008009 - interest rate",
+    "url": "/stream/iptcId/MDQwMDgwMDk=-SVBUQw==",
+    "idV1": "MDQwMDgwMDk=-SVBUQw==",
+    "prefLabel": "04008009 - interest rate",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDgwMTc=-SVBUQw==",
+    "name": "04008017 - prices",
+    "url": "/stream/iptcId/MDQwMDgwMTc=-SVBUQw==",
+    "idV1": "MDQwMDgwMTc=-SVBUQw==",
+    "prefLabel": "04008017 - prices",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDgwMjQ=-SVBUQw==",
+    "name": "04008024 - commodity markets",
+    "url": "/stream/iptcId/MDQwMDgwMjQ=-SVBUQw==",
+    "idV1": "MDQwMDgwMjQ=-SVBUQw==",
+    "prefLabel": "04008024 - commodity markets",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDgwMjU=-SVBUQw==",
+    "name": "04008025 - investments",
+    "url": "/stream/iptcId/MDQwMDgwMjU=-SVBUQw==",
+    "idV1": "MDQwMDgwMjU=-SVBUQw==",
+    "prefLabel": "04008025 - investments",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDkwMDA=-SVBUQw==",
+    "name": "04009000 - market and exchange",
+    "url": "/stream/iptcId/MDQwMDkwMDA=-SVBUQw==",
+    "idV1": "MDQwMDkwMDA=-SVBUQw==",
+    "prefLabel": "04009000 - market and exchange",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMDkwMDE=-SVBUQw==",
+    "name": "04009001 - energy",
+    "url": "/stream/iptcId/MDQwMDkwMDE=-SVBUQw==",
+    "idV1": "MDQwMDkwMDE=-SVBUQw==",
+    "prefLabel": "04009001 - energy",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMTYwMDU=-SVBUQw==",
+    "name": "04016005 - merger, acquisition and takeover",
+    "url": "/stream/iptcId/MDQwMTYwMDU=-SVBUQw==",
+    "idV1": "MDQwMTYwMDU=-SVBUQw==",
+    "prefLabel": "04016005 - merger, acquisition and takeover",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MDQwMTYwNDU=-SVBUQw==",
+    "name": "04016045 - sales",
+    "url": "/stream/iptcId/MDQwMTYwNDU=-SVBUQw==",
+    "idV1": "MDQwMTYwNDU=-SVBUQw==",
+    "prefLabel": "04016045 - sales",
+    "taxonomy": "iptc",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "T05fbnlzZS1leHRyYV9mZXYtMjAwOF8xNjQ2-T04=",
+    "name": "Valeant Pharmaceuticals International Inc",
+    "url": "/stream/organisationsId/T05fbnlzZS1leHRyYV9mZXYtMjAwOF8xNjQ2-T04=",
+    "idV1": "T05fbnlzZS1leHRyYV9mZXYtMjAwOF8xNjQ2-T04=",
+    "prefLabel": "Valeant Pharmaceuticals International Inc",
+    "taxonomy": "organisations",
+    "primary": false,
+    "attributes": [
+      {
+        "key": "is_company",
+        "value": "false"
+      }
+    ]
+  },
+  {
+    "id": "TnN0ZWluX09OX0FGVE1fT05fMTk4Nw==-T04=",
+    "name": "Enron Corp",
+    "url": "/stream/organisationsId/TnN0ZWluX09OX0FGVE1fT05fMTk4Nw==-T04=",
+    "idV1": "TnN0ZWluX09OX0FGVE1fT05fMTk4Nw==-T04=",
+    "prefLabel": "Enron Corp",
+    "taxonomy": "organisations",
+    "primary": false,
+    "attributes": [
+      {
+        "key": "is_company",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "id": "TnN0ZWluX1BOX1BvbGl0aWNpYW5zXzIwMDlfMTBfMl81NTU0MQ==-UE4=",
+    "name": "Lester Pearson",
+    "url": "/stream/peopleId/TnN0ZWluX1BOX1BvbGl0aWNpYW5zXzIwMDlfMTBfMl81NTU0MQ==-UE4=",
+    "idV1": "TnN0ZWluX1BOX1BvbGl0aWNpYW5zXzIwMDlfMTBfMl81NTU0MQ==-UE4=",
+    "prefLabel": "Lester Pearson",
+    "taxonomy": "people",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "TnN0ZWluX0dMX0NO-R0w=",
+    "name": "China",
+    "url": "/stream/regionsId/TnN0ZWluX0dMX0NO-R0w=",
+    "idV1": "TnN0ZWluX0dMX0NO-R0w=",
+    "prefLabel": "China",
+    "taxonomy": "regions",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MTA1-U2VjdGlvbnM=",
+    "name": "Commodities",
+    "url": "/stream/sectionsId/MTA1-U2VjdGlvbnM=",
+    "idV1": "MTA1-U2VjdGlvbnM=",
+    "prefLabel": "Commodities",
+    "taxonomy": "sections",
+    "primary": false,
+    "attributes": [
+      {
+        "key": "dfpSite",
+        "value": "markets"
+      },
+      {
+        "key": "dfpZone",
+        "value": "commodities"
+      }
+    ]
+  },
+  {
+    "id": "MTA2-U2VjdGlvbnM=",
+    "name": "Emerging Markets",
+    "url": "/stream/sectionsId/MTA2-U2VjdGlvbnM=",
+    "idV1": "MTA2-U2VjdGlvbnM=",
+    "prefLabel": "Emerging Markets",
+    "taxonomy": "sections",
+    "primary": false,
+    "attributes": [
+      {
+        "key": "dfpSite",
+        "value": "markets"
+      },
+      {
+        "key": "dfpZone",
+        "value": "emerging.markets"
+      }
+    ]
+  },
+  {
+    "id": "MTA3-U2VjdGlvbnM=",
+    "name": "World Economy",
+    "url": "/stream/sectionsId/MTA3-U2VjdGlvbnM=",
+    "idV1": "MTA3-U2VjdGlvbnM=",
+    "prefLabel": "World Economy",
+    "taxonomy": "sections",
+    "primary": false,
+    "attributes": [
+      {
+        "key": "dfpSite",
+        "value": "world"
+      },
+      {
+        "key": "dfpZone",
+        "value": "world.economy"
+      }
+    ]
+  },
+  {
+    "id": "MTE2-U2VjdGlvbnM=",
+    "name": "Opinion",
+    "url": "/stream/sectionsId/MTE2-U2VjdGlvbnM=",
+    "idV1": "MTE2-U2VjdGlvbnM=",
+    "prefLabel": "Opinion",
+    "taxonomy": "sections",
+    "primary": false,
+    "attributes": [
+      {
+        "key": "dfpSite",
+        "value": "opinion"
+      }
+    ]
+  },
+  {
+    "id": "NzE=-U2VjdGlvbnM=",
+    "name": "Markets",
+    "url": "/stream/sectionsId/NzE=-U2VjdGlvbnM=",
+    "idV1": "NzE=-U2VjdGlvbnM=",
+    "prefLabel": "Markets",
+    "taxonomy": "sections",
+    "primary": false,
+    "attributes": [
+      {
+        "key": "dfpSite",
+        "value": "markets"
+      }
+    ]
+  },
+  {
+    "id": "MTIz-U3ViamVjdHM=",
+    "name": "Comment & Analysis",
+    "url": "/stream/subjectsId/MTIz-U3ViamVjdHM=",
+    "idV1": "MTIz-U3ViamVjdHM=",
+    "prefLabel": "Comment & Analysis",
+    "taxonomy": "subjects",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "NDI=-U3ViamVjdHM=",
+    "name": "Profit Warnings",
+    "url": "/stream/subjectsId/NDI=-U3ViamVjdHM=",
+    "idV1": "NDI=-U3ViamVjdHM=",
+    "prefLabel": "Profit Warnings",
+    "taxonomy": "subjects",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "Ng==-U3ViamVjdHM=",
+    "name": "Corporate Finance",
+    "url": "/stream/subjectsId/Ng==-U3ViamVjdHM=",
+    "idV1": "Ng==-U3ViamVjdHM=",
+    "prefLabel": "Corporate Finance",
+    "taxonomy": "subjects",
+    "primary": false,
+    "attributes": []
+  },
+  {
+    "id": "MWY1NDgwNTUtZWYwNi00Mzc2LTk1MzMtZWE2ZDcwNjQ3ZGEz-VG9waWNz",
+    "name": "Capitalism",
+    "url": "/stream/topicsId/MWY1NDgwNTUtZWYwNi00Mzc2LTk1MzMtZWE2ZDcwNjQ3ZGEz-VG9waWNz",
+    "idV1": "MWY1NDgwNTUtZWYwNi00Mzc2LTk1MzMtZWE2ZDcwNjQ3ZGEz-VG9waWNz",
+    "prefLabel": "Capitalism",
+    "taxonomy": "topics",
+    "primary": false,
+    "attributes": []
+  }
+]

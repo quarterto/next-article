@@ -26,26 +26,20 @@ function getBrand(metadata) {
 module.exports = function(metadata) {
   let columnist = getColumnist(metadata);
   let brand = getBrand(metadata);
-  let result = {};
-  let dominantGenre;
+  let result = columnist ? columnist : brand ? brand : {};
 
   if (columnist) {
+    result = columnist;
     result.genre = 'columnist';
-    dominantGenre = columnist;
   } else if (brand) {
+    result = brand;
     result.genre = 'brand';
-    dominantGenre = brand;
   } else {
     result.genre = 'default';
   }
 
-  if (dominantObject) {
-    result.title = dominantGenre.prefLabel;
-    result.link = `/stream/${dominantGenre.taxonomy}Id/${dominantGenre.idV1}`;
-  }
-
   if (result.genre === 'columnist') {
-    result.headshot = `https://image.webservices.ft.com/v1/images/raw/fthead:${dominantGenre.prefLabel.toLowerCase().replace(' ', '-')}`;
+    result.headshot = `https://image.webservices.ft.com/v1/images/raw/fthead:${result.prefLabel.toLowerCase().replace(' ', '-')}`;
   }
 
   return result;
