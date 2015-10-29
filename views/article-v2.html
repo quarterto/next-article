@@ -23,6 +23,7 @@
 				{{else}}
 				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 				{{/if}}
+
 					<header>
 						<div class="article__header-primary">
 							{{#if isSpecialReport}}
@@ -92,6 +93,12 @@
 	<div class="o-grid-container">
 		<div class="article__main o-grid-row">
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+
+				{{#if gift}}
+					<div class="article__gifted">
+						<p>This article has been gifted to you by an FT subscriber.</p>
+					</div>
+				{{/if}}
 
 				<div class="article__body">
 					{{{body}}}
