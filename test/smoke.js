@@ -50,7 +50,7 @@ module.exports = [
 		},
 		timeout: 10000,
 		urls: {
-			'/content/55ef024ec7a00b32cb5a5991': 200
+			'/content/55ef024ec7a00b32cb5a5991': 404
 		}
 	},
 	{
