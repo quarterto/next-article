@@ -129,7 +129,7 @@ module.exports = function negotiationController(req, res, next) {
 
 			return shellpromise(`curl -s http://www.ft.com/cms/s/${req.params.id}.html -I | grep -i location`)
 				.then(response => {
-					const webUrl = response.replace(/^Location:+/i, '').trim();
+					const webUrl = response.replace(/^Location:/i, '').trim();
 					if (/^http:\/\/www\.ft\.com\//.test(webUrl)) {
 						res.redirect(302, `${webUrl}${webUrl.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
 					} else {
