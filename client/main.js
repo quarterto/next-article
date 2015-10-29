@@ -43,7 +43,7 @@ require('next-js-setup').bootstrap(function(result) {
 	}
 
 	if (flags.get('articleShareButtons')) {
-		share.init();
+		share.init(flags);
 	}
 
 	if (flags.get('myFTTray')) {
