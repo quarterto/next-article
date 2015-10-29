@@ -127,7 +127,7 @@ module.exports = function negotiationController(req, res, next) {
 				return res.redirect(302, `${webUrl}${webUrl.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
 			}
 
-			return shellpromise(`curl -s http://www.ft.com/cms/s/${req.params.id}.html -I | grep -i location`)
+			return shellpromise(`curl -s http://www.ft.com/cms/s/${req.params.id}.html -I | grep -qi location`, { verbose: true })
 				.then(response => {
 					const webUrl = response.replace(/^Location:/i, '').trim();
 					if (/^http:\/\/www\.ft\.com\//.test(webUrl)) {
