@@ -20,13 +20,19 @@ function loadShareCount() {
 	}
 }
 
-exports.init = function() {
-
-	oOverlay.init();
+exports.init = function(flags) {
 
 	var shareContainer = document.querySelector('[data-o-component=o-share]');
+
 	if (shareContainer && !shareContainer.classList.contains('data-o-share--js')) {
 		new OShare(shareContainer);
 		loadShareCount();
+	} else if(flags.flags.ftlabsurlsharing !== undefined && flags.flags.ftlabsurlsharing.state === true){
+		var giftShareOverlay = document.querySelector("[data-o-overlay-gift-trigger]");
+
+		oOverlay.init();
+		new OShare();
+
 	}
+
 };

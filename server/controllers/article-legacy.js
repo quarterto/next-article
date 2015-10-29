@@ -61,6 +61,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 			suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
 			standFirst: payload[0] ? payload[0].item.editorial.standFirst : "",
 			renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
+			renderGiftSharing : res.locals.flags.ftlabsurlsharing ? 1 : 0,
 			id: extractUuid(payload[1].id),
 			webUrl: payload[0] && payload[0].item && payload[0].item.location ? payload[0].item.location.uri : '',
 			encodedTitle: encodeURIComponent(payload[1].title.replace(/\&nbsp\;/g, ' '))
