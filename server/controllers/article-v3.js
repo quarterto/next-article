@@ -9,6 +9,7 @@ const readNextHelper = require('../lib/read-next');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 const bylineTransform = require('../transforms/byline');
+const articleGenreMapping = require('../mappings/article-genre-mapping');
 
 function isCapiV1(article) {
 	return article.provenance.find(
@@ -137,6 +138,10 @@ function getTwitterCardData(article) {
 }
 
 module.exports = function articleV3Controller(req, res, next, payload) {
+
+	// TO REMOVE - testing genre mapping.
+	console.log('genreMapping ', articleGenreMapping(payload.metadata, 'v3'));
+
 	let asyncWorkToDo = [];
 
 	if (res.locals.barrier) {
