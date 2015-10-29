@@ -242,6 +242,17 @@
 .o-gallery__control--next:hover:before {
 	@include nextIcon(arrow-right, #b0b0b0, 60);
 }
+
+.next-article-placeholder {
+	position: relative;
+	background: getColor('warm-3');
+}
+.next-article-placeholder__image {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
 .article__image-wrapper {
 	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
 	&.article__inline-image {
