@@ -10,6 +10,10 @@ const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 const bylineTransform = require('../transforms/byline');
 
+// TODO: there is no concept of primary theme/section in V3
+// so we should move this logic into ES
+const arbitraryListOfSectionThings = [ 'sections', 'specialReports', 'brand' ];
+
 function isCapiV1(article) {
 	return article.provenance.find(
 	 	source => source.includes('http://api.ft.com/content/items/v1/')
@@ -58,18 +62,14 @@ function transformMetadata(metadata) {
 function getPrimaryTheme(metadata) {
 	// TODO: there is no concept of primary theme/section in V3
 	// so we should move this logic into ES
-	let sections = [ 'sections', 'specialReports' ];
-
 	return metadata.find(
-		tag => tag.primary && sections.indexOf(tag.taxonomy) === -1
+		tag => tag.primary && arbitraryListOfSectionThings.indexOf(tag.taxonomy) === -1
 	);
 }
 
 function getPrimarySection(metadata) {
-	let sections = [ 'sections', 'specialReports' ];
-
 	return metadata.find(
-		tag => tag.primary && sections.indexOf(tag.taxonomy) >= 0
+		tag => tag.primary && arbitraryListOfSectionThings.indexOf(tag.taxonomy) >= 0
 	);
 }
 
@@ -164,10 +164,6 @@ function getTwitterCardData(article) {
 }
 
 function getSuggestedReads(storyPackageIds, articleId, primaryTag) {
-	if (!storyPackageIds.length) {
-		return Promise.resolve();
-	}
-
 	return suggestedHelper(storyPackageIds, articleId, primaryTag);
 }
 
@@ -240,6 +236,8 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 				article => payload.readNextArticle = article
 			)
 		);
+
+		payload.suggestedTopic = primaryTag;
 	}
 
 	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
@@ -247,7 +245,6 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	// TODO: implement this
 	payload.visualCat = null;
 	payload.toc = null;
-	payload.suggestedTopic = null;
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
