@@ -1,7 +1,12 @@
+//HACK should do this in n-layout when applied to all pages
+.article {
+	background: getColor('pink');
+}
+
 //ARTICLE HEADER
 .article__header {
-	background: oColorsGetPaletteColor('pink');
 	position: relative;
+	background: getColor('pink');
 	padding-bottom: 15px;
 	font-weight: 100;
 

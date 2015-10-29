@@ -7,7 +7,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if designGenre}} article--{{designGenre.genre}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header" data-trackable="header">
 		<div class="article__leaderboard-advert"></div>
 		<div class="o-grid-container">
@@ -36,6 +36,9 @@
 						<div class="article__header-secondary">
 							{{#if standFirst}}
 								<p class="article__stand-first">{{{standFirst}}}</p>
+							{{/if}}
+							{{#if designGenre.prefLabel}}
+								<p class="article__brand--title">{{designGenre.prefLabel}}<p>
 							{{/if}}
 							<div class="article__header-time-byline">
 							{{#if publishedDate}}
@@ -82,6 +85,10 @@
 	<div class="o-grid-container">
 		<div class="article__main o-grid-row">
 			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+
+				{{#if mainImage}}
+				<img class="article__image--main" src={{mainImage.url}}>
+				{{/if}}
 
 				<div class="article__body">
 					{{{body}}}
