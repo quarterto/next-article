@@ -9,7 +9,6 @@ module.exports = function(xml, params) {
 		renderSlideshows: 0,
 		renderTOC: 0,
 		fullWidthMainImages: 0,
-		renderSocial: 0,
 		id: 'article-uuid',
 		webUrl: 'http://www.ft.com/article-uuid',
 		encodedTitle: 'Article Title'

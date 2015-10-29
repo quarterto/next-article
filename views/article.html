@@ -7,13 +7,17 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article{{#if visualCat}} article--{{visualCat}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if designGenre}} article--brand {{#if designGenre.headshot}}article--brand--headshot{{/if}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header" data-trackable="header">
 		<div class="article__leaderboard-advert"></div>
 		<div class="o-grid-container">
-			<div class="article__header-inner o-grid-row">
-				<div data-o-grid-colspan="12 {{#if barrier}}L12 XL12{{else}}L8 XL7 XLoffset1{{/if}}">
-					<header>
+			<div class="article__header-inner {{#if mainImage}}article__header-inner--main-image{{/if}} o-grid-row">
+				{{#if barrier}}
+				<div data-o-grid-colspan="12 L12 XL12">
+				{{else}}
+				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+				{{/if}}
+					<header class="article__header--wrapper {{#if mainImageHTML}}article__header--wrapper--main-image{{/if}}">
 						<div class="article__header-primary">
 							{{#if isSpecialReport}}
 								<p class="article__primary-theme">
@@ -33,55 +37,60 @@
 							{{#if standFirst}}
 								<p class="article__stand-first">{{{standFirst}}}</p>
 							{{/if}}
-							<div class="article__header-time-byline">
-							{{#if publishedDate}}
-								<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
-									{{#dateformat "mmmm d, yyyy"}}{{publishedDate}}{{/dateformat}}
-								</time>
-							{{/if}}
-							{{#if byline}}
-								<p class="article__byline">
-									by: {{{byline}}}
-								</p>
-							{{/if}}
-							</div>
-							<div class="article__header-actions">
-							{{#if @root.flags.saveForLater}}
-								<div class="article__actions">
-									{{>next-myft-ui/templates/save-for-later contentId=id}}
+							{{#if designGenre}}
+								<div class="article__brand--wrapper">
+									<a class="article__brand--title" href={{designGenre.url}} data-trackable="brand">{{designGenre.name}}</a>
 								</div>
 							{{/if}}
-							</div>
 						</div>
 					</header>
+					{{#if designGenre.headshot}}
+					<div class="article__header-headshot">
+						<img class="article__header-headshot--image" src="{{designGenre.headshot}}?source=next&fit=scale-down&width=150">
+					</div>
+					{{/if}}
 				</div>
 				{{#if readNextArticle}}
 					{{>read-next-header article=readNextArticle}}
 				{{else}}
 					{{#if tags}}
-						<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
-							<h3 class="article__tags__title">Topics mentioned in this article</h3>
-							<ul class="article__tags-list" data-trackable="tags">
-								{{#each tags}}
-								<li class="article__tag">
-									<a class="article__tag__link" href="{{url}}" data-trackable="tag" data-concept-id="{{id}}">{{prefLabel}}</a>
-								</li>
-								{{/each}}
-							</ul>
-						</aside>
+					<aside class="article__tags {{#if mainImageHTML}}article__tags--main-image{{/if}}" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
+						<h3 class="article__tags__title">Topics mentioned in this article</h3>
+						<ul class="article__tags-list" data-trackable="tags">
+							{{#each tags}}
+							<li class="article__tag">
+								<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
+							</li>
+							{{/each}}
+						</ul>
+					</aside>
 					{{/if}}
 				{{/if}}
 			</div>
 		</div>
 	</div>
-	{{#if body}}
-	<div class="o-grid-container">
-		<div class="article__main o-grid-row">
-			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-
-				<div class="article__body">
-					{{{body}}}
-				</div>
+	<div class="article__wrapper {{#if mainImageHTML}}article__wrapper--main-image{{/if}}">
+		{{#if bodyHTML}}
+		<div class="o-grid-container">
+			<div class="article__main o-grid-row">
+				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+					{{#if mainImageHTML}}
+						{{{mainImageHTML}}}
+					{{/if}}
+					{{> social}}
+					<div class="article__time-byline">
+						{{#if publishedDate}}
+							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+							{{#dateformat "mmmm d, yyyy"}}{{publishedDate}}{{/dateformat}}
+							</time>
+						{{/if}}
+						{{#if byline}}
+							<p class="article__byline">by: {{{byline}}}</p>
+						{{/if}}
+					</div>
+					<div class="article__body">
+						{{{bodyHTML}}}
+					</div>
 
 				{{#if firstClickFree}}
 					{{> first-click-free}}
