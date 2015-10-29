@@ -201,9 +201,9 @@ describe('Negotiation Controller', function() {
 				dependencyStubs.articleLegacy.reset();
 			});
 
-			it('responds with a 404', function() {
+			it('finally give up and point back to FT.com', function() {
 				expect(dependencyStubs.articleLegacy.callCount).to.equal(0);
-				expect(response.statusCode).to.equal(404);
+				expect(response.statusCode).to.equal(302);
 			});
 		});
 	});
