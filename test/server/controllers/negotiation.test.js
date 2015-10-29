@@ -191,7 +191,7 @@ describe('Negotiation Controller', function() {
 
 				return createInstance({
 					params: {
-						id: 'this-does-not-exist'
+						id: '8f88c930-d00a-11da-80fb-0000779e2340'
 					}
 				}, { elasticSearchItemGet: true });
 
@@ -203,7 +203,7 @@ describe('Negotiation Controller', function() {
 
 			it('responds with a 404', function() {
 				expect(dependencyStubs.articleLegacy.callCount).to.equal(0);
-				expect(response.statusCode).to.equal(404);
+				expect(response.statusCode).to.equal(302);
 			});
 		});
 	});
