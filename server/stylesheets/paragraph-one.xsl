@@ -5,11 +5,6 @@
 
       <xsl:call-template name="social" />
 
-      <xsl:if test="$suggestedRead = 1">
-          <p class="article__standfirst">
-            <xsl:value-of select="$standFirst" />
-          </p>
-      </xsl:if>
         <xsl:apply-templates select="current()" mode="default" />
         <xsl:if test="$renderTOC = 1 and count(/html/body/h3[contains(@class, 'ft-subhead')]/strong) > 2">
             <div class="article__toc" data-trackable="table-of-contents">

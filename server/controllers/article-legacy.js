@@ -81,7 +81,6 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 			fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
 			reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
 			suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
-			standFirst: articleV1 ? articleV1.item.editorial.standFirst : "",
 			renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
 			id: extractUuid(articleV2.id),
 			webUrl: articleV1 && articleV1.item && articleV1.item.location ? articleV1.item.location.uri : '',
