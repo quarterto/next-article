@@ -4,6 +4,7 @@ const fetchres = require('fetchres');
 const logger = require('ft-next-express').logger;
 const api = require('next-ft-api-client');
 const interactivePoller = require('../lib/ig-poller');
+const shellpromise = require('shellpromise');
 
 const controllerInteractive = require('./interactive');
 const controllerPodcastLegacy = require('./podcast-legacy');
@@ -66,7 +67,15 @@ function getArticleV3(contentId) {
 		uuid: contentId,
 		index: 'v3_api_v2',
 		useElasticSearch: true
-	});
+	})
+		// Some things aren't in CAPI v3 (e.g. Syndicated content)
+		.catch(function(error) {
+			if (fetchres.originatedError(error)) {
+				return;
+			} else {
+				throw error;
+			}
+		});
 }
 
 module.exports = function negotiationController(req, res, next) {
@@ -118,7 +127,15 @@ module.exports = function negotiationController(req, res, next) {
 				return res.redirect(302, `${webUrl}${webUrl.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
 			}
 
-			return res.sendStatus(404);
+			return shellpromise(`curl -s http://www.ft.com/cms/s/${req.params.id}.html -I | grep -i location`)
+				.then(response => {
+					const webUrl = response.replace(/^Location:+/i, '').trim();
+					if (/^http:\/\/www\.ft\.com\//.test(webUrl)) {
+						res.redirect(302, `${webUrl}${webUrl.includes('?') ? '&' : '?'}ft_site=falcon&desktop=true`);
+					} else {
+						res.sendStatus(404);
+					}
+				});
 		})
 		.catch(error => {
 			logger.error(`Failed to fetch content: ${error.toString()}`);
