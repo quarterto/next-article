@@ -158,6 +158,13 @@
 	}
 }
 
+.article__gifted{
+  background-color: rgb(173, 63, 63);
+  margin-bottom: 15px;
+  padding: 1px 10px;
+  color: white;
+}
+
 //ARTICLE BODY ELEMENTS
 .article__body {
 	@include nTypeAlpha(3);

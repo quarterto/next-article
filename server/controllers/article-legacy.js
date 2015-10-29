@@ -22,6 +22,8 @@ var articlePodMapping = require('../mappings/article-pod-mapping');
 
 module.exports = function articleLegacyController(req, res, next, payload) {
 
+	var labsGiftHeader = req.get('FT-Labs-Gift');
+
 	var socialMediaImage = function (articleV2) {
 
 		// don't bother if there's no main image to fetch
@@ -143,6 +145,10 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
 						dehydratedMetadata: dehydratedMetadata
 					};
+
+					if(labsGiftHeader === "GRANTED"){
+						viewModel.gift = true;
+					}
 
 					if (metadata) {
 						var moreOnTags = [];
@@ -280,6 +286,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 						if (viewModel.articleV1) {
 							viewModel.articleV1.editorial.standFirst = null;
 						}
+
 						viewModel.byline = null;
 						viewModel.article.publishedDate = null;
 						viewModel.tableOfContents = null;
@@ -295,6 +302,7 @@ module.exports = function articleLegacyController(req, res, next, payload) {
 					if (res.locals.firstClickFreeModel) {
 						viewModel.firstClickFree = res.locals.firstClickFreeModel;
 					}
+
 					return viewModel;
 				})
 				.then(function(viewModel) {
