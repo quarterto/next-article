@@ -67,6 +67,7 @@ module.exports = function barrierHelper(viewModel, options) {
 	viewModel.tags = null;
 	viewModel.moreOns = null;
 	viewModel.dehydratedMetadata = null;
+	viewModel.layout = 'wrapper';
 
 	return viewModel;
 };
