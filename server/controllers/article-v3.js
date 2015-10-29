@@ -33,7 +33,6 @@ function transformArticleBody(article, flags) {
 		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
 		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
 		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
-		reserveSpaceForMasterImage: flags.reserveSpaceForMasterImage ? 1 : 0,
 		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0,
 		encodedTitle: encodeURIComponent(article.title.replace(/\&nbsp\;/g, ' '))
 	};
