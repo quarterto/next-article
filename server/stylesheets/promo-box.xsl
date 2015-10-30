@@ -79,12 +79,14 @@
     </xsl:template>
 
     <xsl:template match="promo-image">
-      <xsl:apply-templates select="ft-content" mode="internal-image">
-        <xsl:with-param name="isPromoImage" select="1" />
-      </xsl:apply-templates>
-      <xsl:apply-templates select="img" mode="external-image">
-        <xsl:with-param name="isPromoImage" select="1" />
-      </xsl:apply-templates>
+      <div class="promo-box__image">
+        <xsl:apply-templates select="ft-content" mode="internal-image">
+          <xsl:with-param name="isPromoImage" select="1" />
+        </xsl:apply-templates>
+        <xsl:apply-templates select="img" mode="placehold-image">
+          <xsl:with-param name="maxWidth">300</xsl:with-param>
+        </xsl:apply-templates>
+      </div>
     </xsl:template>
 
     <xsl:template match="promo-intro">

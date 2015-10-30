@@ -141,7 +141,6 @@
 //ARTICLE BODY ELEMENTS
 .article__body {
 	@include nTypeAlpha(3);
-	color: getColor('grey-tint5');
 	margin-bottom: 50px;
 
 	> p {
