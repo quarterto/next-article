@@ -167,8 +167,8 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.toc = fragments.toc;
 		})
 	);
-	// TO REMOVE - testing genre mapping.
 	payload.designGenre = articleGenreMapping(payload.metadata);
+	// TO REMOVE - testing genre mapping.
 	console.log('designGenre ', payload.designGenre);
 
 	// Decorate with related stuff
