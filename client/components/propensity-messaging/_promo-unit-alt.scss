@@ -1,3 +1,7 @@
+$tag-colour: #f47985;
+$promo-unit-bg-colour: #005277;
+
+
 @mixin vertically-centered {
   position: absolute;
   top: 50%;
@@ -11,80 +15,61 @@
 }
 
 .promo-unit {
-  background-color: #005277;
-  color: white;
-  padding: 30px 0 60px 0;
+  background-color: $promo-unit-bg-colour;
+  color: #fff;
+  padding-bottom: 60px;
 
-  .promo-unit__related-content {
-    margin: 0 0 40px 0;
-  }
+  .promo-unit__lined-header {
+    position: relative;
+    padding: 50px 0;
 
-  .promo-unit__related-content-subheading-container {
-    @include oGridRespondTo(L) {
-      padding: 0 20% 0 20%;
+    &::before {
+      @include vertically-centered;
+      border-top: 1px solid white;
+      content:' ';
+      display:block;
+      height: 1px;
+      left: 0;
+      right: 0;
+    }
+
+    .promo-unit__lined-header__inner {
+      @include vertically-centered;
+      left: 0;
+      right: 0;
+    }
+
+    .promo-unit__lined-header__heading {
+      background-color: $promo-unit-bg-colour;
+      padding: 0 12px;
+      display: inline;
     }
   }
 
-  .promo-unit__related-content-subheading-text {
-    font-size: 40px;
-    text-align: center;
-    font-weight: bold;
+  .promo-unit__lined-border {
+    margin: 50px 0;
   }
 
-  .promo-unit__media__image {
-    width: 100%;
-  }
-
-  .promo-unit__media__tag {
-    font-weight: bold;
-    font-size: 20px;
-    margin: 5px 0 5px 0;
-    color: #F47985;
-  }
-
-  .promo-unit__media__description {
-    margin: 0;
-    margin-bottom: 30px;
-    font-size: 2em;
-    font-weight: lighter;
-    font-family: FinancierDisplayWeb;
-  }
-
-  .promo-unit__media__image {
-    width: 100%;
-  }
-
-  .promo-unit__best-from-ft {
-    padding-bottom: 35px;
-  }
-
-  .promo-unit__highlight {
+  &__highlight {
     position: relative;
-    border-bottom: 1px solid white;
-    padding: 50px 0 50px 0;
-    min-height: 210px;
+    // min-height: 210px; // alternative? don't want this on the first section if pos
   }
 
-  .promo-unit__highlight--no-bottom-border {
-    border-bottom: none;
-  }
-  .promo-unit__item--pos-relative {
-    position: relative;
-  }
+  .promo-unit__highlight-grid-caption {
+    // seems like this is all just to position the overlapping image component, so maybe find a better way to do that
 
-  .promo-unit__item--vertically-centered {
-    @include vertically-centered;
-  }
+    // just vertically center on M?
+//    @include vertically-centered;
 
-  .promo-unit__caption {
-
+//    @include oGridRespondTo($until: M) {
+//      @include unvertically-centered;
+//    }
   }
 
   .promo-unit__caption-heading {
     font-weight: bold;
-    // margin-bottom: 10px;
-    margin-top: 0px;
-    font-size: 3em;
+    // margin-top: -21px; // don't want to do it this way
+    font-size: 75px;
   }
 
   .promo-unit__caption-heading--medium {
@@ -97,7 +82,6 @@
 
   .promo-unit__caption-body {
     font-size: 25px;
-    margin: 0;
   }
 
   .promo-unit__caption-heading--large {
@@ -112,12 +96,30 @@
     @include vertically-centered;
   }
 
-  .promo-unit__highlight-grid-caption {
-    @include vertically-centered;
+  .promo-unit__media__tag {
+    color: $tag-colour;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
 
-    @include oGridRespondTo($until: M) {
-      @include unvertically-centered;
-    }
+  .promo-unit__media__description {
+    font-family: FinancierDisplayWeb;
+    font-size: 25px;
+    font-weight: lighter;
+    margin: 0;
+  }
+
+  .promo-unit__media__image {
+    width: 100%;
+  }
+
+  .promo-unit__item--pos-relative {
+    position: relative;
+  }
+
+  .promo-unit__item--vertically-centered {
+    @include vertically-centered;
   }
 
   .promo-unit__best-from-ft-stream-name {
@@ -139,43 +141,14 @@
 
   .promo-unit__best-from-ft-item-pictures {
     position: relative;
-    top: 0px;
+    padding-left: 5%;
+    top: 0;
   }
 
   .promo-unit__best-from-ft-item-overlapping-images.overlapping-images {
     @include vertically-centered;
-    right: 40px;
   }
 
-  .promo-unit__lined-header {
-    position: relative;
-
-    &::before {
-      @include vertically-centered;
-      border-top: 1px solid white;
-      content:' ';
-      display:block;
-      height: 1px;
-      left: 0;
-      right: 0;
-    }
-
-    .promo-unit__lined-header__inner {
-      position: absolute;
-      top: -16px;
-      left: 0;
-      right: 0;
-    }
-
-    .promo-unit__lined-header__heading {
-      margin: 0;
-      padding: 0;
-      background-color: #005277;
-      padding: 0 12px;
-      display: inline;
-    }
-
-  }
 
   .promo-unit__best-from-ft-item-lil-pic {
     position: absolute;
@@ -195,7 +168,7 @@
     border-radius: 7px;
     text-align: center;
     margin: auto;
-    padding: 15px 0 20px 0;
+    padding: 15px 0 20px;
     width: 550px;
     @include oGridRespondTo($until: M) {
       width: auto;
@@ -206,7 +179,7 @@
     color: white;
     font-weight: bold;
     font-size: 1.5em;
-    margin: 5px 0 5px 0;
+    margin: 5px 0;
     border-bottom: none;
     &::after {
       content: '';
@@ -225,6 +198,17 @@
     }
   }
 
+  .promo-unit__related-content-subheading-container {
+    @include oGridRespondTo(L) {
+      padding: 0 20%;
+    }
+  }
+
+  .promo-unit__related-content-subheading-text {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+  }
 }
 
 .promo-unit__heading--financier-medium {
@@ -253,7 +237,6 @@
     height:119.03px;
     width: 211px;
     position: absolute;
-    bottom: 40px;
     left: 0;
     bottom: 0;
   }
@@ -263,8 +246,8 @@
     width: 320px;
 
     .overlapping-images__hind-img {
-      width: 245px;
       height: auto;
+      width: 245px;
     }
 
     .overlapping-images__fore-img {
@@ -285,9 +268,17 @@
 }
 
 .thin-container {
-  padding: 0px;
+  padding: 0;
 }
 
-.testytheo {
-  font-size: 400px;
+.hide-on-small {
+  @include oGridRespondTo($until: M) {
+    display: none;
+  }
+}
+
+.no-border-on-small {
+  @include oGridRespondTo($until: M) {
+    border-bottom: 0;
+  }
 }
