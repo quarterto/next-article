@@ -13,7 +13,7 @@ module.exports = function(packageIds, articleId, primaryTag) {
 			useElasticSearch: true
 		})
 			.then(function(ids) {
-				let deduped = ids.filter(id => id !== articleId).slice(0, 5);
+				let deduped = ids.filter(id => id !== articleId).slice(0, 5 - packageIds.length);
 				return packageIds.concat(deduped);
 			});
 	}
