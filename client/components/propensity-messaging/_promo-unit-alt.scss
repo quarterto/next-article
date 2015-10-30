@@ -1,6 +1,6 @@
 $tag-colour: #f47985;
 $promo-unit-bg-colour: #005277;
-
+$btn-bg-colour: #00496a;
 
 @mixin vertically-centered {
   position: absolute;
@@ -8,16 +8,9 @@ $promo-unit-bg-colour: #005277;
   transform: translateY(-50%);
 }
 
-@mixin unvertically-centered {
-  position: relative;
-  top: 50%;
-  transform: none;
-}
-
 .promo-unit {
   background-color: $promo-unit-bg-colour;
   color: #fff;
-  padding-bottom: 60px;
 
   .promo-unit__lined-header {
     position: relative;
@@ -50,25 +43,15 @@ $promo-unit-bg-colour: #005277;
     margin: 50px 0;
   }
 
-  &__highlight {
+  .promo-unit__highlight {
     position: relative;
-    // min-height: 210px; // alternative? don't want this on the first section if pos
   }
 
-  .promo-unit__highlight-grid-caption {
-    // seems like this is all just to position the overlapping image component, so maybe find a better way to do that
+  .promo-unit__caption {}
 
-    // just vertically center on M?
-//    @include vertically-centered;
-
-//    @include oGridRespondTo($until: M) {
-//      @include unvertically-centered;
-//    }
-  }
 
   .promo-unit__caption-heading {
     font-weight: bold;
-    // margin-top: -21px; // don't want to do it this way
     font-size: 75px;
   }
 
@@ -141,8 +124,8 @@ $promo-unit-bg-colour: #005277;
 
   .promo-unit__best-from-ft-item-pictures {
     position: relative;
-    padding-left: 5%;
-    top: 0;
+    padding-left: 7%;
+//    top: 0;
   }
 
   .promo-unit__best-from-ft-item-overlapping-images.overlapping-images {
@@ -163,7 +146,7 @@ $promo-unit-bg-colour: #005277;
   }
 
   .promo-unit__button {
-    background-color: #00496A;
+    background-color: $btn-bg-colour;
     border: 1px solid white;
     border-radius: 7px;
     text-align: center;
@@ -210,6 +193,9 @@ $promo-unit-bg-colour: #005277;
     text-align: center;
   }
 }
+
+.promo-unit__heading {}
+
 
 .promo-unit__heading--financier-medium {
   font-family: FinancierDisplayWeb;
@@ -274,11 +260,5 @@ $promo-unit-bg-colour: #005277;
 .hide-on-small {
   @include oGridRespondTo($until: M) {
     display: none;
-  }
-}
-
-.no-border-on-small {
-  @include oGridRespondTo($until: M) {
-    border-bottom: 0;
   }
 }
