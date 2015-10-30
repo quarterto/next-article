@@ -228,7 +228,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		payload.twitterCard = getTwitterCardData(payload);
 	}
 
-	if (res.locals.flags.articleSuggestedRead) {
+	if (res.locals.flags.articleSuggestedRead && payload.metadata.length) {
 		let storyPackageIds = (payload.storyPackage || []).map(story => story.id);
 
 		asyncWorkToDo.push(
