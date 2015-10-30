@@ -38,7 +38,7 @@
 								<p class="article__stand-first">{{{standFirst}}}</p>
 							{{/if}}
 							{{#if designGenre.prefLabel}}
-								<p class="article__brand--title">{{designGenre.prefLabel}}<p>
+								<p><a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.prefLabel}}</a><p>
 							{{/if}}
 							<div class="article__header-time-byline">
 							{{#if publishedDate}}

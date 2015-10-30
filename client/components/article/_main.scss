@@ -56,6 +56,24 @@
 		@include nTypeDeltaSize(2);
 	}
 }
+
+.article__brand--title {
+	@include nLinksTopic;
+	@include nTypeFoxtrot(3);
+	position: relative;
+	padding-left: 25px;
+
+
+	&:before {
+		position: absolute;
+		@include nextIcon(pullquote, getColor('claret'), 25);
+		top: -5px;
+		left: 0;
+		content: '';
+	}
+}
+
+
 .article__meta {
 	margin: 20px 0 0;
 }
