@@ -61,8 +61,8 @@
 	@include nLinksTopic;
 	@include nTypeFoxtrot(3);
 	position: relative;
+	text-transform: capitalize;
 	padding-left: 25px;
-
 
 	&:before {
 		position: absolute;

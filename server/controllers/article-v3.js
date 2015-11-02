@@ -169,6 +169,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	);
 	payload.designGenre = articleGenreMapping(payload.metadata);
 	// TO REMOVE - testing genre mapping.
+	console.log('metadata ', payload.metadata);
 	console.log('designGenre ', payload.designGenre);
 
 	// Decorate with related stuff
