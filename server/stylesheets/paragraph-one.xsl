@@ -24,8 +24,11 @@
     <xsl:template match="p" mode="first-paragraph">
         <xsl:choose>
             <xsl:when test="img">
+                <!-- Duplicate of /html/body/p[img] in external-image.xsl -->
                 <xsl:apply-templates select="img" mode="figure" />
-                <p><xsl:apply-templates select="child::node()[not(self::img)]" /></p>
+                <xsl:if test="count(child::node()[not(self::img)]) &gt; 0">
+                    <p><xsl:apply-templates select="child::node()[not(self::img)]" /></p>
+                </xsl:if>
             </xsl:when>
             <xsl:when test="ft-content[contains(@type, 'ImageSet')] and normalize-space(string()) = ''">
                 <xsl:apply-templates select="ft-content" />

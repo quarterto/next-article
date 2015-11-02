@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <!-- Standalone images -->
     <xsl:template match="/html/body/img">
         <xsl:apply-templates select="current()" mode="figure" />
     </xsl:template>
 
-    <!-- Inline images -->
     <xsl:template match="/html/body/p[img]">
         <xsl:apply-templates select="img" mode="figure" />
-        <p><xsl:apply-templates select="child::node()[not(self::img)]" /></p>
+        <xsl:if test="count(child::node()[not(self::img)]) &gt; 0">
+            <p><xsl:apply-templates select="child::node()[not(self::img)]" /></p>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="img" mode="figure">
