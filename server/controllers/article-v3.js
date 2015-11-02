@@ -38,9 +38,9 @@ function transformArticleBody(article, flags) {
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
 		let $ = bodyTransform(articleBody, flags);
-		let mainImage = $.html('.article__main-image');
+		let mainImage = $.html('figure.article-image--full:first-child');
 		let share = $.html('.article__share');
-		$('.article__main-image').remove();
+		$('figure.article-image--full:first-child').remove();
 		$('.article__share').remove();
 
 		return {

@@ -6,7 +6,8 @@ function getColumnist(metadata) {
   let columnist;
   if (metadata.find(tag =>
       tag.primary &&
-      tag.taxonomy === 'authors')) {
+      tag.taxonomy === 'authors' &&
+      tag.attributes.find(attribute => attribute.key === 'isColumnist' && attribute.value === true))) {
     columnist = metadata.find(tag => tag.taxonomy === 'authors');
   }
   return columnist;
