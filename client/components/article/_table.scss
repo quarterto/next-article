@@ -19,7 +19,7 @@
 		}
 	}
 	tbody tr:nth-child(2n+1) {
-		background-color: #eae0d7;
+		background-color: getColor('pink-tint2');
 	}
 	th,
 	td {

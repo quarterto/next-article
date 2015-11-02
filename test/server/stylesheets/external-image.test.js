@@ -5,7 +5,7 @@
 const transform = require('./transform-helper');
 const expect = require('chai').expect;
 
-describe.only('External images', () => {
+describe('External images', () => {
 
 	describe('re-formatted as figures', () => {
 
@@ -90,7 +90,7 @@ describe.only('External images', () => {
 
 	});
 
-	describe.only('layout variations', () => {
+	describe('layout variations', () => {
 
 		it('applies inline variation when source image is small', () => {
 			return transform(
