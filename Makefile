@@ -42,7 +42,7 @@ visual:
 clean-deploy: clean install deploy
 
 tidy:
-	nbt destroy ${TEST_APP}
+	# nbt destroy ${TEST_APP}
 
 provision:
 	nbt deploy-hashed-assets
@@ -51,4 +51,4 @@ provision:
 
 smoke:
 	nbt test-urls ${TEST_APP} --throttle 1;
-	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/* -e ie9,ie10,ie11,firefox38,chrome44,chrome45,iphone6_plus,Android_Nexus7HD
+	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/* -e ie9,ie10,ie11,firefox40,chrome44,chrome45,iphone6_plus,Android_Nexus7HD
