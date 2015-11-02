@@ -192,6 +192,28 @@ describe('External images', () => {
 				});
 		});
 
+		it('applies full variation when source image has no dimensions', () => {
+			return transform(
+					'<html>' +
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<p><img src="http://my-image/image.jpg" /></p>' +
+							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>' +
+					'</html>\n'
+				)
+				.then((transformedXml) => {
+					expect(transformedXml).to.equal(
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<figure class="article-image article-image--full">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+							'</figure>' +
+							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>\n'
+					);
+				});
+		});
 
 	});
 
