@@ -39,11 +39,13 @@ function transformArticleBody(article, flags) {
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
 		let $ = bodyTransform(articleBody, flags);
+		let mainImage = $.html('.article__main-image');
+		$('.article__main-image').remove();
 
 		return {
 			body: $.html(),
 			toc: $.html('.article__toc'),
-			mainImage: $.html('.article__main-image')
+			mainImage: mainImage
 		};
 	});
 }
