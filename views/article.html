@@ -40,25 +40,6 @@
 							{{#if designGenre.prefLabel}}
 								<p><a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.prefLabel}}</a><p>
 							{{/if}}
-							<div class="article__header-time-byline">
-							{{#if publishedDate}}
-								<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
-									{{#dateformat "mmmm d, yyyy"}}{{publishedDate}}{{/dateformat}}
-								</time>
-							{{/if}}
-							{{#if byline}}
-								<p class="article__byline">
-									by: {{{byline}}}
-								</p>
-							{{/if}}
-							</div>
-							<div class="article__header-actions">
-							{{#if @root.flags.saveForLater}}
-								<div class="article__actions">
-									{{>next-myft-ui/templates/save-for-later contentId=id}}
-								</div>
-							{{/if}}
-							</div>
 						</div>
 					</header>
 				</div>
@@ -66,29 +47,49 @@
 					{{>read-next-header article=readNextArticle}}
 				{{else}}
 					{{#if tags}}
-						<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
-							<h3 class="article__tags__title">Topics mentioned in this article</h3>
-							<ul class="article__tags-list" data-trackable="tags">
-								{{#each tags}}
-									<li class="article__tag">
-										<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
-									</li>
-								{{/each}}
-							</ul>
-						</aside>
+					<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
+						<h3 class="article__tags__title">Topics mentioned in this article</h3>
+						<ul class="article__tags-list" data-trackable="tags">
+						{{#each tags}}
+							<li class="article__tag">
+								<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
+							</li>
+						{{/each}}
+						</ul>
+					</aside>
 					{{/if}}
 				{{/if}}
 			</div>
 		</div>
 	</div>
-	{{#if body}}
-	<div class="o-grid-container">
-		<div class="article__main o-grid-row">
-			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-
-				<div class="article__body">
-					{{{body}}}
+	<div class="article__wrapper">
+		{{#if mainImage}}
+			{{{mainImage}}}
+		{{/if}}
+		<div class="article__header-time-byline">
+			{{#if publishedDate}}
+				<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+				{{#dateformat "mmmm d, yyyy"}}{{publishedDate}}{{/dateformat}}
+				</time>
+			{{/if}}
+			{{#if byline}}
+				<p class="article__byline">by: {{{byline}}}</p>
+			{{/if}}
+		</div>
+		<div class="article__header-actions">
+			{{#if @root.flags.saveForLater}}
+				<div class="article__actions">
+					{{>next-myft-ui/templates/save-for-later contentId=id}}
 				</div>
+			{{/if}}
+		</div>
+		{{#if body}}
+		<div class="o-grid-container">
+			<div class="article__main o-grid-row">
+				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+					<div class="article__body">
+						{{{body}}}
+					</div>
 
 				{{#if firstClickFree}}
 					{{> first-click-free}}
@@ -104,7 +105,7 @@
 				{{{toc}}}
 			</div>
 		</div>
-	{{/if}}
+		{{/if}}
 	</div>
 </article>
 

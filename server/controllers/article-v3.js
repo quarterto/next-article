@@ -42,7 +42,8 @@ function transformArticleBody(article, flags) {
 
 		return {
 			body: $.html(),
-			toc: $.html('.article__toc')
+			toc: $.html('.article__toc'),
+			mainImage: $.html('.article__main-image')
 		};
 	});
 }
@@ -165,6 +166,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		transformArticleBody(payload, res.locals.flags).then(fragments => {
 			payload.body = fragments.body;
 			payload.toc = fragments.toc;
+			payload.mainImage = fragments.mainImage;
 		})
 	);
 	payload.designGenre = articleGenreMapping(payload.metadata);

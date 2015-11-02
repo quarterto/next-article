@@ -36,6 +36,5 @@ module.exports = function(body, flags) {
 		.with(relativeLinks)
 		.with(trimmedLinks)
 		.get();
-
 	return $;
 };
