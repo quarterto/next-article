@@ -24,14 +24,19 @@ describe('Promo-boxes', function() {
 								'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
 							'</div>' +
 							'<div class="promo-box__headline">Greece debt crisis</div>' +
-							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
-								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
-								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
-								'<!--[if IE 9]></video><![endif]-->' +
-								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
-							'</picture>' +
+							'<div class="promo-box__image">' +
+								'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
+									'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
+									'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+									'<!--[if IE 9]></video><![endif]-->' +
+									'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
+								'</picture>' +
+							'</div>' +
 							'<div class="promo-box__content">' +
-							'<div class="promo-box__content__initial"><p>Graham Tatomer worked at Austrian Riesling producer Emmerich Knoll and now fashions this example from the old vines of the Kick-on Ranch in Santa Barbara (£26.95, Roberson)</p></div></div>' +
+								'<div class="promo-box__content__initial">' +
+									'<p>Graham Tatomer worked at Austrian Riesling producer Emmerich Knoll and now fashions this example from the old vines of the Kick-on Ranch in Santa Barbara (£26.95, Roberson)</p>' +
+									'</div>' +
+								'</div>' +
 						'</div>' +
 					'</aside>' +
 				'</body>\n'
@@ -58,12 +63,14 @@ describe('Promo-boxes', function() {
 								'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
 							'</div>' +
 							'<div class="promo-box__headline">Greece debt crisis</div>' +
-							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
-								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
-								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
-								'<!--[if IE 9]></video><![endif]-->' +
-								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
-							'</picture>' +
+							'<div class="promo-box__image">' +
+								'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
+									'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
+									'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+									'<!--[if IE 9]></video><![endif]-->' +
+									'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
+								'</picture>' +
+							'</div>' +
 							'<div class="promo-box__content">' +
 							'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
 							'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></div></div>' +
@@ -95,12 +102,14 @@ describe('Promo-boxes', function() {
 								'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
 							'</div>' +
 							'<div class="promo-box__headline">Greece debt crisis</div>' +
-							'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
-								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
-								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
-								'<!--[if IE 9]></video><![endif]-->' +
-								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
-							'</picture>' +
+							'<div class="promo-box__image">' +
+								'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
+									'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
+									'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+									'<!--[if IE 9]></video><![endif]-->' +
+									'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
+								'</picture>' +
+							'</div>' +
 							'<div class="promo-box__content o-expander__content">' +
 								'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
 								'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></div>' +
@@ -131,12 +140,14 @@ describe('Promo-boxes', function() {
 							'<div class="promo-box__title__name">Related Content</div>' +
 						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
-						'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
-							'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
-							'<source data-image-size="280" media="(min-width: 490px)"></source>' +
-							'<!--[if IE 9]></video><![endif]-->' +
-							'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
-						'</picture>' +
+						'<div class="promo-box__image">' +
+							'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
+								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
+								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+								'<!--[if IE 9]></video><![endif]-->' +
+								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
+							'</picture>' +
+						'</div>' +
 						'<div class="promo-box__content">' +
 						'<div class="promo-box__content__initial"><p>Graham Tatomer worked at Austrian Riesling producer Emmerich Knoll and now fashions this example from the old vines of the Kick-on Ranch in Santa Barbara (£26.95, Roberson)</p></div></div>' +
 					'</div>' +
@@ -210,12 +221,14 @@ describe('Promo-boxes', function() {
 						'<div class="promo-box__wrapper">' +
 							'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
 							'<div class="promo-box__headline">Greece debt crisis</div>' +
-							'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
-								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
-								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
-								'<!--[if IE 9]></video><![endif]-->' +
-								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
-							'</picture>' +
+							'<div class="promo-box__image">' +
+								'<picture data-image-set-id="2889cee2-2fc7-11e5-0fca-327ba7efe7b6" class="article__image n-image">' +
+									'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
+									'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+									'<!--[if IE 9]></video><![endif]-->' +
+									'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
+								'</picture>' +
+							'</div>' +
 							'<div class="promo-box__content o-expander__content">' +
 							'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
 							'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></div>' +
@@ -228,12 +241,14 @@ describe('Promo-boxes', function() {
 						'<div class="promo-box__wrapper">' +
 							'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
 							'<div class="promo-box__headline">Greece debt crisis</div>' +
-							'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
-								'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
-								'<source data-image-size="280" media="(min-width: 490px)"></source>' +
-								'<!--[if IE 9]></video><![endif]-->' +
-								'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
-							'</picture>' +
+							'<div class="promo-box__image">' +
+								'<picture data-image-set-id="e7b203ac-2351-11e5-23e5-e651ba9c5bc5" class="article__image n-image">' +
+									'<!--[if IE 9]><video style="display: none;"><![endif]-->' +
+									'<source data-image-size="280" media="(min-width: 490px)"></source>' +
+									'<!--[if IE 9]></video><![endif]-->' +
+									'<img data-image-type="srcset" data-image-size="400" class="n-image__img" alt="">' +
+								'</picture>' +
+							'</div>' +
 							'<div class="promo-box__content">' +
 							'<div class="promo-box__content__initial"><p>Graham Tatomer worked at Austrian Riesling producer Emmerich Knoll and now fashions this example from the old vines of the Kick-on Ranch in Santa Barbara (£26.95, Roberson)</p></div></div>' +
 						'</div>' +

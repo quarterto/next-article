@@ -16,7 +16,9 @@
               <aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">
                 <div class="promo-box__wrapper">
                   <xsl:apply-templates select="current()" mode="default-title" />
-                  <xsl:apply-templates />
+                  <xsl:apply-templates>
+                      <xsl:with-param name="variation">long</xsl:with-param>
+                  </xsl:apply-templates>
                 </div>
               </aside>
             </xsl:when>
@@ -24,7 +26,9 @@
               <aside class="promo-box promo-box--long ng-inline-element" data-trackable="promobox" role="complementary">
                 <div class="promo-box__wrapper">
                   <xsl:apply-templates select="current()" mode="default-title" />
-                  <xsl:apply-templates />
+                  <xsl:apply-templates>
+                      <xsl:with-param name="variation">long</xsl:with-param>
+                  </xsl:apply-templates>
                 </div>
               </aside>
             </xsl:otherwise>
@@ -79,12 +83,21 @@
     </xsl:template>
 
     <xsl:template match="promo-image">
+      <xsl:param name="variation" />
+
+      <xsl:variable name="maxWidth">
+        <xsl:choose>
+          <xsl:when test="$variation = 'long'">700</xsl:when>
+          <xsl:otherwise>300</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
       <div class="promo-box__image">
         <xsl:apply-templates select="ft-content" mode="internal-image">
           <xsl:with-param name="isPromoImage" select="1" />
         </xsl:apply-templates>
         <xsl:apply-templates select="img" mode="placehold-image">
-          <xsl:with-param name="maxWidth">300</xsl:with-param>
+            <xsl:with-param name="maxWidth" select="$maxWidth" />
         </xsl:apply-templates>
       </div>
     </xsl:template>
