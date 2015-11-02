@@ -1,11 +1,13 @@
-.article--columnist {
-	.article__header, .next-up__intro__header {
-		background: getColor('warm-1');
-	}
-}
+$brand-and-columnist-color: getColor('warm-1');
 
-.article--brand {
+.article--columnist, .article--brand {
+
 	.article__header, .next-up__intro__header {
-		background: getColor('warm-1');
+		background: $brand-and-columnist-color;
 	}
+
+	.article__wrapper--main-image {
+		background: linear-gradient($brand-and-columnist-color, $brand-and-columnist-color 50px, transparent 50px, transparent 100%);
+	}
+
 }
