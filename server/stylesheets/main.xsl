@@ -9,23 +9,6 @@
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="p" mode="default">
-        <xsl:choose>
-            <xsl:when test="img and normalize-space(string()) = ''">
-                <xsl:apply-templates select="img" />
-            </xsl:when>
-            <xsl:when test="ft-content[contains(@type, 'ImageSet')] and normalize-space(string()) = ''">
-                <xsl:apply-templates select="ft-content" />
-            </xsl:when>
-            <xsl:when test="a[substring(@href, string-length(@href) - 6) = '#slide0']">
-                <xsl:call-template name="slideshow" />
-            </xsl:when>
-            <xsl:otherwise>
-                <p><xsl:apply-templates /></p>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
     <xsl:include href="big-number.xsl" />
     <xsl:include href="blockquotes.xsl" />
     <xsl:include href="external-image.xsl" />

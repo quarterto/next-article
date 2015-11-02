@@ -12,7 +12,6 @@ verify:
 
 unit-test:
 	export apikey=12345; export api2key=67890; export AWS_SIGNED_FETCH_DISABLE_DNS_RESOLUTION=true; export NODE_ENV=test; mocha test/server/ --recursive
-	karma start test/client/karma.conf.js
 
 test-debug:
 	@mocha --debug-brk --reporter spec -i test/server/
@@ -52,4 +51,5 @@ provision:
 
 smoke:
 	nbt test-urls ${TEST_APP} --throttle 1;
-	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/* -e ie9,ie10,ie11,firefox40,chrome44,chrome45,iphone6_plus,Android_Nexus7HD
+	# TODO: re-enable firefox
+	export TEST_APP=${TEST_APP}; nbt nightwatch test/browser/tests/* -e ie9,ie10,ie11,chrome44,chrome45,iphone6_plus,Android_Nexus7HD

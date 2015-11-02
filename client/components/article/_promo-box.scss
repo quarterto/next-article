@@ -6,8 +6,8 @@
 	}
 }
 
-.promo-box img {
-	margin: 10px 10px 10px 0;
+.promo-box .next-article-placeholder {
+	margin: 10px 0;
 }
 
 .promo-box--long {
@@ -15,7 +15,7 @@
 	max-width: 100%;
 }
 
-.promo-box--long img {
+.promo-box--long .next-article-placeholder {
 	@include oGridRespondTo(S) {
 		float: left;
 		margin-right: 10px;
@@ -87,6 +87,10 @@
 	p {
 		margin: 5px 0 0;
 	}
+}
+
+.promo-box__image {
+	margin: 12px 0;
 }
 
 .promo-box__list {

@@ -33,7 +33,7 @@ module.exports = function(xml, stylesheet, params) {
 		});
 
 		xsltproc.stderr.on('data', function(error) {
-			errors.push(error.toString());
+			logger.error(error.toString());
 		});
 
 		xsltproc.on('error', function(error) {
@@ -42,7 +42,6 @@ module.exports = function(xml, stylesheet, params) {
 
 		xsltproc.on('close', function(code) {
 			if (code !== 0) {
-				logger.error.apply(logger, errors);
 				return reject('xsltproc exited with code ' + code + ': ' + errors);
 			}
 
