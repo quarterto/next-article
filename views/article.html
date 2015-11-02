@@ -13,9 +13,13 @@
 		<div class="o-grid-container">
 			<div class="article__header-inner o-grid-row">
 				{{#if barrier}}
-				<div data-o-grid-colspan="12 L12 XL12">
+					<div data-o-grid-colspan="12 L12 XL12" class="article__header-wrapper">
 				{{else}}
-				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+					{{#ifEquals designGenre.genre 'columnist'}}
+					<div data-o-grid-colspan="12 L8 XL7 XLoffset1" class="article__header-wrapper">
+					{{else}}
+					<div data-o-grid-colspan="12 L8 XL7 XLoffset1" class="article__header-wrapper">
+					{{/ifEquals}}
 				{{/if}}
 					<header>
 						<div class="article__header-primary">
@@ -43,6 +47,11 @@
 								</div>
 							{{/if}}
 						</div>
+						{{#ifEquals designGenre.genre 'columnist'}}
+						<div class="article__header-headshot">
+							<img src="{{designGenre.headshot}}?source=next&fit=scale-down&width=150">
+						</div>
+						{{/ifEquals}}
 					</header>
 				</div>
 				{{#if readNextArticle}}

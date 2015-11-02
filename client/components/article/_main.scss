@@ -2,7 +2,6 @@
 .article__header {
 	position: relative;
 	background: getColor('pink');
-	padding-bottom: 15px;
 	font-weight: 100;
 
 	@media print {
@@ -10,8 +9,14 @@
 	}
 }
 
+.article__header-wrapper {
+	position: relative;
+	padding-bottom: 15px;
+}
+
 .article__header-inner {
 	padding-top: 12px;
+	padding-bottom: 15px;
 
 	@include oGridRespondTo(L) {
 		display: flex;
@@ -20,6 +25,12 @@
 
 .article__header-secondary {
 	margin-top: $spacing-unit / 2;
+}
+
+.article__header-headshot {
+	position: absolute;
+	bottom: -2px;
+	right: 0;
 }
 
 .article__header-time-byline {
@@ -68,6 +79,10 @@
 	margin-left: 25px;
 }
 
+.article__wrapper--main-image {
+	background: linear-gradient(getColor('pink'), getColor('pink') 50px, transparent 50px, transparent 100%);
+	padding-top: 0;
+}
 
 .article__meta {
 	margin: 20px 0 0;
