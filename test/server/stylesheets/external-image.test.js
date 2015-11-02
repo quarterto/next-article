@@ -90,7 +90,7 @@ describe.only('External images', () => {
 
 	});
 
-	describe('layout variations', () => {
+	describe.only('layout variations', () => {
 
 		it('applies inline variation when source image is small', () => {
 			return transform(
@@ -116,7 +116,6 @@ describe.only('External images', () => {
 					);
 				});
 		});
-
 
 		it('applies center variation when source image is neither small nor large', () => {
 			return transform(
@@ -167,6 +166,32 @@ describe.only('External images', () => {
 					);
 				});
 		});
+
+		it('applies inline variation when source image is portrait', () => {
+			return transform(
+					'<html>' +
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<p><img src="http://my-image/image.jpg" width="400" height="800" /></p>' +
+							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>' +
+					'</html>\n'
+				)
+				.then((transformedXml) => {
+					expect(transformedXml).to.equal(
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<figure class="article-image article-image--inline" style="width:350px;">' +
+								'<div class="article-image__placeholder" style="padding-top:200%;">' +
+									'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=350">' +
+								'</div>' +
+							'</figure>' +
+							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>\n'
+					);
+				});
+		});
+
 
 	});
 

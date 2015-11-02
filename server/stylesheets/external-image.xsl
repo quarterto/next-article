@@ -16,7 +16,8 @@
         <xsl:variable name="variation">
             <xsl:choose>
                 <xsl:when test="@width &lt;= 350">inline</xsl:when>
-                <xsl:when test="@width &gt; 350 and @width &lt; 700">center</xsl:when>
+                <xsl:when test="@width &lt; @height">inline</xsl:when>
+                <xsl:when test="@width &lt; 700">center</xsl:when>
                 <xsl:otherwise>full</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -24,6 +25,7 @@
         <xsl:variable name="maxWidth">
             <xsl:choose>
                 <xsl:when test="@width &gt; 700">700</xsl:when>
+                <xsl:when test="@width &lt; @height">350</xsl:when>
                 <xsl:otherwise><xsl:value-of select="@width" /></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
