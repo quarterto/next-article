@@ -38,7 +38,9 @@
 								<p class="article__stand-first">{{{standFirst}}}</p>
 							{{/if}}
 							{{#if designGenre.prefLabel}}
-								<p><a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.prefLabel}}</a><p>
+								<div class="article__brand--wrapper">
+									<a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.prefLabel}}</a>
+								</div>
 							{{/if}}
 						</div>
 					</header>
@@ -70,7 +72,8 @@
 					{{#if mainImage}}
 						{{{mainImage}}}
 					{{/if}}
-					<div class="article__header-time-byline">
+					{{> social}}
+					<div class="article__time-byline">
 						{{#if publishedDate}}
 							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
 							{{#dateformat "mmmm d, yyyy"}}{{publishedDate}}{{/dateformat}}
@@ -78,13 +81,6 @@
 						{{/if}}
 						{{#if byline}}
 							<p class="article__byline">by: {{{byline}}}</p>
-						{{/if}}
-					</div>
-					<div class="article__header-actions">
-						{{#if @root.flags.saveForLater}}
-							<div class="article__actions">
-								{{>next-myft-ui/templates/save-for-later contentId=id}}
-							</div>
 						{{/if}}
 					</div>
 					<div class="article__body">

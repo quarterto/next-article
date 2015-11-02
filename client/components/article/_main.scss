@@ -56,26 +56,29 @@
 		@include nTypeDeltaSize(2);
 	}
 }
-
-.article__brand--title {
-	@include nLinksTopic;
-	@include nTypeFoxtrot(3);
+.article__brand--wrapper {
 	position: relative;
-	text-transform: capitalize;
-	padding-left: 25px;
-
 	&:before {
 		position: absolute;
-		@include nextIcon(pullquote, getColor('claret'), 25);
-		top: -5px;
+		@include nextIcon(pullquote, getColor('claret'), 20);
+		top: 0;
 		left: 0;
 		content: '';
 	}
+}
+.article__brand--title {
+	@include nLinksTopic;
+	@include nTypeFoxtrot(3);
+	text-transform: capitalize;
+	margin-left: 25px;
 }
 
 
 .article__meta {
 	margin: 20px 0 0;
+}
+.article__time-byline {
+	margin: 15px 0;
 }
 .article__byline {
 	@include nTypeEcho(4);

@@ -29,7 +29,6 @@ function transformArticleBody(article, flags) {
 		webUrl: article.webUrl,
 		renderTOC: flags.articleTOC ? 1 : 0,
 		renderSlideshows: flags.galleries ? 1 : 0,
-		renderSocial: flags.articleShareButtons ? 1 : 0,
 		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
 		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
 		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
@@ -40,12 +39,15 @@ function transformArticleBody(article, flags) {
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
 		let $ = bodyTransform(articleBody, flags);
 		let mainImage = $.html('.article__main-image');
+		let share = $.html('.article__share');
 		$('.article__main-image').remove();
+		$('.article__share').remove();
 
 		return {
 			body: $.html(),
 			toc: $.html('.article__toc'),
-			mainImage: mainImage
+			mainImage: mainImage,
+			share: share
 		};
 	});
 }
@@ -169,6 +171,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.body = fragments.body;
 			payload.toc = fragments.toc;
 			payload.mainImage = fragments.mainImage;
+			payload.share = fragments.share;
 		})
 	);
 	payload.designGenre = articleGenreMapping(payload.metadata);
