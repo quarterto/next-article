@@ -31,10 +31,26 @@
         </xsl:variable>
 
         <!-- You cannot shrink-wrap text so inline styles FTW -->
-        <figure class="article-image article-image--{$variation}" style="width:{$maxWidth}px;">
-            <xsl:apply-templates select="current()" mode="placehold-image">
-                <xsl:with-param name="maxWidth" select="$maxWidth" />
-            </xsl:apply-templates>
+        <figure class="article-image article-image--{$variation}">
+
+            <xsl:if test="$maxWidth != ''">
+                <xsl:attribute name="style">
+                    <xsl:value-of select="concat('width:', $maxWidth, 'px;')" />
+                </xsl:attribute>
+            </xsl:if>
+
+            <xsl:choose>
+                <xsl:when test="$maxWidth != ''">
+                    <xsl:apply-templates select="current()" mode="placehold-image">
+                        <xsl:with-param name="maxWidth" select="$maxWidth" />
+                    </xsl:apply-templates>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="current()" mode="dont-placehold-image">
+                        <xsl:with-param name="maxWidth">700</xsl:with-param>
+                    </xsl:apply-templates>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:if test="string-length(@longdesc) &gt; 0">
                 <figcaption class="article-image__caption"><xsl:value-of select="@longdesc" /></figcaption>
             </xsl:if>
@@ -49,6 +65,13 @@
         <div class="article-image__placeholder" style="padding-top:{$ratio}%;">
             <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$maxWidth}" />
         </div>
+    </xsl:template>
+
+
+    <xsl:template match="img" mode="dont-placehold-image">
+        <xsl:param name="maxWidth" />
+
+        <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$maxWidth}" />
     </xsl:template>
 
 </xsl:stylesheet>
