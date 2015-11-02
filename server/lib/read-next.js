@@ -24,12 +24,13 @@ module.exports = function(storyPackageIds, articleId, primaryTag, publishedDate)
 			useElasticSearch: true
 		})
 			.then(articles => {
-				return articlePodMapping(
-					articles
+				const article = articles
 						.map(article => article._source)
 						.filter(article => article.item.id !== articleId)
-						.shift()
-				);
+						.shift();
+				if (article) {
+					return articlePodMapping(article);
+				}
 			});
 	}
 
