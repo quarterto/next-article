@@ -12,7 +12,6 @@ verify:
 
 unit-test:
 	export apikey=12345; export api2key=67890; export AWS_SIGNED_FETCH_DISABLE_DNS_RESOLUTION=true; export NODE_ENV=test; mocha test/server/ --recursive
-	karma start test/client/karma.conf.js
 
 test-debug:
 	@mocha --debug-brk --reporter spec -i test/server/
