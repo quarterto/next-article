@@ -1,46 +1,41 @@
-/*global console*/
-
-"use strict";
+/*eslint no-console: 0*/
+'use strict';
 
 require('isomorphic-fetch');
-var notifySaucelabs = require('notify-saucelabs');
-var TEST_HOST = process.env.TEST_APP + '.herokuapp.com';
-var ARTICLE_PATH = "/content/fb368c7a-c804-11e4-8210-00144feab7de";
+const notifySaucelabs = require('notify-saucelabs');
+const TEST_BASE_URL = `https://${process.env.TEST_APP}.herokuapp.com`;
+const TEST_URL = `${TEST_BASE_URL}/content/fb368c7a-c804-11e4-8210-00144feab7de`;
 
 module.exports = {
-	"js-success test": function(browser) {
-		console.log("Launching http://" + TEST_HOST + ARTICLE_PATH);
+	'js-success test': browser => {
+		console.log(`Launching ${TEST_URL}`);
 		browser
-			.url('https://' + TEST_HOST + "/__gtg")
+			.url(`${TEST_BASE_URL}/__gtg`)
 			// need to set the cookie with JS for IE
-			.execute(
-				function () {
-					document.cookie = 'next-flags=ads:off; secure=true';
-				}
-			)
-			.url('https://' + TEST_HOST + ARTICLE_PATH)
-			.waitForElementPresent("html.js.js-success", 10000);
+			.execute(() => {
+				document.cookie = 'next-flags=ads:off; secure=true';
+			})
+			.url(TEST_URL)
+			.waitForElementPresent('html.js.js-success', 60000);
 	},
 
-	after: function(browser, done) {
-		console.log("Sauce Test Results at https://saucelabs.com/tests/" + browser.sessionId);
+	tearDown: function(done) {
+		const sessionId = this.client.sessionId;
+		// NOTE: need to end session here so we can access the sessionId
+		this.client.end();
+		console.log(`Sauce Test Results at https://saucelabs.com/tests/${sessionId}`);
 		console.log('Updating Saucelabs...');
 		notifySaucelabs({
-			passed: browser.currentTest.results.failed === 0 && browser.currentTest.results.errors === 0,
-			sessionId: browser.sessionId
+			sessionId: sessionId,
+			passed: this.results.failed === 0 && this.results.errors === 0
 		})
-			.then(function() {
+			.then(() => {
 				console.info('Finished updating Saucelabs.');
-				browser.end();
 				done();
 			})
-			.catch(function(err) {
+			.catch(err => {
 				console.error('An error has occurred');
-				browser.end();
 				done(err);
 			});
 	}
-
-
-
 };
