@@ -206,7 +206,7 @@ describe('External images', () => {
 					expect(transformedXml).to.equal(
 						'<body>' +
 							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--full">' +
+							'<figure class="article-image article-image--full" style="width:700px;">' +
 								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
 							'</figure>' +
 							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
@@ -217,7 +217,31 @@ describe('External images', () => {
 
 	});
 
-	describe('captions', () => {
+	describe('placeholders and captions', () => {
+
+		it('does not add a placeholder if the image is missing width or height', () => {
+			return transform(
+					'<html>' +
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<p><img src="http://my-image/image.jpg" longdesc="This is a long description" width="585" /></p>' +
+							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>' +
+					'</html>\n'
+				)
+				.then((transformedXml) => {
+					expect(transformedXml).to.equal(
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<figure class="article-image article-image--center" style="width:585px;">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=585">' +
+								'<figcaption class="article-image__caption">This is a long description</figcaption>' +
+							'</figure>' +
+							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>\n'
+					);
+				});
+		});
 
 		it('adds caption when the longdesc attribute is present', () => {
 			return transform(
