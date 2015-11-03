@@ -51,9 +51,11 @@
                     </xsl:apply-templates>
                 </xsl:otherwise>
             </xsl:choose>
+
             <xsl:if test="string-length(@longdesc) &gt; 0">
                 <figcaption class="article-image__caption"><xsl:value-of select="@longdesc" /></figcaption>
             </xsl:if>
+
         </figure>
     </xsl:template>
 

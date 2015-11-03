@@ -1,6 +1,11 @@
 .article-image {
 	margin: 0 auto 1em;
 	max-width: 100%;
+
+	img {
+		display: block;
+		margin: 0 auto;
+	}
 }
 
 .article-image--inline {
