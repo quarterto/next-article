@@ -93,12 +93,18 @@
       </xsl:variable>
 
       <div class="promo-box__image">
-        <xsl:apply-templates select="ft-content" mode="internal-image">
-          <xsl:with-param name="isPromoImage" select="1" />
-        </xsl:apply-templates>
-        <xsl:apply-templates select="img" mode="placehold-image">
-            <xsl:with-param name="maxWidth" select="$maxWidth" />
-        </xsl:apply-templates>
+        <xsl:choose>
+          <xsl:when test="count(img[@width][@height]) = 1">
+            <xsl:apply-templates select="img" mode="placehold-image">
+                <xsl:with-param name="maxWidth" select="$maxWidth" />
+            </xsl:apply-templates>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="img" mode="dont-placehold-image">
+                <xsl:with-param name="maxWidth" select="$maxWidth" />
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
       </div>
     </xsl:template>
 

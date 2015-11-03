@@ -6,16 +6,12 @@
 	}
 }
 
-.promo-box .next-article-placeholder {
-	margin: 10px 0;
-}
-
 .promo-box--long {
 	float: none;
 	max-width: 100%;
 }
 
-.promo-box--long .next-article-placeholder {
+.promo-box--long .promo-box__image {
 	@include oGridRespondTo(S) {
 		float: left;
 		margin-right: 10px;
@@ -91,6 +87,14 @@
 
 .promo-box__image {
 	margin: 12px 0;
+
+	img {
+		display: block;
+		max-width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 }
 
 .promo-box__list {

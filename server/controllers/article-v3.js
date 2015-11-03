@@ -10,10 +10,6 @@ const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 const bylineTransform = require('../transforms/byline');
 
-// TODO: there is no concept of primary theme/section in V3
-// so we should move this logic into ES
-const arbitraryListOfSectionThings = [ 'sections', 'specialReports', 'brand' ];
-
 function isCapiV1(article) {
 	return article.provenance.find(
 	 	source => source.includes('http://api.ft.com/content/items/v1/')
@@ -65,17 +61,11 @@ function transformMetadata(metadata) {
 }
 
 function getPrimaryTheme(metadata) {
-	// TODO: there is no concept of primary theme/section in V3
-	// so we should move this logic into ES
-	return metadata.find(
-		tag => tag.primary && arbitraryListOfSectionThings.indexOf(tag.taxonomy) === -1
-	);
+	return metadata.find(tag => tag.primary === 'theme');
 }
 
 function getPrimarySection(metadata) {
-	return metadata.find(
-		tag => tag.primary && arbitraryListOfSectionThings.indexOf(tag.taxonomy) >= 0
-	);
+	return metadata.find(tag => tag.primary === 'section');
 }
 
 function getPrimaryTag(primaryTheme, primarySection) {
@@ -250,7 +240,6 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	// TODO: implement this
 	payload.visualCat = null;
-	payload.toc = null;
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {

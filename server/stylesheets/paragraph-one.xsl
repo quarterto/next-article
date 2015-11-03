@@ -30,9 +30,6 @@
                     <p><xsl:apply-templates select="child::node()[not(self::img)]" /></p>
                 </xsl:if>
             </xsl:when>
-            <xsl:when test="ft-content[contains(@type, 'ImageSet')] and normalize-space(string()) = ''">
-                <xsl:apply-templates select="ft-content" />
-            </xsl:when>
             <xsl:when test="a[substring(@href, string-length(@href) - 6) = '#slide0']">
                 <xsl:call-template name="slideshow" />
             </xsl:when>
