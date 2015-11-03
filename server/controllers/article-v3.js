@@ -24,7 +24,6 @@ function isCapiV2(article) {
 
 function transformArticleBody(article, flags) {
 	let xsltParams = {
-		v3: 1,
 		id: article.id,
 		webUrl: article.webUrl,
 		renderTOC: flags.articleTOC ? 1 : 0,
@@ -132,15 +131,6 @@ function getMoreOnTags(primaryTheme, primarySection) {
 	});
 }
 
-function getDfpMetadata(metadata) {
-	// TODO: remove extraneous 'term' nesting
-	return getDfpUtil(
-		metadata.map(tag => {
-			return { term: tag };
-		})
-	);
-}
-
 function getOpenGraphData(article) {
 	// TODO: this can be dealt with in the template
 	return {
@@ -207,7 +197,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		package: payload.storyPackage || [],
 	};
 
-	payload.dfp = getDfpMetadata(payload.metadata);
+	payload.dfp = getDfpUtil(payload.metadata);
 	// >>> hacking for V1 and V2 compat.
 
 	if (res.locals.flags.openGraph) {
