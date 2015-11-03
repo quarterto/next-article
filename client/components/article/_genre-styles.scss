@@ -7,6 +7,7 @@ $brand-and-columnist-color: getColor('warm-1');
 	}
 
 	.article__wrapper--main-image {
+		background-color: getColor('pink');
 		background: linear-gradient($brand-and-columnist-color, $brand-and-columnist-color 50px, getColor('pink') 50px, getColor('pink') 100%);
 	}
 
@@ -15,11 +16,23 @@ $brand-and-columnist-color: getColor('warm-1');
 .article--columnist {
 
 	.article__header--wrapper {
-		padding-right: 150px;
-		padding-bottom: 5px;
+		padding-bottom: 10px;
 
 		&--main-image {
 			border-bottom: 1px solid getColor('warm-3');
 		}
+	}
+
+	.article__header-secondary {
+		padding-right: 100px;
+		@include oGridRespondTo(M) {
+			padding-right: 150px;
+		}
+	}
+
+	.article__header-primary {
+		 @include oGridRespondTo(M) {
+			 padding-right: 150px;
+		 }
 	}
 }

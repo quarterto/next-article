@@ -5,7 +5,6 @@
 function getColumnist(metadata) {
   let columnist;
   if (metadata.find(tag =>
-      tag.primary &&
       tag.taxonomy === 'authors' &&
       tag.attributes.find(attribute => attribute.key === 'isColumnist' && attribute.value === true))) {
     columnist = metadata.find(tag => tag.taxonomy === 'authors');
@@ -25,10 +24,8 @@ module.exports = function(metadata) {
   let result = columnist ? columnist : brand ? brand : {};
 
   if (columnist) {
-    result = columnist;
     result.genre = 'columnist';
   } else if (brand) {
-    result = brand;
     result.genre = 'brand';
   } else {
     result.genre = 'default';

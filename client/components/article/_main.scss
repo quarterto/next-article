@@ -30,6 +30,14 @@
 	position: absolute;
 	bottom: -2px;
 	right: -7px;
+	width: 100px;
+	@include oGridRespondTo(M) {
+		width: 150px;
+	}
+}
+
+.article__header-headshot--image {
+	max-width: 100%;
 }
 
 .article__header-time-byline {
