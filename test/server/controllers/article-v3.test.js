@@ -84,11 +84,11 @@ describe('Article V3 Controller', function() {
 			expect(result.dehydratedMetadata).to.include.keys('primaryTheme', 'primarySection', 'package');
 
 			// TODO: this is for V1 and V2 compatibility and nesting should be removed
-			expect(result.dehydratedMetadata.primaryTheme.term).to.include.keys('id', 'name', 'taxonomy');
-			expect(result.dehydratedMetadata.primarySection.term).to.include.keys('id', 'name', 'taxonomy');
+			expect(result.dehydratedMetadata.primaryTheme).to.include.keys('id', 'name', 'taxonomy');
+			expect(result.dehydratedMetadata.primarySection).to.include.keys('id', 'name', 'taxonomy');
 
-			expect(result.dehydratedMetadata.primaryTheme.term.id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
-			expect(result.dehydratedMetadata.primarySection.term.id).to.equal('NTg=-U2VjdGlvbnM=');
+			expect(result.dehydratedMetadata.primaryTheme.id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
+			expect(result.dehydratedMetadata.primarySection.id).to.equal('NTg=-U2VjdGlvbnM=');
 
 			expect(result.dehydratedMetadata.package).to.be.an.instanceOf(Array);
 		});

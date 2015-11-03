@@ -190,10 +190,9 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
-	// TODO: remove extraneous 'term' nesting
 	payload.dehydratedMetadata = {
-		primarySection: { term: primarySection },
-		primaryTheme: { term: primaryTheme },
+		primarySection: primarySection,
+		primaryTheme: primaryTheme,
 		package: payload.storyPackage || [],
 	};
 
