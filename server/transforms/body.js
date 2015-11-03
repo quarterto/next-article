@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var cheerio = require('cheerio');
 
@@ -6,9 +6,10 @@ var replaceEllipses = require('./replace-ellipses');
 var replaceHrs = require('../transforms/replace-hrs');
 var relativeLinks = require('./relative-links');
 var trimmedLinks = require('./trimmed-links');
+var removeBody = require('./remove-body');
 var externalImages = require('./external-images');
 
-function transform($, flags) {
+var transform = function ($, flags) {
 	var withFn = function ($, transformFn) {
 		var transformed$ = transformFn($, flags);
 		return {
@@ -21,7 +22,7 @@ function transform($, flags) {
 	return {
 		'with': withFn.bind(withFn, $)
 	};
-}
+};
 
 module.exports = function(body, flags) {
 	body = replaceEllipses(body);
@@ -33,6 +34,7 @@ module.exports = function(body, flags) {
 	var $ = transform(cheerio.load(body, { decodeEntities: false }), flags)
 		// other transforms
 		.with(externalImages)
+		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)
 		.get();
