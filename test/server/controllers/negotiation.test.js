@@ -9,23 +9,21 @@ const proxyquire = require('proxyquire');
 const httpMocks = require('node-mocks-http');
 
 const fixtureInteractives = require('../../fixtures/interactive-graphics');
-const fixturePodcastV1 = require('../../fixtures/capi-v1-elastic-search-podcast');
-const fixtureArticleV1 = require('../../fixtures/capi-v1-elastic-search');
-const fixtureArticleV2 = require('../../fixtures/capi-v2-elastic');
-const fixtureV1NotFound = require('../../fixtures/capi-v1-elastic-search-not-found');
-const fixtureV2NotFound = require('../../fixtures/capi-v2-elastic-search-not-found');
+// const fixturePodcast = require('../../fixtures/v3-elastic-podcast-found');
+const fixtureArticle = require('../../fixtures/v3-elastic-article-found');
+const fixtureNotFound = require('../../fixtures/v3-elastic-not-found');
 
 const dependencyStubs = {
 	igPoller: { getData: () => fixtureInteractives },
-	articleLegacy: sinon.spy(),
-	podcastLegacy: sinon.spy(),
+	// podcastV3: sinon.spy(),
+	articleV3: sinon.spy(),
 	interactive: sinon.spy()
 };
 
 const subject = proxyquire('../../../server/controllers/negotiation', {
 	'../lib/ig-poller': dependencyStubs.igPoller,
-	'./article-legacy': dependencyStubs.articleLegacy,
-	'./podcast-legacy': dependencyStubs.podcastLegacy,
+	// './podcast-v3': dependencyStubs.podcastV3,
+	'./article-v3': dependencyStubs.articleV3,
 	'./interactive': dependencyStubs.interactive
 });
 
@@ -62,148 +60,105 @@ describe('Negotiation Controller', function() {
 		});
 	});
 
-	describe('when the requested article is a podcast', function() {
+	// TODO: re-implement podcasts
+	xdescribe('when the requested article is a podcast', function() {
 		beforeEach(function() {
 
 			nock('https://next-elastic.ft.com')
-				.post('/v1_api_v2/item/_mget')
-				.reply(200, fixturePodcastV1)
-
-			nock('https://next-elastic.ft.com')
-				.post('/v2_api_v2/item/_mget')
-				.reply(200, fixtureV2NotFound);
+				.post('/v3_api_v2/item/_mget')
+				.reply(200, null);
 
 			return createInstance({
 				params: {
 					id: '55ef024ec7a00b32cb5a5991'
 				}
-			}, { elasticSearchItemGet: true });
+			});
 
 		});
 
 		afterEach(function() {
-			dependencyStubs.podcastLegacy.reset();
+			dependencyStubs.podcastV3.reset();
 		});
 
 		it('defers to the podcast legacy controller', function() {
-			expect(dependencyStubs.podcastLegacy.callCount).to.equal(1);
+			expect(dependencyStubs.podcastV3.callCount).to.equal(1);
 			expect(response.statusCode).to.not.equal(404);
 		});
 	});
 
 	describe('when dealing with an article', function() {
-		context('and we have a V1 and V2 response', function() {
+		context('and it is found', function() {
 			beforeEach(function() {
 
 				nock('https://next-elastic.ft.com')
-					.post('/v1_api_v2/item/_mget')
-					.reply(200, fixtureArticleV1)
-
-				nock('https://next-elastic.ft.com')
-					.post('/v2_api_v2/item/_mget')
-					.reply(200, fixtureArticleV2);
+					.post('/v3_api_v2/item/_mget')
+					.reply(200, fixtureArticle);
 
 				return createInstance({
 					params: {
-						id: 'a1fb6fee-93ae-359d-be8f-f215920b79ff'
+						id: '352210c4-7b17-11e5-a1fe-567b37f80b64'
 					}
-				}, { elasticSearchItemGet: true });
+				});
 
 			});
 
 			afterEach(function() {
-				dependencyStubs.articleLegacy.reset();
+				dependencyStubs.articleV3.reset();
 			});
 
-			it('defers to the article legacy controller', function() {
-				expect(dependencyStubs.articleLegacy.callCount).to.equal(1);
+			it('defers to the article controller', function() {
+				expect(dependencyStubs.articleV3.callCount).to.equal(1);
 				expect(response.statusCode).to.not.equal(404);
 			});
 		});
 
-		context('and we have a V1 only response', function() {
+		context('when it exists on ft.com', function() {
 			beforeEach(function() {
 
 				nock('https://next-elastic.ft.com')
-					.post('/v1_api_v2/item/_mget')
-					.reply(200, fixtureArticleV1)
-
-				nock('https://next-elastic.ft.com')
-					.post('/v2_api_v2/item/_mget')
-					.reply(200, fixtureV2NotFound);
-
-				return createInstance({
-					params: {
-						id: '0e43fa9c-cbeb-11e0-9176-00144feabdc0'
-					}
-				}, { elasticSearchItemGet: true });
-
-			});
-
-			afterEach(function() {
-				dependencyStubs.articleLegacy.reset();
-			});
-
-			it('redirects to ft.com', function() {
-				expect(response.statusCode).to.equal(302);
-			});
-		});
-
-		context('and we have a V2 only response', function() {
-			beforeEach(function() {
-
-				nock('https://next-elastic.ft.com')
-					.post('/v1_api_v2/item/_mget')
-					.reply(200, fixtureV1NotFound)
-
-				nock('https://next-elastic.ft.com')
-					.post('/v2_api_v2/item/_mget')
-					.reply(200, fixtureArticleV2);
-
-				return createInstance({
-					params: {
-						id: 'b002e5ee-3096-3f51-9925-32b157740c98'
-					}
-				}, { elasticSearchItemGet: true });
-
-			});
-
-			afterEach(function() {
-				dependencyStubs.articleLegacy.reset();
-			});
-
-			it('defers to the article legacy controller', function() {
-				expect(dependencyStubs.articleLegacy.callCount).to.equal(1);
-				expect(response.statusCode).to.not.equal(404);
-			});
-		});
-
-		context('and we have neither a V1 nor V2 response', function() {
-			beforeEach(function() {
-
-				nock('https://next-elastic.ft.com')
-					.post('/v1_api_v2/item/_mget')
-					.reply(200, fixtureV1NotFound)
-
-				nock('https://next-elastic.ft.com')
-					.post('/v2_api_v2/item/_mget')
-					.reply(200, fixtureV2NotFound);
+					.post('/v3_api_v2/item/_mget')
+					.reply(200, fixtureNotFound)
 
 				return createInstance({
 					params: {
 						id: '8f88c930-d00a-11da-80fb-0000779e2340'
 					}
-				}, { elasticSearchItemGet: true });
+				});
 
 			});
 
 			afterEach(function() {
-				dependencyStubs.articleLegacy.reset();
+				dependencyStubs.articleV3.reset();
+			});
+
+			it('redirects to ft.com', function() {
+				expect(dependencyStubs.articleV3.callCount).to.equal(0);
+				expect(response.statusCode).to.equal(302);
+			});
+		});
+
+		context('when it does not exist', function() {
+			beforeEach(function() {
+
+				nock('https://next-elastic.ft.com')
+					.post('/v3_api_v2/item/_mget')
+					.reply(200, fixtureNotFound)
+
+				return createInstance({
+					params: {
+						id: '00000000-0000-0000-0000-000000000000'
+					}
+				});
+
+			});
+
+			afterEach(function() {
+				dependencyStubs.articleV3.reset();
 			});
 
 			it('responds with a 404', function() {
-				expect(dependencyStubs.articleLegacy.callCount).to.equal(0);
-				expect(response.statusCode).to.equal(302);
+				expect(dependencyStubs.articleV3.callCount).to.equal(0);
+				expect(response.statusCode).to.equal(404);
 			});
 		});
 	});
@@ -224,7 +179,7 @@ describe('Negotiation Controller', function() {
 
 			return createInstance({
 				params: { id: 'uuid' }
-			}, { elasticV3: true })
+			})
 				.then(() => {
 					expect(response.statusCode).to.equal(302);
 				});

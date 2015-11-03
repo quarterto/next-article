@@ -7,7 +7,7 @@ const expect = require('chai').expect;
 const proxyquire = require('proxyquire');
 const httpMocks = require('node-mocks-http');
 
-const fixtureEsFound = require('../../fixtures/v3-elastic-article-found');
+const fixtureEsFound = require('../../fixtures/v3-elastic-article-found').docs[0]._source;
 
 const subject = proxyquire('../../../server/controllers/article-v3', {
 	'../transforms/article-xslt': (article) => Promise.resolve(article.bodyXML),

@@ -26,34 +26,31 @@
             <xsl:choose>
                 <xsl:when test="@width &gt; 700">700</xsl:when>
                 <xsl:when test="@width &lt; @height">350</xsl:when>
-                <xsl:otherwise><xsl:value-of select="@width" /></xsl:otherwise>
+                <xsl:when test="@width != ''"><xsl:value-of select="@width" /></xsl:when>
+                <xsl:otherwise>700</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
 
         <!-- You cannot shrink-wrap text so inline styles FTW -->
-        <figure class="article-image article-image--{$variation}">
-
-            <xsl:if test="$maxWidth != ''">
-                <xsl:attribute name="style">
-                    <xsl:value-of select="concat('width:', $maxWidth, 'px;')" />
-                </xsl:attribute>
-            </xsl:if>
+        <figure class="article-image article-image--{$variation}" style="width:{$maxWidth}px;">
 
             <xsl:choose>
-                <xsl:when test="$maxWidth != ''">
+                <xsl:when test="$maxWidth != '' and @height != ''">
                     <xsl:apply-templates select="current()" mode="placehold-image">
                         <xsl:with-param name="maxWidth" select="$maxWidth" />
                     </xsl:apply-templates>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="current()" mode="dont-placehold-image">
-                        <xsl:with-param name="maxWidth">700</xsl:with-param>
+                        <xsl:with-param name="maxWidth" select="$maxWidth" />
                     </xsl:apply-templates>
                 </xsl:otherwise>
             </xsl:choose>
+
             <xsl:if test="string-length(@longdesc) &gt; 0">
                 <figcaption class="article-image__caption"><xsl:value-of select="@longdesc" /></figcaption>
             </xsl:if>
+
         </figure>
     </xsl:template>
 

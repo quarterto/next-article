@@ -1,7 +1,7 @@
 {
 	"docs": [
 		{
-			"_index": "v2_api_v2",
+			"_index": "v3_api_v2",
 			"_type": "item",
 			"_id": "123",
 			"found": false
