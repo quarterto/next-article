@@ -66,7 +66,7 @@ describe('Negotiation Controller', function() {
 
 			nock('https://next-elastic.ft.com')
 				.post('/v3_api_v2/item/_mget')
-				.reply(200, fixturePodcast)
+				.reply(200, null);
 
 			return createInstance({
 				params: {
