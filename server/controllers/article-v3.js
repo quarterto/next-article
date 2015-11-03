@@ -240,7 +240,6 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	// TODO: implement this
 	payload.visualCat = null;
-	payload.toc = null;
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
