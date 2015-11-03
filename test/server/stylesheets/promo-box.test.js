@@ -140,7 +140,7 @@ describe('Promo-boxes', function() {
 	it('should leave in any HTML in title (except wrapped p tag)', function () {
 		return transform(
 			'<promo-box>' +
-				'<promo-title><p><ft-content type="http://www.ft.com/ontology/content/Article" url="http://api.ft.com/content/c9175806-3054-11e5-8873-775ba7c2ea3d">Greece crisis tests start-ups’ staying power</ft-content> </p></promo-title>' +
+				'<promo-title><p><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d">Greece crisis tests start-ups’ staying power</a> </p></promo-title>' +
 			'</promo-box>'
 		)
 		.then(function(transformedXml) {
@@ -148,7 +148,7 @@ describe('Promo-boxes', function() {
 				'<body>' +
 					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 						'<div class="promo-box__wrapper">' +
-							'<div class="promo-box__title"><div class="promo-box__title__name"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a> </div></div>' +
+							'<div class="promo-box__title"><div class="promo-box__title__name"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a> </div></div>' +
 						'</div>' +
 					'</aside>' +
 				'</body>\n'
@@ -159,7 +159,7 @@ describe('Promo-boxes', function() {
 	it('should leave in any HTML in headline (except wrapped p tag)', function () {
 		return transform(
 			'<promo-box>' +
-				'<promo-headline><p><ft-content type="http://www.ft.com/ontology/content/Article" url="http://api.ft.com/content/c9175806-3054-11e5-8873-775ba7c2ea3d">Greece crisis tests start-ups’ staying power</ft-content></p></promo-headline>' +
+				'<promo-headline><p><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d">Greece crisis tests start-ups’ staying power</a></p></promo-headline>' +
 			'</promo-box>'
 		)
 		.then(function(transformedXml) {
@@ -168,7 +168,7 @@ describe('Promo-boxes', function() {
 					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 						'<div class="promo-box__wrapper">' +
 							'<div class="promo-box__title"><div class="promo-box__title__name">Related Content</div></div>' +
-							'<div class="promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link" class="article__body__link">Greece crisis tests start-ups’ staying power</a></div>' +
+							'<div class="promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a></div>' +
 						'</div>' +
 					'</aside>' +
 				'</body>\n'
@@ -242,9 +242,9 @@ describe('Promo-boxes', function() {
 					'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 						'<div class="promo-box__wrapper">' +
 							'<div class="promo-box__title"><div class="promo-box__title__name">Series: China Great Game</div></div>' +
-							'<div class="promo-box__headline">As China seeks to expand its sphere of influence, it is likely to encounter significant resistance. <a href="http://www.ft.com/indepth/china-great-game" data-trackable="link" class="article__body__link">Read more</a> </div>' +
+							'<div class="promo-box__headline">As China seeks to expand its sphere of influence, it is likely to encounter significant resistance. <a href="http://www.ft.com/indepth/china-great-game" data-trackable="link">Read more</a> </div>' +
 							'<div class="promo-box__content">' +
-								'<div class="promo-box__content__initial"><p><a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link" class="article__body__link">Road to a new empire </a> <br>A modern-day Silk route is Xi Jinping’s signature foreign policy. <a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link" class="article__body__link">Read more </a> </p></div>' +
+								'<div class="promo-box__content__initial"><p><a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link">Road to a new empire </a> <br>A modern-day Silk route is Xi Jinping’s signature foreign policy. <a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link">Read more </a> </p></div>' +
 								'</div>' +
 						'</div>' +
 					'</aside>' +

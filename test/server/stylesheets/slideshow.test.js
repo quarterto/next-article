@@ -36,7 +36,7 @@ describe('Slideshow', function () {
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
 					'<body>' +
-						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0" data-trackable="link" class="article__body__link">political turmoil</a>' +
+						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0" data-trackable="link">political turmoil</a>' +
 					'</body>\n'
 				);
 			});
@@ -125,7 +125,7 @@ describe('Slideshow', function () {
 					'<body>' +
 						'<ft-slideshow data-uuid="4fd9b5ca-5cea-11e5-9846-de406ccb37f2"></ft-slideshow>' +
 						'<p>Abraham Lincoln and Stephen Douglas famously held three-hour debates on the eve of the US civil war. Duration was the only thing the second 2016 ' +
-						'<a href="http://blogs.ft.com/the-world/liveblogs/2015-09-15/" data-trackable="link" class="article__body__link">Republican debate</a> ' +
+						'<a href="http://blogs.ft.com/the-world/liveblogs/2015-09-15/" data-trackable="link">Republican debate</a> ' +
 						'had in common with those legendary exchanges.' +
 					'</p>' +
 					'</body>\n'
