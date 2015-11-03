@@ -22,16 +22,14 @@ describe('Tables', () => {
 			)
 			.then((transformedXml) => {
 				expect(transformedXml).to.equal(
-					'<body>' +
-						'<aside class="promo-box promo-box--long">' +
-							'<div class="promo-box__wrapper">' +
-								'<h3 class="promo-box__headline">Lorem ipsum doler sit amet</h3>' +
-								'<div class="promo-box__content">' +
-									'<p>Ut enim ad minim veniam</p>' +
-								'</div>' +
+					'<aside class="promo-box promo-box--long">' +
+						'<div class="promo-box__wrapper">' +
+							'<h3 class="promo-box__headline">Lorem ipsum doler sit amet</h3>' +
+							'<div class="promo-box__content">' +
+								'<p>Ut enim ad minim veniam</p>' +
 							'</div>' +
-						'</aside>' +
-					'</body>\n'
+						'</div>' +
+					'</aside>\n'
 				);
 			});
 	});
@@ -61,24 +59,22 @@ describe('Tables', () => {
 			)
 			.then((transformedXml) => {
 				expect(transformedXml).to.equal(
-					'<body>' +
-						'<table class="data-table">' +
-							'<caption>Lorem ipsum doler sit amet</caption>' +
-							'<tr>' +
-								'<td><p>Ut enim ad minim veniam</p></td>' +
-							'</tr>' +
-							'<tr>' +
-								'<td><p>Ut enim ad minim veniam</p></td>' +
-							'</tr>' +
-						'</table>' +
-						'<table class="data-table">' +
-							'<caption>Lorem ipsum doler sit amet</caption>' +
-							'<tr>' +
-								'<td><p>Ut enim ad minim veniam</p></td>' +
-								'<td><p>Ut enim ad minim veniam</p></td>' +
-							'</tr>' +
-						'</table>' +
-					'</body>\n'
+					'<table class="data-table">' +
+						'<caption>Lorem ipsum doler sit amet</caption>' +
+						'<tr>' +
+							'<td><p>Ut enim ad minim veniam</p></td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td><p>Ut enim ad minim veniam</p></td>' +
+						'</tr>' +
+					'</table>' +
+					'<table class="data-table">' +
+						'<caption>Lorem ipsum doler sit amet</caption>' +
+						'<tr>' +
+							'<td><p>Ut enim ad minim veniam</p></td>' +
+							'<td><p>Ut enim ad minim veniam</p></td>' +
+						'</tr>' +
+					'</table>\n'
 				);
 			});
 	});

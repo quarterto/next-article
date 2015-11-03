@@ -14,9 +14,7 @@ describe('Links', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<body>' +
-						'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">Launched a programme of quantitative easing to </a>' +
-					'</body>\n'
+					'<a href="/f203bf76-a241-11e4-bbb8-00144feab7de" data-trackable="link">Launched a programme of quantitative easing to </a>\n'
 				);
 			});
 	});

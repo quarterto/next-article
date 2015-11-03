@@ -21,15 +21,13 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--full" style="width:700px;">' +
-								'<div class="article-image__placeholder" style="padding-top:75%;">' +
-									'<img alt="Lorem ipsum" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
-								'</div>' +
-							'</figure>' +
-							'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--full" style="width:700px;">' +
+							'<div class="article-image__placeholder" style="padding-top:75%;">' +
+								'<img alt="Lorem ipsum" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+							'</div>' +
+						'</figure>' +
+						'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -48,15 +46,13 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--full" style="width:700px;">' +
-								'<div class="article-image__placeholder" style="padding-top:75%;">' +
-									'<img alt="Lorem ipsum" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
-								'</div>' +
-							'</figure>' +
-							'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--full" style="width:700px;">' +
+							'<div class="article-image__placeholder" style="padding-top:75%;">' +
+								'<img alt="Lorem ipsum" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+							'</div>' +
+						'</figure>' +
+						'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -75,15 +71,13 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--full" style="width:700px;">' +
-								'<div class="article-image__placeholder" style="padding-top:75%;">' +
-									'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
-								'</div>' +
-							'</figure>' +
-							'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--full" style="width:700px;">' +
+							'<div class="article-image__placeholder" style="padding-top:75%;">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+							'</div>' +
+						'</figure>' +
+						'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -102,16 +96,14 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--full" style="width:700px;">' +
-								'<div class="article-image__placeholder" style="padding-top:75%;">' +
-									'<img alt="Lorem ipsum" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
-								'</div>' +
-							'</figure>' +
-							'<p> Lorem ipsum <i>doler</i> sit amet.</p>' +
-							'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--full" style="width:700px;">' +
+							'<div class="article-image__placeholder" style="padding-top:75%;">' +
+								'<img alt="Lorem ipsum" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+							'</div>' +
+						'</figure>' +
+						'<p> Lorem ipsum <i>doler</i> sit amet.</p>' +
+						'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -132,15 +124,13 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--inline" style="width:320px;">' +
-								'<div class="article-image__placeholder" style="padding-top:75%;">' +
-									'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=320">' +
-								'</div>' +
-							'</figure>' +
-							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--inline" style="width:320px;">' +
+							'<div class="article-image__placeholder" style="padding-top:75%;">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=320">' +
+							'</div>' +
+						'</figure>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -157,15 +147,13 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--center" style="width:640px;">' +
-								'<div class="article-image__placeholder" style="padding-top:75%;">' +
-									'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=640">' +
-								'</div>' +
-							'</figure>' +
-							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--center" style="width:640px;">' +
+							'<div class="article-image__placeholder" style="padding-top:75%;">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=640">' +
+							'</div>' +
+						'</figure>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -182,15 +170,13 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--full" style="width:700px;">' +
-								'<div class="article-image__placeholder" style="padding-top:60%;">' +
-									'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
-								'</div>' +
-							'</figure>' +
-							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--full" style="width:700px;">' +
+							'<div class="article-image__placeholder" style="padding-top:60%;">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+							'</div>' +
+						'</figure>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -207,15 +193,13 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--inline" style="width:350px;">' +
-								'<div class="article-image__placeholder" style="padding-top:200%;">' +
-									'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=350">' +
-								'</div>' +
-							'</figure>' +
-							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--inline" style="width:350px;">' +
+							'<div class="article-image__placeholder" style="padding-top:200%;">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=350">' +
+							'</div>' +
+						'</figure>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -232,13 +216,11 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--full" style="width:700px;">' +
-								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
-							'</figure>' +
-							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--full" style="width:700px;">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+						'</figure>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -259,14 +241,12 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--center" style="width:585px;">' +
-								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=585">' +
-								'<figcaption class="article-image__caption">This is a long description</figcaption>' +
-							'</figure>' +
-							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--center" style="width:585px;">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=585">' +
+							'<figcaption class="article-image__caption">This is a long description</figcaption>' +
+						'</figure>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
@@ -283,16 +263,14 @@ describe('External images', () => {
 				)
 				.then((transformedXml) => {
 					expect(transformedXml).to.equal(
-						'<body>' +
-							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
-							'<figure class="article-image article-image--full" style="width:700px;">' +
-								'<div class="article-image__placeholder" style="padding-top:75%;">' +
-									'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
-								'</div>' +
-								'<figcaption class="article-image__caption">This is a long description</figcaption>' +
-							'</figure>' +
-							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
-						'</body>\n'
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--full" style="width:700px;">' +
+							'<div class="article-image__placeholder" style="padding-top:75%;">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+							'</div>' +
+							'<figcaption class="article-image__caption">This is a long description</figcaption>' +
+						'</figure>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
