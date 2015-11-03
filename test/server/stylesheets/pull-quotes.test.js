@@ -6,7 +6,7 @@ require('chai').should();
 
 describe('Pull Quotes', function () {
 
-	it('should turn capi v2 pull-quotes into o-quotes', function() {
+	it('should turn capi v2 pull-quotes into n-quotes', function() {
 		return transform(
 				'<body>' +
 					'<pull-quote>' +

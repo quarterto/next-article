@@ -3,7 +3,6 @@
   "dependencies": {
     "n-layout": "^3.0.0",
     "o-fonts": "^1.6.4",
-    "o-quote": "bogdis-design",
     "o-big-number": "^1.1.0",
     "o-gallery": "^1.6.1",
     "o-date": "^2.0.0",
