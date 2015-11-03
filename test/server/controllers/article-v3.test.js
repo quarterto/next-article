@@ -76,14 +76,11 @@ describe('Article V3 Controller', function() {
 			result.moreOns.forEach(
 				tag => expect(tag).to.include.keys('metadata', 'title')
 			);
-
-			expect(result.moreOns[result.moreOns.length - 1]).to.include.keys('class');
 		});
 
 		it('provides dehydrated metadata for related content', function() {
 			expect(result.dehydratedMetadata).to.include.keys('primaryTheme', 'primarySection', 'package');
 
-			// TODO: this is for V1 and V2 compatibility and nesting should be removed
 			expect(result.dehydratedMetadata.primaryTheme).to.include.keys('id', 'name', 'taxonomy');
 			expect(result.dehydratedMetadata.primarySection).to.include.keys('id', 'name', 'taxonomy');
 

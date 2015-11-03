@@ -105,9 +105,6 @@ function getMoreOnTags(primaryTheme, primarySection) {
 		return;
 	}
 
-	// TODO: display should be up to the template
-	moreOnTags[moreOnTags.length -1].class = 'more-on--small';
-
 	return moreOnTags.map(tag => {
 		let title;
 
@@ -132,7 +129,6 @@ function getMoreOnTags(primaryTheme, primarySection) {
 }
 
 function getOpenGraphData(article) {
-	// TODO: this can be dealt with in the template
 	return {
 		title: article.title,
 		description: article.summaries ? article.summaries[0] : '',
@@ -142,7 +138,6 @@ function getOpenGraphData(article) {
 }
 
 function getTwitterCardData(article) {
-	// TODO: this can be dealt with in the template
 	let openGraph = getOpenGraphData(article);
 	openGraph.card = openGraph.image ? 'summary_large_image' : 'summary';
 	return openGraph;
