@@ -79,9 +79,8 @@
 	margin-left: 25px;
 }
 
-.article__wrapper--main-image {
-	background: linear-gradient(getColor('pink'), getColor('pink') 50px, transparent 50px, transparent 100%);
-	padding-top: 0;
+.article__wrapper {
+	background-color: getColor('pink');
 }
 
 .article__meta {

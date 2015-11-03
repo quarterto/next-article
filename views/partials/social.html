@@ -19,8 +19,8 @@
   <span class="article__share__count js-share-count" data-shared-url="{{webUrl}}"></span>
   {{/if}}
   {{#if @root.flags.saveForLater}}
-    <span class="article__actions">
+    <div class="article__save">
       {{>next-myft-ui/templates/save-for-later contentId=id}}
-    </span>
+    </div>
   {{/if}}
 </div>
