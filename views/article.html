@@ -37,9 +37,9 @@
 							{{#if standFirst}}
 								<p class="article__stand-first">{{{standFirst}}}</p>
 							{{/if}}
-							{{#if designGenre.prefLabel}}
+							{{#if designGenre}}
 								<div class="article__brand--wrapper">
-									<a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.prefLabel}}</a>
+									<a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.title}}</a>
 								</div>
 							{{/if}}
 						</div>

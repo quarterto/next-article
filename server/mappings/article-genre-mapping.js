@@ -3,38 +3,45 @@
 //TODO Move into separate module so can be used by other apps
 
 function getColumnist(metadata) {
-  let columnist;
-  if (metadata.find(tag =>
-      tag.taxonomy === 'authors' &&
-      tag.attributes.find(attribute => attribute.key === 'isColumnist' && attribute.value === true))) {
-    columnist = metadata.find(tag => tag.taxonomy === 'authors');
+  let matchedTag = metadata.find(tag =>
+    tag.taxonomy === 'authors' &&
+    tag.attributes.find(attribute => attribute.key === 'isColumnist' && attribute.value === true)
+  );
+  if (matchedTag) {
+    return mapElements(matchedTag, 'columnist');
   }
-  return columnist;
 }
 
 function getBrand(metadata) {
-  return metadata.find(
-		tag => tag.taxonomy === 'brand'
+  let matchedTag = metadata.find(tag =>
+    tag.taxonomy === 'brand' && mapElements(tag, 'brand')
 	);
+  if (matchedTag) {
+    return mapElements(matchedTag, 'brand');
+  }
+}
+
+function mapElements(tag, genre) {
+  let headshot;
+  if (genre === 'columnist') {
+    headshot = `https://image.webservices.ft.com/v1/images/raw/fthead:${tag.prefLabel.toLowerCase().replace(' ', '-')}`;
+  }
+  return {
+    genre: genre,
+    title: tag.prefLabel,
+    url: tag.url,
+    headshot: headshot
+  }
 }
 
 module.exports = function(metadata) {
   let columnist = getColumnist(metadata);
   let brand = getBrand(metadata);
-  let result = columnist ? columnist : brand ? brand : {};
+  let result;
+  console.log('columnist ', columnist);
+  console.log('brand ', brand);
 
-  if (columnist) {
-    result.genre = 'columnist';
-  } else if (brand) {
-    result.genre = 'brand';
-  } else {
-    result.genre = 'default';
-  }
-
-  if (result.genre === 'columnist') {
-    result.headshot = `https://image.webservices.ft.com/v1/images/raw/fthead:${result.prefLabel.toLowerCase().replace(' ', '-')}`;
-  }
+  columnist ? result = columnist : brand ? result = brand : result = null;
 
   return result;
-
 };
