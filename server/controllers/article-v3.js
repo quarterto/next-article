@@ -166,7 +166,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	let asyncWorkToDo = [];
 
 	if (res.locals.barrier) {
-		return res.render('article-v2', barrierHelper(payload, res.locals.barrier));
+		return res.render('article', barrierHelper(payload, res.locals.barrier));
 	}
 
 	if (res.locals.firstClickFreeModel) {
@@ -244,7 +244,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
 			payload.layout = 'wrapper';
-			return res.set(cacheControlUtil).render('article-v2', payload);
+			return res.set(cacheControlUtil).render('article', payload);
 		})
 		.catch(error => {
 			logger.error(error);
