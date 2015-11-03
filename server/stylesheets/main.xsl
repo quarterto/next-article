@@ -21,6 +21,7 @@
     <xsl:include href="slideshow.xsl" />
     <xsl:include href="social.xsl" />
     <xsl:include href="subheaders.xsl" />
+    <xsl:include href="tables.xsl" />
     <xsl:include href="video.xsl" />
 
 </xsl:stylesheet>
