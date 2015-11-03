@@ -17,15 +17,6 @@ $image-height-allowance: $image-height + (2 * $height-padding);
 	min-height: $image-height-allowance;
 	padding-left: $image-width-allowance;
 	border-bottom: 2px solid oColorsGetPaletteColor('warm-2');
-	&--comment {
-		background-color: $comment-bg;
-	}
-	&--analysis {
-		background-color: $analysis-bg;
-	}
-	&--lifestyle {
-		background-color: $lifestyle-bg;
-	}
 }
 
 .story-package--inline {
