@@ -6,7 +6,6 @@ var replaceEllipses = require('./replace-ellipses');
 var replaceHrs = require('../transforms/replace-hrs');
 var relativeLinks = require('./relative-links');
 var trimmedLinks = require('./trimmed-links');
-var removeBody = require('./remove-body');
 var externalImages = require('./external-images');
 
 var transform = function ($, flags) {
@@ -34,7 +33,6 @@ module.exports = function(body, flags) {
 	var $ = transform(cheerio.load(body, { decodeEntities: false }), flags)
 		// other transforms
 		.with(externalImages)
-		.with(removeBody)
 		.with(relativeLinks)
 		.with(trimmedLinks)
 		.get();
