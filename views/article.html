@@ -70,12 +70,12 @@
 		</div>
 	</div>
 	<div class="article__wrapper {{#if mainImage}}article__wrapper--main-image{{/if}}">
-		{{#if body}}
+		{{#if bodyHTML}}
 		<div class="o-grid-container">
 			<div class="article__main o-grid-row">
 				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 					{{#if mainImage}}
-						{{{mainImage}}}
+						{{{mainImageHTML}}}
 					{{/if}}
 					{{> social}}
 					<div class="article__time-byline">
@@ -89,7 +89,7 @@
 						{{/if}}
 					</div>
 					<div class="article__body">
-						{{{body}}}
+						{{{bodyHTML}}}
 					</div>
 
 				{{#if firstClickFree}}

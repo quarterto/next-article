@@ -37,18 +37,7 @@ function transformArticleBody(article, flags) {
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
-		let $ = bodyTransform(articleBody, flags);
-		let mainImage = $.html('figure.article-image--full:first-child');
-		let share = $.html('.article__share');
-		$('figure.article-image--full:first-child').remove();
-		$('.article__share').remove();
-
-		return {
-			body: $.html(),
-			toc: $.html('.article__toc'),
-			mainImage: mainImage,
-			share: share
-		};
+		return bodyTransform(articleBody, flags);
 	});
 }
 
@@ -168,10 +157,9 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	asyncWorkToDo.push(
 		transformArticleBody(payload, res.locals.flags).then(fragments => {
-			payload.body = fragments.body;
-			payload.toc = fragments.toc;
-			payload.mainImage = fragments.mainImage;
-			payload.share = fragments.share;
+			payload.bodyHTML = fragments.bodyHTML;
+			payload.tocHTML = fragments.tocHTML;
+			payload.mainImageHTML = fragments.mainImageHTML;
 		})
 	);
 	payload.designGenre = articleGenreMapping(payload.metadata);

@@ -36,5 +36,14 @@ module.exports = function(body, flags) {
 		.with(relativeLinks)
 		.with(trimmedLinks)
 		.get();
-	return $;
+
+	let resultObject = {
+		mainImageHTML: $.html('figure.article-image--full:first-child'),
+		tocHTML: $.html('.article__toc')
+	};
+
+	$('figure.article-image--full:first-child').remove();
+	resultObject.bodyHTML = $.html();
+
+	return resultObject;
 };
