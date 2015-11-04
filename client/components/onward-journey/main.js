@@ -57,14 +57,15 @@ module.exports.init = function() {
 		);
 	}
 
-	// TODO: fix this
-	// if (primarySection && primarySection.taxonomy === 'specialReports') {
-	// 	let url = `/article/${articleId}/special-report?specialReportId=${encodeURI(primarySection.id)}&count=5`;
+	let specialReport = hydratedMetadata.moreOns.find(tag => tag.taxonomy === 'specialReports');
 
-	// 	fetchPromises = fetchPromises.concat(
-	// 		$('.js-special-report').map(el => createPromise(el, url))
-	// 	);
-	// }
+	if (specialReport) {
+		let url = `/article/${articleId}/special-report?specialReportId=${encodeURI(specialReport.id)}&count=5`;
+
+		fetchPromises = fetchPromises.concat(
+			$('.js-special-report').map(el => createPromise(el, url))
+		);
+	}
 
 	var moreOns = $('.js-more-on');
 
