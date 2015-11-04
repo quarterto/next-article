@@ -95,8 +95,8 @@
 			<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
 				<div class="article__rail-advert"></div>
 				{{#if @root.flags.articleSuggestedRead}}
-					{{> related/suggested-reads items=readNextArticles }}
-					{{> related/suggested-topic suggested=suggestedTopic }}
+					{{> suggested-reads items=readNextArticles }}
+					{{> suggested-topic suggested=suggestedTopic }}
 				{{/if}}
 				{{{toc}}}
 			</div>
