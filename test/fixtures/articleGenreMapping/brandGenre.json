@@ -1,10 +1,6 @@
 {
-  "id": "QnJhbmRzXzEwNA==-QnJhbmRz",
-  "name": "Lombard",
+  "title": "Lombard",
   "url": "/stream/brandId/QnJhbmRzXzEwNA==-QnJhbmRz",
-  "idV1": "QnJhbmRzXzEwNA==-QnJhbmRz",
-  "prefLabel": "Lombard",
-  "taxonomy": "brand",
-  "attributes": [],
-  "genre": "brand"
+  "genre": "brand",
+  "headshot": null
 }

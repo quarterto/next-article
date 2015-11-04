@@ -2,6 +2,7 @@
 'use strict';
 
 require('chai').should();
+var expect = require('chai').expect;
 
 const articleGenreMapping = require('../../../server/mappings/article-genre-mapping');
 const columnistMetadata = require('../../fixtures/articleGenreMapping/columnistMetadata');
@@ -22,9 +23,8 @@ describe('Map Article Genre Model', function() {
 			.should.eql(brandGenre);
 	});
 
-	it('should return default genere for all others', function() {
-		articleGenreMapping(defaultMetadata)
-			.should.eql({genre: 'default'});
+	it('should return null for all others', function() {
+		expect(articleGenreMapping(defaultMetadata)).to.be.undefined;
 	});
 
 });

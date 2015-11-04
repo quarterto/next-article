@@ -23,9 +23,7 @@ function getBrand(metadata) {
 
 function mapElements(tag, genre) {
   let headshot;
-  if (genre === 'columnist') {
-    headshot = `https://image.webservices.ft.com/v1/images/raw/fthead:${tag.prefLabel.toLowerCase().replace(' ', '-')}`;
-  }
+  headshot = genre === 'columnist' ? `https://image.webservices.ft.com/v1/images/raw/fthead:${tag.prefLabel.toLowerCase().replace(' ', '-')}` : null ;
   return {
     genre: genre,
     title: tag.prefLabel,
@@ -38,10 +36,8 @@ module.exports = function(metadata) {
   let columnist = getColumnist(metadata);
   let brand = getBrand(metadata);
   let result;
-  console.log('columnist ', columnist);
-  console.log('brand ', brand);
 
-  columnist ? result = columnist : brand ? result = brand : result = null;
+  columnist ? result = columnist : brand ? result = brand : result = undefined;
 
   return result;
 };
