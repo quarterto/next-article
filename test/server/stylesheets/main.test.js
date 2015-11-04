@@ -15,10 +15,8 @@ describe('Main', function () {
             )
             .then(function (transformedXml) {
                 transformedXml.should.equal(
-                    '<body>' +
-                        '<p>“Is man kind?” she asks. “Are we good?”</p>' +
-                        '<p>“Go see — and find out just how kind the he’s and she’s of this mankind are.”</p>' +
-                    '</body>\n'
+                    '<p>“Is man kind?” she asks. “Are we good?”</p>' +
+                    '<p>“Go see — and find out just how kind the he’s and she’s of this mankind are.”</p>\n'
                 );
             });
     });
