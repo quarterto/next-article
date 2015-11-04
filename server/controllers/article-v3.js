@@ -91,14 +91,8 @@ function getTagsForDisplay(metadata, primaryTag) {
 function getMoreOnTags(primaryTheme, primarySection) {
 	let moreOnTags = [];
 
-	// TODO: Improve dehydrated data so this isn't necessary
-	primaryTheme && moreOnTags.push(
-		Object.assign({ metadata: 'primaryTheme' }, primaryTheme)
-	);
-
-	primarySection && moreOnTags.push(
-		Object.assign({ metadata: 'primarySection' }, primarySection)
-	);
+	primaryTheme && moreOnTags.push(primaryTheme);
+	primarySection && moreOnTags.push(primarySection);
 
 	if (!moreOnTags.length) {
 		return;
@@ -185,8 +179,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
 	payload.dehydratedMetadata = {
-		primarySection: primarySection,
-		primaryTheme: primaryTheme,
+		moreOns: payload.moreOns,
 		package: payload.storyPackage || [],
 	};
 

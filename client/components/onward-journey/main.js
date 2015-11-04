@@ -46,26 +46,25 @@ module.exports.init = function() {
 	}
 
 	var fetchPromises = [];
-
 	var hydratedMetadata = JSON.parse(dehydratedMetadata.innerHTML);
-	var storyPackageIds = hydratedMetadata.package.map(article => article.id);
-	var primarySection = hydratedMetadata.primarySection;
 
-	if (storyPackageIds.length) {
-		let url = `/article/${articleId}/story-package?ids=${storyPackageIds.join()}&count=5`;
+	if (hydratedMetadata.package.length) {
+		let storyIds = hydratedMetadata.package.map(article => article.id);
+		let url = `/article/${articleId}/story-package?ids=${storyIds.join()}&count=5`;
 
 		fetchPromises = fetchPromises.concat(
 			$('.js-story-package').map(el => createPromise(el, `${url}`))
 		);
 	}
 
-	if (primarySection && primarySection.taxonomy === 'specialReports') {
-		let url = `/article/${articleId}/special-report?specialReportId=${encodeURI(primarySection.id)}&count=5`;
+	// TODO: fix this
+	// if (primarySection && primarySection.taxonomy === 'specialReports') {
+	// 	let url = `/article/${articleId}/special-report?specialReportId=${encodeURI(primarySection.id)}&count=5`;
 
-		fetchPromises = fetchPromises.concat(
-			$('.js-special-report').map(el => createPromise(el, url))
-		);
-	}
+	// 	fetchPromises = fetchPromises.concat(
+	// 		$('.js-special-report').map(el => createPromise(el, url))
+	// 	);
+	// }
 
 	var moreOns = $('.js-more-on');
 
@@ -73,9 +72,8 @@ module.exports.init = function() {
 		let url = `/article/${articleId}/more-on?count=5`;
 
 		fetchPromises = fetchPromises.concat(
-			moreOns.map(el => {
-				let prop = el.getAttribute('data-metadata-fields');
-				let term = hydratedMetadata[prop];
+			moreOns.map((el, i) => {
+				let term = hydratedMetadata.moreOns[i];
 				let query = `moreOnId=${encodeURI(term.id)}&moreOnTaxonomy=${term.taxonomy}`;
 				return createPromise(el, `${url}&${query}`);
 			})
