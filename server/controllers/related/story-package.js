@@ -4,7 +4,7 @@ const api = require('next-ft-api-client');
 const fetchres = require('fetchres');
 const logger = require('ft-next-express').logger;
 const NoRelatedResultsException = require('../../lib/no-related-results-exception');
-const articlePodMapping = require('../../mappings/article-pod-mapping');
+const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
 module.exports = function(req, res, next) {
 	let storyPackageIds = req.query.ids;
@@ -13,39 +13,42 @@ module.exports = function(req, res, next) {
 		return res.status(400).end();
 	}
 
-	return api.contentLegacy({
-		uuid: storyPackageIds.split(','),
-		useElasticSearch: true,
-		useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
+	return api.content({
+		index: 'v3_api_v2',
+		uuid: storyPackageIds.split(',')
 	})
 		.then(function(articles) {
 			if (!articles.length) {
 				throw new NoRelatedResultsException();
 			}
+
 			if (req.query.count) {
 				articles.splice(req.query.count);
 			}
 
-			return articles.map(function(article) {
-				return articlePodMapping(article);
-			});
+			return articles.map(articlePodMapping);
 		})
 		.then(function(articles) {
 			let numImages = 0;
-			articles.map( article => article.image && numImages ++);
 			let imageCount = 0;
+
+			articles.forEach(article => article.image && numImages++);
+
 			return res.render('related/story-package', {
-				articles: articles.map(function(article) {
+				articles: articles.map(article => {
 					article.image && imageCount ++;
+
 					if (articles.length === 5 && numImages === 5 && (imageCount === 3 || imageCount === 4)) {
-						article.image = undefined;
+						article.image = null;
 					}
+
 					if (articles.length === 3 && numImages > 1 && article.image && (imageCount === 2 || imageCount === 3)) {
-						article.image = undefined;
+						article.image = null;
 					}
+
 					return article;
 				}),
-				headerText: 'Related stories',
+				headerText: 'Related stories'
 			});
 		})
 		.catch(function(err) {

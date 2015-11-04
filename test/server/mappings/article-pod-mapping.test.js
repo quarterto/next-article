@@ -1,17 +1,17 @@
 /*global describe, it*/
+
 'use strict';
 
-require('chai').should();
+const expect = require('chai').expect;
+const subject = require('../../../server/mappings/article-pod-mapping');
+const fixture = require('../../fixtures/articlePodMapping/suggestedReadStoryPackageArticle');
 
-var articlePodMapping = require('../../../server/mappings/article-pod-mapping');
-var suggestedReadStoryPackageArticle = require('../../fixtures/articlePodMapping/suggestedReadStoryPackageArticle');
-var articlePodMappingStoryPackage = require('../../fixtures/articlePodMapping/articlePodMappingStoryPackage');
+describe('Article Pod Mapping', () => {
 
-describe('Map Article Pod Model', function() {
+    let result = subject(fixture);
 
-	it('should create an array of articles with necessary data from elastic search results', function() {
-		articlePodMapping(suggestedReadStoryPackageArticle)
-			.should.eql(articlePodMappingStoryPackage);
-	});
+    it('maps V1 to V3-ish structure', () => {
+        expect(result).to.include.keys('id', 'url', 'title', 'subheading', 'primaryTag', 'mainImage');
+    });
 
 });

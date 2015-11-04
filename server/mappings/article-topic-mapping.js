@@ -14,5 +14,7 @@ module.exports = function(metadata) {
 		tagToUse.term.specialReport = metadata.primarySection.term;
 	}
 
+	tagToUse.term.prefLabel = tagToUse.term.name;
+
 	return tagToUse.term;
 };
