@@ -17,14 +17,16 @@ const dependencyStubs = {
 	igPoller: { getData: () => fixtureInteractives },
 	// podcastV3: sinon.spy(),
 	articleV3: sinon.spy(),
-	interactive: sinon.spy()
+	interactive: sinon.spy(),
+	shellpromise: sinon.stub()
 };
 
 const subject = proxyquire('../../../server/controllers/negotiation', {
 	'../lib/ig-poller': dependencyStubs.igPoller,
 	// './podcast-v3': dependencyStubs.podcastV3,
 	'./article-v3': dependencyStubs.articleV3,
-	'./interactive': dependencyStubs.interactive
+	'./interactive': dependencyStubs.interactive,
+	'shellpromise': dependencyStubs.shellpromise
 });
 
 describe('Negotiation Controller', function() {
@@ -117,7 +119,11 @@ describe('Negotiation Controller', function() {
 
 				nock('https://next-elastic.ft.com')
 					.post('/v3_api_v2/item/_mget')
-					.reply(200, fixtureNotFound)
+					.reply(200, fixtureNotFound);
+
+				dependencyStubs.shellpromise.returns(
+					Promise.resolve('Location:http://www.ft.com/path/to/article')
+				);
 
 				return createInstance({
 					params: {
@@ -128,6 +134,7 @@ describe('Negotiation Controller', function() {
 			});
 
 			afterEach(function() {
+				dependencyStubs.shellpromise.returns(undefined);
 				dependencyStubs.articleV3.reset();
 			});
 
@@ -142,7 +149,11 @@ describe('Negotiation Controller', function() {
 
 				nock('https://next-elastic.ft.com')
 					.post('/v3_api_v2/item/_mget')
-					.reply(200, fixtureNotFound)
+					.reply(200, fixtureNotFound);
+
+				dependencyStubs.shellpromise.returns(
+					Promise.resolve(Promise.resolve(''))
+				);
 
 				return createInstance({
 					params: {
@@ -153,6 +164,7 @@ describe('Negotiation Controller', function() {
 			});
 
 			afterEach(function() {
+				dependencyStubs.shellpromise.returns(undefined);
 				dependencyStubs.articleV3.reset();
 			});
 
