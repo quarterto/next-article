@@ -61,7 +61,7 @@ module.exports = function podcastLegacyController(req, res, next, payload) {
 	function decorate(data) {
 		data.save = true;
 		data.externalLinks = externalPodcastLinks(data.source);
-		data.dfp = getDfp(data.metadata.sections);
+		data.dfp = getDfp(data.metadata.sections.map(section => section.term));
 
 		return data;
 	}

@@ -5,10 +5,21 @@
         <xsl:apply-templates select="current()" mode="figure" />
     </xsl:template>
 
+    <xsl:template match="/html/body/a[img]">
+        <xsl:apply-templates select="img" mode="figure" />
+    </xsl:template>
+
     <xsl:template match="/html/body/p[img]">
         <xsl:apply-templates select="img" mode="figure" />
         <xsl:if test="count(child::node()[not(self::img)]) &gt; 0">
             <p><xsl:apply-templates select="child::node()[not(self::img)]" /></p>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template match="/html/body/p[a/img]">
+        <xsl:apply-templates select="a/img" mode="figure" />
+        <xsl:if test="count(child::node()[not(self::a)]) &gt; 0">
+            <p><xsl:apply-templates select="child::node()[not(self::a)]" /></p>
         </xsl:if>
     </xsl:template>
 
@@ -24,9 +35,8 @@
 
         <xsl:variable name="maxWidth">
             <xsl:choose>
-                <xsl:when test="@width &gt; 700">700</xsl:when>
-                <xsl:when test="@width &lt; @height">350</xsl:when>
-                <xsl:when test="@width != ''"><xsl:value-of select="@width" /></xsl:when>
+                <xsl:when test="@width &lt; @height and @width &gt; 350">350</xsl:when>
+                <xsl:when test="@width &lt; 700"><xsl:value-of select="@width" /></xsl:when>
                 <xsl:otherwise>700</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -35,7 +45,7 @@
         <figure class="article-image article-image--{$variation}" style="width:{$maxWidth}px;">
 
             <xsl:choose>
-                <xsl:when test="$maxWidth != '' and @height != ''">
+                <xsl:when test="@width != '' and @height != ''">
                     <xsl:apply-templates select="current()" mode="placehold-image">
                         <xsl:with-param name="maxWidth" select="$maxWidth" />
                     </xsl:apply-templates>

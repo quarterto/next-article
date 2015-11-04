@@ -49,7 +49,7 @@ module.exports.init = function() {
 
 	var hydratedMetadata = JSON.parse(dehydratedMetadata.innerHTML);
 	var storyPackageIds = hydratedMetadata.package.map(article => article.id);
-	var primarySection = hydratedMetadata.primarySection && hydratedMetadata.primarySection.term;
+	var primarySection = hydratedMetadata.primarySection;
 
 	if (storyPackageIds.length) {
 		let url = `/article/${articleId}/story-package?ids=${storyPackageIds.join()}&count=5`;
@@ -75,7 +75,7 @@ module.exports.init = function() {
 		fetchPromises = fetchPromises.concat(
 			moreOns.map(el => {
 				let prop = el.getAttribute('data-metadata-fields');
-				let term = hydratedMetadata[prop].term;
+				let term = hydratedMetadata[prop];
 				let query = `moreOnId=${encodeURI(term.id)}&moreOnTaxonomy=${term.taxonomy}`;
 				return createPromise(el, `${url}&${query}`);
 			})

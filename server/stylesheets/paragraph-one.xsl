@@ -30,8 +30,12 @@
                     <p><xsl:apply-templates select="child::node()[not(self::img)]" /></p>
                 </xsl:if>
             </xsl:when>
-            <xsl:when test="ft-content[contains(@type, 'ImageSet')] and normalize-space(string()) = ''">
-                <xsl:apply-templates select="ft-content" />
+            <xsl:when test="a/img">
+                <!-- Duplicate of /html/body/p[a/img] in external-image.xsl -->
+                <xsl:apply-templates select="a/img" mode="figure" />
+                <xsl:if test="count(child::node()[not(self::a)]) &gt; 0">
+                    <p><xsl:apply-templates select="child::node()[not(self::a)]" /></p>
+                </xsl:if>
             </xsl:when>
             <xsl:when test="a[substring(@href, string-length(@href) - 6) = '#slide0']">
                 <xsl:call-template name="slideshow" />

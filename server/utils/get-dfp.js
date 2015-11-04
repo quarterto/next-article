@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(sections) {
-	var attributes;
+	let attributes;
 
 	// Try to find a section with site and zone
 	// Slightly hacky but quite effective, this will keep going through
@@ -10,19 +10,17 @@ module.exports = function(sections) {
 	// and returned to the caller of main function in this file.
 	// It relies on the fact that a tag with a dfpZone *needs*
 	// to also have a dfpSite.
-	sections.some(function(section) {
-			var site = section.term.attributes.find(function(attribute) {
-					return attribute.key === 'dfpSite';
-				});
-			var zone = section.term.attributes.find(function(attribute) {
-					return attribute.key === 'dfpZone';
-				});
-			attributes = {
-				dfpSite: site && site.value,
-				dfpZone: zone && zone.value
-			};
-			return site && zone;
-		});
+	sections.some(section => {
+		let site = section.attributes.find(attribute => attribute.key === 'dfpSite');
+		let zone = section.attributes.find(attribute => attribute.key === 'dfpZone');
+
+		attributes = {
+			dfpSite: site && site.value,
+			dfpZone: zone && zone.value
+		};
+
+		return site && zone;
+	});
 
 	return attributes;
 };

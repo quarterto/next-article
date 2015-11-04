@@ -10,10 +10,6 @@ const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 const bylineTransform = require('../transforms/byline');
 
-// TODO: there is no concept of primary theme/section in V3
-// so we should move this logic into ES
-const arbitraryListOfSectionThings = [ 'sections', 'specialReports', 'brand' ];
-
 function isCapiV1(article) {
 	return article.provenance.find(
 	 	source => source.includes('http://api.ft.com/content/items/v1/')
@@ -28,7 +24,6 @@ function isCapiV2(article) {
 
 function transformArticleBody(article, flags) {
 	let xsltParams = {
-		v3: 1,
 		id: article.id,
 		webUrl: article.webUrl,
 		renderTOC: flags.articleTOC ? 1 : 0,
@@ -37,7 +32,6 @@ function transformArticleBody(article, flags) {
 		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
 		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
 		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
-		reserveSpaceForMasterImage: flags.reserveSpaceForMasterImage ? 1 : 0,
 		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0,
 		encodedTitle: encodeURIComponent(article.title.replace(/\&nbsp\;/g, ' '))
 	};
@@ -65,17 +59,11 @@ function transformMetadata(metadata) {
 }
 
 function getPrimaryTheme(metadata) {
-	// TODO: there is no concept of primary theme/section in V3
-	// so we should move this logic into ES
-	return metadata.find(
-		tag => tag.primary && arbitraryListOfSectionThings.indexOf(tag.taxonomy) === -1
-	);
+	return metadata.find(tag => tag.primary === 'theme');
 }
 
 function getPrimarySection(metadata) {
-	return metadata.find(
-		tag => tag.primary && arbitraryListOfSectionThings.indexOf(tag.taxonomy) >= 0
-	);
+	return metadata.find(tag => tag.primary === 'section');
 }
 
 function getPrimaryTag(primaryTheme, primarySection) {
@@ -116,9 +104,6 @@ function getMoreOnTags(primaryTheme, primarySection) {
 		return;
 	}
 
-	// TODO: display should be up to the template
-	moreOnTags[moreOnTags.length -1].class = 'more-on--small';
-
 	return moreOnTags.map(tag => {
 		let title;
 
@@ -142,17 +127,7 @@ function getMoreOnTags(primaryTheme, primarySection) {
 	});
 }
 
-function getDfpMetadata(metadata) {
-	// TODO: remove extraneous 'term' nesting
-	return getDfpUtil(
-		metadata.map(tag => {
-			return { term: tag };
-		})
-	);
-}
-
 function getOpenGraphData(article) {
-	// TODO: this can be dealt with in the template
 	return {
 		title: article.title,
 		description: article.summaries ? article.summaries[0] : '',
@@ -162,7 +137,6 @@ function getOpenGraphData(article) {
 }
 
 function getTwitterCardData(article) {
-	// TODO: this can be dealt with in the template
 	let openGraph = getOpenGraphData(article);
 	openGraph.card = openGraph.image ? 'summary_large_image' : 'summary';
 	return openGraph;
@@ -176,7 +150,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	let asyncWorkToDo = [];
 
 	if (res.locals.barrier) {
-		return res.render('article-v2', barrierHelper(payload, res.locals.barrier));
+		return res.render('article', barrierHelper(payload, res.locals.barrier));
 	}
 
 	if (res.locals.firstClickFreeModel) {
@@ -210,14 +184,13 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
-	// TODO: remove extraneous 'term' nesting
 	payload.dehydratedMetadata = {
-		primarySection: { term: primarySection },
-		primaryTheme: { term: primaryTheme },
+		primarySection: primarySection,
+		primaryTheme: primaryTheme,
 		package: payload.storyPackage || [],
 	};
 
-	payload.dfp = getDfpMetadata(payload.metadata);
+	payload.dfp = getDfpUtil(payload.metadata);
 	// >>> hacking for V1 and V2 compat.
 
 	if (res.locals.flags.openGraph) {
@@ -250,12 +223,11 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	// TODO: implement this
 	payload.visualCat = null;
-	payload.toc = null;
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
 			payload.layout = 'wrapper';
-			return res.set(cacheControlUtil).render('article-v2', payload);
+			return res.set(cacheControlUtil).render('article', payload);
 		})
 		.catch(error => {
 			logger.error(error);

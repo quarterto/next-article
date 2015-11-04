@@ -14,7 +14,6 @@
     <xsl:include href="external-image.xsl" />
     <xsl:include href="functions.xsl" />
     <xsl:include href="interactive-graphics.xsl" />
-    <xsl:include href="internal-image.xsl" />
     <xsl:include href="links.xsl" />
     <xsl:include href="paragraph-one.xsl" />
     <xsl:include href="promo-box.xsl" />
@@ -22,6 +21,7 @@
     <xsl:include href="slideshow.xsl" />
     <xsl:include href="social.xsl" />
     <xsl:include href="subheaders.xsl" />
+    <xsl:include href="tables.xsl" />
     <xsl:include href="video.xsl" />
 
 </xsl:stylesheet>

@@ -1,14 +1,9 @@
 {{#defineBlock 'head'}}
-	<meta name="classification" content="{{{visualCat}}}" />
 	{{#if dfp.dfpSite}}
 	<meta name="dfp_site" content="{{dfp.dfpSite}}" />
 	{{/if}}
 	{{#if dfp.dfpZone}}
 	<meta name="dfp_zone" content="{{dfp.dfpZone}}" />
-	{{/if}}
-
-	{{#if og.facebookAuthor }}
-		<meta property="article:author" content="{{og.facebookAuthor}}" />
 	{{/if}}
 {{/defineBlock}}
 

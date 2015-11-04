@@ -88,6 +88,34 @@ describe('External images', () => {
 				});
 		});
 
+		it('moves images out of containing <a>', () => {
+			return transform(
+					'<html>' +
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<p>' +
+								'<a href=""><img src="http://my-image/image.jpg" width="800" height="600" alt="Lorem ipsum" /></a> Lorem ipsum <i>doler</i> sit amet.' +
+							'</p>' +
+							'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>' +
+					'</html>'
+				)
+				.then((transformedXml) => {
+					expect(transformedXml).to.equal(
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<figure class="article-image article-image--full" style="width:700px;">' +
+								'<div class="article-image__placeholder" style="padding-top:75%;">' +
+									'<img alt="Lorem ipsum" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+								'</div>' +
+							'</figure>' +
+							'<p> Lorem ipsum <i>doler</i> sit amet.</p>' +
+							'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>\n'
+					);
+				});
+		});
+
 	});
 
 	describe('layout variations', () => {
