@@ -1,8 +1,10 @@
 $brand-and-columnist-color: getColor('warm-1');
 
-.article--columnist, .article--brand {
+.article--columnist,
+.article--brand {
 
-	.article__header, .next-up__intro__header {
+	.article__header,
+ 	.next-up__intro__header {
 		background: $brand-and-columnist-color;
 	}
 
