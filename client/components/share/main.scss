@@ -19,6 +19,10 @@
 		overflow: hidden;
 		position: relative;
 		top: -5px;
+		display: none;
+		@include oGridRespondTo(S) {
+			display: inline;
+		}
 	}
 
 	&__comments {
