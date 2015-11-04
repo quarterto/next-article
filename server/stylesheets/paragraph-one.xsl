@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <!-- TODO: unwrap from para -->
-    <xsl:template match="a[substring(@href, string-length(@href) - 6) = '#slide0']">
-        <xsl:call-template name="slideshow" />
-    </xsl:template>
-
     <xsl:template match="/html/body">
 
         <xsl:call-template name="social" />
