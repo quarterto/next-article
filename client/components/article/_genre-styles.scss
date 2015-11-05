@@ -1,40 +1,38 @@
-$brand-and-columnist-color: getColor('warm-1');
+$brand-color: getColor('warm-1');
 
-.article--columnist,
 .article--brand {
 
 	.article__header,
  	.next-up__intro__header {
-		background: $brand-and-columnist-color;
+		background: $brand-color;
 	}
 
 	.article__wrapper--main-image {
 		background-color: getColor('pink');
-		background: linear-gradient($brand-and-columnist-color, $brand-and-columnist-color 50px, getColor('pink') 50px, getColor('pink') 100%);
+		background: linear-gradient($brand-color, $brand-color 50px, getColor('pink') 50px, getColor('pink') 100%);
 	}
 
-}
+	&--headshot {
 
-.article--columnist {
+		.article__header--wrapper {
+			padding-bottom: 10px;
 
-	.article__header--wrapper {
-		padding-bottom: 10px;
-
-		&--main-image {
-			border-bottom: 1px solid getColor('warm-3');
+			&--main-image {
+				border-bottom: 1px solid getColor('warm-3');
+			}
 		}
-	}
 
-	.article__header-secondary {
-		padding-right: 100px;
-		@include oGridRespondTo(M) {
-			padding-right: 150px;
+		.article__header-secondary {
+			padding-right: 100px;
+			@include oGridRespondTo(M) {
+				padding-right: 150px;
+			}
 		}
-	}
 
-	.article__header-primary {
-		 @include oGridRespondTo(M) {
-			 padding-right: 150px;
-		 }
+		.article__header-primary {
+			 @include oGridRespondTo(M) {
+				 padding-right: 150px;
+			 }
+		}
 	}
 }

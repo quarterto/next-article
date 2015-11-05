@@ -8,10 +8,8 @@
     "taxonomy": "authors",
     "primary": true,
     "attributes": [
-      {
-        "key": "isColumnist",
-        "value": true
-      }
+      {"key": "isColumnist", "value": true},
+      {"key": "hasHeadshot", "value": true}
     ]
   },
   {

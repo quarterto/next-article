@@ -1,6 +1,14 @@
 {
-  "title": "John Gapper",
+  "id": "Q0ItMDAwMDc1Mw==-QXV0aG9ycw==",
+  "name": "John Gapper",
   "url": "/stream/authorsId/Q0ItMDAwMDc1Mw==-QXV0aG9ycw==",
-  "genre": "columnist",
+  "idV1": "Q0ItMDAwMDc1Mw==-QXV0aG9ycw==",
+  "prefLabel": "John Gapper",
+  "taxonomy": "authors",
+  "primary": true,
+  "attributes": [
+    {"key": "isColumnist", "value": true},
+    {"key": "hasHeadshot", "value": true}
+  ],
   "headshot": "https://image.webservices.ft.com/v1/images/raw/fthead:john-gapper"
 }

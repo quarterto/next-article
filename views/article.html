@@ -7,7 +7,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article{{#if designGenre}} article--{{designGenre.genre}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article{{#if designGenre}} article--brand {{#if designGenre.headshot}}article--brand--headshot{{/if}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header" data-trackable="header">
 		<div class="article__leaderboard-advert"></div>
 		<div class="o-grid-container">
@@ -39,16 +39,16 @@
 							{{/if}}
 							{{#if designGenre}}
 								<div class="article__brand--wrapper">
-									<a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.title}}</a>
+									<a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.name}}</a>
 								</div>
 							{{/if}}
 						</div>
 					</header>
-					{{#ifEquals designGenre.genre 'columnist'}}
+					{{#if designGenre.headshot}}
 					<div class="article__header-headshot">
 						<img class="article__header-headshot--image" src="{{designGenre.headshot}}?source=next&fit=scale-down&width=150">
 					</div>
-					{{/ifEquals}}
+					{{/if}}
 				</div>
 				{{#if readNextArticle}}
 					{{>read-next-header article=readNextArticle}}

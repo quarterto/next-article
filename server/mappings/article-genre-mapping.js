@@ -2,51 +2,34 @@
 
 //TODO Move into separate module so can be used by other apps
 
-function getColumnist(metadata) {
-  let matchedTag;
+module.exports = function (metadata) {
+  // check for whether a brand tag exists
+  let matchedTag = metadata.find(tag => tag.taxonomy === 'brand');
+  // but Columnist trumps brand
   if (
-    (metadata.find(tag =>
-      tag.taxonomy === 'authors' &&
-      tag.attributes.find(attribute => attribute.key === 'isColumnist' && attribute.value === true)
-    )) &&
-    (metadata.find(tag =>
+    metadata.find(tag => tag.taxonomy === 'authors') &&
+    metadata.find(tag =>
       tag.taxonomy === 'genre' &&
       tag.prefLabel === 'Comment'
-    ))
+    ) &&
+    metadata.find(tag =>
+      tag.taxonomy === 'sections' &&
+      tag.prefLabel === 'Columnists')
   ) {
     matchedTag = metadata.find(tag => tag.taxonomy === 'authors');
   }
-  if (matchedTag) {
-    return mapElements(matchedTag, 'columnist');
+  // for Columnists, check whether there is a headshot and add the url
+  if (matchedTag &&
+      matchedTag.taxonomy === 'authors' &&
+      // HACK this line to be deleted when we get a headshot of Larry Summers in the image service
+      matchedTag.prefLabel !== 'Larry Summers' &&
+      matchedTag.attributes &&
+      matchedTag.attributes.find(attribute =>
+  // this is the way it should be done - awaiting change to next-es-article
+        // attribute.key === 'hasHeadshot' && attribute.value === true)
+        attribute.key === 'isColumnist' && attribute.value === true)
+  ) {
+    matchedTag.headshot = `https://image.webservices.ft.com/v1/images/raw/fthead:${matchedTag.prefLabel.toLowerCase().replace(' ', '-')}`;
   }
-}
-
-function getBrand(metadata) {
-  let matchedTag = metadata.find(tag =>
-    tag.taxonomy === 'brand' && mapElements(tag, 'brand')
-	);
-  if (matchedTag) {
-    return mapElements(matchedTag, 'brand');
-  }
-}
-
-function mapElements(tag, genre) {
-  let headshot;
-  headshot = genre === 'columnist' ? `https://image.webservices.ft.com/v1/images/raw/fthead:${tag.prefLabel.toLowerCase().replace(' ', '-')}` : null ;
-  return {
-    genre: genre,
-    title: tag.prefLabel,
-    url: tag.url,
-    headshot: headshot
-  }
-}
-
-module.exports = function (metadata) {
-  let columnist = getColumnist(metadata);
-  let brand = getBrand(metadata);
-  let result;
-
-  columnist ? result = columnist : brand ? result = brand : result = undefined;
-
-  return result;
+  return matchedTag
 };
