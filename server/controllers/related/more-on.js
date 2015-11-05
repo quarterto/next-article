@@ -8,14 +8,14 @@ const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
 module.exports = function (req, res, next) {
 
-	if (!req.query.moreOnId) {
+	if (!req.query.tagId) {
 		return res.status(400).end();
 	}
 
 	let count = parseInt(req.query.count, 10) || 5;
 
 	return api.search({
-		filter: [ 'metadata.idV1', req.query.moreOnId ],
+		filter: [ 'metadata.idV1', req.query.tagId ],
 		// Get +1 for de-duping
 		count: count + 1,
 		fields: [

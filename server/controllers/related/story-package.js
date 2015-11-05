@@ -8,7 +8,7 @@ const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
 module.exports = function(req, res, next) {
 
-	if (!req.query.ids) {
+	if (!req.query.articleIds) {
 		return res.status(400).end();
 	}
 
@@ -16,7 +16,7 @@ module.exports = function(req, res, next) {
 
 	return api.content({
 		index: 'v3_api_v2',
-		uuid: req.query.ids.split(',').slice(0, count)
+		uuid: req.query.articleIds.split(',').slice(0, count)
 	})
 		.then(function(articles) {
 			if (!articles.length) {

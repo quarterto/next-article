@@ -50,7 +50,7 @@ module.exports.init = function() {
 
 	if (hydratedMetadata.package.length) {
 		let storyIds = hydratedMetadata.package.map(article => article.id);
-		let url = `/article/${articleId}/story-package?ids=${storyIds.join()}&count=5`;
+		let url = `/article/${articleId}/story-package?articleIds=${storyIds.join()}&count=5`;
 
 		fetchPromises = fetchPromises.concat(
 			$('.js-story-package').map(el => createPromise(el, `${url}`))
@@ -60,7 +60,7 @@ module.exports.init = function() {
 	let specialReport = hydratedMetadata.moreOns.find(tag => tag.taxonomy === 'specialReports');
 
 	if (specialReport) {
-		let url = `/article/${articleId}/special-report?specialReportId=${encodeURI(specialReport.id)}&count=5`;
+		let url = `/article/${articleId}/special-report?tagId=${encodeURI(specialReport.id)}&count=5`;
 
 		fetchPromises = fetchPromises.concat(
 			$('.js-special-report').map(el => createPromise(el, url))
@@ -75,7 +75,7 @@ module.exports.init = function() {
 		fetchPromises = fetchPromises.concat(
 			moreOns.map((el, i) => {
 				let term = hydratedMetadata.moreOns[i];
-				let query = `moreOnId=${encodeURI(term.id)}`;
+				let query = `tagId=${encodeURI(term.id)}`;
 				return createPromise(el, `${url}&${query}`);
 			})
 		);
