@@ -1,5 +1,5 @@
 <li class="pod__item-wrapper{{#if image}} pod__item-wrapper--with-image{{/if}}">
-	<div class="pod__item">
+	<div class="pod__item" data-trackable="pod-{{@index}}">
 		{{#if image}}
 			<a class="pod__item__image" href="{{url}}" data-trackable="image">
 				{{>n-image/templates/image}}
