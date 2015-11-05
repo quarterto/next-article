@@ -7,7 +7,6 @@ const NoRelatedResultsException = require('../../lib/no-related-results-exceptio
 const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
 module.exports = function(req, res, next) {
-	let storyPackageIds = req.query.ids;
 
 	if (!req.query.ids) {
 		return res.status(400).end();
@@ -15,15 +14,11 @@ module.exports = function(req, res, next) {
 
 	return api.content({
 		index: 'v3_api_v2',
-		uuid: storyPackageIds.split(',')
+		uuid: req.query.ids.split(',').slice(0, req.query.count || 5)
 	})
 		.then(function(articles) {
 			if (!articles.length) {
 				throw new NoRelatedResultsException();
-			}
-
-			if (req.query.count) {
-				articles.splice(req.query.count);
 			}
 
 			return articles.map(articlePodMapping);

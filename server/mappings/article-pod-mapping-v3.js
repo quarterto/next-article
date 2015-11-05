@@ -23,6 +23,10 @@ module.exports = function articlePodMapping(article) {
 
 	decoration.primaryTag = primaryTheme || primarySection || null;
 
+	if (primarySection && primarySection.taxonomy === 'specialReports') {
+		decoration.primaryTag = primarySection;
+	}
+
 	if (decoration.primaryTag) {
 		Object.assign(decoration.primaryTag, {
 			url: `/stream/${decoration.primaryTag.taxonomy}Id/${decoration.primaryTag.idV1}`
