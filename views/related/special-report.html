@@ -1,11 +1,13 @@
 <div class="stream-card" data-trackable="special-report">
 	<h2>More from this report</h2>
 	<div class="stream-card__wrapper" {{#if image}}style="background-image: url('{{#resize 710}}{{image.url}}{{/resize}}')"{{/if}}>
-		<a href="/special-reports/{{id}}" class="stream-card__overview" data-trackable="header">
-			<span class="stream-card__title">
-				<span class="stream-card__title__kicker">Special Report</span> {{name}}
-			</span>
-		</a>
+		<div class="stream-card__overview">
+			<a class="stream-card__title" href="/special-reports/{{id}}" data-trackable="header">
+				<span class="stream-card__title__kicker">Special Report</span>
+				<br />
+				<span class="stream-card__title__text">{{name}}</span>
+			</a>
+		</div>
 		<ol class="stream-card__articles">
 			{{#each articles}}
 				<li class="stream-card__article" data-trackable="article">

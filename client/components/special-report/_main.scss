@@ -1,13 +1,17 @@
-.stream-card {}
+.stream-card {
+}
 .stream-card__wrapper {
 	position: relative;
-	color: #ffffff;
+	overflow: hidden;
+	padding: 10px;
 	background: oColorsGetPaletteColor('cold-1') no-repeat center center;
 	background-size: cover;
-	overflow: hidden;
+	color: #ffffff;
+
 	@include oGridRespondTo($until: M) {
 		background-image: none !important;
 	}
+
 	@include oGridRespondTo(M) {
 		&:before {
 			content: '';
@@ -22,53 +26,44 @@
 }
 .stream-card__overview {
 	position: relative;
-	display: block;
-	color: inherit;
+	margin-bottom: 10px;
+
 	@include oGridRespondTo(M) {
 		float: left;
-		width: 1 / 3 * 100%;
-	}
-
-	&:before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.4);
+		width: 30%;
+		margin-right: 2.5%;
 	}
 }
 .stream-card__title {
-	@include nTypeBravo(2);
-	position: absolute;
-	top: 50%;
-	left: 0;
+	display: block;
+	border-bottom: 0;
 	text-align: center;
-	transform: translateY(-50%);
-	width: 100%;
+	color: inherit;
 
 	@include oGridRespondTo(M) {
-		top: 10px;
-		left: 10px;
 		text-align: left;
-		transform: none;
+	}
+
+	&:hover,
+	&:focus {
+		color: inherit;
 	}
 }
 .stream-card__title__kicker {
 	@include nTypeAlpha(4);
 	text-transform: uppercase;
-	display: block;
+}
+.stream-card__title__text {
+	@include nTypeBravo(2);
 }
 .stream-card__articles {
+	// to bring layer to top
 	position: relative;
-	margin: 10px;
+	// to prevent wrap around overview
+	overflow: hidden;
+	margin: 0;
 	padding: 0;
 	list-style-type: none;
-
-	@include oGridRespondTo(M) {
-		margin-left: 1 / 3 * 100%;
-	}
 }
 .stream-card__article {
 	margin-top: 10px;
@@ -85,9 +80,7 @@
 .stream-card__article__link {
 	@include nTypeAlpha(3);
 	color: inherit;
-	text-decoration: none;
-	border-bottom: 1px dotted transparent;
-	transition: border-bottom 100ms;
+	border-bottom-color: transparent;
 
 	&:hover,
 	&:focus {
