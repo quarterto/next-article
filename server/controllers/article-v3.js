@@ -136,10 +136,6 @@ function getTwitterCardData(article) {
 	return openGraph;
 }
 
-function getSuggestedReads(storyPackageIds, articleId, primaryTag) {
-	return suggestedHelper(storyPackageIds, articleId, primaryTag);
-}
-
 module.exports = function articleV3Controller(req, res, next, payload) {
 	let asyncWorkToDo = [];
 
@@ -198,13 +194,13 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		let storyPackageIds = (payload.storyPackage || []).map(story => story.id);
 
 		asyncWorkToDo.push(
-			getSuggestedReads(storyPackageIds, payload.id, primaryTag).then(
+			suggestedHelper(payload.id, storyPackageIds, primaryTag).then(
 				articles => payload.readNextArticles = articles
 			)
 		);
 
 		asyncWorkToDo.push(
-			readNextHelper(storyPackageIds, payload.id, primaryTag, payload.publishedDate).then(
+			readNextHelper(payload.id, storyPackageIds, primaryTag, payload.publishedDate).then(
 				article => payload.readNextArticle = article
 			)
 		);
