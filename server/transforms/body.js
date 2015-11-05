@@ -6,7 +6,6 @@ const replaceEllipses = require('./replace-ellipses');
 const replaceHrs = require('../transforms/replace-hrs');
 const relativeLinks = require('./relative-links');
 const trimmedLinks = require('./trimmed-links');
-const removeBody = require('./remove-body');
 const externalImages = require('./external-images');
 
 let transform = function ($, flags) {

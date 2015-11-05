@@ -1,35 +1,46 @@
 'use strict';
 
-//TODO Move into separate module so can be used by other apps
+//TODO Delete and replace with n-article-branding
+
+// HACK until hasHeadshot attribute is propogated through ES, back-up of isColumnist
+let headshotAttributes = ['isColumnist', 'hasHeadshot'];
+
+function isABrand(metadata) {
+	return metadata.find(tag => tag.taxonomy === 'brand');
+}
+
+function isAnAuthor(metadata) {
+	return metadata.find(tag => tag.taxonomy === 'authors');
+}
+
+function isGenreComment(metadata) {
+	return metadata.find(tag =>
+		tag.taxonomy === 'genre' &&
+		tag.prefLabel === 'Comment'
+	);
+}
+
+function headshotUrl(tag) {
+	return `https://image.webservices.ft.com/v1/images/raw/fthead:${tag.prefLabel.toLowerCase().replace(' ', '-')}`;
+}
 
 module.exports = function (metadata) {
-  // check for whether a brand tag exists
-  let matchedTag = metadata.find(tag => tag.taxonomy === 'brand');
-  // but Columnist trumps brand
-  if (
-    metadata.find(tag => tag.taxonomy === 'authors') &&
-    metadata.find(tag =>
-      tag.taxonomy === 'genre' &&
-      tag.prefLabel === 'Comment'
-    ) &&
-    metadata.find(tag =>
-      tag.taxonomy === 'sections' &&
-      tag.prefLabel === 'Columnists')
-  ) {
-    matchedTag = metadata.find(tag => tag.taxonomy === 'authors');
-  }
-  // for Columnists, check whether there is a headshot and add the url
-  if (matchedTag &&
-      matchedTag.taxonomy === 'authors' &&
-      // HACK this line to be deleted when we get a headshot of Larry Summers in the image service
-      matchedTag.prefLabel !== 'Larry Summers' &&
-      matchedTag.attributes &&
-      matchedTag.attributes.find(attribute =>
-  // this is the way it should be done - awaiting change to next-es-article
-        // attribute.key === 'hasHeadshot' && attribute.value === true)
-        attribute.key === 'isColumnist' && attribute.value === true)
-  ) {
-    matchedTag.headshot = `https://image.webservices.ft.com/v1/images/raw/fthead:${matchedTag.prefLabel.toLowerCase().replace(' ', '-')}`;
-  }
-  return matchedTag
+	let matchedTag = isABrand(metadata);
+	if (
+		!matchedTag &&
+		isAnAuthor(metadata) &&
+		isGenreComment(metadata)
+	) {
+		matchedTag = isAnAuthor(metadata);
+	}
+	if (matchedTag &&
+			matchedTag.taxonomy === 'authors' &&
+	// HACK to be deleted when we get a headshot of Larry Summers in image service
+			matchedTag.prefLabel !== 'Larry Summers' &&
+			matchedTag.attributes &&
+			matchedTag.attributes.find(attribute => headshotAttributes.indexOf(attribute.key) > -1)
+	) {
+		matchedTag.headshot = headshotUrl(matchedTag);
+	}
+	return matchedTag || null;
 };

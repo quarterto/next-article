@@ -1,6 +1,8 @@
 /*global describe, it*/
 'use strict';
 
+//TODO to be deleted when move to n-article-branding
+
 require('chai').should();
 var expect = require('chai').expect;
 
@@ -24,7 +26,7 @@ describe('Map Article Genre Model', function() {
 	});
 
 	it('should return null for all others', function() {
-		expect(articleGenreMapping(defaultMetadata)).to.be.undefined;
+		expect(articleGenreMapping(defaultMetadata)).to.be.null;
 	});
 
 });
