@@ -12,9 +12,12 @@ module.exports = function(req, res, next) {
 		return res.status(400).end();
 	}
 
+	let count = parseInt(req.query.count, 10) || 5;
+
 	return api.search({
 		filter: [ 'metadata.idV1', req.query.specialReportId ],
-		count: req.query.count || 5,
+		// Get +1 for de-duping
+		count: count + 1,
 		fields: [
 			'id',
 			'title',
@@ -31,6 +34,7 @@ module.exports = function(req, res, next) {
 
 			articles = articles
 				.filter(article => article.id !== req.param.id)
+				.slice(0, count)
 				.map(articlePodMapping);
 
 			let articleWithImage = articles.find(article => new Boolean(article.mainImage));

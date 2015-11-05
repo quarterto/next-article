@@ -75,7 +75,7 @@ module.exports.init = function() {
 		fetchPromises = fetchPromises.concat(
 			moreOns.map((el, i) => {
 				let term = hydratedMetadata.moreOns[i];
-				let query = `moreOnId=${encodeURI(term.id)}&moreOnTaxonomy=${term.taxonomy}`;
+				let query = `moreOnId=${encodeURI(term.id)}`;
 				return createPromise(el, `${url}&${query}`);
 			})
 		);

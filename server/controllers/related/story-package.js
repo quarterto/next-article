@@ -12,9 +12,11 @@ module.exports = function(req, res, next) {
 		return res.status(400).end();
 	}
 
+	let count = parseInt(req.query.count, 10) || 5;
+
 	return api.content({
 		index: 'v3_api_v2',
-		uuid: req.query.ids.split(',').slice(0, req.query.count || 5)
+		uuid: req.query.ids.split(',').slice(0, count)
 	})
 		.then(function(articles) {
 			if (!articles.length) {
