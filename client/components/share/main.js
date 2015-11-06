@@ -13,7 +13,6 @@ document.body.addEventListener("oOverlay.destroy", function() {
 });
 
 document.body.addEventListener("oOverlay.ready", function() {
-	console.log("\n\nOVERLAY READY\n\n");
     shares = OShare.init();
 });
 
@@ -37,9 +36,6 @@ function loadShareCount() {
 exports.init = function(flags) {
 
 	var shareContainer = document.querySelector('[data-o-component=o-share]');
-
-	console.log(flags.flags.ftlabsurlsharing);
-	console.log(flags.flags.ftlabsurlsharing.state);
 
 	if (shareContainer && !shareContainer.classList.contains('data-o-share--js')) {
 		new OShare(shareContainer);
