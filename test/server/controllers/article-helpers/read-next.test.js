@@ -17,7 +17,7 @@ const subject = proxyquire('../../../../server/controllers/article-helpers/read-
 	'../../mappings/article-pod-mapping-v3': (article) => article
 });
 
-describe('Suggested Read Model', function() {
+describe('Read next', function() {
 
 	let results;
 
