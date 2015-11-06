@@ -22,7 +22,7 @@ module.exports = function(articleId, storyPackageIds, primaryTag) {
 				);
 			});
 	} else {
-		Promise.resolve(storyPackageIds);
+		todo = Promise.resolve(storyPackageIds);
 	}
 
 	return todo
