@@ -20,6 +20,7 @@
     "html-entities": "~1.1.3",
     "lodash": "~3.9.3",
     "n-podcast-mapping": "Financial-Times/n-podcast-mapping",
+<<<<<<< HEAD
     "node-rsa": "^0.2.25",
     "share-code-creator": "Financial-Times/share-code-generator#v1.1.1",
     "base-64": "^0.1.0",
@@ -45,6 +46,8 @@
     "ramda": "^0.17.1",
     "text-encoding": "^0.5.2",
     "uuid": "^2.0.1",
+=======
+>>>>>>> 9248f9a94fdc32abd6f3187fdbe4bb3089ead90f
     "next-ft-api-client": "3.14.0"
   },
   "devDependencies": {
