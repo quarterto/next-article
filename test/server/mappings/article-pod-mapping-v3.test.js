@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 const subject = require('../../../server/mappings/article-pod-mapping-v3');
 const fixture = require('../../fixtures/v3-elastic-article-found').docs[0]._source;
 
-describe.only('Article Pod Mapping V3', () => {
+describe('Article Pod Mapping V3', () => {
 
     let result = subject(fixture);
 

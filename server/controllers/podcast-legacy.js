@@ -4,7 +4,7 @@ var api = require('next-ft-api-client');
 var getDfp = require('../utils/get-dfp');
 var cacheControl = require('../utils/cache-control');
 var externalPodcastLinks = require('../utils/external-podcast-links');
-var articlePodItemMapping = require('../mappings/article-pod-mapping');
+var articlePodItemMapping = require('../mappings/article-pod-mapping-v3');
 
 module.exports = function podcastLegacyController(req, res, next, payload) {
 
