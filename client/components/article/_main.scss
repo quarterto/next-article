@@ -11,7 +11,7 @@
 
 .article__header--wrapper {
 	position: relative;
-	padding-bottom: 15px;
+	padding-bottom: 8px;
 }
 
 .article__header-inner {
@@ -24,20 +24,6 @@
 
 .article__header-secondary {
 	margin-top: $spacing-unit / 2;
-}
-
-.article__header-headshot {
-	position: absolute;
-	bottom: -2px;
-	right: -7px;
-	width: 100px;
-	@include oGridRespondTo(M) {
-		width: 150px;
-	}
-}
-
-.article__header-headshot--image {
-	max-width: 100%;
 }
 
 .article__header-time-byline {

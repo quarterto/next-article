@@ -12,15 +12,11 @@ $brand-color: getColor('warm-1');
 		background: linear-gradient($brand-color, $brand-color 50px, getColor('pink') 50px, getColor('pink') 100%);
 	}
 
+	.article__header--wrapper--main-image {
+		border-bottom: 1px solid getColor('warm-3');
+	}
+
 	&--headshot {
-
-		.article__header--wrapper {
-			padding-bottom: 10px;
-
-			&--main-image {
-				border-bottom: 1px solid getColor('warm-3');
-			}
-		}
 
 		.article__header-secondary {
 			padding-right: 100px;
@@ -35,4 +31,23 @@ $brand-color: getColor('warm-1');
 			 }
 		}
 	}
+
+}
+
+.article__brand--wrapper {
+	margin-top: 8px;
+}
+
+.article__header-headshot {
+	position: absolute;
+	bottom: -2px;
+	right: 0;
+	width: 100px;
+	@include oGridRespondTo(M) {
+		width: 150px;
+	}
+}
+
+.article__header-headshot--image {
+	max-width: 100%;
 }
