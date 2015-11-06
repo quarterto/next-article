@@ -12,9 +12,9 @@ const stubs = {
 	search: null
 };
 
-const subject = proxyquire('../../../server/lib/read-next', {
+const subject = proxyquire('../../../../server/controllers/article-helpers/read-next', {
 	'next-ft-api-client': stubs,
-	'../mappings/article-pod-mapping-v3': (article) => article
+	'../../mappings/article-pod-mapping-v3': (article) => article
 });
 
 describe('Suggested Read Model', function() {
