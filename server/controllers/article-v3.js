@@ -9,7 +9,7 @@ const readNextHelper = require('../lib/read-next');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 const bylineTransform = require('../transforms/byline');
-const articleGenreMapping = require('../mappings/article-genre-mapping');
+const articleBranding = require('ft-n-article-branding');
 
 function isCapiV1(article) {
 	return article.provenance.find(
@@ -162,7 +162,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			payload.mainImageHTML = fragments.mainImageHTML;
 		})
 	);
-	payload.designGenre = articleGenreMapping(payload.metadata);
+	payload.designGenre = articleBranding(payload.metadata);
 	// TO REMOVE - testing genre mapping.
 
 	// Decorate with related stuff

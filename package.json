@@ -11,6 +11,7 @@
     "cheerio": "~0.19.0",
     "fetchres": "~1.4.0",
     "forever": "~0.15.1",
+    "ft-n-article-branding": "^3.0.0",
     "ft-next-article-genre": "^1.1.0",
     "ft-next-article-primary-tag": "^1.0.0",
     "ft-next-barriers": "^2.2.3",
