@@ -48,18 +48,17 @@ function pingServices() {
 /**
  * Creates a object to be passed to healthchecks. Fetching the latest status from [statuses]
  * @method buildStatus
- * @param  {String}    backend The backend we are fetching from; ['elastic', 'capi']
  * @param  {String}    version The CAPI version; ['v1', 'v2']
  * @return {Object}
  */
-function buildStatus(backend, version) {
+function buildStatus(version) {
 	return {
 		getStatus: () => ({
-			name: `${backend}:${version} responded successfully.`,
-			ok: statuses[backend][version],
-			businessImpact: "Users may not see article content.",
+			name: `elastic:${version} responded successfully.`,
+			ok: statuses.elastic[version],
+			businessImpact: 'Users may not see article content.',
 			severity: 2,
-			technicalSummary: "Fetches an article to determine whether the service is running."
+			technicalSummary: 'Fetches an article to determine whether the service is running.'
 		})
 	};
 }
@@ -81,8 +80,8 @@ module.exports = {
 		pingServices();
 		setInterval(pingServices, INTERVAL);
 	},
-	esv1: buildStatus('elastic', 'v1'),
-	esv2: buildStatus('elastic', 'v2'),
-	esv3: buildStatus('elastic', 'v3'),
+	esv1: buildStatus('v1'),
+	esv2: buildStatus('v2'),
+	esv3: buildStatus('v3'),
 	livefyre: livefyreStatus()
 };
