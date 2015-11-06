@@ -55,7 +55,7 @@ module.exports = function(articleId, storyPackageIds, primaryTag, publishedDate)
 			}
 
 			// hierarchy of compellingness governing which read next article to return
-			if (topicArticle && new Date(topicArticle.lastUpdated) > new Date(publishedDate)) {
+			if (topicArticle && new Date(topicArticle.publishedDate) > new Date(publishedDate)) {
 				// 1. return article with same topic as parent if more recent
 				topicArticle.moreRecent = true;
 				return topicArticle;
