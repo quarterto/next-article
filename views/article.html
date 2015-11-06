@@ -69,12 +69,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="article__wrapper {{#if mainImage}}article__wrapper--main-image{{/if}}">
+	<div class="article__wrapper {{#if mainImageHTML}}article__wrapper--main-image{{/if}}">
 		{{#if bodyHTML}}
 		<div class="o-grid-container">
 			<div class="article__main o-grid-row">
 				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-					{{#if mainImage}}
+					{{#if mainImageHTML}}
 						{{{mainImageHTML}}}
 					{{/if}}
 					{{> social}}

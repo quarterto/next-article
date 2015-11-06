@@ -39,14 +39,17 @@ $brand-color: getColor('warm-1');
 
 .article__header-headshot {
 	position: absolute;
-	bottom: -2px;
+	bottom: 0;
 	right: 0;
 	width: 100px;
 	@include oGridRespondTo(M) {
 		width: 150px;
 	}
+	overflow: hidden;
 }
 
 .article__header-headshot--image {
 	max-width: 100%;
+	display: block;
+ 	margin-left: 8px;
 }
