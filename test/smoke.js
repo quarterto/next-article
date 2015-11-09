@@ -1,8 +1,5 @@
 module.exports = [
 	{
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:on'
-		},
 		timeout: 10000,
 		urls: {
 			// not in CAPI (redirected to ft.com -> redirected to barrier)
@@ -35,9 +32,6 @@ module.exports = [
 	},
 	{
 		// Podcast
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:on'
-		},
 		timeout: 10000,
 		urls: {
 			'/content/55ef024ec7a00b32cb5a5991': 404
@@ -47,8 +41,7 @@ module.exports = [
 		// test access
 		timeout: 10000,
 		headers: {
-			'X-FT-Access-Metadata': 'remote_headers',
-			Cookie: 'next-flags=elasticSearchItemGet:on'
+			'X-FT-Access-Metadata': 'remote_headers'
 		},
 		urls: {
 			// conditional standard article
