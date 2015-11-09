@@ -74,18 +74,19 @@ describe('Article V3 Controller', function() {
 			expect(result.moreOns.length).to.equal(2);
 
 			result.moreOns.forEach(
-				tag => expect(tag).to.include.keys('metadata', 'title')
+				tag => expect(tag).to.include.keys('title', 'url')
 			);
 		});
 
 		it('provides dehydrated metadata for related content', function() {
-			expect(result.dehydratedMetadata).to.include.keys('primaryTheme', 'primarySection', 'package');
+			expect(result.dehydratedMetadata).to.include.keys('moreOns', 'package');
 
-			expect(result.dehydratedMetadata.primaryTheme).to.include.keys('id', 'name', 'taxonomy');
-			expect(result.dehydratedMetadata.primarySection).to.include.keys('id', 'name', 'taxonomy');
+			result.dehydratedMetadata.moreOns.forEach(
+				tag => expect(tag).to.include.keys('id', 'name', 'taxonomy')
+			);
 
-			expect(result.dehydratedMetadata.primaryTheme.id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
-			expect(result.dehydratedMetadata.primarySection.id).to.equal('NTg=-U2VjdGlvbnM=');
+			expect(result.dehydratedMetadata.moreOns[0].id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
+			expect(result.dehydratedMetadata.moreOns[1].id).to.equal('NTg=-U2VjdGlvbnM=');
 
 			expect(result.dehydratedMetadata.package).to.be.an.instanceOf(Array);
 		});

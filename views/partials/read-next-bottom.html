@@ -3,9 +3,9 @@
 		<div class="next-up next-up__bottom" data-trackable="next-up-bottom" data-o-grid-colspan="12 XLoffset1">
 			<h3 class="next-up__intro">Read latest:</h3>
 			{{#with article}}
-				<h4><a href="{{headline.url}}" class="next-up__headline" data-trackable="headline-link">{{headline.text}}</a></h4>
-				<time class="next-up__timestamp {{#if moreRecent}}next-up__timestamp__more-recent{{/if}} o-date" data-o-component="o-date" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}" data-o-date-js>
-					{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
+				<h4><a href="{{url}}" class="next-up__headline" data-trackable="headline-link">{{title}}</a></h4>
+				<time class="next-up__timestamp {{#if moreRecent}}next-up__timestamp__more-recent{{/if}} o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+					{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
 				</time>
 			{{/with}}
 		</div>

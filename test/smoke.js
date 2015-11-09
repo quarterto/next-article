@@ -1,8 +1,12 @@
 module.exports = [
+	// Health check
 	{
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:on'
-		},
+		timeout: 10000,
+		urls: {
+			'/__health': 200
+		}
+	},
+	{
 		timeout: 10000,
 		urls: {
 			// not in CAPI (redirected to ft.com -> redirected to barrier)
@@ -12,42 +16,16 @@ module.exports = [
 			//fastft
 			'/content/b002e5ee-3096-3f51-9925-32b157740c98': 200,
 			// related fragments
-			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/story-package?ids=b56232bc-adec-11e4-919e-00144feab7de,8a5c2c02-a47e-11e4-b943-00144feab7de,6bfcdc6e-a0b6-11e4-8ad8-00144feab7de,c0dbd6d6-8072-11e4-9907-00144feabdc0': 200,
-			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?moreOnId=TnN0ZWluX1BOX1BvbGl0aWNpYW5fMTY4OA==-UE4=&moreOnTaxonomy=people': 200,
+			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/story-package?articleIds=b56232bc-adec-11e4-919e-00144feab7de,8a5c2c02-a47e-11e4-b943-00144feab7de,6bfcdc6e-a0b6-11e4-8ad8-00144feab7de,c0dbd6d6-8072-11e4-9907-00144feabdc0': 200,
+			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?tagId=TnN0ZWluX1BOX1BvbGl0aWNpYW5fMTY4OA==-UE4=': 200,
 			// articles with not tagged with X
-			'/article/a1fb6fee-93ae-359d-be8f-f215920b79ff/more-on?moreOnId=OA==-U2VjdGlvbnM=&moreOnTaxonomy=sections': {
+			'/article/a1fb6fee-93ae-359d-be8f-f215920b79ff/more-on?tagId=OA==-U2VjdGlvbnM=': {
 				content: ''
 			}
 		}
 	},
-//	{
-//		//elastic search off fallback
-//		timeout: 5000,
-//		headers: {
-//			Cookie: 'next-flags=elasticSearchItemGet:off'
-//		},
-//		urls: {
-//			'/content/02cad03a-844f-11e4-bae9-00144feabdc0': 200
-//		}
-//	},
-	{
-		// Elastic V3
-		headers: {
-			Cookie: 'next-flags=elasticV3:on'
-		},
-		timeout: 10000,
-		urls: {
-			// Methode
-			'/content/395650fa-5b9c-11e5-a28b-50226830d644': 200,
-			// FastFT
-			'/content/b002e5ee-3096-3f51-9925-32b157740c98': 200,
-		}
-	},
 	{
 		// Podcast
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:on'
-		},
 		timeout: 10000,
 		urls: {
 			'/content/55ef024ec7a00b32cb5a5991': 404
@@ -57,8 +35,7 @@ module.exports = [
 		// test access
 		timeout: 10000,
 		headers: {
-			'X-FT-Access-Metadata': 'remote_headers',
-			Cookie: 'next-flags=elasticSearchItemGet:on'
+			'X-FT-Access-Metadata': 'remote_headers'
 		},
 		urls: {
 			// conditional standard article

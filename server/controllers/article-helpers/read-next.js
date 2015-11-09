@@ -1,36 +1,39 @@
 'use strict';
 
 const api = require('next-ft-api-client');
-const articlePodMapping = require('../mappings/article-pod-mapping');
+const logger = require('ft-next-express').logger;
+const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
-module.exports = function(storyPackageIds, articleId, primaryTag, publishedDate) {
+module.exports = function(articleId, storyPackageIds, primaryTag, publishedDate) {
 
 	let packageArticleFetch;
 	let topicArticleFetch;
 
 	if (storyPackageIds.length) {
-		packageArticleFetch = api.contentLegacy({
+		packageArticleFetch = api.content({
 			uuid: storyPackageIds[0],
-			useElasticSearch: true
+			index: 'v3_api_v2'
 		})
 			.then(articlePodMapping);
 	}
 
 	if (primaryTag) {
-		topicArticleFetch = api.searchLegacy({
-			query: primaryTag.taxonomy + 'Id:"' + primaryTag.id + '"',
+		topicArticleFetch = api.search({
+			filter: ['metadata.idV1', primaryTag.id],
+			// Get an extra so we can de-dupe
 			count: 2,
-			fields: true,
-			useElasticSearch: true
+			fields: [
+				'id',
+				'title',
+				'metadata',
+				'summaries',
+				'mainImage',
+				'publishedDate'
+			]
 		})
 			.then(articles => {
-				const article = articles
-						.map(article => article._source)
-						.filter(article => article.item.id !== articleId)
-						.shift();
-				if (article) {
-					return articlePodMapping(article);
-				}
+				articles = articles.filter(article => article.id !== articleId);
+				return articles.length ? articlePodMapping(articles[0]) : null;
 			});
 	}
 
@@ -52,7 +55,7 @@ module.exports = function(storyPackageIds, articleId, primaryTag, publishedDate)
 			}
 
 			// hierarchy of compellingness governing which read next article to return
-			if (topicArticle && new Date(topicArticle.lastUpdated) > new Date(publishedDate)) {
+			if (topicArticle && new Date(topicArticle.publishedDate) > new Date(publishedDate)) {
 				// 1. return article with same topic as parent if more recent
 				topicArticle.moreRecent = true;
 				return topicArticle;
@@ -63,5 +66,8 @@ module.exports = function(storyPackageIds, articleId, primaryTag, publishedDate)
 				// 3. failing that return the article on the same topic
 				return topicArticle;
 			}
+		})
+		.catch(error => {
+			logger.warn('Fetching read next failed.', error.toString());
 		});
 };

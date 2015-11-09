@@ -17,9 +17,9 @@ describe('Pull Quotes', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<blockquote class="ng-pull-out n-quote">' +
+					'<blockquote class="ng-inline-element article__quote article__quote--pull-quote">' +
 						'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
-						'<cite class="n-quote__cite">Dr. Seuss</cite>' +
+						'<cite class="article__quote-citation">Dr. Seuss</cite>' +
 					'</blockquote>\n'
 				);
 			});
@@ -36,7 +36,7 @@ describe('Pull Quotes', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<blockquote class="ng-pull-out n-quote">' +
+					'<blockquote class="ng-inline-element article__quote article__quote--pull-quote">' +
 						'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
 					'</blockquote>\n'
 				);

@@ -5,7 +5,7 @@ const cacheControlUtil = require('../utils/cache-control');
 const getDfpUtil = require('../utils/get-dfp');
 const barrierHelper = require('./article-helpers/barrier');
 const suggestedHelper = require('./article-helpers/suggested');
-const readNextHelper = require('../lib/read-next');
+const readNextHelper = require('./article-helpers/read-next');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 const bylineTransform = require('../transforms/byline');
@@ -91,14 +91,8 @@ function getTagsForDisplay(metadata, primaryTag) {
 function getMoreOnTags(primaryTheme, primarySection) {
 	let moreOnTags = [];
 
-	// TODO: Improve dehydrated data so this isn't necessary
-	primaryTheme && moreOnTags.push(
-		Object.assign({ metadata: 'primaryTheme' }, primaryTheme)
-	);
-
-	primarySection && moreOnTags.push(
-		Object.assign({ metadata: 'primarySection' }, primarySection)
-	);
+	primaryTheme && moreOnTags.push(primaryTheme);
+	primarySection && moreOnTags.push(primarySection);
 
 	if (!moreOnTags.length) {
 		return;
@@ -142,10 +136,6 @@ function getTwitterCardData(article) {
 	return openGraph;
 }
 
-function getSuggestedReads(storyPackageIds, articleId, primaryTag) {
-	return suggestedHelper(storyPackageIds, articleId, primaryTag);
-}
-
 module.exports = function articleV3Controller(req, res, next, payload) {
 	let asyncWorkToDo = [];
 
@@ -185,8 +175,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
 	payload.dehydratedMetadata = {
-		primarySection: primarySection,
-		primaryTheme: primaryTheme,
+		moreOns: payload.moreOns,
 		package: payload.storyPackage || [],
 	};
 
@@ -205,13 +194,13 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		let storyPackageIds = (payload.storyPackage || []).map(story => story.id);
 
 		asyncWorkToDo.push(
-			getSuggestedReads(storyPackageIds, payload.id, primaryTag).then(
+			suggestedHelper(payload.id, storyPackageIds, primaryTag).then(
 				articles => payload.readNextArticles = articles
 			)
 		);
 
 		asyncWorkToDo.push(
-			readNextHelper(storyPackageIds, payload.id, primaryTag, payload.publishedDate).then(
+			readNextHelper(payload.id, storyPackageIds, primaryTag, payload.publishedDate).then(
 				article => payload.readNextArticle = article
 			)
 		);

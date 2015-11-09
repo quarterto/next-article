@@ -1,26 +1,26 @@
-<li class="pod__item-wrapper{{#if image}} pod__item-wrapper--with-image{{/if}}">
-	<div class="pod__item">
-		{{#if image}}
+<li class="pod__item-wrapper {{#if mainImage}}pod__item-wrapper--with-image{{/if}}">
+	<div class="pod__item" data-trackable="pod-{{@index}}">
+		{{#if mainImage}}
 			<a class="pod__item__image" href="{{url}}" data-trackable="image">
-				{{>n-image/templates/image}}
+				{{>n-image/templates/image image=mainImage}}
 			</a>
 		{{/if}}
 		<div class="pod__item__content">
-			{{#if tag}}
-				{{#tag}}
-					<a class="pod__item__tag" href="{{url}}" data-trackable="tag">{{name}}</a>
-				{{/tag}}
+			{{#if primaryTag}}
+				<a class="pod__item__tag" href="{{primaryTag.url}}" data-trackable="tag">
+					{{primaryTag.prefLabel}}
+				</a>
 			{{/if}}
 			<h3 class="pod__item__headline">
-				{{#headline}}
-					<a class="pod__item__headline-link" href="{{url}}" data-trackable="headline">{{text}}</a>
-				{{/headline}}
+				<a class="pod__item__headline-link" href="{{url}}" data-trackable="headline">{{title}}</a>
 			</h3>
-			<p class="pod__item__subheading">{{subheading}}</p>
+			{{#if subheading}}
+				<p class="pod__item__subheading">{{subheading}}</p>
+			{{/if}}
 		</div>
 		<div class="pod__item__time">
-			<time data-o-component="o-date" class="o-date" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
-				{{#dateformat "dddd, d mmmm, yyyy"}}{{lastUpdated}}{{/dateformat}}
+			<time data-o-component="o-date" class="o-date" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}">
+				{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
 			</time>
 		</div>
 	</div>

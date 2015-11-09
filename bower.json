@@ -12,12 +12,11 @@
     "next-myft-ui": "^5.0.0",
     "o-comment-api": "^2.0.3",
     "next-buttons": "^2.0.0",
-    "n-quote": "^1.0.1",
     "o-expander": "^2.0.0",
     "o-share": "^2.0.0",
     "superstore": "^2.0.1",
     "n-myft-tray": "Financial-Times/n-myft-tray#^2.0.0",
-    "n-image": "^1.2.0",
+    "n-image": "^2.0.0",
     "n-message-prompts": "Financial-Times/n-message-prompts#^v1.0.0"
   },
   "resolutions": {

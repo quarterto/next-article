@@ -10,8 +10,6 @@ require('next-js-setup').bootstrap(function(result) {
 
 	var layout = require('n-layout');
 	var nVideo = require('n-video');
-	// Require n-image to load pollyfill
-	require('n-image');
 
 	var slideshow = require('./components/slideshow/main');
 	var onwardJourney = require('./components/onward-journey/main');

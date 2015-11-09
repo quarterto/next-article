@@ -12,8 +12,7 @@ var app = module.exports = express({
 	healthChecks: [
 		checks.esv1,
 		checks.esv2,
-		checks.capiv1,
-		checks.capiv2,
+		checks.esv3,
 		checks.livefyre
 	]
 });
