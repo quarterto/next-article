@@ -1,8 +1,12 @@
 module.exports = [
+	// Health check
 	{
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:on'
-		},
+		timeout: 10000,
+		urls: {
+			'/__health': 200
+		}
+	},
+	{
 		timeout: 10000,
 		urls: {
 			// not in CAPI (redirected to ft.com -> redirected to barrier)
@@ -21,23 +25,7 @@ module.exports = [
 		}
 	},
 	{
-		// Elastic V3
-		headers: {
-			Cookie: 'next-flags=elasticV3:on'
-		},
-		timeout: 10000,
-		urls: {
-			// Methode
-			'/content/395650fa-5b9c-11e5-a28b-50226830d644': 200,
-			// FastFT
-			'/content/b002e5ee-3096-3f51-9925-32b157740c98': 200,
-		}
-	},
-	{
 		// Podcast
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:on'
-		},
 		timeout: 10000,
 		urls: {
 			'/content/55ef024ec7a00b32cb5a5991': 404
@@ -47,8 +35,7 @@ module.exports = [
 		// test access
 		timeout: 10000,
 		headers: {
-			'X-FT-Access-Metadata': 'remote_headers',
-			Cookie: 'next-flags=elasticSearchItemGet:on'
+			'X-FT-Access-Metadata': 'remote_headers'
 		},
 		urls: {
 			// conditional standard article
