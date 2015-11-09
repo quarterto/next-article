@@ -30,6 +30,7 @@
     "o-grid": "^4.0.0",
     "next-feature-flags-client": "~8.1.0",
     "next-myft-ui": "^5.0.0",
-    "next-js-setup": "^6.0.0"
+    "next-js-setup": "^6.0.0",
+    "next-feature-flags-client": "Financial-Times/next-feature-flags-client#mvt"
   }
 }
