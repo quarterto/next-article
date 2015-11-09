@@ -17,12 +17,8 @@
 				{{else}}
 				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 				{{/if}}
-<<<<<<< HEAD:views/article-v2.html
 
-					<header>
-=======
 					<header class="article__header--wrapper {{#if mainImage}}article__header--wrapper--main-image{{/if}}">
->>>>>>> eb1c15dcdccce8c17ab13fcfa5979d97b34eef59:views/article.html
 						<div class="article__header-primary">
 							{{#if isSpecialReport}}
 								<p class="article__primary-theme">
@@ -74,22 +70,6 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD:views/article-v2.html
-	{{#if body}}
-	<div class="o-grid-container">
-		<div class="article__main o-grid-row">
-			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-
-				{{#if gift}}
-					<div class="article__gifted">
-						<p>This article has been gifted to you by an FT subscriber.</p>
-					</div>
-				{{/if}}
-
-				<div class="article__body">
-					{{{body}}}
-				</div>
-=======
 	<div class="article__wrapper {{#if mainImageHTML}}article__wrapper--main-image{{/if}}">
 		{{#if bodyHTML}}
 		<div class="o-grid-container">
@@ -112,7 +92,6 @@
 					<div class="article__body">
 						{{{bodyHTML}}}
 					</div>
->>>>>>> eb1c15dcdccce8c17ab13fcfa5979d97b34eef59:views/article.html
 
 				{{#if firstClickFree}}
 					{{> first-click-free}}
@@ -169,8 +148,6 @@
 		</div>
 	</div>
 </div>
-
-{{>propensity-messaging-promo-unit}}
 
 {{#ifAll readNextArticle readNextArticle.moreRecent}}
 	{{>read-next-bottom article=readNextArticle}}
