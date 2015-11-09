@@ -166,7 +166,7 @@
 	}
 
 	strong {
-		@include nTypeBravo(3);
+		font-weight: 600;
 	}
 
 	@media print {
@@ -230,10 +230,6 @@
 .article__subhead--standard {
 	@include nTypeBravo(3);
 }
-.article__block-quote {
-	max-width: 100%;
-}
-.article__block-quote,
 .article__big-number {
 	color: getColor('cold-1');
 	border-left-color: getColor('warm-3');
@@ -284,3 +280,4 @@
 @import 'images';
 @import 'table';
 @import 'promo-box';
+@import 'quotes';
