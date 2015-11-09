@@ -1,74 +1,51 @@
 /*global describe, it, before*/
+
 'use strict';
 
-var sinon = require('sinon');
 require('chai').should();
-var rewire = require('rewire');
-var readNext = rewire('../../../server/lib/read-next');
-var useElasticSearch = true;
 
-var parentArticle1 = require('../../fixtures/readNext/parentArticle1');
-var parentArticle2 = require('../../fixtures/readNext/parentArticle2');
-var parentArticle3 = require('../../fixtures/readNext/parentArticle3');
-var parentArticle4 = require('../../fixtures/readNext/parentArticle4');
+const sinon = require('sinon');
+const proxyquire = require('proxyquire');
 
-var storyPackageId1 = '9a2b7608-5746-11e5-9846-de406ccb37f2';
-var storyPackageId2 = 'a581b44e-5acb-11e5-a28b-50226830d644';
+const stubs = {
+	content: null,
+	search: null
+};
 
-var storyPackageArticle1 = require('../../fixtures/readNext/storyPackageArticle1');
-var storyPackageArticle2 = require('../../fixtures/readNext/storyPackageArticle2');
-
-var topicArticles1 = require('../../fixtures/readNext/topicArticles1');
-var topicArticles2 = require('../../fixtures/readNext/topicArticles2');
-var topicArticles3 = require('../../fixtures/readNext/topicArticles3');
-var topicArticles4 = require('../../fixtures/readNext/topicArticles4');
-
-var readNextArticle1 = require('../../fixtures/readNext/readNextArticle1');
-var readNextArticle2 = require('../../fixtures/readNext/readNextArticle2');
-var readNextArticle3 = require('../../fixtures/readNext/readNextArticle3');
-var readNextArticle4 = require('../../fixtures/readNext/readNextArticle4');
-
-var topicQuery1 = 'organisationsId:"TnN0ZWluX09OX0ZvcnR1bmVDb21wYW55X0FBUEw=-T04="';
-var topicQuery2 = 'topicsId:"NjM3ZTU3MDUtMmY1ZS00ZGExLThkNjYtYWY4YWUzY2U1YWVm-VG9waWNz"';
-var topicQuery3 = 'topicsId:"ZmEzMmRmNDAtNDc0Zi00ODk3LWE2ZmQtZWFmYzJlZTRjZTVk-VG9waWNz"';
-var topicQuery4 = 'authorsId:"Q0ItMDAwMDg4Ng==-QXV0aG9ycw=="';
+const subject = proxyquire('../../../server/lib/read-next', {
+	'next-ft-api-client': stubs,
+	'../mappings/article-pod-mapping-v3': (article) => article
+});
 
 describe('Suggested Read Model', function() {
 
-	var stubContentLegacy;
-	var stubSearchLegacy;
-	var api;
-	var results;
-
-	before(function() {
-		api = readNext.__get__('api');
-		stubContentLegacy = sinon.stub(api, "contentLegacy");
-		stubSearchLegacy = sinon.stub(api, "searchLegacy");
-	});
+	let results;
 
 	describe('Parent has a story package, but Topic article more recent than parent', function() {
 
 		before(function() {
-			stubContentLegacy.withArgs({
-				uuid: storyPackageId1,
-				useElasticSearch: true,
-				useElasticSearchOnAws: false
-			}).returns(Promise.resolve(storyPackageArticle1));
-			stubSearchLegacy.withArgs({
-				query: topicQuery1,
-				count: 2,
-				fields: true,
-				useElasticSearch: true
-			}).returns(Promise.resolve(topicArticles1));
+			stubs.content = sinon.stub().returns(
+				Promise.resolve({
+					id: '9a2b7608-5746-11e5-9846-de406ccb37f2',
+					publishedDate: '2015-09-10T17:18:07.000Z'
+				})
+			);
 
-			return readNext(parentArticle1, useElasticSearch, false)
-				.then(function(result) {
-					results = result;
-				});
+			stubs.search = sinon.stub().returns(
+				Promise.resolve([
+					{
+						id: '41129eec-5b9d-11e5-a28b-50226830d644',
+						publishedDate: '2015-09-16T11:44:13.000Z'
+					}
+				])
+			);
+
+			return subject('', [ '' ], {}, '2015-09-10T18:32:34.000Z')
+				.then(result => results = result);
 		});
 
 		it('read next should be based on topic as more recent', function() {
-			JSON.stringify(results).should.equal(JSON.stringify(readNextArticle1));
+			results.id.should.equal('41129eec-5b9d-11e5-a28b-50226830d644');
 			results.source.should.equal('topic');
 		});
 
@@ -82,26 +59,28 @@ describe('Suggested Read Model', function() {
 	describe('Parent has a story package, Topic articles older than parent', function() {
 
 		before(function() {
-			stubContentLegacy.withArgs({
-				uuid: storyPackageId2,
-				useElasticSearch: true,
-				useElasticSearchOnAws: false
-			}).returns(Promise.resolve(storyPackageArticle2));
-			stubSearchLegacy.withArgs({
-				query: topicQuery2,
-				count: 2,
-				fields: true,
-				useElasticSearch: true
-			}).returns(Promise.resolve(topicArticles2));
+			stubs.content = sinon.stub().returns(
+				Promise.resolve({
+					id: 'a581b44e-5acb-11e5-a28b-50226830d644',
+					publishedDate: '2015-09-14T14:26:37.000Z'
+				})
+			);
 
-			return readNext(parentArticle2, useElasticSearch, false)
-				.then(function(result) {
-					results = result;
-				});
+			stubs.search = sinon.stub().returns(
+				Promise.resolve([
+					{
+						id: '921d8c8e-5c47-11e5-a28b-50226830d644',
+						publishedDate: '2015-09-10T09:07:26.000Z'
+					}
+				])
+			);
+
+			return subject('', [ '' ], {}, '2015-09-14T10:35:49.000Z')
+				.then(result => results = result);
 		});
 
 		it('read next should be based on story package as topic not more recent than parent', function() {
-			JSON.stringify(results).should.equal(JSON.stringify(readNextArticle2));
+			results.id.should.equal('a581b44e-5acb-11e5-a28b-50226830d644');
 			results.source.should.equal('package');
 		});
 
@@ -114,21 +93,23 @@ describe('Suggested Read Model', function() {
 	describe('Parent has no story package, Topic article more recent than parent', function() {
 
 		before(function() {
-			stubSearchLegacy.withArgs({
-				query: topicQuery3,
-				count: 2,
-				fields: true,
-				useElasticSearch: true
-			}).returns(Promise.resolve(topicArticles3));
+			stubs.content = sinon.stub();
 
-			return readNext(parentArticle3, useElasticSearch, false)
-				.then(function(result) {
-					results = result;
-				});
+			stubs.search = sinon.stub().returns(
+				Promise.resolve([
+					{
+						id: 'eaa2adf0-5bb4-11e5-9846-de406ccb37f2',
+						publishedDate: '2015-09-16T11:58:53.000Z'
+					}
+				])
+			);
+
+			return subject('', [], {}, '2015-07-13T17:53:12.000Z')
+				.then(result => results = result);
 		});
 
 		it('read next should be based on topic as no story package', function() {
-			JSON.stringify(results).should.equal(JSON.stringify(readNextArticle3));
+			results.id.should.equal('eaa2adf0-5bb4-11e5-9846-de406ccb37f2');
 			results.source.should.equal('topic');
 		});
 
@@ -142,21 +123,23 @@ describe('Suggested Read Model', function() {
 	describe('Parent has no story package, Topic articles older than parent', function() {
 
 		before(function() {
-			stubSearchLegacy.withArgs({
-				query: topicQuery4,
-				count: 2,
-				fields: true,
-				useElasticSearch: true
-			}).returns(Promise.resolve(topicArticles4));
+			stubs.content = sinon.stub();
 
-			return readNext(parentArticle4, useElasticSearch, false)
-				.then(function(result) {
-					results = result;
-				});
+			stubs.search = sinon.stub().returns(
+				Promise.resolve([
+					{
+						id: '921d8c8e-5c47-11e5-a28b-50226830d644',
+						publishedDate: '2015-09-10T09:07:26.000Z'
+					}
+				])
+			);
+
+			return subject('', [], {}, '2015-09-14T12:27:09.000Z')
+				.then(result => results = result);
 		});
 
 		it('read next should be based on topic as no story package', function() {
-			JSON.stringify(results).should.equal(JSON.stringify(readNextArticle4));
+			results.id.should.equal('921d8c8e-5c47-11e5-a28b-50226830d644');
 			results.source.should.equal('topic');
 		});
 

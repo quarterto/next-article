@@ -1,6 +1,6 @@
 {{#if @root.flags.articleRelatedContent}}
 	{{#each moreOns}}
-		<div class="js-more-on-container{{#if class}} {{class}}{{/if}}" data-o-grid-colspan="12 XL11 XLoffset1" data-trackable="more-on" role="region">
+		<div class="more-on {{#if @last}}more-on--small{{/if}} js-more-on-container" data-o-grid-colspan="12 XL11 XLoffset1" data-trackable="more-on-{{@index}}" role="region">
 			<div class="pod">
 				<div class="header">
 					<h2 class="header__name">Latest {{title}} {{name}}</h2>
@@ -11,7 +11,7 @@
 						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
 					{{/if}}
 				</div>
-				<ul class="pod__items js-more-on" data-metadata-fields="{{metadata}}">
+				<ul class="pod__items js-more-on">
 				</ul>
 			</div>
 		</div>

@@ -1,44 +1,51 @@
 'use strict';
 
-var api = require('next-ft-api-client');
-var fetchres = require('fetchres');
-var logger = require('ft-next-express').logger;
-var NoRelatedResultsException = require('../../lib/no-related-results-exception');
-var articlePodMapping = require('../../mappings/article-pod-mapping');
+const api = require('next-ft-api-client');
+const fetchres = require('fetchres');
+const logger = require('ft-next-express').logger;
+const NoRelatedResultsException = require('../../lib/no-related-results-exception');
+const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
 module.exports = function(req, res, next) {
-	var storyPackageIds = req.query.ids;
 
-	if (!req.query.ids) {
+	if (!req.query.articleIds) {
 		return res.status(400).end();
 	}
 
-	return api.contentLegacy({
-		uuid: storyPackageIds.split(','),
-		useElasticSearch: true,
-		useElasticSearchOnAws: res.locals.flags.elasticSearchOnAws
+	let count = parseInt(req.query.count, 10) || 5;
+
+	return api.content({
+		index: 'v3_api_v2',
+		uuid: req.query.articleIds.split(',').slice(0, count)
 	})
 		.then(function(articles) {
 			if (!articles.length) {
 				throw new NoRelatedResultsException();
 			}
-			if (req.query.count) {
-				articles.splice(req.query.count);
-			}
 
-			return articles.map(function(article) {
-				return articlePodMapping(article);
-			});
+			return articles.map(articlePodMapping);
 		})
 		.then(function(articles) {
+			let numImages = 0;
+			let imageCount = 0;
+
+			articles.forEach(article => article.image && numImages++);
+
 			return res.render('related/story-package', {
-				articles: articles.map(function(article, index) {
-					if (articles.length > 4 && article.image && index && index > 2) {
-						article.image = undefined;
+				articles: articles.map(article => {
+					article.image && imageCount ++;
+
+					if (articles.length === 5 && numImages === 5 && (imageCount === 3 || imageCount === 4)) {
+						article.image = null;
 					}
+
+					if (articles.length === 3 && numImages > 1 && article.image && (imageCount === 2 || imageCount === 3)) {
+						article.image = null;
+					}
+
 					return article;
 				}),
-				headerText: 'Related stories',
+				headerText: 'Related stories'
 			});
 		})
 		.catch(function(err) {

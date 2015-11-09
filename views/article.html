@@ -1,0 +1,211 @@
+{{#defineBlock 'head'}}
+	{{#if dfp.dfpSite}}
+	<meta name="dfp_site" content="{{dfp.dfpSite}}" />
+	{{/if}}
+	{{#if dfp.dfpZone}}
+	<meta name="dfp_zone" content="{{dfp.dfpZone}}" />
+	{{/if}}
+{{/defineBlock}}
+
+<article id="site-content" role="main" class="article{{#if designGenre}} article--brand {{#if designGenre.headshot}}article--brand--headshot{{/if}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
+	<div class="article__header" data-trackable="header">
+		<div class="article__leaderboard-advert"></div>
+		<div class="o-grid-container">
+			<div class="article__header-inner {{#if mainImage}}article__header-inner--main-image{{/if}} o-grid-row">
+				{{#if barrier}}
+				<div data-o-grid-colspan="12 L12 XL12">
+				{{else}}
+				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+				{{/if}}
+<<<<<<< HEAD:views/article-v2.html
+
+					<header>
+=======
+					<header class="article__header--wrapper {{#if mainImage}}article__header--wrapper--main-image{{/if}}">
+>>>>>>> eb1c15dcdccce8c17ab13fcfa5979d97b34eef59:views/article.html
+						<div class="article__header-primary">
+							{{#if isSpecialReport}}
+								<p class="article__primary-theme">
+									Special Report:
+									<a href="/special-reports/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+								</p>
+							{{else}}
+								{{#if primaryTag}}
+								<p class="article__primary-theme">
+									<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+								</p>
+								{{/if}}
+							{{/if}}
+							<h1 class="article__title">{{title}}</h1>
+						</div>
+						<div class="article__header-secondary">
+							{{#if standFirst}}
+								<p class="article__stand-first">{{{standFirst}}}</p>
+							{{/if}}
+							{{#if designGenre}}
+								<div class="article__brand--wrapper">
+									<a class="article__brand--title" href={{designGenre.url}} data-trackable="brand--{{designGenre.genre}}">{{designGenre.name}}</a>
+								</div>
+							{{/if}}
+						</div>
+					</header>
+					{{#if designGenre.headshot}}
+					<div class="article__header-headshot">
+						<img class="article__header-headshot--image" src="{{designGenre.headshot}}?source=next&fit=scale-down&width=150">
+					</div>
+					{{/if}}
+				</div>
+				{{#if readNextArticle}}
+					{{>read-next-header article=readNextArticle}}
+				{{else}}
+					{{#if tags}}
+					<aside class="article__tags" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
+						<h3 class="article__tags__title">Topics mentioned in this article</h3>
+						<ul class="article__tags-list" data-trackable="tags">
+						{{#each tags}}
+							<li class="article__tag">
+								<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
+							</li>
+						{{/each}}
+						</ul>
+					</aside>
+					{{/if}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+<<<<<<< HEAD:views/article-v2.html
+	{{#if body}}
+	<div class="o-grid-container">
+		<div class="article__main o-grid-row">
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+
+				{{#if gift}}
+					<div class="article__gifted">
+						<p>This article has been gifted to you by an FT subscriber.</p>
+					</div>
+				{{/if}}
+
+				<div class="article__body">
+					{{{body}}}
+				</div>
+=======
+	<div class="article__wrapper {{#if mainImageHTML}}article__wrapper--main-image{{/if}}">
+		{{#if bodyHTML}}
+		<div class="o-grid-container">
+			<div class="article__main o-grid-row">
+				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+					{{#if mainImageHTML}}
+						{{{mainImageHTML}}}
+					{{/if}}
+					{{> social}}
+					<div class="article__time-byline">
+						{{#if publishedDate}}
+							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
+							{{#dateformat "mmmm d, yyyy"}}{{publishedDate}}{{/dateformat}}
+							</time>
+						{{/if}}
+						{{#if byline}}
+							<p class="article__byline">by: {{{byline}}}</p>
+						{{/if}}
+					</div>
+					<div class="article__body">
+						{{{bodyHTML}}}
+					</div>
+>>>>>>> eb1c15dcdccce8c17ab13fcfa5979d97b34eef59:views/article.html
+
+				{{#if firstClickFree}}
+					{{> first-click-free}}
+				{{/if}}
+
+			</div>
+			<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+				<div class="article__rail-advert"></div>
+				{{#if @root.flags.articleSuggestedRead}}
+					{{> suggested-reads items=readNextArticles }}
+					{{> suggested-topic suggested=suggestedTopic }}
+				{{/if}}
+				{{{toc}}}
+			</div>
+		</div>
+		{{/if}}
+	</div>
+</article>
+
+<div class="o-grid-container">
+	<div class="o-grid-row">
+		<div data-o-grid-colspan="12 L10 center">
+			{{#if registerSimpleBarrier}}
+				{{> barriers/register-simple}}
+			{{/if}}
+
+			{{#if registerGridBarrier}}
+				{{> barriers/register-grid}}
+			{{/if}}
+
+			{{#if trialSimpleBarrier}}
+				{{> barriers/trial-simple}}
+			{{/if}}
+
+			{{#if trialGridBarrier}}
+				{{> barriers/trial-grid}}
+			{{/if}}
+
+			{{#if subscriptionGridBarrier}}
+				{{> barriers/subscription-grid}}
+			{{/if}}
+
+			{{#if premiumSimpleBarrier}}
+				{{> barriers/premium-simple}}
+			{{/if}}
+
+			{{#if premiumGridBarrier}}
+				{{> barriers/premium-grid}}
+			{{/if}}
+
+			{{#if corporateBarrier}}
+				{{> barriers/corporate-simple}}
+			{{/if}}
+		</div>
+	</div>
+</div>
+
+{{>propensity-messaging-promo-unit}}
+
+{{#ifAll readNextArticle readNextArticle.moreRecent}}
+	{{>read-next-bottom article=readNextArticle}}
+{{/ifAll}}
+
+<div class="o-grid-container">
+	<div class="o-grid-row {{#if readNextArticle}}read-next__container{{/if}}">
+		{{#if isSpecialReport}}
+				<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12 XL11 XLoffset1"></div>
+		{{else}}
+			{{#if @root.flags.articleRelatedContent}}
+				<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12 XL11 XLoffset1"></div>
+				{{#if moreOns}}
+					{{>more-ons}}
+				{{/if}}
+			{{/if}}
+		{{/if}}
+	</div>
+
+	{{#if comments}}
+		<div class="o-grid-row">
+			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
+				<div data-trackable="comments" class="article__comments o-comments n-util-hide@print" id="comments"></div>
+			</div>
+		</div>
+	{{/if}}
+
+	{{#if barrierOverlay}}
+		<div class="barrier-overlay"></div>
+	{{/if}}
+
+</div>
+
+{{#if @root.flags.myFTTray}}
+	{{>n-myft-tray/templates/tray}}
+{{/if}}
+
+<script type="text/json" id="dehydrated-metadata">{{{json dehydratedMetadata}}}</script>

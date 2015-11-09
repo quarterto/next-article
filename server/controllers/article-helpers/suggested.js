@@ -1,38 +1,41 @@
 'use strict';
 
-var api = require('next-ft-api-client');
-var articleTopicMapping = require('../../mappings/article-topic-mapping');
+const api = require('next-ft-api-client');
+const logger = require('ft-next-express').logger;
+const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
-module.exports = function(article, useElasticSearch) {
-	if (!article) { return Promise.resolve(); }
-	var topic = articleTopicMapping(!!article.item && article.item.metadata);
-	var packageIds = getStoryPackage(article).map(function(item) { return item.id; });
+module.exports = function(articleId, storyPackageIds, primaryTag) {
+	let todo;
 
-	if (packageIds.length < 5 && topic) {
-		return api.searchLegacy({
-			query: topic.taxonomy + 'Id:"' + topic.id + '"',
-			count: 6 - packageIds.length,
-			useElasticSearch: useElasticSearch
+	if (storyPackageIds.length < 5) {
+		todo = api.search({
+			filter: ['metadata.idV1', primaryTag.id],
+			fields: ['id'],
+			count: 6 - storyPackageIds.length
 		})
-		.then(function(ids) {
-			return ids.filter(function(id) {
-				return id !== article.item.id;
-			}).splice(0, 5);
-		})
-		.then(function(dedupedIds) {
-			return {
-				ids: packageIds.concat(dedupedIds)
-			};
-		});
+			.then(articles => {
+				return storyPackageIds.concat(
+					articles
+						.filter(article => article.id !== articleId)
+						.slice(0, 5 - storyPackageIds.length)
+						.map(article => article.id)
+				);
+			});
 	} else {
-		return Promise.resolve({
-			ids: packageIds
-		});
+		todo = Promise.resolve(storyPackageIds);
 	}
 
-	return Promise.resolve();
+	return todo
+		.then(articleIds => {
+			return api.content({
+				uuid: articleIds,
+				index: 'v3_api_v2'
+			});
+		})
+		.then(articles => {
+			return articles.map(articlePodMapping);
+		})
+		.catch(error => {
+			logger.warn('Fetching suggested reads failed.', error.toString());
+		});
 };
-
-function getStoryPackage(article) {
-	return (!!article && !!article.item && article.item.package) || [];
-}

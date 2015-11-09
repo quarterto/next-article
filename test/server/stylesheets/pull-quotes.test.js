@@ -6,7 +6,7 @@ require('chai').should();
 
 describe('Pull Quotes', function () {
 
-	it('should turn capi v2 pull-quotes into o-quotes', function() {
+	it('should turn capi v2 pull-quotes into n-quotes', function() {
 		return transform(
 				'<body>' +
 					'<pull-quote>' +
@@ -17,12 +17,10 @@ describe('Pull Quotes', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<body>' +
-						'<blockquote class="ng-pull-out n-quote">' +
-							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
-							'<cite class="n-quote__cite">Dr. Seuss</cite>' +
-						'</blockquote>' +
-					'</body>\n'
+					'<blockquote class="ng-pull-out n-quote">' +
+						'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
+						'<cite class="n-quote__cite">Dr. Seuss</cite>' +
+					'</blockquote>\n'
 				);
 			});
 	});
@@ -38,11 +36,9 @@ describe('Pull Quotes', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<body>' +
-						'<blockquote class="ng-pull-out n-quote">' +
-							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
-						'</blockquote>' +
-					'</body>\n'
+					'<blockquote class="ng-pull-out n-quote">' +
+						'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
+					'</blockquote>\n'
 				);
 			});
 	});

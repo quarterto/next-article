@@ -1,40 +1,55 @@
-.article--analysis,
-.article--comment,
-.article--lifestyle {
-	.article__tag {
-		background-color: transparent;
-	}
-}
+$brand-color: getColor('warm-1');
 
-.article--analysis {
-	.article__header {
-		@include oColorsFor(article-analysis, background);
-	}
-}
+.article--brand {
 
-.article--comment {
-	.article__header {
-		@include oColorsFor(article-comment, background);
+	.article__header,
+ 	.next-up__intro__header {
+		background: $brand-color;
 	}
-	.article__title {
-		@include nTypeCharlie(2);
-		@include oGridRespondTo(L) {
-			@include nTypeCharlieSize(1);
+
+	.article__wrapper--main-image {
+		box-shadow: inset 0 50px 0 $brand-color;
+	}
+
+	.article__header--wrapper--main-image {
+		border-bottom: 1px solid getColor('warm-3');
+	}
+
+	&--headshot {
+
+		.article__header-secondary {
+			padding-right: 100px;
+			@include oGridRespondTo(M) {
+				padding-right: 150px;
+			}
+		}
+
+		.article__header-primary {
+			 @include oGridRespondTo(M) {
+				 padding-right: 150px;
+			 }
 		}
 	}
-	.article__stand-first {
-		@include nTypeEcho(3);
-	}
+
 }
 
-.article--lifestyle {
-	.article__header {
-		@include oColorsFor(article-lifestyle, background);
+.article__brand--wrapper {
+	margin-top: 8px;
+}
+
+.article__header-headshot {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100px;
+	@include oGridRespondTo(M) {
+		width: 150px;
 	}
-	.article__title {
-		@include nTypeAlpha(2);
-		@include oGridRespondTo(L) {
-			@include nTypeAlphaSize(1);
-		}
-	}
+	overflow: hidden;
+}
+
+.article__header-headshot--image {
+	max-width: 100%;
+	display: block;
+ 	margin-left: 8px;
 }
