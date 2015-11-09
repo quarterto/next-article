@@ -1,4 +1,11 @@
 module.exports = [
+	// Health check
+	{
+		timeout: 10000,
+		urls: {
+			'/__health': 200
+		}
+	},
 	{
 		timeout: 10000,
 		urls: {
