@@ -33,7 +33,7 @@ module.exports = function (req, res, next) {
 			}
 
 			articles = articles
-				.filter(article => article.id !== req.param.id)
+				.filter(article => article.id !== req.params.id)
 				.slice(0, count)
 				.map(articlePodMapping);
 
