@@ -7,10 +7,10 @@ const interactivePoller = require('../lib/ig-poller');
 const shellpromise = require('shellpromise');
 
 const controllerInteractive = require('./interactive');
-// const controllerPodcastV3 = require('./podcast-v3');
-const controllerArticleV3 = require('./article-v3');
+const controllerPodcast = require('./podcast');
+const controllerArticle = require('./article');
 
-function isArticlePodcastV3(article) {
+function isArticlePodcast(article) {
 	return article.provenance.find(
 		source => source.includes('http://rss.acast.com/')
 	);
@@ -22,7 +22,7 @@ function getInteractive(contentId) {
 	);
 }
 
-function getArticleV3(contentId) {
+function getArticle(contentId) {
 	return api.content({
 		uuid: contentId,
 		index: 'v3_api_v2'
@@ -44,7 +44,7 @@ module.exports = function negotiationController(req, res, next) {
 		return controllerInteractive(req, res, next, interactive);
 	}
 
-	return getArticleV3(req.params.id)
+	return getArticle(req.params.id)
 		.then(article => {
 			const webUrl = article && article.webUrl || '';
 
@@ -53,10 +53,10 @@ module.exports = function negotiationController(req, res, next) {
 			}
 
 			if (article) {
-				if (isArticlePodcastV3(article)) {
-					// return controllerPodcastV3(req, res, next, article);
+				if (isArticlePodcast(article)) {
+					return controllerPodcast(req, res, next, article);
 				} else {
-					return controllerArticleV3(req, res, next, article);
+					return controllerArticle(req, res, next, article);
 				}
 			}
 

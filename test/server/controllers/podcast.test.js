@@ -6,11 +6,11 @@ var sinon = require('sinon');
 var expect = require('chai').expect;
 var httpMocks = require('node-mocks-http');
 
-var subject = require('../../../server/controllers/podcast-legacy');
+var subject = require('../../../server/controllers/podcast');
 var fixtureEsFound = require('../../fixtures/capi-v1-elastic-search-podcast');
 var fixtureEsNoResults = require('../../fixtures/capi-v1-elastic-search-no-results');
 
-describe('Podcast Legacy Controller', function() {
+describe('Podcast Controller', function() {
 
 	var request;
 	var response;

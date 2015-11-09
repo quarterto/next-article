@@ -9,22 +9,22 @@ const proxyquire = require('proxyquire');
 const httpMocks = require('node-mocks-http');
 
 const fixtureInteractives = require('../../fixtures/interactive-graphics');
-// const fixturePodcast = require('../../fixtures/v3-elastic-podcast-found');
+const fixturePodcast = require('../../fixtures/v3-elastic-podcast-found');
 const fixtureArticle = require('../../fixtures/v3-elastic-article-found');
 const fixtureNotFound = require('../../fixtures/v3-elastic-not-found');
 
 const dependencyStubs = {
 	igPoller: { getData: () => fixtureInteractives },
-	// podcastV3: sinon.spy(),
-	articleV3: sinon.spy(),
+	podcast: sinon.spy(),
+	article: sinon.spy(),
 	interactive: sinon.spy(),
 	shellpromise: sinon.stub()
 };
 
 const subject = proxyquire('../../../server/controllers/negotiation', {
 	'../lib/ig-poller': dependencyStubs.igPoller,
-	// './podcast-v3': dependencyStubs.podcastV3,
-	'./article-v3': dependencyStubs.articleV3,
+	'./podcast': dependencyStubs.podcast,
+	'./article': dependencyStubs.article,
 	'./interactive': dependencyStubs.interactive,
 	'shellpromise': dependencyStubs.shellpromise
 });
@@ -62,28 +62,27 @@ describe('Negotiation Controller', function() {
 		});
 	});
 
-	// TODO: re-implement podcasts
-	xdescribe('when the requested article is a podcast', function() {
+	describe('when the requested article is a podcast', function() {
 		beforeEach(function() {
 
 			nock('https://next-elastic.ft.com')
 				.post('/v3_api_v2/item/_mget')
-				.reply(200, null);
+				.reply(200, fixturePodcast);
 
 			return createInstance({
 				params: {
-					id: '55ef024ec7a00b32cb5a5991'
+					id: '352210c4-7b17-11e5-a1fe-567b37f80b64'
 				}
 			});
 
 		});
 
 		afterEach(function() {
-			dependencyStubs.podcastV3.reset();
+			dependencyStubs.podcast.reset();
 		});
 
-		it('defers to the podcast legacy controller', function() {
-			expect(dependencyStubs.podcastV3.callCount).to.equal(1);
+		it('defers to the podcast controller', function() {
+			expect(dependencyStubs.podcast.callCount).to.equal(1);
 			expect(response.statusCode).to.not.equal(404);
 		});
 	});
@@ -105,11 +104,11 @@ describe('Negotiation Controller', function() {
 			});
 
 			afterEach(function() {
-				dependencyStubs.articleV3.reset();
+				dependencyStubs.article.reset();
 			});
 
 			it('defers to the article controller', function() {
-				expect(dependencyStubs.articleV3.callCount).to.equal(1);
+				expect(dependencyStubs.article.callCount).to.equal(1);
 				expect(response.statusCode).to.not.equal(404);
 			});
 		});
@@ -135,11 +134,11 @@ describe('Negotiation Controller', function() {
 
 			afterEach(function() {
 				dependencyStubs.shellpromise.returns(undefined);
-				dependencyStubs.articleV3.reset();
+				dependencyStubs.article.reset();
 			});
 
 			it('redirects to ft.com', function() {
-				expect(dependencyStubs.articleV3.callCount).to.equal(0);
+				expect(dependencyStubs.article.callCount).to.equal(0);
 				expect(response.statusCode).to.equal(302);
 			});
 		});
@@ -165,11 +164,11 @@ describe('Negotiation Controller', function() {
 
 			afterEach(function() {
 				dependencyStubs.shellpromise.returns(undefined);
-				dependencyStubs.articleV3.reset();
+				dependencyStubs.article.reset();
 			});
 
 			it('responds with a 404', function() {
-				expect(dependencyStubs.articleV3.callCount).to.equal(0);
+				expect(dependencyStubs.article.callCount).to.equal(0);
 				expect(response.statusCode).to.equal(404);
 			});
 		});

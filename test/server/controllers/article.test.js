@@ -9,12 +9,12 @@ const httpMocks = require('node-mocks-http');
 
 const fixtureEsFound = require('../../fixtures/v3-elastic-article-found').docs[0]._source;
 
-const subject = proxyquire('../../../server/controllers/article-v3', {
+const subject = proxyquire('../../../server/controllers/article', {
 	'../transforms/article-xslt': (article) => Promise.resolve(article.bodyXML),
 	'../transforms/body': (articleHtml) => { return { html: () => articleHtml } }
 });
 
-describe('Article V3 Controller', function() {
+describe('Article Controller', function() {
 
 	let request;
 	let response;
