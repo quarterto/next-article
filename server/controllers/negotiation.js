@@ -12,7 +12,7 @@ const controllerArticleV3 = require('./article-v3');
 
 function isArticlePodcastV3(article) {
 	return article.provenance.find(
-		source => source.includes('https://www.acast.com/')
+		source => source.includes('http://rss.acast.com/')
 	);
 }
 
@@ -25,8 +25,7 @@ function getInteractive(contentId) {
 function getArticleV3(contentId) {
 	return api.content({
 		uuid: contentId,
-		index: 'v3_api_v2',
-		useElasticSearch: true
+		index: 'v3_api_v2'
 	})
 		// Some things aren't in CAPI v3 (e.g. Syndicated content)
 		.catch(function(error) {

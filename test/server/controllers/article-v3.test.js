@@ -1,4 +1,4 @@
-/*global describe, context, it beforeEach, afterEach, */
+/*global describe, context, it, beforeEach */
 
 'use strict';
 
@@ -51,23 +51,6 @@ describe('Article V3 Controller', function() {
 
 		it('maps data for compatibility with legacy templates', function() {
 			expect(result.standFirst).to.not.be.undefined;
-		});
-
-		it('maps the metadata to legacy template compatible format', function() {
-			expect(result.tags.length).to.equal(5);
-
-			result.tags.forEach(
-				tag => expect(tag).to.include.keys('id', 'name', 'taxonomy', 'url')
-			);
-		});
-
-		it('defines the primary tag and removes it from tags', function() {
-			expect(result.primaryTag).to.include.keys('id', 'name', 'taxonomy', 'url');
-			expect(result.primaryTag.id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
-
-			result.tags.forEach(
-				tag => expect(tag.id).not.to.equal(result.primaryTag.id)
-			);
 		});
 
 		it('provides more on data for related content', function() {
