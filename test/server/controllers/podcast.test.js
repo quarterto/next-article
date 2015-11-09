@@ -32,8 +32,7 @@ describe('Podcast Controller', () => {
 		result = null;
 
 		let flags = {
-			openGraph: true,
-			twitterCards: true
+			openGraph: true
 		};
 
 		return createInstance(null, flags).then(() => {

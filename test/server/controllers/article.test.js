@@ -34,8 +34,7 @@ describe('Article Controller', () => {
 		result = null;
 
 		let flags = {
-			openGraph: true,
-			twitterCards: true
+			openGraph: true
 		};
 
 		return createInstance(null, flags).then(() => {
@@ -69,25 +68,11 @@ describe('Article Controller', () => {
 
 		expect(result.dehydratedMetadata.moreOns[0].id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
 		expect(result.dehydratedMetadata.moreOns[1].id).to.equal('NTg=-U2VjdGlvbnM=');
-
 		expect(result.dehydratedMetadata.package).to.be.an.instanceOf(Array);
 	});
 
 	it('provides DFP data from metadata', () => {
 		expect(result.dfp).to.include.keys('dfpSite', 'dfpZone');
-	});
-
-	it('provides Open Graph data', () => {
-		expect(result.og).to.include.keys('title', 'description', 'url', 'image');
-		expect(result.og.image).to.equal(fixtureEsFound.mainImage.url);
-		expect(result.og.title).to.equal(fixtureEsFound.title);
-	});
-
-	it('provides Twitter card data', () => {
-		expect(result.twitterCard).to.include.keys('title', 'description', 'url', 'image', 'card');
-		expect(result.twitterCard.image).to.equal(fixtureEsFound.mainImage.url);
-		expect(result.twitterCard.title).to.equal(fixtureEsFound.title);
-		expect(result.twitterCard.card).to.equal('summary_large_image');
 	});
 
 });
