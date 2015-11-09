@@ -106,7 +106,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		payload.firstClickFree = res.locals.firstClickFreeModel;
 	}
 
-	// Decorate metadata such as primary tags and tags for display
+	// Decorate article with primary tags and tags for display
 	decorateMetadataHelper(payload);
 	payload.isSpecialReport = payload.primaryTag && payload.primaryTag.taxonomy === 'specialReports';
 
@@ -123,6 +123,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.articleV1 = isCapiV1(payload);
 	payload.articleV2 = isCapiV2(payload);
 
+	// TODO: move this to template or re-name subheading
 	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
 	payload.dehydratedMetadata = {

@@ -7,7 +7,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article" data-content-id="{{id}}" data-content-sources="v1" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header" data-trackable="header">
 		<div class="article__leaderboard-advert"></div>
 		<div class="o-grid-container">
@@ -61,7 +61,7 @@
 				<div class="article__media">
 					{{#with media}}
 					<audio controls>
-						<source src="{{url}}" type="{{type}}" />
+						<source src="{{url}}" type="{{mediaType}}" />
 						<p>
 							Your browser does not support playing this file but you can still <a href="{{url}}">download the MP3 file</a> to play locally.
 						</p>

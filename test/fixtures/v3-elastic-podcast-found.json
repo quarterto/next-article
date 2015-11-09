@@ -28,15 +28,13 @@
 						"url":"http://rss.acast.com/ft-arts/thelifeofasong-nessundorma/media.mp3"
 					}
 				],
-				"mainImage":[
-					{
-						"title":"Logo for FT Arts podcast",
-						"description":"",
-						"url":"http://az592690.vo.msecnd.net/media/v1/6134ca00-5e85-4054-91f0-d8274e8ad994/ft-arts-ig7u7hep.jpg",
-						"width":440,
-						"height":440
-					}
-				],
+				"mainImage":{
+					"title":"Logo for FT Arts podcast",
+					"description":"",
+					"url":"http://az592690.vo.msecnd.net/media/v1/6134ca00-5e85-4054-91f0-d8274e8ad994/ft-arts-ig7u7hep.jpg",
+					"width":440,
+					"height":440
+				},
 				"metadata":[
 					{
 						"idV1":"NzA0NWQ2OTUtNDdhZC00ZGMxLWI4MGEtODZkYTY5MjQ0ZTk1-QnJhbmRz",
