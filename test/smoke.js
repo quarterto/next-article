@@ -18,19 +18,6 @@ module.exports = [
 		}
 	},
 	{
-		// Elastic V3
-		headers: {
-			Cookie: 'next-flags=elasticV3:on'
-		},
-		timeout: 10000,
-		urls: {
-			// Methode
-			'/content/395650fa-5b9c-11e5-a28b-50226830d644': 200,
-			// FastFT
-			'/content/b002e5ee-3096-3f51-9925-32b157740c98': 200,
-		}
-	},
-	{
 		// Podcast
 		timeout: 10000,
 		urls: {
