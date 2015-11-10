@@ -16,9 +16,7 @@
               <aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">
                 <div class="promo-box__wrapper">
                   <xsl:apply-templates select="current()" mode="default-title" />
-                  <xsl:apply-templates>
-                      <xsl:with-param name="variation">long</xsl:with-param>
-                  </xsl:apply-templates>
+                  <xsl:apply-templates />
                 </div>
               </aside>
             </xsl:when>
@@ -26,9 +24,7 @@
               <aside class="promo-box promo-box--long ng-inline-element" data-trackable="promobox" role="complementary">
                 <div class="promo-box__wrapper">
                   <xsl:apply-templates select="current()" mode="default-title" />
-                  <xsl:apply-templates>
-                      <xsl:with-param name="variation">long</xsl:with-param>
-                  </xsl:apply-templates>
+                  <xsl:apply-templates />
                 </div>
               </aside>
             </xsl:otherwise>
@@ -83,11 +79,10 @@
     </xsl:template>
 
     <xsl:template match="promo-image">
-      <xsl:param name="variation" />
 
       <xsl:variable name="maxWidth">
         <xsl:choose>
-          <xsl:when test="$variation = 'long'">700</xsl:when>
+          <xsl:when test="@width &lt; 300"><xsl:value-of select="@width" /></xsl:when>
           <xsl:otherwise>300</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
@@ -95,6 +90,9 @@
       <div class="promo-box__image">
         <xsl:choose>
           <xsl:when test="count(img[@width][@height]) = 1">
+            <xsl:attribute name="style">
+              <xsl:value-of select="concat('width:', $maxWidth, 'px;')" />
+            </xsl:attribute>
             <xsl:apply-templates select="img" mode="placehold-image">
                 <xsl:with-param name="maxWidth" select="$maxWidth" />
             </xsl:apply-templates>

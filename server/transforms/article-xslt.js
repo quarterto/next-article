@@ -33,7 +33,7 @@ module.exports = function(xml, stylesheet, params) {
 		});
 
 		xsltproc.stderr.on('data', function(error) {
-			logger.error(error.toString());
+			errors.push(error.toString());
 		});
 
 		xsltproc.on('error', function(error) {
