@@ -44,11 +44,9 @@
 					<h3 class="article__tags__title">Topics mentioned in this podcast</h3>
 					<ul class="article__tags-list" data-trackable="tags">
 						{{#each tags}}
-							{{#with term}}
-							<li class="article__tag">
-								<a class="article__tag__link" href="/stream/{{taxonomy}}Id/{{id}}" data-trackable="tag" data-concept-id="{{id}}">{{name}}</a>
-							</li>
-							{{/with}}
+						<li class="article__tag">
+							<a class="article__tag__link" href="{{url}}" data-trackable="tag" data-concept-id="{{id}}">{{prefLabel}}</a>
+						</li>
 						{{/each}}
 					</ul>
 				</aside>
