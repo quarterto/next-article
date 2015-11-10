@@ -1,6 +1,5 @@
 'use strict';
 
-var logger = require('ft-next-express').logger;
 var spawn = require('child_process').spawn;
 
 module.exports = function(xml, stylesheet, params) {
