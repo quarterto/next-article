@@ -14,7 +14,7 @@
     "ft-next-article-genre": "^1.1.0",
     "ft-next-article-primary-tag": "^1.0.0",
     "ft-next-barriers": "^2.2.3",
-    "ft-next-express": "Financial-Times/next-express#mvt",
+    "ft-next-express": "^15.0.0",
     "ft-poller": "^2.0.3",
     "html-entities": "~1.1.3",
     "lodash": "~3.9.3",
