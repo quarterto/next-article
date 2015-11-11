@@ -63,9 +63,9 @@
 							<h3 class="article__tags__title">Topics mentioned in this article</h3>
 							<ul class="article__tags-list" data-trackable="tags">
 								{{#each tags}}
-									<li class="article__tag">
-										<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
-									</li>
+								<li class="article__tag">
+									<a class="article__tag__link" href="{{url}}" data-trackable="tag" data-concept-id="{{id}}">{{prefLabel}}</a>
+								</li>
 								{{/each}}
 							</ul>
 						</aside>

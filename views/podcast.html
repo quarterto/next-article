@@ -7,7 +7,7 @@
 	{{/if}}
 {{/defineBlock}}
 
-<article id="site-content" role="main" class="article" data-content-id="{{id}}" data-content-sources="v1" data-trackable="article" data-trackable-terminate>
+<article id="site-content" role="main" class="article" data-content-id="{{id}}" data-trackable="article" data-trackable-terminate>
 	<div class="article__header" data-trackable="header">
 		<div class="article__leaderboard-advert"></div>
 		<div class="o-grid-container">
@@ -44,11 +44,9 @@
 					<h3 class="article__tags__title">Topics mentioned in this podcast</h3>
 					<ul class="article__tags-list" data-trackable="tags">
 						{{#each tags}}
-							{{#with term}}
-							<li class="article__tag">
-								<a class="article__tag__link" href="/stream/{{taxonomy}}Id/{{id}}" data-trackable="tag" data-concept-id="{{id}}">{{name}}</a>
-							</li>
-							{{/with}}
+						<li class="article__tag">
+							<a class="article__tag__link" href="{{url}}" data-trackable="tag" data-concept-id="{{id}}">{{prefLabel}}</a>
+						</li>
 						{{/each}}
 					</ul>
 				</aside>
@@ -61,7 +59,7 @@
 				<div class="article__media">
 					{{#with media}}
 					<audio controls>
-						<source src="{{url}}" type="{{type}}" />
+						<source src="{{url}}" type="{{mediaType}}" />
 						<p>
 							Your browser does not support playing this file but you can still <a href="{{url}}">download the MP3 file</a> to play locally.
 						</p>

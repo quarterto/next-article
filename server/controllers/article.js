@@ -6,6 +6,8 @@ const getDfpUtil = require('../utils/get-dfp');
 const barrierHelper = require('./article-helpers/barrier');
 const suggestedHelper = require('./article-helpers/suggested');
 const readNextHelper = require('./article-helpers/read-next');
+const decorateMetadataHelper = require('./article-helpers/decorate-metadata');
+const openGraphHelper = require('./article-helpers/open-graph');
 const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 const bylineTransform = require('../transforms/byline');
@@ -46,48 +48,6 @@ function transformArticleBody(article, flags) {
 	});
 }
 
-function transformMetadata(metadata) {
-	return metadata.map(tag => {
-		let v1 = {
-			id: tag.idV1,
-			name: tag.prefLabel,
-			url: `/stream/${tag.taxonomy}Id/${tag.idV1}`
-		};
-
-		return Object.assign(v1, tag);
-	});
-}
-
-function getPrimaryTheme(metadata) {
-	return metadata.find(tag => tag.primary === 'theme');
-}
-
-function getPrimarySection(metadata) {
-	return metadata.find(tag => tag.primary === 'section');
-}
-
-function getPrimaryTag(primaryTheme, primarySection) {
-	let precedence = [ 'specialReports' ];
-	let primaryTag = primaryTheme || primarySection || null;
-
-	if (primarySection && precedence.indexOf(primarySection.taxonomy) > -1) {
-		primaryTag = primarySection;
-	}
-
-	return primaryTag;
-}
-
-function getTagsForDisplay(metadata, primaryTag) {
-	let ignore = [ 'mediaType', 'iptc', 'icb' ];
-
-	return metadata
-		.filter(tag => {
-			return !ignore.find(taxonomy => taxonomy === tag.taxonomy)
-				&& (!primaryTag || tag.id !== primaryTag.id);
-		})
-		.slice(0, 5);
-}
-
 function getMoreOnTags(primaryTheme, primarySection) {
 	let moreOnTags = [];
 
@@ -121,21 +81,6 @@ function getMoreOnTags(primaryTheme, primarySection) {
 	});
 }
 
-function getOpenGraphData(article) {
-	return {
-		title: article.title,
-		description: article.summaries ? article.summaries[0] : '',
-		image: article.mainImage && article.mainImage.url,
-		url: `https://next.ft.com/content/${article.id}`
-	};
-}
-
-function getTwitterCardData(article) {
-	let openGraph = getOpenGraphData(article);
-	openGraph.card = openGraph.image ? 'summary_large_image' : 'summary';
-	return openGraph;
-}
-
 module.exports = function articleV3Controller(req, res, next, payload) {
 	let asyncWorkToDo = [];
 
@@ -147,16 +92,9 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		payload.firstClickFree = res.locals.firstClickFreeModel;
 	}
 
-	// Make metadata speak the same language as V1
-	payload.metadata = transformMetadata(payload.metadata)
-
-	let primarySection = getPrimarySection(payload.metadata);
-	let primaryTheme = getPrimaryTheme(payload.metadata);
-	let primaryTag = getPrimaryTag(primaryTheme, primarySection);
-
-	payload.primaryTag = primaryTag;
-	payload.tags = getTagsForDisplay(payload.metadata, primaryTag);
-	payload.isSpecialReport = primaryTag && primaryTag.taxonomy === 'specialReports';
+	// Decorate article with primary tags and tags for display
+	decorateMetadataHelper(payload);
+	payload.isSpecialReport = payload.primaryTag && payload.primaryTag.taxonomy === 'specialReports';
 
 	asyncWorkToDo.push(
 		transformArticleBody(payload, res.locals.flags).then(fragments => {
@@ -166,13 +104,15 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	);
 
 	// Decorate with related stuff
-	payload.moreOns = getMoreOnTags(primaryTheme, primarySection);
+	payload.moreOns = getMoreOnTags(payload.primaryTheme, payload.primarySection);
 
-	// <<< hacking for V1 and V2 compat.
 	payload.articleV1 = isCapiV1(payload);
 	payload.articleV2 = isCapiV2(payload);
 
+	// TODO: move this to template or re-name subheading
 	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
+
+	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
 
 	payload.dehydratedMetadata = {
 		moreOns: payload.moreOns,
@@ -180,38 +120,28 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	};
 
 	payload.dfp = getDfpUtil(payload.metadata);
-	// >>> hacking for V1 and V2 compat.
 
 	if (res.locals.flags.openGraph) {
-		payload.og = getOpenGraphData(payload);
-	}
-
-	if (res.locals.flags.twitterCards) {
-		payload.twitterCard = getTwitterCardData(payload);
+		openGraphHelper(payload);
 	}
 
 	if (res.locals.flags.articleSuggestedRead && payload.metadata.length) {
 		let storyPackageIds = (payload.storyPackage || []).map(story => story.id);
 
 		asyncWorkToDo.push(
-			suggestedHelper(payload.id, storyPackageIds, primaryTag).then(
+			suggestedHelper(payload.id, storyPackageIds, payload.primaryTag).then(
 				articles => payload.readNextArticles = articles
 			)
 		);
 
 		asyncWorkToDo.push(
-			readNextHelper(payload.id, storyPackageIds, primaryTag, payload.publishedDate).then(
+			readNextHelper(payload.id, storyPackageIds, payload.primaryTag, payload.publishedDate).then(
 				article => payload.readNextArticle = article
 			)
 		);
 
-		payload.suggestedTopic = primaryTag;
+		payload.suggestedTopic = payload.primaryTag;
 	}
-
-	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
-
-	// TODO: implement this
-	payload.visualCat = null;
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
