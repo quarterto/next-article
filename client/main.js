@@ -50,6 +50,7 @@ require('next-js-setup').bootstrap(function(result) {
 
 	nVideo.init({
 		optimumWidth: 710,
+		placeholder: true,
 		classes: ['article__video', 'ng-media']
 	});
 
