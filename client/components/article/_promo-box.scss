@@ -9,13 +9,12 @@
 .promo-box--long {
 	float: none;
 	max-width: 100%;
-}
 
-.promo-box--long .promo-box__image {
-	@include oGridRespondTo(S) {
-		float: left;
-		margin-right: 10px;
-		max-width: 280px;
+	.promo-box__image {
+		@include oGridRespondTo(S) {
+			float: left;
+			margin-right: 10px;
+		}
 	}
 }
 

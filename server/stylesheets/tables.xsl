@@ -9,7 +9,7 @@
                     <h3 class="promo-box__headline"><xsl:value-of select="caption" /></h3>
                 </xsl:if>
                 <div class="promo-box__content">
-                    <xsl:apply-templates select="tr/td/*" />
+                    <xsl:apply-templates select="tr/td/node()" />
                 </div>
             </div>
         </aside>

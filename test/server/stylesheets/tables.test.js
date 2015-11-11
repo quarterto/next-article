@@ -14,7 +14,7 @@ describe('Tables', () => {
 						'<table class="data-table">' +
 							'<caption>Lorem ipsum doler sit amet</caption>' +
 							'<tr>' +
-								'<td><p>Ut enim ad minim veniam</p></td>' +
+								'<td><p>Ut enim ad minim veniam</p><br>I am a text node!</td>' +
 							'</tr>' +
 						'</table>' +
 					'</body>' +
@@ -27,6 +27,7 @@ describe('Tables', () => {
 							'<h3 class="promo-box__headline">Lorem ipsum doler sit amet</h3>' +
 							'<div class="promo-box__content">' +
 								'<p>Ut enim ad minim veniam</p>' +
+								'<br>I am a text node!' +
 							'</div>' +
 						'</div>' +
 					'</aside>\n'

@@ -1,6 +1,5 @@
 'use strict';
 
-var logger = require('ft-next-express').logger;
 var spawn = require('child_process').spawn;
 
 module.exports = function(xml, stylesheet, params) {
@@ -33,7 +32,7 @@ module.exports = function(xml, stylesheet, params) {
 		});
 
 		xsltproc.stderr.on('data', function(error) {
-			logger.error(error.toString());
+			errors.push(error.toString());
 		});
 
 		xsltproc.on('error', function(error) {
