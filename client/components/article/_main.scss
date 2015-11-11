@@ -22,14 +22,20 @@
 	}
 }
 
-.article__gifted--wrapper{
-	color: white;
+.article__header-gifted-message{
+	color: getColor('white');
 	background: rgb(158, 47, 80) none repeat scroll 0% 0%;
 	padding: 10px 10px 12px;
 	margin-top: 11px;
 	float: left;
 	width: 100%;
 	border-radius: 2px;
+	box-sizing: border-box;
+
+	@media all and (max-width: 380px){
+		font-size: 0.75em;
+	}
+
 }
 
 .article__header-secondary {

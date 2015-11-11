@@ -212,11 +212,8 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	if(req.get('FT-Labs-Gift')){
 
-		console.log("HAVE THE HEADER");
-
 		if(req.get('FT-Labs-Gift') === "GRANTED"){
 			payload.gifted = true;
-			console.log("GRANTED");
 		}
 
 	}
