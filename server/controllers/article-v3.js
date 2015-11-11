@@ -213,7 +213,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	if(req.get('FT-Labs-Gift')){
 
 		if(req.get('FT-Labs-Gift') === "GRANTED"){
-			payload.gifted = true;
+			payload.shared = true;
 		}
 
 	}
