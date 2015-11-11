@@ -13,10 +13,10 @@ module.exports = {
 			.url(`${TEST_BASE_URL}/__gtg`)
 			// need to set the cookie with JS for IE
 			.execute(() => {
-				document.cookie = 'next-flags=ads:off; secure=true';
+				document.cookie = 'next-flags=ads%3Aoff; secure=true';
 			})
 			.url(TEST_URL)
-			.waitForElementPresent('html.js.js-success', 60000);
+			.waitForElementPresent('html.js-success', 60000);
 	},
 
 	tearDown: function(done) {

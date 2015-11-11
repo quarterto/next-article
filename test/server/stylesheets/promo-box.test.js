@@ -56,7 +56,7 @@ describe('Promo-boxes', function() {
 							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
 						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
-						'<div class="promo-box__image" style="width:300px;">' +
+						'<div class="promo-box__image">' +
 							'<div class="article-image__placeholder" style="padding-top:50%;">' +
 								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=300">' +
 							'</div>' +
