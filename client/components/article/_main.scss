@@ -22,6 +22,16 @@
 	}
 }
 
+.article__gifted--wrapper{
+	color: white;
+	background: rgb(158, 47, 80) none repeat scroll 0% 0%;
+	padding: 10px 10px 12px;
+	margin-top: 11px;
+	float: left;
+	width: 100%;
+	border-radius: 2px;
+}
+
 .article__header-secondary {
 	margin-top: $spacing-unit / 2;
 }

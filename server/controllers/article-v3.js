@@ -210,6 +210,16 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
 
+	if(req.get('FT-Labs-Gift')){
+
+		console.log("HAVE THE HEADER");
+
+		if(req.get('FT-Labs-Gift') === "GRANTED"){
+			payload.gifted = true;
+			console.log("GRANTED");
+		}
+
+	}
 
 	// TODO: implement this
 	payload.visualCat = null;
