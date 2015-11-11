@@ -29,7 +29,7 @@ describe('Subheaders', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<h2 id="crosshead-1" class="article__subhead article__subhead--crosshead ng-pull-out">' +
+					'<h2 id="crosshead-1" class="article__subhead article__subhead--crosshead">' +
 						'The new big earners' +
 					'</h2>\n'
 				);
