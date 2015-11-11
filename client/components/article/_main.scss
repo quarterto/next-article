@@ -1,13 +1,17 @@
 //ARTICLE HEADER
 .article__header {
-	background: oColorsGetPaletteColor('pink');
 	position: relative;
-	padding-bottom: 15px;
+	background: getColor('pink');
 	font-weight: 100;
 
 	@media print {
 		padding-top: 40px;
 	}
+}
+
+.article__header--wrapper {
+	position: relative;
+	padding-bottom: 8px;
 }
 
 .article__header-inner {
@@ -45,14 +49,22 @@
 	}
 }
 .article__stand-first {
-	@include nTypeDelta(3);
+	@include nTypeAlpha(3);
 	margin: 0 0 $spacing-unit / 4;
 	@include oGridRespondTo(L) {
 		@include nTypeDeltaSize(2);
 	}
 }
+
+.article__wrapper {
+	background-color: getColor('pink');
+}
+
 .article__meta {
 	margin: 20px 0 0;
+}
+.article__time-byline {
+	margin: 15px 0;
 }
 .article__byline {
 	@include nTypeEcho(4);
@@ -81,7 +93,7 @@
 	}
 }
 .article__primary-theme {
-	margin: 0;
+	margin: 0 0 5px;
 
 	@media print {
 		padding-top: 30px;
@@ -102,9 +114,12 @@
 
 .article__tags {
 	margin-top: 10px;
-	padding: 0;
+	padding: 0 0 8px;
 	@include oGridRespondTo(L) {
 		align-self: flex-end;
+	}
+	&--main-image {
+		padding: 0;
 	}
 }
 .article__tags__title {
@@ -281,3 +296,4 @@
 @import 'table';
 @import 'promo-box';
 @import 'quotes';
+@import 'genre-styles';
