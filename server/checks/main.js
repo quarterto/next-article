@@ -1,6 +1,7 @@
 'use strict';
 
 const api = require('next-ft-api-client');
+const nHealth = require('n-health');
 
 const ARTICLE_ID = 'd0377096-f290-11e4-b914-00144feab7de';
 const INTERVAL = 60 * 1000;
@@ -83,5 +84,15 @@ module.exports = {
 	esv1: buildStatus('v1'),
 	esv2: buildStatus('v2'),
 	esv3: buildStatus('v3'),
-	livefyre: livefyreStatus()
+	livefyre: livefyreStatus(),
+	errorRate: nHealth.runCheck({
+			type: 'graphiteSpike',
+			numerator: 'heroku.article.*.express.default_route_GET.res.status.5**.count',
+			divisor: 'heroku.article.*.express.default_route_GET.res.status.*.count',
+			name: '500 rate is acceptable',
+			severity: 1,
+			businessImpact: 'Number of users seeing an error instead of an article is significantly higher than usual',
+			technicalSummary: 'The proportion of requests responding with a 5xx status is at least 5 times higher than the baseline level',
+			panicGuide: 'Check sentry(https://app.getsentry.com/nextftcom/ft-next-article/) and app logs to see what errors are occuring.'
+		})
 };
