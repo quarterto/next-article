@@ -5,6 +5,8 @@
 @include oShareActionIcon(twitter, o-share);
 @include oShareActionIcon(whatsapp, o-share);
 @include oShareActionIcon(linkedin, o-share);
+@include oShareActionIcon(googleplus, o-share);
+@include oShareActionIcon(reddit, o-share);
 
 .article__share {
 
