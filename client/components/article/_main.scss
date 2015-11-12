@@ -56,6 +56,24 @@
 	}
 }
 
+.article__brand--wrapper {
+	position: relative;
+	&:before {
+		position: absolute;
+		@include nextIcon(pullquote, getColor('claret'), 26);
+		top: 3px;
+		left: 0;
+		content: '';
+	}
+}
+.article__brand--title {
+	@include nLinksTopic;
+	@include nTypeFoxtrot(2);
+	text-transform: capitalize;
+	margin-left: 30px;
+	letter-spacing: 0;
+}
+
 .article__wrapper {
 	background-color: getColor('pink');
 }
@@ -151,6 +169,13 @@
 	video {
 		width: 100%;
 	}
+}
+
+.article__gifted{
+  background-color: rgb(173, 63, 63);
+  margin-bottom: 15px;
+  padding: 1px 10px;
+  color: white;
 }
 
 //ARTICLE BODY ELEMENTS

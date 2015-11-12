@@ -77,8 +77,6 @@ function getMoreOnTags(primaryTheme, primarySection) {
 }
 
 module.exports = function articleV3Controller(req, res, next, payload) {
-
-
 	let asyncWorkToDo = [];
 
 	if (res.locals.barrier) {
