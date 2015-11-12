@@ -13,7 +13,8 @@ var app = module.exports = express({
 		checks.esv1,
 		checks.esv2,
 		checks.esv3,
-		checks.livefyre
+		checks.livefyre,
+		checks.errorRate
 	]
 });
 
