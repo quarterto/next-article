@@ -20,16 +20,10 @@
     "n-message-prompts": "Financial-Times/n-message-prompts#^v1.0.0"
   },
   "resolutions": {
-    "n-layout": "^4.0.0",
     "o-ft-icons": "next",
     "o-fonts": "^2.0.0",
     "next-myft-client": "^5.0.1",
     "o-typography": "^3.0.0",
-    "o-colors": "^3.1.0",
-    "lodash": "3.10.1-npm",
-    "o-grid": "^4.0.0",
-    "next-feature-flags-client": "~8.1.0",
-    "next-myft-ui": "^5.0.0",
-    "next-js-setup": "^6.0.0"
+    "next-myft-ui": "^5.0.0"
   }
 }

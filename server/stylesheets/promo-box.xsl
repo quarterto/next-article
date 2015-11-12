@@ -9,6 +9,7 @@
         - string-length(translate(normalize-space(current()/promo-intro),' ','')) +1" />
       <xsl:variable name="contentParagraphs" select="count(current()/promo-intro/p)" />
       <xsl:variable name="imageCount" select="count(current()/promo-image)" />
+
       <xsl:choose>
         <xsl:when test="($imageCount > 0 and $wordCount > $longBoxWordBoundaryImage) or ($imageCount = 0 and $wordCount > $longBoxWordBoundaryNoImage)">
           <xsl:choose>
@@ -90,9 +91,6 @@
       <div class="promo-box__image">
         <xsl:choose>
           <xsl:when test="count(img[@width][@height]) = 1">
-            <xsl:attribute name="style">
-              <xsl:value-of select="concat('width:', $maxWidth, 'px;')" />
-            </xsl:attribute>
             <xsl:apply-templates select="img" mode="placehold-image">
                 <xsl:with-param name="maxWidth" select="$maxWidth" />
             </xsl:apply-templates>
