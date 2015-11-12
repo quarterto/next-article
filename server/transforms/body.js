@@ -38,7 +38,7 @@ module.exports = function (body, flags) {
 		.get();
 
 	let resultObject = {
-		mainImageHTML: $('figure.article-image--full').first().remove().html(),
+		mainImageHTML: $('figure.article-image--full, figure.article-image--center').first().remove().html(),
 		tocHTML: $.html('.article__toc')
 	};
 
