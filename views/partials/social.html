@@ -18,9 +18,12 @@
   </div>
   <span class="article__share__count js-share-count" data-shared-url="{{webUrl}}"></span>
   {{/if}}
-  {{#if @root.flags.saveForLater}}
-    <div class="article__save">
+  <div class="article__save">
+    <a class="article__share__print" href="javascript:window.print()" data-trackable="print">
+      <span class="n-util-visually-hidden">Print this page</span>
+    </a>
+    {{#if @root.flags.saveForLater}}
       {{>next-myft-ui/templates/save-for-later contentId=id}}
+    {{/if}}
     </div>
-  {{/if}}
 </div>

@@ -39,6 +39,20 @@
 		}
 	}
 
+	&__print {
+		display: none;
+		border-bottom-width: 0;
+		float: left;
+		margin-right: 16px;
+		&:before {
+			@include nextIcon(printer, getColor('cold-1'), 25);
+			content: '';
+		}
+		@include oGridRespondTo(M) {
+			display: block;
+		}
+	}
+
 	.o-share__action a {
 		border-bottom-width: 0;
 		padding: 0 6px;
