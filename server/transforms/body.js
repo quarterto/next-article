@@ -37,8 +37,13 @@ module.exports = function (body, flags) {
 		.with(trimmedLinks)
 		.get();
 
-	let mainImageExtract = $('figure.article-image--full, figure.article-image--center').first();
-	let mainImageHTML = mainImageExtract.html() ? mainImageExtract.remove() : null;
+	let mainImageHTML;
+
+	// find image that is the first element in the body
+	if ($('figure.article-image--full, figure.article-image--center').first().html() &&
+	$('figure.article-image--full, figure.article-image--center').first().prev().html() === null) {
+		mainImageHTML = $('figure.article-image--full, figure.article-image--center').first().remove();
+	}
 
 	let resultObject = {
 		mainImageHTML: mainImageHTML,
