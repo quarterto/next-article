@@ -1,115 +1,36 @@
-$suggested-reads-border: getColor('warm-3');
-
-.article__suggested-reads {
-	max-width: 300px;
-	margin: 0 auto;
-	a {
-		text-decoration: none;
-	}
-}
-
-.article__suggested-reads__item {
-	margin-bottom: 15px;
+.suggested-reads__item {
+	margin-bottom: 20px;
 	padding: 0;
-	position: relative;
-
-	&::before {
-		@include nextIcon(arrow-right, getColor('cold-2'), 15);
-		content: '';
-		position: absolute;
-		top: 5px;
-	}
 }
 
-.article__suggested-reads__article-list {
-	border: 1px solid $suggested-reads-border;
-	margin: 30px 0 20px;
-	padding: 15px;
-	padding-top: 30px;
-	padding-bottom: 5px;
+.suggested-reads__container {
+	border: 1px solid getColor('warm-3');
 	position: relative;
+	margin: 30px 0 20px;
+	padding: 20px 20px 0;
 
 	h3,
 	h4 { margin: 0; }
-
 }
 
-.article__suggested-reads__title {
+.suggested-reads__title {
 	@include nTypeFoxtrot(3);
-	font-size: 19px;
-	margin-bottom: 15px;
-	display: inline-block;
-	padding: 0 10px;
-	display: inline-block;
-	background: oColorsGetPaletteColor('warm-5');
 	position: absolute;
 	top: -10px;
 	left: 10px;
+	display: inline-block;
+	padding: 0 10px;
+	background: getColor('pink');
+	font-size: 18px;
 	font-weight: 900;
 }
 
-.article__suggested-reads__item__content {
-	margin-left: 20px;
-	a { text-decoration: none; }
-}
-
-.article__suggested-reads__item__headline {
+.suggested-reads__item__headline {
 	@include nTypeFoxtrot(3);
-	color: getColor('cold-2');
-	margin: 0;
-	margin-bottom: 5px;
+	@include nLinksHeadline();
 }
 
-.article__suggested-reads__item__topic {
-	@include nLinksTopic();
+.suggested-reads__item__topic {
 	@include nTypeBravo(4);
-	font-size: 14px;
-	line-height: 16px;
-	display: inline;
-	margin: 0;
-	display: none;
-}
-
-.article__suggested-reads__item__image {
-	@include oGridColumn(4);
-	align-self: center;
-	display: none;
-}
-
-.article__suggested-reads__topic {
-	border: 1px solid $suggested-reads-border;
-	margin: 20px 0;
-	padding: 15px;
-	padding-top: 20px;
-	position: relative;
-
-	span {
-		display: inline-block;
-		margin-bottom: 5px;
-	}
-
-	h3,
-	h4 { margin: 0; }
-
-	h3 { margin-left: 5px; }
-
-
-	a {
-		@include nLinksTopic();
-		@include nTypeBravo(3);
-		font-style: normal;
-		text-transform: capitalize;
-		&::after {
-			@include nextIcon(arrow-right, oColorsGetPaletteColor('claret'), 15);
-			content: '';
-			margin-bottom: -2px;
-		}
-
-		&:hover::after {
-			@include nextIcon(arrow-right, getColor('cold-2'), 15);
-			content: '';
-			margin-bottom: -2px;
-		}
-
-	}
+	@include nLinksTopic();
 }

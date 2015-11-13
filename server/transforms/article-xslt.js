@@ -1,6 +1,5 @@
 'use strict';
 
-var logger = require('ft-next-express').logger;
 var spawn = require('child_process').spawn;
 
 module.exports = function(xml, stylesheet, params) {
@@ -42,7 +41,6 @@ module.exports = function(xml, stylesheet, params) {
 
 		xsltproc.on('close', function(code) {
 			if (code !== 0) {
-				logger.error.apply(logger, errors);
 				return reject('xsltproc exited with code ' + code + ': ' + errors);
 			}
 

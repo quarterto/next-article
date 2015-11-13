@@ -1,13 +1,17 @@
 //ARTICLE HEADER
 .article__header {
-	background: oColorsGetPaletteColor('pink');
 	position: relative;
-	padding-bottom: 15px;
+	background: getColor('pink');
 	font-weight: 100;
 
-	@include print {
+	@media print {
 		padding-top: 40px;
 	}
+}
+
+.article__header--wrapper {
+	position: relative;
+	padding-bottom: 8px;
 }
 
 .article__header-inner {
@@ -24,7 +28,7 @@
 
 .article__header-time-byline {
 	@include oGridRespondTo(M) {
-		width: 75%;
+		margin-right: 10px;
 		display: inline-block;
 	}
 }
@@ -37,17 +41,6 @@
 }
 
 //ARTICLE META ELEMENTS
-.article__theme {
-	margin: 10px 0 0;
-}
-.article__theme__link {
-	color: inherit;
-	font-size: 18px;
-
-	@include oGridRespondTo(L) {
-		font-size: 22px;
-	}
-}
 .article__title {
 	@include nTypeFoxtrot(2);
 	margin: 0;
@@ -56,14 +49,22 @@
 	}
 }
 .article__stand-first {
-	@include nTypeDelta(3);
+	@include nTypeAlpha(3);
 	margin: 0 0 $spacing-unit / 4;
 	@include oGridRespondTo(L) {
 		@include nTypeDeltaSize(2);
 	}
 }
+
+.article__wrapper {
+	background-color: getColor('pink');
+}
+
 .article__meta {
 	margin: 20px 0 0;
+}
+.article__time-byline {
+	margin: 15px 0;
 }
 .article__byline {
 	@include nTypeEcho(4);
@@ -79,7 +80,7 @@
 	@include nTypeAlpha(5);
 	color: oColorsGetColorFor(timestamp, text);
 	text-transform: uppercase;
-	@include print {
+	@media print {
 		text-indent: -9999px;
 		display: block;
 		&:after {
@@ -92,11 +93,14 @@
 	}
 }
 .article__primary-theme {
-	margin: 0;
+	margin: 0 0 5px;
 
-	@include print {
+	@media print {
 		padding-top: 30px;
 	}
+}
+.article__primary-theme__link {
+	@include nLinksTopic();
 }
 
 .article__actions {
@@ -107,21 +111,15 @@
 		text-align: right;
 	}
 }
-.article__actions__action {
-	@include nTypeAlpha(4);
-	display: inline-block;
-
-	&:nth-child(n+2) {
-		border-left: 1px solid rgba(255, 255, 255, 0.7);
-		margin-left: 14px;
-	}
-}
 
 .article__tags {
 	margin-top: 10px;
-	padding: 0;
+	padding: 0 0 8px;
 	@include oGridRespondTo(L) {
 		align-self: flex-end;
+	}
+	&--main-image {
+		padding: 0;
 	}
 }
 .article__tags__title {
@@ -143,9 +141,6 @@
 	}
 }
 
-.article__primary-theme__link {
-	@include nLinksTopic();
-}
 .article__main {
 	padding-top: 15px;
 }
@@ -161,8 +156,7 @@
 //ARTICLE BODY ELEMENTS
 .article__body {
 	@include nTypeAlpha(3);
-	color: $next-grey-dark;
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 
 	> p {
 		margin: 0.3em 0 0.8em;
@@ -173,7 +167,7 @@
 	}
 
 	a {
-		@include print {
+		@media print {
 			&:after {
 				text-decoration: none;
 			}
@@ -187,14 +181,10 @@
 	}
 
 	strong {
-		@include nTypeBravo(3);
+		font-weight: 600;
 	}
 
-	.o-quote--standard a {
-		color: inherit;
-	}
-
-	@include print {
+	@media print {
 		&:after {
 			content: 'Print a single copy of this article for personal use. Contact us if you wish to print more to distribute to others. © The Financial Times Ltd.';
 			display: block;
@@ -207,7 +197,7 @@
 .article__video-wrapper {
 	clear: left;
 
-	@include print {
+	@media print {
 		display: none;
 	}
 }
@@ -242,52 +232,7 @@
 .o-gallery__control--next:hover:before {
 	@include nextIcon(arrow-right, #b0b0b0, 60);
 }
-.article__image-wrapper {
-	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
-	&.article__inline-image {
-		display: table;
-		table-layout: fixed;
-		@include oGridRespondTo(S) {
-			width: auto;
-		}
-	}
-}
-.article__inline-image {
-	max-width: 480px;
 
-	@include oGridRespondTo($until: S) {
-		margin: 0 auto;
-	}
-}
-.article__image {
-	display: block;
-	max-width: 100%;
-
-	.article__image-wrapper & {
-		margin: 0 auto;
-	}
-
-}
-.article__image-caption {
-	margin-top: 5px;
-
-	// So that captions aren't wider than inline images (which can be very narrow) limit the width of the caption to be the same as the image.
-	.article__inline-image & {
-		display: table-caption;
-		caption-side: bottom;
-	}
-}
-.article__full-width-image {
-	margin: 15px 0;
-
-	@include oGridRespondTo(L) {
-		margin-left: -100px;
-	}
-
-	.article__image {
-		min-width: 100%;
-	}
-}
 .article__subhead {
 	@include nTypeBravo(2);
 	clear: left;
@@ -300,10 +245,6 @@
 .article__subhead--standard {
 	@include nTypeBravo(3);
 }
-.article__block-quote {
-	max-width: 100%;
-}
-.article__block-quote,
 .article__big-number {
 	color: getColor('cold-1');
 	border-left-color: getColor('warm-3');
@@ -325,15 +266,6 @@
 		padding-left: 0;
 	}
 }
-.article__more-on {
-	padding-bottom: 15px;
-}
-
-.article__comments {
-	@include print {
-		display: none;
-	}
-}
 
 .article__warning {
 	background-color: oColorsGetPaletteColor('warm-2');
@@ -349,6 +281,10 @@
 	}
 }
 
+.article__interactive {
+	border: 0;
+}
+
 .o-ads {
 	@include oGridRespondTo($from: S, $until: L) {
 		clear: left;
@@ -356,7 +292,8 @@
 }
 
 @import 'combo-components';
+@import 'images';
 @import 'table';
-@import 'interactive';
-@import 'genre-styles';
 @import 'promo-box';
+@import 'quotes';
+@import 'genre-styles';

@@ -17,12 +17,10 @@ describe('Big Number', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<body>' +
-						'<div class="article__big-number ng-pull-out ng-inline-element o-big-number o-big-number--standard">' +
-							'<span class="o-big-number__title">33m</span>' +
-							'<span class="o-big-number__content">These are powerful but fragile emissaries of a culture that not even their descendants remember</span>' +
-						'</div>' +
-					'</body>\n'
+					'<div class="article__big-number ng-inline-element o-big-number o-big-number--standard">' +
+						'<span class="o-big-number__title">33m</span>' +
+						'<span class="o-big-number__content">These are powerful but fragile emissaries of a culture that not even their descendants remember</span>' +
+					'</div>\n'
 				);
 			});
 	});
@@ -38,12 +36,10 @@ describe('Big Number', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<body>' +
-						'<div class="article__big-number ng-pull-out ng-inline-element o-big-number o-big-number--standard">' +
-							'<span class="o-big-number__title"><a href="http://next.ft.com/1b852d96-ced7-11e4-893d-00144feab7de" data-trackable="link" class="article__body__link">33m</a></span>' +
-							'<span class="o-big-number__content">These are <a href="http://next.ft.com/712943a2-cda3-11e4-8760-00144feab7de" data-trackable="link" class="article__body__link">powerful but fragile</a> emissaries of a culture that not even their descendants remember</span>' +
-						'</div>' +
-					'</body>\n'
+					'<div class="article__big-number ng-inline-element o-big-number o-big-number--standard">' +
+						'<span class="o-big-number__title"><a href="http://next.ft.com/1b852d96-ced7-11e4-893d-00144feab7de" data-trackable="link">33m</a></span>' +
+						'<span class="o-big-number__content">These are <a href="http://next.ft.com/712943a2-cda3-11e4-8760-00144feab7de" data-trackable="link">powerful but fragile</a> emissaries of a culture that not even their descendants remember</span>' +
+					'</div>\n'
 				);
 			});
 	});

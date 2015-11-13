@@ -1,4 +1,4 @@
-<div class="pod{{#if isInline}} pod--inline ng-pull-out ng-inline-element{{/if}}">
+<div class="pod">
 	<div class="header">
 		{{#if topic}}
 			{{#topic}}
@@ -18,7 +18,7 @@
 	</div>
 	<ul class="pod__items">
 		{{#each articles}}
-			{{> pod-item}}
+			{{>pod-item}}
 		{{/each}}
 	</ul>
 </div>

@@ -1,44 +1,50 @@
 'use strict';
 
-var api = require('next-ft-api-client');
-var fetchres = require('fetchres');
-var logger = require('ft-next-express').logger;
-var NoRelatedResultsException = require('../../lib/no-related-results-exception');
-var articlePodMapping = require('../../mappings/article-pod-mapping');
+const api = require('next-ft-api-client');
+const fetchres = require('fetchres');
+const logger = require('ft-next-express').logger;
+const NoRelatedResultsException = require('../../lib/no-related-results-exception');
+const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
 module.exports = function (req, res, next) {
-	var parentArticleId = req.params.id;
-	var moreOnTaxonomy = req.query.moreOnTaxonomy;
-	var moreOnId = req.query.moreOnId;
-	var count = parseInt(req.query.count, 10) || 5;
 
-	if (!moreOnTaxonomy || !moreOnId) {
+	if (!req.query.tagId) {
 		return res.status(400).end();
 	}
 
-	return api.searchLegacy({
-		query: moreOnTaxonomy + 'Id:"' + moreOnId + '"',
-		// get plus one, in case we dedupe
-		count: count + 1,
-		// HACK: Always use ES for more ons so we can get the document directly
-		fields: true,
-		useElasticSearch: true
-	})
-		.then(function(topicArticlesES) {
+	let count = parseInt(req.query.count, 10) || 5;
 
-			var articles = topicArticlesES
-				.filter(topicArticle => topicArticle._id !== parentArticleId)
-				.map(topicArticle => articlePodMapping(topicArticle._source))
-				.slice(0, count);
+	return api.search({
+		filter: [ 'metadata.idV1', req.query.tagId ],
+		// Get +1 for de-duping
+		count: count + 1,
+		fields: [
+			'id',
+			'title',
+			'metadata',
+			'summaries',
+			'mainImage',
+			'publishedDate'
+		]
+	})
+		.then(function(articles) {
+			if (!articles.length) {
+				throw new NoRelatedResultsException();
+			}
+
+			articles = articles
+				.filter(article => article.id !== req.params.id)
+				.slice(0, count)
+				.map(articlePodMapping);
+
+			articles.forEach((article, i) => {
+				if (article.mainImage && i > 0 && i !== 5) {
+					article.mainImage = undefined;
+				}
+			});
 
 			return res.render('related/more-on', {
-				articles: articles.map(function(article, index) {
-					if (article.image && index && index !== 5) {
-						article.image = undefined;
-					}
-
-					return article;
-				})
+				articles: articles
 			});
 		})
 		.catch(function(err) {

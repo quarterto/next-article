@@ -1,44 +1,78 @@
-/*global it, describe*/
+/*global describe, context, it, beforeEach */
+
 'use strict';
 
-var expect = require('chai').expect;
-require('chai').should();
-var request = require('request');
-var $ = require('cheerio');
+const sinon = require('sinon');
+const expect = require('chai').expect;
+const proxyquire = require('proxyquire');
+const httpMocks = require('node-mocks-http');
 
-var helpers = require('../helpers');
+const fixtureEsFound = require('../../fixtures/v3-elastic-article-found').docs[0]._source;
 
-module.exports = function () {
+const subject = proxyquire('../../../server/controllers/article', {
+	'./article-helpers/suggested': () => Promise.resolve(),
+	'../transforms/article-xslt': (article) => Promise.resolve(article.bodyXML),
+	'../transforms/body': (articleHtml) => { return { html: () => articleHtml } }
+});
 
-	describe('Capi', function() {
+describe('Article Controller', () => {
 
-		it('should add tracking to all article links', function(done) {
-			helpers.mockMethode();
-			request(helpers.host + '/02cad03a-844f-11e4-bae9-00144feabdc0', function(error, response, body) {
-				$(body).find('.article a').each(function(index, el) {
-					var $link = $(el);
-					expect($link.attr('data-trackable'), 'href="' + $link.attr('href') + '"').to.not.be.undefined;
-				});
-				done();
-			});
+	let request;
+	let response;
+	let next;
+	let result;
+
+	function createInstance(params, flags) {
+		next = sinon.stub();
+		request = httpMocks.createRequest(params);
+		response = httpMocks.createResponse();
+		response.locals = { flags: flags || {} };
+		return subject(request, response, next, fixtureEsFound);
+	}
+
+	beforeEach(() => {
+		result = null;
+
+		let flags = {
+			openGraph: true
+		};
+
+		return createInstance(null, flags).then(() => {
+			result = response._getRenderData()
 		});
-
 	});
 
-	describe('Follow buttons', function() {
-
-		it('should have concept ids on all follow buttons in article', function(done) {
-			helpers.mockMethode();
-			request(helpers.host + '/02cad03a-844f-11e4-bae9-00144feabdc0', function(error, response, body) {
-				$(body).find('.n-myft-ui--follow').each(function(index, el) {
-					var $form = $(el);
-					expect($form.attr('data-concept-id')).to.not.be.empty;
-					expect($form.find('input[name="name"]').attr('value')).to.not.be.empty;
-					expect($form.find('input[name="taxonomy"]').attr('value')).to.not.be.empty;
-				});
-				done();
-			});
-		});
-
+	it('returns a successful response', () => {
+		expect(next.callCount).to.equal(0);
+		expect(response.statusCode).to.equal(200);
 	});
-};
+
+	it('maps data for compatibility with legacy templates', () => {
+		expect(result.standFirst).to.not.be.undefined;
+	});
+
+	it('provides more on data for related content', () => {
+		expect(result.moreOns.length).to.equal(2);
+
+		result.moreOns.forEach(
+			tag => expect(tag).to.include.keys('title', 'url')
+		);
+	});
+
+	it('provides dehydrated metadata for related content', () => {
+		expect(result.dehydratedMetadata).to.include.keys('moreOns', 'package');
+
+		result.dehydratedMetadata.moreOns.forEach(
+			tag => expect(tag).to.include.keys('id', 'name', 'taxonomy')
+		);
+
+		expect(result.dehydratedMetadata.moreOns[0].id).to.equal('M2Y3OGJkYjQtMzQ5OC00NTM2LTg0YzUtY2JmNzZiY2JhZDQz-VG9waWNz');
+		expect(result.dehydratedMetadata.moreOns[1].id).to.equal('NTg=-U2VjdGlvbnM=');
+		expect(result.dehydratedMetadata.package).to.be.an.instanceOf(Array);
+	});
+
+	it('provides DFP data from metadata', () => {
+		expect(result.dfp).to.include.keys('dfpSite', 'dfpZone');
+	});
+
+});

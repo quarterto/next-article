@@ -1,341 +1,154 @@
 'use strict';
 
-var fetchres = require('fetchres');
-var logger = require('ft-next-express').logger;
-var api = require('next-ft-api-client');
-var bylineTransform = require('../transforms/byline');
-var cacheControl = require('../utils/cache-control');
-var extractTags = require('../utils/extract-tags');
-var extractUuid = require('../utils/extract-uuid');
-var images = require('../transforms/images');
-var articlePrimaryTag = require('ft-next-article-primary-tag');
-var bodyTransform = require('../transforms/body');
-var getVisualCategorisation = require('ft-next-article-genre');
-var articleXSLT = require('../transforms/article-xslt');
-var openGraph = require('../utils/open-graph');
-var twitterCardSummary = require('../utils/twitter-card').summary;
-var getDfp = require('../utils/get-dfp');
-var getSuggested = require('./article-helpers/suggested');
-var exposeTopic = require('./article-helpers/exposeTopic');
-var readNext = require('../lib/read-next');
-var articlePodMapping = require('../mappings/article-pod-mapping.js');
+const logger = require('ft-next-express').logger;
+const cacheControlUtil = require('../utils/cache-control');
+const getDfpUtil = require('../utils/get-dfp');
+const barrierHelper = require('./article-helpers/barrier');
+const suggestedHelper = require('./article-helpers/suggested');
+const readNextHelper = require('./article-helpers/read-next');
+const decorateMetadataHelper = require('./article-helpers/decorate-metadata');
+const openGraphHelper = require('./article-helpers/open-graph');
+const articleXsltTransform = require('../transforms/article-xslt');
+const bodyTransform = require('../transforms/body');
+const bylineTransform = require('../transforms/byline');
+const articleBranding = require('ft-n-article-branding');
 
-module.exports = function(req, res, next) {
+function isCapiV1(article) {
+	return article.provenance.find(
+	 	source => source.includes('http://api.ft.com/content/items/v1/')
+	);
+}
 
-	var articleV1Promise;
-	if (res.locals.flags.articleCapiV1Fallback) {
-		articleV1Promise = api.contentLegacy({
-				uuid: req.params.id,
-				useElasticSearch: res.locals.flags.elasticSearchItemGet
-			})
-				// Some things aren't in CAPI v1 (e.g. FastFT)
-				.catch(function(err) {
-					if (fetchres.originatedError(err)) {
-						return;
-					} else {
-						throw err;
-					}
-				});
-	} else {
-		logger.info("CAPI v1 fallback disabled, defaulting to CAPI v2 only");
-	}
+function isCapiV2(article) {
+	return article.provenance.find(
+		source => source.includes('http://api.ft.com/enrichedcontent/')
+	);
+}
 
-	var articleV2Promise = api.content({
-		uuid: req.params.id,
-		type: 'Article',
-		metadata: true,
-		useElasticSearch: res.locals.flags.elasticSearchItemGet
-	});
-
-	var socialMediaImage = function (articleV2) {
-
-		// don't bother if there's no main image to fetch
-		if (!articleV2.mainImage) {
-			return Promise.resolve();
-		}
-
-		// don't bother if social media flags are off
-		if (!res.locals.flags.openGraph && !res.locals.flags.twitterCards) {
-			return Promise.resolve();
-		}
-
-		return api.content({ uuid: extractUuid(articleV2.mainImage.id), type: 'ImageSet', retry: 0 })
-			.then(function (images) {
-				var image = images.members.reduce(function (a, b) {
-					return a;
-				});
-				return api.content({ uuid: extractUuid(image.id), type: 'ImageSet', retry: 0 });
-			})
-			.catch(function(err) {
-				if (fetchres.originatedError(err)) {
-					return;
-				} else {
-					throw err;
-				}
-			});
+function transformArticleBody(article, flags) {
+	let xsltParams = {
+		id: article.id,
+		webUrl: article.webUrl,
+		renderTOC: flags.articleTOC ? 1 : 0,
+		renderSlideshows: flags.galleries ? 1 : 0,
+		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
+		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
+		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
+		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0,
+		encodedTitle: encodeURIComponent(article.title.replace(/\&nbsp\;/g, ' '))
 	};
 
-	Promise.all([articleV1Promise, articleV2Promise])
-		.then(function (article) {
-			return Promise.all([
-				Promise.resolve(article[0]),
-				Promise.resolve(article[1]),
-				articleXSLT(article[1].bodyXML, 'main', {
-					renderSlideshows: res.locals.flags.galleries ? 1 : 0,
-					renderInteractiveGraphics: res.locals.flags.articleInlineInteractiveGraphics ? 1 : 0,
-					useBrightcovePlayer: res.locals.flags.brightcovePlayer ? 1 : 0,
-					renderTOC: res.locals.flags.articleTOC ? 1 : 0,
-					fullWidthMainImages: res.locals.flags.fullWidthMainImages ? 1 : 0,
-					reserveSpaceForMasterImage: res.locals.flags.reserveSpaceForMasterImage ? 1 : 0,
-					suggestedRead: res.locals.flags.articleSuggestedRead ? 1 : 0,
-					standFirst: article[0] ? article[0].item.editorial.standFirst : "",
-					renderSocial: res.locals.flags.articleShareButtons ? 1 : 0,
-					id: extractUuid(article[1].id),
-					webUrl: article[0] && article[0].item  && article[0].item.location ? article[0].item.location.uri : '',
-					encodedTitle: encodeURIComponent(article[1].title.replace(/\&nbsp\;/g, ' '))
-				}),
-				socialMediaImage(article[1]),
-				res.locals.flags.articleSuggestedRead && article[0] ? readNext(article[0], res.locals.flags.elasticSearchItemGet) : Promise.resolve(),
-				getSuggested(article[0]).then(function(it) {
-					return api.contentLegacy({
-						uuid: (it && it.ids) || [],
-						useElasticSearch: res.locals.flags.elasticSearchItemGet
-					});
-				})
-			]);
+	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
+		return bodyTransform(articleBody, flags);
+	});
+}
+
+function getMoreOnTags(primaryTheme, primarySection) {
+	let moreOnTags = [];
+
+	primaryTheme && moreOnTags.push(primaryTheme);
+	primarySection && moreOnTags.push(primarySection);
+
+	if (!moreOnTags.length) {
+		return;
+	}
+
+	return moreOnTags.map(tag => {
+		let title;
+
+		switch (tag.taxonomy) {
+			case 'authors':
+				title = 'from';
+				break;
+			case 'sections':
+				title = 'in';
+				break;
+			case 'genre':
+				title = '';
+				break;
+			default:
+				title = 'on';
+		}
+
+		tag.title = title;
+
+		return tag;
+	});
+}
+
+module.exports = function articleV3Controller(req, res, next, payload) {
+
+
+	let asyncWorkToDo = [];
+
+	if (res.locals.barrier) {
+		return res.render('article', barrierHelper(payload, res.locals.barrier));
+	}
+
+	if (res.locals.firstClickFreeModel) {
+		payload.firstClickFree = res.locals.firstClickFreeModel;
+	}
+
+	// Decorate article with primary tags and tags for display
+	decorateMetadataHelper(payload);
+	payload.isSpecialReport = payload.primaryTag && payload.primaryTag.taxonomy === 'specialReports';
+
+	asyncWorkToDo.push(
+		transformArticleBody(payload, res.locals.flags).then(fragments => {
+			payload.bodyHTML = fragments.bodyHTML;
+			payload.tocHTML = fragments.tocHTML;
+			payload.mainImageHTML = fragments.mainImageHTML;
 		})
-		.then(function(results) {
-			res.set(cacheControl);
+	);
+	payload.designGenre = articleBranding(payload.metadata);
 
-			var articleV1 = results[0];
-			var article = results[1];
-			var mainImage = results[3];
-			var readNextArticle = results[4];
-			var readNextArticles = results[5].map(it => articlePodMapping(it));
+	// Decorate with related stuff
+	payload.moreOns = getMoreOnTags(payload.primaryTheme, payload.primarySection);
 
-			var $ = bodyTransform(results[2], res.locals.flags);
+	payload.articleV1 = isCapiV1(payload);
+	payload.articleV2 = isCapiV2(payload);
 
-			var metadata = articleV1 && articleV1.item && articleV1.item.metadata;
-			var primaryTag = metadata ? articlePrimaryTag(metadata) : undefined;
-			if (primaryTag) {
-				primaryTag.conceptId = primaryTag.id;
-				primaryTag.url = '/stream/' + primaryTag.taxonomy + 'Id/' + primaryTag.id;
-			}
-			//specialReport is a circular - if it exists, delete it before dehydrating it
-			if (metadata && metadata.primarySection && metadata.primarySection.term.specialReport) {
-				delete metadata.primarySection.term.specialReport;
-			}
-			var dehydratedMetadata = {
-				primaryTheme: metadata && metadata.primaryTheme ? metadata.primaryTheme : null,
-				primarySection: metadata && metadata.primarySection ? metadata.primarySection : null,
-				package: articleV1 && articleV1.item && articleV1.item.package ? articleV1.item.package : null
-			};
-			// Some posts (e.g. FastFT are only available in CAPI v2)
-			// TODO: Replace with something in CAPI v2
-			var isColumnist = metadata && metadata.primarySection.term.name === 'Columnists';
+	// TODO: move this to template or re-name subheading
+	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
-			// Update the images (resize, add image captions, etc)
-			return images($, {
-				fullWidthMainImages: res.locals.flags.fullWidthMainImages
-			})
-				.then(function($) {
-					var viewModel = {
-						firstClickFree: null,
-						comments: article.comments && article.comments.enabled === true,
-						article: article,
-						articleV1: articleV1 && articleV1.item,
-						id: extractUuid(article.id),
-						title: article.title,
-						byline: bylineTransform(article.byline, articleV1),
-						tags: extractTags(article, articleV1, res.locals.flags, primaryTag),
-						body: $.html(),
-						toc: $.html('.article__toc'),
-						isColumnist: isColumnist,
-						layout: 'wrapper',
-						primaryTag: primaryTag,
-						suggestedTopic: articleV1 && articleV1.item ? exposeTopic(articleV1.item.metadata) : null,
-						save: {},
-						relatedContent: res.locals.flags.articleRelatedContent,
-						shareButtons: res.locals.flags.articleShareButtons,
-						myFTTray: res.locals.flags.myFTTray,
-						moreOns: {},
-						dfp: metadata ? getDfp(metadata.sections) : undefined,
-						visualCat: metadata ? getVisualCategorisation(metadata) : undefined,
-						isSpecialReport: metadata && metadata.primarySection.term.taxonomy === 'specialReports',
-						dehydratedState: {},
-						dehydratedMetadata: dehydratedMetadata
-					};
+	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
 
-					if (metadata) {
-						var moreOnTags = [];
-						// primary theme first
-						if (metadata.primaryTheme) {
-							var primaryThemeTag = metadata.primaryTheme.term;
-							primaryThemeTag.metadata = 'primaryTheme';
-							moreOnTags.push(primaryThemeTag);
-						}
-						// then author, if this is in a 'Columnists' section and not a duplication of the primaryTheme
-						if (
-							metadata.primarySection.term.name === 'Columnists' &&
-							metadata.authors.length &&
-							(!moreOnTags.length || metadata.authors[0].term.id !== moreOnTags[0].id)
-						) {
-							var authorTag = metadata.authors[0].term;
-							authorTag.metadata = 'authors';
-							moreOnTags.push(authorTag);
-						}
-						// finally the primarySection
-						var primarySectionTag = metadata.primarySection.term;
-						primarySectionTag.metadata = 'primarySection';
-						moreOnTags.push(primarySectionTag);
-						viewModel.moreOns = moreOnTags
-							.slice(0, 2)
-							.map(function(moreOnTag) {
-								var title;
+	payload.dehydratedMetadata = {
+		moreOns: payload.moreOns,
+		package: payload.storyPackage || [],
+	};
 
-								switch (moreOnTag.taxonomy) {
-									case 'authors':
-										title = 'from';
-										break;
-									case 'sections':
-										title = 'in';
-										break;
-									case 'genre':
-										title = '';
-										break;
-									default:
-										title = 'on';
-								}
+	payload.dfp = getDfpUtil(payload.metadata);
 
-								return {
-									name: moreOnTag.name,
-									url: '/stream/' + moreOnTag.taxonomy + 'Id/' + moreOnTag.id,
-									taxonomy: moreOnTag.taxonomy,
-									metadata: moreOnTag.metadata,
-									id: moreOnTag.id,
-									title: title
-								};
-							});
-						// add 'small' class if just one
-						viewModel.moreOns[viewModel.moreOns.length === 1 ? 0 : 1].class = 'more-on--small';
-					}
+	if (res.locals.flags.openGraph) {
+		openGraphHelper(payload);
+	}
 
-					if (res.locals.flags.openGraph) {
-						viewModel.og = openGraph(article, articleV1, mainImage);
-					}
+	if (res.locals.flags.articleSuggestedRead && payload.metadata.length) {
+		let storyPackageIds = (payload.storyPackage || []).map(story => story.id);
 
-					if (res.locals.flags.twitterCards) {
-						viewModel.twitterCard = twitterCardSummary(article, articleV1, mainImage);
-					}
+		asyncWorkToDo.push(
+			suggestedHelper(payload.id, storyPackageIds, payload.primaryTag).then(
+				articles => payload.readNextArticles = articles
+			)
+		);
 
-					if (res.locals.flags.articleSuggestedRead) {
-						viewModel.readNextArticles = readNextArticles;
-						viewModel.readNextArticle = readNextArticle;
-					}
+		asyncWorkToDo.push(
+			readNextHelper(payload.id, storyPackageIds, payload.primaryTag, payload.publishedDate).then(
+				article => payload.readNextArticle = article
+			)
+		);
 
-					if (res.locals.barrier) {
+		payload.suggestedTopic = payload.primaryTag;
+	}
 
-						if (res.locals.barrier.trialSimple) {
-							viewModel.trialSimpleBarrier = res.locals.barrier.trialSimple;
-						}
-
-						if (res.locals.barrier.trialGrid) {
-
-							viewModel.trialGridBarrier = res.locals.barrier.trialGrid;
-
-							if (!res.locals.barrier.trialGrid.packages.newspaper) {
-
-								viewModel.trialGridBarrier.missingNewspaper = {};
-							}
-
-							viewModel.trialGridBarrier.articleTitle = viewModel.title;
-
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.registerSimple) {
-							viewModel.registerSimpleBarrier = res.locals.barrier.registerSimple;
-							viewModel.barrierOverlay = {};
-							viewModel.registerSimpleBarrier.articleTitle = viewModel.title;
-						}
-
-						if (res.locals.barrier.registerGrid) {
-
-							viewModel.registerGridBarrier = res.locals.barrier.registerGrid;
-
-							if(!res.locals.barrier.registerGrid.packages.newspaper) {
-
-								viewModel.registerGridBarrier.missingNewspaper = {};
-							}
-
-							viewModel.registerGridBarrier.articleTitle = viewModel.title;
-
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.subscriptionGrid) {
-							viewModel.subscriptionGridBarrier = res.locals.barrier.subscriptionGrid;
-							viewModel.subscriptionGridBarrier.articleTitle = viewModel.title;
-							viewModel.barrierOverlay = {};
-						}
-
-						if (res.locals.barrier.premiumSimple) {
-							viewModel.premiumSimpleBarrier = res.locals.barrier.premiumSimple;
-							viewModel.barrierOverlay = {};
-							viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
-						}
-
-						if (res.locals.barrier.premiumGrid) {
-							viewModel.premiumGridBarrier = res.locals.barrier.premiumGrid;
-							viewModel.barrierOverlay = {};
-							viewModel.premiumGridBarrier.articleTitle = viewModel.title;
-						}
-
-						viewModel.comments = null;
-						viewModel.body = null;
-						if (viewModel.articleV1) {
-							viewModel.articleV1.editorial.standFirst = null;
-						}
-						viewModel.byline = null;
-						viewModel.article.publishedDate = null;
-						viewModel.tableOfContents = null;
-						viewModel.primaryTag = null;
-						viewModel.save = null;
-						viewModel.tags = null;
-						viewModel.relatedContent = null;
-						viewModel.moreOns = null;
-						viewModel.shareButtons = null;
-						viewModel.myFTTray = null;
-					}
-
-					if (res.locals.firstClickFreeModel) {
-						viewModel.firstClickFree = res.locals.firstClickFreeModel;
-					}
-					return viewModel;
-				})
-				.then(function(viewModel) {
-					return res.render('article-v2', viewModel);
-				});
+	return Promise.all(asyncWorkToDo)
+		.then(() => {
+			payload.layout = 'wrapper';
+			return res.set(cacheControlUtil).render('article', payload);
 		})
-		.catch(function(err) {
-
-			if (fetchres.originatedError(err)) {
-				return api.contentLegacy({ uuid: req.params.id, useElasticSearch: res.locals.flags.elasticSearchItemGet })
-						.then(function(data) {
-							if (data.item.location.uri.indexOf('?') > -1) {
-								res.redirect(302, data.item.location.uri + "&ft_site=falcon&desktop=true");
-							} else {
-								res.redirect(302, data.item.location.uri + "?ft_site=falcon&desktop=true");
-							}
-						})
-						.catch(function(err) {
-							if (fetchres.originatedError(err)) {
-								res.redirect(302, 'http://www.ft.com/cms/s/' + req.params.id + '.html?ft_site=falcon&desktop=true');
-							} else {
-								next(err);
-							}
-						});
-			}
-			next(err);
+		.catch(error => {
+			logger.error(error);
+			next(error);
 		});
 };

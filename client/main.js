@@ -10,8 +10,6 @@ require('next-js-setup').bootstrap(function(result) {
 
 	var layout = require('n-layout');
 	var nVideo = require('n-video');
-	// Require n-image to load pollyfill
-	require('n-image');
 
 	var slideshow = require('./components/slideshow/main');
 	var onwardJourney = require('./components/onward-journey/main');
@@ -20,7 +18,8 @@ require('next-js-setup').bootstrap(function(result) {
 	var share = require('./components/share/main');
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
-	var suggestedReads = require('./components/suggested-reads/main');
+
+	var labsShare = require('./components/labsshare/main');
 
 	prompts.init();
 	oViewport.listenTo('resize');
@@ -39,12 +38,18 @@ require('next-js-setup').bootstrap(function(result) {
 
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
-	if (flags.get('contentApiCalls') && !flags.get('articleSuggestedRead')) {
+	if (flags.get('contentApiCalls')) {
 		onwardJourney.init(flags);
 	}
 
 	if (flags.get('articleShareButtons')) {
-		share.init();
+
+		if(flags.get('ftlabsurlsharing')){
+			labsShare.init();
+		} else {
+			share.init();			
+		}
+
 	}
 
 	if (flags.get('myFTTray')) {
@@ -53,6 +58,7 @@ require('next-js-setup').bootstrap(function(result) {
 
 	nVideo.init({
 		optimumWidth: 710,
+		placeholder: true,
 		classes: ['article__video', 'ng-media']
 	});
 
@@ -65,7 +71,6 @@ require('next-js-setup').bootstrap(function(result) {
 		expandedToggleText: 'Show less'
 	});
 	scrollDepth.init(flags);
-	suggestedReads.init(flags);
 
 	window.addEventListener('load', function() {
 		comments.init(uuid, flags);

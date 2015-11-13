@@ -43,13 +43,11 @@ module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
 		Promise.all([
 			api.contentLegacy({
-					uuid: req.params.id,
-					useElasticSearch: res.locals.flags.elasticSearchItemGet
+					uuid: req.params.id
 				})
 				.catch(suppressBadResponses),
 			api.content({
-					uuid: req.params.id,
-					useElasticSearch: res.locals.flags.elasticSearchItemGet
+					uuid: req.params.id
 				})
 				.catch(suppressBadResponses)
 		])

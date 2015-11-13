@@ -1,40 +1,39 @@
 module.exports = [
+	// Health check
 	{
-		timeout: 5000,
+		timeout: 10000,
 		urls: {
+			'/__health': 200
+		}
+	},
+	{
+		timeout: 10000,
+		urls: {
+			// not in CAPI (redirected to ft.com -> redirected to barrier)
+			'/content/8f88c930-d00a-11da-80fb-0000779e2340': 'http://www.ft.com/cms/s/0/8f88c930-d00a-11da-80fb-0000779e2340.html?ft_site=falcon&desktop=true',
 			//methode
 			'/content/395650fa-5b9c-11e5-a28b-50226830d644': 200,
 			//fastft
 			'/content/b002e5ee-3096-3f51-9925-32b157740c98': 200,
 			// related fragments
-			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/story-package?ids=b56232bc-adec-11e4-919e-00144feab7de,8a5c2c02-a47e-11e4-b943-00144feab7de,6bfcdc6e-a0b6-11e4-8ad8-00144feab7de,c0dbd6d6-8072-11e4-9907-00144feabdc0': 200,
-			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?moreOnId=TnN0ZWluX1BOX1BvbGl0aWNpYW5fMTY4OA==-UE4=&moreOnTaxonomy=people': 200,
+			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/story-package?articleIds=b56232bc-adec-11e4-919e-00144feab7de,8a5c2c02-a47e-11e4-b943-00144feab7de,6bfcdc6e-a0b6-11e4-8ad8-00144feab7de,c0dbd6d6-8072-11e4-9907-00144feabdc0': 200,
+			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?tagId=TnN0ZWluX1BOX1BvbGl0aWNpYW5fMTY4OA==-UE4=': 200,
 			// articles with not tagged with X
-			'/article/a1fb6fee-93ae-359d-be8f-f215920b79ff/more-on?moreOnId=OA==-U2VjdGlvbnM=&moreOnTaxonomy=sections': {
+			'/article/a1fb6fee-93ae-359d-be8f-f215920b79ff/more-on?tagId=OA==-U2VjdGlvbnM=': {
 				content: ''
 			}
 		}
 	},
 	{
-		//elastic search off fallback
-		timeout: 5000,
-		headers: {
-			Cookie: 'next-flags=elasticSearchItemGet:off'
-		},
-		urls: {
-			'/content/02cad03a-844f-11e4-bae9-00144feabdc0': 200
-		}
-	},
-	{
 		// Podcast
-		timeout: 5000,
+		timeout: 10000,
 		urls: {
-			'/content/55ef024ec7a00b32cb5a5991': 200
+			'/content/55ef024ec7a00b32cb5a5991': 404
 		}
 	},
 	{
 		// test access
-		timeout: 5000,
+		timeout: 10000,
 		headers: {
 			'X-FT-Access-Metadata': 'remote_headers'
 		},

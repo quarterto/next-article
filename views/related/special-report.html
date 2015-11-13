@@ -1,25 +1,23 @@
-<div class="stream-card stream-card--special-report" data-trackable="special-report">
-	<h2 class="stream-card__container-title">More from this report</h2>
-	<div class="stream-card__wrapper" style="background-image: url('{{#resize 710}}{{image.url}}{{/resize}}')">
-		<a href="/special-reports/{{id}}" class="stream-card__overview" data-trackable="header">
-			<img class="stream-card__image" src="{{#resize 510}}{{image.url}}{{/resize}}" alt="" role="presentational" />
-			<span class="stream-card__title">
-				<span class="stream-card__title__kicker">Special Report</span>{{name}}
-			</span>
-		</a>
+<div class="stream-card" data-trackable="special-report">
+	<h2>More from this report</h2>
+	<div class="stream-card__wrapper" {{#if image}}style="background-image: url('{{#resize 710}}{{image.url}}{{/resize}}')"{{/if}}>
+		<div class="stream-card__overview">
+			<a class="stream-card__title" href="/special-reports/{{id}}" data-trackable="header">
+				<span class="stream-card__title__kicker">Special Report</span>
+				<br />
+				<span class="stream-card__title__text">{{name}}</span>
+			</a>
+		</div>
 		<ol class="stream-card__articles">
 			{{#each articles}}
 				<li class="stream-card__article" data-trackable="article">
-					<time data-o-component="o-date" class="stream-card__article__date o-date" datetime="{{#dateformat}}{{lastUpdated}}{{/dateformat}}">
-						{{#dateformat "dddd, d mmmm, yyyy"}}{{lifecycle.lastUpdated}}{{/dateformat}}
+					<time data-o-component="o-date" class="stream-card__article__date o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}">
+						{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
 					</time>
 					<br />
-					{{#headline}}
-						<a class="stream-card__article__link" href="{{url}}" data-trackable="link">{{text}}</a>
-					{{/headline}}
+					<a class="stream-card__article__link" href="{{url}}" data-trackable="link">{{title}}</a>
 				</li>
 			{{/each}}
 		</ol>
-		<a href="/special-reports/{{id}}" class="stream-card__all-link" data-trackable="stream-page">See full report</a>
 	</div>
 </div>

@@ -14,11 +14,9 @@ describe('Subheaders', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<body>' +
-						'<h2 class="article__subhead article__subhead--standard">' +
-							'The new big earners' +
-						'</h2>' +
-					'</body>\n'
+					'<h2 class="article__subhead article__subhead--standard">' +
+						'The new big earners' +
+					'</h2>\n'
 				);
 			});
 	});
@@ -31,11 +29,9 @@ describe('Subheaders', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<body>' +
-						'<h2 id="crosshead-1" class="article__subhead article__subhead--crosshead ng-pull-out">' +
-							'The new big earners' +
-						'</h2>' +
-					'</body>\n'
+					'<h2 id="crosshead-1" class="article__subhead article__subhead--crosshead">' +
+						'The new big earners' +
+					'</h2>\n'
 				);
 			});
 	});

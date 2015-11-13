@@ -6,7 +6,7 @@
             <xsl:choose>
                 <xsl:when test="strong">
                     <xsl:attribute name="id">crosshead-<xsl:number /></xsl:attribute>
-                    <xsl:attribute name="class">article__subhead article__subhead--crosshead ng-pull-out</xsl:attribute>
+                    <xsl:attribute name="class">article__subhead article__subhead--crosshead</xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:attribute name="class">article__subhead article__subhead--standard</xsl:attribute>

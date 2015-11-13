@@ -1,0 +1,83 @@
+{
+	"docs":[
+		{
+			"_index":"v3_api_v2",
+			"_type":"item",
+			"_id":"352210c4-7b17-11e5-a1fe-567b37f80b64",
+			"_version":43,
+			"found":true,
+			"_source":{
+				"id":"457bbf3d-99b4-4f61-8aa8-b5db3accb2cd",
+				"title":"The life of a song: Nessun Dorma",
+				"titles":[
+
+				],
+				"bodyXML":"<p>Jan Dalley tells the story of the aria that united opera and football fans alike in a strange example of the power of posh music. Credits: ZYX Music, Naxos, Monument, Arista.</p>",
+				"summaries":[
+					"Jan Dalley tells the story of the aria that united opera and football fans alike in a strange example of the power of posh music. Credits: ZYX Music, Naxos, Monument, Arista."
+				],
+				"byline":"Each week FT Arts brings you interviews and studio discussions about the latest arts stories and cultural trends, with contributions from Financial Times critics and commentators.",
+				"publishedDate":"2015-11-06T15:44:13.000Z",
+				"webUrl":"https://www.acast.com/channels/ft-arts/acasts/thelifeofasong-nessundorma",
+				"provenance":[
+					"http://rss.acast.com/ft-arts"
+				],
+				"attachments":[
+					{
+						"mediaType":"audio/mpeg",
+						"url":"http://rss.acast.com/ft-arts/thelifeofasong-nessundorma/media.mp3"
+					}
+				],
+				"mainImage":{
+					"title":"Logo for FT Arts podcast",
+					"description":"",
+					"url":"http://az592690.vo.msecnd.net/media/v1/6134ca00-5e85-4054-91f0-d8274e8ad994/ft-arts-ig7u7hep.jpg",
+					"width":440,
+					"height":440
+				},
+				"metadata":[
+					{
+						"idV1":"NzA0NWQ2OTUtNDdhZC00ZGMxLWI4MGEtODZkYTY5MjQ0ZTk1-QnJhbmRz",
+						"prefLabel":"FT Arts podcast",
+						"taxonomy":"sections",
+						"primary":"section",
+						"attributes":[
+
+						]
+					},
+					{
+						"idV1":"MTQ5-U2VjdGlvbnM=",
+						"prefLabel":"Arts",
+						"taxonomy":"sections",
+						"primary":null,
+						"attributes":[
+
+						]
+					},
+					{
+						"idV1":"MTQ4-U2VjdGlvbnM=",
+						"prefLabel":"Life & Arts",
+						"taxonomy":"sections",
+						"primary":null,
+						"attributes":[
+							{
+								"key":"dfpSite",
+								"value":"life.and.arts"
+							}
+						]
+					},
+					{
+						"idV1":"NjI2MWZlMTEtMTE2NS00ZmI0LWFkMzMtNDhiYjA3YjcxYzIy-U2VjdGlvbnM=",
+						"prefLabel":"Podcasts",
+						"taxonomy":"sections",
+						"primary":null,
+						"attributes":[
+
+						]
+					}
+				],
+				"_lastUpdatedDateTime":"2015-11-09T12:51:27.835Z"
+			}
+		}
+	]
+}

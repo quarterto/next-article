@@ -28,7 +28,7 @@ function createPromise(el, url) {
 		.catch(() => {});
 }
 
-module.exports.init = function(flags) {
+module.exports.init = function() {
 	var articleEl = document.querySelector('.article');
 	var dehydratedMetadata = document.getElementById('dehydrated-metadata');
 
@@ -46,22 +46,21 @@ module.exports.init = function(flags) {
 	}
 
 	var fetchPromises = [];
-
 	var hydratedMetadata = JSON.parse(dehydratedMetadata.innerHTML);
-	var storyPackageIds = hydratedMetadata.package.map(article => article.id);
-	var primarySection = hydratedMetadata.primarySection && hydratedMetadata.primarySection.term;
 
-	if (storyPackageIds.length) {
-		let url = `/article/${articleId}/story-package?ids=${storyPackageIds.join()}`;
+	if (hydratedMetadata.package.length) {
+		let storyIds = hydratedMetadata.package.map(article => article.id);
+		let url = `/article/${articleId}/story-package?articleIds=${storyIds.join()}&count=5`;
 
 		fetchPromises = fetchPromises.concat(
-			$('.js-story-package-inline').map(el => createPromise(el, `${url}&view=inline&count=1`)),
-			$('.js-story-package').map(el => createPromise(el, `${url}&count=4`))
+			$('.js-story-package').map(el => createPromise(el, `${url}`))
 		);
 	}
 
-	if (primarySection.taxonomy === 'specialReports') {
-		let url = `/article/${articleId}/special-report?specialReportId=${encodeURI(primarySection.id)}&count=5`;
+	let specialReport = hydratedMetadata.moreOns.find(tag => tag.taxonomy === 'specialReports');
+
+	if (specialReport) {
+		let url = `/article/${articleId}/special-report?tagId=${encodeURI(specialReport.id)}&count=5`;
 
 		fetchPromises = fetchPromises.concat(
 			$('.js-special-report').map(el => createPromise(el, url))
@@ -71,13 +70,12 @@ module.exports.init = function(flags) {
 	var moreOns = $('.js-more-on');
 
 	if (moreOns.length) {
-		let url = `/article/${articleId}/more-on?count=6`;
+		let url = `/article/${articleId}/more-on?count=5`;
 
 		fetchPromises = fetchPromises.concat(
-			moreOns.map(el => {
-				let prop = el.getAttribute('data-metadata-fields');
-				let term = hydratedMetadata[prop].term;
-				let query = `moreOnId=${encodeURI(term.id)}&moreOnTaxonomy=${term.taxonomy}`;
+			moreOns.map((el, i) => {
+				let term = hydratedMetadata.moreOns[i];
+				let query = `tagId=${encodeURI(term.id)}`;
 				return createPromise(el, `${url}&${query}`);
 			})
 		);

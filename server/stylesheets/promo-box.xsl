@@ -9,21 +9,22 @@
         - string-length(translate(normalize-space(current()/promo-intro),' ','')) +1" />
       <xsl:variable name="contentParagraphs" select="count(current()/promo-intro/p)" />
       <xsl:variable name="imageCount" select="count(current()/promo-image)" />
+
       <xsl:choose>
         <xsl:when test="($imageCount > 0 and $wordCount > $longBoxWordBoundaryImage) or ($imageCount = 0 and $wordCount > $longBoxWordBoundaryNoImage)">
           <xsl:choose>
             <xsl:when test="$contentParagraphs > $expanderParaBreakPoint">
-              <aside class="promo-box promo-box--long ng-pull-out ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">
-                <xsl:apply-templates select="current()" mode="default-title" />
+              <aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">
                 <div class="promo-box__wrapper">
+                  <xsl:apply-templates select="current()" mode="default-title" />
                   <xsl:apply-templates />
                 </div>
               </aside>
             </xsl:when>
             <xsl:otherwise>
-              <aside class="promo-box promo-box--long ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">
-                <xsl:apply-templates select="current()" mode="default-title" />
+              <aside class="promo-box promo-box--long ng-inline-element" data-trackable="promobox" role="complementary">
                 <div class="promo-box__wrapper">
+                  <xsl:apply-templates select="current()" mode="default-title" />
                   <xsl:apply-templates />
                 </div>
               </aside>
@@ -31,9 +32,9 @@
           </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
-          <aside class="promo-box ng-pull-out ng-inline-element" data-trackable="promobox" role="complementary">
-            <xsl:apply-templates select="current()" mode="default-title" />
+          <aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">
             <div class="promo-box__wrapper">
+              <xsl:apply-templates select="current()" mode="default-title" />
               <xsl:apply-templates />
             </div>
           </aside>
@@ -43,7 +44,7 @@
 
     <xsl:template match="promo-box" mode="default-title">
       <div class="promo-box__title">
-        <h2 class="promo-box__title__name">
+        <div class="promo-box__title__name">
           <xsl:choose>
             <xsl:when test="count(current()/promo-title) = 0">
               <xsl:text>Related Content</xsl:text>
@@ -52,22 +53,25 @@
               <xsl:apply-templates select="current()/promo-title" mode="extract-content" />
             </xsl:otherwise>
           </xsl:choose>
-        </h2>
+        </div>
       </div>
     </xsl:template>
 
     <xsl:template match="promo-title"/>
 
     <xsl:template match="promo-headline">
-      <h2 class="promo-box__headline">
+      <div class="promo-box__headline">
         <xsl:apply-templates select="current()" mode="extract-content" />
-      </h2>
+      </div>
     </xsl:template>
 
     <xsl:template match="promo-headline | promo-title" mode="extract-content">
       <xsl:choose>
         <xsl:when test="count(current()/p/*) > 0">
-          <xsl:apply-templates select="current()/p/*" />
+          <xsl:apply-templates select="current()/p/@* | current()/p/node()" />
+        </xsl:when>
+        <xsl:when test="count(current()/p) = 0">
+          <xsl:apply-templates select="current()/@* | current()/node()" />
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="current()/p/text()" />
@@ -76,9 +80,28 @@
     </xsl:template>
 
     <xsl:template match="promo-image">
-      <xsl:apply-templates select="ft-content" mode="internal-image">
-        <xsl:with-param name="isPromoImage" select="1" />
-      </xsl:apply-templates>
+
+      <xsl:variable name="maxWidth">
+        <xsl:choose>
+          <xsl:when test="@width &lt; 300"><xsl:value-of select="@width" /></xsl:when>
+          <xsl:otherwise>300</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <div class="promo-box__image">
+        <xsl:choose>
+          <xsl:when test="count(img[@width][@height]) = 1">
+            <xsl:apply-templates select="img" mode="placehold-image">
+                <xsl:with-param name="maxWidth" select="$maxWidth" />
+            </xsl:apply-templates>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="img" mode="dont-placehold-image">
+                <xsl:with-param name="maxWidth" select="$maxWidth" />
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
     </xsl:template>
 
     <xsl:template match="promo-intro">
@@ -104,6 +127,12 @@
           </div>
         </xsl:otherwise>
       </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="ul">
+      <ul class="promo-box__list">
+        <xsl:apply-templates />
+      </ul>
     </xsl:template>
 
 </xsl:stylesheet>
