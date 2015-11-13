@@ -7,7 +7,7 @@ require('chai').should();
 
 describe('Promo-boxes', function() {
 
-	it('should should transform to promo box - short version', function() {
+	it('should transform to promo box, inline, no expander - 1 para, 20 words, image', function() {
 		return transform(
 			'<promo-box>' +
 				'<promo-title><p>Tatomer Riesling 2012</p></promo-title>' +
@@ -38,53 +38,91 @@ describe('Promo-boxes', function() {
 		});
 	});
 
-	it('should transform to promo box - long version - no expander', function () {
+	it('should transform to promo box, inline, no expander - 1 para, 60 words, image', function() {
 		return transform(
 			'<promo-box>' +
 				'<promo-title><p>Tatomer Riesling 2012</p></promo-title>' +
 				'<promo-headline><p>Greece debt crisis</p></promo-headline>' +
-				'<promo-image><img src="http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c" width="800" height="400" /></promo-image>' +
-				'<promo-intro><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
-				'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></promo-intro>' +
+				'<promo-image><img src="http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c" /></promo-image>' +
+				'<promo-intro><p>I am trying to make this paragraph into a long paragraph of sixty words. Sixty words is quite long for a paragraph and I would have hope it was against journalistic standars to write one so long in a promo box. However, journalists and editors are a law unto themselves. Just nine more measly words needed. That should do it.</p></promo-intro>' +
 			'</promo-box>'
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="promo-box promo-box--long ng-inline-element" data-trackable="promobox" role="complementary">' +
+				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
 						'<div class="promo-box__title">' +
 							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
 						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__image">' +
-							'<div class="article-image__placeholder" style="padding-top:50%;">' +
-								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=300">' +
-							'</div>' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=300">' +
 						'</div>' +
 						'<div class="promo-box__content">' +
-						'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
-						'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></div></div>' +
+							'<div class="promo-box__content__initial">' +
+								'<p>I am trying to make this paragraph into a long paragraph of sixty words. Sixty words is quite long for a paragraph and I would have hope it was against journalistic standars to write one so long in a promo box. However, journalists and editors are a law unto themselves. Just nine more measly words needed. That should do it.</p>' +
+							'</div>' +
+						'</div>' +
 					'</div>' +
 				'</aside>\n'
 			);
 		});
 	});
 
-	it('should transform to promo box HTML - long version - with expander', function () {
+	it('should transform to inline promo box, no expander - 5 paras, 15 words, no image', function() {
+		return transform(
+			'<promo-box>' +
+				'<promo-title><p>Tatomer Riesling 2012</p></promo-title>' +
+				'<promo-headline><p>Greece debt crisis</p></promo-headline>' +
+				'<promo-intro><p>The first paragraph</p>' +
+				'<p>The second paragraph</p>' +
+				'<p>The third paragraph</p>' +
+				'<p>The fourth paragraph</p>' +
+				'<p>The fifth paragraph</p></div>' +
+				'</promo-intro>' +
+			'</promo-box>'
+		)
+		.then(function (transformedXml) {
+			transformedXml.should.equal(
+				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
+					'<div class="promo-box__wrapper">' +
+						'<div class="promo-box__title">' +
+							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+						'</div>' +
+						'<div class="promo-box__headline">Greece debt crisis</div>' +
+						'<div class="promo-box__content o-expander__content">' +
+							'<div class="promo-box__content__initial">' +
+								'<p>The first paragraph</p>' +
+								'<p>The second paragraph</p>' +
+								'<p>The third paragraph</p>' +
+							'</div>' +
+							'<div class="promo-box__content__extension">' +
+								'<p>The fourth paragraph</p>' +
+								'<p>The fifth paragraph</p>' +
+							'</div>' +
+						'</div>' +
+						'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
+					'</div>' +
+				'</aside>\n'
+			);
+		});
+	});
+
+	it('should transform to promo box - inline, expander - 4 paragraphs, 60 words, with image', function () {
 		return transform(
 			'<promo-box>' +
 				'<promo-title><p>Tatomer Riesling 2012</p></promo-title>' +
 				'<promo-headline><p>Greece debt crisis</p></promo-headline>' +
 				'<promo-image><img src="http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c" /></promo-image>' +
-				'<promo-intro><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
-				'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p>' +
-				'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
-				'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></promo-intro>' +
+				'<promo-intro><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum.”</p>' +
+				'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking.”</p>' +
+				'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us.”</p>' +
+				'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is.”</p></promo-intro>' +
 			'</promo-box>'
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
+				'<aside class="promo-box ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 					'<div class="promo-box__wrapper">' +
 						'<div class="promo-box__title">' +
 							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
@@ -94,10 +132,41 @@ describe('Promo-boxes', function() {
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=300">' +
 						'</div>' +
 						'<div class="promo-box__content o-expander__content">' +
+							'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum.”</p>' +
+							'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking.”</p>' +
+							'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us.”</p></div>' +
+							'<div class="promo-box__content__extension"><p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is.”</p></div></div>' +
+						'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
+					'</div>' +
+				'</aside>\n'
+			);
+		});
+	});
+
+	it('should transform to promo box - inline, expander - 4 paragraphs, 111 words, no image', function () {
+		return transform(
+			'<promo-box>' +
+				'<promo-title><p>Tatomer Riesling 2012</p></promo-title>' +
+				'<promo-headline><p>Greece debt crisis</p></promo-headline>' +
+				'<promo-intro><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
+				'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p>' +
+				'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
+				'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></promo-intro>' +
+			'</promo-box>'
+		)
+		.then(function (transformedXml) {
+			transformedXml.should.equal(
+				'<aside class="promo-box ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
+					'<div class="promo-box__wrapper">' +
+						'<div class="promo-box__title">' +
+							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+						'</div>' +
+						'<div class="promo-box__headline">Greece debt crisis</div>' +
+						'<div class="promo-box__content o-expander__content">' +
 							'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
-							'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></div>' +
-							'<div class="promo-box__content__extension"><p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
-							'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></div></div>' +
+							'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p>' +
+							'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p></div>' +
+							'<div class="promo-box__content__extension"><p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></div></div>' +
 						'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
 					'</div>' +
 				'</aside>\n'
@@ -187,7 +256,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="promo-box promo-box--long ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
+				'<aside class="promo-box ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 					'<div class="promo-box__wrapper">' +
 						'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
@@ -196,9 +265,9 @@ describe('Promo-boxes', function() {
 						'</div>' +
 						'<div class="promo-box__content o-expander__content">' +
 						'<div class="promo-box__content__initial"><p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
-						'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p></div>' +
-						'<div class="promo-box__content__extension"><p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
-						'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></div></div>' +
+						'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p>' +
+						'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p></div>' +
+						'<div class="promo-box__content__extension"><p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></div></div>' +
 						'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
 					'</div>' +
 				'</aside>' +
