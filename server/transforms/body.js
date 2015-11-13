@@ -37,8 +37,11 @@ module.exports = function (body, flags) {
 		.with(trimmedLinks)
 		.get();
 
+	let mainImageExtract = $('figure.article-image--full, figure.article-image--center').first();
+	let mainImageHTML = mainImageExtract.html() ? mainImageExtract.remove() : null;
+
 	let resultObject = {
-		mainImageHTML: $('figure.article-image--full, figure.article-image--center').first().remove(),
+		mainImageHTML: mainImageHTML,
 		tocHTML: $.html('.article__toc')
 	};
 
