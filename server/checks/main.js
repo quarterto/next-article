@@ -91,8 +91,8 @@ module.exports = {
 			numerator: `heroku.article.*${process.env.REGION || ''}.express.default_route_GET.res.status.5**.count`,
 			divisor: `heroku.article.*${process.env.REGION || ''}.express.default_route_GET.res.status.*.count`,
 			name: '500 rate is acceptable',
-			severity: 1,
-			threshold: 5,
+			severity: 2,
+			threshold: 8,
 			businessImpact: 'Number of users seeing an error instead of an article is significantly higher than usual',
 			technicalSummary: 'The proportion of requests responding with a 5xx status is at least 5 times higher than the baseline level',
 			panicGuide: 'Check sentry(https://app.getsentry.com/nextftcom/ft-next-article/) and app logs to see what errors are occuring.'
