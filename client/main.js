@@ -19,6 +19,8 @@ require('next-js-setup').bootstrap(function(result) {
 	var readingHistory = require('./components/reading-history');
 	var scrollDepth = require('./components/article/scroll-depth');
 
+	var labsShare = require('./components/labsshare/main');
+
 	prompts.init();
 	oViewport.listenTo('resize');
 
@@ -41,7 +43,13 @@ require('next-js-setup').bootstrap(function(result) {
 	}
 
 	if (flags.get('articleShareButtons')) {
-		share.init();
+
+		if(flags.get('ftlabsurlsharing')){
+			labsShare.init();
+		} else {
+			share.init();			
+		}
+
 	}
 
 	if (flags.get('myFTTray')) {
