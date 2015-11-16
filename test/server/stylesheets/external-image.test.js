@@ -181,7 +181,7 @@ describe('External images', () => {
 				});
 		});
 
-		it('applies inline variation when source image is portrait', () => {
+		it('applies inline variation when source image is portrait and is less than 600px wide', () => {
 			return transform(
 					'<html>' +
 						'<body>' +
@@ -197,6 +197,29 @@ describe('External images', () => {
 						'<figure class="article-image article-image--inline" style="width:350px;">' +
 							'<div class="article-image__placeholder" style="padding-top:200%;">' +
 								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=350">' +
+							'</div>' +
+						'</figure>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
+					);
+				});
+		});
+
+		it('applies centre variation when source image is portrait and width is between 600px and 700px', () => {
+			return transform(
+					'<html>' +
+						'<body>' +
+							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+							'<p><img src="http://my-image/image.jpg" width="600" height="1200" /></p>' +
+							'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+						'</body>' +
+					'</html>\n'
+				)
+				.then((transformedXml) => {
+					expect(transformedXml).to.equal(
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<figure class="article-image article-image--center" style="width:600px;">' +
+							'<div class="article-image__placeholder" style="padding-top:200%;">' +
+								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=600">' +
 							'</div>' +
 						'</figure>' +
 						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
