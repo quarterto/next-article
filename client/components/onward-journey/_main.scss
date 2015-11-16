@@ -45,8 +45,12 @@
 	box-sizing: border-box;
 }
 .pod__item__image {
+	display: none;
 	float: left;
 	border-bottom: 0;
+	@include oGridRespondTo(S) {
+		display: block;
+	}
 }
 .pod__item__content {
 	padding: 10px 10px 0;
