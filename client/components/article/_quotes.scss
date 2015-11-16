@@ -2,45 +2,49 @@ $quote-spacing-unit: 16px;
 
 .article__quote {
 	position: relative;
-	padding: ($quote-spacing-unit * 3) ($quote-spacing-unit) ($quote-spacing-unit / 2);
 	border-left: 1px solid getColor('warm-3');
 	color: getColor('cold-1');
-	margin: 0 0 $quote-spacing-unit;
+	margin: (3 * $quote-spacing-unit / 2) 0;
 
-	@include oGridRespondTo($from: M) {
+	&--pull-quote {
 		clear: left;
-		margin: 0 $quote-spacing-unit ($quote-spacing-unit * 2) 0;
-
-		&--pull-quote {
-			float: left;
-			max-width: 250px;
+		margin-right: $quote-spacing-unit;
+		padding: ($quote-spacing-unit) ($quote-spacing-unit) ($quote-spacing-unit / 2);
+		border: 1px solid getColor('warm-3');
+		.pull-quote__quote-marks {
+			position: absolute;
+			top: -14px;
+			left: 10px;
+			padding: 0 10px;
+			background-color: getColor('pink');
+			&:before {
+				@include nextIcon(pullquote, getColor('cold-1'), 26);
+				content: "";
+			}
 		}
 	}
 
-	/// Single quote mark
-	&:before {
-		@include oTypographySerifDisplayItalic(xl);
-		content: "“";
-		position: absolute;
-		top: -20px;
-		left: 0;
-		font-size: 180px;
-		line-height: 1;
+	&--full-quote {
+		padding: (2 * $quote-spacing-unit) $quote-spacing-unit 0;
+		p {
+			padding-bottom: 0;
+			&:before {
+				position: absolute;
+				top: 0;
+				left: $quote-spacing-unit;
+				@include nextIcon(pullquote, getColor('cold-1'), 26);
+				content: "";
+			}
+		}
 	}
 
 	p {
-		@include oTypographySerifDisplayItalic(m);
-		@include oGridRespondTo(S) {
-			@include oTypographySerifDisplayItalic(l);
-		}
+		@include oTypographySerifDisplay(m);
 		margin: 0;
-		padding-bottom: $quote-spacing-unit / 2;
 	}
 }
 
 .article__quote-citation {
-	@include oTypographySerifItalic(s);
-	@include oGridRespondTo(S) {
-		@include oTypographySerifItalic(m);
-	}
+	@include oTypographySansDataBold(m);
+	font-style: normal;
 }

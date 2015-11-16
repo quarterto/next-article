@@ -332,4 +332,29 @@ describe('Promo-boxes', function() {
 		});
 	});
 
+	it('should leave an image of less than 300px width at actual size', function () {
+		return transform(
+			'<promo-box>' +
+				'<promo-title><p>Tatomer Riesling 2012</p></promo-title>' +
+				'<promo-headline><p>Greece debt crisis</p></promo-headline>' +
+				'<promo-image><img src="http://com.ft.imagepublish.prod.s3.amazonaws.com/79ac73d6-7718-11e5-933d-efcdc3c11c89" alt="start-up" longdesc="" width="167" height="96" /></promo-image>' +
+				'<promo-intro><p>That should do it.</p></promo-intro>' +
+			'</promo-box>'
+		)
+		.then(function(transformedXml) {
+			transformedXml.should.equal(
+				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
+					'<div class="promo-box__wrapper">' +
+					'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
+					'<div class="promo-box__headline">Greece debt crisis</div>' +
+					'<div class="promo-box__image"><div class="article-image__placeholder" style="padding-top:32%;">' +
+						'<img alt="start-up" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/79ac73d6-7718-11e5-933d-efcdc3c11c89?source=next&amp;fit=scale-down&amp;width=167"></div></div>' +
+					'<div class="promo-box__content"><div class="promo-box__content__initial"><p>That should do it.</p>' +
+				'</div></div></div>' +
+				'</aside>\n'
+			);
+		});
+
+	});
+
 });

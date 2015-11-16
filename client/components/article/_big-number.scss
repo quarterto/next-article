@@ -1,0 +1,21 @@
+.article__big-number {
+	color: getColor('cold-1');
+	border: 1px solid getColor('warm-3');
+	margin: 16px 16px 16px 0;
+	clear: left;
+	padding: 16px;
+	@include oGridRespondTo(S) {
+		width: 100%;
+	}
+	p {
+		 margin: 0;
+	}
+	.o-big-number__title {
+		@include oTypographySerifDisplayBold(xl);
+		font-size: 3em;
+		line-height: 1em;
+	}
+	.o-big-number__content {
+		@include oTypographySansData(m);
+	}
+}

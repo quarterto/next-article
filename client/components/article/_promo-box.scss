@@ -32,10 +32,10 @@
 	@include nTypeFoxtrot(3);
 	display: inline-block;
 	padding: 10px;
-	color: getColor('cold-3');
+	color: getColor('cold-1');
 	font-weight: 900;
 	a {
-		color: getColor('cold-3');
+		color: getColor('cold-1');
 		border-bottom: 0;
 		text-decoration: none;
 	}

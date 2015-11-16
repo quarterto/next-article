@@ -101,6 +101,7 @@
 }
 .article__primary-theme__link {
 	@include nLinksTopic();
+	@include oTypographySansDataBold(l);
 }
 
 .article__actions {
@@ -245,19 +246,7 @@
 .article__subhead--standard {
 	@include nTypeBravo(3);
 }
-.article__big-number {
-	color: getColor('cold-1');
-	border-left-color: getColor('warm-3');
-}
-.article__big-number {
-	width: 100%;
-	margin-top: 1.5em;
-	margin-bottom: 1.5em;
-	clear: left;
-}
-.article__big-number p {
-	margin: 0;
-}
+
 .article__aside {
 	@include oGridRespondTo($from: L, $until: XL) {
 		width: 310px;
@@ -297,3 +286,4 @@
 @import 'promo-box';
 @import 'quotes';
 @import 'genre-styles';
+@import 'big-number';

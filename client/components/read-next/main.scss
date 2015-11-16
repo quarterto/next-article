@@ -13,7 +13,7 @@
 }
 
 .next-up__intro {
-	@include nTypeFoxtrot(4);
+	@include oTypographySerifDisplayBold(m);
 	position: absolute;
 	background-color: getColor('warm-5');
 	color: getColor('cold-2');

@@ -67,10 +67,30 @@
     <xsl:template match="img" mode="placehold-image">
         <xsl:param name="maxWidth" />
 
-        <xsl:variable name="ratio" select="(100 div @width) * @height" />
+        <xsl:variable name="ratio">
+          <xsl:choose>
+            <xsl:when test="@width &lt; $maxWidth">
+              <xsl:value-of select="(100 div $maxWidth) * @height "/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="(100 div @width) * @height "/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+
+        <xsl:variable name="imageWidth">
+          <xsl:choose>
+            <xsl:when test="@width &lt; $maxWidth">
+              <xsl:value-of select="@width"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$maxWidth"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
 
         <div class="article-image__placeholder" style="padding-top:{$ratio}%;">
-            <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$maxWidth}" />
+            <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$imageWidth}" />
         </div>
     </xsl:template>
 

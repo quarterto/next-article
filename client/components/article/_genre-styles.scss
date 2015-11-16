@@ -47,7 +47,7 @@ $brand-color: getColor('warm-1');
 
 .article__brand--title {
 	@include nLinksTopic;
-	@include nTypeFoxtrot(2);
+	@include oTypographySerifDisplayBold(l);
 	text-transform: capitalize;
 	margin-left: 30px;
 	letter-spacing: 0;

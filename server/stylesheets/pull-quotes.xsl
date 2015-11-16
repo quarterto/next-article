@@ -3,6 +3,7 @@
 
     <xsl:template match="pull-quote">
         <blockquote class="ng-inline-element article__quote article__quote--pull-quote">
+          <div class="pull-quote__quote-marks"></div>
             <p><xsl:value-of select="pull-quote-text" /></p>
             <xsl:apply-templates select="pull-quote-source" />
         </blockquote>
