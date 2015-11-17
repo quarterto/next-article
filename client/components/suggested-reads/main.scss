@@ -14,7 +14,7 @@
 }
 
 .suggested-reads__title {
-	@include nTypeFoxtrot(3);
+	@include oTypographySerifDisplayBold(m);
 	position: absolute;
 	top: -10px;
 	left: 10px;

@@ -69,12 +69,7 @@
 
     <xsl:template match="promo-image">
 
-      <xsl:variable name="maxWidth">
-        <xsl:choose>
-          <xsl:when test="@width &lt; 300"><xsl:value-of select="@width" /></xsl:when>
-          <xsl:otherwise>300</xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
+      <xsl:variable name="maxWidth" select="300" />
 
       <div class="promo-box__image">
         <xsl:choose>
