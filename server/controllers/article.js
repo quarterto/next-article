@@ -142,6 +142,11 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		payload.suggestedTopic = payload.primaryTag;
 	}
 
+	if (req.get('FT-Labs-Gift') === 'GRANTED') {
+		payload.shared = true;
+		res.vary('FT-Labs-Gift');
+	}
+
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
 			payload.layout = 'wrapper';
