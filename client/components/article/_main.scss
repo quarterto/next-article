@@ -86,8 +86,8 @@
 		&:after {
 			content: attr(title);
 			position: absolute;
-			top: 5px;
-			left: 5px;
+			top: 0px;
+			left: 10px;
 			text-indent: 0;
 		}
 	}
