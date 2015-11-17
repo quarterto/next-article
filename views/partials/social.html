@@ -1,4 +1,9 @@
 <div class="article__share" data-trackable="share">
+  {{#if shared}}
+    <div class="article__share-share-message">
+      This article has been gifted to you by an FT Subscriber.
+    </div>
+  {{/if}}
   {{#if @root.flags.articleShareButtons}}
 
     {{#if @root.flags.ftlabsurlsharing}}
