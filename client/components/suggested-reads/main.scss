@@ -31,6 +31,6 @@
 }
 
 .suggested-reads__item__topic {
-	@include nTypeBravo(4);
 	@include nLinksTopic();
+	@include oTypographySansDataBold(l);
 }
