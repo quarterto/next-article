@@ -56,12 +56,14 @@ $o-comments-is-silent: false;
 	.article-tags,
 	.article__body > div,
 	.article__body > aside,
+	.article__body > blockquote,
 	.article__more-on,
 	.article__comments,
-	.article-share,
+	.article__share,
 	.story-package,
 	.article__actions,
-	.article__main-image,
+	.article-image,
+	.js-special-report,
 	.pod {
 		display: none;
 	}
