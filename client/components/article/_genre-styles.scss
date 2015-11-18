@@ -37,8 +37,8 @@ $brand-color: getColor('warm-1');
 	position: relative;
 	margin-top: 8px;
 	&:before {
-		position: absolute;
 		@include nextIcon(pullquote, getColor('claret'), 26);
+		position: absolute;
 		top: 3px;
 		left: 0;
 		content: '';
@@ -58,10 +58,10 @@ $brand-color: getColor('warm-1');
 	bottom: 0;
 	right: 0;
 	width: 100px;
+	overflow: hidden;
 	@include oGridRespondTo(M) {
 		width: 150px;
 	}
-	overflow: hidden;
 }
 
 .article__header-headshot--image {

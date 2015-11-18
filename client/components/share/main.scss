@@ -44,13 +44,17 @@
 		border-bottom-width: 0;
 		float: left;
 		margin-right: 16px;
+		@include oGridRespondTo(M) {
+			display: block;
+		}
 		&:before {
 			@include nextIcon(printer, getColor('cold-1'), 25);
 			content: '';
 		}
-		@include oGridRespondTo(M) {
-			display: block;
-		}
+	}
+
+	&--bottom {
+		margin-bottom: 30px;
 	}
 
 	.o-share__action a {

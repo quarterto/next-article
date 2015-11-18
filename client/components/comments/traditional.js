@@ -1,13 +1,13 @@
 'use strict';
-var OComments = require('o-comments');
-var trackEvent = require('../utils/tracking');
+const OComments = require('o-comments');
+const trackEvent = require('../utils/tracking');
 
 module.exports = {};
 module.exports.init = function(uuid, flags) {
 	if (!flags.get('articleComments') || !document.querySelector('#comments')) {
 		return;
 	}
-	var eventData = {
+	const eventData = {
 		action: 'comment',
 		category: 'page',
 		context: {
@@ -16,13 +16,17 @@ module.exports.init = function(uuid, flags) {
 		}
 	};
 	OComments.on('widget.renderComplete', function (ev) {
-		var commentCount = ev.detail.instance.lfWidget.getCollection().attributes.numVisible;
-		var commentLink = document.createElement('a');
-		commentLink.setAttribute('href', '#comments');
-		commentLink.setAttribute('data-trackable', 'view-comments');
-		commentLink.className = 'article__share__comments';
-		commentLink.textContent = commentCount;
-		document.querySelector('.article__share').appendChild(commentLink);
+		const commentCount = ev.detail.instance.lfWidget.getCollection().attributes.numVisible;
+		const articleShareList = document.querySelectorAll('.article__share');
+		const articleShareArray = Array.prototype.slice.call(articleShareList);
+		articleShareArray.forEach(function (articleShare) {
+			let commentLink = document.createElement('a');
+			commentLink.setAttribute('href', '#comments');
+			commentLink.setAttribute('data-trackable', 'view-comments');
+			commentLink.className = 'article__share__comments';
+			commentLink.textContent = commentCount;
+			articleShare.appendChild(commentLink);
+		});
 	});
 	OComments.on('tracking.postComment', function () {
 		eventData.meta = { interaction: 'posted' };
