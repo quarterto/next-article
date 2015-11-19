@@ -41,30 +41,26 @@ function suppressBadResponses(err) {
 
 module.exports = function(req, res, next) {
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
-		Promise.all([
-			api.contentLegacy({
-					uuid: req.params.id
-				})
-				.catch(suppressBadResponses),
-			api.content({
-					uuid: req.params.id
-				})
-				.catch(suppressBadResponses)
-		])
-			.then(function(results) {
+		api.content({
+			uuid: req.params.id,
+			index: 'v3_api_v2'
+		})
+			.catch(suppressBadResponses)
+			.then(function(article) {
 				metrics.count('__debug.accessmiddleware.accessservice.start.count', 1);
-				var articleLegacy = results[0];
-				var article = results[1];
+
 				// if this article doesn't exist in capi, continue
-				if (!articleLegacy && !article) {
+				if (!article) {
 					return next();
 				}
+
 				var blogAccessMetadata = blogsAccessPoller.getData().access_metadata.map(function (access) {
 					access.host_regex = 'blogs\.ft\.com';
 					return access;
 				});
+
 				var classification = 'conditional_registered';
-				var articleUrl = url.parse(articleLegacy ? articleLegacy.item.location.uri : article.webUrl);
+				var articleUrl = url.parse(article.webUrl);
 				var access = accessMetadata
 					.concat(blogAccessMetadata)
 					.find(function (access) {
@@ -76,10 +72,13 @@ module.exports = function(req, res, next) {
 						}
 						return true;
 					});
+
 				if (access) {
 					classification = access.classification;
 				}
+
 				metrics.count('__debug.accessmiddleware.accessservice.end.count', 1);
+
 				res.set('Outbound-Cache-Control', 'public, max-age=3600');
 				res.set('Surrogate-Control', 'max-age=3600');
 				res.vary('X-FT-UID');
