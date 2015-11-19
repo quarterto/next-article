@@ -5,7 +5,7 @@
 				{{#with primaryTag}}
 				<div class="header">
 					<h2 class="header__name">More episodes from {{name}}</h2>
-					{{#if @root.flags.userPreferencesAPI }}
+					{{#if @root.flags.myFtApi }}
 						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
 					{{/if}}
 					<a class="header__link" href="/stream/{{taxonomy}}Id/{{id}}" data-trackable="show-link">

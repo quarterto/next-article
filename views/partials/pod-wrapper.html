@@ -5,7 +5,7 @@
 				<h2 class="header__name">
 					<span class="header__name-prefix">More {{#ifEquals taxonomy 'authors'}}by{{else}}on{{/ifEquals}}</span> {{name}}
 				</h2>
-				{{#if @root.flags.userPreferencesAPI }}
+				{{#if @root.flags.myFtApi }}
 				{{>next-myft-ui/templates/follow version='3'}}
 				{{/if}}
 				<a class="header__link" href="{{url}}" data-trackable="topic-link">
