@@ -5,6 +5,10 @@ let shares;
 
 exports.init = function() {
 
+	const triggers = Array.prototype.slice.call(document.querySelectorAll('.o-overlay-trigger'));
+
+	triggers.forEach((overlay, index) => overlay.dataset.oOverlayId = index);
+
 	oOverlay.init();
 	labsShare.addShareCodeToUrl();
 
