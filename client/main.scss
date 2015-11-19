@@ -45,6 +45,8 @@ $o-comments-is-silent: false;
 @import "components/suggested-reads/main";
 @import "components/read-next/main";
 
+@import "components/labsshare/main";
+
 @media print {
 	body > section,
 	.n-myft-tray__cta,

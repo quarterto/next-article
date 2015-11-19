@@ -1,0 +1,23 @@
+/// o-overlay/Next overrides
+
+.o-overlay {
+    margin-left: 215px;
+
+    &:after,
+    &:before {
+        left: 20px !important;
+    }
+
+}
+
+.o-overlay-trigger[data-o-overlay-gift-trigger] {
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 2px;
+}
+
+.labs-share-wrapper {
+	display: inline-block;
+	width: auto;
+	padding-bottom: 8px;
+}
