@@ -14,7 +14,7 @@ module.exports = function articlePodMapping(article) {
 		subheading: Array.isArray(article.summaries) ? article.summaries[0] : null,
 	};
 
-	if (Object.keys(article.mainImage).length > 0) {
+	if (article.mainImage && Object.keys(article.mainImage).length > 0) {
 		Object.assign(article.mainImage, nImageOptions, { alt: article.mainImage.description });
 	}
 
