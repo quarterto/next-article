@@ -40,8 +40,9 @@ function suppressBadResponses(err) {
 }
 
 module.exports = function(req, res, next) {
+
 	if (req.get('X-FT-Access-Metadata') === 'remote_headers') {
-		api.content({
+		return api.content({
 			uuid: req.params.id,
 			index: 'v3_api_v2'
 		})
