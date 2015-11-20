@@ -14,7 +14,9 @@ function loadShareCount() {
 			fetch(`/article/${articleId}/social-counts?url=${url}`, { credentials: 'same-origin' })
 			.then(fetchres.json)
 			.then(function(counts) {
-				shareCountArray.forEach(shareCount => shareCount.textContent = `${counts.shares} shares`);
+				if (counts.shares !==undefined) {
+					shareCountArray.forEach(shareCount => shareCount.textContent = `${counts.shares} shares`);
+				}
 			});
 		}
 	}
