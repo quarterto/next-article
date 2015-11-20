@@ -34,7 +34,7 @@ function selectPrimaryTag(article) {
 }
 
 function selectTagsForDisplay(article) {
-	let ignore = [ 'mediaType', 'iptc', 'icb' ];
+	let ignore = [ 'genre', 'mediaType', 'iptc', 'icb' ];
 
 	article.tags = article.metadata
 		.filter(
