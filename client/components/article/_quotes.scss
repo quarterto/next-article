@@ -2,6 +2,7 @@ $quote-spacing-unit: 16px;
 
 .article__quote {
 	position: relative;
+	clear: left;
 	border-left: 1px solid getColor('warm-3');
 	color: getColor('cold-1');
 	margin: (3 * $quote-spacing-unit / 2) 0;
