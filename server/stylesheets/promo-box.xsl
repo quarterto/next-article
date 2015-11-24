@@ -14,7 +14,6 @@
         <xsl:when test="($contentParas > $expanderParaBreak) and (($imageCount > 0 and $wordCount > $expanderWordImage) or ($imageCount = 0 and $wordCount > $expanderWordNoImage))">
           <aside class="promo-box ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">
             <div class="promo-box__wrapper">
-              <xsl:apply-templates select="current()" mode="default-title" />
               <xsl:apply-templates />
             </div>
           </aside>
@@ -22,7 +21,6 @@
         <xsl:otherwise>
           <aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">
             <div class="promo-box__wrapper">
-              <xsl:apply-templates select="current()" mode="default-title" />
               <xsl:apply-templates />
             </div>
           </aside>
@@ -30,22 +28,13 @@
       </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="promo-box" mode="default-title">
+    <xsl:template match="promo-title">
       <div class="promo-box__title">
         <div class="promo-box__title__name">
-          <xsl:choose>
-            <xsl:when test="count(current()/promo-title) = 0">
-              <xsl:text>Related Content</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select="current()/promo-title" mode="extract-content" />
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:apply-templates select="current()" mode="extract-content" />
         </div>
       </div>
     </xsl:template>
-
-    <xsl:template match="promo-title"/>
 
     <xsl:template match="promo-headline">
       <div class="promo-box__headline">
