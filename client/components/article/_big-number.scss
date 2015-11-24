@@ -17,5 +17,6 @@
 	}
 	.o-big-number__content {
 		@include oTypographySansData(m);
+		font-size: 16px;
 	}
 }

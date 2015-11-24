@@ -186,9 +186,6 @@ describe('Promo-boxes', function() {
 			transformedXml.should.equal(
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
-						'<div class="promo-box__title">' +
-							'<div class="promo-box__title__name">Related Content</div>' +
-						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__image">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=300">' +
@@ -228,7 +225,6 @@ describe('Promo-boxes', function() {
 			transformedXml.should.equal(
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
-						'<div class="promo-box__title"><div class="promo-box__title__name">Related Content</div></div>' +
 						'<div class="promo-box__headline"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a></div>' +
 					'</div>' +
 				'</aside>\n'
