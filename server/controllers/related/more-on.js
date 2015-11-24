@@ -38,8 +38,8 @@ module.exports = function (req, res, next) {
 				.map(articlePodMapping);
 
 			articles.forEach((article, i) => {
-				if (article.mainImage && i > 0 && i !== 5) {
-					article.mainImage = undefined;
+				if (article.mainImage && i > 0) {
+					article.mainImage = null;
 				}
 			});
 

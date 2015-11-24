@@ -1,10 +1,14 @@
-<li class="pod__item-wrapper {{#if mainImage}}pod__item-wrapper--with-image{{/if}}">
+<li class="pod__item-wrapper {{#ifEquals @index 0}}pod__item-wrapper--lead{{/ifEquals}} {{#if mainImage}}pod__item-wrapper--image{{/if}}">
 	<div class="pod__item" data-trackable="pod-{{@index}}">
-		{{#if mainImage}}
-			<a class="pod__item__image" href="{{url}}" data-trackable="image">
-				{{>n-image/templates/image image=mainImage}}
-			</a>
-		{{/if}}
+		{{#ifEquals @index 0}}
+			{{#if mainImage}}
+				<div class="pod__item__image--placeholder">
+					<a class="pod__item__image" href="{{url}}" data-trackable="image">
+						{{>n-image/templates/image image=mainImage}}
+					</a>
+				</div>
+			{{/if}}
+		{{/ifEquals}}
 		<div class="pod__item__content">
 			{{#if primaryTag}}
 				<a class="pod__item__tag" href="{{primaryTag.url}}" data-trackable="tag">

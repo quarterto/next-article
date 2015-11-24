@@ -1,25 +1,35 @@
-{{#if @root.flags.articleRelatedContent}}
-	{{#each moreOns}}
-		<div class="more-on {{#if @last}}more-on--small{{/if}} js-more-on-container" data-o-grid-colspan="12 XL11 XLoffset1" data-trackable="more-on-{{@index}}" role="region">
-			<div class="pod">
-				<div class="header">
-					<h2 class="header__name">Latest {{title}} {{name}}</h2>
-					<a class="header__link" href="{{url}}" data-trackable="topic-link">
-						<span class="header__link__text">Go to {{name}}</span>
-					</a>
-					{{#if @root.flags.myFtApi }}
-						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
-					{{/if}}
+<div data-o-grid-colspan="12 L9 XL8 XLoffset1">
+	<div class="js-story-package" data-trackable="story-package"></div>
+	{{#if moreOns}}
+		{{#each moreOns}}
+			<div class="more-on js-more-on-container" data-trackable="more-on-{{@index}}" role="region">
+				<div class="pod">
+					<div class="header">
+						<span class="header__title">
+							<h2 class="header__name">Latest {{title}} {{name}}</h2>
+							{{#if @root.flags.myFtApi }}
+								{{>next-myft-ui/templates/follow version='3' conceptId=id}}
+							{{/if}}
+						</span>
+						<a class="header__link" href="{{url}}" data-trackable="topic-link">
+							<span class="header__link__text">See all</span>
+						</a>
+					</div>
+					<ul class="pod__items js-more-on">
+					</ul>
 				</div>
-				<ul class="pod__items js-more-on">
-				</ul>
 			</div>
-		</div>
-	{{/each}}
-	{{#if tags}}
-		<div class="article-tags" role="region" data-o-grid-colspan="12 L4" data-trackable="mentions">
-			<div class="header">
-				<h2 class="header__name">Mentions</h2>
+		{{/each}}
+	{{/if}}
+</div>
+{{#if tags}}
+	<div data-o-grid-colspan="12 L3">
+		<div class="article-tags" role="region" data-trackable="mentions">
+			<div class="header article-tags__header">
+				<h2 class="header__name"><i>my</i>FT</h2>
+			</div>
+			<div class="article-tags__intro">
+				<p>Follow the topics mentioned in this article</p>
 			</div>
 			<ul class="article-tags__tags">
 				{{#each tags}}
@@ -31,6 +41,9 @@
 					</li>
 				{{/each}}
 			</ul>
+			<div class="article-tags__product-tour">
+				<a class="article-tags__product-tour--link" href="/myft/producttour" data-trackable="myFT-product-tour">Take a tour of <i>my</i>FT</a>
+			</div>
 		</div>
-	{{/if}}
+	</div>
 {{/if}}

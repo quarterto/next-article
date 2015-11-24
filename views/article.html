@@ -151,15 +151,12 @@
 {{/ifAll}}
 
 <div class="o-grid-container">
-	<div class="o-grid-row {{#if readNextArticle}}read-next__container{{/if}}">
+	<div class="o-grid-row">
 		{{#if isSpecialReport}}
 				<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12 XL11 XLoffset1"></div>
 		{{else}}
 			{{#if @root.flags.articleRelatedContent}}
-				<div class="js-story-package" data-trackable="story-package" data-o-grid-colspan="12 XL11 XLoffset1"></div>
-				{{#if moreOns}}
-					{{>more-ons}}
-				{{/if}}
+				{{>more-ons}}
 			{{/if}}
 		{{/if}}
 	</div>

@@ -26,25 +26,14 @@ module.exports = function(req, res, next) {
 			return articles.map(articlePodMapping);
 		})
 		.then(function(articles) {
-			let numImages = 0;
-			let imageCount = 0;
-
-			articles.forEach(article => article.image && numImages++);
+			articles.forEach((article, i) => {
+				if (article.mainImage && i > 0) {
+					article.mainImage = null;
+				}
+			});
 
 			return res.render('related/story-package', {
-				articles: articles.map(article => {
-					article.image && imageCount ++;
-
-					if (articles.length === 5 && numImages === 5 && (imageCount === 3 || imageCount === 4)) {
-						article.image = null;
-					}
-
-					if (articles.length === 3 && numImages > 1 && article.image && (imageCount === 2 || imageCount === 3)) {
-						article.image = null;
-					}
-
-					return article;
-				}),
+				articles: articles,
 				headerText: 'Related stories'
 			});
 		})
