@@ -10,7 +10,7 @@
     "o-comments": "2.2.0",
     "o-comment-ui": "2.1.0",
     "next-myft-ui": "^5.0.0",
-    "o-comment-api": "2.1.0",
+    "o-comment-api": "^2.1.0",
     "next-buttons": "^2.0.0",
     "o-expander": "^2.0.0",
     "o-share": "^2.0.0",
