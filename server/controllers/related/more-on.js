@@ -6,17 +6,10 @@ const logger = require('ft-next-express').logger;
 const NoRelatedResultsException = require('../../lib/no-related-results-exception');
 const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
-module.exports = function (req, res, next) {
-
-	if (!req.query.tagId) {
-		return res.status(400).end();
-	}
-
-	let count = parseInt(req.query.count, 10) || 5;
-
+function getArticles (tagId, count, parentId) {
 	return api.search({
-		filter: [ 'metadata.idV1', req.query.tagId ],
-		// Get +1 for de-duping
+		filter: [ 'metadata.idV1', tagId ],
+		// Get +1 for de-duping parent article
 		count: count + 1,
 		fields: [
 			'id',
@@ -27,25 +20,69 @@ module.exports = function (req, res, next) {
 			'publishedDate'
 		]
 	})
-		.then(function(articles) {
+		.then(articles => {
 			if (!articles.length) {
 				throw new NoRelatedResultsException();
 			}
-
-			articles = articles
-				.filter(article => article.id !== req.params.id)
+			return articles
+				.filter(article => article.id !== parentId)
 				.slice(0, count)
 				.map(articlePodMapping);
+		});
+}
 
-			articles.forEach((article, i) => {
-				if (article.mainImage && i > 0) {
-					article.mainImage = null;
-				}
-			});
+function allSettled(promises) {
+	let resolveWhenSettled = function(promise) {
+		return new Promise(res => {
+			promise.then(res, () => res());
+		});
+	};
+	return Promise.all(promises.map(resolveWhenSettled));
+}
 
-			return res.render('related/more-on', {
-				articles: articles
-			});
+module.exports = function (req, res, next) {
+	// make sure there are tag ids and an index not greater than 4
+	if (!req.query.tagIds || !req.query.index || parseInt(req.query.index, 10) > 4) {
+		return res.status(400).end();
+	}
+
+	const tagIdArray = req.query.tagIds.split(',');
+	const moreOnIndex = req.query.index;
+	const parentId = req.params.id;
+	const count = Math.min(parseInt(req.query.count, 10), 10) || 5;
+
+	let getArticlesPromises = [];
+	let precedingMoreOnIds = [];
+
+	let dedupe = function(articlesToDedupe) {
+		return articlesToDedupe
+			.filter(article => isNotADupe(article.id))
+			.slice(0, count);
+	};
+
+	let isNotADupe = function(articleId) {
+		return precedingMoreOnIds.indexOf(articleId) === -1;
+	};
+
+	// get predecessor more-on tag articles for deduping
+	tagIdArray.slice(0,(moreOnIndex + 1)).forEach((tagId, i) => {
+		getArticlesPromises.push(getArticles(tagId, count * (i + 1),parentId));
+	});
+
+	return allSettled(getArticlesPromises)
+		.then(moreOnArticlesArray => {
+			for (let i = 0; i < moreOnIndex; i++) {
+				precedingMoreOnIds = precedingMoreOnIds
+				.concat(dedupe(moreOnArticlesArray[i]).map(article => article.id));
+			}
+			moreOnArticlesArray[moreOnIndex] = dedupe(moreOnArticlesArray[moreOnIndex])
+				.map((article, i) => {
+					if (article.mainImage && i > 0) {
+						article.mainImage = null;
+					}
+					return article;
+				});
+			return res.render('related/more-on', {articles: moreOnArticlesArray[moreOnIndex]});
 		})
 		.catch(function(err) {
 			logger.error(err);

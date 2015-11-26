@@ -72,10 +72,13 @@ module.exports.init = function() {
 	if (moreOns.length) {
 		let url = `/article/${articleId}/more-on?count=5`;
 
+		let tagIds = hydratedMetadata.moreOns.map((moreOn) => {
+			return encodeURI(moreOn.id);
+		}).join(',');
+
 		fetchPromises = fetchPromises.concat(
 			moreOns.map((el, i) => {
-				let term = hydratedMetadata.moreOns[i];
-				let query = `tagId=${encodeURI(term.id)}`;
+				let query = `tagIds=${tagIds}&index=${i}`;
 				return createPromise(el, `${url}&${query}`);
 			})
 		);
