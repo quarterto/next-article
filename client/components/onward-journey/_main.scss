@@ -183,11 +183,11 @@
 	font-size: 16px;
 	position: relative;
 	&:after {
-		@include nextIcon('arrow-right', getColor('link-1'), 16);
+		@include nextIcon('arrow-right', getColor('link-1'), 10);
 		content: '';
 		position: absolute;
-		top: 2px;
-		right: -20px;
+		top: 5px;
+		width: 16px;
 	}
 	&:hover {
 		color: getColor('link-2');
