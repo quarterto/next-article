@@ -81,6 +81,15 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	let asyncWorkToDo = [];
 
+	// Required for correctly tracking page / barrier views
+	if (req.get('FT-Barrier-Type') !== '-') {
+		payload.barrierType = req.get('FT-Barrier-Type');
+	}
+
+	if (req.get('FT-Corporate-Id') !== '-') {
+		payload.corporateId = req.get('FT-Corporate-Id');
+	}
+
 	if (res.locals.barrier) {
 		return res.render('article', barrierHelper(payload, res.locals.barrier));
 	}
