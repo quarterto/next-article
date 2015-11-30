@@ -17,9 +17,9 @@ module.exports = [
 			'/content/b002e5ee-3096-3f51-9925-32b157740c98': 200,
 			// related fragments
 			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/story-package?articleIds=b56232bc-adec-11e4-919e-00144feab7de,8a5c2c02-a47e-11e4-b943-00144feab7de,6bfcdc6e-a0b6-11e4-8ad8-00144feab7de,c0dbd6d6-8072-11e4-9907-00144feabdc0': 200,
-			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?tagId=TnN0ZWluX1BOX1BvbGl0aWNpYW5fMTY4OA==-UE4=': 200,
+			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?tagIds=TnN0ZWluX1BOX1BvbGl0aWNpYW5fMTY4OA==-UE4=,NDdiMzAyNzctMTRlMy00Zjk1LWEyZjYtYmYwZWIwYWU2NzAy-VG9waWNz&index=1': 200,
 			// articles with not tagged with X
-			'/article/a1fb6fee-93ae-359d-be8f-f215920b79ff/more-on?tagId=OA==-U2VjdGlvbnM=': {
+			'/article/02cad03a-844f-11e4-bae9-00144feabdc0/more-on?tagIds=TnN0ZWluX1BOX1BvbGl0aWNpYW5fMTY4OA==-UE4=,NDdiMzAyNzctMTRlMy00Zjk1LWEyZjYtYmYwZWIwYWU2NzAy-VG9waWNz&index=1': {
 				content: ''
 			}
 		}
