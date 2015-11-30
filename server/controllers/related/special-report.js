@@ -6,16 +6,9 @@ const logger = require('ft-next-express').logger;
 const NoRelatedResultsException = require('../../lib/no-related-results-exception');
 const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 
-module.exports = function(req, res, next) {
-
-	if (!req.query.tagId) {
-		return res.status(400).end();
-	}
-
-	let count = parseInt(req.query.count, 10) || 5;
-
+function getArticles (tagId, count, parentId) {
 	return api.search({
-		filter: [ 'metadata.idV1', req.query.tagId ],
+		filter: [ 'metadata.idV1', tagId ],
 		// Get +1 for de-duping
 		count: count + 1,
 		fields: [
@@ -31,19 +24,31 @@ module.exports = function(req, res, next) {
 			if (!articles.length) {
 				throw new NoRelatedResultsException();
 			}
-
-			articles = articles
-				.filter(article => article.id !== req.param.id)
+			return articles
+				.filter(article => article.id !== parentId)
 				.slice(0, count)
 				.map(articlePodMapping);
+		});
+}
 
-			let articleWithImage = articles.find(article => new Boolean(article.mainImage));
+module.exports = function(req, res, next) {
 
+	if (!req.query.tagId) {
+		return res.status(400).end();
+	}
+
+	const tagId = req.query.tagId;
+	const count = parseInt(req.query.count, 10) || 5;
+	const parentId = req.params.id;
+
+	return getArticles(tagId, count, parentId)
+		.then(specialReportArticles => {
+			let articleWithImage = specialReportArticles.find(article => article.mainImage);
 			return res.render('related/special-report', {
-				id: articles[0].primaryTag.idV1,
-				name: articles[0].primaryTag.prefLabel,
+				id: specialReportArticles[0].primaryTag.idV1,
+				name: specialReportArticles[0].primaryTag.prefLabel,
 				image: articleWithImage ? articleWithImage.mainImage : null,
-				articles: articles
+				articles: specialReportArticles
 			});
 		})
 		.catch(function(err) {
