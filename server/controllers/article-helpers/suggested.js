@@ -7,7 +7,7 @@ const articlePodMapping = require('../../mappings/article-pod-mapping-v3');
 module.exports = function(articleId, storyPackageIds, primaryTag) {
 	let suggestedArticleFetch;
 
-	if (storyPackageIds.length < 5) {
+	if (primaryTag && storyPackageIds.length < 5) {
 		suggestedArticleFetch = api.search({
 			filter: ['metadata.idV1', primaryTag.id],
 			fields: ['id'],
