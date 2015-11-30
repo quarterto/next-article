@@ -37,20 +37,22 @@ module.exports = function (body, flags) {
 		.with(trimmedLinks)
 		.get();
 
-	let mainImageHTML;
+
+	let tocHtml = $('.article__toc').remove();
+	let mainImageHtml;
 
 	// find image that is the first element in the body
 	if ($('figure.article-image--full, figure.article-image--center').first().html() &&
 	$('figure.article-image--full, figure.article-image--center').first().prev().html() === null) {
-		mainImageHTML = $('figure.article-image--full, figure.article-image--center').first().remove();
+		mainImageHtml = $('figure.article-image--full, figure.article-image--center').first().remove();
 	}
 
 	let resultObject = {
-		mainImageHTML: mainImageHTML,
-		tocHTML: $.html('.article__toc')
+		mainImageHtml: mainImageHtml,
+		tocHtml: tocHtml
 	};
 
-	resultObject.bodyHTML = $.html();
+	resultObject.bodyHtml = $.html();
 
 	return resultObject;
 };
