@@ -9,7 +9,7 @@
     "n-video": "^2.5.1",
     "o-comments": "2.2.0",
     "o-comment-ui": "2.1.0",
-    "next-myft-ui": "^5.0.0",
+    "next-myft-ui": "^6.0.0",
     "o-comment-api": "^2.1.0",
     "next-buttons": "^2.0.0",
     "o-expander": "^2.0.0",
@@ -23,8 +23,8 @@
   "resolutions": {
     "o-ft-icons": "next",
     "o-fonts": "^2.0.0",
-    "next-myft-client": "^5.0.1",
+    "next-myft-client": "^6.0.0",
     "o-typography": "^3.0.0",
-    "next-myft-ui": "^5.0.0"
+    "next-myft-ui": "^6.0.0"
   }
 }
