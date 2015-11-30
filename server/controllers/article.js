@@ -95,9 +95,9 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	asyncWorkToDo.push(
 		transformArticleBody(payload, res.locals.flags).then(fragments => {
-			payload.bodyHTML = fragments.bodyHTML;
-			payload.tocHTML = fragments.tocHTML;
-			payload.mainImageHTML = fragments.mainImageHTML;
+			payload.bodyHtml = fragments.bodyHtml;
+			payload.tocHtml = fragments.tocHtml;
+			payload.mainImageHtml = fragments.mainImageHtml;
 		})
 	);
 	payload.designGenre = articleBranding(payload.metadata);

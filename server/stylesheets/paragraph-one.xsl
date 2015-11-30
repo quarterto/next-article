@@ -5,7 +5,7 @@
 
         <xsl:if test="$renderTOC = 1 and count(h3[contains(@class, 'ft-subhead')]/strong) > 2">
             <div class="article__toc" data-trackable="table-of-contents">
-                <h2 class="article__toc__title">Chapters in this article</h2>
+                <h2 class="article__toc__title">In this article</h2>
                 <ol class="article__toc__chapters ng-list-reset">
                     <xsl:for-each select="h3[contains(@class, 'ft-subhead')]/strong">
                         <li class="article__toc__chapter">

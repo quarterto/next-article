@@ -17,7 +17,7 @@
 				{{else}}
 				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
 				{{/if}}
-					<header class="article__header--wrapper {{#if mainImageHTML}}article__header--wrapper--main-image{{/if}}">
+					<header class="article__header--wrapper {{#if mainImageHtml}}article__header--wrapper--main-image{{/if}}">
 						<div class="article__header-primary">
 							{{#if isSpecialReport}}
 								<p class="article__primary-theme">
@@ -54,7 +54,7 @@
 					{{>read-next-header article=readNextArticle}}
 				{{else}}
 					{{#if tags}}
-					<aside class="article__tags {{#if mainImageHTML}}article__tags--main-image{{/if}}" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
+					<aside class="article__tags {{#if mainImageHtml}}article__tags--main-image{{/if}}" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
 						<h3 class="article__tags__title">Topics mentioned in this article</h3>
 						<ul class="article__tags-list" data-trackable="tags">
 							{{#each tags}}
@@ -69,13 +69,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="article__wrapper {{#if mainImageHTML}}article__wrapper--main-image{{/if}}">
-		{{#if bodyHTML}}
+	<div class="article__wrapper {{#if mainImageHtml}}article__wrapper--main-image{{/if}}">
+		{{#if bodyHtml}}
 		<div class="o-grid-container">
 			<div class="article__main o-grid-row">
 				<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-					{{#if mainImageHTML}}
-						{{{mainImageHTML}}}
+					{{#if mainImageHtml}}
+						{{{mainImageHtml}}}
 					{{/if}}
 					{{> social location='top'}}
 					<div class="article__time-byline">
@@ -88,8 +88,13 @@
 							<p class="article__byline">by: {{{byline}}}</p>
 						{{/if}}
 					</div>
+					{{#if tocHtml}}
+						<div class="article__body--toc">
+							{{{tocHtml}}}
+						</div>
+					{{/if}}
 					<div class="article__body">
-						{{{bodyHTML}}}
+						{{{bodyHtml}}}
 					</div>
 					{{> social location='bottom'}}
 			</div>
@@ -99,7 +104,7 @@
 					{{> suggested-reads items=readNextArticles }}
 					{{> suggested-topic suggested=suggestedTopic }}
 				{{/if}}
-				{{{toc}}}
+				{{{tocHtml}}}
 			</div>
 		</div>
 	</div>

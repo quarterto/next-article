@@ -1,7 +1,7 @@
 .article__toc {
 	margin: 30px 0;
 
-	.article__body & {
+	.article__body--toc & {
 		@include oGridRespondTo(L) {
 			display: none;
 		}
