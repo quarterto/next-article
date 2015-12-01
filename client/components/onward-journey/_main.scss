@@ -25,14 +25,8 @@
 .pod__item {
 	position: relative;
 	width: 100%;
-	padding-bottom: 30px;
 	background-color: getColor('pink');
 	box-sizing: border-box;
-	@include oGridRespondTo(M) {
-		.pod__item-wrapper--image & {
-			padding-bottom: 0;
-		}
-	}
 }
 
 .pod__item__image--placeholder {
@@ -51,7 +45,7 @@
 }
 
 .pod__item__content {
-	padding: 10px 10px 0;
+	padding: 10px 10px 30px;
 	overflow: hidden;
 	@include oGridRespondTo(M) {
 		.pod__item-wrapper--lead & {
@@ -117,6 +111,17 @@
 	line-height: 30px;
 	padding: 0 10px;
 	color: getColor('warm-6');
+}
+
+.more-on__topic--link {
+	position: relative;
+	padding-right: 20px;
+	margin-bottom: 20px;
+	display: block;
+	text-align: right;
+	@include oGridRespondTo(M) {
+		display: none;
+	}
 }
 
 .article-tags {
@@ -187,13 +192,12 @@
 		content: '';
 		position: absolute;
 		top: 5px;
-		width: 16px;
 	}
 	&:hover {
-		color: getColor('link-2');
+		color: getColor('cold-2');
 
 		&:after {
-			@include nextIcon('arrow-right', getColor('link-2'), 16);
+			@include nextIcon('arrow-right', getColor('cold-2'), 10);
 		}
 	}
 }
@@ -217,6 +221,7 @@
 }
 .header__title {
 	&:after {
+		display: none;
 		content: "";
 		position: absolute;
 		margin-left: 10px;
@@ -224,6 +229,9 @@
 		border-bottom: 1px solid getColor('warm-3');
 		top: 24px;
 		width: 100%;
+		@include oGridRespondTo(M) {
+			display: initial;
+		}
 	}
 }
 
@@ -244,23 +252,43 @@
 	transition: color 0.3s;
 
 	&:hover {
-		color: getColor('link-2');
+		color: getColor('cold-2');
 
 		&:after {
-			@include nextIcon('arrow-right', getColor('link-2'), 16);
+			@include nextIcon('arrow-right', getColor('cold-2'), 16);
 		}
 	}
 	&:after {
 		@include nextIcon('arrow-right', getColor('link-1'), 16);
+		display: none;
 		content: '';
 		position: absolute;
 		top: 14px;
 		right: 0;
+		@include oGridRespondTo(M) {
+			display: inline-block;
+		}
 	}
 }
 .header__link__text {
 	display: none;
-	@include oGridRespondTo(S) {
+	@include oGridRespondTo(M) {
 		display: block;
+	}
+}
+
+.header__link--bottom {
+	&:after {
+		@include nextIcon('arrow-right', getColor('link-1'), 10);
+		content: '';
+		position: absolute;
+		top: 5px;
+	}
+	&:hover {
+		color: getColor('cold-2');
+
+		&:after {
+			@include nextIcon('arrow-right', getColor('cold-2'), 10);
+		}
 	}
 }
