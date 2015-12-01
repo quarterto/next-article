@@ -1,37 +1,47 @@
 'use strict';
 
-require('next-js-setup').bootstrap(function(result) {
+require('next-js-setup').bootstrap(result => {
 
-	var prompts = require('n-message-prompts');
-	var oViewport = require('o-viewport');
-	var oDate = require('o-date');
-	var nMyFtTray = require('n-myft-tray');
-	var oExpander = require('o-expander');
+	const myFtClient = require('next-myft-client');
+	const myFtUi = require('next-myft-ui');
 
-	var layout = require('n-layout');
-	var nVideo = require('n-video');
+	const prompts = require('n-message-prompts');
+	const oViewport = require('o-viewport');
+	const oDate = require('o-date');
+	const nMyFtTray = require('n-myft-tray');
+	const oExpander = require('o-expander');
 
-	var slideshow = require('./components/slideshow/main');
-	var onwardJourney = require('./components/onward-journey/main');
-	var toc = require('./components/toc/main');
-	var comments = require('./components/comments/main');
-	var share = require('./components/share/main');
-	var readingHistory = require('./components/reading-history');
-	var scrollDepth = require('./components/article/scroll-depth');
+	const layout = require('n-layout');
+	const nVideo = require('n-video');
 
-	var labsShare = require('./components/labsshare/main');
+	const slideshow = require('./components/slideshow/main');
+	const onwardJourney = require('./components/onward-journey/main');
+	const toc = require('./components/toc/main');
+	const comments = require('./components/comments/main');
+	const share = require('./components/share/main');
+	const readingHistory = require('./components/reading-history');
+	const scrollDepth = require('./components/article/scroll-depth');
+
+	const labsShare = require('./components/labsshare/main');
 
 	prompts.init();
 	oViewport.listenTo('resize');
 
-	var flags = result.flags;
+	const flags = result.flags;
 	layout.init(flags);
+
+	let clientOpts = [];
+	result.flags.get('follow') && clientOpts.push({relationship: 'followed', type: 'concept'});
+	result.flags.get('saveForLater') && clientOpts.push({relationship: 'saved', type: 'content'});
+	myFtClient.init(clientOpts);
+
+	myFtUi.init({anonymous: !(/FTSession=/.test(document.cookie))});
 
 	if (document.querySelector('*[data-article-status="error"]')) {
 		return;
 	}
 
-	var uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
+	const uuid = document.querySelector('article[data-content-id]').getAttribute('data-content-id');
 	if (uuid) {
 		readingHistory.add(uuid);
 	}
@@ -72,7 +82,7 @@ require('next-js-setup').bootstrap(function(result) {
 	});
 	scrollDepth.init(flags);
 
-	window.addEventListener('load', function() {
+	window.addEventListener('load', () => {
 		comments.init(uuid, flags);
 	}, false);
 });
