@@ -2,21 +2,26 @@
 	<div class="js-story-package" data-trackable="story-package"></div>
 	{{#if moreOns}}
 		{{#each moreOns}}
-			<div class="more-on js-more-on-container" data-trackable="more-on-{{@index}}" role="region">
-				<div class="pod">
-					<div class="header">
-						<span class="header__title">
-							<h2 class="header__name">Latest {{title}} {{name}}</h2>
-							{{#if @root.flags.myFtApi }}
-								{{>next-myft-ui/templates/follow version='3' conceptId=id}}
-							{{/if}}
-						</span>
-						<a class="header__link" href="{{url}}" data-trackable="topic-link">
-							<span class="header__link__text">See all</span>
-						</a>
+			<div data-trackable="more-on-{{@index}}" role="region">
+				<div class="more-on js-more-on-container">
+					<div class="pod">
+						<div class="header">
+							<span class="header__title">
+								<h2 class="header__name">Latest {{title}} {{name}}</h2>
+								{{#if @root.flags.myFtApi }}
+									{{>next-myft-ui/templates/follow version='3' conceptId=id}}
+								{{/if}}
+							</span>
+							<a class="header__link" href="{{url}}" data-trackable="topic-link">
+								<span class="header__link__text">See all</span>
+							</a>
+						</div>
+						<ul class="pod__items js-more-on">
+						</ul>
 					</div>
-					<ul class="pod__items js-more-on">
-					</ul>
+				</div>
+				<div class="more-on__topic--link">
+					<a class="header__link--bottom" href={{url}} data-trackable="topic-link">See all {{title}} {{name}}</a>
 				</div>
 			</div>
 		{{/each}}
