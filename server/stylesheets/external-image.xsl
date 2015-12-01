@@ -26,6 +26,7 @@
     <xsl:template match="img" mode="figure">
         <xsl:variable name="variation">
             <xsl:choose>
+                <xsl:when test="@width &lt;= 150">thin</xsl:when>
                 <xsl:when test="@width &lt;= 350">inline</xsl:when>
                 <xsl:when test="(@width &lt; @height) and (@width &lt; 600)">inline</xsl:when>
                 <xsl:when test="@width &lt; 700">center</xsl:when>
