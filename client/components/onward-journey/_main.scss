@@ -215,7 +215,7 @@
 	padding: 10px 0 0;
 	color: getColor('cold-3');
 	&--sans-serif {
-		@include oTypographySansDataBold(l);
+		@include oTypographySansData(l);
 		font-size: 20px;
 	}
 }
