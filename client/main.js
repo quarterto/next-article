@@ -1,6 +1,6 @@
 'use strict';
 
-require('next-js-setup').bootstrap(result => {
+require('next-js-setup').bootstrap(({flags}) => {
 
 	const myFtClient = require('next-myft-client');
 	const myFtUi = require('next-myft-ui');
@@ -27,15 +27,14 @@ require('next-js-setup').bootstrap(result => {
 	prompts.init();
 	oViewport.listenTo('resize');
 
-	const flags = result.flags;
-	layout.init(flags);
-
-	let clientOpts = [];
-	result.flags.get('follow') && clientOpts.push({relationship: 'followed', type: 'concept'});
-	result.flags.get('saveForLater') && clientOpts.push({relationship: 'saved', type: 'content'});
+	const clientOpts = [];
+	flags.get('follow') && clientOpts.push({relationship: 'followed', type: 'concept'});
+	flags.get('saveForLater') && clientOpts.push({relationship: 'saved', type: 'content'});
 	myFtClient.init(clientOpts);
 
 	myFtUi.init({anonymous: !(/FTSession=/.test(document.cookie))});
+
+	layout.init(flags);
 
 	if (document.querySelector('*[data-article-status="error"]')) {
 		return;
