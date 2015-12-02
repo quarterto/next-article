@@ -65,9 +65,6 @@ describe('Access Controller', () => {
 		request = httpMocks.createRequest(params);
 		response = httpMocks.createResponse();
 
-		// Vary method is not a thing in node-mocks-http module ATM
-		response.vary = sinon.stub();
-
 		return subject(request, response, next);
 	}
 
