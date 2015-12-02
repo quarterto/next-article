@@ -26,9 +26,12 @@
 								</p>
 							{{else}}
 								{{#if primaryTag}}
-								<p class="article__primary-theme">
-									<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
-								</p>
+									<div class="article__primary-theme" data-trackable="primary-theme">
+										<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+									{{#if @root.flags.myFtApi}}
+										{{>next-myft-ui/templates/follow version='3' conceptId=primaryTag.id}}
+									{{/if}}
+									</div>
 								{{/if}}
 							{{/if}}
 							<h1 class="article__title">{{title}}</h1>
