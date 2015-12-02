@@ -41,9 +41,9 @@ module.exports = function (body, flags) {
 	let tocHtml = $('.article__toc').remove();
 	let mainImageHtml;
 
-	// find image that is the first element in the body
+	// find image or slideshow that is the first element in the body
 	if (
-		($('figure.article-image--full, figure.article-image--center').first().html() || $('ft-slideshow').first()) &&
+		($('figure.article-image--full, figure.article-image--center').first().html() || $('ft-slideshow').first().length) &&
 		($('figure.article-image--full, figure.article-image--center, ft-slideshow').first().prev().html() === null)
 	) {
 		mainImageHtml = $('figure.article-image--full, figure.article-image--center, ft-slideshow').first().remove();
