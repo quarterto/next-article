@@ -30,7 +30,6 @@ function transformArticleBody(article, flags) {
 		id: article.id,
 		webUrl: article.webUrl,
 		renderTOC: flags.articleTOC ? 1 : 0,
-		renderSlideshows: flags.galleries ? 1 : 0,
 		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
 		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
 		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
