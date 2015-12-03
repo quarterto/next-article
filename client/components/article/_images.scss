@@ -1,6 +1,8 @@
 .article-image {
 	margin: 0 auto 1em;
 	max-width: 100%;
+	clear: left;
+	page-break-inside: avoid;
 
 	img {
 		display: block;

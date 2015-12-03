@@ -47,6 +47,7 @@ $o-comments-is-silent: false;
 
 @import "components/labsshare/main";
 
+// Print Styling
 @media print {
 	body > section,
 	.n-myft-tray__cta,
@@ -57,17 +58,18 @@ $o-comments-is-silent: false;
 	.article__tags,
 	.article-tags,
 	.article__body > div,
-	.article__body > aside,
-	.article__body > blockquote,
 	.article__more-on,
 	.article__comments,
 	.article__share,
 	.story-package,
 	.article__actions,
-	.article-image,
 	.js-special-report,
 	.next-up__bottom__wrapper,
+	.more-on__topic--link,
 	.pod {
 		display: none;
+	}
+	.o-grid-row {
+		display: inherit;
 	}
 }
