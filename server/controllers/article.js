@@ -31,8 +31,7 @@ function transformArticleBody(article, flags) {
 		webUrl: article.webUrl,
 		renderTOC: flags.articleTOC ? 1 : 0,
 		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
-		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
-		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0
+		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {

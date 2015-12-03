@@ -4,7 +4,6 @@ var articleXSLT = require('../../../server/transforms/article-xslt');
 
 module.exports = function(xml, params) {
 	var defaults = {
-		renderInteractiveGraphics: 0,
 		useBrightcovePlayer: 0,
 		renderTOC: 0
 	};
