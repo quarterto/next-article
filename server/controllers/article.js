@@ -120,7 +120,6 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
 	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
-	payload.encodedTitle = encodeURIComponent(payload.title);
 
 	payload.dehydratedMetadata = {
 		moreOns: payload.moreOns,
