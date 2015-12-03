@@ -32,7 +32,6 @@ function transformArticleBody(article, flags) {
 		renderTOC: flags.articleTOC ? 1 : 0,
 		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
 		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
-		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
 		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0
 	};
 
