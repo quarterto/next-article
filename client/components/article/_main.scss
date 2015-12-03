@@ -93,23 +93,15 @@
 	}
 }
 .article__primary-theme {
-	position: relative;
 	margin: 0 0 5px;
 
 	@media print {
 		padding-top: 30px;
 	}
 }
-
-.article__primary-theme .n-myft-ui--follow {
-	position: absolute;
-	top: 0;
-}
-
 .article__primary-theme__link {
 	@include nLinksTopic();
 	@include oTypographySansDataBold(l);
-	padding-right: 15px;
 }
 
 .article__actions {
