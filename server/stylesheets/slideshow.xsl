@@ -13,10 +13,8 @@
     </xsl:template>
 
     <xsl:template match="a[substring(@href, string-length(@href) - 6) = '#slide0' and normalize-space(string()) = '']">
-        <xsl:if test="$renderSlideshows = 1">
-            <!-- assume href is of the format .*[UUID].html#slide0 -->
-            <ft-slideshow data-uuid="{substring-before(substring(@href, string-length(@href) - 47), '.html#slide0')}" />
-        </xsl:if>
+      <!-- assume href is of the format .*[UUID].html#slide0 -->
+      <ft-slideshow data-uuid="{substring-before(substring(@href, string-length(@href) - 47), '.html#slide0')}" />
     </xsl:template>
 
 </xsl:stylesheet>

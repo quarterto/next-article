@@ -30,11 +30,8 @@ function transformArticleBody(article, flags) {
 		id: article.id,
 		webUrl: article.webUrl,
 		renderTOC: flags.articleTOC ? 1 : 0,
-		renderSlideshows: flags.galleries ? 1 : 0,
 		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
-		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
-		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
-		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0
+		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
@@ -120,7 +117,6 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
 
 	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
-	payload.encodedTitle = encodeURIComponent(payload.title);
 
 	payload.dehydratedMetadata = {
 		moreOns: payload.moreOns,
