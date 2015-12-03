@@ -1,7 +1,7 @@
 {
   "name": "next-article",
   "dependencies": {
-    "n-layout": "^4.0.0",
+    "n-layout": "^5.0.0",
     "o-fonts": "^1.6.4",
     "o-big-number": "^1.1.0",
     "o-gallery": "^1.6.1",
@@ -9,13 +9,13 @@
     "n-video": "^2.5.1",
     "o-comments": "2.2.0",
     "o-comment-ui": "2.1.0",
-    "next-myft-ui": "^5.0.0",
+    "next-myft-ui": "^6.0.0",
     "o-comment-api": "^2.1.0",
     "next-buttons": "^2.0.0",
     "o-expander": "^2.0.0",
     "o-share": "^2.0.0",
     "superstore": "^2.0.1",
-    "n-myft-tray": "Financial-Times/n-myft-tray#^2.0.0",
+    "n-myft-tray": "^4.0.0",
     "n-image": "^2.0.0",
     "n-message-prompts": "Financial-Times/n-message-prompts#^v1.0.0",
     "labs-o-share": "ftlabs/o-share#url-sharing"
@@ -23,8 +23,6 @@
   "resolutions": {
     "o-ft-icons": "next",
     "o-fonts": "^2.0.0",
-    "next-myft-client": "^5.0.1",
-    "o-typography": "^3.0.0",
-    "next-myft-ui": "^5.0.0"
+    "o-typography": "^3.0.0"
   }
 }

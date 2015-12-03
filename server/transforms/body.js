@@ -7,6 +7,7 @@ const replaceHrs = require('../transforms/replace-hrs');
 const relativeLinks = require('./relative-links');
 const trimmedLinks = require('./trimmed-links');
 const externalImages = require('./external-images');
+const extractMainImageAndToc = require('./extract-main-image-and-toc');
 
 let transform = function ($, flags) {
 	let withFn = function ($, transformFn) {
@@ -37,22 +38,5 @@ module.exports = function (body, flags) {
 		.with(trimmedLinks)
 		.get();
 
-
-	let tocHtml = $('.article__toc').remove();
-	let mainImageHtml;
-
-	// find image that is the first element in the body
-	if ($('figure.article-image--full, figure.article-image--center').first().html() &&
-	$('figure.article-image--full, figure.article-image--center').first().prev().html() === null) {
-		mainImageHtml = $('figure.article-image--full, figure.article-image--center').first().remove();
-	}
-
-	let resultObject = {
-		mainImageHtml: mainImageHtml,
-		tocHtml: tocHtml
-	};
-
-	resultObject.bodyHtml = $.html();
-
-	return resultObject;
+	return extractMainImageAndToc($);
 };

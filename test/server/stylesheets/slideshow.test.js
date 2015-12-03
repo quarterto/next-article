@@ -10,10 +10,7 @@ describe('Slideshow', function () {
 		return transform(
 				'<body>' +
 					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
-				'</body>',
-				{
-					renderSlideshows: 1
-				}
+				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -26,10 +23,7 @@ describe('Slideshow', function () {
 		return transform(
 				'<body>' +
 					'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0">political turmoil</a>' +
-				'</body>',
-				{
-					renderSlideshows: 1
-				}
+				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -44,10 +38,7 @@ describe('Slideshow', function () {
 					'<p>' +
 						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 					'</p>' +
-				'</body>',
-				{
-					renderSlideshows: 1
-				}
+				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -63,10 +54,7 @@ describe('Slideshow', function () {
 						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 						'Some text in the same p tag as the slideshow' +
 					'</p>' +
-				'</body>',
-				{
-					renderSlideshows: 1
-				}
+				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -83,10 +71,7 @@ describe('Slideshow', function () {
 						'<a href="http://www.ft.com/cms/s/0/f3970f88-0475-11df-8603-00144feabdc0.html#slide0"></a>' +
 						'Some <strong>strong</strong> text' +
 					'</p>' +
-				'</body>',
-				{
-					renderSlideshows: 1
-				}
+				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
@@ -105,10 +90,7 @@ describe('Slideshow', function () {
 						'<a href="http://blogs.ft.com/the-world/liveblogs/2015-09-15/" title="As it happened: Republican presidential debate - FTcom">Republican debate</a> ' +
 						'had in common with those legendary exchanges.' +
 					'</p>' +
-				'</body>',
-				{
-					renderSlideshows: 1
-				}
+				'</body>'
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(

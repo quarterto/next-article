@@ -30,12 +30,8 @@ function transformArticleBody(article, flags) {
 		id: article.id,
 		webUrl: article.webUrl,
 		renderTOC: flags.articleTOC ? 1 : 0,
-		renderSlideshows: flags.galleries ? 1 : 0,
 		suggestedRead: flags.articleSuggestedRead ? 1 : 0,
-		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0,
-		fullWidthMainImages: flags.fullWidthMainImages ? 1 : 0,
-		renderInteractiveGraphics: flags.articleInlineInteractiveGraphics ? 1 : 0,
-		encodedTitle: encodeURIComponent(article.title.replace(/\&nbsp\;/g, ' '))
+		useBrightcovePlayer: flags.brightcovePlayer ? 1 : 0
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
@@ -80,6 +76,15 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 
 	let asyncWorkToDo = [];
+
+	// Required for correctly tracking page / barrier views
+	if (req.get('FT-Barrier-Type') !== '-') {
+		payload.barrierType = req.get('FT-Barrier-Type');
+	}
+
+	if (req.get('FT-Corporate-Id') !== '-') {
+		payload.corporateId = req.get('FT-Corporate-Id');
+	}
 
 	if (res.locals.barrier) {
 		return res.render('article', barrierHelper(payload, res.locals.barrier));
