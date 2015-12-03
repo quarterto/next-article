@@ -12,7 +12,6 @@
     <xsl:include href="big-number.xsl" />
     <xsl:include href="blockquotes.xsl" />
     <xsl:include href="external-image.xsl" />
-    <xsl:include href="functions.xsl" />
     <xsl:include href="interactive-graphics.xsl" />
     <xsl:include href="links.xsl" />
     <xsl:include href="promo-box.xsl" />
