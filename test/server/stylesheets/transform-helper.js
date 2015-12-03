@@ -8,10 +8,7 @@ module.exports = function(xml, params) {
 		useBrightcovePlayer: 0,
 		renderSlideshows: 0,
 		renderTOC: 0,
-		fullWidthMainImages: 0,
-		id: 'article-uuid',
-		webUrl: 'http://www.ft.com/article-uuid',
-		encodedTitle: 'Article Title'
+		fullWidthMainImages: 0
 	};
 
 	var xsltParams = {};
