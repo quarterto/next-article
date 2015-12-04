@@ -3,10 +3,6 @@
 	position: relative;
 	background: getColor('pink');
 	font-weight: 100;
-
-	@media print {
-		padding-top: 40px;
-	}
 }
 
 .article__header--wrapper {
@@ -86,18 +82,13 @@
 		&:after {
 			content: attr(title);
 			position: absolute;
-			top: 0px;
-			left: 10px;
+			left: 20px;
 			text-indent: 0;
 		}
 	}
 }
 .article__primary-theme {
 	margin: 0 0 5px;
-
-	@media print {
-		padding-top: 30px;
-	}
 }
 .article__primary-theme__link {
 	@include nLinksTopic();
@@ -174,6 +165,7 @@
 			}
 			&[href^='/']:after {
 				content: ' (http://next.ft.com' attr(href) ')';
+				word-break: break-all;
 			}
 			&:not([href^='/']):after {
 				content: ' (' attr(href) ')';
