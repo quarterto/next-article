@@ -8,16 +8,16 @@
 				<h3>Share on social networks:</h3>
 				<ul>
 					<li class="labs-o-share__action labs-o-share__action--twitter">
-						<a data-trackable="twitter" href="https://twitter.com/intent/tweet?url=https://next.ft.com/content/{{id}}&amp;text={{og.title}}&amp;via=FT"><i>Twitter</i></a>
+						<a data-trackable="twitter" href="https://twitter.com/intent/tweet?url=https://next.ft.com/content/{{id}}&amp;text={{encode og.title mode='uriComponent'}}&amp;via=FT"><i>Twitter</i></a>
 					</li>
 					<li class="labs-o-share__action labs-o-share__action--facebook">
-						<a data-trackable="facebook" href="http://www.facebook.com/sharer.php?u=https://next.ft.com/content/{{id}}&amp;t={{og.title}}+|+{{og.description}}"><i>Facebook</i></a>
+						<a data-trackable="facebook" href="http://www.facebook.com/sharer.php?u=https://next.ft.com/content/{{id}}&amp;t={{encode og.title mode='uriComponent'}}+|+{{og.description}}"><i>Facebook</i></a>
 					</li>
 					<li class="labs-o-share__action labs-o-share__action--linkedin">
-						<a data-trackable="linkedin" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://next.ft.com/content/{{id}}&amp;title={{og.title}}&amp;summary={{og.description}}&amp;source=Financial+Times"><i>LinkedIn</i></a>
+						<a data-trackable="linkedin" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://next.ft.com/content/{{id}}&amp;title={{encode og.title mode='uriComponent'}}&amp;summary={{og.description}}&amp;source=Financial+Times"><i>LinkedIn</i></a>
 					</li>
 					<li class="labs-o-share__action labs-o-share__action--whatsapp">
-						<a target="_blank" data-trackable="whatsapp" href="whatsapp://send?text={{og.title}}%20-%20https://next.ft.com/content/{{id}}" data-trackable="whatsapp"><i>Whatsapp</i></a>
+						<a target="_blank" data-trackable="whatsapp" href="whatsapp://send?text={{encode og.title mode='uriComponent'}}%20-%20https://next.ft.com/content/{{id}}" data-trackable="whatsapp"><i>Whatsapp</i></a>
 					</li>
 				</ul>
 			</div>
