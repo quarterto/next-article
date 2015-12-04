@@ -45,12 +45,6 @@ module.exports = function barrierHelper(viewModel, options) {
 		viewModel.premiumSimpleBarrier.articleTitle = viewModel.title;
 	}
 
-	if (options.premiumGrid) {
-		viewModel.premiumGridBarrier = options.premiumGrid;
-		viewModel.barrierOverlay = {};
-		viewModel.premiumGridBarrier.articleTitle = viewModel.title;
-	}
-
 	if (options.corporateSimple) {
 		viewModel.corporateBarrier = options.corporateSimple;
 		viewModel.barrierOverlay = {};
