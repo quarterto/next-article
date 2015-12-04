@@ -162,10 +162,10 @@
 		@media print {
 			&:after {
 				text-decoration: none;
+				word-break: break-all;
 			}
 			&[href^='/']:after {
 				content: ' (http://next.ft.com' attr(href) ')';
-				word-break: break-all;
 			}
 			&:not([href^='/']):after {
 				content: ' (' attr(href) ')';
