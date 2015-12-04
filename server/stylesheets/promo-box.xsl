@@ -30,9 +30,9 @@
 
     <xsl:template match="promo-title">
       <div class="promo-box__title">
-        <div class="promo-box__title__name">
+        <span class="promo-box__title__name">
           <xsl:apply-templates select="current()" mode="extract-content" />
-        </div>
+        </span>
       </div>
     </xsl:template>
 

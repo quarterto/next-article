@@ -21,7 +21,7 @@ describe('Promo-boxes', function() {
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
 						'<div class="promo-box__title">' +
-							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+							'<span class="promo-box__title__name">Tatomer Riesling 2012</span>' +
 						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__image">' +
@@ -52,7 +52,7 @@ describe('Promo-boxes', function() {
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
 						'<div class="promo-box__title">' +
-							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+							'<span class="promo-box__title__name">Tatomer Riesling 2012</span>' +
 						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__image">' +
@@ -87,7 +87,7 @@ describe('Promo-boxes', function() {
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
 						'<div class="promo-box__title">' +
-							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+							'<span class="promo-box__title__name">Tatomer Riesling 2012</span>' +
 						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__content o-expander__content">' +
@@ -125,7 +125,7 @@ describe('Promo-boxes', function() {
 				'<aside class="promo-box ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 					'<div class="promo-box__wrapper">' +
 						'<div class="promo-box__title">' +
-							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+							'<span class="promo-box__title__name">Tatomer Riesling 2012</span>' +
 						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__image">' +
@@ -159,7 +159,7 @@ describe('Promo-boxes', function() {
 				'<aside class="promo-box ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 					'<div class="promo-box__wrapper">' +
 						'<div class="promo-box__title">' +
-							'<div class="promo-box__title__name">Tatomer Riesling 2012</div>' +
+							'<span class="promo-box__title__name">Tatomer Riesling 2012</span>' +
 						'</div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__content o-expander__content">' +
@@ -208,7 +208,7 @@ describe('Promo-boxes', function() {
 			transformedXml.should.equal(
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
-						'<div class="promo-box__title"><div class="promo-box__title__name"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a> </div></div>' +
+						'<div class="promo-box__title"><span class="promo-box__title__name"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a> </span></div>' +
 					'</div>' +
 				'</aside>\n'
 			);
@@ -254,7 +254,7 @@ describe('Promo-boxes', function() {
 			transformedXml.should.equal(
 				'<aside class="promo-box ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">' +
 					'<div class="promo-box__wrapper">' +
-						'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
+						'<div class="promo-box__title"><span class="promo-box__title__name">Tatomer Riesling 2012</span></div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__image">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=300">' +
@@ -269,7 +269,7 @@ describe('Promo-boxes', function() {
 				'</aside>' +
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
-						'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
+						'<div class="promo-box__title"><span class="promo-box__title__name">Tatomer Riesling 2012</span></div>' +
 						'<div class="promo-box__headline">Greece debt crisis</div>' +
 						'<div class="promo-box__image">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=300">' +
@@ -294,7 +294,7 @@ describe('Promo-boxes', function() {
 			transformedXml.should.equal(
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
-						'<div class="promo-box__title"><div class="promo-box__title__name">Series: China Great Game</div></div>' +
+						'<div class="promo-box__title"><span class="promo-box__title__name">Series: China Great Game</span></div>' +
 						'<div class="promo-box__headline">As China seeks to expand its sphere of influence, it is likely to encounter significant resistance. <a href="http://www.ft.com/indepth/china-great-game" data-trackable="link">Read more</a> </div>' +
 						'<div class="promo-box__content">' +
 							'<div class="promo-box__content__initial"><p><a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link">Road to a new empire </a> <br>A modern-day Silk route is Xi Jinping’s signature foreign policy. <a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link">Read more </a> </p></div>' +
@@ -317,7 +317,7 @@ describe('Promo-boxes', function() {
 			transformedXml.should.equal(
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
-						'<div class="promo-box__title"><div class="promo-box__title__name"><b>CV</b></div></div>' +
+						'<div class="promo-box__title"><span class="promo-box__title__name"><b>CV</b></span></div>' +
 						'<div class="promo-box__headline">This is the headline</div>' +
 						'<div class="promo-box__content">' +
 							'<div class="promo-box__content__initial"><p>Here is some content</p></div>' +
@@ -341,7 +341,7 @@ describe('Promo-boxes', function() {
 			transformedXml.should.equal(
 				'<aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">' +
 					'<div class="promo-box__wrapper">' +
-					'<div class="promo-box__title"><div class="promo-box__title__name">Tatomer Riesling 2012</div></div>' +
+					'<div class="promo-box__title"><span class="promo-box__title__name">Tatomer Riesling 2012</span></div>' +
 					'<div class="promo-box__headline">Greece debt crisis</div>' +
 					'<div class="promo-box__image"><div class="article-image__placeholder" style="padding-top:32%;">' +
 						'<img alt="start-up" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/79ac73d6-7718-11e5-933d-efcdc3c11c89?source=next&amp;fit=scale-down&amp;width=167"></div></div>' +
