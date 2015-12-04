@@ -5,6 +5,8 @@ let shares;
 
 exports.init = function() {
 
+	debugger;
+
 	const triggers = Array.prototype.slice.call(document.querySelectorAll('.o-overlay-trigger'));
 
 	triggers.forEach((overlay, index) => overlay.dataset.oOverlayId = index);
