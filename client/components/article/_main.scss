@@ -13,7 +13,7 @@
 .article__header-inner {
 	padding-top: 12px;
 
-	@include.article__primary-theme__link oGridRespondTo(L) {
+	@include oGridRespondTo(L) {
 		display: flex;
 	}
 }
