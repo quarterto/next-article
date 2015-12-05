@@ -13,7 +13,7 @@
 .article__header-inner {
 	padding-top: 12px;
 
-	@include oGridRespondTo(L) {
+	@include.article__primary-theme__link oGridRespondTo(L) {
 		display: flex;
 	}
 }
@@ -98,7 +98,7 @@
 .article__primary-theme__link {
 	@include nLinksTopic();
 	@include oTypographySansDataBold(l);
-	padding-right: 10px;
+	margin-right: 10px;
 }
 
 .article__actions {
