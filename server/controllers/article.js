@@ -154,7 +154,11 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
-			payload.layout = 'wrapper';
+			if (req.query.fragment) {
+				payload.layout = 'vanilla';
+			} else {
+				payload.layout = 'wrapper';
+			}
 			return res.set(cacheControlUtil).render('article', payload);
 		})
 		.catch(error => {
