@@ -74,7 +74,6 @@ function getMoreOnTags(primaryTheme, primarySection) {
 
 module.exports = function articleV3Controller(req, res, next, payload) {
 
-
 	let asyncWorkToDo = [];
 
 	// Required for correctly tracking page / barrier views
@@ -154,12 +153,14 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
+			res.set(cacheControlUtil);
 			if (req.query.fragment) {
 				payload.layout = 'vanilla';
+				res.render('./partials/body', payload);
 			} else {
 				payload.layout = 'wrapper';
+				res.render('article', payload);
 			}
-			return res.set(cacheControlUtil).render('article', payload);
 		})
 		.catch(error => {
 			logger.error(error);
