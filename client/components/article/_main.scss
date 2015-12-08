@@ -156,6 +156,12 @@
 	@include nTypeAlpha(3);
 	margin-bottom: 40px;
 
+	&--serif {
+		@include oTypographySerifDisplay(m);
+		font-weight: 200;
+		color: getColor('cold-1');
+	}
+
 	> p {
 		margin: 0.3em 0 0.8em;
 	}
