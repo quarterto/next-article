@@ -96,11 +96,9 @@
 							{{{tocHtml}}}
 						</div>
 					{{/if}}
-					<div class="article__body">
-						{{{bodyHtml}}}
-					</div>
+					{{> body bodyHtml=bodyHtml}}
 					{{> social location='bottom'}}
-			</div>
+				</div>
 			<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
 				<div class="sidebar-ad-placeholder ad-placeholder"></div>
 				{{#if @root.flags.articleSuggestedRead}}
