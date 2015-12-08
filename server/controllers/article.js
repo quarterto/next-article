@@ -156,7 +156,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			res.set(cacheControlUtil);
 			if (req.query.fragment) {
 				payload.layout = 'vanilla';
-				res.render('./partials/body', payload);
+				res.render('fragment', payload);
 			} else {
 				payload.layout = 'wrapper';
 				res.render('article', payload);
