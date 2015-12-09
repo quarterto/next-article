@@ -157,9 +157,7 @@
 	margin-bottom: 40px;
 
 	&--serif {
-		@include oTypographySerifDisplay(m);
-		font-weight: 200;
-		color: getColor('cold-1');
+		@include oTypographySerif(m);
 	}
 
 	> p {
