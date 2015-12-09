@@ -50,7 +50,9 @@
 					</header>
 					{{#if designGenre.headshot}}
 					<div class="article__header-headshot">
-						<img class="article__header-headshot--image" src="{{designGenre.headshot}}?source=next&fit=scale-down&width=150&compression=best&format=png&quality=highest&dpr=2">
+						<img
+							class="article__header-headshot--image"
+							src="{{designGenre.headshot}}?source=next&amp;fit=scale-down&amp;width=150&amp;compression=best&amp;format=png&amp;quality=highest&amp;dpr=2">
 					</div>
 					{{/if}}
 				</div>
@@ -58,12 +60,19 @@
 					{{>read-next-header article=readNextArticle}}
 				{{else}}
 					{{#if tags}}
-					<aside class="article__tags {{#if mainImageHtml}}article__tags--main-image{{/if}}" data-o-grid-colspan="hide L3 Loffset1" role="complementary">
+					<aside
+						role="complementary"
+						data-o-grid-colspan="hide L3 Loffset1"
+						class="article__tags {{#if mainImageHtml}}article__tags--main-image{{/if}}">
 						<h3 class="article__tags__title">Topics mentioned in this article</h3>
 						<ul class="article__tags-list" data-trackable="tags">
 							{{#each tags}}
 							<li class="article__tag">
-								<a class="article__tag__link" href="{{url}}" data-trackable="tag"{{#if id}} data-concept-id="{{id}}"{{/if}}>{{name}}</a>
+								<a
+									href="{{url}}"
+									class="article__tag__link"
+									data-trackable="tag"
+									{{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
 							</li>
 							{{/each}}
 						</ul>
@@ -156,18 +165,38 @@
 <div class="o-grid-container">
 	<div class="o-grid-row">
 		{{#if isSpecialReport}}
-				<div class="js-special-report" data-trackable="special-report" data-o-grid-colspan="12 XL11 XLoffset1"></div>
+			<div
+				class="js-special-report"
+				data-trackable="special-report"
+				data-o-grid-colspan="12 XL11 XLoffset1"></div>
 		{{else}}
-			{{#if @root.flags.articleRelatedContent}}
-				{{>more-ons}}
+			<div data-o-grid-colspan="12 L8 XL8 XLoffset1">
+				{{#if @root.flags.articleRelatedContent}}
+					<div class="js-story-package" data-trackable="story-package"></div>
+					{{#if moreOns}}
+						{{#if @root.flags.articleMoreOnTopicCard}}
+							{{>more-ons-ab-test-b}}
+						{{else}}
+							{{>more-ons}}
+						{{/if}}
+					{{/if}}
+				{{/if}}
+			</div>
+			{{#if tags}}
+				<div data-o-grid-colspan="12 L4 XL3">
+					{{>more-ons-tags}}
+				</div>
 			{{/if}}
 		{{/if}}
 	</div>
 
 	{{#if comments.enabled}}
 		<div class="o-grid-row">
-			<div data-o-grid-colspan="12 L8 XL7 XLoffset1">
-				<div data-trackable="comments" class="article__comments o-comments n-util-hide@print" id="comments"></div>
+			<div data-o-grid-colspan="12 L8 XL8 XLoffset1">
+				<div
+					id="comments"
+					data-trackable="comments"
+					class="article__comments o-comments n-util-hide@print"></div>
 			</div>
 		</div>
 	{{/if}}

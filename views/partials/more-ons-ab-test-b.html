@@ -1,0 +1,29 @@
+{{#if moreOns}}
+	<ul class="more-on--abtest_b--wrapper">
+	{{#each moreOns}}
+	<li class='more-on--abtest_b'>
+		<div
+			role="region"
+			data-trackable="more-on-{{@index}}"
+			aria-labelledby="more-on-{{@index}}-title"
+			class="more-on pod">
+
+				<span class="header__type" aria-hidden="true">Latest {{title}}</span>
+				<div class="header">
+					<h2 id="more-on-{{@index}}-title" class="header__name">
+						<span class="n-util-visually-hidden">Latest {{title}} </span>
+						<a class="header__title--link" href="{{url}}" data-trackable="link-topic">{{name}}</a>
+					</h2>
+					{{#if @root.flags.myFtApi }}
+						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
+					{{/if}}
+				</div>
+				<ul class="pod__items js-more-on"></ul>
+				<a class="header__link" href="{{url}}" data-trackable="topic-link">
+					<span class="header__link__text">See all</span>
+				</a>
+		</div>
+	</li>
+	{{/each}}
+</ul>
+{{/if}}

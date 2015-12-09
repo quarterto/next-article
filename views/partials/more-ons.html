@@ -1,54 +1,28 @@
-<div data-o-grid-colspan="12 L9 XL8 XLoffset1">
-	<div class="js-story-package" data-trackable="story-package"></div>
-	{{#if moreOns}}
-		{{#each moreOns}}
-			<div data-trackable="more-on-{{@index}}" role="region">
-				<div class="more-on js-more-on-container">
-					<div class="pod">
-						<div class="header">
-							<span class="header__title">
-								<h2 class="header__name">Latest {{title}} {{name}}</h2>
-								{{#if @root.flags.myFtApi }}
-									{{>next-myft-ui/templates/follow version='3' conceptId=id}}
-								{{/if}}
-							</span>
-							<a class="header__link" href="{{url}}" data-trackable="topic-link">
-								<span class="header__link__text">See all</span>
-							</a>
-						</div>
-						<ul class="pod__items js-more-on">
-						</ul>
-					</div>
-				</div>
-				<div class="more-on__topic--link">
-					<a class="header__link--bottom" href={{url}} data-trackable="topic-link">See all {{title}} {{name}}</a>
-				</div>
+{{#each moreOns}}
+<div
+	role="region"
+	data-trackable="more-on-{{@index}}"
+	aria-labelledby="more-on-{{@index}}-title">
+
+	<div class="more-on">
+		<div class="pod">
+			<div class="header">
+				<span class="header__title">
+					<h2 id="more-on-{{@index}}-title" class="header__name">
+						Latest {{title}} {{name}}
+					</h2>
+					{{#if @root.flags.myFtApi }}
+						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
+					{{/if}}
+				</span>
+				<a class="header__link" href="{{url}}" data-trackable="topic-link">
+					<span class="header__link__text">See all</span>
+				</a>
 			</div>
-		{{/each}}
-	{{/if}}
-</div>
-{{#if tags}}
-	<div data-o-grid-colspan="12 L3">
-		<div class="article-tags" role="region" data-trackable="mentions">
-			<div class="header article-tags__header">
-				<h2 class="header__name header__name--sans-serif"><i>my</i>FT</h2>
-			</div>
-			<div class="article-tags__intro">
-				<p>Follow the topics mentioned in this article</p>
-			</div>
-			<ul class="article-tags__tags">
-				{{#each tags}}
-					<li class="article-tags__tag">
-						<a class="article-tags__tag__link" href="{{url}}" data-trackable="tag">{{name}}</a>
-						{{#if @root.flags.myFtApi}}
-							{{>next-myft-ui/templates/follow version='3' conceptId=id}}
-						{{/if}}
-					</li>
-				{{/each}}
+			<ul class="pod__items js-more-on">
 			</ul>
-			<div class="article-tags__product-tour">
-				<a class="article-tags__product-tour--link" href="/myft/product-tour" data-trackable="myFT-product-tour">Take a tour of <i>my</i>FT</a>
-			</div>
 		</div>
 	</div>
-{{/if}}
+
+</div>
+{{/each}}

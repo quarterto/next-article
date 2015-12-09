@@ -1,0 +1,34 @@
+
+<div
+	role="region"
+	class="article-tags"
+	data-trackable="mentions"
+	aria-labelledby="my-ft-title">
+	<div class="header article-tags__header">
+		<h2 id="my-ft-title" class="header__name header__name--sans-serif">
+			<i>my</i>FT
+		</h2>
+	</div>
+	<div class="article-tags__intro">
+		<p>Follow the topics mentioned in this article</p>
+	</div>
+	<ul class="article-tags__tags">
+		{{#each tags}}
+		<li class="article-tags__tag">
+			<a
+				href="{{url}}"
+				data-trackable="tag"
+				class="article-tags__tag__link">{{name}}</a>
+			{{#if @root.flags.myFtApi}}
+			{{>next-myft-ui/templates/follow version='3' conceptId=id}}
+			{{/if}}
+		</li>
+		{{/each}}
+	</ul>
+	<div class="article-tags__product-tour">
+		<a
+			href="/myft/product-tour"
+			data-trackable="myFT-product-tour"
+			class="article-tags__product-tour--link">Take a tour of <i>my</i>FT</a>
+	</div>
+</div>
