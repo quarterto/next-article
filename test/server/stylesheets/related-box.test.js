@@ -6,14 +6,15 @@ require('chai').should();
 
 describe('Related Box', () => {
 
-	it('should put in the appropriate classes for a related box that is an article with no mark up', () => {
+	//TO DO once we get the article fetched live, this will no longer need the link to be decorated
+	it('should put in the appropriate classes and a link for a related box that is an article with url but no mark up', () => {
 		return transform(
 			'<ft-related type="http://www.ft.com/ontology/content/Article" url="http://api.ft.com/content/e539eab8-8c83-11e5-8be4-3506bf20cc2b"></ft-related>'
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="related-box related-box__article to-fetch" uuid="e539eab8-8c83-11e5-8be4-3506bf20cc2b">' +
-					'<div class="related-box__wrapper"></div>' +
+				'<aside data-trackable="related-box" role="complementary" class="related-box ng-inline-element related-box__article to-fetch" uuid="e539eab8-8c83-11e5-8be4-3506bf20cc2b">' +
+					'<div class="related-box__wrapper"><div><a href="http://api.ft.com/content/e539eab8-8c83-11e5-8be4-3506bf20cc2b" class="related-box__link" data-trackable="link-read-more">Read more</a></div></div>' +
 				'</aside>\n'
 			);
 		});
@@ -30,7 +31,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="related-box">' +
+				'<aside data-trackable="related-box" role="complementary" class="related-box ng-inline-element">' +
 					'<div class="related-box__wrapper">' +
 						'<div class="related-box__headline"><a class="related-box__headline--link" data-trackable="link-headline" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015">9th Annual Property Summit</a></div>' +
 						'<div class="related-box__image"><a class="related-box__image--link" data-trackable="link-image" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
@@ -54,7 +55,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="related-box">' +
+				'<aside data-trackable="related-box" role="complementary" class="related-box ng-inline-element">' +
 					'<div class="related-box__wrapper">' +
 						'<div class="related-box__headline">9th Annual Property Summit</div>' +
 						'<div class="related-box__image"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
@@ -79,7 +80,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="related-box">' +
+				'<aside data-trackable="related-box" role="complementary" class="related-box ng-inline-element">' +
 					'<div class="related-box__wrapper">' +
 						'<div class="related-box__title"><div class="related-box__title__name">FT Property Summit 2015</div></div>' +
 						'<div class="related-box__headline"><a class="related-box__headline--link" data-trackable="link-headline" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015">9th Annual Property Summit</a></div>' +
@@ -93,7 +94,8 @@ describe('Related Box', () => {
 		});
 	});
 
-	it('should remove mark up for a related box that is an article with existing mark up', () => {
+	// PENDING until we get the article fetch working
+	xit('should remove mark up for a related box that is an article with existing mark up', () => {
 		return transform(
 			'<ft-related type="http://www.ft.com/ontology/content/Article" url="http://api.ft.com/content/e539eab8-8c83-11e5-8be4-3506bf20cc2b">' +
 				'<media><img src="http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480" alt="Housing market economic dashboard" longdesc="" width="2048" height="1152" /></media>' +
@@ -104,7 +106,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="related-box related-box__article to-fetch" uuid="e539eab8-8c83-11e5-8be4-3506bf20cc2b">' +
+				'<aside data-trackable="related-box" role="complementary" class="related-box ng-inline-element related-box__article to-fetch" uuid="e539eab8-8c83-11e5-8be4-3506bf20cc2b">' +
 					'<div class="related-box__wrapper"></div>' +
 				'</aside>\n'
 			);

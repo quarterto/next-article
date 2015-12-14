@@ -26,7 +26,7 @@
       </xsl:variable>
 
       <xsl:attribute name="class">
-        <xsl:value-of select="concat('related-box', $class-type, $class-fetch)" />
+        <xsl:value-of select="concat('related-box', ' ng-inline-element', $class-type, $class-fetch)" />
       </xsl:attribute>
 
       <xsl:if test="$type = 'article' and current()[@url]">
@@ -36,7 +36,7 @@
       </xsl:if>
 
       <div class="related-box__wrapper">
-          <xsl:if test="$type != 'article'">
+          <!-- To reincorporate if we fetch current version of article <xsl:if test="$type != 'article'"> -->
             <xsl:apply-templates select="current()/title" mode="related-box-title" />
             <xsl:apply-templates select="current()/headline" mode="related-box-headline" >
               <xsl:with-param name="url" select="@url" />
@@ -50,7 +50,7 @@
                 <a href="{@url}" class="related-box__link" data-trackable="link-read-more">Read more</a>
               </div>
             </xsl:if>
-          </xsl:if>
+          <!-- </xsl:if> -->
       </div>
 
     </aside>
