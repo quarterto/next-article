@@ -64,7 +64,7 @@
 	}
 
 	.o-share__action--whatsapp {
-		@include oGridColspan((M: hide));
+		@include oGridColspan((S: hide));
 		@include oGridRemoveGutters();
 		padding: 0;
 	}
