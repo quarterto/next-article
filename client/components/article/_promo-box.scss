@@ -24,7 +24,7 @@
 }
 
 .promo-box__title__name {
-	@include nTypeFoxtrot(3);
+	@include oTypographySerifDisplay(m);
 	display: inline-block;
 	padding: 10px;
 	color: getColor('cold-1');
@@ -67,7 +67,9 @@
 }
 
 .promo-box__headline {
-	@include nTypeBravo(2);
+	@include oTypographySansDataBold(l);
+	font-size: 26px;
+	line-height: 27px;
 	margin-top: 10px;
 	color: getColor('cold-3');
 	p {
