@@ -57,11 +57,6 @@
           <xsl:with-param name="linkurl" select="$linkurl" />
         </xsl:apply-templates>
         <xsl:apply-templates />
-        <xsl:if test="$linkurl != ''">
-          <div>
-            <a href="{$linkurl}" class="related-box__link" data-trackable="link-read-more">Read more</a>
-          </div>
-        </xsl:if>
       </div>
 
     </aside>
