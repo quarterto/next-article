@@ -3,7 +3,6 @@
 const cheerio = require('cheerio');
 
 const replaceEllipses = require('./replace-ellipses');
-const replaceHrs = require('../transforms/replace-hrs');
 const relativeLinks = require('./relative-links');
 const trimmedLinks = require('./trimmed-links');
 const externalImages = require('./external-images');
@@ -26,7 +25,6 @@ let transform = function ($, flags) {
 
 module.exports = function (body, flags) {
 	body = replaceEllipses(body);
-	body = replaceHrs(body);
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 	body = body.replace(/http:\/\/www\.ft\.com\/ig\//g, '/ig/');
 	body = body.replace(/http:\/\/ig\.ft\.com\//g, '/ig/');
