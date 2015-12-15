@@ -35,22 +35,33 @@
         </xsl:attribute>
       </xsl:if>
 
-      <div class="related-box__wrapper">
-          <!-- To reincorporate if we fetch current version of article <xsl:if test="$type != 'article'"> -->
-            <xsl:apply-templates select="current()/title" mode="related-box-title" />
-            <xsl:apply-templates select="current()/headline" mode="related-box-headline" >
-              <xsl:with-param name="url" select="@url" />
-            </xsl:apply-templates>
-            <xsl:apply-templates select="current()/media/img" mode="related-box-image" >
-              <xsl:with-param name="url" select="@url" />
-            </xsl:apply-templates>
-            <xsl:apply-templates />
-            <xsl:if test="current()[@url]">
-              <div>
-                <a href="{@url}" class="related-box__link" data-trackable="link-read-more">Read more</a>
-              </div>
+      <xsl:variable name="linkurl">
+        <xsl:choose>
+          <xsl:when test="$type = 'article' and current()[@url]">
+            <xsl:value-of select="substring(@url, string-length(@url) - 44)" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:if test="@url">
+              <xsl:value-of select="@url" />
             </xsl:if>
-          <!-- </xsl:if> -->
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <div class="related-box__wrapper">
+        <xsl:apply-templates select="current()/title" mode="related-box-title" />
+        <xsl:apply-templates select="current()/headline" mode="related-box-headline" >
+          <xsl:with-param name="linkurl" select="$linkurl" />
+        </xsl:apply-templates>
+        <xsl:apply-templates select="current()/media/img" mode="related-box-image" >
+          <xsl:with-param name="linkurl" select="$linkurl" />
+        </xsl:apply-templates>
+        <xsl:apply-templates />
+        <xsl:if test="$linkurl != ''">
+          <div>
+            <a href="{$linkurl}" class="related-box__link" data-trackable="link-read-more">Read more</a>
+          </div>
+        </xsl:if>
       </div>
 
     </aside>
@@ -68,12 +79,12 @@
   <xsl:template match="title" />
 
   <xsl:template match="headline" mode="related-box-headline">
-    <xsl:param name="url" />
+    <xsl:param name="linkurl" />
 
     <div class="related-box__headline">
       <xsl:choose>
-        <xsl:when test="$url">
-          <a class="related-box__headline--link" data-trackable="link-headline" href="{$url}">
+        <xsl:when test="$linkurl != ''">
+          <a class="related-box__headline--link" data-trackable="link-headline" href="{$linkurl}">
             <xsl:value-of select="current()/text()" />
           </a>
         </xsl:when>
@@ -87,13 +98,13 @@
   <xsl:template match="headline" />
 
   <xsl:template match="ft-related/media/img" mode="related-box-image">
-    <xsl:param name="url" />
+    <xsl:param name="linkurl" />
     <xsl:variable name="maxWidth" select="300" />
 
     <div class="related-box__image">
       <xsl:choose>
-        <xsl:when test="$url">
-          <a class="related-box__image--link" data-trackable="link-image" href="{$url}">
+        <xsl:when test="$linkurl !=''">
+          <a class="related-box__image--link" data-trackable="link-image" href="{$linkurl}">
             <xsl:choose>
               <xsl:when test="count(current()[@width][@height]) = 1">
                 <xsl:apply-templates select="current()" mode="placehold-image">
