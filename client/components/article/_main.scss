@@ -88,17 +88,15 @@
 	}
 }
 .article__primary-theme {
-	position: relative;
 	margin: 0 0 5px;
 }
-.article__primary-theme .n-myft-ui--follow {
-	position: absolute;
-	top: 0;
-}
+
 .article__primary-theme__link {
 	@include nLinksTopic();
 	@include oTypographySansDataBold(l);
 	margin-right: 10px;
+	line-height: 26px;
+	vertical-align: middle;
 }
 
 .article__actions {
