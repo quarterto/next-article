@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
   <xsl:template match="/html/body/ft-related">
-    <aside data-trackable="related-box" role="complementary">
+    <aside data-trackable="related-box" role="complementary" class="related-box ng-inline-element">
 
       <xsl:variable name="type">
         <xsl:choose>
@@ -10,30 +10,6 @@
           <xsl:otherwise></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-
-      <xsl:variable name="class-type">
-        <xsl:choose>
-          <xsl:when test="$type = 'article'"> related-box__article</xsl:when>
-          <xsl:otherwise></xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-
-      <xsl:variable name="class-fetch">
-        <xsl:choose>
-          <xsl:when test="$type = 'article' and current()[@url]"> to-fetch</xsl:when>
-          <xsl:otherwise></xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-
-      <xsl:attribute name="class">
-        <xsl:value-of select="concat('related-box', ' ng-inline-element', $class-type, $class-fetch)" />
-      </xsl:attribute>
-
-      <xsl:if test="$type = 'article' and current()[@url]">
-        <xsl:attribute name="uuid">
-          <xsl:value-of select="substring(@url, string-length(@url) - 35)" />
-        </xsl:attribute>
-      </xsl:if>
 
       <xsl:variable name="linkurl">
         <xsl:choose>
@@ -49,13 +25,25 @@
       </xsl:variable>
 
       <div class="related-box__wrapper">
+        <xsl:if test="$type = 'article' and count(current()/title) = 0">
+          <div class="related-box__title">
+            <div class="related-box__title__name">Related article</div>
+          </div>
+        </xsl:if>
+        <xsl:if test="$type = 'article'">
+          <xsl:apply-templates select="current()/media/img" mode="related-box-image-wrapper" >
+            <xsl:with-param name="linkurl" select="$linkurl" />
+          </xsl:apply-templates>
+        </xsl:if>
         <xsl:apply-templates select="current()/title" mode="related-box-title" />
         <xsl:apply-templates select="current()/headline" mode="related-box-headline" >
           <xsl:with-param name="linkurl" select="$linkurl" />
         </xsl:apply-templates>
-        <xsl:apply-templates select="current()/media/img" mode="related-box-image" >
-          <xsl:with-param name="linkurl" select="$linkurl" />
-        </xsl:apply-templates>
+        <xsl:if test="$type != 'article'">
+          <xsl:apply-templates select="current()/media/img" mode="related-box-image-wrapper" >
+            <xsl:with-param name="linkurl" select="$linkurl" />
+          </xsl:apply-templates>
+        </xsl:if>
         <xsl:apply-templates />
       </div>
 
@@ -92,41 +80,17 @@
 
   <xsl:template match="headline" />
 
-  <xsl:template match="ft-related/media/img" mode="related-box-image">
+  <xsl:template match="ft-related/media/img" mode="related-box-image-wrapper">
     <xsl:param name="linkurl" />
-    <xsl:variable name="maxWidth" select="300" />
-
     <div class="related-box__image">
       <xsl:choose>
         <xsl:when test="$linkurl !=''">
           <a class="related-box__image--link" data-trackable="link-image" href="{$linkurl}">
-            <xsl:choose>
-              <xsl:when test="count(current()[@width][@height]) = 1">
-                <xsl:apply-templates select="current()" mode="placehold-image">
-                    <xsl:with-param name="maxWidth" select="$maxWidth" />
-                </xsl:apply-templates>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:apply-templates select="current()" mode="dont-placehold-image">
-                    <xsl:with-param name="maxWidth" select="$maxWidth" />
-                </xsl:apply-templates>
-              </xsl:otherwise>
-            </xsl:choose>
+            <xsl:apply-templates select="current()" mode="related-box-image" />
           </a>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:choose>
-            <xsl:when test="count(current()[@width][@height]) = 1">
-              <xsl:apply-templates select="current()" mode="placehold-image">
-                <xsl:with-param name="maxWidth" select="$maxWidth" />
-              </xsl:apply-templates>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select="current()" mode="dont-placehold-image">
-                <xsl:with-param name="maxWidth" select="$maxWidth" />
-              </xsl:apply-templates>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:apply-templates select="current()" mode="related-box-image" />
         </xsl:otherwise>
       </xsl:choose>
     </div>
@@ -134,6 +98,22 @@
 
   <xsl:template match="ft-related/media/img" />
   <xsl:template match="ft-related/media" />
+
+  <xsl:template match="ft-related/media/img" mode="related-box-image">
+    <xsl:variable name="maxWidth" select="300" />
+    <xsl:choose>
+      <xsl:when test="count(current()[@width][@height]) = 1">
+        <xsl:apply-templates select="current()" mode="placehold-image">
+            <xsl:with-param name="maxWidth" select="$maxWidth" />
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="current()" mode="dont-placehold-image">
+            <xsl:with-param name="maxWidth" select="$maxWidth" />
+        </xsl:apply-templates>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
   <xsl:template match="intro">
     <div class="related-box__content">
