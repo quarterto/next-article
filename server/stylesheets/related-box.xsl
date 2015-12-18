@@ -95,11 +95,11 @@
       <xsl:choose>
         <xsl:when test="$linkurl !=''">
           <a class="related-box__image--link" data-trackable="link-image" href="{$linkurl}">
-            <xsl:apply-templates select="current()" mode="related-box-image" />
+            <xsl:apply-templates select="current()" mode="aside-image" />
           </a>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="current()" mode="related-box-image" />
+          <xsl:apply-templates select="current()" mode="aside-image" />
         </xsl:otherwise>
       </xsl:choose>
     </div>
@@ -108,7 +108,7 @@
   <xsl:template match="ft-related/media/img" />
   <xsl:template match="ft-related/media" />
 
-  <xsl:template match="ft-related/media/img" mode="related-box-image">
+  <xsl:template match="ft-related/media/img | pull-quote-image/img" mode="aside-image">
     <xsl:variable name="maxWidth" select="300" />
     <xsl:choose>
       <xsl:when test="count(current()[@width][@height]) = 1">
