@@ -25,17 +25,26 @@
       </xsl:variable>
 
       <div class="related-box__wrapper">
-        <xsl:if test="$type = 'article' and count(current()/title) = 0">
-          <div class="related-box__title">
-            <div class="related-box__title__name">Related article</div>
-          </div>
+        <xsl:if test="$type = 'article'">
+          <xsl:choose>
+            <xsl:when test="count(current()/title) = 0">
+              <div class="related-box__title">
+                <div class="related-box__title__name">Related article</div>
+              </div>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="current()/title" mode="related-box-title" />
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:if>
         <xsl:if test="$type = 'article'">
           <xsl:apply-templates select="current()/media/img" mode="related-box-image-wrapper" >
             <xsl:with-param name="linkurl" select="$linkurl" />
           </xsl:apply-templates>
         </xsl:if>
-        <xsl:apply-templates select="current()/title" mode="related-box-title" />
+        <xsl:if test="$type != 'article'">
+          <xsl:apply-templates select="current()/title" mode="related-box-title" />
+        </xsl:if>
         <xsl:apply-templates select="current()/headline" mode="related-box-headline" >
           <xsl:with-param name="linkurl" select="$linkurl" />
         </xsl:apply-templates>
