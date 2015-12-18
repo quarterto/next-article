@@ -21,7 +21,7 @@ function selectPrimarySection(article) {
 }
 
 function selectPrimaryBrand(article) {
-	article.primarySection = article.metadata.find(tag => tag.primary === 'brand');
+	article.primaryBrand = article.metadata.find(tag => tag.primary === 'brand');
 }
 
 function selectPrimaryTag(article) {

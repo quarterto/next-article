@@ -25,9 +25,10 @@ describe('Metadata', () => {
 			);
 		});
 
-		it('decorates the given article with primary theme and section', () => {
+		it('decorates the given article with primary theme, section and brand', () => {
 			expect(result.primaryTheme.prefLabel).to.equal('Cyber Security');
 			expect(result.primarySection.prefLabel).to.equal('Banks');
+			expect(result.primaryBrand.prefLabel).to.equal('Lex');
 		});
 
 		it('selects the primary tag with themes taking precendence over sections', () => {
