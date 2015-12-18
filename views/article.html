@@ -5,6 +5,7 @@
 	{{#if dfp.dfpZone}}
 	<meta name="dfp_zone" content="{{dfp.dfpZone}}" />
 	{{/if}}
+	{{> rel-canonical}}
 {{/defineBlock}}
 
 <article id="site-content" role="main" class="article{{#if designGenre}} article--brand {{#if designGenre.headshot}}article--brand--headshot{{/if}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
