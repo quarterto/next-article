@@ -60,6 +60,18 @@
 						]
 					},
 					{
+						"idV1": "YzhlNzZkYTctMDJiNy00NTViLTk3NmYtNmJjYTE5NDEyM2Yw-QnJhbmRz",
+						"prefLabel": "Lex",
+						"taxonomy": "brand",
+						"primary": "brand",
+						"attributes": [
+							{
+							"key": "dfpSite",
+							"value": "lex"
+							}
+						]
+					},
+					{
 						"idV1":"ZjMwY2E2NjctMDA1Ni00ZTk4LWI0MWUtZjk5MTk2ZTMyNGVm-TWVkaWFUeXBlcw==",
 						"prefLabel":"Text",
 						"taxonomy":"mediaType",

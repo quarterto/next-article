@@ -20,6 +20,10 @@ function selectPrimarySection(article) {
 	article.primarySection = article.metadata.find(tag => tag.primary === 'section');
 }
 
+function selectPrimaryBrand(article) {
+	article.primaryBrand = article.metadata.find(tag => tag.primary === 'brand');
+}
+
 function selectPrimaryTag(article) {
 	let precedence = [ 'specialReports' ];
 	let primaryTag;
@@ -48,6 +52,7 @@ module.exports = function(article) {
 	fillProperties(article);
 	selectPrimaryTheme(article);
 	selectPrimarySection(article);
+	selectPrimaryBrand(article);
 	selectPrimaryTag(article);
 	selectTagsForDisplay(article);
 

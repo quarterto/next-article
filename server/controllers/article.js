@@ -39,21 +39,25 @@ function transformArticleBody(article, flags) {
 	});
 }
 
-function getMoreOnTags(primaryTheme, primarySection) {
+function getMoreOnTags(primaryTheme, primarySection, primaryBrand) {
 	let moreOnTags = [];
 
 	primaryTheme && moreOnTags.push(primaryTheme);
 	primarySection && moreOnTags.push(primarySection);
+	primaryBrand && moreOnTags.push(primaryBrand);
 
 	if (!moreOnTags.length) {
 		return;
 	}
 
-	return moreOnTags.map(tag => {
+	return moreOnTags.slice(0, 2).map(tag => {
 		let title;
 
 		switch (tag.taxonomy) {
 			case 'authors':
+				title = 'from';
+				break;
+			case 'brand':
 				title = 'from';
 				break;
 			case 'sections':
@@ -107,7 +111,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 	payload.designGenre = articleBranding(payload.metadata);
 
 	// Decorate with related stuff
-	payload.moreOns = getMoreOnTags(payload.primaryTheme, payload.primarySection);
+	payload.moreOns = getMoreOnTags(payload.primaryTheme, payload.primarySection, payload.primaryBrand);
 
 	payload.articleV1 = isCapiV1(payload);
 	payload.articleV2 = isCapiV2(payload);
