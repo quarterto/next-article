@@ -185,6 +185,11 @@
 		font-weight: 600;
 	}
 
+	.article__copyright-notice {
+		@include oTypographySansSize(s);
+		margin-top: 40px;
+	}
+
 	@media print {
 		&:after {
 			content: 'Print a single copy of this article for personal use. Contact us if you wish to print more to distribute to others. © The Financial Times Ltd.';
