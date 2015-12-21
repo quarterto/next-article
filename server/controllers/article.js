@@ -4,7 +4,6 @@ const logger = require('ft-next-express').logger;
 const cacheControlUtil = require('../utils/cache-control');
 const getDfpUtil = require('../utils/get-dfp');
 const addTagTitlePrefix = require('./article-helpers/tag-title-prefix');
-const barrierHelper = require('./article-helpers/barrier');
 const suggestedHelper = require('./article-helpers/suggested');
 const readNextHelper = require('./article-helpers/read-next');
 const decorateMetadataHelper = require('./article-helpers/decorate-metadata');
@@ -58,6 +57,7 @@ module.exports = function articleV3Controller(req, res, next, content) {
 
 	let asyncWorkToDo = [];
 
+<<<<<<< HEAD
 	// Required for correctly tracking page / barrier views
 	if (req.get('FT-Barrier-Type') !== '-') {
 		content.barrierType = req.get('FT-Barrier-Type');
@@ -88,6 +88,8 @@ module.exports = function articleV3Controller(req, res, next, content) {
 		content.tagToFollow = req.query.tagToFollow;
 	}
 
+=======
+>>>>>>> Remove barriers from article
 	// Decorate article with primary tags and tags for display
 	decorateMetadataHelper(content);
 	content.isSpecialReport = content.primaryTag && content.primaryTag.taxonomy === 'specialReports';
