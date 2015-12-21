@@ -82,7 +82,14 @@ module.exports = function (req, res, next) {
 					}
 					return article;
 				});
-			return res.render('related/more-on', {articles: moreOnArticlesArray[moreOnIndex]});
+
+			let template = res.locals.flags.articleMoreOnTopicCard
+				? 'related/more-on-ab-test-b'
+				: 'related/more-on';
+
+			return res.render(template, {
+				articles: moreOnArticlesArray[moreOnIndex]
+			});
 		})
 		.catch(function(err) {
 			logger.error(err);

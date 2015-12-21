@@ -1,6 +1,138 @@
-/**
- * New card styles
- */
+/*
+	Spent a long time trying to refactor all of this into two card designs;
+	the one that's used for "myFT" and the pink one that's used in the items,
+	however it proved quite fiddly to do without re-writing a lot of things.
+
+	The following CSS scoped to .more-on--abtest_b is the neccessary to overwrite
+	various styles for the ab-test. Depending on which style wins you should
+	either refactor into the rest of the CSS or just delete it.
+*/
+
+
+.more-on--abtest_b {
+
+	display: flex;
+	box-sizing: border-box;
+	flex: 1 1 auto;
+	padding: 10px;
+	border-bottom: 0;
+
+	@include oGridRespondTo(S) {
+		width: 50%;
+	}
+
+	&--wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 -10px;
+		padding: 0;
+		list-style: none;
+	}
+
+	.header__name {
+		@include oTypographySansBold(m);
+		color: getColor('claret-1');
+	}
+
+	.pod__items {
+		margin: 0;
+	}
+
+	.header {
+		position: initial;
+		padding: 0 80px 0 0;
+		margin: 15px 10px 5px 20px;
+
+		.n-myft-ui {
+			position: absolute;
+			right: 10px;
+		}
+	}
+
+	.header__type {
+		@include oTypographySerifDisplayBold(m);
+		position: absolute;
+		top: -15px;
+		left: 10px;
+		padding: 0 10px;
+		background-color: getColor('warm-5');
+	}
+
+	.header__title {
+		&:after {
+			border: 0;
+		}
+		&--link {
+			@include nLinksTopic;
+			@include oTypographySansBoldSize(m);
+			line-height: 26px;
+			border-bottom: 1px dotted transparent;
+			transition-property: border-bottom-color, color;
+			transition-duration: 0.3s;
+			vertical-align: middle;
+			&:hover {
+				border-bottom-color: darken(getColorFor(topic, text), 20%);
+			}
+		}
+	}
+
+	.pod {
+		position: relative;
+		margin-top: 20px;
+		border: 1px solid getColor('warm-3');
+		width: 100%;
+		padding-bottom: 32px;
+	}
+
+	.more-on__follow-button {
+		float: right;
+	}
+
+	.pod__item-title__link {
+		color: getColor('cold-1');
+	}
+
+	.pod__item__headline {
+		margin: 10px 10px 0 20px;
+	}
+
+	.pod__item__time {
+		@include oTypographySans(xs);
+		position: relative;
+		text-transform: uppercase;
+		color: getColor('warm-6');
+		margin: 0 0 0 20px;
+		padding: 0;
+		height: auto;
+	}
+
+	.pod__item__image--placeholder {
+		display: block;
+		float: none;
+		margin-top: 10px;
+	}
+
+	.pod__item {
+		background-color: inherit;
+	}
+
+	.header__link {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		margin-right: 10px;
+		&__text {
+			display: block;
+		}
+		&::after {
+			display: inline-block;
+		}
+	}
+
+}
+
+/* end of AB test styles */
+
 .pod__items {
 	display: flex;
 	flex-wrap: wrap;
@@ -8,20 +140,23 @@
 	padding: 0;
 	list-style: none;
 }
+
 .pod__item-wrapper {
 	display: flex;
 	box-sizing: border-box;
 	flex: 1 1 auto;
 	padding: 10px;
 	border-bottom: 0;
+
 	@include oGridRespondTo(M) {
 		width: 50%;
 	}
-
-	&.pod__item-wrapper--lead {
-		width: 100%;
-	}
 }
+
+.pod__item-wrapper--lead {
+	width: 100%;
+}
+
 .pod__item {
 	position: relative;
 	width: 100%;

@@ -62,9 +62,10 @@ describe('More Ons', () => {
 	let result;
 	let options;
 
-	function createInstance(options) {
+	function createInstance(options, flags) {
 		request = httpMocks.createRequest(options);
 		response = httpMocks.createResponse();
+		response.locals = { flags: flags || {} };
 		return subject(request, response);
 	}
 

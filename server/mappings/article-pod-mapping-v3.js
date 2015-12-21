@@ -3,10 +3,9 @@
 module.exports = function articlePodMapping(article) {
 	let nImageOptions = {
 		srcset: {
-			s: 200,
-			m: 340,
+			s: 345,
 			xl: 380,
-			default: 200
+			default: 470
 		},
 		class: ''
 	};
