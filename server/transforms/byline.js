@@ -5,7 +5,7 @@ module.exports = (byline, authors) => {
 		authors.forEach(author => {
 			byline = byline.replace(
 				new RegExp('\\b(' + author.name + ')\\b'),
-				'<a class="article__author" href="/stream/authorsId/' + author.id + '" data-trackable="author">$1</a>'
+				'<a class="c-topic c-topic--link" href="/stream/authorsId/' + author.id + '" data-trackable="author">$1</a>'
 			);
 		});
 	}

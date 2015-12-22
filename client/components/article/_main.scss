@@ -67,11 +67,6 @@
 	display: inline-block;
 	margin: 0;
 }
-.article__author {
-	@include nLinksTopic();
-	@include nTypeBravo(4);
-	font-style: normal;
-}
 .article__timestamp {
 	@include nTypeAlpha(5);
 	color: oColorsGetColorFor(timestamp, text);
@@ -89,14 +84,6 @@
 }
 .article__primary-theme {
 	margin: 0 0 5px;
-}
-
-.article__primary-theme__link {
-	@include nLinksTopic();
-	@include oTypographySansDataBold(l);
-	margin-right: 10px;
-	line-height: 26px;
-	vertical-align: middle;
 }
 
 .article__actions {
@@ -284,10 +271,10 @@
 	}
 }
 
-@import 'combo-components';
-@import 'images';
-@import 'table';
-@import 'promo-box';
-@import 'quotes';
-@import 'genre-styles';
+@import 'aside';
 @import 'big-number';
+@import 'combo-components';
+@import 'genre-styles';
+@import 'images';
+@import 'quotes';
+@import 'table';

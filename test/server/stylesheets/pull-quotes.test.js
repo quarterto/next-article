@@ -6,7 +6,7 @@ require('chai').should();
 
 describe('Pull Quotes', function () {
 
-	it('should turn capi v2 pull-quotes into n-quotes', () => {
+	it('should turn capi v2 pull-quotes into quotes', () => {
 		return transform(
 				'<body>' +
 					'<pull-quote>' +
@@ -17,10 +17,10 @@ describe('Pull Quotes', function () {
 			)
 			.then(transformedXml => {
 				transformedXml.should.equal(
-					'<blockquote class="ng-inline-element article__quote article__quote--pull-quote">' +
+					'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--left-right">' +
 						'<div class="pull-quote__quote-marks"></div>' +
-						'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
-						'<cite class="article__quote-citation">Dr. Seuss</cite>' +
+						'<p class="u-margin--left-right">Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
+						'<cite class="article__quote-citation u-margin--left-right">Dr. Seuss</cite>' +
 					'</blockquote>\n'
 				);
 			});
@@ -37,9 +37,9 @@ describe('Pull Quotes', function () {
 			)
 			.then(transformedXml => {
 				transformedXml.should.equal(
-					'<blockquote class="ng-inline-element article__quote article__quote--pull-quote">' +
+					'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--left-right">' +
 						'<div class="pull-quote__quote-marks"></div>' +
-						'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
+						'<p class="u-margin--left-right">Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
 					'</blockquote>\n'
 				);
 			});
@@ -56,12 +56,12 @@ describe('Pull Quotes', function () {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<blockquote class="ng-inline-element article__quote article__quote--pull-quote">' +
+				'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--left-right">' +
 					'<div class="pull-quote__quote-marks"></div>' +
-					'<p>Quote with master image</p>' +
-					'<cite class="article__quote-citation">Source with image</cite>' +
-					'<div class="pull-quote__image"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
-						'<img alt="Housing market economic dashboard" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480?source=next&amp;fit=scale-down&amp;width=300">' +
+					'<p class="u-margin--left-right">Quote with master image</p>' +
+					'<cite class="article__quote-citation u-margin--left-right">Source with image</cite>' +
+					'<div class="aside--image"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
+						'<img alt="Housing market economic dashboard" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480?source=next&amp;fit=scale-down&amp;width=470">' +
 					'</div></div>' +
 				'</blockquote>\n'
 			);

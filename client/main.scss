@@ -1,6 +1,4 @@
 @import "next-sass-setup/main";
-$o-big-number-is-silent: false;
-@import "o-big-number/main";
 $o-gallery-is-silent: false;
 @import "o-gallery/main";
 @import "o-fonts/main";
@@ -33,6 +31,7 @@ $o-comments-is-silent: false;
 @import "n-message-prompts/main";
 
 @import "helpers";
+@import "components/common";
 @import "components/article/main";
 @import "components/toc/main";
 @import "components/share/main";

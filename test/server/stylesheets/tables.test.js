@@ -22,13 +22,11 @@ describe('Tables', () => {
 			)
 			.then((transformedXml) => {
 				expect(transformedXml).to.equal(
-					'<aside class="promo-box promo-box--long">' +
-						'<div class="promo-box__wrapper">' +
-							'<h3 class="promo-box__headline">Lorem ipsum doler sit amet</h3>' +
-							'<div class="promo-box__content">' +
-								'<p>Ut enim ad minim veniam</p>' +
-								'<br>I am a text node!' +
-							'</div>' +
+					'<aside class="promo-box c-box u-border--all u-padding--left-right">' +
+						'<h3 class="promo-box__headline">Lorem ipsum doler sit amet</h3>' +
+						'<div class="promo-box__content">' +
+							'<p>Ut enim ad minim veniam</p>' +
+							'<br>I am a text node!' +
 						'</div>' +
 					'</aside>\n'
 				);

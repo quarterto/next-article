@@ -1,17 +1,9 @@
 $quote-spacing-unit: 16px;
 
 .article__quote {
-	position: relative;
-	clear: left;
-	border-left: 1px solid getColor('warm-3');
 	color: getColor('cold-1');
-	margin: (3 * $quote-spacing-unit / 2) 0;
 
 	&--pull-quote {
-		clear: left;
-		margin-right: $quote-spacing-unit;
-		padding: ($quote-spacing-unit) ($quote-spacing-unit) ($quote-spacing-unit / 2);
-		border: 1px solid getColor('warm-3');
 		.pull-quote__quote-marks {
 			position: absolute;
 			top: -14px;
@@ -26,7 +18,8 @@ $quote-spacing-unit: 16px;
 	}
 
 	&--full-quote {
-		padding: (2 * $quote-spacing-unit) $quote-spacing-unit 0;
+		padding-top: 32px;
+		padding-bottom: 0;
 		p {
 			padding-bottom: 0;
 			&:before {
@@ -41,7 +34,6 @@ $quote-spacing-unit: 16px;
 
 	p {
 		@include oTypographySerifDisplay(m);
-		margin: 0;
 	}
 }
 

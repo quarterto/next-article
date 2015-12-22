@@ -12,68 +12,28 @@
 
       <xsl:choose>
         <xsl:when test="($contentParas > $expanderParaBreak) and (($imageCount > 0 and $wordCount > $expanderWordImage) or ($imageCount = 0 and $wordCount > $expanderWordNoImage))">
-          <aside class="promo-box ng-inline-element o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".promo-box__content__extension">
-            <div class="promo-box__wrapper">
-              <xsl:apply-templates />
-            </div>
+          <aside class="c-box c-box--inline u-border--all o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">
+            <xsl:apply-templates />
           </aside>
         </xsl:when>
         <xsl:otherwise>
-          <aside class="promo-box ng-inline-element" data-trackable="promobox" role="complementary">
-            <div class="promo-box__wrapper">
-              <xsl:apply-templates />
-            </div>
+          <aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">
+            <xsl:apply-templates />
           </aside>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:template>
 
     <xsl:template match="promo-title">
-      <div class="promo-box__title">
-        <span class="promo-box__title__name">
-          <xsl:apply-templates select="current()" mode="extract-content" />
-        </span>
-      </div>
+      <xsl:apply-templates select="current()" mode="aside-title" />
     </xsl:template>
 
     <xsl:template match="promo-headline">
-      <div class="promo-box__headline">
-        <xsl:apply-templates select="current()" mode="extract-content" />
-      </div>
-    </xsl:template>
-
-    <xsl:template match="promo-headline | promo-title" mode="extract-content">
-      <xsl:choose>
-        <xsl:when test="count(current()/p/*) > 0">
-          <xsl:apply-templates select="current()/p/@* | current()/p/node()" />
-        </xsl:when>
-        <xsl:when test="count(current()/p) = 0">
-          <xsl:apply-templates select="current()/@* | current()/node()" />
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="current()/p/text()" />
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:apply-templates select="current()" mode="aside-headline" />
     </xsl:template>
 
     <xsl:template match="promo-image">
-
-      <xsl:variable name="maxWidth" select="300" />
-
-      <div class="promo-box__image">
-        <xsl:choose>
-          <xsl:when test="count(img[@width][@height]) = 1">
-            <xsl:apply-templates select="img" mode="placehold-image">
-                <xsl:with-param name="maxWidth" select="$maxWidth" />
-            </xsl:apply-templates>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="img" mode="dont-placehold-image">
-                <xsl:with-param name="maxWidth" select="$maxWidth" />
-            </xsl:apply-templates>
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
+      <xsl:apply-templates select="current()/img" mode="aside-image-wrapper" />
     </xsl:template>
 
     <xsl:template match="promo-intro">
@@ -81,28 +41,24 @@
       <xsl:variable name="contentParagraphs" select="count(p)" />
       <xsl:choose>
         <xsl:when test="$contentParagraphs > $expanderParaBreakPoint">
-          <div class="promo-box__content o-expander__content">
-            <div class="promo-box__content__initial">
+          <div class="aside--content o-expander__content u-margin--left-right">
               <xsl:apply-templates select="current()/p[position() &lt;= $expanderParaBreakPoint]"/>
-            </div>
-            <div class="promo-box__content__extension">
+            <div class="aside--content__extension">
               <xsl:apply-templates select="current()/p[position() > $expanderParaBreakPoint]"/>
             </div>
           </div>
           <button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>
         </xsl:when>
         <xsl:otherwise>
-          <div class="promo-box__content">
-            <div class="promo-box__content__initial">
+          <div class="aside--content u-margin--left-right">
               <xsl:apply-templates />
-            </div>
           </div>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:template>
 
     <xsl:template match="ul">
-      <ul class="promo-box__list">
+      <ul class="aside--list">
         <xsl:apply-templates />
       </ul>
     </xsl:template>
