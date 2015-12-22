@@ -1,7 +1,7 @@
 {
   "name": "next-article",
   "dependencies": {
-    "n-layout": "^5.0.0",
+    "n-layout": "^6.0.0",
     "o-fonts": "^1.6.4",
     "o-big-number": "^1.1.0",
     "o-gallery": "^1.6.1",
