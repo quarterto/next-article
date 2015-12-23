@@ -18,7 +18,7 @@
 						<div class="article__header-primary">
 							<p class="article__primary-theme">
 								{{#with primaryTag}}
-								<a href="/stream/{{taxonomy}}Id/{{id}}" class="article__primary-theme__link" data-trackable="section-link" aria-label="posted in category {{name}}" data-concept-id="{{id}}">{{name}}</a>
+								<a href="/stream/{{taxonomy}}Id/{{id}}" class="c-topic c-topic__medium c-topic--with-follow c-topic--link" data-trackable="section-link" aria-label="posted in category {{name}}" data-concept-id="{{id}}">{{name}}</a>
 								{{/with}}
 							</p>
 							<h1 class="article__title">{{title}}</h1>
@@ -46,7 +46,7 @@
 					<ul class="article__tags-list" data-trackable="tags">
 						{{#each tags}}
 						<li class="article__tag">
-							<a class="article__tag__link" href="{{url}}" data-trackable="tag" data-concept-id="{{id}}">{{prefLabel}}</a>
+							<a class="c-topic c-topic--link c-topic--list" href="{{url}}" data-trackable="tag" data-concept-id="{{id}}">{{prefLabel}}</a>
 						</li>
 						{{/each}}
 					</ul>

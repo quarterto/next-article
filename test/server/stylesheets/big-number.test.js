@@ -6,7 +6,7 @@ require('chai').should();
 
 describe('Big Number', function () {
 
-	it('should transform html to o-big-number format', function () {
+	it('should transform html to article-big-number format', function () {
 		return transform(
 				'<body>' +
 					'<big-number>' +
@@ -17,9 +17,9 @@ describe('Big Number', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<div class="article__big-number ng-inline-element o-big-number o-big-number--standard">' +
-						'<span class="o-big-number__title">33m</span>' +
-						'<span class="o-big-number__content">These are powerful but fragile emissaries of a culture that not even their descendants remember</span>' +
+					'<div class="article-big-number aside--content c-box c-box--inline u-border--all u-padding--left-right">' +
+						'<span class="article-big-number__title">33m</span>' +
+						'<span class="article-big-number__content">These are powerful but fragile emissaries of a culture that not even their descendants remember</span>' +
 					'</div>\n'
 				);
 			});
@@ -36,9 +36,9 @@ describe('Big Number', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<div class="article__big-number ng-inline-element o-big-number o-big-number--standard">' +
-						'<span class="o-big-number__title"><a href="http://next.ft.com/1b852d96-ced7-11e4-893d-00144feab7de" data-trackable="link">33m</a></span>' +
-						'<span class="o-big-number__content">These are <a href="http://next.ft.com/712943a2-cda3-11e4-8760-00144feab7de" data-trackable="link">powerful but fragile</a> emissaries of a culture that not even their descendants remember</span>' +
+					'<div class="article-big-number aside--content c-box c-box--inline u-border--all u-padding--left-right">' +
+						'<span class="article-big-number__title"><a href="http://next.ft.com/1b852d96-ced7-11e4-893d-00144feab7de" data-trackable="link">33m</a></span>' +
+						'<span class="article-big-number__content">These are <a href="http://next.ft.com/712943a2-cda3-11e4-8760-00144feab7de" data-trackable="link">powerful but fragile</a> emissaries of a culture that not even their descendants remember</span>' +
 					'</div>\n'
 				);
 			});

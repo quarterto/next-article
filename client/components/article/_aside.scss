@@ -1,0 +1,34 @@
+.aside--headline {
+	@include oTypographySansDataBold(l);
+	font-size: 26px;
+	line-height: 27px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	color: getColor('cold-3');
+	p {
+		margin: 0;
+	}
+}
+
+.aside--content {
+	p {
+		margin: 5px 0 0;
+	}
+}
+
+.aside--image {
+	margin: 12px 0;
+
+	img {
+		display: block;
+		max-width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+}
+
+.aside--list {
+	padding-left: 20px;
+	margin: 10px 0;
+}

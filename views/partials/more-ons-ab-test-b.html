@@ -6,13 +6,13 @@
 			role="region"
 			data-trackable="more-on-{{@index}}"
 			aria-labelledby="more-on-{{@index}}-title"
-			class="more-on pod">
+			class="more-on c-box u-border--all">
 
 				<span class="header__type" aria-hidden="true">Latest {{title}}</span>
 				<div class="header">
 					<h2 id="more-on-{{@index}}-title" class="header__name">
 						<span class="n-util-visually-hidden">Latest {{title}} </span>
-						<a class="header__title--link" href="{{url}}" data-trackable="link-topic">{{name}}</a>
+						<a class="c-topic c-topic__medium c-topic--with-follow c-topic--link" href="{{url}}" data-trackable="link-topic">{{name}}</a>
 					</h2>
 					{{#if @root.flags.myFtApi }}
 						{{>next-myft-ui/templates/follow version='3' conceptId=id}}

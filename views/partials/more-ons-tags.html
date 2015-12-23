@@ -1,7 +1,7 @@
 
 <div
 	role="region"
-	class="article-tags"
+	class="article-tags c-box u-border--all"
 	data-trackable="mentions"
 	aria-labelledby="my-ft-title">
 	<div class="header article-tags__header">
@@ -18,7 +18,7 @@
 			<a
 				href="{{url}}"
 				data-trackable="tag"
-				class="article-tags__tag__link">{{name}}</a>
+				class="c-topic c-topic--with-follow c-topic--link">{{name}}</a>
 			{{#if @root.flags.myFtApi}}
 			{{>next-myft-ui/templates/follow version='3' conceptId=id}}
 			{{/if}}
