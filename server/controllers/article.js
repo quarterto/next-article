@@ -165,6 +165,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 				res.render('fragment', payload);
 			} else {
 				payload.layout = 'wrapper';
+				payload.contentType = 'article';
 				res.render('article', payload);
 			}
 		})
