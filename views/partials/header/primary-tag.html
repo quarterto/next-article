@@ -1,0 +1,8 @@
+{{#with primaryTag}}
+<div class="article__primary-theme" data-trackable="primary-theme">
+  <a href="/stream/{{taxonomy}}Id/{{id}}" class="c-topic c-topic__medium c-topic--with-follow c-topic--link" data-trackable="section-link" aria-label="posted in category {{name}}" data-concept-id="{{id}}">{{name}}</a>
+  {{#ifAll @root.flags.myFtApi @root.flags.articleFollowPrimayTag}}
+    {{>next-myft-ui/templates/follow version='3' conceptId=primaryTag.id name=primaryTag.prefLabel taxonomy=primaryTag.taxonomy}}
+  {{/ifAll}}
+</div>
+{{/with}}

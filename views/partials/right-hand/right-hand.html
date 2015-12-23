@@ -1,0 +1,8 @@
+<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
+  <div class="sidebar-ad-placeholder ad-placeholder"></div>
+  {{#if @root.flags.articleSuggestedRead}}
+    {{> right-hand/suggested-reads items=readNextArticles }}
+    {{> right-hand/suggested-topic suggested=suggestedTopic }}
+  {{/if}}
+  {{{tocHtml}}}
+</div>

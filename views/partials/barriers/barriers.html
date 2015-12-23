@@ -1,0 +1,33 @@
+<div class="o-grid-container">
+	<div class="o-grid-row">
+		<div data-o-grid-colspan="12 L10 center">
+			{{#if registerSimpleBarrier}}
+				{{> barriers/register-simple}}
+			{{/if}}
+
+			{{#if registerGridBarrier}}
+				{{> barriers/register-grid}}
+			{{/if}}
+
+			{{#if trialSimpleBarrier}}
+				{{> barriers/trial-simple}}
+			{{/if}}
+
+			{{#if trialGridBarrier}}
+				{{> barriers/trial-grid}}
+			{{/if}}
+
+			{{#if subscriptionGridBarrier}}
+				{{> barriers/subscription-grid}}
+			{{/if}}
+
+			{{#if premiumSimpleBarrier}}
+				{{> barriers/premium-simple}}
+			{{/if}}
+
+			{{#if corporateBarrier}}
+				{{> barriers/corporate-simple}}
+			{{/if}}
+		</div>
+	</div>
+</div>
