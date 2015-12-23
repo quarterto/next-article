@@ -12,7 +12,7 @@
 
     <xsl:template match="pull-quote-source">
       <xsl:if test="text()">
-        <cite class="article__quote-citation u-margin--left-right">
+        <cite class="article__quote-citation">
           <xsl:apply-templates select="text()" />
         </cite>
       </xsl:if>
