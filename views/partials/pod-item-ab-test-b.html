@@ -2,14 +2,14 @@
 		{{#ifEquals @index 0}}
 			{{#if mainImage}}
 				<div class="pod__item__image--placeholder">
-					<a class="pod__item__image" href="{{url}}" data-trackable="image">
+					<a class="pod__item__image" href="{{url}}" data-trackable="link-article-image">
 						{{>n-image/templates/image image=mainImage}}
 					</a>
 				</div>
 			{{/if}}
 		{{/ifEquals}}
 		<h3 class="pod__item__headline">
-			<a class="pod__item__headline-link" href="{{url}}" data-trackable="headline">{{title}}</a>
+			<a class="pod__item__headline-link" href="{{url}}" data-trackable="link-article-headline">{{title}}</a>
 		</h3>
 		<time data-o-component="o-date" class="o-date pod__item__time" data-recent="{{isRecent}}" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}">
 			{{#dateformat "dddd, d mmmm, yyyy"}}{{publishedDate}}{{/dateformat}}
