@@ -19,7 +19,7 @@
 					{{#if mainImageHtml}}
 						{{{mainImageHtml}}}
 					{{/if}}
-					{{> social location='top'}}
+					{{> toolbar location='top'}}
 					<div class="article__time-byline">
 						{{#if publishedDate}}
 							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
@@ -42,7 +42,7 @@
 						{{> podcast-media}}
 						{{> body-podcast}}
 					{{/ifEquals}}
-					{{> social location='bottom'}}
+					{{> toolbar location='bottom'}}
 				</div>
 				{{> right-hand/right-hand}}
 			</div>
@@ -76,9 +76,6 @@
 						{{else}}
 							{{>more-ons}}
 						{{/if}}
-					{{/if}}
-					{{#if relatedContent}}
-						{{>podcast-related}}
 					{{/if}}
 				{{/if}}
 			</div>
