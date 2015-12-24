@@ -37,7 +37,6 @@ module.exports.init = function() {
 	}
 
 	var articleId = articleEl.getAttribute('data-content-id');
-	var articleSources = articleEl.getAttribute('data-content-sources');
 
 	// If there is no articleId don't try to load related content
 	if (!articleId) {

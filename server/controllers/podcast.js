@@ -4,6 +4,7 @@ const logger = require('ft-next-express').logger;
 const cacheControlUtil = require('../utils/cache-control');
 const getDfpUtil = require('../utils/get-dfp');
 const suggestedHelper = require('./article-helpers/suggested');
+const readNextHelper = require('./article-helpers/read-next');
 const openGraphHelper = require('./article-helpers/open-graph');
 const decorateMetadataHelper = require('./article-helpers/decorate-metadata');
 const externalPodcastLinksUtil = require('../utils/external-podcast-links');
@@ -36,6 +37,24 @@ module.exports = function podcastLegacyController(req, res, next, payload) {
 	payload.dehydratedMetadata = {
 		moreOns: payload.moreOns
 	};
+
+	if (res.locals.flags.articleSuggestedRead && payload.metadata.length) {
+		let storyPackageIds = (payload.storyPackage || []).map(story => story.id);
+
+		asyncWorkToDo.push(
+			suggestedHelper(payload.id, storyPackageIds, payload.primaryTag).then(
+				articles => payload.readNextArticles = articles
+			)
+		);
+
+		asyncWorkToDo.push(
+			readNextHelper(payload.id, storyPackageIds, payload.primaryTag, payload.publishedDate).then(
+				article => payload.readNextArticle = article
+			)
+		);
+
+		payload.suggestedTopic = payload.primaryTag;
+	}
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {
