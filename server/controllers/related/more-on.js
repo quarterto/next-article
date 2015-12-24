@@ -55,6 +55,9 @@ module.exports = function (req, res, next) {
 	let precedingMoreOnIds = [];
 
 	let dedupe = function(articlesToDedupe) {
+		if (!articlesToDedupe) {
+			return [];
+		}
 		return articlesToDedupe
 			.filter(article => isNotADupe(article.id))
 			.slice(0, count);
