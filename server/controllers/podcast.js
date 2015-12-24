@@ -7,6 +7,7 @@ const suggestedHelper = require('./article-helpers/suggested');
 const openGraphHelper = require('./article-helpers/open-graph');
 const decorateMetadataHelper = require('./article-helpers/decorate-metadata');
 const externalPodcastLinksUtil = require('../utils/external-podcast-links');
+const getMoreOnTags = require('./article-helpers/get-more-on-tags');
 
 module.exports = function podcastLegacyController(req, res, next, payload) {
 	let asyncWorkToDo = [];
@@ -27,11 +28,14 @@ module.exports = function podcastLegacyController(req, res, next, payload) {
 		openGraphHelper(payload);
 	}
 
-	asyncWorkToDo.push(
-		suggestedHelper(payload.id, [], payload.primaryTag).then(
-			articles => payload.relatedContent = articles
-		)
-	);
+	// HACK set primaryBrand to Podcasts so will populate second more on
+	payload.primaryBrand = payload.tags
+		.find(tag => tag.id === 'NjI2MWZlMTEtMTE2NS00ZmI0LWFkMzMtNDhiYjA3YjcxYzIy-U2VjdGlvbnM=');
+
+	payload.moreOns = getMoreOnTags(payload.primaryTheme, payload.primarySection, payload.primaryBrand);
+	payload.dehydratedMetadata = {
+		moreOns: payload.moreOns
+	};
 
 	return Promise.all(asyncWorkToDo)
 		.then(() => {

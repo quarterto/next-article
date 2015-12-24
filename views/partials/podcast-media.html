@@ -1,0 +1,12 @@
+{{#if media}}
+  <div class="article__media">
+    {{#with media}}
+    <audio controls>
+      <source src="{{url}}" type="{{mediaType}}" />
+      <p>
+        Your browser does not support playing this file but you can still <a href="{{url}}">download the MP3 file</a> to play locally.
+      </p>
+    </audio>
+    {{/with}}
+  </div>
+{{/if}}

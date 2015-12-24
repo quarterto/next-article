@@ -12,6 +12,7 @@ const articleXsltTransform = require('../transforms/article-xslt');
 const bodyTransform = require('../transforms/body');
 const bylineTransform = require('../transforms/byline');
 const articleBranding = require('ft-n-article-branding');
+const getMoreOnTags = require('./article-helpers/get-more-on-tags');
 
 function isCapiV1(article) {
 	return article.provenance.find(
@@ -36,43 +37,6 @@ function transformArticleBody(article, flags) {
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams).then(articleBody => {
 		return bodyTransform(articleBody, flags);
-	});
-}
-
-function getMoreOnTags(primaryTheme, primarySection, primaryBrand) {
-	let moreOnTags = [];
-
-	primaryTheme && moreOnTags.push(primaryTheme);
-	primarySection && moreOnTags.push(primarySection);
-	primaryBrand && moreOnTags.push(primaryBrand);
-
-	if (!moreOnTags.length) {
-		return;
-	}
-
-	return moreOnTags.slice(0, 2).map(tag => {
-		let title;
-
-		switch (tag.taxonomy) {
-			case 'authors':
-				title = 'from';
-				break;
-			case 'brand':
-				title = 'from';
-				break;
-			case 'sections':
-				title = 'in';
-				break;
-			case 'genre':
-				title = '';
-				break;
-			default:
-				title = 'on';
-		}
-
-		tag.title = title;
-
-		return tag;
 	});
 }
 
@@ -166,7 +130,7 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			} else {
 				payload.layout = 'wrapper';
 				payload.contentType = 'article';
-				res.render('article', payload);
+				res.render('content', payload);
 			}
 		})
 		.catch(error => {

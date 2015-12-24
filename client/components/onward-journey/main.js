@@ -40,15 +40,14 @@ module.exports.init = function() {
 	var articleSources = articleEl.getAttribute('data-content-sources');
 
 	// If there is no articleId don't try to load related content
-	// and we also only support articles available in API v1
-	if (!articleId || !/v1/.test(articleSources)) {
+	if (!articleId) {
 		return;
 	}
 
 	var fetchPromises = [];
 	var hydratedMetadata = JSON.parse(dehydratedMetadata.innerHTML);
 
-	if (hydratedMetadata.package.length) {
+	if (hydratedMetadata.package && hydratedMetadata.package.length) {
 		let storyIds = hydratedMetadata.package.map(article => article.id);
 		let url = `/article/${articleId}/story-package?articleIds=${storyIds.join()}&count=5`;
 

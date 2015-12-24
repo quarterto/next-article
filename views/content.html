@@ -30,25 +30,18 @@
 							<p class="article__byline">{{#ifEquals contentType 'article'}}by: {{/ifEquals}}{{{byline}}}</p>
 						{{/if}}
 					</div>
-					{{#if tocHtml}}
-						<div class="article__body--toc">
-							{{{tocHtml}}}
-						</div>
-					{{/if}}
-					{{#if media}}
-						<div class="article__media">
-							{{#with media}}
-							<audio controls>
-								<source src="{{url}}" type="{{mediaType}}" />
-								<p>
-									Your browser does not support playing this file but you can still <a href="{{url}}">download the MP3 file</a> to play locally.
-								</p>
-							</audio>
-							{{/with}}
-						</div>
-					{{/if}}
-					{{> body bodyHtml=bodyHtml}}
-					{{> body-podcast body=body externalLinks=externalLinks}}
+					{{#ifEquals contentType 'article'}}
+						{{#if tocHtml}}
+							<div class="article__body--toc">
+								{{{tocHtml}}}
+							</div>
+						{{/if}}
+						{{> body-article bodyHtml=bodyHtml}}
+					{{/ifEquals}}
+					{{#ifEquals contentType 'podcast'}}
+						{{> podcast-media}}
+						{{> body-podcast}}
+					{{/ifEquals}}
 					{{> social location='bottom'}}
 				</div>
 				{{> right-hand/right-hand}}
