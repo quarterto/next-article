@@ -58,8 +58,16 @@
                 </xsl:otherwise>
             </xsl:choose>
 
-            <xsl:if test="string-length(@longdesc) &gt; 0">
-                <figcaption class="article-image__caption"><xsl:value-of select="@longdesc" /></figcaption>
+            <xsl:if test="string-length(@longdesc) &gt; 0 or string-length(@data-copyright) &gt; 0">
+                <figcaption class="article-image__caption">
+                  <xsl:if test="string-length(@longdesc) &gt; 0">
+                    <xsl:value-of select="@longdesc" />
+                  </xsl:if>
+                  <xsl:if test="string-length(@longdesc) &gt; 0 and string-length(@data-copyright) &gt; 0"> - </xsl:if>
+                  <xsl:if test="string-length(@data-copyright) &gt; 0">
+                    <xsl:value-of select="@data-copyright" />
+                  </xsl:if>
+                </figcaption>
             </xsl:if>
 
         </figure>
