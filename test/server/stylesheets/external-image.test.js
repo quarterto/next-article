@@ -321,6 +321,54 @@ describe('External images', () => {
 				});
 		});
 
+		it('adds caption when the copyright is present', () => {
+			return transform(
+				'<html>' +
+					'<body>' +
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<p><img src="http://my-image/image.jpg" data-copyright="© Bloomberg" width="800" height="600" /></p>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+					'</body>' +
+				'</html>\n'
+			)
+			.then((transformedXml) => {
+				expect(transformedXml).to.equal(
+					'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+					'<figure class="article-image article-image--full" style="width:700px;">' +
+						'<div class="article-image__placeholder" style="padding-top:75%;">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+						'</div>' +
+						'<figcaption class="article-image__caption">© Bloomberg</figcaption>' +
+					'</figure>' +
+					'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
+				);
+			});
+		});
+
+		it('adds caption when both the longdesc and copyright are present', () => {
+			return transform(
+				'<html>' +
+					'<body>' +
+						'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+						'<p><img src="http://my-image/image.jpg" longdesc="This is a long description" data-copyright="© Bloomberg" width="800" height="600" /></p>' +
+						'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>' +
+					'</body>' +
+				'</html>\n'
+			)
+			.then((transformedXml) => {
+				expect(transformedXml).to.equal(
+					'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
+					'<figure class="article-image article-image--full" style="width:700px;">' +
+						'<div class="article-image__placeholder" style="padding-top:75%;">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
+						'</div>' +
+						'<figcaption class="article-image__caption">This is a long description - © Bloomberg</figcaption>' +
+					'</figure>' +
+					'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
+				);
+			});
+		});
+
 	});
 
 });

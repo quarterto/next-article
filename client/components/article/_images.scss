@@ -41,7 +41,8 @@
 }
 
 .article-image__caption {
-	@include nTypeEcho(4);
+	@include oTypographySans(s);
+	font-style: italic;
 	color: getColor('cold-1');
 	margin-top: 0.5em;
 }
