@@ -12,14 +12,14 @@
 				<div class="header">
 					<h2 id="more-on-{{@index}}-title" class="header__name">
 						<span class="n-util-visually-hidden">Latest {{title}} </span>
-						<a class="c-topic c-topic__medium c-topic--with-follow c-topic--link" href="{{url}}" data-trackable="link-topic">{{name}}</a>
+						<a class="c-topic c-topic__medium c-topic--with-follow c-topic--link" href="{{url}}" data-trackable="link-topic-title">{{name}}</a>
 					</h2>
 					{{#if @root.flags.myFtApi }}
 						{{>next-myft-ui/templates/follow version='3' conceptId=id}}
 					{{/if}}
 				</div>
 				<ul class="pod__items js-more-on"></ul>
-				<a class="header__link" href="{{url}}" data-trackable="topic-link">
+				<a class="header__link" href="{{url}}" data-trackable="link-topic-see-all">
 					<span class="header__link__text">See all</span>
 				</a>
 		</div>

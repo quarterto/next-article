@@ -3,7 +3,7 @@
 		{{#ifEquals @index 0}}
 			{{#if mainImage}}
 				<div class="pod__item__image--placeholder">
-					<a class="pod__item__image" href="{{url}}" data-trackable="image">
+					<a class="pod__item__image" href="{{url}}" data-trackable="link-article-image">
 						{{>n-image/templates/image image=mainImage}}
 					</a>
 				</div>
@@ -11,12 +11,12 @@
 		{{/ifEquals}}
 		<div class="pod__item__content">
 			{{#if primaryTag}}
-				<a class="c-topic c-topic--link" href="{{primaryTag.url}}" data-trackable="tag">
+				<a class="c-topic c-topic--link" href="{{primaryTag.url}}" data-trackable="link-topic-title">
 					{{primaryTag.prefLabel}}
 				</a>
 			{{/if}}
 			<h3 class="pod__item__headline">
-				<a class="pod__item__headline-link" href="{{url}}" data-trackable="headline">{{title}}</a>
+				<a class="pod__item__headline-link" href="{{url}}" data-trackable="link-article-headline">{{title}}</a>
 			</h3>
 			{{#if subheading}}
 				<p class="pod__item__subheading">{{subheading}}</p>
