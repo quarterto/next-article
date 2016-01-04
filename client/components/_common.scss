@@ -13,10 +13,10 @@
 	clear: left;
 	margin: 24px 0 16px;
 	padding: 16px 0;
+	width: 100%;
 
 	&--inline {
 		float: left;
-		width: 100%;
 		@include oGridRespondTo(S) {
 			max-width: 300px;
 			margin-right: 24px;
