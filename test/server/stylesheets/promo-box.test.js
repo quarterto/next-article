@@ -84,7 +84,7 @@ describe('Promo-boxes', function() {
 							'<p>The fifth paragraph</p>' +
 						'</div>' +
 					'</div>' +
-					'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
+					'<button class="o-expander__toggle o--if-js u-margin--left-right" data-trackable="expander-toggle"></button>' +
 				'</aside>\n'
 			);
 		});
@@ -118,7 +118,7 @@ describe('Promo-boxes', function() {
 							'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is.”</p>' +
 						'</div>' +
 					'</div>' +
-					'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
+					'<button class="o-expander__toggle o--if-js u-margin--left-right" data-trackable="expander-toggle"></button>' +
 				'</aside>\n'
 			);
 		});
@@ -148,7 +148,7 @@ describe('Promo-boxes', function() {
 							'<p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p>' +
 						'</div>' +
 					'</div>' +
-					'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
+					'<button class="o-expander__toggle o--if-js u-margin--left-right" data-trackable="expander-toggle"></button>' +
 				'</aside>\n'
 			);
 		});
@@ -239,7 +239,7 @@ describe('Promo-boxes', function() {
 						'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
 						'<div class="aside--content__extension"><p><strong>Networking:</strong> “Wherever possible, and especially in Latin America, meet in person. Regardless of how good tech is, a face-to-face meeting is irreplaceable.”</p></div>' +
 					'</div>' +
-					'<button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>' +
+					'<button class="o-expander__toggle o--if-js u-margin--left-right" data-trackable="expander-toggle"></button>' +
 				'</aside>' +
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
