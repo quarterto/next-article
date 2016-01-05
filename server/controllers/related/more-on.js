@@ -54,13 +54,13 @@ module.exports = function (req, res, next) {
 	let getArticlesPromises = [];
 	let precedingMoreOnIds = [];
 
-	let dedupe = function(articlesToDedupe) {
-		return articlesToDedupe
-			.filter(article => isNotADupe(article.id))
-			.slice(0, count);
+	const dedupe = function(articlesToDedupe) {
+		return !articlesToDedupe
+			? []
+			: articlesToDedupe.filter(article => isNotADupe(article.id)).slice(0, count);
 	};
 
-	let isNotADupe = function(articleId) {
+	const isNotADupe = function(articleId) {
 		return precedingMoreOnIds.indexOf(articleId) === -1;
 	};
 
