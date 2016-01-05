@@ -175,6 +175,7 @@
 	.article__copyright-notice {
 		@include oTypographySansSize(s);
 		margin-top: 40px;
+		clear: both;
 	}
 
 	@media print {
