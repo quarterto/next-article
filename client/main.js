@@ -4,6 +4,7 @@ require('next-js-setup').bootstrap(({flags}) => {
 
 	const myFtClient = require('next-myft-client');
 	const myFtUi = require('next-myft-ui');
+	const npsFeedback = require('n-nps-feedback');
 
 	const prompts = require('n-message-prompts');
 	const oViewport = require('o-viewport');
@@ -33,6 +34,7 @@ require('next-js-setup').bootstrap(({flags}) => {
 	myFtClient.init(clientOpts);
 
 	myFtUi.init({anonymous: !(/FTSession=/.test(document.cookie))});
+	npsFeedback.init();
 
 	layout.init(flags);
 
