@@ -1,16 +1,24 @@
 'use strict';
 
-var api = require('next-ft-api-client');
-var fetchres = require('fetchres');
+const fetchres = require('fetchres');
 
 module.exports = function(req, res, next) {
 
 	// E.g. 4eb77dd4-9b35-11e4-be20-002128161462
-	api.contentLegacy({
-		uuid: req.params.id
-	})
-		.then(function(data) {
-			if (data.item && data.item && data.item.assets && data.item.assets[0] && data.item.assets[0].type === 'slideshow') {
+	fetch(`https://api.ft.com/content/items/v1/${req.params.id}?apiKey=${process.env.apikey}`)
+		.then(response => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				throw new Error(response.status);
+			}
+		})
+		.then(data => {
+			if (data
+				&& data.item
+				&& data.item.assets
+				&& data.item.assets[0]
+				&& data.item.assets[0].type === 'slideshow') {
 				res.render('slideshow', {
 					title: data.item.assets[0].fields.title,
 					syncid: req.query.syncid,
@@ -20,7 +28,7 @@ module.exports = function(req, res, next) {
 				res.status(404).end();
 			}
 		})
-		.catch(function(err) {
+		.catch(err => {
 			if (fetchres.originatedError(err)) {
 				res.status(404).end();
 			} else {
@@ -28,5 +36,4 @@ module.exports = function(req, res, next) {
 			}
 		})
 		.catch(next);
-
 };
