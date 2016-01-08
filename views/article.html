@@ -7,7 +7,6 @@
 	{{/if}}
 	{{> rel-canonical}}
 {{/defineBlock}}
-
 <article id="site-content" role="main" class="article{{#if designGenre}} article--brand {{#if designGenre.headshot}}article--brand--headshot{{/if}}{{/if}}" data-content-id="{{id}}" data-content-sources="{{#if articleV1}}v1{{/if}} {{#if articleV2}}v2{{/if}}" data-trackable="article" data-trackable-terminate>
 	<div class="article-header-ad-placeholder ad-placeholder"></div>
 	<div class="article__header" data-trackable="header">
@@ -121,7 +120,6 @@
 	</div>
 	{{/if}}
 </article>
-
 <div class="o-grid-container">
 	<div class="o-grid-row">
 		<div data-o-grid-colspan="12 L10 center">
@@ -207,6 +205,9 @@
 
 </div>
 
+{{#if @root.flags.npsFeedbackForm}}
+	{{>n-nps-feedback/templates/nps-form}}
+{{/if}}
 {{#if @root.flags.myFTTray}}
 	{{>n-myft-tray/templates/tray}}
 {{/if}}
