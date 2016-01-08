@@ -17,10 +17,12 @@ describe('Pull Quotes', function () {
 			)
 			.then(transformedXml => {
 				transformedXml.should.equal(
-					'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--left-right">' +
+					'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all">' +
 						'<div class="pull-quote__quote-marks"></div>' +
-						'<p class="u-margin--left-right">Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
-						'<cite class="article__quote-citation">Dr. Seuss</cite>' +
+						'<div class="u-padding--left-right">' +
+							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
+							'<footer class="article__quote-footer">Dr. Seuss</footer>' +
+						'</div>' +
 					'</blockquote>\n'
 				);
 			});
@@ -37,9 +39,11 @@ describe('Pull Quotes', function () {
 			)
 			.then(transformedXml => {
 				transformedXml.should.equal(
-					'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--left-right">' +
+					'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all">' +
 						'<div class="pull-quote__quote-marks"></div>' +
-						'<p class="u-margin--left-right">Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
+						'<div class="u-padding--left-right">' +
+							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
+						'</div>' +
 					'</blockquote>\n'
 				);
 			});
@@ -56,10 +60,12 @@ describe('Pull Quotes', function () {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--left-right">' +
+				'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--bottom__none">' +
 					'<div class="pull-quote__quote-marks"></div>' +
-					'<p class="u-margin--left-right">Quote with master image</p>' +
-					'<cite class="article__quote-citation">Source with image</cite>' +
+					'<div class="u-padding--left-right u-padding--bottom">' +
+						'<p>Quote with master image</p>' +
+						'<footer class="article__quote-footer">Source with image</footer>' +
+					'</div>' +
 					'<div class="aside--image"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
 						'<img alt="Housing market economic dashboard" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480?source=next&amp;fit=scale-down&amp;width=470">' +
 					'</div></div>' +

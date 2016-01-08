@@ -37,7 +37,7 @@ $quote-spacing-unit: 16px;
 	}
 }
 
-.article__quote-citation {
+.article__quote-footer {
 	@include oTypographySansDataBold(m);
 	font-style: normal;
 }
