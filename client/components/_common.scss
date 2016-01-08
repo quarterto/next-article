@@ -42,8 +42,9 @@
 		}
 	}
 
-	> .o-expander__toggle {
+	.o-expander__toggle {
 		@include nTypeAlpha(3);
+		margin-top: 12px;
 		i {
 			@include nextIcon(arrow-down, getColor('teal-1'), 12);
 			@include oFtIconsBaseIconStyles();

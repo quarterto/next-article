@@ -47,7 +47,7 @@
               <xsl:apply-templates select="current()/p[position() > $expanderParaBreakPoint]"/>
             </div>
           </div>
-          <button class="o-expander__toggle o--if-js" data-trackable="expander-toggle"></button>
+          <button class="o-expander__toggle o--if-js u-margin--left-right" data-trackable="expander-toggle"></button>
         </xsl:when>
         <xsl:otherwise>
           <div class="aside--content u-margin--left-right">
