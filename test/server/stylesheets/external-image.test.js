@@ -362,7 +362,7 @@ describe('External images', () => {
 						'<div class="article-image__placeholder" style="padding-top:75%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
 						'</div>' +
-						'<figcaption class="article-image__caption">This is a long description - © Bloomberg</figcaption>' +
+						'<figcaption class="article-image__caption">This is a long description © Bloomberg</figcaption>' +
 					'</figure>' +
 					'<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 				);
