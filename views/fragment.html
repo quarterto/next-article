@@ -1,7 +1,24 @@
 <div class="article__fragment">
-{{#if mainImageHtml}}
-  {{{mainImageHtml}}}
-{{/if}}
-{{> social location='top'}}
-{{> body}}
+  {{#if mainImageHtml}}
+    {{{mainImageHtml}}}
+  {{/if}}
+  {{> body}}
+  {{#if tags}}
+    <div
+      role="complementary"
+      class="article--tags__inline">
+      <p class="article--tags__title-inline">Latest stories on</p>
+      <ul class="article--tags__list-inline" data-trackable="tags">
+        {{#each tags}}
+        <li class="article--tag__inline">
+          <a
+            href="{{url}}"
+            class="c-topic c-topic--link c-topic--list"
+            data-trackable="tag"
+            {{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
 </div>
