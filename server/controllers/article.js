@@ -97,6 +97,10 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 		payload.firstClickFree = res.locals.firstClickFreeModel;
 	}
 
+	if (req.query.myftTopics) {
+		payload.myftTopics = req.query.myftTopics.split(',');
+	}
+
 	// Decorate article with primary tags and tags for display
 	decorateMetadataHelper(payload);
 	payload.isSpecialReport = payload.primaryTag && payload.primaryTag.taxonomy === 'specialReports';
