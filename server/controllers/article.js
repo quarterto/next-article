@@ -105,6 +105,9 @@ module.exports = function articleV3Controller(req, res, next, content) {
 		};
 	}
 
+	if (req.query.myftTopics) {
+		content.myftTopics = req.query.myftTopics.split(',');
+	}
 
 	// Decorate article with primary tags and tags for display
 	decorateMetadataHelper(content);

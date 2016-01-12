@@ -37,15 +37,27 @@ function selectPrimaryTag(article) {
 	article.primaryTag = primaryTag;
 }
 
+function isPrimaryTag(article) {
+	return (tag) => (!article.primaryTag || article.primaryTag.id !== tag.id);
+}
+
+function selectTagsMyftTagsForDisplay(article) {
+	let myftTopics = article.myftTopics || [];
+
+	return article.metadata
+		.filter(isPrimaryTag(article))
+		.filter(tag => myftTopics.some(id => id === tag.id));
+}
+
 function selectTagsForDisplay(article) {
 	let ignore = [ 'genre', 'mediaType', 'iptc', 'icb' ];
+	let myftTopics = selectTagsMyftTagsForDisplay(article);
+	let defaultTopics = article.metadata
+		.filter(tag => !myftTopics.some(myftTag => myftTag.id === tag.id))
+		.filter(tag => !ignore.find(taxonomy => taxonomy === tag.taxonomy))
+		.filter(isPrimaryTag(article));
 
-	article.tags = article.metadata
-		.filter(
-			tag => !ignore.find(taxonomy => taxonomy === tag.taxonomy)
-				&& (!article.primaryTag || article.primaryTag.id !== tag.id)
-		)
-		.slice(0, 5);
+	article.tags = myftTopics.concat(defaultTopics).slice(0,5);
 }
 
 module.exports = function(article) {
