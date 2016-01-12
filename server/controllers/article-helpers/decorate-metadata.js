@@ -46,7 +46,7 @@ function selectTagsMyftTagsForDisplay(article) {
 
 	return article.metadata
 		.filter(isPrimaryTag(article))
-		.filter(tag => myftTopics.some(id => id === tag.id ));
+		.filter(tag => myftTopics.some(id => id === tag.id));
 }
 
 function selectTagsForDisplay(article) {
