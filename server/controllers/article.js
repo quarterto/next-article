@@ -76,86 +76,94 @@ function getMoreOnTags(primaryTheme, primarySection, primaryBrand) {
 	});
 }
 
-module.exports = function articleV3Controller(req, res, next, payload) {
+module.exports = function articleV3Controller(req, res, next, content) {
 
 	let asyncWorkToDo = [];
 
 	// Required for correctly tracking page / barrier views
 	if (req.get('FT-Barrier-Type') !== '-') {
-		payload.barrierType = req.get('FT-Barrier-Type');
+		content.barrierType = req.get('FT-Barrier-Type');
 	}
 
 	if (req.get('FT-Corporate-Id') !== '-') {
-		payload.corporateId = req.get('FT-Corporate-Id');
+		content.corporateId = req.get('FT-Corporate-Id');
 	}
 
 	if (res.locals.barrier) {
-		return res.render('article', barrierHelper(payload, res.locals.barrier));
+		return res.render('article', barrierHelper(content, res.locals.barrier));
 	}
 
 	if (res.locals.firstClickFreeModel) {
-		payload.firstClickFree = res.locals.firstClickFreeModel;
+		content.firstClickFree = res.locals.firstClickFreeModel;
+	}
+
+	if (res.locals.flags.analytics) {
+		content.ijentoConfig = {
+			uuid: content.id,
+			code: (/cms\/s\/([0-3])\//i.exec(content.webUrl) || [, null])[1],
+			type: 'Story'
+		};
 	}
 
 	if (req.query.myftTopics) {
-		payload.myftTopics = req.query.myftTopics.split(',');
+		content.myftTopics = req.query.myftTopics.split(',');
 	}
 
 	// Decorate article with primary tags and tags for display
-	decorateMetadataHelper(payload);
-	payload.isSpecialReport = payload.primaryTag && payload.primaryTag.taxonomy === 'specialReports';
+	decorateMetadataHelper(content);
+	content.isSpecialReport = content.primaryTag && content.primaryTag.taxonomy === 'specialReports';
 
 	asyncWorkToDo.push(
-		transformArticleBody(payload, res.locals.flags).then(fragments => {
-			payload.bodyHtml = fragments.bodyHtml;
-			payload.tocHtml = fragments.tocHtml;
-			payload.mainImageHtml = fragments.mainImageHtml;
+		transformArticleBody(content, res.locals.flags).then(fragments => {
+			content.bodyHtml = fragments.bodyHtml;
+			content.tocHtml = fragments.tocHtml;
+			content.mainImageHtml = fragments.mainImageHtml;
 		})
 	);
-	payload.designGenre = articleBranding(payload.metadata);
+	content.designGenre = articleBranding(content.metadata);
 
 	// Decorate with related stuff
-	payload.moreOns = getMoreOnTags(payload.primaryTheme, payload.primarySection, payload.primaryBrand);
+	content.moreOns = getMoreOnTags(content.primaryTheme, content.primarySection, content.primaryBrand);
 
-	payload.articleV1 = isCapiV1(payload);
-	payload.articleV2 = isCapiV2(payload);
+	content.articleV1 = isCapiV1(content);
+	content.articleV2 = isCapiV2(content);
 
 	// TODO: move this to template or re-name subheading
-	payload.standFirst = payload.summaries ? payload.summaries[0] : '';
+	content.standFirst = content.summaries ? content.summaries[0] : '';
 
-	payload.byline = bylineTransform(payload.byline, payload.metadata.filter(item => item.taxonomy === 'authors'));
+	content.byline = bylineTransform(content.byline, content.metadata.filter(item => item.taxonomy === 'authors'));
 
-	payload.dehydratedMetadata = {
-		moreOns: payload.moreOns,
-		package: payload.storyPackage || [],
+	content.dehydratedMetadata = {
+		moreOns: content.moreOns,
+		package: content.storyPackage || [],
 	};
 
-	payload.dfp = getDfpUtil(payload.metadata);
+	content.dfp = getDfpUtil(content.metadata);
 
 	if (res.locals.flags.openGraph) {
-		openGraphHelper(payload);
+		openGraphHelper(content);
 	}
 
-	if (res.locals.flags.articleSuggestedRead && payload.metadata.length) {
-		let storyPackageIds = (payload.storyPackage || []).map(story => story.id);
+	if (res.locals.flags.articleSuggestedRead && content.metadata.length) {
+		let storyPackageIds = (content.storyPackage || []).map(story => story.id);
 
 		asyncWorkToDo.push(
-			suggestedHelper(payload.id, storyPackageIds, payload.primaryTag).then(
-				articles => payload.readNextArticles = articles
+			suggestedHelper(content.id, storyPackageIds, content.primaryTag).then(
+				articles => content.readNextArticles = articles
 			)
 		);
 
 		asyncWorkToDo.push(
-			readNextHelper(payload.id, storyPackageIds, payload.primaryTag, payload.publishedDate).then(
-				article => payload.readNextArticle = article
+			readNextHelper(content.id, storyPackageIds, content.primaryTag, content.publishedDate).then(
+				article => content.readNextArticle = article
 			)
 		);
 
-		payload.suggestedTopic = payload.primaryTag;
+		content.suggestedTopic = content.primaryTag;
 	}
 
 	if (req.get('FT-Labs-Gift') === 'GRANTED') {
-		payload.shared = true;
+		content.shared = true;
 		res.vary('FT-Labs-Gift');
 	}
 
@@ -164,12 +172,12 @@ module.exports = function articleV3Controller(req, res, next, payload) {
 			res.set(cacheControlUtil);
 			if (req.query.fragment) {
 				if (!req.query.bare) {
-					payload.layout = 'vanilla';
+					content.layout = 'vanilla';
 				}
-				res.render('fragment', payload);
+				res.render('fragment', content);
 			} else {
-				payload.layout = 'wrapper';
-				res.render('article', payload);
+				content.layout = 'wrapper';
+				res.render('article', content);
 			}
 		})
 		.catch(error => {
