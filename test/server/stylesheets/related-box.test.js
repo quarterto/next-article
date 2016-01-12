@@ -17,7 +17,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="c-box c-box--inline u-border--all">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="aside--headline u-margin--left-right"><a data-trackable="link-headline" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015">9th Annual Property Summit</a></div>' +
 					'<div class="aside--image"><a data-trackable="link-image" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
 					'<img alt="Housing market economic dashboard" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480?source=next&amp;fit=scale-down&amp;width=470"></div></a></div>' +
@@ -39,7 +39,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="c-box c-box--inline u-border--all">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="aside--headline u-margin--left-right">9th Annual Property Summit</div>' +
 					'<div class="aside--image"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
 					'<img alt="Housing market economic dashboard" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480?source=next&amp;fit=scale-down&amp;width=470"></div></div>' +
@@ -62,7 +62,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="c-box c-box--inline u-border--all">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">FT Property Summit 2015</div></div>' +
 					'<div class="aside--headline u-margin--left-right"><a data-trackable="link-headline" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015">9th Annual Property Summit</a></div>' +
 					'<div class="aside--image"><a data-trackable="link-image" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
@@ -86,7 +86,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="c-box c-box--inline u-border--all">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">FT Property Summit 2015</div></div>' +
 					'<div class="aside--headline u-margin--left-right"><a data-trackable="link-headline" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015">9th Annual Property Summit</a></div>' +
 					'<div class="aside--image u-margin--left-right"><a data-trackable="link-image" href="https://live.ft.com/Events/2015/FT-Property-Summit-2015"><div class="article-image__placeholder" style="padding-top:96px;">' +
@@ -109,7 +109,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="c-box c-box--inline u-border--all">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 						'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Related article</div></div>' +
 						'<div class="aside--image"><a data-trackable="link-image" href="/content/e539eab8-8c83-11e5-8be4-3506bf20cc2b"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
 						'<img alt="Housing market economic dashboard" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480?source=next&amp;fit=scale-down&amp;width=470"></div></a></div>' +
@@ -133,7 +133,7 @@ describe('Related Box', () => {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<aside data-trackable="related-box" role="complementary" class="c-box c-box--inline u-border--all">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Bridge the generation gap</div></div>' +
 					'<div class="aside--image"><a data-trackable="link-image" href="/content/e539eab8-8c83-11e5-8be4-3506bf20cc2b"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
 					'<img alt="Housing market economic dashboard" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480?source=next&amp;fit=scale-down&amp;width=470"></div></a></div>' +
