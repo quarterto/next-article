@@ -59,7 +59,7 @@
 			color: getColor('cold-2');
 			text-decoration: none;
 		}
-		&[aria-pressed] i {
+		&[aria-expanded="true"] i {
 			@include nextIcon(arrow-up, getColor('teal-1'), 12);
 		}
 	}
