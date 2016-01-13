@@ -29,7 +29,7 @@ watch:
 	nbt build --dev --watch
 
 clean:
-	git clean -fxd
+	git clean -fxd -e .idea
 
 deploy:
 	nbt deploy-hashed-assets
