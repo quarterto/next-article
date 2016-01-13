@@ -93,10 +93,6 @@ module.exports = function articleV3Controller(req, res, next, content) {
 		return res.render('article', barrierHelper(content, res.locals.barrier));
 	}
 
-	if (res.locals.firstClickFreeModel) {
-		content.firstClickFree = res.locals.firstClickFreeModel;
-	}
-
 	if (res.locals.flags.analytics) {
 		content.ijentoConfig = {
 			uuid: content.id,
