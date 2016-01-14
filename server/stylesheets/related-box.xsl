@@ -47,27 +47,21 @@
         </xsl:choose>
       </xsl:variable>
 
-      <xsl:if test="$type = 'article'">
-        <xsl:choose>
-          <xsl:when test="count(current()/title) = 0">
-            <div class="c-box--title">
-              <div class="c-box--title__text u-background-color--pink">Related article</div>
-            </div>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="current()/title" mode="aside-title" />
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$type = 'article' and count(current()/title) = 0">
+          <div class="c-box--title">
+            <div class="c-box--title__text u-background-color--pink">Related article</div>
+          </div>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="current()/title | current()/promo-title" mode="aside-title" />
+        </xsl:otherwise>
+      </xsl:choose>
 
       <xsl:if test="$type = 'article'">
         <xsl:apply-templates select="current()/media/img" mode="aside-image-wrapper" >
           <xsl:with-param name="linkurl" select="$linkurl" />
         </xsl:apply-templates>
-      </xsl:if>
-
-      <xsl:if test="$type != 'article'">
-        <xsl:apply-templates select="current()/title | current()/promo-title" mode="aside-title" />
       </xsl:if>
 
       <xsl:apply-templates select="current()/headline | current()/promo-headline" mode="aside-headline" >
