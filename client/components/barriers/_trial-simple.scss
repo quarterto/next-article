@@ -2,20 +2,20 @@
 	margin-bottom: 35px;
 
 	h2 {
-		@include nTypeBravo(1);
+		@include oTypographySansBold(xl);
 	}
 }
 
 .trial-barrier-simple__already-registered {
-	@include nTypeAlpha(3);
+	@include oTypographySans(m);
 }
 
 .trial-barrier-simple__description {
-	@include nTypeAlpha(3);
+	@include oTypographySans(m);
 }
 
 .trial-barrier-simple__price {
-	@include nTypeBravo(2);
+	@include oTypographySansBold(l);
 }
 
 .trial-barrier-simple__subscribe-now a {

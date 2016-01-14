@@ -13,20 +13,20 @@
 	}
 
 	h3 {
-		@include nTypeBravo(2);
+		@include oTypographySansBold(l);
 		margin: 0 0 20px;
 		text-align: center;
 	}
 
 	h4 {
-		@include nTypeAlpha(3);
+		@include oTypographySans(m);
 		text-align: center;
 		text-transform: uppercase;
 		margin-bottom: 10px;
 	}
 
 	p {
-		@include nTypeAlpha(3);
+		@include oTypographySans(m);
 		margin: 0 0 20px;
 		text-align: center;
 	}
@@ -36,7 +36,7 @@
 	background-color: oColorsGetPaletteColor('warm-2');
 
 	h2 {
-		@include nTypeBravo(3);
+		@include oTypographySansBold(m);
 		@include oGridColumn((default: full-width, L: three-quarters));
 		margin: 0;
 	}
@@ -57,7 +57,7 @@
 	}
 
 	.premium-barrier-simple__sign-in {
-		@include nTypeBravo(4);
+		@include oTypographySansBold(s);
 		@include oGridColumn((default: full-width, L: one-quarter));
 
 		background-color: oColorsGetPaletteColor('warm-3');
@@ -88,7 +88,7 @@
 	@include nextLinkButton(
 		$background: oColorsGetPaletteColor('link-2')
 	);
-	@include nTypeAlpha(4);
+	@include oTypographySans(s);
 	width: 200px;
 	margin: 0 auto;
 	display: block;
@@ -104,7 +104,7 @@
 }
 
 .premium-barrier-simple__other-options h3 {
-	@include nTypeAlpha(4);
+	@include oTypographySans(s);
 	text-align: center;
 	text-transform: uppercase;
 	padding-top: 10px;
@@ -124,7 +124,7 @@
 	}
 
 	a {
-		@include nTypeBravo(4);
+		@include oTypographySansBold(s);
 		border: 0;
 		overflow: hidden;
 

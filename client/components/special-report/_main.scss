@@ -50,11 +50,11 @@
 	}
 }
 .stream-card__title__kicker {
-	@include nTypeAlpha(4);
+	@include oTypographySans(s);
 	text-transform: uppercase;
 }
 .stream-card__title__text {
-	@include nTypeBravo(2);
+	@include oTypographySansBold(l);
 }
 .stream-card__articles {
 	// to bring layer to top
@@ -73,12 +73,12 @@
 	}
 }
 .stream-card__article__date {
-	@include nTypeAlpha(5);
+	@include oTypographySans(xs);
 	text-transform: uppercase;
 	color: oColorsGetPaletteColor('blue-2');
 }
 .stream-card__article__link {
-	@include nTypeAlpha(3);
+	@include oTypographySans(m);
 	color: inherit;
 	border-bottom-color: transparent;
 

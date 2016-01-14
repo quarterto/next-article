@@ -24,7 +24,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 .trial-barrier-grid__header {
 	background-color: oColorsGetPaletteColor('warm-2');
 	h2 {
-		@include nTypeBravo(3);
+		@include oTypographySansBold(m);
 		@include oGridColumn((default: full-width, L: three-quarters));
 	}
 
@@ -44,7 +44,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 	}
 
 	.trial-barrier-grid__sign-in {
-		@include nTypeBravo(4);
+		@include oTypographySansBold(s);
 		@include oGridColumn((default: full-width, L: one-quarter));
 
 		background-color: oColorsGetPaletteColor('warm-3');
@@ -72,7 +72,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 .trial-barrier-grid {
 	.trial-barrier-grid__options {
 		h3 {
-			@include nTypeAlpha(4);
+			@include oTypographySans(s);
 			text-align: center;
 			text-transform: uppercase;
 			margin-bottom: 10px;
@@ -129,13 +129,13 @@ $o-grid-gutters: (default: 0px, M: 0px);
 		padding-right: 30px;
 
 		h4 {
-			@include nTypeBravo(4);
+			@include oTypographySansBold(s);
 			margin-bottom: 3px;
 			margin-top: 0;
 		}
 
 		ul {
-			@include nTypeBravo(4);
+			@include oTypographySansBold(s);
 			list-style: none;
 			font-weight: normal;
 			margin: 0 0 20px;
@@ -192,7 +192,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 	}
 
 	.trial-barrier-grid__learn-more {
-		@include nTypeBravo(4);
+		@include oTypographySansBold(s);
 
 		a {
 			text-decoration: none;
@@ -239,7 +239,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 }
 
 .trial-barrier-grid__other-options h3 {
-	@include nTypeBravo(4);
+	@include oTypographySansBold(s);
 	text-align: center;
 	padding-bottom: 10px;
 	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
@@ -255,7 +255,7 @@ $o-grid-gutters: (default: 0px, M: 0px);
 	}
 
 	a {
-		@include nTypeBravo(4);
+		@include oTypographySansBold(s);
 		border: 0;
 		overflow: hidden;
 

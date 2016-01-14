@@ -21,7 +21,7 @@
 .subscription-barrier-grid__header {
 	background-color: oColorsGetPaletteColor('warm-2');
 	h2 {
-		@include nTypeBravo(3);
+		@include oTypographySansBold(m);
 		@include oGridColumn((default: full-width, L: three-quarters));
 	}
 
@@ -48,7 +48,7 @@
 .subscription-barrier-grid {
 	.subscription-barrier-grid__options {
 		h3 {
-			@include nTypeAlpha(4);
+			@include oTypographySans(s);
 			text-align: center;
 			text-transform: uppercase;
 			margin-bottom: 10px;
@@ -104,13 +104,13 @@
 		padding-right: 30px;
 
 		h4 {
-			@include nTypeBravo(4);
+			@include oTypographySansBold(s);
 			margin-bottom: 3px;
 			margin-top: 0;
 		}
 
 		ul {
-			@include nTypeBravo(4);
+			@include oTypographySansBold(s);
 			list-style: none;
 			font-weight: normal;
 			margin: 0 0 20px;
@@ -167,7 +167,7 @@
 	}
 
 	.subscription-barrier-grid__learn-more {
-		@include nTypeBravo(4);
+		@include oTypographySansBold(s);
 	}
 
 }
@@ -183,7 +183,7 @@
 }
 
 .subscription-barrier-grid__other-options h3 {
-	@include nTypeBravo(4);
+	@include oTypographySansBold(s);
 	text-align: center;
 	padding-bottom: 10px;
 	border-bottom: 1px solid oColorsGetPaletteColor('warm-2');
@@ -199,7 +199,7 @@
 	}
 
 	a {
-		@include nTypeBravo(4);
+		@include oTypographySansBold(s);
 		border: 0;
 		overflow: hidden;
 

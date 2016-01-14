@@ -40,7 +40,7 @@ $image-height-allowance: $image-height + (2 * $height-padding);
 }
 
 .story-package__title {
-	@include nTypeBravo(3);
+	@include oTypographySansBold(m);
 	margin: 0;
 	border-bottom: 1px solid oColorsGetPaletteColor('cold-2');
 	padding: 0 0 $height-padding;
