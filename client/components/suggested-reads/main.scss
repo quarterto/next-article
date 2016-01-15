@@ -26,7 +26,7 @@
 }
 
 .suggested-reads__item__headline {
-	@include nTypeFoxtrot(3);
+	@include oTypographySerifDisplay(m);
 	@include nLinksHeadline();
 }
 

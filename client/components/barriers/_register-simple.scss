@@ -2,20 +2,20 @@
 	margin-bottom: 35px;
 
 	h2 {
-		@include nTypeBravo(1);
+		@include oTypographySansBold(xl);
 	}
 }
 
 .register-barrier-simple__already-registered {
-	@include nTypeAlpha(3);
+	@include oTypographySans(m);
 }
 
 .register-barrier-simple__description {
-	@include nTypeAlpha(3);
+	@include oTypographySans(m);
 }
 
 .register-barrier-simple__price {
-	@include nTypeBravo(2);
+	@include oTypographySansBold(l);
 }
 
 .register-barrier-simple__subscribe-now a {

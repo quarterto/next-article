@@ -27,16 +27,16 @@
 	background-color: rgba(0, 0, 0, 0.5);
 
 	p {
-		@include nTypeDelta(3);
+		@include oTypographySerifDisplayItalic(m);
 		margin: 10px 0 0 20px;
 
 		@include oGridRespondTo(S) {
-			@include nTypeDelta(2);
+			@include oTypographySerifDisplayItalic(l);
 			margin-left: 50px;
 			margin-right: 100px;
 		}
 		@include oGridRespondTo(M) {
-			@include nTypeDelta(1);
+			@include oTypographySerifDisplayItalic(xl);
 		}
 		&:first-child:before {
 			content: '“';
@@ -48,14 +48,14 @@
 		}
 	}
 	cite {
-		@include nTypeAlpha(4);
+		@include oTypographySans(s);
 		text-transform: uppercase;
 		float: right;
 		font-style: normal;
 		margin-top: 10px;
 
 		@include oGridRespondTo(M) {
-			@include nTypeAlpha(3);
+			@include oTypographySans(m);
 		}
 	}
 }
@@ -111,7 +111,7 @@
 		border-left-color: #ffffff;
 
 		p {
-			@include nTypeDelta(1);
+			@include oTypographySerifDisplayItalic(xl);
 			margin: 0;
 		}
 	}
@@ -209,7 +209,7 @@
 			content: '';
 		}
 		p {
-			@include nTypeDelta(2);
+			@include oTypographySerifDisplayItalic(l);
 			color: #000000;
 			margin: 10px 0 0;
 			padding-left: 0.25em;
@@ -217,7 +217,7 @@
 
 			&:before,
 			&:after {
-				@include nTypeDelta(2);
+				@include oTypographySerifDisplayItalic(l);
 				margin-top: 0;
 			}
 			&:first-of-type:before {

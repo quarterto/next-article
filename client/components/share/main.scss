@@ -15,7 +15,7 @@
 	border-bottom: 1px solid getColor('warm-3');
 
 	&__count {
-		@include nTypeAlphaSize(4);
+		@include oTypographySansSize(s);
 		overflow: hidden;
 		position: relative;
 		top: -5px;
@@ -26,7 +26,7 @@
 	}
 
 	&__comments {
-		@include nTypeAlphaSize(4);
+		@include oTypographySansSize(s);
 		border-bottom-width: 0;
 		float: right;
 		margin-right: 16px;

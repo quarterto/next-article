@@ -56,7 +56,7 @@
 
 .next-up__headline {
 	@include nLinksHeadline;
-	@include nTypeFoxtrot(2);
+	@include oTypographySerifDisplay(l);
 
 	.next-up__header & {
 		line-height: 29px; // FIXME: revist upon type scale revisions
@@ -69,7 +69,7 @@
 }
 
 .next-up__timestamp {
-	@include nTypeAlpha(5);
+	@include oTypographySans(xs);
 	text-transform: uppercase;
 	color: oColorsGetColorFor(timestamp, text);
 }

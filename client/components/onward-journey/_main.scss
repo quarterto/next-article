@@ -207,7 +207,7 @@
 	}
 }
 .pod__item__time {
-	@include nTypeAlpha(5);
+	@include oTypographySans(xs);
 	position: absolute;
 	width: 100%;
 	bottom: 0;
