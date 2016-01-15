@@ -18,7 +18,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
@@ -43,7 +43,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
@@ -72,19 +72,16 @@ describe('Promo-boxes', function() {
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
-					'<div class="aside--content o-expander__content u-margin--left-right">' +
+					'<div class="aside--content u-margin--left-right">' +
 						'<p>The first paragraph</p>' +
 						'<p>The second paragraph</p>' +
 						'<p>The third paragraph</p>' +
-						'<div class="aside--content__extension">' +
-							'<p>The fourth paragraph</p>' +
-							'<p>The fifth paragraph</p>' +
-						'</div>' +
+						'<p>The fourth paragraph</p>' +
+						'<p>The fifth paragraph</p>' +
 					'</div>' +
-					'<button class="o-expander__toggle o--if-js u-margin--left-right" data-trackable="expander-toggle"></button>' +
 				'</aside>\n'
 			);
 		});
@@ -104,13 +101,13 @@ describe('Promo-boxes', function() {
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
+				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="related-box" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=470">' +
 					'</div>' +
-					'<div class="aside--content o-expander__content u-margin--left-right">' +
+					'<div class="aside--content u-margin--left-right o-expander__content">' +
 						'<p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum.”</p>' +
 						'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking.”</p>' +
 						'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us.”</p>' +
@@ -137,10 +134,10 @@ describe('Promo-boxes', function() {
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
+				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="related-box" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
-					'<div class="aside--content o-expander__content u-margin--left-right">' +
+					'<div class="aside--content u-margin--left-right o-expander__content">' +
 						'<p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
 						'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p>' +
 						'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
@@ -164,7 +161,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=470">' +
@@ -185,7 +182,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a> </div></div>' +
 				'</aside>\n'
 			);
@@ -200,7 +197,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="aside--headline u-margin--left-right"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a></div>' +
 				'</aside>\n'
 			);
@@ -227,13 +224,13 @@ describe('Promo-boxes', function() {
 		)
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="promobox" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
+				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="related-box" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=470">' +
 					'</div>' +
-					'<div class="aside--content o-expander__content u-margin--left-right">' +
+					'<div class="aside--content u-margin--left-right o-expander__content">' +
 						'<p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
 						'<p><strong>Best mentor:</strong> “Chris Baohm, my boss at Gresham Partners in Australia . . . made me understand the importance of breaking down complex situations into the core commercial objectives.”</p>' +
 						'<p><strong>Biggest mistake:</strong> “It became very clear that we needed a strong team with us who we could trust to navigate the huge due diligence tasks we had in several countries, in a different language.”</p>' +
@@ -241,7 +238,7 @@ describe('Promo-boxes', function() {
 					'</div>' +
 					'<button class="o-expander__toggle o--if-js u-margin--left-right" data-trackable="expander-toggle"></button>' +
 				'</aside>' +
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
@@ -264,7 +261,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Series: China Great Game</div></div>' +
 					'<div class="aside--headline u-margin--left-right">As China seeks to expand its sphere of influence, it is likely to encounter significant resistance. <a href="http://www.ft.com/indepth/china-great-game" data-trackable="link">Read more</a> </div>' +
 					'<div class="aside--content u-margin--left-right">' +
@@ -285,7 +282,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink"><b>CV</b></div></div>' +
 					'<div class="aside--headline u-margin--left-right">This is the headline</div>' +
 					'<div class="aside--content u-margin--left-right"><p>Here is some content</p></div>' +
@@ -305,7 +302,7 @@ describe('Promo-boxes', function() {
 		)
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
-				'<aside class="c-box c-box--inline u-border--all" data-trackable="promobox" role="complementary">' +
+				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image u-margin--left-right"><div class="article-image__placeholder" style="padding-top:96px;">' +

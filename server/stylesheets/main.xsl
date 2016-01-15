@@ -14,7 +14,6 @@
     <xsl:include href="external-image.xsl" />
     <xsl:include href="interactive-graphics.xsl" />
     <xsl:include href="links.xsl" />
-    <xsl:include href="promo-box.xsl" />
     <xsl:include href="pull-quotes.xsl" />
     <xsl:include href="related-box.xsl" />
     <xsl:include href="slideshow.xsl" />
