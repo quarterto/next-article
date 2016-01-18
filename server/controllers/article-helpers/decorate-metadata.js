@@ -60,6 +60,15 @@ function selectTagsForDisplay(article) {
 	article.tags = myftTopics.concat(defaultTopics).slice(0,5);
 }
 
+function selectTagToFollow(article) {
+	if(!article.tagToFollow) {
+		return;
+	}
+
+	article.tagToFollow = article.metadata
+		.find(tag => tag.id === article.tagToFollow);
+}
+
 module.exports = function(article) {
 	fillProperties(article);
 	selectPrimaryTheme(article);
@@ -67,6 +76,6 @@ module.exports = function(article) {
 	selectPrimaryBrand(article);
 	selectPrimaryTag(article);
 	selectTagsForDisplay(article);
-
+	selectTagToFollow(article);
 	return article;
 };

@@ -105,6 +105,11 @@ module.exports = function articleV3Controller(req, res, next, content) {
 		content.myftTopics = req.query.myftTopics.split(',');
 	}
 
+	//When a user comes to an article from a myFT promo area, we want to push them to follow the topic they came from
+	if (req.query.tagToFollow) {
+		content.tagToFollow = req.query.tagToFollow;
+	}
+
 	// Decorate article with primary tags and tags for display
 	decorateMetadataHelper(content);
 	content.isSpecialReport = content.primaryTag && content.primaryTag.taxonomy === 'specialReports';

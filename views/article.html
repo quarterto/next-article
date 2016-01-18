@@ -58,24 +58,29 @@
 				{{#if readNextArticle}}
 					{{>read-next-header article=readNextArticle}}
 				{{else}}
-					{{#if tags}}
-					<aside
-						role="complementary"
-						data-o-grid-colspan="hide L3 Loffset1"
-						class="article__tags {{#if mainImageHtml}}article__tags--main-image{{/if}}">
-						<h3 class="article__tags__title">Topics mentioned in this article</h3>
-						<ul class="article__tags-list" data-trackable="tags">
-							{{#each tags}}
-							<li class="article__tag">
-								<a
-									href="{{url}}"
-									class="c-topic c-topic--link c-topic--list"
-									data-trackable="tag"
-									{{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
-							</li>
-							{{/each}}
-						</ul>
-					</aside>
+					{{#if tagToFollow}}
+						FOLLOW ME {{tagToFollow.id}} {{tagToFollow.url}} {{tagToFollow.name}}
+
+					{{else}}
+						{{#if tags}}
+						<aside
+							role="complementary"
+							data-o-grid-colspan="hide L3 Loffset1"
+							class="article__tags {{#if mainImageHtml}}article__tags--main-image{{/if}}">
+							<h3 class="article__tags__title">Topics mentioned in this article</h3>
+							<ul class="article__tags-list" data-trackable="tags">
+								{{#each tags}}
+								<li class="article__tag">
+									<a
+										href="{{url}}"
+										class="c-topic c-topic--link c-topic--list"
+										data-trackable="tag"
+										{{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
+								</li>
+								{{/each}}
+							</ul>
+						</aside>
+						{{/if}}
 					{{/if}}
 				{{/if}}
 			</div>
