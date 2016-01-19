@@ -19,7 +19,7 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=470">' +
@@ -44,7 +44,7 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=470">' +
@@ -73,7 +73,7 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--content u-margin--left-right">' +
 						'<p>The first paragraph</p>' +
@@ -102,7 +102,7 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="related-box" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=470">' +
@@ -135,7 +135,7 @@ describe('Promo-boxes', function() {
 		.then(function (transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="related-box" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--content u-margin--left-right o-expander__content">' +
 						'<p><strong>Breakthrough:</strong> “Closing our first seed round in 10 days three times oversubscribed gave us momentum [to carry through] to the execution of our strategy and into the IPO.”</p>' +
@@ -183,7 +183,7 @@ describe('Promo-boxes', function() {
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a> </div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink"><a href="/c9175806-3054-11e5-8873-775ba7c2ea3d" data-trackable="link">Greece crisis tests start-ups’ staying power</a> </div></div>' +
 				'</aside>\n'
 			);
 		});
@@ -225,7 +225,7 @@ describe('Promo-boxes', function() {
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all o-expander" data-trackable="related-box" role="complementary" data-o-component="o-expander" data-o-expander-shrink-to="0" data-o-expander-count-selector=".aside--content__extension">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=470">' +
@@ -239,7 +239,7 @@ describe('Promo-boxes', function() {
 					'<button class="o-expander__toggle o--if-js u-margin--left-right" data-trackable="expander-toggle"></button>' +
 				'</aside>' +
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/1871b094-3b7d-11e5-bbd1-b37bc06f590c?source=next&amp;fit=scale-down&amp;width=470">' +
@@ -262,7 +262,7 @@ describe('Promo-boxes', function() {
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Series: China Great Game</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Series: China Great Game</div></div>' +
 					'<div class="aside--headline u-margin--left-right">As China seeks to expand its sphere of influence, it is likely to encounter significant resistance. <a href="http://www.ft.com/indepth/china-great-game" data-trackable="link">Read more</a> </div>' +
 					'<div class="aside--content u-margin--left-right">' +
 						'<p><a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link">Road to a new empire </a> <br>A modern-day Silk route is Xi Jinping’s signature foreign policy. <a href="/content/6e098274-587a-11e5-a28b-50226830d644" data-trackable="link">Read more </a> </p>' +
@@ -283,7 +283,7 @@ describe('Promo-boxes', function() {
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink"><b>CV</b></div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink"><b>CV</b></div></div>' +
 					'<div class="aside--headline u-margin--left-right">This is the headline</div>' +
 					'<div class="aside--content u-margin--left-right"><p>Here is some content</p></div>' +
 				'</aside>\n'
@@ -303,7 +303,7 @@ describe('Promo-boxes', function() {
 		.then(function(transformedXml) {
 			transformedXml.should.equal(
 				'<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
-					'<div class="c-box--title"><div class="c-box--title__text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
+					'<div class="c-box__title"><div class="c-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
 					'<div class="aside--image u-margin--left-right"><div class="article-image__placeholder" style="padding-top:96px;">' +
 						'<img alt="start-up" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/79ac73d6-7718-11e5-933d-efcdc3c11c89?source=next&amp;fit=scale-down&amp;width=167"></div></div>' +

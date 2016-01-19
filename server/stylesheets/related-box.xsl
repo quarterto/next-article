@@ -49,8 +49,8 @@
 
       <xsl:choose>
         <xsl:when test="$type = 'article' and count(current()/title) = 0">
-          <div class="c-box--title">
-            <div class="c-box--title__text u-background-color--pink">Related article</div>
+          <div class="c-box__title">
+            <div class="c-box__title-text u-background-color--pink">Related article</div>
           </div>
         </xsl:when>
         <xsl:otherwise>
@@ -84,8 +84,8 @@
   </xsl:template>
 
   <xsl:template match="title | promo-title" mode="aside-title">
-    <div class="c-box--title">
-      <div class="c-box--title__text u-background-color--pink">
+    <div class="c-box__title">
+      <div class="c-box__title-text u-background-color--pink">
         <xsl:apply-templates select="current()" mode="extract-content" />
       </div>
     </div>
