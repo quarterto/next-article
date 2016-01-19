@@ -158,6 +158,7 @@
 			&:after {
 				text-decoration: none;
 				word-break: break-all;
+				word-wrap: break-word;
 			}
 			&[href^='/']:after {
 				content: ' (http://next.ft.com' attr(href) ')';
