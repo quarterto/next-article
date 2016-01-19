@@ -31,6 +31,7 @@
 		@include oTypographySerifDisplay(m);
 		color: getColor('cold-1');
 		display: inline-block;
+		margin: 0;
 		padding: 10px;
 		padding-bottom: 0;
 		font-weight: 900;
@@ -70,7 +71,7 @@
 	@include nLinksTopic;
 	font-style: normal;
 
-	&__medium {
+	&--medium {
 		@include oTypographySansBoldSize(m);
 	}
 
@@ -118,6 +119,10 @@
 			padding-bottom: 0;
 		}
 	}
+
+	&--none {
+		padding: 0;
+	}
 }
 
 .u-background-color {
@@ -133,4 +138,8 @@
 	&--left {
 		border-left: 1px solid getColor('warm-3');
 	}
+}
+
+.u-align-center {
+	text-align: center;
 }

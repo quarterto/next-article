@@ -22,12 +22,12 @@
 							{{#if isSpecialReport}}
 								<p class="article__primary-theme">
 									Special Report:
-									<a href="/special-reports/{{primaryTag.id}}" class="c-topic c-topic__medium c-topic--with-follow c-topic--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+									<a href="/special-reports/{{primaryTag.id}}" class="c-topic c-topic--medium c-topic--with-follow c-topic--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 								</p>
 							{{else}}
 								{{#if primaryTag}}
 									<div class="article__primary-theme" data-trackable="primary-theme">
-										<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="c-topic c-topic__medium c-topic--with-follow c-topic--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+										<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="c-topic c-topic--medium c-topic--with-follow c-topic--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 										{{#ifAll @root.flags.myFtApi @root.flags.articleFollowPrimayTag}}
 											{{>next-myft-ui/templates/follow version='3' conceptId=primaryTag.id name=primaryTag.prefLabel taxonomy=primaryTag.taxonomy}}
 										{{/ifAll}}
@@ -55,12 +55,13 @@
 					</div>
 					{{/if}}
 				</div>
-				{{#if readNextArticle}}
-					{{>read-next-header article=readNextArticle}}
+				{{#if tagToFollow}}
+					<aside class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="hide L4 XL3 XLoffset1" data-trackable="follow-promo-header" role="complementary" aria-hidden="true">
+						{{>follow-promo center=true tag=tagToFollow}}
+					</aside>
 				{{else}}
-					{{#if tagToFollow}}
-						FOLLOW ME {{tagToFollow.id}} {{tagToFollow.url}} {{tagToFollow.name}}
-
+					{{#if readNextArticle}}
+						{{>read-next-header article=readNextArticle}}
 					{{else}}
 						{{#if tags}}
 						<aside
@@ -94,7 +95,13 @@
 					{{#if mainImageHtml}}
 						{{{mainImageHtml}}}
 					{{/if}}
+	
 					{{> social location='top'}}
+					{{#if tagToFollow}}
+						<aside class="article__aside u-padding--none" data-o-grid-colspan="12 Lhide" data-trackable="follow-promo-article" role="complementary" aria-hidden="true">
+							{{>follow-promo  tag=tagToFollow}}
+						</aside>
+					{{/if}}
 					<div class="article__time-byline">
 						{{#if publishedDate}}
 							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
