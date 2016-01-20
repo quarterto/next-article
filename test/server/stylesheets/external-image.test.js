@@ -64,7 +64,7 @@ describe('External images', () => {
 							'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' +
 							'<p>' +
 								'<img src="http://my-image/image.jpg" width="800" height="600" />' +
-								'Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' +
+								'Ut enim ad minim <strong>veniam</strong>, <a href="http://ft.com">quis nostrud exercitation</a> ullamco laboris nisi ut aliquip ex ea commodo consequat.' +
 							'</p>' +
 						'</body>' +
 					'<html>'
@@ -77,7 +77,7 @@ describe('External images', () => {
 								'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http://my-image/image.jpg?source=next&amp;fit=scale-down&amp;width=700">' +
 							'</div>' +
 						'</figure>' +
-						'<p>Ut enim ad minim <strong>veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
+						'<p>Ut enim ad minim <strong>veniam</strong>, <a href="http://ft.com" data-trackable="link">quis nostrud exercitation</a> ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n'
 					);
 				});
 		});
