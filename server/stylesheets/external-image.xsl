@@ -19,7 +19,7 @@
     <xsl:template match="p[a/img]">
         <xsl:apply-templates select="a/img" mode="figure" />
         <xsl:if test="count(child::node()[not(self::a)]) &gt; 0">
-            <p><xsl:apply-templates select="child::node()[not(self::a)]" /></p>
+            <p><xsl:apply-templates select="child::node()[not(self::a/img)]" /></p>
         </xsl:if>
     </xsl:template>
 
