@@ -1,0 +1,436 @@
+{
+    "requestUrl":"http://api.ft.com/content/items/v1/593496fc-a4d5-11e5-97e1-a754d5d9538c",
+    "item":{
+        "aspectSet":"slideshow",
+        "aspects":[
+            "assets",
+            "body",
+            "editorial",
+            "images",
+            "lifecycle",
+            "location",
+            "master",
+            "mediaAssets",
+            "metadata",
+            "packaging",
+            "provenance",
+            "title"
+        ],
+        "modelVersion":"1",
+        "id":"593496fc-a4d5-11e5-97e1-a754d5d9538c",
+        "apiUrl":"http://api.ft.com/content/items/v1/593496fc-a4d5-11e5-97e1-a754d5d9538c",
+        "title":{
+            "title":"Mosaic angels restored to medieval glory in Bethlehem"
+        },
+        "body":{
+            "mediaType":"text/html",
+            "body":"\n<aside data-asset-type=\"slideshow\" data-asset-name=\"asset1\"></aside>"
+        },
+        "lifecycle":{
+            "initialPublishDateTime":"2015-12-23T11:07:45Z",
+            "lastPublishDateTime":"2015-12-23T11:07:45Z"
+        },
+        "location":{
+            "uri":"http://www.ft.com/cms/s/0/593496fc-a4d5-11e5-97e1-a754d5d9538c.html"
+        },
+        "packaging":{
+
+        },
+        "master":{
+            "masterSource":"Methode",
+            "masterEntityId":"593496fc-a4d5-11e5-97e1-a754d5d9538c"
+        },
+        "editorial":{
+            "subheading":"Centuries of grime removed from artwork at Church of the Nativity",
+            "standFirst":"$25m renovation of the Church of the Nativity removes centuries of grime from historic artworks"
+        },
+        "provenance":{
+            "originatingParty":"FT"
+        },
+        "metadata":{
+            "primarySection":{
+                "term":{
+                    "name":"Picture Slideshows",
+                    "id":"ZTgxZmQ5ZGUtMGQwZC00Zjk0LWI1NTQtMzcxY2E5ZGU5NTZj-U2VjdGlvbnM=",
+                    "attributes":[
+
+                    ],
+                    "taxonomy":"sections"
+                }
+            },
+            "tags":[
+                {
+                    "term":{
+                        "name":"Picture Slideshows",
+                        "id":"ZTgxZmQ5ZGUtMGQwZC00Zjk0LWI1NTQtMzcxY2E5ZGU5NTZj-U2VjdGlvbnM=",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"sections"
+                    }
+                },
+                {
+                    "term":{
+                        "name":"Features",
+                        "id":"NGQ2MWQ0NDMtMDc5Mi00NWExLTlkMGQtNWZhZjk0NGExOWU2-R2VucmVz",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"genre"
+                    }
+                },
+                {
+                    "term":{
+                        "name":"Slideshow",
+                        "id":"NGUzYmQ2NDktNWQ5Ni00Yjc3LWE5NTUtZDAzOWMwNWJhNDRm-TWVkaWFUeXBlcw==",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"mediaType"
+                    }
+                }
+            ],
+            "authors":[
+
+            ],
+            "brand":[
+
+            ],
+            "genre":[
+                {
+                    "term":{
+                        "name":"Features",
+                        "id":"NGQ2MWQ0NDMtMDc5Mi00NWExLTlkMGQtNWZhZjk0NGExOWU2-R2VucmVz",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"genre"
+                    }
+                }
+            ],
+            "icb":[
+
+            ],
+            "iptc":[
+
+            ],
+            "mediaType":[
+                {
+                    "term":{
+                        "name":"Slideshow",
+                        "id":"NGUzYmQ2NDktNWQ5Ni00Yjc3LWE5NTUtZDAzOWMwNWJhNDRm-TWVkaWFUeXBlcw==",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"mediaType"
+                    }
+                }
+            ],
+            "organisations":[
+
+            ],
+            "people":[
+
+            ],
+            "regions":[
+                {
+                    "term":{
+                        "name":"West Bank",
+                        "id":"TnN0ZWluX0dMX0FGVE1fR0xfNjcxNjE=-R0w=",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"regions"
+                    }
+                },
+                {
+                    "term":{
+                        "name":"Israel",
+                        "id":"TnN0ZWluX0dMX0lM-R0w=",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"regions"
+                    }
+                }
+            ],
+            "sections":[
+                {
+                    "term":{
+                        "name":"Middle East & North Africa",
+                        "id":"MTY=-U2VjdGlvbnM=",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"sections"
+                    }
+                },
+                {
+                    "term":{
+                        "name":"Picture Slideshows",
+                        "id":"ZTgxZmQ5ZGUtMGQwZC00Zjk0LWI1NTQtMzcxY2E5ZGU5NTZj-U2VjdGlvbnM=",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"sections"
+                    }
+                }
+            ],
+            "specialReports":[
+
+            ],
+            "subjects":[
+                {
+                    "term":{
+                        "name":"General News",
+                        "id":"MTE4-U3ViamVjdHM=",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"subjects"
+                    }
+                },
+                {
+                    "term":{
+                        "name":"Arts & Leisure",
+                        "id":"MTIx-U3ViamVjdHM=",
+                        "attributes":[
+
+                        ],
+                        "taxonomy":"subjects"
+                    }
+                }
+            ],
+            "topics":[
+
+            ]
+        },
+        "images":[
+            {
+                "url":"http://im.ft-static.com/content/images/088e5c37-6493-4a8e-ac28-efc9374543c2.img",
+                "type":"primary",
+                "source":"FT",
+                "alt":"A restorer works on one of the towering mosaics of angels along the top of the church’s nave. The church’s wall mosaics stand out from traditional Roman and Byzantine mosaics for the large amount of gold and silver tesserae (tiles) and mother of pearl used in their execution, says Claudio Alessandrini, an Italian academic involved in the project. He says the angels in particular have a “greater dynamism” and more realistic expressions on their faces than most other similar works of the time.",
+                "height":153,
+                "width":272,
+                "mediaType":"image/jpeg"
+            },
+            {
+                "url":"http://im.ft-static.com/content/images/280e4adc-368c-43f4-ab02-326584d00dc8.img",
+                "type":"secondary",
+                "source":"FT",
+                "alt":"A restorer works on one of the towering mosaics of angels along the top of the church’s nave. The church’s wall mosaics stand out from traditional Roman and Byzantine mosaics for the large amount of gold and silver tesserae (tiles) and mother of pearl used in their execution, says Claudio Alessandrini, an Italian academic involved in the project. He says the angels in particular have a “greater dynamism” and more realistic expressions on their faces than most other similar works of the time.",
+                "height":94,
+                "width":167,
+                "mediaType":"image/jpeg"
+            },
+            {
+                "url":"http://im.ft-static.com/content/images/2e437ad8-95a5-439e-b2b2-288179f0be8f.img",
+                "type":"article",
+                "source":"FT",
+                "alt":"A restorer works on one of the towering mosaics of angels along the top of the church’s nave. The church’s wall mosaics stand out from traditional Roman and Byzantine mosaics for the large amount of gold and silver tesserae (tiles) and mother of pearl used in their execution, says Claudio Alessandrini, an Italian academic involved in the project. He says the angels in particular have a “greater dynamism” and more realistic expressions on their faces than most other similar works of the time.",
+                "height":338,
+                "width":600,
+                "mediaType":"image/jpeg"
+            },
+            {
+                "url":"http://im.ft-static.com/content/images/29590433-3061-490e-a249-c5c144ed3ebf.img",
+                "type":"leader",
+                "source":"FT",
+                "alt":"A restorer works on one of the towering mosaics of angels along the top of the church’s nave. The church’s wall mosaics stand out from traditional Roman and Byzantine mosaics for the large amount of gold and silver tesserae (tiles) and mother of pearl used in their execution, says Claudio Alessandrini, an Italian academic involved in the project. He says the angels in particular have a “greater dynamism” and more realistic expressions on their faces than most other similar works of the time.",
+                "height":233,
+                "width":414,
+                "mediaType":"image/jpeg"
+            },
+            {
+                "url":"http://im.ft-static.com/content/images/f012f07b-ea85-4876-a4ee-0d7c77823026.img",
+                "type":"wide-format",
+                "source":"FT",
+                "alt":"A restorer works on one of the towering mosaics of angels along the top of the church’s nave. The church’s wall mosaics stand out from traditional Roman and Byzantine mosaics for the large amount of gold and silver tesserae (tiles) and mother of pearl used in their execution, says Claudio Alessandrini, an Italian academic involved in the project. He says the angels in particular have a “greater dynamism” and more realistic expressions on their faces than most other similar works of the time.",
+                "height":547,
+                "width":972,
+                "mediaType":"image/jpeg"
+            }
+        ],
+        "assets":[
+            {
+                "type":"slideshow",
+                "name":"asset1",
+                "fields":{
+                    "title":"Bethlehem mosaic angels restored to glory",
+                    "slides":[
+                        {
+                            "slideNumber":1,
+                            "url":"http://im.ft-static.com/content/images/aeb77b08-e67b-4933-9c04-9c2aee5a5008.img",
+                            "source":"FT",
+                            "alt":"Bethlehem’s Church of the Nativity began major renovation works under the sponsorship of the Palestinian Authority in 2013. Foreign governments, individuals and institutions are footing the bill for the multiyear project, which will cost about $25m in all. Repair works began with a replacement of the church’s roof, from which rain leaked in and was damaging mosaics and other features inside.",
+                            "caption":"Renovation works at Bethlehem’s Church of the Nativity began in 2013 with repairs to the roof, stopping leaks that damaged the building",
+                            "height":547,
+                            "width":972,
+                            "mediaType":"image/jpeg"
+                        },
+                        {
+                            "slideNumber":2,
+                            "url":"http://im.ft-static.com/content/images/7b74e5db-cfea-444c-9367-babd969f0f80.img",
+                            "source":"FT",
+                            "alt":"(picture of Giammarco) Piacenti Spa, an Italian firm based in Prato near Florence with experience renovating stone, plaster, wood and mosaics, won the tender to replace the church’s roof and Crusader-era mosaics. Here, Giammarco Piacenti points to a detail from one of the 12th-century mosaics the Italians are restoring after centuries of damage from moisture and candle smoke.",
+                            "caption":"Art restorer Giammarco Piacenti points to a detail on a mosaic that emerged from centuries of grime from candle smoke and moisture",
+                            "height":547,
+                            "width":972,
+                            "mediaType":"image/jpeg"
+                        },
+                        {
+                            "slideNumber":3,
+                            "url":"http://im.ft-static.com/content/images/e9fd4f3f-4f2e-4850-9a34-e3cd88a348ce.img",
+                            "source":"FT",
+                            "alt":"Renovation work on the church’s roof was completed in March. The restorers used cedar, larch and oak of the same age as used in the original roof’s, trying to leave as much of the original wood intact and sourcing the replacement wood from an Italian supplier that buys tie beams from old villas.",
+                            "caption":"Renovation work on the church roof was completed in March, finally stopping the leaks that damaged the 12th-century mosaics",
+                            "height":547,
+                            "width":972,
+                            "mediaType":"image/jpeg"
+                        },
+                        {
+                            "slideNumber":4,
+                            "url":"http://im.ft-static.com/content/images/f012f07b-ea85-4876-a4ee-0d7c77823026.img",
+                            "source":"FT",
+                            "alt":"A restorer works on one of the towering mosaics of angels along the top of the church’s nave. The church’s wall mosaics stand out from traditional Roman and Byzantine mosaics for the large amount of gold and silver tesserae (tiles) and mother of pearl used in their execution, says Claudio Alessandrii, an Italian academic involved in the project. He says the angels in particular have a “greater dynamism” and more realistic expressions on their faces than most other similar works of the time.",
+                            "caption":"A restorer at work. Claudio Alessandri, an academic involved in the project, says the mosaics are outstanding even by medieval standards",
+                            "height":547,
+                            "width":972,
+                            "mediaType":"image/jpeg"
+                        },
+                        {
+                            "slideNumber":5,
+                            "url":"http://im.ft-static.com/content/images/f4634e41-cfbd-46f4-bb48-5070fb93f509.img",
+                            "source":"FT",
+                            "alt":"Sweet seller on Bethlehem's Manger Square The church, whose original structure dates back to the fourth century AD, is one of the biggest tourist draws in the West Bank, where the economy is stagnating. A committee for the restoration of the church was established in 2009 under the patronage of Palestinian Authority President Mahmoud Abbas, and won pledges from about two dozen donors, including France, Hungary, Greece, Spain, the Holy See, and private individuals and companies",
+                            "caption":"A sweet seller in Manger Square. The church’s original structure dates to the 4th century and draws tourists to the West Bank",
+                            "height":547,
+                            "width":972,
+                            "mediaType":"image/jpeg"
+                        },
+                        {
+                            "slideNumber":6,
+                            "url":"http://im.ft-static.com/content/images/f43edf17-911f-470c-9cb7-5864072e3f0d.img",
+                            "source":"FT",
+                            "alt":"The church’s main altar. Scaffolding and platforms inside the church have blocked light and artworks inside the church since renovation began in 2013. The church’s capitals and columns, due for restoration soon, are hidden behind boards. Unesco, the UN cultural agency, recognises the church as both a World Heritage Site, and a World Heritage Site in danger.",
+                            "caption":"Scaffolding and platforms surround the church’s main altar and have blocked light inside the building since renovations began in 2013",
+                            "height":547,
+                            "width":972,
+                            "mediaType":"image/jpeg"
+                        },
+                        {
+                            "slideNumber":7,
+                            "url":"http://im.ft-static.com/content/images/a1b4060c-b8c5-4e37-8c73-8555f51b127f.img",
+                            "source":"FT",
+                            "alt":"Pilgrims take pictures of the grotto behind the altar, revered as the site of the cave where Christ was born. Tourism during the Christmas season in Bethlehem is down this year because of a wave of violence in which about 140 Palestinians and Israelis have died.",
+                            "caption":"The grotto behind the altar, believed to mark Christ’s birthplace. The church is on Unesco’s list of World Heritage sites ‘in danger’",
+                            "height":547,
+                            "width":972,
+                            "mediaType":"image/jpeg"
+                        },
+                        {
+                            "slideNumber":8,
+                            "url":"http://im.ft-static.com/content/images/f63cdfb4-9980-448e-babf-24f155b2e88f.img",
+                            "source":"FT",
+                            "alt":"Pilgrims and visitors view an icon in the church, against a backdrop of scaffolding and tarpaulins. The next phases of the renovation will see work done on the building’s capitals and columns, stone floor, floor mosaics, and architrave – a structural element that runs throughout the church, including above the capitals of the columns, and helps to bear the weight of the masonry above.",
+                            "caption":"An icon surrounded by scaffolding and tarpaulins. Renovations will next focus on the church’s capitals, columns, floor and architrave",
+                            "height":547,
+                            "width":972,
+                            "mediaType":"image/jpeg"
+                        }
+                    ]
+                }
+            }
+        ],
+        "mediaAssets":[
+            {
+                "type":"slideshow",
+                "name":"asset1",
+                "slideshowHeading":"Bethlehem mosaic angels restored to glory",
+                "slides":[
+                    {
+                        "slideNumber":1,
+                        "url":"http://im.ft-static.com/content/images/aeb77b08-e67b-4933-9c04-9c2aee5a5008.img",
+                        "source":"FT",
+                        "alt":"Bethlehem’s Church of the Nativity began major renovation works under the sponsorship of the Palestinian Authority in 2013. Foreign governments, individuals and institutions are footing the bill for the multiyear project, which will cost about $25m in all. Repair works began with a replacement of the church’s roof, from which rain leaked in and was damaging mosaics and other features inside.",
+                        "caption":"Renovation works at Bethlehem’s Church of the Nativity began in 2013 with repairs to the roof, stopping leaks that damaged the building",
+                        "height":547,
+                        "width":972,
+                        "mediaType":"image/jpeg"
+                    },
+                    {
+                        "slideNumber":2,
+                        "url":"http://im.ft-static.com/content/images/7b74e5db-cfea-444c-9367-babd969f0f80.img",
+                        "source":"FT",
+                        "alt":"(picture of Giammarco) Piacenti Spa, an Italian firm based in Prato near Florence with experience renovating stone, plaster, wood and mosaics, won the tender to replace the church’s roof and Crusader-era mosaics. Here, Giammarco Piacenti points to a detail from one of the 12th-century mosaics the Italians are restoring after centuries of damage from moisture and candle smoke.",
+                        "caption":"Art restorer Giammarco Piacenti points to a detail on a mosaic that emerged from centuries of grime from candle smoke and moisture",
+                        "height":547,
+                        "width":972,
+                        "mediaType":"image/jpeg"
+                    },
+                    {
+                        "slideNumber":3,
+                        "url":"http://im.ft-static.com/content/images/e9fd4f3f-4f2e-4850-9a34-e3cd88a348ce.img",
+                        "source":"FT",
+                        "alt":"Renovation work on the church’s roof was completed in March. The restorers used cedar, larch and oak of the same age as used in the original roof’s, trying to leave as much of the original wood intact and sourcing the replacement wood from an Italian supplier that buys tie beams from old villas.",
+                        "caption":"Renovation work on the church roof was completed in March, finally stopping the leaks that damaged the 12th-century mosaics",
+                        "height":547,
+                        "width":972,
+                        "mediaType":"image/jpeg"
+                    },
+                    {
+                        "slideNumber":4,
+                        "url":"http://im.ft-static.com/content/images/f012f07b-ea85-4876-a4ee-0d7c77823026.img",
+                        "source":"FT",
+                        "alt":"A restorer works on one of the towering mosaics of angels along the top of the church’s nave. The church’s wall mosaics stand out from traditional Roman and Byzantine mosaics for the large amount of gold and silver tesserae (tiles) and mother of pearl used in their execution, says Claudio Alessandrii, an Italian academic involved in the project. He says the angels in particular have a “greater dynamism” and more realistic expressions on their faces than most other similar works of the time.",
+                        "caption":"A restorer at work. Claudio Alessandri, an academic involved in the project, says the mosaics are outstanding even by medieval standards",
+                        "height":547,
+                        "width":972,
+                        "mediaType":"image/jpeg"
+                    },
+                    {
+                        "slideNumber":5,
+                        "url":"http://im.ft-static.com/content/images/f4634e41-cfbd-46f4-bb48-5070fb93f509.img",
+                        "source":"FT",
+                        "alt":"Sweet seller on Bethlehem's Manger Square The church, whose original structure dates back to the fourth century AD, is one of the biggest tourist draws in the West Bank, where the economy is stagnating. A committee for the restoration of the church was established in 2009 under the patronage of Palestinian Authority President Mahmoud Abbas, and won pledges from about two dozen donors, including France, Hungary, Greece, Spain, the Holy See, and private individuals and companies",
+                        "caption":"A sweet seller in Manger Square. The church’s original structure dates to the 4th century and draws tourists to the West Bank",
+                        "height":547,
+                        "width":972,
+                        "mediaType":"image/jpeg"
+                    },
+                    {
+                        "slideNumber":6,
+                        "url":"http://im.ft-static.com/content/images/f43edf17-911f-470c-9cb7-5864072e3f0d.img",
+                        "source":"FT",
+                        "alt":"The church’s main altar. Scaffolding and platforms inside the church have blocked light and artworks inside the church since renovation began in 2013. The church’s capitals and columns, due for restoration soon, are hidden behind boards. Unesco, the UN cultural agency, recognises the church as both a World Heritage Site, and a World Heritage Site in danger.",
+                        "caption":"Scaffolding and platforms surround the church’s main altar and have blocked light inside the building since renovations began in 2013",
+                        "height":547,
+                        "width":972,
+                        "mediaType":"image/jpeg"
+                    },
+                    {
+                        "slideNumber":7,
+                        "url":"http://im.ft-static.com/content/images/a1b4060c-b8c5-4e37-8c73-8555f51b127f.img",
+                        "source":"FT",
+                        "alt":"Pilgrims take pictures of the grotto behind the altar, revered as the site of the cave where Christ was born. Tourism during the Christmas season in Bethlehem is down this year because of a wave of violence in which about 140 Palestinians and Israelis have died.",
+                        "caption":"The grotto behind the altar, believed to mark Christ’s birthplace. The church is on Unesco’s list of World Heritage sites ‘in danger’",
+                        "height":547,
+                        "width":972,
+                        "mediaType":"image/jpeg"
+                    },
+                    {
+                        "slideNumber":8,
+                        "url":"http://im.ft-static.com/content/images/f63cdfb4-9980-448e-babf-24f155b2e88f.img",
+                        "source":"FT",
+                        "alt":"Pilgrims and visitors view an icon in the church, against a backdrop of scaffolding and tarpaulins. The next phases of the renovation will see work done on the building’s capitals and columns, stone floor, floor mosaics, and architrave – a structural element that runs throughout the church, including above the capitals of the columns, and helps to bear the weight of the masonry above.",
+                        "caption":"An icon surrounded by scaffolding and tarpaulins. Renovations will next focus on the church’s capitals, columns, floor and architrave",
+                        "height":547,
+                        "width":972,
+                        "mediaType":"image/jpeg"
+                    }
+                ]
+            }
+        ]
+    }
+}
