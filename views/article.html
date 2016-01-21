@@ -29,11 +29,7 @@
 									<div class="article__primary-theme" data-trackable="primary-theme">
 										<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="c-topic c-topic--medium c-topic--with-follow c-topic--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 										{{#ifAll @root.flags.myFtApi @root.flags.articleFollowPrimayTag}}
-										{{#if tagToFollow}}
-											<span class="u-hide--L">
-										{{else}}
-											<span>
-										{{/if}}
+											<span{{#if tagToFollow}} class="u-hide--L"{{/if}}>
 												{{>next-myft-ui/templates/follow version='3' conceptId=primaryTag.id name=primaryTag.prefLabel taxonomy=primaryTag.taxonomy}}
 											</span>
 										{{/ifAll}}
@@ -101,7 +97,7 @@
 					{{#if mainImageHtml}}
 						{{{mainImageHtml}}}
 					{{/if}}
-	
+
 					{{> social location='top'}}
 					{{#if tagToFollow}}
 						<aside class="article__aside u-padding--none follow-promo" data-o-grid-colspan="12 Lhide" data-trackable="follow-promo-article" role="complementary" aria-hidden="true">
