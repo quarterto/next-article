@@ -160,7 +160,8 @@
 	text-align: center;
 }
 
-.u-hide--L {
+//Want this to be capital L for consistency with o-grid definition
+.u-hide--L { 	// scss-lint:disable SelectorFormat
 	@include oGridRespondTo(L) {
 		display: none;
 	}
