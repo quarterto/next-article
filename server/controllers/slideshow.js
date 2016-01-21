@@ -5,14 +5,8 @@ const fetchres = require('fetchres');
 module.exports = function(req, res, next) {
 
 	// E.g. 4eb77dd4-9b35-11e4-be20-002128161462
-	fetch(`https://api.ft.com/content/items/v1/${req.params.id}?apiKey=${process.env.apikey}`)
-		.then(response => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				throw new Error(response.status);
-			}
-		})
+	return fetch(`https://api.ft.com/content/items/v1/${req.params.id}?apiKey=${process.env.apikey}`)
+		.then(fetchres.json)
 		.then(data => {
 			if (data
 				&& data.item
@@ -32,8 +26,7 @@ module.exports = function(req, res, next) {
 			if (fetchres.originatedError(err)) {
 				res.status(404).end();
 			} else {
-				throw err;
+				next(err);
 			}
-		})
-		.catch(next);
+		});
 };
