@@ -143,3 +143,11 @@
 .u-align-center {
 	text-align: center;
 }
+
+.u-hide {
+	&--L {
+		@include oGridRespondTo(L) {
+			display: none;
+		}
+	}
+}
