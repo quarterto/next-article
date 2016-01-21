@@ -98,12 +98,28 @@
 	}
 }
 
+.c-myft-logo {
+	@include nextIcon(myft-bolder, getColorFor(title, text), 26);
+	width: 40px;
+}
+
 // Utilities
 
 .u-margin {
 	&--left-right {
 		margin-left: 16px;
 		margin-right: 16px;
+	}
+
+	&--bottom {
+		margin-bottom: 8px;
+		&--none {
+			margin-bottom: 0;
+		}
+	}
+
+	&--none {
+		margin: 0;
 	}
 }
 
@@ -128,6 +144,9 @@
 .u-background-color {
 	&--pink {
 		background-color: getColor('pink');
+	}
+	&--page {
+		background-color: getColorFor('page', 'background');
 	}
 }
 

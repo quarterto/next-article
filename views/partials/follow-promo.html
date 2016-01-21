@@ -1,15 +1,20 @@
 {{#with tag}}
 	<div class="c-box u-border--all">
-		<div class="c-box__title">
-			<h3 class="c-box__title-text u-background-color--pink">For updates {{title}}:</h3>
+		<div class="c-box__title u-margin--bottom--none">
+			<h3 class="c-box__title-text u-background-color--pink">
+				<i class="c-myft-logo"></i>
+				<span class="n-util-visually-hidden">myFT</span>
+			</h3>
 		</div>
 		<div class="u-margin--left-right {{#if ../center}}u-align-center{{/if}}">
+			<div class="u-margin--bottom">
 
+			<p class="u-margin--none">Never miss a story {{title}}:</p>
 			<a href="{{url}}" class="c-topic c-topic--medium c-topic--link {{#unless ../center}}c-topic--with-follow{{/unless}}">{{name}}</a>
+			</div>	
 			{{#if @root.flags.myFtApi}}
-				{{>next-myft-ui/templates/follow version='3' conceptId=id name=prefLabel taxonomy=taxonomy buttonText="Follow in myFT" alternateButtonText="Following" size="big"}}
+				{{>next-myft-ui/templates/follow version='3' conceptId=id name=prefLabel taxonomy=taxonomy size="big"}}
 			{{/if}}
-
 		</div>
 	</div>
 {{/with}}
