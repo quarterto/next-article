@@ -60,7 +60,7 @@ describe('Pull Quotes', function () {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--bottom__none">' +
+				'<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all u-padding--bottom-none">' +
 					'<div class="pull-quote__quote-marks"></div>' +
 					'<div class="u-padding--left-right u-padding--bottom">' +
 						'<p>Quote with master image</p>' +

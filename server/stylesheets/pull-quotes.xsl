@@ -5,7 +5,7 @@
 
       <xsl:variable name="imagePaddingStyle">
         <xsl:choose>
-          <xsl:when test="count(current()/pull-quote-image) > 0"> u-padding--bottom__none</xsl:when>
+          <xsl:when test="count(current()/pull-quote-image) > 0"> u-padding--bottom-none</xsl:when>
           <xsl:otherwise></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>

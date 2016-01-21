@@ -3,6 +3,7 @@
 const logger = require('ft-next-express').logger;
 const cacheControlUtil = require('../utils/cache-control');
 const getDfpUtil = require('../utils/get-dfp');
+const addTagTitlePrefix = require('./article-helpers/tag-title-prefix');
 const barrierHelper = require('./article-helpers/barrier');
 const suggestedHelper = require('./article-helpers/suggested');
 const readNextHelper = require('./article-helpers/read-next');
@@ -50,30 +51,7 @@ function getMoreOnTags(primaryTheme, primarySection, primaryBrand) {
 		return;
 	}
 
-	return moreOnTags.slice(0, 2).map(tag => {
-		let title;
-
-		switch (tag.taxonomy) {
-			case 'authors':
-				title = 'from';
-				break;
-			case 'brand':
-				title = 'from';
-				break;
-			case 'sections':
-				title = 'in';
-				break;
-			case 'genre':
-				title = '';
-				break;
-			default:
-				title = 'on';
-		}
-
-		tag.title = title;
-
-		return tag;
-	});
+	return moreOnTags.slice(0, 2).map(addTagTitlePrefix);
 }
 
 module.exports = function articleV3Controller(req, res, next, content) {
@@ -103,6 +81,11 @@ module.exports = function articleV3Controller(req, res, next, content) {
 
 	if (req.query.myftTopics) {
 		content.myftTopics = req.query.myftTopics.split(',');
+	}
+
+	//When a user comes to an article from a myFT promo area, we want to push them to follow the topic they came from
+	if (req.query.tagToFollow) {
+		content.tagToFollow = req.query.tagToFollow;
 	}
 
 	// Decorate article with primary tags and tags for display
