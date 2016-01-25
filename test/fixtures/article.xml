@@ -1,5 +1,5 @@
-<figure class="article__image-wrapper ng-figure-reset article__main-image ng-media-wrapper">
-	<img class="article__image ng-media" src="https://next-geebee.ft.com/image/v1/images/raw/" alt="" />
+<figure class="article__image-wrapper ng-figure-reset article__main-image">
+	<img class="article__image" src="https://next-geebee.ft.com/image/v1/images/raw/" alt="" />
 	<figcaption class="article__image-caption ng-meta">Climate change: as fears grow about temperatures moving beyond 'safe' thresholds, the World Bank is seeking a bigger role in climate talks</figcaption>
 </figure>
 <p>In the muddy waters of the Congo, where the river speeds into what are known as the Inga Rapids, sits what some see as the future of electricity in Africa, and, quite possibly, the World Bank as well.</p>

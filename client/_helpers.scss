@@ -30,17 +30,3 @@
 	line-height: 1em;
 	opacity: 0.7;
 }
-.ng-media-wrapper {
-	position: relative;
-
-	&:before {
-		display: block;
-		content: '';
-		width: 100%;
-		padding: 56.25% 0 0;
-	}
-}
-.ng-media {
-	position: absolute;
-	top: 0;
-}
