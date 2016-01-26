@@ -150,9 +150,6 @@ module.exports = function articleV3Controller(req, res, next, content) {
 		.then(() => {
 			res.set(cacheControlUtil);
 			if (req.query.fragment) {
-				if (!req.query.bare) {
-					content.layout = 'vanilla';
-				}
 				res.render('fragment', content);
 			} else {
 				content.layout = 'wrapper';
