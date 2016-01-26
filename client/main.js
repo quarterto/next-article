@@ -56,7 +56,7 @@ require('next-js-setup').bootstrap(({flags}) => {
 		if(flags.get('ftlabsurlsharing')){
 			labsShare.init();
 		} else {
-			share.init();			
+			share.init();
 		}
 
 	}
@@ -66,9 +66,9 @@ require('next-js-setup').bootstrap(({flags}) => {
 	}
 
 	nVideo.init({
-		optimumWidth: 710,
-		placeholder: true,
-		classes: ['article__video', 'ng-media']
+		// For generating placeholder image
+		optimumWidth: 680,
+		placeholder: true
 	});
 
 	toc.init(flags);
