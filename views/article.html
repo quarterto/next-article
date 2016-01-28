@@ -59,7 +59,7 @@
 				</div>
 				{{#if tagToFollow}}
 					<aside class="article__aside o-grid-remove-gutters--XL follow-promo" data-o-grid-colspan="hide L4 XL3 XLoffset1" data-trackable="follow-promo-header" role="complementary" aria-hidden="true">
-						{{>follow-promo center=true tag=tagToFollow}}
+						{{>follow-promo center=true tag=tagToFollow buttonSize="big"}}
 					</aside>
 				{{else}}
 					{{#if readNextArticle}}
@@ -101,7 +101,7 @@
 					{{> social location='top'}}
 					{{#if tagToFollow}}
 						<aside class="article__aside u-padding--none follow-promo" data-o-grid-colspan="12 Lhide" data-trackable="follow-promo-article" role="complementary" aria-hidden="true">
-							{{>follow-promo  tag=tagToFollow}}
+							{{>follow-promo  tag=tagToFollow buttonSize="medium"}}
 						</aside>
 					{{/if}}
 					<div class="article__time-byline">
