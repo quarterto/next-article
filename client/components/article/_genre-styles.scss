@@ -3,6 +3,7 @@ $brand-color: getColor('warm-1');
 .article--brand {
 
 	.article__header,
+	.follow-promo__logo,
  	.next-up__intro__header {
 		background: $brand-color;
 	}
