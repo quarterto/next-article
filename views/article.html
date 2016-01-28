@@ -99,11 +99,7 @@
 					{{/if}}
 
 					{{> social location='top'}}
-					{{#if tagToFollow}}
-						<aside class="article__aside u-padding--none follow-promo" data-o-grid-colspan="12 Lhide" data-trackable="follow-promo-article" role="complementary" aria-hidden="true">
-							{{>follow-promo  tag=tagToFollow buttonSize="medium"}}
-						</aside>
-					{{/if}}
+
 					<div class="article__time-byline">
 						{{#if publishedDate}}
 							<time class="article__timestamp o-date" data-o-component="o-date" datetime="{{#dateformat}}{{publishedDate}}{{/dateformat}}" data-o-date-js>
@@ -121,6 +117,11 @@
 					{{/if}}
 					{{> body bodyHtml=bodyHtml}}
 					{{> social location='bottom'}}
+					{{#if tagToFollow}}
+						<aside class="article__aside u-padding--none follow-promo" data-o-grid-colspan="12 Lhide" data-trackable="follow-promo-article" role="complementary" aria-hidden="true">
+							{{>follow-promo  tag=tagToFollow buttonSize="medium"}}
+						</aside>
+					{{/if}}
 				</div>
 			<div class="article__aside o-grid-remove-gutters--XL" data-o-grid-colspan="0 L4 XL3 XLoffset1">
 				<div class="sidebar-ad-placeholder ad-placeholder"></div>
