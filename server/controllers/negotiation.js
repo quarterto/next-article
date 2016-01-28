@@ -72,7 +72,7 @@ module.exports = function negotiationController(req, res, next) {
 				});
 		})
 		.catch(error => {
-			logger.error(`Failed to fetch content: ${error.toString()}`);
+			logger.error({ event: "CONTENT_FETCH_FAILED", err: error.toString() });
 			next(error);
 		});
 };
