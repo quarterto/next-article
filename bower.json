@@ -5,7 +5,7 @@
     "o-fonts": "^1.6.4",
     "o-gallery": "^1.6.1",
     "o-date": "^2.0.0",
-    "n-video": "^2.5.1",
+    "n-video": "^3.2.0",
     "o-comments": "2.2.0",
     "o-comment-ui": "2.1.0",
     "next-myft-ui": "^6.0.0",
@@ -22,6 +22,7 @@
   "resolutions": {
     "o-ft-icons": "next",
     "o-fonts": "^2.0.0",
-    "o-typography": "^3.0.0"
+    "o-typography": "^3.0.0",
+    "n-video": "^3.2.0"
   }
 }
