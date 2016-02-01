@@ -68,7 +68,8 @@ require('next-js-setup').bootstrap(({flags}) => {
 	nVideo.init({
 		// For generating placeholder image
 		optimumWidth: 680,
-		placeholder: true
+		placeholder: true,
+		placeholderTitle: true
 	});
 
 	toc.init(flags);
