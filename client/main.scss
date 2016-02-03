@@ -13,8 +13,8 @@ $o-gallery-is-silent: false;
 // of o-comments/o-comment-ui will appear on the site.
 @import "o-assets/main";
 @include oAssetsSetModulePaths((
-	o-comments: '//build.origami.ft.com/files/o-comments@2.2.0',
-	o-comment-ui: '//build.origami.ft.com/files/o-comment-ui@2.1.0'
+	o-comments: '//build.origami.ft.com/v2/files/o-comments@2.2.0',
+	o-comment-ui: '//build.origami.ft.com/v2/files/o-comment-ui@2.1.0'
 ));
 $o-comments-is-silent: false;
 @import 'o-comments/main';
