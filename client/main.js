@@ -47,9 +47,7 @@ require('next-js-setup').bootstrap(({flags}) => {
 
 	slideshow(document.querySelectorAll('.article ft-slideshow'));
 
-	if (flags.get('contentApiCalls')) {
-		onwardJourney.init(flags);
-	}
+	onwardJourney.init(flags);
 
 	if (flags.get('articleShareButtons')) {
 
