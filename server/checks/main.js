@@ -22,21 +22,8 @@ const statuses = {
  */
 function pingServices() {
 
-	api.contentLegacy({
+	api.content({
 		uuid: ARTICLE_ID
-	})
-		.then(() => { statuses.elastic.v1 = true; })
-		.catch(() => { statuses.elastic.v1 = false; });
-
-	api.content({
-		uuid: ARTICLE_ID,
-	})
-		.then(() => { statuses.elastic.v2 = true; })
-		.catch(() => { statuses.elastic.v2 = false; });
-
-	api.content({
-		uuid: ARTICLE_ID,
-		index: 'v3_api_v2'
 	})
 		.then(() => { statuses.elastic.v3 = true; })
 		.catch(() => { statuses.elastic.v3 = false; });
@@ -82,8 +69,6 @@ module.exports = {
 		pingServices();
 		setInterval(pingServices, INTERVAL);
 	},
-	esv1: buildStatus('v1'),
-	esv2: buildStatus('v2'),
 	esv3: buildStatus('v3'),
 	livefyre: livefyreStatus(),
 	errorRate: nHealth.runCheck({

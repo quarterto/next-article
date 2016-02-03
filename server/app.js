@@ -10,8 +10,6 @@ checks.init();
 var app = module.exports = express({
 	name: 'article',
 	healthChecks: [
-		checks.esv1,
-		checks.esv2,
 		checks.esv3,
 		checks.livefyre,
 		checks.errorRate
