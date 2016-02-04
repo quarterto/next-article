@@ -57,19 +57,7 @@ module.exports = function articleV3Controller(req, res, next, content) {
 
 	let asyncWorkToDo = [];
 
-<<<<<<< HEAD
-	// Required for correctly tracking page / barrier views
-	if (req.get('FT-Barrier-Type') !== '-') {
-		content.barrierType = req.get('FT-Barrier-Type');
-	}
-
-	if (req.get('FT-Corporate-Id') !== '-') {
-		content.corporateId = req.get('FT-Corporate-Id');
-	}
-
-	if (res.locals.barrier) {
-		return res.render('article', barrierHelper(content, res.locals.barrier));
-	}
+	// Required for correctly tracking page
 
 	if (res.locals.flags.analytics) {
 		content.ijentoConfig = {
@@ -88,8 +76,6 @@ module.exports = function articleV3Controller(req, res, next, content) {
 		content.tagToFollow = req.query.tagToFollow;
 	}
 
-=======
->>>>>>> Remove barriers from article
 	// Decorate article with primary tags and tags for display
 	decorateMetadataHelper(content);
 	content.isSpecialReport = content.primaryTag && content.primaryTag.taxonomy === 'specialReports';
