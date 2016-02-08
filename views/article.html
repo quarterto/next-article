@@ -22,12 +22,12 @@
 							{{#if isSpecialReport}}
 								<p class="article__primary-theme">
 									Special Report:
-									<a href="/special-reports/{{primaryTag.id}}" class="n-content-topic n-content-topic--medium n-content-topic--with-follow n-content-topic--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+									<a href="/special-reports/{{primaryTag.id}}" class="n-content-tag n-content-tag--medium n-content-tag--with-follow n-content-tag--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 								</p>
 							{{else}}
 								{{#if primaryTag}}
 									<div class="article__primary-theme" data-trackable="primary-theme">
-										<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="n-content-topic n-content-topic--medium n-content-topic--with-follow n-content-topic--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+										<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="n-content-tag n-content-tag--medium n-content-tag--with-follow n-content-tag--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 										{{#ifAll @root.flags.myFtApi @root.flags.articleFollowPrimayTag}}
 											<span{{#if tagToFollow}} class="n-content-u-hide--L"{{/if}}>
 												{{>next-myft-ui/templates/follow version='3' conceptId=primaryTag.id name=primaryTag.prefLabel taxonomy=primaryTag.taxonomy}}
@@ -44,7 +44,7 @@
 							{{/if}}
 							{{#if designGenre}}
 								<div class="article__brand--wrapper">
-									<a class="article__brand--title n-content-topic" href={{designGenre.url}} data-trackable="brand">{{designGenre.name}}</a>
+									<a class="article__brand--title n-content-tag" href={{designGenre.url}} data-trackable="brand">{{designGenre.name}}</a>
 								</div>
 							{{/if}}
 						</div>
@@ -76,7 +76,7 @@
 								<li class="article__tag">
 									<a
 										href="{{url}}"
-										class="n-content-topic n-content-topic--link n-content-topic--list"
+										class="n-content-tag n-content-tag--link n-content-tag--list"
 										data-trackable="tag"
 										{{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
 								</li>

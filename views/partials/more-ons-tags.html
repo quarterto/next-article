@@ -6,7 +6,7 @@
 	aria-labelledby="my-ft-title">
 	<div class="n-content-box__title n-content-u-margin--bottom-none">
 		<h3 class="n-content-box__title-text n-content-u-background-color--page">
-			<i class="c-myft-logo"></i>
+			<i class="article__myft-logo"></i>
 			<span class="n-util-visually-hidden">myFT</span>
 		</h3>
 	</div>
@@ -19,7 +19,7 @@
 			<a
 				href="{{url}}"
 				data-trackable="tag"
-				class="n-content-topic n-content-topic--with-follow n-content-topic--link">{{name}}</a>
+				class="n-content-tag n-content-tag--with-follow n-content-tag--link">{{name}}</a>
 			{{#if @root.flags.myFtApi}}
 			{{>next-myft-ui/templates/follow version='3' conceptId=id}}
 			{{/if}}

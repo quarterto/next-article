@@ -197,7 +197,7 @@
 	}
 }
 
-.c-myft-logo {
+.article__myft-logo {
 	@include nextIcon(myft-bolder, getColorFor(title, text), 26);
 	width: 40px;
 }
