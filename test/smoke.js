@@ -39,56 +39,56 @@ module.exports = [
 			'/content/b30c8de4-4754-11e5-af2f-4d6e0e5eda22': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'conditional_standard'
+					'X-Ft-Content-Classification': 'conditional_standard'
 				}
 			},
 			// unconditional article
 			'/content/459ef70a-4a43-11e5-b558-8a9722977189': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'unconditional'
+					'X-Ft-Content-Classification': 'unconditional'
 				}
 			},
 			// conditional premium article
 			'/content/fe857b82-4add-11e5-9b5d-89a026fda5c9': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'conditional_premium'
+					'X-Ft-Content-Classification': 'conditional_premium'
 				}
 			},
 			// fastft
 			'/content/b002e5ee-3096-3f51-9925-32b157740c98': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'conditional_standard'
+					'X-Ft-Content-Classification': 'conditional_standard'
 				}
 			},
 			// alphaville
 			'/content/06d867f9-37d0-3ea8-965e-34043575e607': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'conditional_registered'
+					'X-Ft-Content-Classification': 'conditional_registered'
 				}
 			},
 			// unconditional blog
 			'/content/1be403ef-db18-38ad-b693-38913f3a1c24': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'conditional_standard'
+					'X-Ft-Content-Classification': 'conditional_standard'
 				}
 			},
 			// conditional standard blog
 			'/content/4b3f14b6-344e-11e5-bdbb-35e55cbae175': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'conditional_standard'
+					'X-Ft-Content-Classification': 'conditional_standard'
 				}
 			},
 			// conditional registered blog
 			'/content/a0c29efb-09a5-3ab4-a624-518d16c54c4b': {
 				status: 200,
 				headers: {
-					'X-FT-Content-Classification': 'conditional_registered'
+					'X-Ft-Content-Classification': 'conditional_registered'
 				}
 			}
 		}
