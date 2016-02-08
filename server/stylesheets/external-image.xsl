@@ -43,7 +43,7 @@
         </xsl:variable>
 
         <!-- You cannot shrink-wrap text so inline styles FTW -->
-        <figure class="article-image article-image--{$variation}" style="width:{$maxWidth}px;">
+        <figure class="n-content-image n-content-image--{$variation}" style="width:{$maxWidth}px;">
 
             <xsl:choose>
                 <xsl:when test="@width != '' and @height != ''">
@@ -59,7 +59,7 @@
             </xsl:choose>
 
             <xsl:if test="string-length(@longdesc) &gt; 0 or string-length(@data-copyright) &gt; 0">
-              <figcaption class="article-image__caption">
+              <figcaption class="n-content-image__caption">
                 <xsl:if test="string-length(@longdesc) &gt; 0">
                   <xsl:value-of select="@longdesc" />
                 </xsl:if>
@@ -104,7 +104,7 @@
           </xsl:choose>
         </xsl:variable>
 
-        <div class="article-image__placeholder" style="padding-top:{$paddingTop};">
+        <div class="n-content-image__placeholder" style="padding-top:{$paddingTop};">
             <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$imageWidth}" />
         </div>
     </xsl:template>

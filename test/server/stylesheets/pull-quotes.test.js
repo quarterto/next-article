@@ -66,7 +66,7 @@ describe('Pull Quotes', function () {
 						'<p>Quote with master image</p>' +
 						'<footer class="quote__footer">Source with image</footer>' +
 					'</div>' +
-					'<div class="aside--image"><div class="article-image__placeholder" style="padding-top:56.25%;">' +
+					'<div class="aside--image"><div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 						'<img alt="Housing market economic dashboard" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/aa4eec2e-1bfd-11e5-8201-cbdb03d71480?source=next&amp;fit=scale-down&amp;width=470">' +
 					'</div></div>' +
 				'</blockquote>\n'

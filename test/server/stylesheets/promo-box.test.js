@@ -305,7 +305,7 @@ describe('Promo-boxes', function() {
 				'<aside class="n-content-box n-content-box--inline u-border--all" data-trackable="related-box" role="complementary">' +
 					'<div class="n-content-box__title"><div class="n-content-box__title-text u-background-color--pink">Tatomer Riesling 2012</div></div>' +
 					'<div class="aside--headline u-margin--left-right">Greece debt crisis</div>' +
-					'<div class="aside--image u-margin--left-right"><div class="article-image__placeholder" style="padding-top:96px;">' +
+					'<div class="aside--image u-margin--left-right"><div class="n-content-image__placeholder" style="padding-top:96px;">' +
 						'<img alt="start-up" src="https://next-geebee.ft.com/image/v1/images/raw/http://com.ft.imagepublish.prod.s3.amazonaws.com/79ac73d6-7718-11e5-933d-efcdc3c11c89?source=next&amp;fit=scale-down&amp;width=167"></div></div>' +
 					'<div class="aside--content u-margin--left-right"><p>That should do it.</p></div>' +
 				'</aside>\n'
