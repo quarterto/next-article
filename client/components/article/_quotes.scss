@@ -1,43 +1,19 @@
-$quote-spacing-unit: 16px;
+.quote--pull {
 
-.article__quote {
-	color: getColor('cold-1');
-
-	&--pull-quote {
-		.pull-quote__quote-marks {
-			position: absolute;
-			top: -14px;
-			left: 10px;
-			padding: 0 10px;
-			background-color: getColor('pink');
-			&:before {
-				@include nextIcon(pullquote, getColor('cold-1'), 26);
-				content: "";
-			}
+	.quote__quote-marks {
+		position: absolute;
+		top: -14px;
+		left: 10px;
+		padding: 0 10px;
+		background-color: getColor('pink');
+		&:before {
+			@include nextIcon(pullquote, getColor('cold-1'), 26);
+			content: "";
 		}
 	}
 
-	&--full-quote {
-		padding-top: 32px;
-		padding-bottom: 0;
-		p {
-			padding-bottom: 0;
-			&:before {
-				@include nextIcon(pullquote, getColor('cold-1'), 26);
-				position: absolute;
-				top: 0;
-				left: $quote-spacing-unit;
-				content: "";
-			}
-		}
+	.quote__footer {
+		@include oTypographySansDataBold(m);
+		font-style: normal;
 	}
-
-	p {
-		@include oTypographySerifDisplay(m);
-	}
-}
-
-.article__quote-footer {
-	@include oTypographySansDataBold(m);
-	font-style: normal;
 }
