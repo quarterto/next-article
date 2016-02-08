@@ -10,7 +10,7 @@ describe('Byline', () => {
 		const byline = 'George Parker';
 		const authors = [ { id: "ABCD-efhsdf", name: "George Parker" } ];
 
-		bylineTransform(byline, authors).should.equal('<a class="c-topic c-topic--link" href="/stream/authorsId/ABCD-efhsdf" data-trackable="author">George Parker</a>');
+		bylineTransform(byline, authors).should.equal('<a class="n-content-topic n-content-topic--link" href="/stream/authorsId/ABCD-efhsdf" data-trackable="author">George Parker</a>');
 	});
 
 	it('should wrap multiple authors in links',() => {
@@ -21,9 +21,9 @@ describe('Byline', () => {
 		];
 
 		bylineTransform(byline, authors).should.equal(
-			'<a class="c-topic c-topic--link" href="/stream/authorsId/ABCD-efhsdf" data-trackable="author">George Parker</a>' +
+			'<a class="n-content-topic n-content-topic--link" href="/stream/authorsId/ABCD-efhsdf" data-trackable="author">George Parker</a>' +
 			' and ' +
-			'<a class="c-topic c-topic--link" href="/stream/authorsId/OBCD-efhsdf" data-trackable="author">Chris Giles</a>'
+			'<a class="n-content-topic n-content-topic--link" href="/stream/authorsId/OBCD-efhsdf" data-trackable="author">Chris Giles</a>'
 		);
 	});
 
