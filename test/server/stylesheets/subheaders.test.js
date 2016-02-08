@@ -14,7 +14,7 @@ describe('Subheaders', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<h2 class="article__subhead article__subhead--standard">' +
+					'<h2 class="subhead subhead--standard">' +
 						'The new big earners' +
 					'</h2>\n'
 				);
@@ -29,7 +29,7 @@ describe('Subheaders', function () {
 			)
 			.then(function (transformedXml) {
 				transformedXml.should.equal(
-					'<h2 id="crosshead-1" class="article__subhead article__subhead--crosshead">' +
+					'<h2 id="crosshead-1" class="subhead subhead--crosshead">' +
 						'The new big earners' +
 					'</h2>\n'
 				);

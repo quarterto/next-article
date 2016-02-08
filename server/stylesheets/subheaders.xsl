@@ -6,10 +6,10 @@
             <xsl:choose>
                 <xsl:when test="strong">
                     <xsl:attribute name="id">crosshead-<xsl:number /></xsl:attribute>
-                    <xsl:attribute name="class">article__subhead article__subhead--crosshead</xsl:attribute>
+                    <xsl:attribute name="class">subhead subhead--crosshead</xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:attribute name="class">article__subhead article__subhead--standard</xsl:attribute>
+                    <xsl:attribute name="class">subhead subhead--standard</xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
 

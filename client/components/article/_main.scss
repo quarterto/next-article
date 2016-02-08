@@ -197,18 +197,6 @@
 	@include nextIcon(arrow-right, #b0b0b0, 60);
 }
 
-.article__subhead {
-	@include oTypographySansBold(l);
-	margin-top: 50px;
-	margin-bottom: 20px;
-}
-.article__subhead--crosshead {
-	border-bottom: 1px solid black;
-}
-.article__subhead--standard {
-	@include oTypographySansBold(m);
-}
-
 .article__aside {
 	@include oGridRespondTo($from: L, $until: XL) {
 		width: 310px;

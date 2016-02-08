@@ -32,9 +32,9 @@ describe('Table of Contents', () => {
 						'</li>' +
 					'</ol>' +
 				'</div>' +
-				'<h2 id="crosshead-1" class="article__subhead article__subhead--crosshead">First heading</h2>' +
-				'<h2 id="crosshead-2" class="article__subhead article__subhead--crosshead">Second heading</h2>' +
-				'<h2 id="crosshead-3" class="article__subhead article__subhead--crosshead">Third heading</h2>\n'
+				'<h2 id="crosshead-1" class="subhead subhead--crosshead">First heading</h2>' +
+				'<h2 id="crosshead-2" class="subhead subhead--crosshead">Second heading</h2>' +
+				'<h2 id="crosshead-3" class="subhead subhead--crosshead">Third heading</h2>\n'
 			)
 		});
 	});
