@@ -13,7 +13,7 @@ describe('Scroll Depth', function () {
 		bigPageEl.style.height = '2000px';
 		document.body.appendChild(bigPageEl);
 		articleEl = document.createElement('div');
-		articleEl.className = 'article__body';
+		articleEl.className = 'n-content-body';
 		articleEl.style.height = '1000px';
 		articleEl.style.position = 'absolute';
 		articleEl.style.top = '500px';
