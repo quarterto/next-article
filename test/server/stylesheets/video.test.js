@@ -21,7 +21,7 @@ describe('Video', () => {
 					expect(transformed).to.equal(
 						'<div class="n-content-video n-content-video--brightcove">' +
 							'<div' +
-								' class="n-content-video-wrapper"' +
+								' class="n-content-video__placeholder"' +
 								' data-n-component="n-video"' +
 								' data-n-video-source="brightcove"' +
 								' data-n-video-id="4084879507001"></div>' +
@@ -64,7 +64,7 @@ describe('Video', () => {
 				.then(function (transformed) {
 					expect(transformed).to.equal(
 						'<div class="n-content-video n-content-video--youtube">' +
-							'<div class="n-content-video-wrapper">' +
+							'<div class="n-content-video__placeholder">' +
 								'<iframe' +
 									' frameborder="0"' +
 									' src="https://www.youtube.com/embed/n2GTNK4VsXs"></iframe>' +
@@ -85,7 +85,7 @@ describe('Video', () => {
 				.then(function (transformed) {
 					expect(transformed).to.equal(
 						'<div class="n-content-video n-content-video--youtube">' +
-							'<div class="n-content-video-wrapper">' +
+							'<div class="n-content-video__placeholder">' +
 								'<iframe' +
 									' frameborder="0"' +
 									' src="https://www.youtube.com/embed/n2GTNK4VsXs"></iframe>' +

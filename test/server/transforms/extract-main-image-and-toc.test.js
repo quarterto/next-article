@@ -13,8 +13,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 		it('should extract a full image that is the first element in the body',() => {
 			const $ = cheerio.load(
 				'<body>' +
-					'<figure class="article-image article-image--full" style="width:700px;">' +
-						'<div class="article-image__placeholder" style="padding-top:56.25%;">' +
+					'<figure class="n-content-image n-content-image--full" style="width:700px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F4dd6d624-98cf-11e5-9228-87e603d47bdc?source=next&amp;fit=scale-down&amp;width=700">' +
 						'</div>' +
 					'</figure>' +
@@ -23,8 +23,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 			);
 			const resultObject = mainImageAndToc($);
 			resultObject.mainImageHtml.should.equal(
-				'<figure class="article-image article-image--full" style="width:700px;">' +
-					'<div class="article-image__placeholder" style="padding-top:56.25%;">' +
+				'<figure class="n-content-image n-content-image--full" style="width:700px;">' +
+					'<div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F4dd6d624-98cf-11e5-9228-87e603d47bdc?source=next&amp;fit=scale-down&amp;width=700">' +
 					'</div>' +
 				'</figure>'
@@ -39,8 +39,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 		it('should extract a center image that is the first element in the body',() => {
 			const $ = cheerio.load(
 				'<body>' +
-					'<figure class="article-image article-image--center" style="width:600px;">' +
-						'<div class="article-image__placeholder" style="padding-top:43%;">' +
+					'<figure class="n-content-image n-content-image--center" style="width:600px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:43%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Faee47340-9307-11e5-bd82-c1fb87bef7af?source=next&amp;fit=scale-down&amp;width=600">' +
 						'</div>' +
 					'</figure>' +
@@ -49,8 +49,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 			);
 			const resultObject = mainImageAndToc($);
 			resultObject.mainImageHtml.should.equal(
-				'<figure class="article-image article-image--center" style="width:600px;">' +
-					'<div class="article-image__placeholder" style="padding-top:43%;">' +
+				'<figure class="n-content-image n-content-image--center" style="width:600px;">' +
+					'<div class="n-content-image__placeholder" style="padding-top:43%;">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Faee47340-9307-11e5-bd82-c1fb87bef7af?source=next&amp;fit=scale-down&amp;width=600">' +
 					'</div>' +
 				'</figure>'
@@ -74,8 +74,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 		it('should not extract an inline image that is the first element in the body', () => {
 			const $ = cheerio.load(
 				'<body>' +
-					'<figure class="article-image article-image--inline" style="width:700px;">' +
-						'<div class="article-image__placeholder" style="padding-top:56.25%;">' +
+					'<figure class="n-content-image n-content-image--inline" style="width:700px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F4dd6d624-98cf-11e5-9228-87e603d47bdc?source=next&amp;fit=scale-down&amp;width=700">' +
 						'</div>' +
 					'</figure>' +
@@ -86,8 +86,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 			expect(resultObject.mainImageHtml).to.be.undefined;
 			resultObject.bodyHtml.should.equal(
 				'<body>' +
-					'<figure class="article-image article-image--inline" style="width:700px;">' +
-						'<div class="article-image__placeholder" style="padding-top:56.25%;">' +
+					'<figure class="n-content-image n-content-image--inline" style="width:700px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F4dd6d624-98cf-11e5-9228-87e603d47bdc?source=next&amp;fit=scale-down&amp;width=700">' +
 						'</div>' +
 					'</figure>' +
@@ -99,8 +99,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 		it('should not extract a thin image that is the first element in the body', () => {
 			const $ = cheerio.load(
 				'<body>' +
-					'<figure class="article-image article-image--thin" style="width:100px;">' +
-						'<div class="article-image__placeholder" style="padding-top:120%;">' +
+					'<figure class="n-content-image n-content-image--thin" style="width:100px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:120%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F8d8589a4-94d9-11e5-bd82-c1fb87bef7af?source=next&amp;fit=scale-down&amp;width=100">' +
 						'</div>' +
 					'</figure>' +
@@ -111,8 +111,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 			expect(resultObject.mainImageHtml).to.be.undefined;
 			resultObject.bodyHtml.should.equal(
 				'<body>' +
-					'<figure class="article-image article-image--thin" style="width:100px;">' +
-						'<div class="article-image__placeholder" style="padding-top:120%;">' +
+					'<figure class="n-content-image n-content-image--thin" style="width:100px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:120%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F8d8589a4-94d9-11e5-bd82-c1fb87bef7af?source=next&amp;fit=scale-down&amp;width=100">' +
 						'</div>' +
 					'</figure>' +
@@ -125,8 +125,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 			const $ = cheerio.load(
 				'<body>' +
 					'<p>test test test</p>' +
-					'<figure class="article-image article-image--full" style="width:700px;">' +
-						'<div class="article-image__placeholder" style="padding-top:56.25%;">' +
+					'<figure class="n-content-image n-content-image--full" style="width:700px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F4dd6d624-98cf-11e5-9228-87e603d47bdc?source=next&amp;fit=scale-down&amp;width=700">' +
 						'</div>' +
 					'</figure>' +
@@ -137,8 +137,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 			resultObject.bodyHtml.should.equal(
 				'<body>' +
 					'<p>test test test</p>' +
-					'<figure class="article-image article-image--full" style="width:700px;">' +
-						'<div class="article-image__placeholder" style="padding-top:56.25%;">' +
+					'<figure class="n-content-image n-content-image--full" style="width:700px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F4dd6d624-98cf-11e5-9228-87e603d47bdc?source=next&amp;fit=scale-down&amp;width=700">' +
 						'</div>' +
 					'</figure>' +
@@ -193,8 +193,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 							'<li class="article__toc__chapter"><a class="article__toc__link" href="#crosshead-3" data-trackable="toc">Politics</a></li>' +
 						'</ol>' +
 					'</div>' +
-					'<figure class="article-image article-image--full" style="width:700px;">' +
-						'<div class="article-image__placeholder" style="padding-top:56.25%;">' +
+					'<figure class="n-content-image n-content-image--full" style="width:700px;">' +
+						'<div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F4dd6d624-98cf-11e5-9228-87e603d47bdc?source=next&amp;fit=scale-down&amp;width=700">' +
 						'</div>' +
 					'</figure>' +
@@ -203,8 +203,8 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 			);
 			const resultObject = mainImageAndToc($);
 			resultObject.mainImageHtml.should.equal(
-				'<figure class="article-image article-image--full" style="width:700px;">' +
-					'<div class="article-image__placeholder" style="padding-top:56.25%;">' +
+				'<figure class="n-content-image n-content-image--full" style="width:700px;">' +
+					'<div class="n-content-image__placeholder" style="padding-top:56.25%;">' +
 						'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F4dd6d624-98cf-11e5-9228-87e603d47bdc?source=next&amp;fit=scale-down&amp;width=700">' +
 					'</div>' +
 				'</figure>'

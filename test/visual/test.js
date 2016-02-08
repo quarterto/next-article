@@ -21,7 +21,7 @@ visualRegressionTest({
 			path: "/08939642-75f3-3ea3-8fc6-73a558524ad1",
 			widths: [500, 1400],
 			elements: {
-				article_body: '.n-content-body'
+				article_body: '.article__body'
 			}
 		},
 		pull_quote: {
