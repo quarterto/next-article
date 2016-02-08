@@ -135,39 +135,6 @@
 	}
 }
 
-.article__video {
-	position: relative;
-	clear: left;
-	margin: 0 auto 1em;
-	max-width: 100%;
-
-	@media print {
-		display: none;
-	}
-}
-
-.article__video--brightcove {
-	width: 680px;
-}
-
-.article__video--youtube {
-	width: 560px;
-}
-
-.article__video-wrapper {
-	padding-top: 56.25%;
-
-	img,
-	video,
-	iframe {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-}
-
 .article__gallery {
 	line-height: initial;
 }
@@ -228,6 +195,11 @@
 	@include oGridRespondTo($from: S, $until: L) {
 		clear: left;
 	}
+}
+
+.c-myft-logo {
+	@include nextIcon(myft-bolder, getColorFor(title, text), 26);
+	width: 40px;
 }
 
 @import 'aside';

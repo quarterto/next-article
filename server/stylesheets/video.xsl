@@ -2,8 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template match="a[starts-with(@href, 'http://video.ft.com/') and string-length(text()) = 0]">
-        <div class="article__video article__video--brightcove">
-            <div class="article__video-wrapper"
+        <div class="n-content-video n-content-video--brightcove">
+            <div class="n-content-video-wrapper"
                 data-n-component="n-video"
                 data-n-video-source="brightcove"
                 data-n-video-id="{substring-after(@href, 'http://video.ft.com/')}">
@@ -30,8 +30,8 @@
             </xsl:choose>
         </xsl:variable>
 
-        <div class="article__video article__video--youtube">
-            <div class="article__video-wrapper">
+        <div class="n-content-video n-content-video--youtube">
+            <div class="n-content-video-wrapper">
                 <iframe frameborder="0" src="https://www.youtube.com/embed/{$videoId}"></iframe>
             </div>
         </div>

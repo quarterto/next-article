@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template match="big-number">
-        <div class="article-big-number aside--content n-content-box n-content-box--inline u-border--all u-padding--left-right">
+        <div class="article-big-number aside--content n-content-box n-content-box--inline n-content-u-border--all n-content-u-padding--left-right">
             <span class="article-big-number__title">
                 <xsl:apply-templates select="big-number-headline" />
             </span>

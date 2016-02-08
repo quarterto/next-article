@@ -5,21 +5,21 @@
 
       <xsl:variable name="imagePaddingStyle">
         <xsl:choose>
-          <xsl:when test="count(current()/pull-quote-image) > 0"> u-padding--bottom-none</xsl:when>
+          <xsl:when test="count(current()/pull-quote-image) > 0"> n-content-u-padding--bottom-none</xsl:when>
           <xsl:otherwise></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
 
       <xsl:variable name="contentPaddingStyle">
         <xsl:choose>
-          <xsl:when test="count(current()/pull-quote-image) > 0"> u-padding--bottom</xsl:when>
+          <xsl:when test="count(current()/pull-quote-image) > 0"> n-content-u-padding--bottom</xsl:when>
           <xsl:otherwise></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
 
-      <blockquote class="quote--pull aside--content n-content-box n-content-box--inline u-border--all{$imagePaddingStyle}">
+      <blockquote class="quote--pull aside--content n-content-box n-content-box--inline n-content-u-border--all{$imagePaddingStyle}">
         <div class="quote__quote-marks"></div>
-        <div class="u-padding--left-right{$contentPaddingStyle}">
+        <div class="n-content-u-padding--left-right{$contentPaddingStyle}">
           <p><xsl:value-of select="pull-quote-text" /></p>
           <xsl:apply-templates select="pull-quote-source" />
         </div>

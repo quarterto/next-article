@@ -17,9 +17,9 @@ describe('Pull Quotes', function () {
 			)
 			.then(transformedXml => {
 				transformedXml.should.equal(
-					'<blockquote class="quote--pull aside--content n-content-box n-content-box--inline u-border--all">' +
+					'<blockquote class="quote--pull aside--content n-content-box n-content-box--inline n-content-u-border--all">' +
 						'<div class="quote__quote-marks"></div>' +
-						'<div class="u-padding--left-right">' +
+						'<div class="n-content-u-padding--left-right">' +
 							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
 							'<footer class="quote__footer">Dr. Seuss</footer>' +
 						'</div>' +
@@ -39,9 +39,9 @@ describe('Pull Quotes', function () {
 			)
 			.then(transformedXml => {
 				transformedXml.should.equal(
-					'<blockquote class="quote--pull aside--content n-content-box n-content-box--inline u-border--all">' +
+					'<blockquote class="quote--pull aside--content n-content-box n-content-box--inline n-content-u-border--all">' +
 						'<div class="quote__quote-marks"></div>' +
-						'<div class="u-padding--left-right">' +
+						'<div class="n-content-u-padding--left-right">' +
 							'<p>Think left and think right and think low and think high. Oh, the thinks you can think up if only you try!</p>' +
 						'</div>' +
 					'</blockquote>\n'
@@ -60,9 +60,9 @@ describe('Pull Quotes', function () {
 		)
 		.then(transformedXml => {
 			transformedXml.should.equal(
-				'<blockquote class="quote--pull aside--content n-content-box n-content-box--inline u-border--all u-padding--bottom-none">' +
+				'<blockquote class="quote--pull aside--content n-content-box n-content-box--inline n-content-u-border--all n-content-u-padding--bottom-none">' +
 					'<div class="quote__quote-marks"></div>' +
-					'<div class="u-padding--left-right u-padding--bottom">' +
+					'<div class="n-content-u-padding--left-right n-content-u-padding--bottom">' +
 						'<p>Quote with master image</p>' +
 						'<footer class="quote__footer">Source with image</footer>' +
 					'</div>' +
