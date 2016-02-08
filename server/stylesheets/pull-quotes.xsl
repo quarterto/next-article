@@ -17,7 +17,7 @@
         </xsl:choose>
       </xsl:variable>
 
-      <blockquote class="quote--pull aside--content c-box c-box--inline u-border--all{$imagePaddingStyle}">
+      <blockquote class="quote--pull aside--content n-content-box n-content-box--inline u-border--all{$imagePaddingStyle}">
         <div class="quote__quote-marks"></div>
         <div class="u-padding--left-right{$contentPaddingStyle}">
           <p><xsl:value-of select="pull-quote-text" /></p>

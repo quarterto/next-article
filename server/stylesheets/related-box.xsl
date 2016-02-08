@@ -3,7 +3,7 @@
 
   <xsl:template match="/html/body/ft-related | /html/body/promo-box">
 
-    <aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">
+    <aside class="n-content-box n-content-box--inline u-border--all" data-trackable="related-box" role="complementary">
 
       <xsl:variable name="expanderWordImage" select="55" />
       <xsl:variable name="expanderWordNoImage" select="100" />
@@ -24,7 +24,7 @@
         <xsl:attribute name="data-o-component">o-expander</xsl:attribute>
         <xsl:attribute name="data-o-expander-shrink-to">0</xsl:attribute>
         <xsl:attribute name="data-o-expander-count-selector">.aside--content__extension</xsl:attribute>
-        <xsl:attribute name="class">c-box c-box--inline u-border--all o-expander</xsl:attribute>
+        <xsl:attribute name="class">n-content-box n-content-box--inline u-border--all o-expander</xsl:attribute>
       </xsl:if>
 
       <xsl:variable name="type">
@@ -49,8 +49,8 @@
 
       <xsl:choose>
         <xsl:when test="$type = 'article' and count(current()/title) = 0">
-          <div class="c-box__title">
-            <div class="c-box__title-text u-background-color--pink">Related article</div>
+          <div class="n-content-box__title">
+            <div class="n-content-box__title-text u-background-color--pink">Related article</div>
           </div>
         </xsl:when>
         <xsl:otherwise>
@@ -84,8 +84,8 @@
   </xsl:template>
 
   <xsl:template match="title | promo-title" mode="aside-title">
-    <div class="c-box__title">
-      <div class="c-box__title-text u-background-color--pink">
+    <div class="n-content-box__title">
+      <div class="n-content-box__title-text u-background-color--pink">
         <xsl:apply-templates select="current()" mode="extract-content" />
       </div>
     </div>
