@@ -94,26 +94,85 @@
 	}
 }
 
+// TAGS
 .article__tags {
 	margin-top: 10px;
 	padding: 0 0 8px;
 	@include oGridRespondTo(L) {
 		align-self: flex-end;
 	}
-	&--main-image {
-		padding: 0;
-	}
 }
-.article__tags__title {
+
+.article__tags--main-image {
+	padding: 0;
+}
+
+.article__tags-title {
 	@include oTypographySans(xs);
 	margin: 0;
 	text-transform: uppercase;
 }
+
 .article__tags-list {
 	@include nLists();
 	margin: ($spacing-unit/2) 0 0;
 	@include oGridRespondTo($until: S) {
 		width: 100%;
+	}
+}
+
+.article__tags-intro {
+	padding: 16px 0;
+	margin: 0 10px;
+	border-bottom: 1px solid getColor('warm-3');
+	p {
+		margin: 0;
+	}
+}
+
+.article__tags-list--myft {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.article__tags-tag--with-follow {
+	position: relative;
+	padding: 10px 80px 10px 0;
+	margin: 0 10px;
+	border-bottom: 1px solid getColor('warm-3');
+	min-height: 26px;
+
+	.n-myft-ui {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		margin-top: -13px;
+	}
+
+}
+
+.article__tags-product-tour {
+	text-align: center;
+	padding: 15px 0;
+}
+
+.article__tags-product-tour-link {
+	@include oTypographySansData(m);
+	font-size: 16px;
+	position: relative;
+	&:after {
+		@include nextIcon('arrow-right', getColor('link-1'), 10);
+		content: '';
+		position: absolute;
+		top: 5px;
+	}
+	&:hover {
+		color: getColor('cold-2');
+
+		&:after {
+			@include nextIcon('arrow-right', getColor('cold-2'), 10);
+		}
 	}
 }
 .article__tag {

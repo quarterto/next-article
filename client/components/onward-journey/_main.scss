@@ -231,67 +231,6 @@
 	}
 }
 
-.header.article-tags__header {
-	position: absolute;
-	top: -24px;
-	left: 15px;
-	padding-left: 10px;
-	background-color: getColor('warm-5');
-}
-.article-tags__intro {
-	padding: 16px 0;
-	margin: 0 10px;
-	border-bottom: 1px solid getColor('warm-3');
-	p {
-		margin: 0;
-	}
-}
-
-.article-tags__tags {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.article-tags__tag {
-	position: relative;
-	padding: 10px 80px 10px 0;
-	margin: 0 10px;
-	border-bottom: 1px solid getColor('warm-3');
-	min-height: 26px;
-}
-
-.article-tags__tag .n-myft-ui {
-	position: absolute;
-	top: 50%;
-	right: 0;
-	margin-top: -13px;
-}
-
-.article-tags__product-tour {
-	text-align: center;
-	padding: 15px 0;
-}
-
-.article-tags__product-tour--link {
-	@include oTypographySansData(m);
-	font-size: 16px;
-	position: relative;
-	&:after {
-		@include nextIcon('arrow-right', getColor('link-1'), 10);
-		content: '';
-		position: absolute;
-		top: 5px;
-	}
-	&:hover {
-		color: getColor('cold-2');
-
-		&:after {
-			@include nextIcon('arrow-right', getColor('cold-2'), 10);
-		}
-	}
-}
-
 .header {
 	position: relative;
 	padding: 0;
