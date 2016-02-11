@@ -211,6 +211,34 @@ describe('Extracting Main Image and Table of Contents from Body', () => {
 			);
 		});
 
+		it('should not extract the image from the first child position of an elemwnt with previous siblings', () => {
+			const $ = cheerio.load(
+				'<body>' +
+					'<p>The co-founding Zoman, Deepinder Goyal, that is took time for a chat with us last week about the change going on in Indias start-up world.</p>' +
+					'<blockquote class="article__quote article__quote--full-quote aside--content c-box u-border--left u-padding--left-right">' +
+						'<figure class="article-image article-image--center" style="width:354px;"><div class="article-image__placeholder" style="padding-top:75.9887005649718%;">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fftalphaville.ft.com%2Ffiles%2F2016%2F02%2FScreen-Shot-2016-02-08-at-16.08.47-590x448.png?source=next&amp;fit=scale-down&amp;width=354">' +
+							'</div>' +
+						'</figure>' +
+					'</blockquote>' +
+					'<p>Or you could skip straight to stuff like this from Goyals mouth with our emphasis:</p>' +
+				'</body>'
+			);
+			const resultObject = mainImageAndToc($);
+			resultObject.bodyHtml.should.equal(
+				'<body>' +
+					'<p>The co-founding Zoman, Deepinder Goyal, that is took time for a chat with us last week about the change going on in Indias start-up world.</p>' +
+					'<blockquote class="article__quote article__quote--full-quote aside--content c-box u-border--left u-padding--left-right">' +
+						'<figure class="article-image article-image--center" style="width:354px;"><div class="article-image__placeholder" style="padding-top:75.9887005649718%;">' +
+							'<img alt="" src="https://next-geebee.ft.com/image/v1/images/raw/http%3A%2F%2Fftalphaville.ft.com%2Ffiles%2F2016%2F02%2FScreen-Shot-2016-02-08-at-16.08.47-590x448.png?source=next&amp;fit=scale-down&amp;width=354">' +
+							'</div>' +
+						'</figure>' +
+					'</blockquote>' +
+					'<p>Or you could skip straight to stuff like this from Goyals mouth with our emphasis:</p>' +
+				'</body>'
+			);
+		});
+
 	});
 
 });
