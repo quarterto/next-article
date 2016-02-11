@@ -10,7 +10,9 @@ module.exports = function ($) {
 
 	// check that it is the first element in the body
 	if (
-		$firstMainImage.length && !$firstMainImage.prev().length
+		$firstMainImage.length &&
+		!$firstMainImage.prev().length &&
+		(!$firstMainImage.parent() || !$firstMainImage.parent().prev().length)
 	) {
 		mainImageHtml = $.html($firstMainImage.remove());
 	}
