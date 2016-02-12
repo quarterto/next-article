@@ -29,7 +29,7 @@ module.exports = function(req, res, next) {
 		.catch(function(err) {
 			if (err.name === fetchres.BadServerResponseError.name
 				|| err.message.indexOf('timeout') > -1) {
-				logger.error({ event: 'BAD_UPSTREAM_RESPONSE' status: 504 error: err.name });
+				logger.error({ event: 'BAD_UPSTREAM_RESPONSE' status: 504, error: err.name });
 				res.sendStatus(504).end();
 			} else {
 				next(err);
