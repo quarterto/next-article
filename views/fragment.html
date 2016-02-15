@@ -1,24 +1,22 @@
 <div class="article__fragment">
-  {{#if mainImageHtml}}
-    {{{mainImageHtml}}}
-  {{/if}}
-  {{> body}}
-  {{#if tags}}
-    <div
-      role="complementary"
-      class="tags--inline">
-      <p class="tags__title--inline">Latest stories on</p>
-      <ul class="tags__list--inline" data-trackable="tags">
-        {{#each tags}}
-        <li class="tag--inline">
-          <a
-            href="{{url}}"
-            class="n-content-tag n-content-tag--link n-content-tag--list__horizontal"
-            data-trackable="tag"
-            {{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
-        </li>
-        {{/each}}
-      </ul>
-    </div>
-  {{/if}}
+	{{#if mainImageHtml}}
+		{{{mainImageHtml}}}
+	{{/if}}
+	{{> body}}
+	{{#if tags}}
+		<div role="complementary">
+			<p>Latest stories on</p>
+			<ul class="n-content-tags__list--inline" data-trackable="tags">
+				{{#each tags}}
+				<li class="n-content-tag__list-item--inline">
+					<a
+						href="{{url}}"
+						class="n-content-tag n-content-tag--link n-content-tag--list__horizontal"
+						data-trackable="tag"
+						{{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
+				</li>
+				{{/each}}
+			</ul>
+		</div>
+	{{/if}}
 </div>

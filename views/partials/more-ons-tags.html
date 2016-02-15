@@ -1,7 +1,7 @@
 
 <div
 	role="region"
-	class="article__tags n-content-box n-content-u-border--all"
+	class="n-content-tags__wrapper n-content-box n-content-u-border--all"
 	data-trackable="mentions"
 	aria-labelledby="my-ft-title">
 	<div class="n-content-box__title n-content-u-margin--bottom-none">
@@ -10,12 +10,12 @@
 			<span class="n-util-visually-hidden">myFT</span>
 		</h3>
 	</div>
-	<div class="article__tags-intro">
+	<div class="n-content-tags__intro">
 		<p>Follow the topics mentioned in this article</p>
 	</div>
-	<ul class="article__tags-list--myft">
+	<ul class="n-content-tags__list--myft">
 		{{#each tags}}
-		<li class="article__tags-tag--with-follow">
+		<li class="n-content-tag__list-item--with-follow">
 			<a
 				href="{{url}}"
 				data-trackable="tag"
@@ -26,10 +26,10 @@
 		</li>
 		{{/each}}
 	</ul>
-	<div class="article__tags-product-tour">
+	<div class="n-content-tags__product-tour">
 		<a
 			href="/myft/product-tour"
 			data-trackable="myFT-product-tour"
-			class="article__tags-product-tour-link">Take a tour of <i>my</i>FT</a>
+			class="n-content-tags__product-tour-link">Take a tour of <i>my</i>FT</a>
 	</div>
 </div>
