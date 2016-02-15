@@ -8,10 +8,10 @@
 			<p>Latest stories on</p>
 			<ul class="n-content-tags__list--inline" data-trackable="tags">
 				{{#each tags}}
-				<li class="n-content-tag__list-item--inline">
+				<li>
 					<a
 						href="{{url}}"
-						class="n-content-tag n-content-tag--link n-content-tag--list__horizontal"
+						class="n-content-tag n-content-tag--horizontal-list"
 						data-trackable="tag"
 						{{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
 				</li>

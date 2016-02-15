@@ -18,7 +18,7 @@
 						<div class="article__header-primary">
 							<p class="article__primary-theme">
 								{{#with primaryTag}}
-								<a href="/stream/{{taxonomy}}Id/{{id}}" class="n-content-tag n-content-tag--medium n-content-tag--with-follow n-content-tag--link" data-trackable="section-link" aria-label="posted in category {{name}}" data-concept-id="{{id}}">{{name}}</a>
+								<a href="/stream/{{taxonomy}}Id/{{id}}" class="n-content-tag n-content-tag--medium n-content-tag--with-follow" data-trackable="section-link" aria-label="posted in category {{name}}" data-concept-id="{{id}}">{{name}}</a>
 								{{/with}}
 							</p>
 							<h1 class="article__title">{{title}}</h1>
@@ -45,8 +45,8 @@
 					<h3 class="n-content-tags__title">Topics mentioned in this podcast</h3>
 					<ul class="n-content-tags__list" data-trackable="tags">
 						{{#each tags}}
-						<li class="n-content-tag__list-item">
-							<a class="n-content-tag n-content-tag--link n-content-tag--list" href="{{url}}" data-trackable="tag" data-concept-id="{{id}}">{{prefLabel}}</a>
+						<li>
+							<a class="n-content-tag" href="{{url}}" data-trackable="tag" data-concept-id="{{id}}">{{prefLabel}}</a>
 						</li>
 						{{/each}}
 					</ul>

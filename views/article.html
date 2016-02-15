@@ -22,12 +22,12 @@
 							{{#if isSpecialReport}}
 								<p class="article__primary-theme">
 									Special Report:
-									<a href="/special-reports/{{primaryTag.id}}" class="n-content-tag n-content-tag--medium n-content-tag--with-follow n-content-tag--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+									<a href="/special-reports/{{primaryTag.id}}" class="n-content-tag n-content-tag--medium n-content-tag--with-follow" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 								</p>
 							{{else}}
 								{{#if primaryTag}}
 									<div class="article__primary-theme" data-trackable="primary-theme">
-										<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="n-content-tag n-content-tag--medium n-content-tag--with-follow n-content-tag--link" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
+										<a href="/stream/{{primaryTag.taxonomy}}Id/{{primaryTag.id}}" class="n-content-tag n-content-tag--medium n-content-tag--with-follow" data-trackable="section-link" aria-label="posted in category {{primaryTag.name}}" data-concept-id="{{primaryTag.id}}">{{primaryTag.name}}</a>
 										{{#ifAll @root.flags.myFtApi @root.flags.articleFollowPrimayTag}}
 											<span{{#if tagToFollow}} class="n-content-u-hide--L"{{/if}}>
 												{{>next-myft-ui/templates/follow version='3' conceptId=primaryTag.id name=primaryTag.prefLabel taxonomy=primaryTag.taxonomy}}
@@ -73,10 +73,9 @@
 							<h3 class="n-content-tags__title">Topics mentioned in this article</h3>
 							<ul class="n-content-tags__list" data-trackable="tags">
 								{{#each tags}}
-								<li class="n-content-tag__list-item">
+								<li class="n-content-tag__list-item--vertical">
 									<a
 										href="{{url}}"
-										class="n-content-tag n-content-tag--link n-content-tag--list"
 										data-trackable="tag"
 										{{#if id}}data-concept-id="{{id}}"{{/if}}>{{name}}</a>
 								</li>
