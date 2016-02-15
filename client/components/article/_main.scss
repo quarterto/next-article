@@ -173,6 +173,12 @@
 	width: 40px;
 }
 
+.tag-to-follow {
+	@include oGridRespondTo(L) {
+		display: none;
+	}
+}
+
 @import "n-content-body/main";
 @import 'aside';
 @import 'big-number';
