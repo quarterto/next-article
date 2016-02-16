@@ -23,6 +23,8 @@ module.exports = function(xml, stylesheet, params) {
 			'-'
 		), { env: env });
 
+		xsltproc.stdout.setEncoding('utf8');
+
 		xsltproc.stdin.write(xml);
 
 		xsltproc.stdin.end();
